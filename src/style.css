@@ -1,93 +1,2309 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* HEADER section */
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+  --orange: #ff6b00;
+  --gray1: #70868f;
+  --gray2: #8690a2;
+  --gray3: #b0afb1;
+  --gray4: #c4c4c4;
+  --gray5: #aaaaaa;
+  --gray6: #b8bbcf;
+  --white: #ffffff;
+  --black: #121212;
+  --black-color: #000000;
+  --black-heading: #231d4f;
+  --bg-black1: #0c0d0f;
+  --bg-black2: #111317;
+  --p-color1: #575757;
+  --p-color2: #757575;
+  --p-color3: #1e1e1e;
+  --p-color4: #2d3748;
 }
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  font-family: "Urbanist", sans-serif;
+  background-color: var(--white);
 }
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+header nav {
+  background: #0c0d0f;
+  box-shadow: 0px 64px 26px rgba(0, 0, 0, 0.01), 0px 4px 9px rgba(0, 0, 0, 0.1),
+    0px 0px 0px rgba(0, 0, 0, 0.1);
+  height: 95px;
 }
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-.card {
-  padding: 2em;
-}
-
-#app {
-  max-width: 1280px;
+.main-nav nav .navbar-nav {
   margin: 0 auto;
-  padding: 2rem;
+}
+.main-nav nav li a {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0.2px;
+  color: var(--gray1);
+}
+.main-nav nav li .nav-link.active {
+  color: var(--orange);
+}
+.main-nav nav li a:hover {
+  color: var(--orange);
+}
+.main-nav .logo {
+  color: var(--orange);
+}
+.main-nav .logo img {
+  width: 134px;
+  height: 34px;
+}
+.main-nav nav .navbar-nav li {
+  padding: 0 4px;
+}
+.nav-button .log-in,
+.nav-button .sign-up,
+.nav-button .log-out {
+  border: 1px solid var(--orange);
+  border-radius: 5px;
+  color: var(--orange);
+  background-color: var(--bg-black1);
+  padding: 8px 22px;
+}
+.nav-button .log-out {
+  border-color: var(--white);
+}
+.nav-button .log-out i {
+  color: var(--white);
+}
+.nav-button .log-in {
+  background-color: transparent;
+}
+.nav-button .sign-up {
+  margin-right: 0px;
+  background-color: var(--orange);
+  color: var(--white);
+  font-style: normal;
+  font-weight: 500;
+  margin: 0px 10px;
+}
+
+/* HOME PAGE - Slider */
+.home-slider {
+  background: var(--bg-black2);
+  box-shadow: 0px 64px 26px rgba(0, 0, 0, 0.01), 0px 4px 9px rgba(0, 0, 0, 0.1),
+    0px 0px 0px rgba(0, 0, 0, 0.1);
+  background-image: url("./assets/home-slider-ellipse-bottom.svg"),
+    url("./assets/home-slider-ellipse-top.svg");
+  background-repeat: no-repeat;
+  background-position: top 50px left -50px, bottom right;
+}
+.home-slider .container {
+  padding: 60px 0px 90px 0px;
+}
+.home-slider .carousel-caption {
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  width: 41%;
+  text-align: left;
+}
+.home-slider .content-4 {
+  width: 50%;
+}
+.home-slider .carousel-caption h1,
+.home-slider .carousel-caption h3 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 56px;
+  line-height: 62px;
+  color: var(--white);
+  margin-bottom: 20px;
+}
+.home-slider .carousel-caption p {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 34px;
+  color: var(--white);
+  width: 90%;
+  margin-bottom: 28px;
+}
+.home-slider .carousel-caption a {
+  border: 1px solid var(--orange);
+  border-radius: 5px;
+  color: var(--white);
+  background-color: var(--orange);
+  padding: 20px 60px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 100%;
+  letter-spacing: 0.05em;
+  box-shadow: 0px 22px 30px rgba(255, 107, 0, 0.35);
+}
+#home-carousel .carousel-control-prev {
+  left: -50px;
+  opacity: 1;
+}
+#home-carousel .carousel-control-prev-icon {
+  background-image: url("./assets/scarousel-icon-prev.svg");
+  height: 64px;
+  width: 64px;
+}
+#home-carousel .carousel-control-prev-icon:hover {
+  background-image: url("./assets/carousel-icon-prev-hover.svg");
+}
+#home-carousel .carousel-control-next {
+  right: -50px;
+  opacity: 1;
+}
+#home-carousel .carousel-control-next-icon {
+  background-image: url("./assets/carousel-icon-next.svg");
+  height: 64px;
+  width: 64px;
+}
+#home-carousel .carousel-control-next-icon:hover {
+  background-image: url("./assets/carousel-icon-next-hover.svg");
+}
+/* .animate-section {
+    position: absolute;
+    top: 0%;
+    right: 20%;
+} */
+#home-carousel .animate-left {
+  position: absolute;
+  top: 0%;
+  right: 25%;
+}
+#home-carousel .animate-right {
+  position: absolute;
+  top: 0%;
+  right: 5%;
+}
+#home-carousel .animate-left img {
+  width: 330px !important;
+  height: 330px !important;
+  position: relative;
+  animation-name: leftImage;
+  animation-duration: 5s;
+  animation-timing-function: infinite;
+  animation-delay: 0s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+}
+@keyframes leftImage {
+  0% {
+    top: 0px;
+  }
+  100% {
+    top: -600px;
+  }
+}
+#home-carousel .animate-right img {
+  width: 330px !important;
+  height: 330px !important;
+  position: relative;
+  animation-name: rightImage;
+  animation-duration: 5s;
+  animation-timing-function: infinite;
+  animation-delay: 0s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+@keyframes rightImage {
+  0% {
+    bottom: 0px;
+  }
+  /* 25%  { bottom: 150px;}
+    50%  { bottom: 300px;}
+    75%  { bottom: 450px;} */
+  100% {
+    bottom: 600px;
+  }
+}
+
+/* HOME PAGE - Custom Song section */
+.custom-song .container,
+.discover-artist .container,
+.songs-for-occasion .container,
+.testimonials .container,
+.featured-artists .container,
+.reminder .container,
+.plans-and-pricing .container {
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+.featured-artists .container {
+  margin-bottom: 150px;
+}
+.songs-for-occasion .container {
+  margin-bottom: 130px;
+}
+.custom-song h2 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 56px;
+  line-height: 62px;
+  color: var(--black);
+  text-align: center;
+  margin-bottom: 50px;
+}
+/* change transition duration to control the speed of fade effect */
+#custom-song-carousel .carousel-item {
+  transition: transform 1.1s ease-in-out;
+}
+.carousel-fade .active.carousel-item-start,
+.carousel-fade .active.carousel-item-end {
+  transition: opacity 0s 1.1s;
+}
+#custom-song-carousel .carousel-indicators {
+  position: relative;
+  top: 120px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  margin-right: 0%;
+  margin-bottom: 1rem;
+  margin-left: 0%;
+  width: 20%;
+  gap: 100px;
+}
+#custom-song-carousel .carousel-indicators [data-bs-target] {
+  box-sizing: content-box;
+  flex: 0 1 auto;
+  width: 30px;
+  height: 3px;
+  padding: 0;
+  margin-right: 3px;
+  margin-left: 3px;
+  text-indent: inherit;
+  cursor: pointer;
+  background-color: var(--white);
+  background-clip: padding-box;
+  border: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  opacity: 1;
+}
+#custom-song-carousel button .number1,
+#custom-song-carousel button .number2,
+#custom-song-carousel button .number3 {
+  position: absolute;
+  display: block;
+  border-radius: 100px;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 48px;
+  line-height: 53px;
+  color: var(--gray2);
+  width: 90px;
+  height: 90px;
+  background: var(--white);
+  border: 3px solid var(--gray2);
+  padding-top: 14px;
+}
+/* #custom-song-carousel .carousel-indicators p {
+    position: absolute;
+    top: 50px;
+    left: 100px;
+    display: block;
+    color: #ffffff;
+    width: 35px;
+    height: 3px;
+    border: 2px solid #8690A2;
+    padding-top: 0px;
+} */
+#custom-song-carousel .carousel-indicators button.active span {
+  color: var(--orange);
+  border: 3px solid var(--orange);
+}
+#custom-song-carousel .carousel-caption h3 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 56px;
+  line-height: 62px;
+  color: var(--orange);
+  margin-bottom: 24px;
+}
+#custom-song-carousel .carousel-caption p {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 30px;
+  color: var(--p-color1);
+  margin-bottom: 40px;
+}
+#custom-song-carousel .carousel-caption {
+  position: relative;
+  top: 35%;
+  right: 0%;
+  bottom: 1.25rem;
+  left: 0%;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+  text-align: left;
+}
+#custom-song-carousel .carousel-caption a {
+  border: 1px solid var(--orange);
+  border-radius: 10px;
+  color: var(--white);
+  background-color: var(--orange);
+  padding: 22px 47px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 100%;
+  letter-spacing: 0.05em;
+}
+
+/* HOME PAGE - Discover you dream artist section */
+.discover-artist h2,
+.songs-for-occasion h2,
+.testimonials h2,
+.featured-artists h2,
+.plans-and-pricing h2,
+.faq h2 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 53px;
+  text-align: center;
+  color: var(--black);
+  margin-bottom: 10px;
+}
+.discover-artist .sub-heading,
+.songs-for-occasion .sub-heading,
+.testimonials .sub-heading,
+.featured-artists .sub-heading,
+.plans-and-pricing .sub-heading,
+.faq .sub-heading {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 38px;
+  text-align: center;
+  color: var(--p-color1);
+  margin-bottom: 50px;
+}
+
+/* first row */
+.discover-artist .wrapper {
+  background-image: url("./assets/discover-artist-bg.svg");
+  background-blend-mode: overlay;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.available-artist .content {
+  margin: 80px auto;
+  width: 70%;
+}
+.available-artist .content h3,
+.book-your-event .content h3 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 53px;
+  color: var(--white);
+  margin-bottom: 24px;
+}
+.available-artist .content p,
+.book-your-event .content p {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 33px;
+  color: var(--white);
+  text-align: left;
+}
+.available-artist .content ul li,
+.book-your-event .content ul li {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 33px;
+  color: var(--gray3);
+  text-align: left;
+}
+.available-artist .content ul li::marker,
+.book-your-event .content ul li::marker {
+  font-size: 1.3em;
+}
+.available-artist .content ul,
+.book-your-event .content ul {
+  margin-bottom: 30px;
+}
+.available-artist .content a,
+.book-your-event .content a {
+  border: 1px solid var(--orange);
+  border-radius: 10px;
+  color: var(--white);
+  background-color: var(--orange);
+  box-shadow: 0px 22px 30px rgba(255, 107, 0, 0.35);
+  padding: 25px 60px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 100%;
+  letter-spacing: 0.05em;
+}
+.discover-artist #availableArtist {
+  width: 80%;
+  margin: 100px auto;
+}
+#availableArtist .carousel-indicators,
+#bookYourEvent .carousel-indicators {
+  margin-bottom: -3rem;
+}
+#availableArtist .carousel-indicators [data-bs-target],
+#bookYourEvent .carousel-indicators [data-bs-target] {
+  width: 14px;
+  height: 14px;
+  padding: 0;
+  margin-right: 4px;
+  margin-left: 4px;
+  background-color: var(--gray4);
+  border-radius: 100%;
+  opacity: 1;
+}
+#availableArtist .carousel-indicators .active,
+#bookYourEvent .carousel-indicators .active {
+  background-color: var(--orange);
+}
+
+/* second row */
+.book-your-event .content {
+  margin: 80px auto 140px;
+  width: 80%;
+}
+.discover-artist #bookYourEvent {
+  margin: 80px auto 140px;
+  width: 80%;
+}
+
+/* HOME PAGE - Songs for every Occasion section */
+.songs-for-occasion .content {
+  text-align: left;
+  margin-top: 28px;
+}
+.songs-for-occasion .row {
+  margin-bottom: 120px;
+}
+.songs-for-occasion img {
+  -webkit-filter: brightness(100%);
+  -moz-filter: brightness(100%);
+  -o-filter: brightness(100%);
+  -ms-filter: brightness(100%);
+  filter: brightness(100%);
+}
+.songs-for-occasion img:hover {
+  -webkit-filter: brightness(70%);
+  -moz-filter: brightness(70%);
+  -o-filter: brightness(70%);
+  -ms-filter: brightness(70%);
+  filter: brightness(70%);
+  transition: all 1s;
+  border-radius: 28px;
+}
+.songs-for-occasion .content h5 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 100%;
+  letter-spacing: 0.05em;
+  color: #1a1c20;
+}
+.songs-for-occasion img:hover + .content h5 {
+  color: var(--orange);
+}
+.songs-for-occasion .content p {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: 0.05em;
+  color: var(--gray5);
+}
+.songs-for-occasion .button-wrapper,
+.featured-artists .button-wrapper {
   text-align: center;
 }
+.songs-for-occasion .button-wrapper a,
+.featured-artists .button-wrapper a {
+  border: 1px solid var(--orange);
+  border-radius: 10px;
+  color: var(--white);
+  background-color: var(--orange);
+  padding: 22px 90px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 100%;
+  letter-spacing: 0.05em;
+}
+.featured-artists .button-wrapper a {
+  text-transform: uppercase;
+}
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+/* HOME PAGE - Testimonials section */
+.testimonials #testimonialsSlider {
+  background: #ffffff;
+  box-shadow: 0px 4px 20px rgba(56, 29, 219, 0.12);
+  border-radius: 20px;
+  padding: 54px 63px;
+}
+.testimonials #testimonialsSlider .video-wrapper .video-block video {
+  width: 52%;
+  margin: 3.5% 4%;
+  overflow: visible;
+}
+.testimonials .video-container {
+  position: relative;
+  float: left;
+  width: 100%;
+}
+.testimonials .video-container video {
+  width: 100%;
+}
+.testimonials .video-container .play-button i {
+  font-size: 54px;
+  background: var(--white);
+  border-radius: 100%;
+}
+.testimonials .video-container .play-button span.material-symbols-outlined {
+  color: var(--orange);
+  border-radius: 100%;
+  display: block;
+  clear: both;
+  border: 10px solid var(--white);
+  outline: 10px solid #ffffff5c;
+  transition: 0.7s all ease-in;
+}
+.testimonials
+  .video-container
+  .play-button
+  span.material-symbols-outlined:hover {
+  outline: 10px solid rgb(168 168 168 / 30%);
+}
+
+.testimonials .play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 48px;
+  color: #fff;
+  cursor: pointer;
+  z-index: 1;
+}
+
+#testimonialsSlider .carousel-caption {
+  position: absolute;
+  top: 12%;
+  right: 0%;
+  bottom: 1.25rem;
+  left: 59%;
+  color: var(--white);
+  text-align: left;
+  width: 40%;
+}
+
+#testimonialsSlider .carousel-caption p {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 48px;
+  letter-spacing: 0.2px;
+  text-transform: capitalize;
+  color: var(--black);
+}
+#testimonialsSlider .carousel-caption h6 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: 0.2px;
+  text-transform: capitalize;
+  color: var(--gray6);
+}
+#testimonialsSlider .carousel-indicators {
+  margin-bottom: -5rem;
+}
+#testimonialsSlider .carousel-indicators [data-bs-target] {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  margin-right: 8px;
+  margin-left: 8px;
+  background-color: var(--gray4);
+  border-radius: 100%;
+  opacity: 1;
+}
+#testimonialsSlider .carousel-indicators li.active {
+  background-color: var(--orange);
+}
+#testimonialsSlider .carousel-indicators li::marker {
+  color: transparent;
+}
+
+/* HOME PAGE - Company Featured Artists section */
+.testimonials .container {
+  margin-bottom: 180px;
+}
+.featured-artists .sub-heading {
+  margin-bottom: 86px;
+}
+.featured-artists .trending,
+.featured-artists .popular {
+  text-align: left;
+  margin-bottom: 40px;
+}
+.featured-artists .trending h4,
+.featured-artists .popular h4 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 44px;
+  color: var(--black);
+  margin-bottom: 20px;
+}
+.featured-artists .trending p,
+.featured-artists .popular p {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 100%;
+  letter-spacing: 0.05em;
+  color: var(--black);
+}
+.featured-artists #trendingArtists,
+.featured-artists #HipHopArtists {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+#trendingArtists .prev-next,
+#HipHopArtists .prev-next {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 1%;
+  margin-top: -3.5%;
+  width: 100px;
+}
+#trendingArtists .carousel-control-next,
+#trendingArtists .carousel-control-prev,
+#HipHopArtists .carousel-control-next,
+#HipHopArtists .carousel-control-prev {
+  width: 48px;
+  height: 48px;
+  opacity: 1;
+}
+#trendingArtists .carousel-control-prev-icon,
+#HipHopArtists .carousel-control-prev-icon {
+  background-image: url("./assets/arrow-left.svg");
+}
+#trendingArtists .carousel-control-next-icon,
+#HipHopArtists .carousel-control-next-icon {
+  background-image: url("./assets/arrow-right.svg");
+}
+.featured-artists .row {
+  text-align: center;
+  width: 99%;
+  margin: 20px auto 80px;
+}
+.featured-artists .popular-row {
+  margin-bottom: 140px;
+}
+.featured-artists .card {
+  position: relative;
+  border-radius: 28px;
+  filter: drop-shadow(0px 4px 14px rgba(56, 29, 219, 0.1));
+  border: none;
+  display: inline-flex;
+  padding: 25px;
+  max-width: 100%;
+}
+.featured-artists .card img {
+  position: relative;
+  border-radius: 10px;
+  width: 424px;
+  height: 424px;
+  object-fit: cover;
+  margin-bottom: 23px;
+  left: 0;
+  transition: 0.5s ease;
+  backface-visibility: hidden;
+}
+.featured-artists .card:hover .card-img-top {
+  filter: brightness(70%);
+}
+.featured-artists .card:hover .middle {
+  opacity: 1;
+}
+.featured-artists .card .middle {
+  width: 100%;
+  transition: 0.5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+.featured-artists .card .middle a {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0.46px;
+  color: var(--white);
+  padding: 12px 48px;
+  border: solid 2px white;
+  text-decoration: none;
+}
+.featured-artists .card .card-body {
+  width: 100%;
+  padding: 12px;
+}
+.featured-artists .card-body .card-title {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0.05em;
+  color: var(--black);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.featured-artists .card:hover .card-title {
+  white-space: normal;
+  overflow: visible;
+}
+.featured-artists .card-body .card-text {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0.05em;
+  color: var(--gray6);
+  margin-bottom: 14px;
+}
+.featured-artists .card-body p {
+  font-style: normal;
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 11px;
+  color: var(--p-color3);
+  margin-bottom: 0rem;
+}
+.featured-artists .card-body p span {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 14px;
+  color: var(--gray6);
+}
+.featured-artists .card-body p img {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 0px;
+  padding-bottom: 3px;
+}
+.featured-artists .audio-controls-fixed .card {
+  border-radius: 4px;
+  filter: none;
+  border: none;
+  padding: 0px;
+  margin: 16px 0px 0px 16px;
+  width: 200px;
+}
+.featured-artists .audio-controls-fixed .card .row {
+  margin: 0;
+}
+.featured-artists .audio-controls-fixed .card img {
+  height: 56px;
+  width: 56px;
+  object-fit: cover;
+}
+.featured-artists .audio-controls-fixed .card .card-body {
+  text-align: left;
+  white-space: nowrap;
+}
+.featured-artists .audio-controls-fixed .card .card-title {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  color: var(--black);
+  margin-bottom: 0px;
+}
+.featured-artists .audio-controls-fixed .card .card-text {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  letter-spacing: -0.01em;
+  color: var(--gray5);
+}
+.featured-artists .card-body .artist {
+  width: 80%;
+  float: left;
+  text-align: left;
+}
+.featured-artists .card-body .audio-btn {
+  width: 20%;
+  float: right;
+}
+.featured-artists .audio-btn .play-btn {
+  text-align: right;
+}
+.featured-artists .audio-btn .play-btn i {
+  font-size: 3.5em;
+  line-height: 40px;
+  color: var(--orange);
+  cursor: pointer;
+}
+.featured-artists .bi-play-circle-fill {
+  cursor: pointer;
+}
+.featured-artists .card-text.type-of-artist {
+  font-size: 24px;
+}
+.featured-artists .audio-controls-fixed {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+  box-sizing: border-box;
+  background: var(--white);
+  border-radius: 0px 0px 4px 4px;
+  border-top: 2px solid var(--bg-black1);
+  z-index: 99;
+}
+.featured-artists .audio-controls-fixed .audio-menu {
+  height: 100%;
+  display: flex;
+}
+.featured-artists .audio-menu .artist {
+  width: 20%;
+}
+.featured-artists .audio-menu .audio-controls {
+  width: 60%;
+  margin: 19px 0;
+}
+.featured-artists .audio-menu .stop-song {
+  width: 20%;
+  display: flex;
+}
+.featured-artists .audio-menu .stop-song .bi-x {
+  float: right;
+  font-size: 1.5em;
+  margin-right: 28px;
+}
+/* Main controls */
+.featured-artists .audio-controls .main-controls {
+  text-align: center;
+  margin-bottom: 8px;
+}
+.featured-artists .audio-controls .main-controls .play {
+  --black: #000;
+  background: transparent;
+  color: var(--black);
+  border: 0px;
+  margin: 0 20px;
+}
+.featured-artists .audio-controls .main-controls .play i {
+  font-size: 1.5em;
+}
+.featured-artists .audio-controls .main-controls .prev {
+  background: url("./assets/prev-song-icon.svg");
+  background-repeat: no-repeat;
+  border: none;
+  padding: 10px 13px;
+}
+.featured-artists .audio-controls .main-controls .next {
+  background: url("./assets/next-song-icon.svg");
+  background-repeat: no-repeat;
+  border: none;
+  padding: 10px 13px;
+}
+.featured-artists .audio-menu .audio-controls .song-timeline {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.featured-artists .song-timeline .current-time,
+.featured-artists .song-timeline .duration {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: -0.01em;
+  color: var(--gray5);
+}
+.featured-artists .audio-controls-fixed .timeline {
+  width: 80%;
+  height: 5px;
+  background-color: #494949;
+  margin: 0 13px;
+  border-radius: 4px;
+}
+.featured-artists .audio-controls-fixed .progress-bar {
+  height: 5px;
+  background-color: var(--orange);
+  border-radius: 4px;
+}
+.featured-artists .audio-controls-fixed .timeline .current-time {
+  float: left;
+}
+.featured-artists .audio-controls-fixed .timeline .duration {
+  float: right;
+}
+/* Volume  */
+.featured-artists .audio-menu .stop-song .volume-wrapper {
+  display: flex;
+  width: 90%;
+  margin-left: 30%;
+}
+.featured-artists .stop-song .volume {
+  color: var(--gray5);
+  background: none;
+  border: 0px;
+}
+.featured-artists .stop-song .volume i {
+  font-size: 1.2em;
+}
+.featured-artists .stop-song .volume-slider .form-range {
+  height: -webkit-fill-available;
+  padding: 0;
+  width: 70%;
+}
+.featured-artists .volume-wrapper .form-range::-webkit-slider-runnable-track {
+  background-color: var(--gray5);
+  width: 72px;
+  height: 4px;
+  border-radius: 2px;
+}
+.featured-artists .volume-wrapper .form-range::-webkit-slider-thumb {
+  width: 0.788rem;
+  height: 0.788rem;
+  margin-top: -0.25rem;
+  background-color: var(--orange);
+  border: 0;
+  border-radius: 100px;
+}
+
+/* HOME PAGE - Send yourself a reminder section */
+.reminder .container {
+  background: linear-gradient(
+    95.98deg,
+    #feac5e 2.92%,
+    #c779d0 49.73%,
+    #4bc0c8 101.99%
+  );
+  transform: matrix(1, 0, 0.01, 1, 0, 0);
+  border-radius: 12px;
+  margin-bottom: 150px;
+  overflow: hidden;
+  transition: 0.8s ease;
+}
+.reminder .container:hover {
+  margin: 100px auto 150px;
+  max-width: 97%;
+  filter: drop-shadow(0px 25px 60px rgba(0, 0, 0, 0.42));
+  border-radius: 15px;
+}
+.reminder .container:hover .content {
+  padding: 140px 0px 140px 4%;
+}
+.reminder .container:hover h2 {
+  font-size: 78px;
+  line-height: 94px;
+  transition: 0.7s ease-in;
+}
+.reminder .container:hover p {
+  font-size: 36px;
+  line-height: 43px;
+  transition: 0.6s ease-in;
+}
+.reminder .container:hover img {
+  margin-top: -630px;
+  transition: 0.5s ease;
+}
+.reminder .content {
+  width: 65%;
+  padding: 140px 0px 140px 5%;
+}
+.reminder .hidden-img {
+  width: 35%;
+  float: right;
+  position: relative;
+}
+.reminder .hidden-img img {
+  position: absolute;
+  margin-top: -5px;
+  transition: 0.5s ease-in;
+}
+.reminder .content h2 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 77px;
+  letter-spacing: 0.2px;
+  text-transform: capitalize;
+  color: var(--white);
+  margin-bottom: 18px;
+  word-break: break-all;
+  white-space: nowrap;
+}
+.reminder .content p {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 38px;
+  letter-spacing: 0.2px;
+  color: var(--white);
+  margin-bottom: 32px;
+}
+.reminder .content a {
+  border: 1px solid var(--orange);
+  border-radius: 10px;
+  color: var(--white);
+  background-color: var(--orange);
+  padding: 22px 43px;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 100%;
+  letter-spacing: 0.05em;
+}
+
+/* HOME PAGE - Plans & Pricing section */
+.plans-and-pricing .row {
+  background: #ffffff;
+  box-shadow: 0px 8px 36px rgba(56, 29, 219, 0.1);
+  border-radius: 16px;
+  padding: 80px 70px 120px 70px;
+}
+.plans-and-pricing .row .content-left {
+  width: 50%;
+  float: left;
+  margin-bottom: 80px;
+}
+.plans-and-pricing .row .content-right {
+  width: 50%;
+  float: right;
+  text-align: right;
+  margin-bottom: 80px;
+}
+.plans-and-pricing .row .content-left h3 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 48px;
+  color: var(--black-heading);
+}
+.plans-and-pricing .row .content-left p {
+  --gray: #848199; /* local variable will override global */
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  color: var(--gray);
+}
+.plans-and-pricing .card {
+  background: #000000;
+  backdrop-filter: blur(2.5px);
+  border-radius: 20px;
+  margin: 0 24px;
+  height: 557px;
+}
+.plans-and-pricing .card-body {
+  padding: 56px 33px;
+}
+.plans-and-pricing .card h3 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 46px;
+  color: var(--white);
+  margin-bottom: 20px;
+}
+.plans-and-pricing .card h5 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 34px;
+  color: var(--orange);
+  margin-bottom: 15px;
+}
+.plans-and-pricing .card h5 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 34px;
+  color: var(--orange);
+  margin-bottom: 15px;
+}
+.plans-and-pricing .card .card-text {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  color: var(--white);
+  margin-bottom: 30px;
+}
+.plans-and-pricing .card .features p {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  color: var(--white);
+  margin-bottom: 5px;
+}
+.plans-and-pricing .card .features p i {
+  font-size: 0.9em;
+  line-height: 40px;
+  color: var(--white);
+  border-radius: 100%;
+  background-color: var(--orange);
+  margin-right: 8px;
+  padding: 2px 2.7px 0px 2.7px;
+}
+.plans-and-pricing .card .button-wrapper {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.plans-and-pricing .card .button-wrapper a {
+  border: 1px solid var(--orange);
+  mix-blend-mode: normal;
+  border-radius: 24px;
+  color: var(--white);
+  background-color: var(--orange);
+  padding: 15px 97px;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 18px;
+  letter-spacing: 0.05em;
+}
+.plans-and-pricing .tab-content > .active {
+  display: flex;
+}
+.plans-and-pricing .tab-content > .active + .plans-and-pricing #yearly-plans {
+  display: none;
+}
+.content-right .nav-tabs {
+  border-bottom: none;
+  float: right;
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0px 4px 18px rgba(56, 29, 219, 0.1);
+  border-radius: 40px;
+  margin-right: 3%;
+  padding: 5px;
+}
+.content-right .nav-tabs .nav-link.active {
+  background-color: var(--orange);
+  box-shadow: 0px 5px 7px rgba(82, 67, 194, 0.2602);
+  border-radius: 40px;
+  color: var(--white);
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  letter-spacing: 0.833333px;
+  padding: 18px 28px;
+}
+.content-right .nav-tabs .nav-link {
+  background-color: var(--white);
+  border-color: var(--white);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  letter-spacing: 0.833333px;
+  color: #3b3472;
+  padding: 18px 28px;
+  border-radius: 100%;
+  transition: all 0.1s;
+}
+
+/* HOME PAGE - Frequent Ask Questions section */
+.faq .container {
+  margin-top: 150px;
+  margin-bottom: 200px;
+}
+.faq h2 {
+  margin-bottom: 16px;
+}
+.faq .sub-heading {
+  margin-bottom: 70px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: 0.2px;
+  text-transform: capitalize;
+}
+.faq .accordion {
+  width: 70%;
+  margin: 0 auto;
+}
+.faq .accordion-button::after {
+  display: none;
+}
+.faq .accordion-button:focus {
+  border-color: none;
+  box-shadow: none;
+}
+.faq .accordion-button:not(.collapsed) {
+  background-color: var(--white);
+  box-shadow: none;
+}
+.faq .accordion-button {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 28px;
+  letter-spacing: 0.2px;
+  text-transform: capitalize;
+  color: var(--black);
+  padding: 20px 17px;
+}
+.faq .accordion-item {
+  border: 1px solid white;
+  border-bottom: 1px solid var(--gray6);
+}
+.faq .accordion i {
+  width: 24px;
+  height: 24px;
+  color: var(--orange);
+  margin: 0px 10px;
+}
+.faq .accordion-body {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0.2px;
+  color: var(--p-color2);
+  padding-top: 0px;
+  padding-bottom: 20px;
+}
+.faq .accordion-body .content {
+  padding-left: 10px;
+  box-shadow: inset 2px 0px 0px #3563e9;
+  margin-left: 60px;
+}
+
+/* LOGIN PAGE */
+.login .container-fluid {
+  margin: 0;
+  padding: 0;
+}
+.login #loginCarouselBanner {
+  width: 60%;
+  float: left;
+}
+.login #loginCarouselBanner .carousel-indicators [data-bs-target] {
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--white);
+  background-color: transparent;
+  border-radius: 100%;
+  opacity: 1;
+  margin: auto 8px;
+}
+.login #loginCarouselBanner .carousel-indicators .active {
+  outline: 4px solid #ffffff00;
+  border: 2px solid #ffffff00;
+  /* transition: 0.7s all ease-in; */
+  padding: 0.4em;
+  background: #ffffff content-box;
+  border-radius: 100%;
+  border-top: solid 1px var(--white);
+  border-right: solid 1px var(--white);
+}
+.login #loginCarouselBanner .carousel-item {
+  height: 100vh;
+}
+.login #loginCarouselBanner .carousel-item:nth-child(1) {
+  background: url("./assets/login-slider-1.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.login #loginCarouselBanner .carousel-item:nth-child(2) {
+  background: url("./assets/login-slider-2.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.login #loginCarouselBanner .carousel-item:nth-child(3) {
+  background: url("./assets/login-slider-3.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.login .login-form {
+  width: 40%;
+  float: left;
+  padding: 5% 7% 1%;
+  overflow: scroll;
+  height: 100vh;
+}
+.login .login-form .logo {
+  margin-bottom: 24px;
+}
+.login .login-form .card {
+  border: 0px solid var(--white);
+  margin-bottom: 25px;
+}
+.login .card .card-header {
+  border-radius: 0px;
+  background-color: var(--white);
+  border-bottom: 0px var(--white);
+  padding: 0;
+  margin-bottom: 20px;
+}
+.login .card .card-header h2 {
+  --tile-color: #1d1d1d;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 140%;
+  letter-spacing: -0.02em;
+  color: var(--tile-color);
+}
+.login .card .card-header p {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 140%;
+  letter-spacing: -0.02em;
+  color: var(--p-color4);
+  margin-bottom: 0rem;
+}
+.login .card .card-body {
+  padding: 0;
+}
+.login form .form-group label {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 140%;
+  letter-spacing: -0.02em;
+  color: var(--p-color4);
+}
+.login form .form-group .form-control {
+  height: 48px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+.login form .form-check {
+  margin-bottom: 24px;
+}
+.login form .form-check .form-check-input {
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid #d1d1d1;
+  border-radius: 2px;
+  margin-right: 12px;
+}
+.login .form-check-input:checked {
+  background-color: var(--orange);
+  border-color: var(--orange);
+}
+.login form .form-check .form-check-label {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 140%;
+  letter-spacing: -0.02em;
+  color: var(--p-color4);
+}
+.login form button {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  background-color: var(--orange);
+  border: 0px solid var(--orange);
+  margin-bottom: 24px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.login form button:hover {
+  color: var(--orange);
+  background-color: var(--white);
+  border: 1px solid var(--orange);
+}
+.select-login {
+  padding: 0% 7%;
+}
+.select-login .continue-with p {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 140%;
+  letter-spacing: -0.02em;
+  color: var(--p-color4);
+  width: 97%;
+  text-align: center;
+  border-bottom: 1px solid var(--black);
+  line-height: 0.1em;
+  margin: 0 auto;
+}
+.select-login p span {
+  background: var(--white);
+  padding: 0 10px;
+}
+.select-login .continue-with {
+  margin-bottom: 30px;
+}
+.select-login .google {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  background-color: var(--black-color);
+  text-decoration: none;
+  border-radius: 5px;
+  padding-top: 13px;
+  padding-bottom: 13px;
+  margin-bottom: 15px;
+}
+.select-login .google img,
+.select-login .facebook img {
+  margin-right: 11px;
+}
+.select-login .facebook {
+  --p-color: #1d1c2b;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: -0.02em;
+  color: var(--p-color);
+  background-color: var(--white);
+  text-decoration: none;
+  border-radius: 5px;
+  border: 1px solid #e0e0e9;
+  padding-top: 13px;
+  padding-bottom: 13px;
+  margin-bottom: 15px;
+}
+.select-login .forgot-password {
+  margin-top: 55px;
+  margin-bottom: 25px;
+}
+.select-login .forgot-password a {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 140%;
+  letter-spacing: -0.02em;
+  color: var(--orange);
+  text-decoration: none;
+}
+.select-login .no-account p {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 140%;
+  letter-spacing: -0.02em;
+  color: var(--black);
+}
+.select-login .no-account p a {
+  color: var(--orange);
+}
+
+/* MEDIA QUERIES */
+
+/* Extra large xl */
+@media (min-width: 1200px) and (max-width: 1399.98px) {
+  /*
+    STANDARD MARGIN:
+    margin-top: 80px
+    margin-bottom: 80px
+*/
+  .main-nav nav li a {
+    font-size: 18px;
   }
-  a:hover {
-    color: #747bff;
+
+  /* HOME PAGE - Top Carousel section */
+  .home-slider {
+    background-position: top 50px left -250px, bottom right -130px;
   }
-  button {
-    background-color: #f9f9f9;
+  .home-slider .container {
+    padding: 50px 0px 70px 0px;
+  }
+  #home-carousel .animate-left {
+    position: absolute;
+    top: 0%;
+    right: 21%;
+  }
+  #home-carousel .animate-right {
+    position: absolute;
+    top: 0%;
+    right: 1%;
+  }
+  #home-carousel .animate-left img {
+    width: 250px !important;
+    height: 250px !important;
+  }
+  #home-carousel .animate-right img {
+    width: 250px !important;
+    height: 250px !important;
+  }
+  @keyframes leftImage {
+    0% {
+      top: 0px;
+    }
+    100% {
+      top: -480px;
+    }
+  }
+  @keyframes rightImage {
+    0% {
+      bottom: 0px;
+    }
+    100% {
+      bottom: 480px;
+    }
+  }
+
+  /* HOME PAGE - A Custom Song in 3 Simple Steps */
+  .custom-song .container {
+    margin-top: 80px;
+    margin-bottom: 80px;
+  }
+  .custom-song h2 {
+    margin-bottom: 40px;
+  }
+  #custom-song-carousel .carousel-indicators {
+    top: 80px;
+    gap: 105px;
+  }
+  #custom-song-carousel button .number1,
+  #custom-song-carousel button .number2,
+  #custom-song-carousel button .number3 {
+    font-size: 40px;
+    line-height: 46px;
+    width: 80px;
+    height: 80px;
+    border: 2.5px solid var(--gray2);
+    padding-top: 13px;
+  }
+  #custom-song-carousel .carousel-caption {
+    top: 30%;
+  }
+  #custom-song-carousel .carousel-caption h5 {
+    font-size: 48px;
+    line-height: 54px;
+    margin-bottom: 20px;
+  }
+  #custom-song-carousel .carousel-caption p {
+    margin-bottom: 32px;
+  }
+  .available-artist .content {
+    margin: 60px 0px 0px 50px;
+    width: 90%;
+  }
+
+  /* HOME PAGE - Discover the Easy Way to Book Your Dream Artist section */
+  .discover-artist p {
+    margin-bottom: 24px;
+  }
+  .discover-artist #availableArtist {
+    margin: 150px auto;
+  }
+  .book-your-event .content {
+    margin: 80px auto 80px;
+    width: 90%;
+  }
+  .discover-artist #bookYourEvent {
+    margin: 150px auto;
+  }
+  #custom-song-carousel .carousel-caption a,
+  .available-artist .content a,
+  .book-your-event .content a,
+  .songs-for-occasion .button-wrapper a {
+    padding: 20px 46px;
+    font-size: 20px;
+  }
+
+  /* HOME PAGE - Songs for every Occasion section */
+  .songs-for-occasion .button-wrapper a {
+    padding: 20px 56px;
+  }
+  .songs-for-occasion .content h5 {
+    font-size: 28px;
+  }
+  .songs-for-occasion .content p {
+    font-size: 16px;
+  }
+  .songs-for-occasion .row {
+    margin-bottom: 80px;
+  }
+
+  /* HOME PAGE - Testimonails section */
+  .testimonials #testimonialsSlider .video-wrapper .video-block .play-button {
+    background-size: contain;
+  }
+  .testimonials #testimonialsSlider .carousel-caption p {
+    font-size: 24px;
+    line-height: 32px;
+  }
+  .testimonials #testimonialsSlider .carousel-caption h6 {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .testimonials #testimonialsSlider {
+    padding: 45px 55px;
+  }
+  .testimonials .video-container .play-button i {
+    font-size: 42px;
+  }
+  .testimonials .video-container .play-button span.material-symbols-outlined {
+    border: 8px solid var(--white);
+    outline: 8px solid #ffffff5c;
+  }
+  .testimonials #testimonialsSlider .carousel-indicators {
+    margin-bottom: -4rem;
+  }
+  .testimonials #testimonialsSlider .carousel-indicators [data-bs-target] {
+    width: 20px;
+    height: 20px;
+    margin-right: 6px;
+    margin-left: 6px;
+  }
+  .testimonials .sub-heading {
+    margin-bottom: 30px;
+  }
+
+  /* HOME PAGE - Company Featured Artists section */
+  .featured-artists .container {
+    margin-bottom: 125px;
+  }
+  .featured-artists .card img {
+    height: 320px;
+    margin-bottom: 10px;
+  }
+  .featured-artists .card-body .card-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 18px;
+  }
+  .featured-artists .card:hover .card-title {
+    white-space: normal;
+    overflow: visible;
+  }
+  .featured-artists .card-body .card-text {
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+  .featured-artists .card-body p {
+    font-size: 14px;
+  }
+  .featured-artists .card-body p span {
+    font-size: 14px;
+  }
+  .featured-artists .card-body p img {
+    width: 20px;
+    height: 20px;
+  }
+  .featured-artists .card .card-body {
+    padding: 8px;
+  }
+  .featured-artists .card .middle a {
+    font-size: 18px;
+    line-height: 20px;
+    padding: 10px 40px;
+  }
+  .featured-artists .button-wrapper a {
+    border: 1px solid var(--orange);
+    border-radius: 10px;
+    color: var(--white);
+    background-color: var(--orange);
+    padding: 20px 80px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: 0.05em;
+  }
+
+  /* LOGIN page */
+  .select-login .forgot-password {
+    margin-top: 25px;
+  }
+
+  /* HOME PAGE - Send Yourself A Reminder section */
+  .reminder .content {
+    width: 65%;
+    padding: 100px 0px 100px 5%;
+  }
+  .reminder .container:hover {
+    margin: 100px auto 150px;
+    max-width: 96%;
+    filter: drop-shadow(0px 25px 60px rgba(0, 0, 0, 0.42));
+    border-radius: 15px;
+  }
+  .reminder .container:hover .content {
+    padding: 140px 0px 140px 3.5%;
+  }
+  .reminder .container:hover h2 {
+    font-size: 68px;
+    line-height: 78px;
+    transition: 0.7s ease-in;
+  }
+  .reminder .container:hover p {
+    font-size: 32px;
+    line-height: 40px;
+    transition: 0.6s ease-in;
+  }
+  .reminder .container:hover img {
+    margin-top: -600px;
+    transition: 0.5s ease;
+  }
+
+  /* HOME PAGE - Frequent Ask Questions section */
+  .faq .accordion {
+    width: 80%;
+  }
+  .faq .container {
+    margin-top: 80px;
+  }
+  .faq .sub-heading {
+    margin-bottom: 54px;
+  }
+  .faq .accordion-button {
+    font-size: 20px;
+    line-height: 24px;
+    padding: 12px 10px;
+  }
+  .faq .accordion-body {
+    font-size: 16px;
+    line-height: 20px;
+    padding-bottom: 16px;
+  }
+  .faq .accordion-body .content {
+    padding-left: 8px;
+    margin-left: 48px;
+  }
+} /* end of Extra large xl*/
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  /*
+    STANDARD MARGIN:
+    margin-top: 60px
+    margin-bottom: 60px
+*/
+  .custom-song .container,
+  .discover-artist .container,
+  .songs-for-occasion .container,
+  .testimonials .container,
+  .featured-artists .container,
+  .reminder .container,
+  .plans-and-pricing .container {
+    margin-top: 70px;
+    margin-bottom: 70px;
+  }
+
+  /* HOME PAGE - Navigation section */
+  .main-nav nav .navbar-nav li {
+    padding: 0 1px;
+  }
+  .main-nav nav li a {
+    font-size: 16px;
+  }
+  .nav-button .log-in,
+  .nav-button .sign-up {
+    margin-right: 12px;
+    padding: 6px 16px;
+  }
+
+  /* HOME PAGE - Top Carousel section */
+  .home-slider .carousel-caption h1,
+  .home-slider .carousel-caption h3 {
+    font-size: 40px;
+    line-height: 40px;
+    margin-bottom: 20px;
+  }
+  .home-slider .carousel-caption p {
+    font-size: 24px;
+    line-height: 26px;
+    margin-bottom: 20px;
+  }
+  .home-slider .carousel-caption a {
+    padding: 18px 48px;
+    font-size: 18px;
+  }
+  .home-slider .carousel-caption {
+    top: 4%;
+    width: 45%;
+  }
+  .home-slider .content-4 {
+    width: 63%;
+  }
+  #home-carousel .carousel-control-prev {
+    left: -25px;
+  }
+  #home-carousel .carousel-control-next {
+    right: -25px;
+  }
+  .home-slider {
+    background-position: top 50px left -250px, bottom right -130px;
+  }
+  .home-slider .container {
+    padding: 40px 0px 60px 0px;
+  }
+  #home-carousel .animate-left {
+    right: 21%;
+  }
+  #home-carousel .animate-right {
+    right: 0%;
+  }
+  #home-carousel .animate-left img {
+    width: 220px !important;
+    height: 220px !important;
+  }
+  #home-carousel .animate-right img {
+    width: 220px !important;
+    height: 220px !important;
+  }
+  @keyframes leftImage {
+    0% {
+      top: 0px;
+    }
+    100% {
+      top: -450px;
+    }
+  }
+  @keyframes rightImage {
+    0% {
+      bottom: 0px;
+    }
+    100% {
+      bottom: 450px;
+    }
+  }
+
+  /* HOME PAGE - A Custom Song in 3 Simple Steps */
+  .custom-song .container {
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+  .custom-song h2 {
+    margin-bottom: 40px;
+    font-size: 48px;
+    line-height: 52px;
+  }
+  #custom-song-carousel .carousel-indicators {
+    top: 60px;
+    gap: 80px;
+  }
+  #custom-song-carousel .carousel-caption h3 {
+    font-size: 48px;
+    line-height: 44px;
+    margin-bottom: 18px;
+  }
+  #custom-song-carousel button .number1,
+  #custom-song-carousel button .number2,
+  #custom-song-carousel button .number3 {
+    font-size: 34px;
+    line-height: 36px;
+    width: 66px;
+    height: 66px;
+    border: 2.5px solid var(--gray2);
+    padding-top: 13px;
+  }
+  #custom-song-carousel .carousel-caption {
+    top: 30%;
+  }
+  #custom-song-carousel .carousel-caption h5 {
+    font-size: 48px;
+    line-height: 54px;
+    margin-bottom: 20px;
+  }
+  #custom-song-carousel .carousel-caption p {
+    margin-bottom: 24px;
+    font-size: 19px;
+    line-height: 24px;
+  }
+  .available-artist .content {
+    margin: 60px 0px 0px 50px;
+    width: 90%;
+  }
+
+  /* HOME PAGE - Discover the Easy Way to Book Your Dream Artist section */
+  .discover-artist h2,
+  .songs-for-occasion h2,
+  .testimonials h2,
+  .featured-artists h2,
+  .plans-and-pricing h2,
+  .faq h2 {
+    font-size: 42px;
+    line-height: 48px;
+    margin-bottom: 10px;
+  }
+  .discover-artist .sub-heading,
+  .songs-for-occasion .sub-heading,
+  .testimonials .sub-heading,
+  .featured-artists .sub-heading,
+  .plans-and-pricing .sub-heading,
+  .faq .sub-heading {
+    font-size: 20px;
+    line-height: 32px;
+    margin-bottom: 40px;
+  }
+  .available-artist .content h3,
+  .book-your-event .content h3 {
+    font-size: 42px;
+    line-height: 44px;
+    margin-bottom: 20px;
+  }
+  .available-artist .content p,
+  .book-your-event .content p {
+    font-size: 20px;
+    line-height: 28px;
+  }
+  .discover-artist p {
+    margin-bottom: 20px;
+  }
+  .available-artist .content ul li,
+  .book-your-event .content ul li {
+    font-size: 18px;
+    line-height: 26px;
+  }
+  .discover-artist #availableArtist {
+    margin: 150px auto;
+  }
+  .book-your-event .content {
+    margin: 80px auto 80px;
+    width: 90%;
+  }
+  .discover-artist #bookYourEvent {
+    margin: 150px auto;
+  }
+  #custom-song-carousel .carousel-caption a,
+  .available-artist .content a,
+  .book-your-event .content a,
+  .songs-for-occasion .button-wrapper a {
+    padding: 18px 38px;
+    font-size: 18px;
+  }
+
+  /* HOME PAGE - Songs for every Occasion section */
+  .songs-for-occasion .button-wrapper a {
+    padding: 20px 56px;
+  }
+  .songs-for-occasion .content h5 {
+    font-size: 28px;
+  }
+  .songs-for-occasion .content p {
+    font-size: 16px;
+  }
+  .songs-for-occasion .row {
+    margin-bottom: 80px;
+  }
+  .songs-for-occasion .button-wrapper a,
+  .featured-artists .button-wrapper a {
+    padding: 18px 68px;
+    font-size: 20px;
+  }
+
+  /* HOME PAGE - Testimonails section */
+  .testimonials .container {
+    margin-bottom: 150px;
+  }
+  .testimonials #testimonialsSlider {
+    padding: 45px 55px;
+  }
+  .testimonials .video-container .play-button i {
+    font-size: 42px;
+  }
+  .testimonials .video-container .play-button span.material-symbols-outlined {
+    border: 8px solid var(--white);
+    outline: 8px solid #ffffff5c;
+  }
+  .testimonials #testimonialsSlider .carousel-indicators {
+    margin-bottom: -4rem;
+  }
+  .testimonials #testimonialsSlider .carousel-indicators [data-bs-target] {
+    width: 20px;
+    height: 20px;
+    margin-right: 6px;
+    margin-left: 6px;
+  }
+  #testimonialsSlider .carousel-caption p {
+    font-size: 24px;
+    line-height: 32px;
+  }
+  #testimonialsSlider .carousel-caption h6 {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .testimonials .sub-heading {
+    margin-bottom: 30px;
+  }
+
+  /* HOME PAGE - Send Yourself A Reminder section */
+  .reminder .content {
+    padding: 60px 0px 60px 5%;
+  }
+  .reminder .content h2 {
+    font-size: 48px;
+    line-height: 57px;
+    margin-bottom: 16px;
+    word-break: normal;
+    white-space: normal;
+  }
+  .reminder .content p {
+    font-size: 26px;
+    line-height: 34px;
+    margin-bottom: 28px;
+  }
+  .reminder .content a {
+    padding: 20px 38px;
+    font-size: 20px;
+  }
+  .reminder .container:hover {
+    margin: 100px auto 100px;
+    max-width: 96%;
+    filter: drop-shadow(0px 25px 60px rgba(0, 0, 0, 0.42));
+    border-radius: 15px;
+  }
+  .reminder .container:hover .content {
+    padding: 80px 0px 80px 3.5%;
+  }
+  .reminder .container:hover h2 {
+    font-size: 60px;
+    line-height: 68px;
+    transition: 0.7s ease-in;
+  }
+  .reminder .container:hover p {
+    font-size: 28px;
+    line-height: 38px;
+    transition: 0.6s ease-in;
+  }
+  .reminder .container:hover img {
+    margin-top: -600px;
+    transition: 0.5s ease;
+  }
+
+  /* HOME PAGE - Company Featured Artists section */
+  .featured-artists .container {
+    margin-bottom: 80px;
+  }
+  #testimonialsSlider .carousel-caption {
+    top: 1%;
+  }
+  .featured-artists .sub-heading {
+    margin-bottom: 60px;
+  }
+  .featured-artists .card-body .card-title {
+    font-size: 20px;
+  }
+  .featured-artists .card-body .card-text {
+    font-size: 16px;
+  }
+  .featured-artists .audio-btn .play-btn i {
+    font-size: 2.8em;
+  }
+  .featured-artists .card img {
+    padding: 20px 20px 10px;
+  }
+  .featured-artists .popular-row {
+    margin-bottom: 80px;
+  }
+  .featured-artists .container {
+    margin-bottom: 125px;
+  }
+  .featured-artists .card img {
+    height: 300px;
+    margin-bottom: 10px;
+  }
+  .featured-artists .card-body .card-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 18px;
+  }
+  .featured-artists .card:hover .card-title {
+    white-space: normal;
+    overflow: visible;
+  }
+  .featured-artists .card-body .card-text {
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+  .featured-artists .card {
+    border-radius: 20px;
+    padding: 2px;
+  }
+  .featured-artists .card-body p {
+    font-size: 14px;
+  }
+  .featured-artists .card-body p span {
+    font-size: 14px;
+  }
+  .featured-artists .card-body p img {
+    width: 20px;
+    height: 20px;
+    padding: 0;
+  }
+  .featured-artists .card .card-body {
+    padding: 8px 20px;
+    margin: 5px 0px 16px 0px;
+  }
+  .featured-artists .card .middle a {
+    font-size: 18px;
+    line-height: 20px;
+    padding: 10px 40px;
+  }
+  .featured-artists .button-wrapper a {
+    border: 1px solid var(--orange);
+    border-radius: 10px;
+    color: var(--white);
+    background-color: var(--orange);
+    padding: 20px 80px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: 0.05em;
+  }
+  .featured-artists .audio-controls-fixed .card img {
+    padding: 0;
+    border-radius: 4px;
+  }
+  .featured-artists .audio-controls-fixed .card .card-body {
+    padding: 6px 8px;
+    margin: 0;
+  }
+  .featured-artists .audio-menu .stop-song .volume-wrapper {
+    margin-left: 10%;
+  }
+
+  /* HOME PAGE - Frequent Ask Questions section */
+  .faq .accordion {
+    width: 80%;
+  }
+  .faq .container {
+    margin-top: 100px;
+  }
+  .faq .sub-heading {
+    margin-bottom: 54px;
+  }
+  .faq .accordion-button {
+    font-size: 20px;
+    line-height: 24px;
+    padding: 12px 10px;
+  }
+  .faq .accordion-body {
+    font-size: 16px;
+    line-height: 20px;
+    padding-bottom: 16px;
+  }
+  .faq .accordion-body .content {
+    padding-left: 8px;
+    margin-left: 48px;
+  }
+  /* LOGIN page */
+  .select-login .forgot-password {
+    margin-top: 20px;
+  }
+
+  /* HOME PAGE - Frequent Ask Questions section */
+  .faq .accordion {
+    width: 80%;
+  }
+  .faq .container {
+    margin-top: 100px;
+  }
+  .faq .sub-heading {
+    margin-bottom: 54px;
+  }
+  .faq .accordion-button {
+    font-size: 20px;
+    line-height: 24px;
+    padding: 12px 10px;
+  }
+  .faq .accordion-body {
+    font-size: 16px;
+    line-height: 20px;
+    padding-bottom: 16px;
+  }
+  .faq .accordion-body .content {
+    padding-left: 8px;
+    margin-left: 48px;
+  }
+} /* end of lg */
+
+/* Extra extra large xxl */
+@media (min-width: 1400px) {
+  .main-nav nav .navbar-nav li {
+    padding: 0 10px;
+  }
+  .home-slider {
+    background-position: top 150px left -250px, bottom 50px right -50px;
+  }
+} /* end of Extra large xl*/
+
+@media (min-width: 1400px) and (max-width: 1799.98px) {
+  #home-carousel .animate-left {
+    right: 23%;
+  }
+  #home-carousel .animate-right {
+    right: 0%;
+  }
+}
+@media (min-width: 1200px) and (max-width: 1799.98px) {
+  .home-slider .carousel-caption {
+    width: 44%;
+  }
+  .home-slider .content-4 {
+    top: 15%;
+    width: 53%;
+  }
+  .home-slider .carousel-caption h1,
+  .home-slider .carousel-caption h3 {
+    font-size: 46px;
+    line-height: 44px;
+    margin-bottom: 15px;
+  }
+  .home-slider .carousel-caption p {
+    font-size: 20px;
+    line-height: 24px;
+    margin-bottom: 20px;
+  }
+  #home-carousel .carousel-control-prev {
+    left: -30px;
+  }
+  #home-carousel .carousel-control-next {
+    right: -30px;
+  }
+  .home-slider .carousel-caption a {
+    padding: 18px 40px;
+    font-size: 20px;
+    line-height: 90%;
+  }
+}
+
+/* end of Extra extra large xxl */
+@media (min-width: 1800px) {
+  .container {
+    max-width: 1530px;
   }
 }

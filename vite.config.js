@@ -6,15 +6,20 @@ export default defineConfig({
   plugins: [vue({
     template: {
       transformAssetUrls: {
-      base: null,
-      includeAbsolute: false,
-      }
+        base: null,
+        includeAbsolute: false,
+      },
+      compilerOptions: {
+        compatConfig: {
+          MODE: 3,
+        },
+      },
     },
   })],
   resolve: {
     alias: {
-      '@': '/resources/js',
-      //vue: '@vue/compat'
+      '@': '/src',
+      vue: '@vue/compat'
     }
   },
 })
