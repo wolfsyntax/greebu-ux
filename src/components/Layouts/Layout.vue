@@ -1,7 +1,6 @@
 <template>
   <main>
     <header class="main-nav">
-
       <nav class="navbar navbar-expand-lg">
         <div class="container">
           <a class="navbar-brand logo" :href="home">
@@ -13,7 +12,6 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li>Test</li>
               <li class="nav-item" v-for="(item, index) in navItems" :key="index">
               <a class="nav-link" :href="item.link">{{ item.page }}</a>
               </li>
@@ -29,7 +27,6 @@
         </nav>
 
       </header>
-      <router-view></router-view>
       <slot />
 
       <footer class="footer">

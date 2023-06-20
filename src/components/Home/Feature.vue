@@ -315,19 +315,19 @@ export default {
     return {
       occasions: [
         {
-          image: './img/birthdays.webp',
+          image: '../../assets/birthdays.webp',
           altText: 'birthdays',
           typeOfOccasion: 'Birthdays',
           numberOfSong: 100
         },
         {
-          image: './img/weddings.webp',
+          image: '../../assets/weddings.webp',
           altText: 'weddings',
           typeOfOccasion: 'Weddings',
           numberOfSong: 100
         },
         {
-          image: './img/valentines.webp',
+          image: '../../assets/valentines.webp',
           altText: 'valentines',
           typeOfOccasion: 'Valentines',
           numberOfSong: 100
