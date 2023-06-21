@@ -4,12 +4,13 @@ var actions = {
     signin({ commit }, payload) {
     return new Promise(async(resolve, reject) => {
         console.log('Sign me in')
-      await axios.post('/api/auth/login', payload)
+      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/login`, payload)
           .then(response => {
             
-            commit('setAuth', response.data?.data?.user)
-            commit('setToken', response.data?.data?.token)
-            localStorage.api_token = response.data?.data?.token
+            commit('setAuth', response.data)
+            commit('setToken', response.data?.token)
+            
+            localStorage.api_token = response.data?.token
             resolve(response)
 
         })
@@ -21,7 +22,7 @@ var actions = {
     signup({ commit }, payload) {
         return new Promise(async(resolve, reject) => {
 
-            await axios.post('/api/auth/register', payload)
+            await axios.post('/api/register', payload)
                 .then(response => {
                     console.log('Response: ', response)
 
@@ -33,50 +34,11 @@ var actions = {
                 });
         })
     },
-    forgot({ commit }, payload) {
-        return new Promise(async(resolve, reject) => {
-
-            await axios.post('/api/auth/forgot-pass', payload)
-                .then(response => {
-                    console.log('Response: ', response)
-                    const { status, data } = response
-                    resolve({data, status})
-                })
-                .catch(err => {
-                    reject(err)
-                });
-        })
-    },
-    change({ commit }, payload) {
-        return new Promise(async(resolve, reject) => {
-
-            await axios.post('/api/auth/change-pass', payload)
-                .then(response => {
-                    console.log('Response: ', response)
-                    resolve(response)
-                })
-                .catch(err => {
-                    reject(err)
-                });
-        })
-    },
-    reset({ commit }, payload) {
-        return new Promise(async(resolve, reject) => {
-
-            await axios.post('/api/auth/reset-pass', payload)
-                .then(response => {
-                    console.log('Response: ', response)
-                    resolve(response)
-                })
-                .catch(err => {
-                    reject(err)
-                });
-        })
-    },
+    
     signout({ commit }, payload) {
         return new Promise(async (resolve, reject) => {
 
-            await axios.post('/api/auth/logout')
+            await axios.post('/api/logout')
                 .then(response => {
                     commit('setAuth', {})
                     commit('setToken', '')

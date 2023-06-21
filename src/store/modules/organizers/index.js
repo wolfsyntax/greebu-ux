@@ -1,26 +1,11 @@
-import Vuex from 'vuex';
+import state from './state'
+import * as getters from './getters'
+import * as mutations from './mutations'
+import * as actions from './actions'
 
-import actions from './actions';
-import mutations from './mutations';
-import getters from './getters';
-import state from './state';
-
-export default new Vuex.Store({
-  plugins: [
-    createPersistedState({
-      storage: {
-        getItem: (key) => ls.get(key),
-        setItem: (key, value) => ls.set(key, value),
-        removeItem: (key) => ls.remove(key)
-      }
-    })
-  ],
-  state,
-  mutations,
-  actions,
-  getters,
-  modules: {
-    contract,
-    user,
-  }
-});
+export default {
+    state,
+    getters,
+    mutations,
+    actions
+}

@@ -1,28 +1,3 @@
-<script setup>
-
-
-
-import { reactive } from 'vue';
-
-const form = reactive({
-  email: null,
-  password: null,
-})
-
-
-
-// function submit()
-// {
-//   router.post('/login', form, {
-//     preserveScroll: true
-//   }, {
-//     resetOnSuccess: false
-//   });
-
-//   console.log('Login: ', form);
-// }
-
-</script>
 
 <template>
   <div>
@@ -111,6 +86,8 @@ const form = reactive({
 </template>
 <script>
 import Layout from '@/components/Layouts/AuthLayout.vue';
+import { mapGetters, mapState, mapActions } from "vuex";
+
 export default {
   components: {
     layout: Layout,
@@ -132,9 +109,33 @@ export default {
     errors: Object,
   },
   methods: {
-    submit () {
-      
+    ...mapActions([
+      'signin'
+    ]),
+    submit()
+    { 
+      console.log('Auth data: ', this.form)
+      this.$store.dispatch("signin", this.form).then((response) =>
+      {
+
+        const { status } = response;
+
+        var user = this.$store.state.user;
+        var role = this.$store.state.role;
+
+        if (role === 'artists')
+        {
+          this.$router.push("/artist");
+        }
+
+      });
     }
+  },
+  computed: {
+    ...mapGetters(["userInfo", "token"]),
+    ...mapState({
+      users: (state) => state.user,
+    }),
   }
 }
 </script>
