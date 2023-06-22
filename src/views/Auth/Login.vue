@@ -114,8 +114,8 @@ export default {
     ]),
     submit()
     { 
-      console.log('Auth data: ', this.form)
-      this.$store.dispatch("signin", this.form).then((response) =>
+
+      this.signin(this.form).then((response) =>
       {
 
         const { status } = response;
@@ -123,12 +123,25 @@ export default {
         var user = this.$store.state.user;
         var role = this.$store.state.role;
 
-        if (role === 'artists')
-        {
+        if (role === 'artists') {
           this.$router.push("/artist");
         }
 
       });
+      // this.$store.dispatch("signin", this.form).then((response) =>
+      // {
+
+      //   const { status } = response;
+
+      //   var user = this.$store.state.user;
+      //   var role = this.$store.state.role;
+
+      //   if (role === 'artists')
+      //   {
+      //     this.$router.push("/artist");
+      //   }
+
+      // });
     }
   },
   computed: {
