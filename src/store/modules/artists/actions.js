@@ -1,15 +1,17 @@
 import axios from "axios";
 
 var actions = {
-    signin({ commit }, payload) {
+  retrieveArtists({ commit }, payload) {      
     return new Promise(async(resolve, reject) => {
-        console.log('Sign me in')
-      await axios.post('/api/auth/login', payload)
+
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token)
+      console.log('Artist Payload: ', payload)
+      await axios.post('/artists', payload)
           .then(response => {
+            console.log('Artist response: ', response)
+            // commit('setAuth', response.data?.data?.user)
+            // commit('setToken', response.data?.data?.token)
             
-            commit('setAuth', response.data?.data?.user)
-            commit('setToken', response.data?.data?.token)
-            localStorage.api_token = response.data?.data?.token
             resolve(response)
 
         })

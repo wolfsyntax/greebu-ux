@@ -21,13 +21,13 @@ var actions = {
     },
     signup({ commit }, payload) {
         return new Promise(async(resolve, reject) => {
-
-            await axios.post('/api/register', payload)
+          console.log('Signup Payload: ', payload)
+            await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/register`, payload)
                 .then(response => {
-                    console.log('Response: ', response)
-
-                    commit("setAuth", response.data.data.user);
-                    resolve(response)
+                  console.log('Response: ', response)
+                  
+                  //commit("setAuth", response.data.data.user);
+                  resolve(response)
                 })
                 .catch(err => {
                     reject(err)

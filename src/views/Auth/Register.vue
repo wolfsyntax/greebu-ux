@@ -4,7 +4,7 @@
       <div class="row justify-content-center">
         <div class="col-md-8 py-5">
           <div class="card">
-            <div class="card-header">Register</div>
+            <div class="card-header">Register {{ errors }}</div>
             <div class="card-body">
               <form @submit.prevent="submit">
                 <div class="row">
@@ -36,7 +36,7 @@
                             Offers Services
                         </label>
                     </div>
-                    <div v-if="errors?.email">{{ errors.account_type }}</div>
+                    <div v-if="errors?.account_type">{{ errors.account_type[0] }}</div>
                   </div>
                 </div>
 
@@ -55,7 +55,7 @@
                           Phone
                       </label>
                     </div>
-                    <div v-if="errors?.email">{{ errors.login_type }}</div>
+                    <div v-if="errors?.login_type">{{ errors.login_type[0] }}</div>
                   </div>
                 </div>
 
@@ -63,7 +63,7 @@
                   <div class="col-md-12">
                     <label for="email" class="text-md-end">Email Address</label>
                     <input id="email" :type="form.login_type" class="form-control" name="email" v-model="form.email" required autocomplete="email" autofocus>
-                    <div v-if="errors?.email">{{ errors.email }}</div>
+                    <div v-if="errors?.email">{{ errors.email[0] }}</div>
                   </div>
                 </div>
 
@@ -71,7 +71,7 @@
                   <div class="col-md-12">
                     <label for="name" class="text-md-end">First Name</label>
                     <input id="name" type="text" class="form-control " name="name" v-model="form.first_name" required autocomplete="first-name">
-                    <div v-if="errors?.first_name">{{ errors.first_name }}</div>
+                    <div v-if="errors?.first_name">{{ errors.first_name[0] }}</div>
                   </div>
                 </div>
 
@@ -79,7 +79,7 @@
                   <div class="col-md-12">
                     <label for="name" class="text-md-end">Last Name</label>
                     <input id="name" type="text" class="form-control " name="name" v-model="form.last_name" required autocomplete="last-name" autofocus>
-                    <div v-if="errors?.last_name">{{ errors.last_name }}</div>
+                    <div v-if="errors?.last_name">{{ errors.last_name[0] }}</div>
                   </div>
                 </div>
 
@@ -87,7 +87,7 @@
                   <div class="col-md-12">
                     <label for="username" class="text-md-end">Username</label>
                     <input id="email" type="text" class="form-control" name="username" v-model="form.username" required autocomplete="username">
-                    <div v-if="errors?.username">{{ errors.username }}</div>
+                    <div v-if="errors?.username">{{ errors.username[0] }}</div>
                   </div>
                 </div>
 
@@ -95,7 +95,7 @@
                   <div class="col-md-12">
                     <label for="password" class="text-md-end">Password</label>
                     <input id="password" type="password" class="form-control" name="password" v-model="form.password" required autocomplete="new-password">
-                    <div v-if="errors?.password">{{ errors.password }}</div>
+                    <div v-if="errors?.password">{{ errors.password[0] }}</div>
                   </div>
                 </div>
 
@@ -103,20 +103,20 @@
                   <div class="col-md-12">
                     <label for="password-confirm" class="text-md-end">Confirm Password</label>
                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" v-model="form.password_confirmation" required autocomplete="new-password">
-                    <div v-if="errors?.password_confirmation">{{ errors.password_confirmation }}</div>
+                    <div v-if="errors?.password_confirmation">{{ errors.password_confirmation[0] }}</div>
                   </div>
                 </div>
 
                 <div class="row mb-3">
                   <div class="col-md-12">
-                    <input type="checkbox" v-model="form.agree_term" id="agreed_id"/>
+                    <input type="checkbox" v-model="agree_term" id="agreed_id"/>
                     <label class="form-check-label" for="agreed_id">&nbsp; I agree to all the <Link href="/">Terms</Link> and <Link href="/">policy</Link></label>
                   </div>
                 </div>
                 
                 <div class="row mb-0">
                   <div class="col-md-6 offset-md-4">
-                    <button type="submit" class="btn btn-primary" :disabled="!form.agree_term">
+                    <button type="submit" class="btn btn-primary" :disabled="!agree_term">
                       Register
                     </button>
                   </div>
@@ -147,14 +147,16 @@ export default {
         username: null,
         password: null,
         password_confirmation: null,
-        agree_term: false,
+        
         account_type: 'customers',
         login_type: 'email',
-      }
+      },
+      errors: {},
+      agree_term: false,
     }
   },
   props: {
-    errors: Object,
+    // errors: Object,
   },
   setup()
   {
@@ -163,8 +165,28 @@ export default {
   mounted() {
     
   },
+  computed: {
+    //...mapGetters([''])
+    //...mapState({})
+  },
   methods: {
+    ...mapActions(['signup']),
+    submit()
+    {
+      this.signup(this.form)
+        .then((response) => { 
 
+          const { status,data } = response;
+
+          if (status === 201)
+          {
+            this.$router.push("/login");
+          } else if (status === 203){
+            this.errors = data.errors
+          }
+        })
+
+    }
   },
 }
 </script>
