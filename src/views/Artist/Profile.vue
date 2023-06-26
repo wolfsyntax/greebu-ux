@@ -48,17 +48,17 @@
     </vs-avatar>
     <p>
       <font-awesome-icon icon="fa-brands fa-youtube" />
-      {{ userInfo?.youtube_channel }}
+      {{ artistProfile?.youtube_channel }}
       <!-- <Link href="/artist/profile/media/youtube/destroy" method="delete" class="btn btn-danger">Remove</Link> -->
     </p>
     <p>
       <font-awesome-icon icon="fa-brands fa-twitter" />
-      {{ userInfo?.twitter_username }}
+      {{ artistProfile?.twitter_username }}
       <!-- <Link href="/artist/profile/media/twitter/destroy" method="delete" class="btn btn-danger">Remove</Link> -->
     </p>
     <p>
       <font-awesome-icon icon="fa-brands fa-instagram" />
-      {{ userInfo?.instagram_username }}
+      {{ artistProfile?.instagram_username }}
       <!-- <Link href="/artist/profile/media/instagram/destroy" method="delete" class="btn btn-danger">Remove</Link> -->
     </p>
 
@@ -252,7 +252,7 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(["userInfo", "token"]),
+    ...mapGetters(["userInfo", "token", 'artistProfile']),
     ...mapState({
       artistTypes: (state) => state.artist.artist_types,
       genres: (state) => state.artist.genres,

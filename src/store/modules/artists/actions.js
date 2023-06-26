@@ -86,9 +86,12 @@ export const addSocialMedia = ({ commit, rootState, state}, payload) => {
     await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/artists/social-account`, payload)
       .then(response => {        
         
-        const { data } = response
-        console.log('Add Social Media - Response: ', response)
-        //commit('SET_MEMBERS', data)
+        const { data: { status, result } } = response
+        if (status === 200)
+        {
+          commit('SET_ARTIST', result.artist_profile)  
+        }
+
         resolve(response.data)
     })
     .catch(err => {
