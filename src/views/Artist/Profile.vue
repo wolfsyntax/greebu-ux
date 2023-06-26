@@ -127,18 +127,15 @@
       
       <ul class="list-group" v-if="members">
         <li class="list-group-item" v-for="mem in members" :key="mem.id">
-          <b-avatar>
-            <template #default>
-              <span class="b-avatar-img">
-                <img loading="lazy" :src="`/storage/${mem.avatar}`" alt="" v-if="mem.avatar">
-                <!-- <font-awesome-icon icon="fa-solid fa-bomb" /> -->
-                <span v-else>
-                  {{ mem.avatar_text }}
-                </span>
-
-              </span>
+          <vs-avatar v-if="!mem.avatar">
+            <template  #text>
+              {{ mem.avatar_text }}
             </template>
-          </b-avatar>
+            
+          </vs-avatar>
+          <vs-avatar v-else>
+            <img @error="replaceByDefault" :src="mem.avatar" alt="" />            
+          </vs-avatar>
           <h6 class="card-title">{{ mem.fullname }}</h6>
           <p class="card-text">{{ mem.role }}</p>
           <button type="button" @click="removeMember(mem.id)" class="btn btn-danger">
@@ -260,6 +257,10 @@ export default {
       this.formHeader = option === 'members' ? 'Add Member' : 'Add Social Media Account';
       
     },
+    replaceByDefault(e) 
+    {
+      e.target.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm3RFDZM21teuCMFYx_AROjt-AzUwDBROFww&usqp=CAU';
+    }
   },
   computed: {
     ...mapGetters(["userInfo", "token", 'artistProfile', 'artistGenre']),
