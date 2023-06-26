@@ -1,5 +1,5 @@
 <template>
-  <router-view></router-view>
+  ERROR 403 | Not Authorized
 </template>
 <script>
 export default {

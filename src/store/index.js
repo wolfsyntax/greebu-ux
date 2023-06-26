@@ -30,7 +30,7 @@ export default new Vuex.Store({
   actions,
   getters,
   modules: {
-    // artist,
+    artist,
     // customer,
     // organizer,
     // services,

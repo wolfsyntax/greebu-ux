@@ -1,94 +1,78 @@
 import axios from "axios";
 
-var actions = {
-  retrieveArtists({ commit }, payload) {      
-    return new Promise(async(resolve, reject) => {
-
-      axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token)
-      console.log('Artist Payload: ', payload)
-      await axios.post('/artists', payload)
-          .then(response => {
-            console.log('Artist response: ', response)
-            // commit('setAuth', response.data?.data?.user)
-            // commit('setToken', response.data?.data?.token)
-            
-            resolve(response)
-
-        })
-        .catch(err => {
-          reject(err)
-        });
+export const fetchArtistOptions = ({ commit, rootState, state}, payload) => {
+  
+  return new Promise(async(resolve, reject) => {
+    
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
+    
+    await axios.get(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/artists/create`, payload)
+      .then(response => {        
+        
+        const {data, status} = response
+        if (status === 200 && data.status === 200)
+        { 
+          const { result } = data
+          
+          commit('SET_GENRES', result?.genres)
+          commit('SET_ARTIST_TYPES', result?.artist_types)
+          commit('SET_ARTIST_GENRES', result?.artist_genre);
+          commit('SET_MEMBERS', result?.members)
+          commit('SET_ARTIST', result?.profile)
+          console.log('Artist Options: ', response)
+        }
+        
+        resolve(response)
     })
-    },
-    signup({ commit }, payload) {
-        return new Promise(async(resolve, reject) => {
+    .catch(err => {
+      reject(err)
+    });
+  })
+}
 
-            await axios.post('/api/auth/register', payload)
-                .then(response => {
-                    console.log('Response: ', response)
+export const updateArtistProfile = ({ commit, rootState, state}, payload) => {
+  
+  return new Promise(async(resolve, reject) => {
+    
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
+    
+    await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/artists`, payload, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      }
+    })
+      .then(response => {        
+        
+        const {data} = response
+        // commit('setContracts', data)
+        resolve(response.data)
+    })
+    .catch(err => {
+      reject(err)
+    });
+  })
+}
 
-                    commit("setAuth", response.data.data.user);
-                    resolve(response)
-                })
-                .catch(err => {
-                    reject(err)
-                });
-        })
-    },
-    forgot({ commit }, payload) {
-        return new Promise(async(resolve, reject) => {
-
-            await axios.post('/api/auth/forgot-pass', payload)
-                .then(response => {
-                    console.log('Response: ', response)
-                    const { status, data } = response
-                    resolve({data, status})
-                })
-                .catch(err => {
-                    reject(err)
-                });
-        })
-    },
-    change({ commit }, payload) {
-        return new Promise(async(resolve, reject) => {
-
-            await axios.post('/api/auth/change-pass', payload)
-                .then(response => {
-                    console.log('Response: ', response)
-                    resolve(response)
-                })
-                .catch(err => {
-                    reject(err)
-                });
-        })
-    },
-    reset({ commit }, payload) {
-        return new Promise(async(resolve, reject) => {
-
-            await axios.post('/api/auth/reset-pass', payload)
-                .then(response => {
-                    console.log('Response: ', response)
-                    resolve(response)
-                })
-                .catch(err => {
-                    reject(err)
-                });
-        })
-    },
-    signout({ commit }, payload) {
-        return new Promise(async (resolve, reject) => {
-
-            await axios.post('/api/auth/logout')
-                .then(response => {
-                    commit('setAuth', {})
-                    commit('setToken', '')
-                    resolve(response)
-                })
-                .catch(err => {
-                    reject(err)
-                });
-        })
-    }
-};
-
-export default actions
+export const addMember = ({ commit, rootState, state}, payload) => {
+  
+  return new Promise(async(resolve, reject) => {
+    
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
+    
+    await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/artists/member`, payload, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      }
+    })
+      .then(response => {        
+        
+        const { data } = response
+        console.log('Response: ', response)
+        commit('SET_MEMBERS', data)
+        resolve(response.data)
+    })
+    .catch(err => {
+      reject(err)
+    });
+  })
+}

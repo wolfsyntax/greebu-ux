@@ -75,7 +75,7 @@
                 <a href="forgot-password">I Forgot my Password</a>
               </div>
               <div class="no-account">
-                <p>Don’t you have an account? <a href="/sign-up">Sign up</a></p>
+                <p>Don’t you have an account? <a href="/register">Sign up</a></p>
               </div>
             </div>
           </div>
@@ -128,20 +128,7 @@ export default {
         }
 
       });
-      // this.$store.dispatch("signin", this.form).then((response) =>
-      // {
 
-      //   const { status } = response;
-
-      //   var user = this.$store.state.user;
-      //   var role = this.$store.state.role;
-
-      //   if (role === 'artists')
-      //   {
-      //     this.$router.push("/artist");
-      //   }
-
-      // });
     }
   },
   computed: {

@@ -3,6 +3,11 @@ var state = {
   user: {},
   bearerToken: '',
   role: '',
+  artist_types: null,
+  genres: null,
+  artists: null,
+  plans: null,
+  base_url: import.meta.env.BASE_URL,
 }
 
 export default state

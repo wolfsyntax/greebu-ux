@@ -1,6 +1,2 @@
-var getters = {
-  // userInfo: state => state.profile,
-  // token: state => state.bearerToken,
-}
-
-export default getters
+// export const stepOne = state => `${state.url}/step-one/`
+export const stepOne = (state,getters, rootState) => {}

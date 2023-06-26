@@ -1,4 +1,5 @@
 import { createRouter,createWebHistory } from 'vue-router';
+import store from '../store';
 
 const router = createRouter({
   mode: 'history',
@@ -12,6 +13,13 @@ const router = createRouter({
     {
       path: '',
       //component: () => import('@/components/Layouts/Layout.vue'),
+      meta: {
+        requiresLogin: false,
+        role: '',
+        breadcrumb: [
+          {title: '', url: '',},
+        ],
+      },
       children: [
         {
           path: '/',
@@ -19,8 +27,8 @@ const router = createRouter({
           component: () => import('@/views/Homepage/Home.vue'),
         },
         {
-          path: '/artist',
-          name: 'artist',
+          path: '/artists',
+          name: 'artists',
           component: () => import('@/views/Homepage/Artist.vue'),
         },
         {
@@ -55,8 +63,112 @@ const router = createRouter({
         }
 
       ]
+    },
+    {
+      path: '/artist',
+      component: () => import('@/components/Layouts/ArtistLayout.vue'),
+      meta: {
+        requiresLogin: true,
+        role: 'artist',
+        breadcrumb: [
+          {title: '', url: '',},
+        ],
+      },
+      children: [
+        {
+          path: '',
+          name: 'index',
+          component: () => import('@/views/Artist/Index.vue'),
+        },
+        {
+          path: 'profile',
+          name: 'profile',
+          component: () => import('@/views/Artist/Profile.vue'),
+        },
+        {
+          path: 'edit',
+          name: 'edit',
+          component: () => import('@/views/Artist/EditProfile.vue'),
+        },
+      ]
+    },
+    {
+      path: '',
+      component: () => import('@/components/FullPage.vue'),
+      children: [
+      {
+          path: '/pages/error-404',
+          name: 'page-error-404',
+          component: () => import('@/views/Pages/Error404.vue'),
+          meta: {
+            requiresLogin: false,            
+            role: '',
+          }
+        },
+        {
+          path: '/pages/error-500',
+          name: 'page-error-500',
+          component: () => import('@/views/Pages/Error500.vue'),
+          meta: {
+            requiresLogin: false,
+            role: '',
+          }
+        },
+        {
+          path: '/pages/not-authorized',
+          name: 'page-not-authorized',
+          component: () => import('@/views/Pages/NotAuthorized.vue'),
+          meta: {
+            requiresLogin: false,
+            role: '',
+          }
+        },
+        {
+          path: '/pages/maintenance',
+          name: 'page-maintenance',
+          component: () => import('@/views/Pages/Maintenance.vue'),
+          meta: {
+            requiresLogin: false,
+            role: ''
+          }
+        }
+      ]
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      redirect: '/pages/error-404'
     }
   ]
 });
+
+router.afterEach(() => {
+  // Remove initial loading
+  const appLoading = document.getElementById('loading-bg')
+  if (appLoading) {
+    appLoading.style.display = 'none'
+  }
+})
+
+router.beforeEach((to, from, next) => {
+  
+  const {role} = to.meta
+  const {path} = to.fullPath
+  
+  const reqSession = to.matched.some(route => route.meta.requiresLogin)
+  const isAuth = store.getters.isLoggedIn;
+
+  //if (reqSession && isAuth) next()
+  if(!reqSession) next()
+
+  if (isAuth) next()
+  else {
+    if (reqSession) {
+      next({name: 'login'})
+    } else {
+      next()
+    }
+  }
+
+})
 
 export default router;

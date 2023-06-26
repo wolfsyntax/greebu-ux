@@ -3,6 +3,7 @@ import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
+
   <router-view></router-view>
   <!-- <div>
     <a href="https://vitejs.dev" target="_blank">
@@ -19,7 +20,14 @@ import HelloWorld from './components/HelloWorld.vue'
  
   
 </template>
-
+<script>
+export default {
+  setup() {
+    console.log('Mode: ')
+  },
+  // compatConfig: { MODE: 3 },
+}
+</script>
 <style scoped>
 
 </style>

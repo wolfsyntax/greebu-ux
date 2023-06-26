@@ -3,13 +3,13 @@ import axios from "axios";
 var actions = {
     signin({ commit }, payload) {
     return new Promise(async(resolve, reject) => {
-        console.log('Sign me in')
+
       await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/login`, payload)
           .then(response => {
             
-            commit('setAuth', response.data)
-            commit('setToken', response.data?.token)
-            
+            commit('SET_AUTH', response.data)
+            commit('SET_TOKEN', response.data?.token)
+            commit('SET_PROFILE', response.data)
             localStorage.api_token = response.data?.token
             resolve(response)
 
@@ -21,17 +21,17 @@ var actions = {
     },
     signup({ commit }, payload) {
         return new Promise(async(resolve, reject) => {
-          console.log('Signup Payload: ', payload)
-            await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/register`, payload)
-                .then(response => {
-                  console.log('Response: ', response)
-                  
-                  //commit("setAuth", response.data.data.user);
-                  resolve(response)
-                })
-                .catch(err => {
-                    reject(err)
-                });
+          
+          await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/register`, payload, {
+              Accept: "application/json"
+            })
+            .then(response => {
+              resolve(response)
+            })
+            .catch(err => { 
+              reject(err)
+            });
+
         })
     },
     
@@ -40,15 +40,30 @@ var actions = {
 
             await axios.post('/api/logout')
                 .then(response => {
-                    commit('setAuth', {})
-                    commit('setToken', '')
-                    resolve(response)
+                  commit('SET_AUTH', {})
+                  commit('SET_TOKEN', '')
+                  commit('SET_PROFILE', {})
+                  resolve(response)
                 })
                 .catch(err => {
                     reject(err)
                 });
         })
-    }
+  },
+  artistOptions({ commit }, payload) {
+        return new Promise(async(resolve, reject) => {
+          console.log('Signup Payload: ', payload)
+          await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/artist/forms`, payload)
+            .then(response => {
+              resolve(response)
+            })
+            .catch(err => { 
+              reject(err)
+            });
+
+        })
+    },
+    
 };
 
 export default actions

@@ -4,7 +4,7 @@
       <div class="row justify-content-center">
         <div class="col-md-8 py-5">
           <div class="card">
-            <div class="card-header">Register {{ errors }}</div>
+            <div class="card-header">Register</div>
             <div class="card-body">
               <form @submit.prevent="submit">
                 <div class="row">
@@ -181,10 +181,15 @@ export default {
           if (status === 201)
           {
             this.$router.push("/login");
-          } else if (status === 203){
-            this.errors = data.errors
+          } else if (status === 203) {
+            console.log('Errors: ', data?.results?.errors)
+            this.errors = data?.results?.errors || {};
           }
         })
+        .catch(err =>
+        {
+          console.log('Test1: ', err)
+        });
 
     }
   },
