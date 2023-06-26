@@ -3,19 +3,21 @@ import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue({
-    template: {
-      transformAssetUrls: {
-        base: null,
-        includeAbsolute: false,
+  plugins: [
+    vue({
+      template: {
+        transformAssetUrls: {
+          base: null,
+          includeAbsolute: false,
+        },
+        compilerOptions: {
+          // compatConfig: {
+          //   MODE: 3,
+          // },
+        },
       },
-      compilerOptions: {
-        // compatConfig: {
-        //   MODE: 3,
-        // },
-      },
-    },
-  })],
+    }),
+  ],
   resolve: {
     alias: {
       '@': '/src',

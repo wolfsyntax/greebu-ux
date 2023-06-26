@@ -27,7 +27,7 @@
         </nav>
 
       </header>
-      <slot />
+      <router-view></router-view>
 
       <footer class="footer">
         <div class="container">

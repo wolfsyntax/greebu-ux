@@ -23,7 +23,7 @@ import HelloWorld from './components/HelloWorld.vue'
 <script>
 export default {
   setup() {
-    console.log('Mode: ')
+
   },
   // compatConfig: { MODE: 3 },
 }

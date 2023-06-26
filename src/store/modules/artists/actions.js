@@ -19,7 +19,6 @@ export const fetchArtistOptions = ({ commit, rootState, state}, payload) => {
           commit('SET_ARTIST_GENRES', result?.artist_genre);
           commit('SET_MEMBERS', result?.members)
           commit('SET_ARTIST', result?.profile)
-          console.log('Artist Options: ', response)
         }
         
         resolve(response)
@@ -67,7 +66,6 @@ export const addMember = ({ commit, rootState, state}, payload) => {
       .then(response => {        
         
         const { data } = response
-        console.log('Response: ', response)
         commit('SET_MEMBERS', data)
         resolve(response.data)
     })

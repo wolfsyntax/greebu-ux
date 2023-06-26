@@ -52,7 +52,7 @@ var actions = {
   },
   artistOptions({ commit }, payload) {
         return new Promise(async(resolve, reject) => {
-          console.log('Signup Payload: ', payload)
+
           await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/artist/forms`, payload)
             .then(response => {
               resolve(response)

@@ -182,13 +182,12 @@ export default {
           {
             this.$router.push("/login");
           } else if (status === 203) {
-            console.log('Errors: ', data?.results?.errors)
             this.errors = data?.results?.errors || {};
           }
         })
         .catch(err =>
         {
-          console.log('Test1: ', err)
+          // console.log('Test1: ', err)
         });
 
     }

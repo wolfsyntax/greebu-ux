@@ -10,8 +10,8 @@ export const fetchArtistOptions = ({ commit, rootState, state}, payload) => {
       .then(response => {        
         
         const {data} = response
-        commit('setContracts', data)
-        console.log('Contracts: ', data)
+        // commit('setContracts', data)
+        
         resolve(response)
     })
     .catch(err => {

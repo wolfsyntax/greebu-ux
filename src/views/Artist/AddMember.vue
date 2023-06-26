@@ -59,14 +59,14 @@ export default {
     { 
       this.addMember(this.form).then((response) =>
       {
-        console.log('Add Member => Response: ', response)
+        
         const { status } = response;
         if (status === 422) {
           this.errors = response?.result?.errors || {}
         } else {
           this.$store.commit('SET_MEMBERS', response.result?.members)
         }
-        console.log('Errors: ', this.errors)
+
       });
     }
   },

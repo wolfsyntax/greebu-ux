@@ -18,6 +18,5 @@ export const SET_MEMBERS = (state, payload) => {
 
 export const SET_ARTIST = (state, payload) =>
 {
-  console.log('Artist: ', payload)
   state.artist = payload
 }

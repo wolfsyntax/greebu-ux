@@ -1,29 +1,36 @@
 <template>
   <div>
-    <!-- <div v-if="$page.props.flash.message" class="alert">
-    {{ $page.props.flash.message }}
-    </div> -->
+    <p>{{ $filters.timeAgo('2019-12-19') }}</p>
+    <vs-avatar>
+          <template #text>
+            Lily
+          </template>
+        </vs-avatar>
+        <vs-avatar>
+          <img src="https://thumbs.dreamstime.com/b/businessman-icon-vector-male-avatar-profile-image-profile-businessman-icon-vector-male-avatar-profile-image-182095609.jpg" alt="">
+        </vs-avatar>
     <p>
       <font-awesome-icon icon="fa-brands fa-youtube" />
-      {{ profile?.youtube_channel }}
+      {{ userInfo?.youtube_channel }}
       <!-- <Link href="/artist/profile/media/youtube/destroy" method="delete" class="btn btn-danger">Remove</Link> -->
     </p>
     <p>
       <font-awesome-icon icon="fa-brands fa-twitter" />
-      {{ profile?.twitter_username }}
+      {{ userInfo?.twitter_username }}
       <!-- <Link href="/artist/profile/media/twitter/destroy" method="delete" class="btn btn-danger">Remove</Link> -->
     </p>
     <p>
       <font-awesome-icon icon="fa-brands fa-instagram" />
-      {{ profile?.instagram_username }}
+      {{ userInfo?.instagram_username }}
       <!-- <Link href="/artist/profile/media/instagram/destroy" method="delete" class="btn btn-danger">Remove</Link> -->
     </p>
+
     <p>
       <font-awesome-icon icon="fa-brands fa-spotify" />
-      {{ profile?.spotify_profile }}
+      {{ userInfo?.spotify_profile }}
       <!-- <Link href="/artist/profile/media/spotify/destroy" method="delete" class="btn btn-danger">Remove</Link> -->
     </p>
-
+    
     <!-- <social-media /> -->
     <form @submit.prevent="submit">
       
@@ -45,7 +52,7 @@
       <input type="text" v-model="form.artist_name" placeholder="Name of the Artist/Band" />
       <div v-if="errors?.artist_name">{{ errors.artist_name }}</div>
 
-      <multi-select v-model="form.genre" :options="genres" mode="tags" placeholder="Please select genres" class="" />
+      <multiselect v-model="form.genre" :options="genres" mode="tags" class="my-2" placeholder="Please select genres" />
       <div v-if="errors?.genre">{{ errors.genre }}</div>
 
       <ul class="list-group" v-if="members">
@@ -76,8 +83,8 @@
       <member-form />
       <textarea v-model="form.bio"></textarea>
       <div v-if="errors?.bio">{{ errors.bio }}</div>
-
-      <button type="submit" class="btn-success btn">Submit</button>
+      <button type="button" class="btn btn-primary">Primary</button>
+      <button type="submit" class="btn btn-success">Submit</button>
     </form>
   </div>
 </template>
@@ -86,14 +93,12 @@ import Layout from '@/components/Layouts/AuthLayout.vue';
 import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
 import MemberForm from './AddMember.vue';
 import SocialMediaForm from './SocialMedia.vue';
-import Multiselect from '@vueform/multiselect'
 
 export default {
   components: {
     layout: Layout,
     'member-form': MemberForm,
     'social-media': SocialMediaForm,
-    Multiselect,
   },
   data()
   {
@@ -139,7 +144,7 @@ export default {
         if (status === 422) { 
           this.errors = response?.result?.errors || {}
         } else {
-          console.log('Response: ', response.result)
+
           this.$store.commit('SET_ARTIST', response.result?.artist_profile)
           this.$store.commit('SET_PROFILE', response.result?.user_profile)
           this.$store.commit('SET_MEMBERS', response.result?.members)
@@ -152,7 +157,7 @@ export default {
     }
   },
   computed: {
-    //...mapGetters(["userInfo", "token"]),
+    ...mapGetters(["userInfo", "token"]),
     ...mapState({
       artistTypes: (state) => state.artist.artist_types,
       genres: (state) => state.artist.genres,
@@ -161,4 +166,8 @@ export default {
   }
 }
 </script>
-<style scoped></style>
+
+<style scoped>
+@import '@/assets/css/tailwind.css';
+</style>
+<!-- <style src="@vueform/multiselect/themes/default.css"></style> -->

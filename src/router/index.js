@@ -69,7 +69,7 @@ const router = createRouter({
       component: () => import('@/components/Layouts/ArtistLayout.vue'),
       meta: {
         requiresLogin: true,
-        role: 'artist',
+        role: 'artists',
         breadcrumb: [
           {title: '', url: '',},
         ],
@@ -93,11 +93,11 @@ const router = createRouter({
       ]
     },
     {
-      path: '',
+      path: '/pages',
       component: () => import('@/components/FullPage.vue'),
       children: [
       {
-          path: '/pages/error-404',
+          path: 'error-404',
           name: 'page-error-404',
           component: () => import('@/views/Pages/Error404.vue'),
           meta: {
@@ -106,7 +106,7 @@ const router = createRouter({
           }
         },
         {
-          path: '/pages/error-500',
+          path: 'error-500',
           name: 'page-error-500',
           component: () => import('@/views/Pages/Error500.vue'),
           meta: {
@@ -115,7 +115,7 @@ const router = createRouter({
           }
         },
         {
-          path: '/pages/not-authorized',
+          path: 'not-authorized',
           name: 'page-not-authorized',
           component: () => import('@/views/Pages/NotAuthorized.vue'),
           meta: {
@@ -124,7 +124,7 @@ const router = createRouter({
           }
         },
         {
-          path: '/pages/maintenance',
+          path: 'maintenance',
           name: 'page-maintenance',
           component: () => import('@/views/Pages/Maintenance.vue'),
           meta: {
@@ -143,10 +143,10 @@ const router = createRouter({
 
 router.afterEach(() => {
   // Remove initial loading
-  const appLoading = document.getElementById('loading-bg')
-  if (appLoading) {
-    appLoading.style.display = 'none'
-  }
+  // const appLoading = document.getElementById('loading-bg')
+  // if (appLoading) {
+  //   appLoading.style.display = 'none'
+  // }
 })
 
 router.beforeEach((to, from, next) => {
@@ -156,12 +156,14 @@ router.beforeEach((to, from, next) => {
   
   const reqSession = to.matched.some(route => route.meta.requiresLogin)
   const isAuth = store.getters.isLoggedIn;
+  
+  if (!reqSession) {
+    next()
+  } else if (isAuth) {
+    if (role === store.getters.userRole) next()
+    else next({name: 'page-not-authorized'})
+  } else {
 
-  //if (reqSession && isAuth) next()
-  if(!reqSession) next()
-
-  if (isAuth) next()
-  else {
     if (reqSession) {
       next({name: 'login'})
     } else {
