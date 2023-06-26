@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>{{ $filters.timeAgo('2019-12-19') }}</p>
-
+    {{  artistProfile  }}
     
     <div
       ref="modal"
@@ -34,8 +34,8 @@
         </div>
       </div>
     </div>
-  <div v-if="active" class="modal-backdrop fade show"></div>
-
+    
+    <div v-if="active" class="modal-backdrop fade show"></div>
 
     <vs-avatar>
       <template #text>
@@ -201,6 +201,16 @@ export default {
   mounted()
   {
     this.fetchArtistOptions()
+    this.form = {
+      artist_type: this.artistProfile?.artist_type?.title,
+      artist_name: this.artistProfile?.profile?.business_name,
+      genre: this.artistGenre,
+      bio: this.artistProfile?.profile?.bio,
+      avatar: this.artistProfile?.profile?.avatar,
+      street: this.artistProfile?.profile?.street_address,
+      city: this.artistProfile?.profile?.city,
+      province: this.artistProfile?.profile?.province,
+    };
   },
   props: {
     // errors: Object,
@@ -252,7 +262,7 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(["userInfo", "token", 'artistProfile']),
+    ...mapGetters(["userInfo", "token", 'artistProfile', 'artistGenre']),
     ...mapState({
       artistTypes: (state) => state.artist.artist_types,
       genres: (state) => state.artist.genres,
