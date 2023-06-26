@@ -66,6 +66,7 @@ export const addMember = ({ commit, rootState, state}, payload) => {
       .then(response => {        
         
         const { data } = response
+        console.log('Add Member - Response: ', response)
         commit('SET_MEMBERS', data)
         resolve(response.data)
     })
@@ -73,4 +74,26 @@ export const addMember = ({ commit, rootState, state}, payload) => {
       reject(err)
     });
   })
+  
+}
+
+export const addSocialMedia = ({ commit, rootState, state}, payload) => {
+  
+  return new Promise(async(resolve, reject) => {
+    
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
+    
+    await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/artists/social-account`, payload)
+      .then(response => {        
+        
+        const { data } = response
+        console.log('Add Social Media - Response: ', response)
+        //commit('SET_MEMBERS', data)
+        resolve(response.data)
+    })
+    .catch(err => {
+      reject(err)
+    });
+  })
+  
 }
