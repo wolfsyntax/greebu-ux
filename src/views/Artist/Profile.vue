@@ -141,9 +141,9 @@
           </b-avatar>
           <h6 class="card-title">{{ mem.fullname }}</h6>
           <p class="card-text">{{ mem.role }}</p>
-          <Link :href="`/artist/profile/member/${mem.id}`" method="delete" class="btn btn-danger">
-          <font-awesome-icon icon="fa-solid fa-trash" />
-          </Link>
+          <button type="button" @click="removeMember(mem.id)" class="btn btn-danger">
+            <font-awesome-icon icon="fa-solid fa-trash" />
+          </button>
           <Link href="">Edit</Link>
 
         </li>
@@ -207,7 +207,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      'fetchArtistOptions', 'updateArtistProfile'
+      'fetchArtistOptions', 'updateArtistProfile', 'removeMember',
     ]),
     ...mapMutations([
       'SET_PROFILE', 'SET_ARTIST', 'SET_MEMBERS',
