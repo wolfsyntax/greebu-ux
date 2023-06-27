@@ -127,7 +127,7 @@ export default {
       navItems: [
         { page: 'Home', link: '/' },
         { page: 'Create a Song', link: '/create-song' },
-        { page: 'Artist', link: '/artist' },
+        { page: 'Artist', link: '/artists' },
         { page: 'Events', link: '/events' },
         { page: 'Services', link: '/services' },
         { page: 'Partner With Us', link: '/partners' }

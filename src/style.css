@@ -2135,6 +2135,31 @@ background-color: var(--orange);
   margin-bottom: 80px
 */
 
+                                                       /* SERVICES PAGE */
+ /* BANNER SECTION */
+/* bottom to top img */
+@keyframes bottomToTop {
+  from {bottom: -1500px;}
+  to {bottom: 300px; opacity: 1;}
+}
+/* top to bottom img */
+@keyframes topToBottom {
+  from {top: -1500px;}
+  to {top: -300px; opacity: 1;}
+}
+.services .container .content {
+  top: 45%;
+  left: 18.5%;
+  z-index: 2;
+}
+.services .container h2 {
+  font-size: 74px;
+  margin-bottom: 21px;
+}
+.services .container .sub-heading {
+  font-size: 24px;
+}
+
                                                         /* ORGANIZERS PAGE */
 /* Event Organizers Section */
 .event-organizers .container {
