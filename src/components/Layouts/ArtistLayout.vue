@@ -1,5 +1,5 @@
 <template>
-  <router-view></router-view>
+  <slot />
 </template>
 <script>
 export default {
@@ -9,3 +9,6 @@ export default {
   },
 }
 </script>
+<style>
+@import '@/assets/css/artist-ui.css';
+</style>
