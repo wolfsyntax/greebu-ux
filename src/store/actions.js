@@ -35,20 +35,22 @@ var actions = {
         })
     },
     
-    signout({ commit }, payload) {
-        return new Promise(async (resolve, reject) => {
-
-            await axios.post('/api/logout')
-                .then(response => {
-                  commit('SET_AUTH', {})
-                  commit('SET_TOKEN', '')
-                  commit('SET_PROFILE', {})
-                  resolve(response)
-                })
-                .catch(err => {
-                    reject(err)
-                });
+  signout({ commit, state })
+  {
+    return new Promise(async (resolve, reject) => {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
+      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/logout`)
+        .then(response =>
+        {
+          commit('SET_AUTH', {})
+          commit('SET_TOKEN', '')
+          commit('SET_PROFILE', {})
+          resolve(response)
         })
+        .catch(err => {
+            reject(err)
+        });
+    })
   },
   artistOptions({ commit }, payload) {
         return new Promise(async(resolve, reject) => {

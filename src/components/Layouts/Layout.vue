@@ -23,7 +23,7 @@
               <!-- <Link method="post" as="button" :href="route('logout')">Logout</Link> -->
             </div>
             <div class="float-end nav-button" v-else>
-              <a href="#" class="btn btn-primary log-in">Logout</a>
+              <a href="#" class="btn btn-primary log-in" @click.prevent="logout">Logout</a>
             </div>
 
           </div>
@@ -155,9 +155,17 @@ export default {
   },
   methods: {
     ...mapActions([
-      
+      'signout'
     ]),
     ...mapMutations([]),
+    logout()
+    {
+      this.signout()
+        .then(response =>
+        {
+          console.log('Logout Response: ', response)
+        })
+    }
   },
   computed: {
     ...mapGetters(["isLoggedIn"]),
