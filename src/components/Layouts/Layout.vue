@@ -31,8 +31,8 @@
         </nav>
 
       </header>
-      <router-view></router-view>
-
+      <!-- <router-view></router-view> -->
+      <slot />
       <footer class="footer">
         <div class="container">
             <div class="row">
