@@ -3,6 +3,7 @@
     <feature />
     <featured-artists />
     <pricing :pricing="plans"/>
+    <reminder />
     <faq />
   </layout>
 </template>
@@ -10,6 +11,7 @@
 import Layout from '@/components/Layouts/Layout.vue';
 import Feature from '@/components/Home/Feature.vue';
 import Pricing from '@/components/Home/Pricing.vue';
+import Reminder from '@/components/Home/Reminder.vue';
 import Faq from '@/components/Home/FAQ.vue';
 import FeaturedArtists from '@/Components/Home/FeaturedArtists.vue';
 
@@ -19,7 +21,8 @@ export default {
     feature: Feature,
     pricing: Pricing,
     faq: Faq,
-    "featured-artist": FeaturedArtists,
+    reminder: Reminder,
+    FeaturedArtists: FeaturedArtists,
   },
   setup()
   {

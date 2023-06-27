@@ -4,7 +4,7 @@
       <nav class="navbar navbar-expand-lg">
         <div class="container">
           <a class="navbar-brand logo" :href="home">
-            <img src="@/assets/logo.svg" alt="logo">
+            <img src="@/assets/geebu-logo.svg" width="175" height="46" alt="logo">
           </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,8 +19,6 @@
             <div class="float-end nav-button" v-if="!isLoggedIn">
               <a :href="login" class="btn btn-primary log-in">Log In</a>
               <a :href="signUp" type="button" class="btn btn-secondary sign-up">Sign Up</a>
-              <!-- <a method="post" as="button" :href="route('logout')" class="btn btn-secondary log-out"><i class="bi bi-box-arrow-right"></i></a> -->
-              <!-- <Link method="post" as="button" :href="route('logout')">Logout</Link> -->
             </div>
             <div class="float-end nav-button" v-else>
               <a href="#" class="btn btn-primary log-in" @click.prevent="logout">Logout</a>
@@ -82,7 +80,7 @@
             <div class="col-4">
               <div class="footer-logo">
                 <a href="/">
-                  <img src="@/assets/logo.svg" width="211px" height="53px" alt="logo">
+                  <img src="@/assets/geebu-logo.svg" width="201" height="53" loading="lazy" alt="logo">
                 </a>
               </div>
             </div>
@@ -95,16 +93,16 @@
               <div class="social-media-icons">
                 <ul>
                   <li>
-                    <a href="#"  target="_blank"><img src="@/assets/facebook.svg" width="25px" height="25px" alt="facebook logo"></a>
+                    <a href="#"  target="_blank"><img src="@/assets/facebook.svg" width="25px" height="25px" loading="lazy" alt="facebook logo"></a>
                   </li>
                   <li>
-                    <a href="#"  target="_blank"><img src="@/assets/instagram.svg" width="25px" height="25px" alt="instagram logo"></a>
+                    <a href="#"  target="_blank"><img src="@/assets/instagram.svg" width="25px" height="25px" loading="lazy" alt="instagram logo"></a>
                   </li>
                   <li>
-                    <a href="#"  target="_blank"><img src="@/assets/twitter.svg" width="25px" height="25px" alt="twitter logo"></a>
+                    <a href="#"  target="_blank"><img src="@/assets/twitter.svg" width="25px" height="25px" loading="lazy" alt="twitter logo"></a>
                   </li>
                   <li>
-                    <a href="#" target="_blank"><img src="@/assets/youtube.svg" width="25px" height="25px" alt="youtube logo"></a>
+                    <a href="#" target="_blank"><img src="@/assets/youtube.svg" width="25px" height="25px" loading="lazy" alt="youtube logo"></a>
                   </li>
                 </ul>
               </div>
@@ -131,7 +129,7 @@ export default {
         { page: 'Create a Song', link: '/create-song' },
         { page: 'Artist', link: '/artist' },
         { page: 'Events', link: '/events' },
-        { page: 'Other Services', link: '/services' },
+        { page: 'Services', link: '/services' },
         { page: 'Partner With Us', link: '/partners' }
       ],
       home: '/',

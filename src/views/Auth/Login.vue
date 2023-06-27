@@ -28,7 +28,7 @@
 
           <div class="login-form">
             <div class="logo">
-              <a href="/"><img src="@/assets/logo.svg" width="134" height="34" alt="Logo"></a>
+              <a href="/"><img src="@/assets/geebu-logo.svg" width="175" height="46" alt="Logo"></a>
             </div>
             <div class="card">
               <div class="card-header">
