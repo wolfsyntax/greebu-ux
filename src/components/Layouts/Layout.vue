@@ -163,6 +163,8 @@ export default {
       this.signout()
         .then(response =>
         {
+          const { status } = response;
+          if (status === 200 || status === 401) this.$router.push('/login');
           console.log('Logout Response: ', response)
         })
     }

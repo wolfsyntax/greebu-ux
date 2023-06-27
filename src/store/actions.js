@@ -42,13 +42,27 @@ var actions = {
       await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/logout`)
         .then(response =>
         {
-          commit('SET_AUTH', {})
-          commit('SET_TOKEN', '')
-          commit('SET_PROFILE', {})
+          console.log('Signout Response: ', response)
+          const { status, data } = response
+          if (status === 200 && data.status === 200) {
+            commit('SET_AUTH', {})
+            commit('SET_TOKEN', '')
+            commit('SET_PROFILE', {})
+          }
           resolve(response)
         })
-        .catch(err => {
-            reject(err)
+        .catch(err =>
+        {
+          const { response } = err
+          if (response.status === 401) {
+
+            commit('SET_AUTH', {});
+            commit('SET_TOKEN', '');
+            commit('SET_PROFILE', {});
+
+            resolve(response);
+          }
+          reject(err);
         });
     })
   },
