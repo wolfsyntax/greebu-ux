@@ -8,12 +8,12 @@
   </layout>
 </template>
 <script>
-//import Layout from '@/components/Layouts/ArtistLayout.vue';
+import Layout from '@/components/Layouts/ArtistLayout.vue';
 import { mapGetters, mapState, mapActions } from "vuex";
 
 export default {
   components: {
-    //layout: Layout,
+    layout: Layout,
   },
   data()
   {
