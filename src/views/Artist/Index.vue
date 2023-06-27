@@ -1,19 +1,23 @@
 <template>
-  <layout>
+  
+  <section class="artist-profile">
     <div class="container">
+      <h2>Hi</h2>
       <p>Artist: {{ artist }}</p> 
       <p>User: {{  profile }}</p>
       <p>Member: {{ members }}</p>
     </div>
-  </layout>
+  </section>
+
 </template>
 <script>
-//import Layout from '@/components/Layouts/ArtistLayout.vue';
+// import Layout from '@/components/Layouts/ArtistLayout.vue';
 import { mapGetters, mapState, mapActions } from "vuex";
 
 export default {
   components: {
-    //layout: Layout,
+    // layout: Layout,
+
   },
   data()
   {
@@ -76,4 +80,8 @@ export default {
   }
 }
 </script>
-<style scoped></style>
+
+<style scoped> 
+@import '@/assets/css/artist-profile.css';
+
+</style>

@@ -123,9 +123,10 @@ export default {
         var user = this.$store.state.user;
         var role = this.$store.state.role;
 
-        if (role === 'artists') {
-          this.$router.push("/artist");
-        }
+        // if (role === 'artists') {
+        //   this.$router.push("/");
+        // }
+        this.$router.push("/");
 
       });
 

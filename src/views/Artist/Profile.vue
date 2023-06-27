@@ -1,7 +1,7 @@
 <template>
   <div>
-    <p>{{ $filters.timeAgo('2019-12-19') }}</p>
-    {{  artistProfile  }}
+    <!-- <p>{{ $filters.timeAgo('2019-12-19') }}</p>
+    {{  artistProfile  }} -->
     
     <div
       ref="modal"
@@ -37,7 +37,7 @@
     
     <div v-if="active" class="modal-backdrop fade show"></div>
 
-    <vs-avatar>
+    <!-- <vs-avatar>
       <template #text>
         Lily
       </template>
@@ -45,7 +45,7 @@
 
     <vs-avatar>
       <img src="https://thumbs.dreamstime.com/b/businessman-icon-vector-male-avatar-profile-image-profile-businessman-icon-vector-male-avatar-profile-image-182095609.jpg" alt="">
-    </vs-avatar>
+    </vs-avatar> -->
 
     <!-- <social-media /> -->
     <form @submit.prevent="submit">
