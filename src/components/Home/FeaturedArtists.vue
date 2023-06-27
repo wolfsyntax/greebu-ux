@@ -21,13 +21,13 @@
                   <div class="card">
                     <img :src="artist.image" class="card-img-top img-fluid" alt="Trending Artist" />
                     <div class="middle">
-                      <a href="#"> View Profile</a>
+                      <a href="/artist"> View Profile</a>
                     </div>
                     <div class="card-body">
                       <div class="artist">
                         <h5 class="card-title">{{ artist.name }}</h5>
                         <h6 class="card-text">{{ artist.typeOfArtist }}</h6>
-                        <p><img :src="artist.ratingImage"> {{ artist.ratings }} <span>({{ artist.reviews }}
+                        <p><img :src="ratingImage"> {{ artist.ratings }} <span>({{ artist.reviews }}
                             reviews)</span></p>
                       </div>
                       <div class="audio-btn">
@@ -74,13 +74,13 @@
                   <div class="card">
                     <img :src="artist.image" class="card-img-top img-fluid" alt="Trending Artist" />
                     <div class="middle">
-                      <a href="#"> View Profile</a>
+                      <a href="/artist"> View Profile</a>
                     </div>
                     <div class="card-body">
                       <div class="artist">
                         <h5 class="card-title">{{ artist.name }}</h5>
                         <h6 class="card-text">{{ artist.typeOfArtist }}</h6>
-                        <p><img :src="artist.ratingImage"> {{ artist.ratings }} <span>({{ artist.reviews }}
+                        <p><img :src="ratingImage"> {{ artist.ratings }} <span>({{ artist.reviews }}
                             reviews)</span></p>
                       </div>
                       <div class="audio-btn">
@@ -142,7 +142,9 @@
           <div class="audio-controls">
             <audio ref="audioPlayer" controls style="display: none;"></audio>
             <div class="main-controls">
-              <button @click="playPrevious" class="btn btn-primary prev"></button>
+              <button @click="playPrevious" class="btn btn-primary prev">
+                <!-- <i class="material-icons"><span class="material-symbols-outlined">skip_previous</span></i> -->
+              </button>
               <button @click="togglePlayPause" class="btn btn-primary play">
                 <!-- <i :class="playIconClass"></i> -->
                 <img :src="playIconClass">
@@ -201,7 +203,6 @@ export default {
           image: 'https://res.cloudinary.com/daorvtlls/image/upload/v1686649068/trending-bicolano-artist-1_igoz8j.png',
           ratings: 4.95,
           reviews: 234,
-          ratingImage: './img/rating-star-small.svg'
         },
         {
           name: 'Melissa Go Melissa',
@@ -211,7 +212,6 @@ export default {
           image: 'https://res.cloudinary.com/daorvtlls/image/upload/v1686649067/trending-bicolano-artist-2_ljhog8.png',
           ratings: 4.95,
           reviews: 230,
-          ratingImage: './img/rating-star-small.svg'
         },
         {
           name: 'James Natividad',
@@ -221,7 +221,6 @@ export default {
           image: 'https://res.cloudinary.com/daorvtlls/image/upload/v1686649066/trending-bicolano-artist-3_s0ocyh.png',
           ratings: 4.95,
           reviews: 229,
-          ratingImage: './img/rating-star-small.svg'
         },
         {
           name: 'Kevin Flores',
@@ -231,7 +230,6 @@ export default {
           image: 'https://res.cloudinary.com/daorvtlls/image/upload/v1686649329/trending-bicolano-artist-4_o6xjze.png',
           ratings: 4.95,
           reviews: 228,
-          ratingImage: './img/rating-star-small.svg'
         },
         {
           name: 'Enter SandMan Enter SandMan Enter SandMan ',
@@ -241,7 +239,6 @@ export default {
           image: 'https://res.cloudinary.com/daorvtlls/image/upload/v1686649329/trending-bicolano-artist-5_lxhfkw.png',
           ratings: 4.91,
           reviews: 227,
-          ratingImage: './img/rating-star-small.svg'
         },
         {
           name: 'Paolo Cruz',
@@ -251,7 +248,6 @@ export default {
           image: 'https://res.cloudinary.com/daorvtlls/image/upload/v1686465778/samples/imagecon-group.jpg',
           rating: 4.90,
           reviews: 200,
-          ratingImage: './img/rating-star-small.svg'
         },
         {
           name: 'Sarah Heart',
@@ -261,7 +257,6 @@ export default {
           image: 'https://res.cloudinary.com/daorvtlls/image/upload/v1686465790/cld-sample.jpg',
           ratings: 4.90,
           reviews: 123,
-          ratingImage: './img/rating-star-small.svg'
         },
         {
           name: 'Ricardo Sy',
@@ -271,9 +266,9 @@ export default {
           image: 'https://res.cloudinary.com/daorvtlls/image/upload/v1686465774/samples/people/jazz.jpg',
           ratings: 4.90,
           reviews: 113,
-          ratingImage: './img/rating-star-small.svg'
         }
       ],
+      ratingImage: 'https://res.cloudinary.com/daorvtlls/image/upload/v1687321042/rating-star-small_axozjd.svg',
       showControls: false,
       audioPlayer: null,
       currentIndex: 0,
@@ -304,7 +299,7 @@ export default {
   computed: {
     playIconClass()
     {
-      return this.isPlaying ? './img/play-pause.svg' : './img/play-black.svg';
+      return this.isPlaying ? 'https://res.cloudinary.com/daorvtlls/image/upload/v1687321874/play-pause_ofcx4e.svg' : 'https://res.cloudinary.com/daorvtlls/image/upload/v1687321874/play-black_ftgyx3.svg';
     },
     volumeIcon()
     {

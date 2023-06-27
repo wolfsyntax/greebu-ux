@@ -2,69 +2,67 @@
   <div>
     <section class="home-slider">
       <div class="container">
-        <div id="home-carousel" class="carousel slide">
+        <div id="home-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="@/assets/home-slider-1.webp" class="d-block w-100"
+              <img src="@/assets/home/home-slider-1.webp" class="d-block w-100"
                 alt="Book your Events/Artist, Create your song now let's make magic in music!">
               <div class="carousel-caption d-none d-md-block">
                 <h1>Book your Events/Artist, Create your song now let's make magic in music!</h1>
                 <p>Custom tunes for any mood, and booking the best artists just got easier with our website!</p>
-                <a href="#" class="btn btn-primary btn-lg">Create a song</a>
+                <a href="/create-song" class="btn btn-primary btn-lg">Create a song</a>
               </div>
             </div>
             <div class="carousel-item">
-              <img src="@/assets/home-slider-2.webp" class="d-block w-100"
+              <img src="@/assets/home/home-slider-2.webp" class="d-block w-100"
                 alt="Find a perfect artists to make a custom song and create amazing memories to your event">
               <div class="carousel-caption d-none d-md-block">
                 <h3>Find a perfect artists to make a custom song and create amazing memories to your event</h3>
                 <p>Custom tunes for any mood, and booking the best artists just got easier with our website!</p>
-                <a href="#" class="btn btn-primary btn-lg">Find Artist</a>
+                <a href="/artist" class="btn btn-primary btn-lg">Find Artist</a>
               </div>
               <div class="animate-section">
                 <div class="animate-left">
-                  <img src="@/assets/slider-2-animation-1.webp" class="d-block w-100" alt="Playing guitar">
-                  <img src="@/assets/slider-2-animation-2.webp" class="d-block w-100" alt="Playing guitar">
-                  <img src="@/assets/slider-2-animation-3.webp" class="d-block w-100" alt="Singing">
-                  <img src="@/assets/slider-2-animation-4.webp" class="d-block w-100" alt="Playing guitar">
+                  <img src="@/assets/home/slider-2-animation-1.webp" class="d-block w-100" alt="Playing guitar">
+                  <img src="@/assets/home/slider-2-animation-2.webp" class="d-block w-100" alt="Playing guitar">
+                  <img src="@/assets/home/slider-2-animation-3.webp" class="d-block w-100" alt="Singing">
+                  <img src="@/assets/home/slider-2-animation-4.webp" class="d-block w-100" alt="Playing guitar">
                 </div>
                 <div class="animate-right">
-                  <img src="@/assets/slider-2-animation-4.webp" class="d-block w-100" alt="Playing guitar">
-                  <img src="@/assets/slider-2-animation-3.webp" class="d-block w-100" alt="Singing">
-                  <img src="@/assets/slider-2-animation-2.webp" class="d-block w-100" alt="Playing guitar">
-                  <img src="@/assets/slider-2-animation-1.webp" class="d-block w-100" alt="Playing guitar">
+                  <img src="@/assets/home/slider-2-animation-4.webp" class="d-block w-100" alt="Playing guitar">
+                  <img src="@/assets/home/slider-2-animation-3.webp" class="d-block w-100" alt="Singing">
+                  <img src="@/assets/home/slider-2-animation-2.webp" class="d-block w-100" alt="Playing guitar">
+                  <img src="@/assets/home/slider-2-animation-1.webp" class="d-block w-100" alt="Playing guitar">
                 </div>
               </div>
             </div>
             <div class="carousel-item">
-              <img src="@/assets/home-slider-3.webp" class="d-block w-100"
+              <img src="@/assets/home/home-slider-3.webp" class="d-block w-100"
                 alt="Need a Professional Equipment for your Event?">
               <div class="carousel-caption d-none d-md-block">
                 <h3>Need a Professional Equipment for your Event?</h3>
                 <p>We offer a wide range of equipment rental options, including sound systems, lighting, staging, and
                   more.</p>
-                <a href="#" class="btn btn-primary btn-lg">Our Services</a>
+                <a href="/services" class="btn btn-primary btn-lg">Our Services</a>
               </div>
             </div>
             <div class="carousel-item">
-              <img src="@/assets/home-slider-4.webp" class="d-block w-100"
+              <img src="@/assets/home/home-slider-4.webp" class="d-block w-100"
                 alt="Noo worries if you're unsure how to create an event - we've got you covered! Come and easily create your own event with us today.">
               <div class="carousel-caption d-none d-md-block content-4">
                 <h3>No worries if you're unsure how to create an event - we've got you covered! Come and easily create
                   your own event with us today.</h3>
                 <p>We offer a wide range of equipment rental options, including sound systems, lighting, staging, and
                   more.</p>
-                <a href="#" class="btn btn-primary btn-lg">Get Started</a>
+                <a href="/partners" class="btn btn-primary btn-lg">Get Started</a>
               </div>
             </div>
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#home-carousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
+            <i class="material-icons"><span class="material-symbols-outlined prev">&#xE5CB;</span></i>
           </button>
           <button class="carousel-control-next" type="button" data-bs-target="#home-carousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
+            <i class="material-icons"><span class="material-symbols-outlined next">&#xE5CC;</span></i>
           </button>
         </div>
       </div>
@@ -92,12 +90,12 @@
                       <h3>Share your Story</h3>
                       <p>Tell us who the song is for or what it’s all about. Artist just need a little inspiration to make
                         it trully custom and unique.</p>
-                      <a href="#" class="btn btn-primary btn-lg">Create a song</a>
+                      <a href="/create-song" class="btn btn-primary btn-lg">Create a song</a>
                     </div>
                   </div>
                   <div class="col-lg-6 col-xl-7 col-xxl-7">
                     <div class="customg-song-img">
-                      <img src="@/assets/custom-song.webp" class="d-block w-100" alt="Custom song">
+                      <img src="@/assets/home/custom-song.webp" class="d-block w-100" loading="lazy" alt="Custom song">
                     </div>
                   </div>
                 </div>
@@ -109,12 +107,12 @@
                       <h3>Find an artist. Create your song</h3>
                       <p>Select the artist you want. Then pick your preffered genre, tempo, and mood so that they can get
                         started.</p>
-                      <a href="#" class="btn btn-primary btn-lg">Create a song</a>
+                      <a href="/create-song" class="btn btn-primary btn-lg">Create a song</a>
                     </div>
                   </div>
                   <div class="col-lg-6 col-xl-7 col-xxl-7">
                     <div class="customg-song-img">
-                      <img src="@/assets/custom-song.webp" class="d-block w-100" alt="Custom song">
+                      <img src="@/assets/home/custom-song.webp" class="d-block w-100" loading="lazy" alt="Custom song">
                     </div>
                   </div>
                 </div>
@@ -125,12 +123,12 @@
                     <div class="carousel-caption d-none d-md-block step3">
                       <h3>Make your music</h3>
                       <p>Any story can inspire a song. Let us guide you through the creation process and make a song.</p>
-                      <a href="#" class="btn btn-primary btn-lg">Create a song</a>
+                      <a href="/create-song" class="btn btn-primary btn-lg">Create a song</a>
                     </div>
                   </div>
                   <div class="col-lg-6 col-xl-7 col-xxl-7">
                     <div class="customg-song-img">
-                      <img src="@/assets/custom-song.webp" class="d-block w-100" alt="Custom song">
+                      <img src="@/assets/home/custom-song.webp" class="d-block w-100" loading="lazy" alt="Custom song">
                     </div>
                   </div>
                 </div>
@@ -158,7 +156,7 @@
                   <li>Lorem ipsum dolor sit amet consectetur.</li>
                   <li>Lorem ipsum dolor sit amet consectetur.</li>
                 </ul>
-                <a href="#" class="btn btn-primary btn-lg">Find Artists</a>
+                <a href="/artist" class="btn btn-primary btn-lg">Find Artists</a>
               </div>
             </div>
             <div class="col-lg-6 col-xl-6 col-xxl-6">
@@ -173,15 +171,15 @@
                 </div>
                 <div class="carousel-inner">
                   <div class="carousel-item active">
-                    <img src="@/assets/available-artist-slider-1.webp" class="d-block w-100"
+                    <img src="@/assets/home/available-artist-slider-1.webp" class="d-block w-100" loading="lazy"
                       alt="Choose available artist">
                   </div>
                   <div class="carousel-item">
-                    <img src="@/assets/available-artist-slider-2.webp" class="d-block w-100"
+                    <img src="@/assets/home/available-artist-slider-2.webp" class="d-block w-100" loading="lazy"
                       alt="Choose available artist">
                   </div>
                   <div class="carousel-item">
-                    <img src="@/assets/available-artist-slider-3.webp" class="d-block w-100"
+                    <img src="@/assets/home/available-artist-slider-3.webp" class="d-block w-100" loading="lazy"
                       alt="Choose available artist">
                   </div>
                 </div>
@@ -201,15 +199,15 @@
                 </div>
                 <div class="carousel-inner">
                   <div class="carousel-item active">
-                    <img src="@/assets/book-event-slider-1.webp" class="d-block w-100"
+                    <img src="@/assets/home/book-event-slider-1.webp" class="d-block w-100" loading="lazy"
                       alt="Choose available artist">
                   </div>
                   <div class="carousel-item">
-                    <img src="@/assets/book-event-slider-2.webp" class="d-block w-100"
+                    <img src="@/assets/home/book-event-slider-2.webp" class="d-block w-100" loading="lazy"
                       alt="Choose available artist">
                   </div>
                   <div class="carousel-item">
-                    <img src="@/assets/book-event-slider-3.webp" class="d-block w-100"
+                    <img src="@/assets/home/book-event-slider-3.webp" class="d-block w-100" loading="lazy"
                       alt="Choose available artist">
                   </div>
                 </div>
@@ -225,7 +223,7 @@
                   <li>Lorem ipsum dolor sit amet consectetur.</li>
                   <li>Lorem ipsum dolor sit amet consectetur.</li>
                 </ul>
-                <a href="#" class="btn btn-primary btn-lg">Book Now</a>
+                <a href="/events" class="btn btn-primary btn-lg">Book Now</a>
               </div>
             </div>
           </div> <!-- end of row -->
@@ -240,7 +238,7 @@
           id.</p>
         <div class="row">
           <div class="col-4" v-for="occasion in occasions">
-            <img :src="occasion.image" class="img-fluid" :alt="occasion.altText">
+            <img :src="occasion.image" class="img-fluid" loading="lazy" :alt="occasion.altText">
             <div class="content">
               <h5>{{ occasion.typeOfOccasion }}</h5>
               <p>{{ occasion.numberOfSong }} Playlists</p>
@@ -292,42 +290,29 @@
       </div>
     </section>
 
-    <section class="reminder">
-      <div class="container">
-        <div class="content">
-          <h2>Send yourself a reminder</h2>
-          <p>Let us know the date and we’ll send an email reminder a couple weeks before your event.</p>
-          <a href="#" class="btn btn-primary btn-lg">Schedule Now</a>
-        </div>
-        <div class="hidden-img">
-          <img src="@/assets/send-yourself-a-reminder.webp" class="img-fluid" alt="...">
-        </div>
-      </div>
-    </section>
-
   </div>
 </template>
 
 <script>
+
 export default {
-  data()
-  {
-    return {
+      data() {
+          return {
       occasions: [
         {
-          image: '../../assets/birthdays.webp',
+          image: '/src/assets/home/birthdays.webp',
           altText: 'birthdays',
           typeOfOccasion: 'Birthdays',
           numberOfSong: 100
         },
         {
-          image: '../../assets/weddings.webp',
+          image: '/src/assets/home/weddings.webp',
           altText: 'weddings',
           typeOfOccasion: 'Weddings',
           numberOfSong: 100
         },
         {
-          image: '../../assets/valentines.webp',
+          image: '/src/assets/home/valentines.webp',
           altText: 'valentines',
           typeOfOccasion: 'Valentines',
           numberOfSong: 100
