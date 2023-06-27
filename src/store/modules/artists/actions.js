@@ -66,7 +66,6 @@ export const addMember = ({ commit, rootState, state}, payload) => {
       .then(response => {        
         
         const { data } = response
-        console.log('Add Member - Response: ', response)
         commit('SET_MEMBERS', data)
         resolve(response.data)
     })
@@ -100,6 +99,29 @@ export const addSocialMedia = ({ commit, rootState, state}, payload) => {
   })
   
 }
+export const removeSocialMedia = ({ commit, rootState, state}, payload) => {
+  
+  return new Promise(async(resolve, reject) => {
+    
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
+    
+    await axios.delete(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/artists/social-account/${payload}/destroy`)
+      .then(response => {        
+        
+        const { data: { status, result } } = response
+        if (status === 200)
+        {
+          commit('SET_ARTIST', result.artist_profile)  
+        }
+
+        resolve(response.data)
+    })
+    .catch(err => {
+      reject(err)
+    });
+  })
+  
+}
 
 export const removeMember = ({ commit, rootState, state}, payload) => {
   
@@ -111,7 +133,7 @@ export const removeMember = ({ commit, rootState, state}, payload) => {
       .then(response => {        
         
         const { data: {result, status} } = response
-        console.log('Remove Member - Response: ', response)
+
         if (status === 200)
         {
           commit('SET_MEMBERS', result.members)
@@ -126,5 +148,27 @@ export const removeMember = ({ commit, rootState, state}, payload) => {
   
 }
 
-// Delete
 // Update 
+export const updateMember = ({ commit, rootState, state}, payload) => {
+  
+  return new Promise(async(resolve, reject) => {
+    
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
+    
+    await axios.put(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/artists/member`, payload, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      }
+    })
+      .then(response => {        
+        
+        const { data } = response
+        commit('SET_MEMBERS', data)
+        resolve(response.data)
+    })
+    .catch(err => {
+      reject(err)
+    });
+  })
+  
+}

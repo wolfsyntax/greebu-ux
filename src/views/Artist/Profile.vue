@@ -46,28 +46,7 @@
     <vs-avatar>
       <img src="https://thumbs.dreamstime.com/b/businessman-icon-vector-male-avatar-profile-image-profile-businessman-icon-vector-male-avatar-profile-image-182095609.jpg" alt="">
     </vs-avatar>
-    <p>
-      <font-awesome-icon icon="fa-brands fa-youtube" />
-      {{ artistProfile?.youtube_channel }}
-      <!-- <Link href="/artist/profile/media/youtube/destroy" method="delete" class="btn btn-danger">Remove</Link> -->
-    </p>
-    <p>
-      <font-awesome-icon icon="fa-brands fa-twitter" />
-      {{ artistProfile?.twitter_username }}
-      <!-- <Link href="/artist/profile/media/twitter/destroy" method="delete" class="btn btn-danger">Remove</Link> -->
-    </p>
-    <p>
-      <font-awesome-icon icon="fa-brands fa-instagram" />
-      {{ artistProfile?.instagram_username }}
-      <!-- <Link href="/artist/profile/media/instagram/destroy" method="delete" class="btn btn-danger">Remove</Link> -->
-    </p>
 
-    <p>
-      <font-awesome-icon icon="fa-brands fa-spotify" />
-      {{ userInfo?.spotify_profile }}
-      <!-- <Link href="/artist/profile/media/spotify/destroy" method="delete" class="btn btn-danger">Remove</Link> -->
-    </p>
-    
     <!-- <social-media /> -->
     <form @submit.prevent="submit">
       <div class="container">
@@ -115,43 +94,124 @@
             <div v-if="errors?.province">{{ errors.province }}</div>
           </div>
         </div>
+        
         <div class="row py-2">
-          <div class="row">
-            <div class="col">
-              <button type="button" class="btn btn-primary" @click="toggle()">Add Member</button>
-              <button type="button" class="btn btn-primary" @click="toggle('links')">Add Links</button>
+          <div class="col">
+            <div class="row">
+              <div class="col">
+                <button type="button" class="btn btn-primary" @click="toggle()">Add Member</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <ul class="list-group" v-if="members">
+                  <li class="list-group-item" v-for="mem in members" :key="mem.id">
+                    <vs-avatar v-if="!mem.avatar">
+                      <template  #text>
+                        {{ mem.avatar_text }}
+                      </template>
+                    
+                    </vs-avatar>
+                    <vs-avatar v-else>
+                      <img @error="replaceByDefault" :src="mem.avatar" alt="" />            
+                    </vs-avatar>
+                    <h6 class="card-title">{{ mem.fullname }}</h6>
+                    <p class="card-text">{{ mem.role }}</p>
+                    <button type="button" @click="removeMember(mem.id)" class="btn btn-danger">
+                      <font-awesome-icon icon="fa-solid fa-trash" />
+                    </button>
+                    <Link href="">Edit</Link>
+
+                  </li>
+
+                </ul>
+              </div>
             </div>
           </div>
         </div>
+
+        <div class="row py-2">
+          <div class="col">
+            <div class="row">
+              <div class="col">
+                <button type="button" class="btn btn-primary" @click="toggle('links')">Add Links</button>
+              </div>
+            </div>
+            <div class="card mb-3" v-if="artistProfile?.youtube_channel" style="height: 90px;">
+              <div class="row g-0">
+                <div class="col-md-1">
+                  <img src="@/assets/social icons/_YouTube.svg" class="img-fluid rounded-start mx-2" alt="YouTube" style="width: 80px; height: auto;">
+                </div>
+                <div class="col-md-11">
+                  <div class="card-body">
+                    <h5 class="card-title">YouTube</h5>
+                    <p class="card-text"><small class="text-body-secondary">{{ artistProfile?.youtube_channel }}</small></p>
+                    <a href="#" @click="removeSocialMedia('youtube')">
+                      <font-awesome-icon icon="fa-solid fa-trash" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="card mb-3" v-if="artistProfile?.instagram_username" style="height: 90px;">
+              <div class="row g-0">
+                <div class="col-md-1">
+                  <img src="@/assets/social icons/_Instagram.svg" class="img-fluid rounded-start mx-2" alt="Instagram" style="width: 80px; height: auto;">
+                </div>
+                <div class="col-md-11">
+                  <div class="card-body">
+                    <h5 class="card-title">Instagram</h5>
+                    <p class="card-text"><small class="text-body-secondary">{{ artistProfile?.instagram_username }}</small></p>
+                    <a href="#" @click="removeSocialMedia('instagram')"><font-awesome-icon icon="fa-solid fa-trash" /></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card mb-3" v-if="userInfo?.spotify_profile" style="height: 90px;">
+              <div class="row g-0">
+                <div class="col-md-1">
+                  <img src="@/assets/social icons/_Spotify.svg" class="img-fluid rounded-start mx-2" alt="Spotify" style="width: 80px; height: auto;">
+                </div>
+                <div class="col-md-11">
+                  <div class="card-body">
+                    <h5 class="card-title">Spotify</h5>
+                    <p class="card-text"><small class="text-body-secondary">{{ userInfo?.spotify_profile }}</small></p>
+                    <a href="#" @click="removeSocialMedia('spotify')"><font-awesome-icon icon="fa-solid fa-trash" /></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card mb-3" v-if="artistProfile?.twitter_username" style="height: 90px;">
+              <div class="row g-0">
+                <div class="col-md-1">
+                  <img src="@/assets/social icons/_Twitter.svg" class="img-fluid rounded-start mx-2" alt="Twitter" style="width: 80px; height: auto;">
+                </div>
+                <div class="col-md-11">
+                  <div class="card-body">
+                    <h5 class="card-title">Twitter</h5>
+                    <p class="card-text"><small class="text-body-secondary">{{ artistProfile?.twitter_username }}</small></p>
+                    <a href="#" @click="removeSocialMedia('twitter')"><font-awesome-icon icon="fa-solid fa-trash" /></a>
+                  </div>
+                </div>
+              </div>
+            </div>       
+          </div>
+        </div>
+        <div class="row py-2">
+          <div class="col">
+            <textarea v-model="form.bio" class="form-control"></textarea>
+            <div v-if="errors?.bio">{{ errors.bio }}</div>
+          </div>
+        </div>
+        <div class="row py-2">
+            <div class="col">
+              <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+          </div>
       </div>
       
-      <ul class="list-group" v-if="members">
-        <li class="list-group-item" v-for="mem in members" :key="mem.id">
-          <vs-avatar v-if="!mem.avatar">
-            <template  #text>
-              {{ mem.avatar_text }}
-            </template>
-            
-          </vs-avatar>
-          <vs-avatar v-else>
-            <img @error="replaceByDefault" :src="mem.avatar" alt="" />            
-          </vs-avatar>
-          <h6 class="card-title">{{ mem.fullname }}</h6>
-          <p class="card-text">{{ mem.role }}</p>
-          <button type="button" @click="removeMember(mem.id)" class="btn btn-danger">
-            <font-awesome-icon icon="fa-solid fa-trash" />
-          </button>
-          <Link href="">Edit</Link>
-
-        </li>
-
-      </ul>
-
-
-      <textarea v-model="form.bio"></textarea>
-      <div v-if="errors?.bio">{{ errors.bio }}</div>
-      <button type="button" class="btn btn-primary">Primary</button>
-      <button type="submit" class="btn btn-success">Submit</button>
     </form>
     
   </div>
@@ -214,7 +274,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      'fetchArtistOptions', 'updateArtistProfile', 'removeMember',
+      'fetchArtistOptions', 'updateArtistProfile', 'removeMember', 'removeSocialMedia',
     ]),
     ...mapMutations([
       'SET_PROFILE', 'SET_ARTIST', 'SET_MEMBERS',

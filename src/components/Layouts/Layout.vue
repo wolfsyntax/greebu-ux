@@ -16,12 +16,16 @@
               <a class="nav-link" :href="item.link">{{ item.page }}</a>
               </li>
             </ul>
-            <div class="float-end nav-button">
+            <div class="float-end nav-button" v-if="!isLoggedIn">
               <a :href="login" class="btn btn-primary log-in">Log In</a>
               <a :href="signUp" type="button" class="btn btn-secondary sign-up">Sign Up</a>
               <!-- <a method="post" as="button" :href="route('logout')" class="btn btn-secondary log-out"><i class="bi bi-box-arrow-right"></i></a> -->
               <!-- <Link method="post" as="button" :href="route('logout')">Logout</Link> -->
             </div>
+            <div class="float-end nav-button" v-else>
+              <a href="#" class="btn btn-primary log-in">Logout</a>
+            </div>
+
           </div>
         </div>
         </nav>
@@ -111,7 +115,7 @@
   </main>
 </template>
 <script>
-
+import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
 export default {
   components: {
 
@@ -148,6 +152,16 @@ export default {
       youtubePage: 'https://www.youtube.com/',
 
     }
+  },
+  methods: {
+    ...mapActions([
+      
+    ]),
+    ...mapMutations([]),
+  },
+  computed: {
+    ...mapGetters(["isLoggedIn"]),
+    ...mapState({}),
   }
 }
 </script>
