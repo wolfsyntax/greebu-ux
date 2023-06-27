@@ -21,7 +21,7 @@
               <a :href="signUp" type="button" class="btn btn-secondary sign-up">Sign Up</a>
             </div>
             <div class="float-end nav-button" v-else>
-              <a href="#" class="btn btn-primary log-in">Logout</a>
+              <a href="#" class="btn btn-primary log-in" @click.prevent="logout">Logout</a>
             </div>
 
           </div>
@@ -153,9 +153,19 @@ export default {
   },
   methods: {
     ...mapActions([
-      
+      'signout'
     ]),
     ...mapMutations([]),
+    logout()
+    {
+      this.signout()
+        .then(response =>
+        {
+          const { status } = response;
+          if (status === 200 || status === 401) this.$router.push('/login');
+          console.log('Logout Response: ', response)
+        })
+    }
   },
   computed: {
     ...mapGetters(["isLoggedIn"]),
