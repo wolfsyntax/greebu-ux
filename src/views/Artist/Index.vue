@@ -5,15 +5,17 @@
       <p>User: {{  profile }}</p>
       <p>Member: {{ members }}</p>
     </div>
-
+    <post />
 </template>
 <script>
 //import Layout from '@/components/Layouts/ArtistLayout.vue';
+import Post from '@/components/Post/Index.vue';
 import { mapGetters, mapState, mapActions } from "vuex";
 
 export default {
   components: {
     // layout: Layout,
+    post: Post,
   },
   data()
   {

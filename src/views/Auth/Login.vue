@@ -118,19 +118,21 @@ export default {
       this.signin(this.form).then((response) =>
       {
 
-        const { status } = response;
-
+        const { status, data } = response;
+        console.log('Response: ', response)
         this.$vs.notification({
           color: 'success',
           position: 'top-right',
           title: 'Signin',
-          text: `${data.message}`
+          text: `${data?.message}`
         })
         var user = this.$store.state.user;
         var role = this.$store.state.role;
 
         if (role === 'artists') {
           this.$router.push("/artist");
+        } else {
+          this.$router.push("/");
         }
 
       });

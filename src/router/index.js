@@ -26,7 +26,7 @@ const router = createRouter({
           name: 'home',
           component: () => import('@/views/Homepage/Home.vue'),
           meta: {
-            requiresLogin: true,
+            requiresLogin: false,
             role: '',
             parent: 'home',
             breadcrumb: [
@@ -39,7 +39,7 @@ const router = createRouter({
           name: 'artists',
           component: () => import('@/views/Homepage/Artist.vue'),
           meta: {
-            requiresLogin: true,
+            requiresLogin: false,
             role: '',
             parent: 'artists',
             breadcrumb: [
@@ -52,7 +52,7 @@ const router = createRouter({
           name: 'create-song',
           component: () => import('@/views/Homepage/CreateSong.vue'),
           meta: {
-            requiresLogin: true,
+            requiresLogin: false,
             role: '',
             parent: 'create-song',
             breadcrumb: [
@@ -65,7 +65,7 @@ const router = createRouter({
           name: 'event',
           component: () => import('@/views/Homepage/Event.vue'),
           meta: {
-            requiresLogin: true,
+            requiresLogin: false,
             role: '',
             parent: 'event',
             breadcrumb: [
@@ -78,7 +78,7 @@ const router = createRouter({
           name: 'partners',
           component: () => import('@/views/Homepage/Partner.vue'),
           meta: {
-            requiresLogin: true,
+            requiresLogin: false,
             role: '',
             parent: 'partners',
             breadcrumb: [
@@ -141,6 +141,19 @@ const router = createRouter({
         },
       ]
     },
+    {
+      path: '/subscription',
+      name: 'event',
+      component: () => import('@/components/Subscription/Index.vue'),
+      meta: {
+        requiresLogin: false,
+        role: '',
+        parent: 'event',
+        breadcrumb: [
+          {title: '', url: '',},
+        ],
+      },
+    },    
     {
       path: '/pages',
       component: () => import('@/components/FullPage.vue'),
