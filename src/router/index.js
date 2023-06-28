@@ -25,31 +25,79 @@ const router = createRouter({
           path: '/',
           name: 'home',
           component: () => import('@/views/Homepage/Home.vue'),
+          meta: {
+            requiresLogin: true,
+            role: '',
+            parent: 'home',
+            breadcrumb: [
+              {title: '', url: '',},
+            ],
+          },
         },
         {
           path: '/artists',
           name: 'artists',
           component: () => import('@/views/Homepage/Artist.vue'),
+          meta: {
+            requiresLogin: true,
+            role: '',
+            parent: 'artists',
+            breadcrumb: [
+              {title: '', url: '',},
+            ],
+          },          
         },
         {
           path: '/create-song',
           name: 'create-song',
           component: () => import('@/views/Homepage/CreateSong.vue'),
+          meta: {
+            requiresLogin: true,
+            role: '',
+            parent: 'create-song',
+            breadcrumb: [
+              {title: '', url: '',},
+            ],
+          },          
         },
         {
           path: '/events',
           name: 'event',
           component: () => import('@/views/Homepage/Event.vue'),
+          meta: {
+            requiresLogin: true,
+            role: '',
+            parent: 'event',
+            breadcrumb: [
+              {title: '', url: '',},
+            ],
+          },
         },
         {
           path: '/partners',
           name: 'partners',
           component: () => import('@/views/Homepage/Partner.vue'),
+          meta: {
+            requiresLogin: true,
+            role: '',
+            parent: 'partners',
+            breadcrumb: [
+              {title: '', url: '',},
+            ],
+          },
         },
         {
           path: '/services',
           name: 'services',
           component: () => import('@/views/Homepage/Services.vue'),
+          meta: {
+            requiresLogin: true,
+            role: '',
+            parent: 'services',
+            breadcrumb: [
+              {title: '', url: '',},
+            ],
+          },
         },
         {
           path: '/login',
@@ -70,6 +118,7 @@ const router = createRouter({
       meta: {
         requiresLogin: true,
         role: 'artists',
+        parent: 'artist',
         breadcrumb: [
           {title: '', url: '',},
         ],

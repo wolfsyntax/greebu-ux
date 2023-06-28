@@ -120,6 +120,12 @@ export default {
 
         const { status } = response;
 
+        this.$vs.notification({
+          color: 'success',
+          position: 'top-right',
+          title: 'Signin',
+          text: `${data.message}`
+        })
         var user = this.$store.state.user;
         var role = this.$store.state.role;
 

@@ -9,7 +9,7 @@ var mutations = {
   },
   SET_PROFILE(state, payload)
   {
-      state.profile = payload.profile;    
+      state.profile = payload;    
   }
 }
 
