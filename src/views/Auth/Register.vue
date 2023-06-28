@@ -116,7 +116,7 @@
                 
                 <div class="row mb-0">
                   <div class="col-md-6 offset-md-4">
-                    <button type="submit" class="btn btn-primary" :disabled="!agree_term">
+                    <button type="submit" class="btn btn-primary" :disabled="!agree_term && !isDisabled">
                       Register
                     </button>
                   </div>
@@ -150,6 +150,7 @@ export default {
         
         account_type: 'customers',
         login_type: 'email',
+        isDisabled: false,
       },
       errors: {},
       agree_term: false,
@@ -173,14 +174,23 @@ export default {
     ...mapActions(['signup']),
     submit()
     {
+      const loader = this.$vs.loading()
+      this.isDisabled = true;
       this.signup(this.form)
         .then((response) => { 
-
+          loader.close();
+          this.isDisabled = false;
           const { status,data } = response;
 
           if (status === 201)
           {
             this.$router.push("/login");
+            this.$vs.notification({
+              color: 'success',
+              position: 'top-right',
+              title: 'Signup',
+              text: `${data.message}`
+            })
           } else if (status === 203) {
             this.errors = data?.results?.errors || {};
           }
@@ -188,6 +198,14 @@ export default {
         .catch(err =>
         {
           // console.log('Test1: ', err)
+          loader.close();
+          //this.$router.push("");
+          this.$vs.notification({
+            color: 'danger',
+            position: 'top-right',
+            title: 'Signup',
+            text: `Server Error`
+          })
         });
 
     }
