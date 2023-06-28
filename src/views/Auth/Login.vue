@@ -52,7 +52,7 @@
                       required autocomplete="new-password">
                     <div v-if="errors?.password">{{ errors.password }}</div>
                   </div>
-                  <div class="form-check">
+                  <div class="form-check form-checkbox">
                     <input type="checkbox" class="form-check-input" id="keepLogin">
                     <label class="form-check-label" for="keepLogin">Keep me logged in</label>
                   </div>
