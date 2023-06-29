@@ -15,6 +15,7 @@
               <li class="nav-item" v-for="(item, index) in navItems" :key="index">
               <a class="nav-link" :href="item.link">{{ item.page }}</a>
               </li>
+              <!-- <li class="nav-item"><a href="/" class="nav-link active">Home</a></li> -->
             </ul>
             <div class="float-end nav-button" v-if="!isLoggedIn">
               <a :href="login" class="btn btn-primary log-in">Log In</a>
@@ -30,7 +31,11 @@
 
       </header>
       <!-- <router-view></router-view> -->
-      <slot/>
+      <!-- <slot/> -->
+      
+      <router-view></router-view>
+      <slot />
+      
       <footer class="footer">
         <div class="container">
             <div class="row">
@@ -175,10 +180,9 @@ export default {
 </script>
 
 <style scoped>
-/* .footer .container{
+.footer .container{
   margin-top: 100px;
-  margin-bottom: 100px;
-} */
+}
 .footer .container .menu {
   display: flex;
   float: left;

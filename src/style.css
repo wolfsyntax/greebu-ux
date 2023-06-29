@@ -1295,18 +1295,18 @@ z-index: 1;
 .login form .form-check, .register form .form-check{
   margin-bottom: 24px;
 }
-.login form .form-check .form-check-input, .register form .form-check .form-check-input{
+.login form .form-checkbox .form-check-input, .register form .form-checkbox .form-check-input{
   width: 20px;
   height: 20px;
   border: 1.5px solid #D1D1D1;
   border-radius: 2px;
   margin-right: 12px;
 }
-.login .form-check-input:checked, .register .form-check-input:checked  {
+.login .form-checkbox .form-check-input:checked, .register .form-checkbox .form-check-input:checked  {
   background-color: var(--orange);
   border-color: var(--orange);
 }
-.login form .form-check .form-check-label, .register form .form-check .form-check-label{
+.login form .form-checkbox .form-check-label, .register form .form-checkbox .form-check-label{
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -1315,7 +1315,7 @@ z-index: 1;
   color: var(--p-color4);
   margin-top: 4.5px;
 }
-.register form .form-check .form-check-label a {
+.register form .form-checkbox .form-check-label a {
   font-weight: 400;
   font-size: 14px;
   line-height: 140%;
@@ -2088,7 +2088,7 @@ background-color: var(--orange);
 }
 @keyframes bottomToTop {
   from {bottom: -1500px;}
-  to {bottom: 400px; opacity: 1;}
+  to {bottom: 200px; opacity: 1;}
 }
 /* top to bottom img */
 .services .container-fluid .hidden-img2 img {
@@ -2106,7 +2106,7 @@ background-color: var(--orange);
 .services .container .content {
   position: absolute;
   top: 45%;
-  left: 25%;
+  left: 0;
   z-index: 2;
 }
 .services .container h2 {
@@ -2149,7 +2149,7 @@ background-color: var(--orange);
 }
 .services .container .content {
   top: 45%;
-  left: 18.5%;
+  left: 0;
   z-index: 2;
 }
 .services .container h2 {

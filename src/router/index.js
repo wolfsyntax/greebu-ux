@@ -115,6 +115,7 @@ const router = createRouter({
     {
       path: '/artist',
       component: () => import('@/components/Layouts/ArtistLayout.vue'),
+      //component: () => import('@/components/Layouts/Layout.vue'),
       meta: {
         requiresLogin: true,
         role: 'artists',

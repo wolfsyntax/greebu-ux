@@ -3,6 +3,8 @@
     <router-view></router-view>
   </layout>
   
+  <!-- <router-view></router-view> -->
+  <!-- <slot /> -->
 </template>
 <script>
 import Layout from '@/components/Layouts/Layout.vue';
@@ -16,6 +18,8 @@ export default {
   }
 }
 </script>
-<style>
+
+<!-- <style>
 @import '@/assets/css/artist-ui.css';
-</style>
+</style> -->
+

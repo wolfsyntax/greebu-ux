@@ -52,7 +52,7 @@
                       required autocomplete="new-password">
                     <div v-if="errors?.password">{{ errors.password }}</div>
                   </div>
-                  <div class="form-check">
+                  <div class="form-check form-checkbox">
                     <input type="checkbox" class="form-check-input" id="keepLogin">
                     <label class="form-check-label" for="keepLogin">Keep me logged in</label>
                   </div>
@@ -98,6 +98,7 @@ export default {
       form: {
         email: null,
         password: null,
+        remember_me: false,
       }
     }
   },
@@ -129,11 +130,10 @@ export default {
         var user = this.$store.state.user;
         var role = this.$store.state.role;
 
-        if (role === 'artists') {
-          this.$router.push("/artist");
-        } else {
-          this.$router.push("/");
-        }
+        // if (role === 'artists') {
+        //   this.$router.push("/");
+        // }
+        this.$router.push("/");
 
       });
 
