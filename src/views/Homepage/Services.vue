@@ -20,12 +20,13 @@
           </div>
         </div>
         <div class="container">
-          <div class="wrapper">
+          <div class="row">
             <div class="content">
                 <h2>Professional Sounds, Lights<br> and other services needs</h2>
                 <p class="sub-heading">Lorem ipsum dolor sit amet consectetur. Tellus ornare<br> placerat urna nec consectetur commodo et.</p>
             </div>
           </div>
+
           </div>
       </div>
     </section>
