@@ -1,18 +1,20 @@
-:root {
-}
-body {
-  font-family: "Urbanist", sans-serif;
-  background: #f9fafb;
-}
 
-.artist-profile .container {
+:root {
+    
+}
+body{   
+  font-family: 'Urbanist', sans-serif;
+  background: #F9FAFB;
+  }
+
+.artist-profile .container{
   margin: 50px auto 100px;
 }
-.artist-profile .container h2 {
+.artist-profile .container h2{
   color: orange;
 }
 .artist-profile .container .profile-page {
-  padding: 0 9%;
+  padding: 0 1%;
 }
 .profile-page .profile-header {
   box-shadow: 0 0 10px 0 rgba(183, 192, 206, 0.2);
@@ -30,34 +32,34 @@ body {
 
 @media (max-width: 767px) {
   .profile-page .profile-header .cover figure {
-    height: 110px;
-    overflow: hidden;
+      height: 110px;
+      overflow: hidden;
   }
 }
 
 @media (min-width: 2400px) {
   .profile-page .profile-header .cover figure {
-    height: 280px;
-    overflow: hidden;
+      height: 280px;
+      overflow: hidden;
   }
 }
 
 .profile-page .profile-header .cover figure img {
-  border-radius: 0.25rem 0.25rem 0 0;
+  border-radius: .25rem .25rem 0 0;
   width: 100%;
 }
 
 @media (max-width: 767px) {
   .profile-page .profile-header .cover figure img {
-    -webkit-transform: scale(2);
-    transform: scale(2);
-    margin-top: 15px;
+      -webkit-transform: scale(2);
+      transform: scale(2);
+      margin-top: 15px;
   }
 }
 
 @media (min-width: 2400px) {
   .profile-page .profile-header .cover figure img {
-    margin-top: -55px;
+      margin-top: -55px;
   }
 }
 
@@ -90,64 +92,51 @@ body {
   left: 0;
   backface-visibility: hidden;
   border-radius: 315px;
-  border: 4px solid #fff;
+  border: 4px solid #FFF;
   background: lightgray 50% / cover no-repeat;
   box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.12);
 }
-.profile-page .profile-header .cover .cover-body .profile-info .camera {
+.profile-page .profile-header .cover .cover-body .profile-info .camera{
   position: absolute;
   top: 80%;
   left: 85%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-.profile-page .profile-header .cover .cover-body .profile-info .camera span {
+.profile-page .profile-header .cover .cover-body .profile-info .camera span{
   color: #fff;
-  width: 27.563px;
-  height: 27.563px;
   flex-shrink: 0;
   padding: 19px;
   border-radius: 33px;
-  background: #ff6b00;
+  background: #FF6B00;
 }
 
 @media (max-width: 767px) {
   .profile-page .profile-header .cover .cover-body .profile-pic {
-    width: 70px;
+      width: 70px;
   }
 }
 .profile-page .profile-header .cover .cover-body .profile-info {
   display: flex;
   align-items: center;
 }
-.profile-page
-  .profile-header
-  .cover
-  .cover-body
-  .profile-info
-  .profile-wrapper {
+.profile-page .profile-header .cover .cover-body .profile-info .profile-wrapper {
   margin-top: 5rem;
   margin-left: 50px;
 }
-.profile-page .profile-header .cover .cover-body .profile-info .folow {
+.profile-page .profile-header .cover .cover-body .profile-info .folow{
   display: inline-flex;
   align-items: center;
   gap: 18px;
   margin-bottom: 20px;
 }
-.profile-page .profile-header .cover .cover-body .profile-info .folow .divider {
+.profile-page .profile-header .cover .cover-body .profile-info .folow .divider{
   width: 1px;
   height: 25px;
-  background: #e7e7e7;
+  background: #E7E7E7;
 }
-.profile-page
-  .profile-header
-  .cover
-  .cover-body
-  .profile-info
-  .folow
-  .followers {
-  color: #212b36;
+.profile-page .profile-header .cover .cover-body .profile-info .folow .followers {
+  color: #212B36;
   text-align: center;
   font-size: 16px;
   font-weight: 700;
@@ -155,23 +144,16 @@ body {
   text-align: left;
   margin-bottom: 0;
 }
-.profile-page
-  .profile-header
-  .cover
-  .cover-body
-  .profile-info
-  .folow
-  .followers
-  span {
+.profile-page .profile-header .cover .cover-body .profile-info .folow .followers span{
   color: #637381;
   font-size: 14px;
   line-height: 20px;
 }
-.profile-page .profile-header .cover .cover-body .name-artist {
+.profile-page .profile-header .cover .cover-body .name-artist{
   margin-bottom: 20px;
 }
 .profile-page .profile-header .cover .cover-body .profile-name {
-  color: #212b36;
+  color: #212B36;
   font-size: 40px;
   font-weight: 700;
 }
@@ -185,13 +167,7 @@ body {
   display: flex;
   align-items: center;
 }
-.profile-page
-  .profile-header
-  .cover
-  .cover-body
-  .profile-info
-  .music-genre
-  .title {
+.profile-page .profile-header .cover .cover-body .profile-info .music-genre .title{
   color: var(--tail-grids-text-color, #637381);
   text-align: left;
   font-size: 16px;
@@ -200,30 +176,24 @@ body {
   margin-right: 10px;
   margin-bottom: 0;
 }
-.profile-page
-  .profile-header
-  .cover
-  .cover-body
-  .profile-info
-  .music-genre
-  .badge {
-  color: #ea580c;
+.profile-page .profile-header .cover .cover-body .profile-info .music-genre .badge {
+  color: #EA580C;
   font-size: 12px;
   font-weight: 600;
   line-height: 16px;
   border-radius: 32px;
-  background: #fed7aa;
+  background: #FED7AA;
   padding: 4px 8px;
   margin: 0 2px;
 }
-.profile-page .profile-header .cover .cover-body .edit a {
-  color: #fff;
+.profile-page .profile-header .cover .cover-body .edit a{
+  color: #FFF;
   font-size: 20px;
   font-weight: 700;
   line-height: 100%;
   letter-spacing: 1px;
   padding: 14px 37px;
-  background-color: #ff6b00;
+  background-color: #FF6B00;
   border: 0;
 }
 
@@ -234,7 +204,7 @@ body {
   -webkit-justify-content: center;
   justify-content: center;
   background: #fff;
-  border-radius: 5px;
+  border-radius:5px;
   height: 300px;
   position: relative;
 }
@@ -246,35 +216,33 @@ body {
   height: 50px;
   position: absolute;
   top: 260px;
-}
-.profile-page .profile-header .header-links ul li a {
-  color: #7c828f;
+} 
+.profile-page .profile-header .header-links ul li a{
+  color: #7C828F;
   font-size: 20px;
   font-weight: 600;
   line-height: 20px;
 }
-.profile-page .profile-header .header-links ul li:hover a {
-  color: #ff6b00;
+.profile-page .profile-header .header-links ul li:hover a{
+  color:  #FF6B00;
 }
-.profile-page .profile-header .header-links ul li a.active {
-  color: #ff6b00;
-  text-decoration: underline;
+.profile-page .profile-header .header-links ul li a.active{
+  color:  #FF6B00;
+  text-decoration:  underline;
   text-underline-offset: 12px;
   text-decoration-thickness: 3px;
 }
-.profile-page .profile-header .header-links ul li a .orange-badge {
-  /* if the badge is active */
+.profile-page .profile-header .header-links ul li a .orange-badge { /* if the badge is active */
   color: white;
   padding: 0px 6px;
   font-size: 12px;
   font-weight: 700;
   line-height: 20px;
-  background-color: #ff6b00;
+  background-color: #FF6B00;
   border-radius: 3px;
 }
-.profile-page .profile-header .header-links ul li a .text-bg-secondary {
-  /* if the badge is not active */
-  color: #454f59 !important;
+.profile-page .profile-header .header-links ul li a .text-bg-secondary { /* if the badge is not active */
+  color: #454F59!important;
   leading-trim: both;
   text-edge: cap;
   font-size: 12px;
@@ -283,64 +251,61 @@ body {
   padding: 0px 6px;
   border-radius: 3px;
   border: 1px solid #969696;
-  background-color: #fff !important;
+  background-color: #fff!important;
 }
 
 /* Sidebar */
-.profile-page .left-wrapper .card {
+.profile-page .left-wrapper .card{
   border-radius: 10px;
-  background: #fff;
+  background: #FFF;
   box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.14);
 }
-.profile-page .left-wrapper .card .card-body {
-  padding: 24px 20px 42px;
+.profile-page .left-wrapper .artist-info{
+  margin-bottom: 24px;
 }
-.profile-page .left-wrapper .card .card-title {
-  color: #27272e;
+.profile-page .left-wrapper .artist-info .card-body, .profile-page .left-wrapper .band-members .card-body,
+.profile-page .right-wrapper .past-events .card-body {
+  padding: 24px 20px 26px;
+}
+.profile-page .left-wrapper .artist-info .card-title{
+  color:  #27272E;
   font-size: 16px;
   font-weight: 600;
   line-height: 136.523%;
 }
-.profile-page .left-wrapper .card .edit a {
-  color: #ff6b00;
+.profile-page .left-wrapper .artist-info .edit a{
+  color: #FF6B00;
   text-align: right;
   font-size: 12px;
   font-weight: 700;
   text-decoration: none;
 }
-.profile-page .left-wrapper .card .about {
-  color: #212b36;
+.profile-page .left-wrapper .artist-info .about{
+  color:  #212B36;
   font-size: 16px;
   font-weight: 600;
   line-height: 24px;
 }
-.profile-page .left-wrapper .card .description {
-  color: #b8bbcf;
+.profile-page .left-wrapper .artist-info .description{
+  color: #B8BBCF;
   font-size: 14px;
 }
-.profile-page .left-wrapper .card .social-media {
+.profile-page .left-wrapper .artist-info .social-media{
   display: flex;
   align-items: center;
   max-width: 100%;
 }
-.profile-page .left-wrapper .card .social-media span {
-  color: #b8bbcf;
+.profile-page .left-wrapper .artist-info .social-media span{
+  color: #B8BBCF;
 }
-.profile-page .left-wrapper .card .social-media .calendar {
+.profile-page .left-wrapper .artist-info .social-media img {
+  color: #B8BBCF;
+}
+.profile-page .left-wrapper .artist-info .social-media .calendar{
   font-size: 30px;
 }
-.profile-page .left-wrapper .card .social-media .spotify {
-  width: 32px;
-  height: 32px;
-  background: url("@/assets/artist-account/spotify-icon.svg");
-}
-.profile-page .left-wrapper .card .social-media .youtube {
-  width: 32px;
-  height: 32px;
-  background: url("@/assets/artist-account/youtube-icon.svg");
-}
-.profile-page .left-wrapper .card .social-media p {
-  color: #b8bbcf;
+.profile-page .left-wrapper .artist-info .social-media p{
+  color: #B8BBCF;
   font-size: 16px;
   font-weight: 500;
   line-height: 26px;
@@ -348,18 +313,322 @@ body {
   margin-bottom: 0;
   margin-left: 8px;
 }
-.profile-page .left-wrapper .card .social-media .band-name {
-  color: #27272e;
+.profile-page .left-wrapper .artist-info .social-media .band-name{
+  color: #27272E;
   font-weight: 600;
   line-height: 136.523%;
 }
+
+/* left side bar bottom */
+.profile-page .left-wrapper .band-members .header{
+  margin-bottom: 20px;
+}
+.profile-page .left-wrapper .band-members .title{
+  align-items: center;
+}
+.profile-page .left-wrapper .band-members .title img{
+  margin-right: 6px;
+}
+.profile-page .left-wrapper .band-members .title .card-title{
+  color:  #27272E;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 136.523%;
+}
+.profile-page .left-wrapper .band-members .see-all a{
+  color: #FF6B00;
+  text-align: right;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-decoration: none;
+}
+.profile-page .left-wrapper  .card-body .members-list {
+  border-radius: 10px;
+  background: #FFF;
+  display: flex;
+  padding: 16px;
+  /* border: 1px solid red; */
+  box-shadow: 0px 3px 8px -1px rgba(50, 50, 71, 0.05), 0px 0px 1px 0px rgba(12, 26, 75, 0.24);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+.profile-page .left-wrapper  .card-body .members-list .member-profile {
+  display: flex;
+  width: 93%;
+  align-items: center;
+}
+.profile-page .left-wrapper  .card-body .members-list img{
+  width: 48px;
+  height: 48px;
+  border-radius: 100%;
+  margin-right: 15px;
+}
+.profile-page .left-wrapper  .card-body .members-list .member-info a{
+  color: var(--text-heading-dark, #27272E);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 136.023%;
+  margin-bottom: 0;
+  text-decoration: none;
+}
+.profile-page .left-wrapper  .card-body .members-list .member-info  p{
+  color: var(--text-body-light, #425466);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 23px;
+  margin-bottom: 0;
+}
+.profile-page .left-wrapper  .card-body .members-list .more {
+  width: 7%;
+}
+.profile-page .left-wrapper  .card-body .members-list .more span{
+  color: #7A7A9D;
+}
+
+/* To post - write something */
+.profile-page .middle-wrapper .post .card{
+  border-radius: 10px;
+  background: #FFF;
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.14);
+  margin-bottom: 24px;
+}
+.profile-page .middle-wrapper .post .card-body .write-something {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #F3F3F3;
+}
+.profile-page .middle-wrapper .post .card-body .write-something img{
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 48px;
+  border: 4px solid #FFF;
+  background:  lightgray 50% / cover no-repeat;
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.12);
+  margin-right: 8px;
+}
+.profile-page .middle-wrapper .post .card-body .write-something button {
+  color: #536471;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-bottom: 0;
+  background-color: #fff;
+  border: 0;
+  width: 100%;
+  text-align: left;
+  padding: 0;
+}
+.profile-page .middle-wrapper .post .card-body .post-features{
+  display: flex;
+  align-items: center;
+}
+.profile-page .middle-wrapper .post .card-body .post-features button {
+  color: #536471;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin-bottom: 0;
+  background-color: #fff;
+  border: 0;
+  width: 100%;
+  text-align: left;
+  padding: 0;
+}
+.profile-page .middle-wrapper .post .card-body .post-features .post-icon{
+  display: flex;
+  align-items: center;
+  margin: 0 8px;
+}
+.profile-page .middle-wrapper .post .card-body .post-features .post-icon:hover *{
+  color: #EA580C;
+}
+.profile-page .middle-wrapper .post .card-body .post-features .post-icon span{
+  color: #536471;
+  margin-right: 8px;
+}
+
+/* Artist post */
+.profile-page .middle-wrapper .artist-post .card{
+  border-radius: 10px;
+  background: #FFF;
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.14);
+  margin-bottom: 24px;
+}
+.profile-page .middle-wrapper  .artist-post .card-header .user-posted-info{
+  display: flex;
+  align-items: center;
+}
+.profile-page .middle-wrapper  .artist-post .card-header .user-posted-info img{
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 40px;
+  background: lightgray 50% / cover no-repeat;
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.12);
+  margin-right: 10px;
+}
+.profile-page .middle-wrapper  .artist-post .card-header .group-posted .name{
+  color: #0F1419;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-decoration: none;
+}
+.profile-page .middle-wrapper  .artist-post .card-header .group-posted .ago{
+  color: #536471;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.profile-page .middle-wrapper  .artist-post .card-header .group-posted p{
+  margin: 0;
+}
+.profile-page .middle-wrapper  .artist-post .card-header .dropdown span{
+  color: #536471;
+}
+.profile-page .middle-wrapper  .artist-post .card-header{
+  border: 0;
+}
+.profile-page .middle-wrapper  .artist-post .card-body p{
+  color: #0F1419;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-top: 0;
+}
+.profile-page .middle-wrapper  .artist-post .card-body .posted-img img{
+  width: 100%;
+  max-height: 345px;
+  position: relative;
+  object-fit: cover;
+  backface-visibility: hidden;
+}
+.profile-page .middle-wrapper  .artist-post .card-footer {
+  border: 0;
+  padding: 5px 17px 17px 17px;
+}
+.profile-page .middle-wrapper  .artist-post .card-footer .post-actions .post-icon{
+  display: flex;
+  align-items: center;
+  margin-right: 24px;
+}
+.profile-page .middle-wrapper  .artist-post .card-footer .post-actions .post-icon span{
+  margin-right: 8px;
+  color: #B8BBCF;
+}
+.profile-page .middle-wrapper  .artist-post .card-footer .post-actions .post-icon p, .profile-page .middle-wrapper  .artist-post .card-footer .comments p{
+  color: #536471;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-bottom: 0;
+}
+
+/* Right Side Bar */
+.profile-page .right-wrapper .past-events .card-body .header {
+  margin-bottom: 20px;
+}
+.profile-page .right-wrapper .past-events .header .title{
+  align-items: center;
+}
+.profile-page .right-wrapper .past-events .header span {
+  margin-right: 6px;
+  color: #B8BBCF;
+}
+.profile-page .right-wrapper .past-events .header h5{
+  color: #27272E;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 136.523%;
+  text-decoration: none;
+}
+.profile-page .right-wrapper .past-events .see-all a{
+  color: #FF6B00;
+  text-align: right;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-decoration: none;
+}
+.profile-page .right-wrapper .past-events .card-body .events-list{
+    border-radius: 10px;
+    background: #FFF;
+    padding: 16px;
+    box-shadow: 0px 3px 8px -1px rgba(50, 50, 71, 0.05), 0px 0px 1px 0px rgba(12, 26, 75, 0.24);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+.profile-page .right-wrapper .past-events .card-body .events-list .events-info{
+    display: flex;
+    width: 93%;
+    align-items: center;
+}
+.profile-page .right-wrapper .past-events .card-body .events-list .events-info img{
+  width: 103px;
+  height: 103px;
+  flex-shrink: 0;
+  position: relative;
+  -o-object-fit: cover;
+  object-fit: cover;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  background: lightgray 50% / cover no-repeat, #D9D9D9;
+  margin-right: 8px;
+}
+.profile-page .right-wrapper .past-events .card-body .events-list .events-info a {
+  color: var(--text-heading-dark, #27272E);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 136.023%;
+  margin-bottom: 0;
+  text-decoration: none;
+}
+.profile-page .right-wrapper .past-events .card-body .events-list .events-info  p {
+  color: var(--text-body-light, #425466);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 23px;
+  margin-bottom: 0;
+}
+.profile-page .right-wrapper .past-events .card-body .events-list .more {
+  width: 7%;
+}
+.profile-page .right-wrapper .past-events .card-body .events-list .more span {
+  color: #7A7A9D;
+}
+.profile-page .right-wrapper .past-events .card-body .events-list .member-info .text-orange{
+  color: #FF6B00;
+}
+
+
+
 
 .profile-page .profile-body .left-wrapper .social-links a {
   width: 30px;
   height: 30px;
 }
 
-.profile-page .profile-body .right-wrapper .latest-photos > .row {
+/* .profile-page .profile-body .right-wrapper .latest-photos > .row {
   margin-right: 0;
   margin-left: 0;
 }
@@ -370,32 +639,19 @@ body {
 }
 
 .profile-page .profile-body .right-wrapper .latest-photos > .row > div figure {
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
+  -webkit-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
   margin-bottom: 6px;
 }
 
-.profile-page
-  .profile-body
-  .right-wrapper
-  .latest-photos
-  > .row
-  > div
-  figure:hover {
+.profile-page .profile-body .right-wrapper .latest-photos > .row > div figure:hover {
   -webkit-transform: scale(1.06);
   transform: scale(1.06);
 }
 
-.profile-page
-  .profile-body
-  .right-wrapper
-  .latest-photos
-  > .row
-  > div
-  figure
-  img {
-  border-radius: 0.25rem;
-}
+.profile-page .profile-body .right-wrapper .latest-photos > .row > div figure img {
+  border-radius: .25rem;
+} */
 
 .rtl .profile-page .profile-header .cover .cover-body .profile-name {
   margin-left: 0;
