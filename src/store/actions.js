@@ -79,13 +79,30 @@ var actions = {
 
     })
   },
-  plansOptions({ commit }, payload)
+  plansOptions({ commit }, payload = 'artists')
   {
     return new Promise(async(resolve, reject) => {
 
-      await axios.get(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/subscriptions/plan`)
+      await axios.get(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/subscriptions/plan/${payload}`)
         .then(response => {
           const {data, status} = response
+          resolve(data)
+        })
+        .catch(err => { 
+          reject(err)
+        });
+
+    })
+  },
+  fetchCountry({ commit }, payload)
+  {
+    return new Promise(async(resolve, reject) => {
+
+      await axios.get(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/country`)
+        .then(response => {
+          const { data, status } = response
+          commit('SET_COUNTRIES', data.result?.countries || []);
+
           resolve(data)
         })
         .catch(err => { 

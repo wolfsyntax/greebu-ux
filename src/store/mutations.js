@@ -14,6 +14,10 @@ var mutations = {
   SET_PLANS(state, payload)
   {
     state.plans = payload;    
+  },
+  SET_COUNTRIES(state, payload)
+  {
+    state.countries = payload;
   }
 }
 
