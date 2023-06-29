@@ -34,5 +34,6 @@ export default new Vuex.Store({
     // customer,
     // organizer,
     // services,
-  }
+  },
+  strict: true,
 });
