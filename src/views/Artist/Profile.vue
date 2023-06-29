@@ -1,5 +1,5 @@
 <template>
-
+  <layout>
     <div>
       <p>{{ $filters.timeAgo('2019-12-19') }}</p>
       {{  artistProfile  }}
@@ -216,7 +216,7 @@
       </form>
       
     </div>
-
+  </layout>
 </template>
 <script>
 // import Layout from '@/components/Layouts/ArtistLayout.vue';

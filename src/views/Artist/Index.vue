@@ -65,7 +65,7 @@
           <div class="row profile-body" v-if="activeItem === 'Post'">
               <!-- left wrapper start -->
               <div class="d-none d-md-block col-md-4 col-xl-3 left-wrapper">
-                  <div class="card">
+                  <div class="card artist-info">
                       <div class="card-body">
                           <div class="d-flex align-items-center justify-content-between mb-2">
                               <h5 class="card-title mb-0">Information</h5>
@@ -79,16 +79,47 @@
                             <i class="material-icons"><span class="material-symbols-outlined calendar">calendar_month</span></i><p class="band-name">IDLEPITCH</p>
                           </div>
                           <div class="mt-3 social-media">
-                            <i class="spotify"></i><p>Full Band Artist</p>
+                            <img src="@/assets/social icons/_Spotify.svg" loading="lazy" alt="spotify icon">
+                            <p>Full Band Artist</p>
                           </div>
-                          <div class="mt-3 social-media">
-                            <i class="youtube"></i><p>youtube.com/@idlepitch</p>
+                            <div class="mt-3 social-media">
+                              <img src="@/assets/social icons/_YouTube.svg" loading="lazy" alt="spotify icon">
+                              <p>youtube.com/@idlepitch</p>
                           </div>
-                          
                       </div>
                   </div>
-              </div>
-              <!-- left wrapper end -->
+
+                  <div class="card band-members">
+                      <div class="card-body">
+                        <div class="d-flex align-items-center justify-content-between header">
+                          <div class="d-flex title">
+                            <img src="@/assets/artist-account/band-members-icon.svg" loading="lazy" alt="band members icon">
+                            <h5 class="card-title mb-0">Band Memberss</h5>
+                          </div>
+                          <div class="see-all">
+                              <a href="">See all</a>
+                          </div>
+                        </div>
+                                  <!-- Band Members list -->
+                         <div class="members-list">
+                            <div class="member-profile">
+                              <img src="https://res.cloudinary.com/daorvtlls/image/upload/v1686649329/trending-bicolano-artist-4_o6xjze.png" 
+                              loading="lazy" alt="member profile">
+                              <div class="member-info">
+                              <a href="#">Wade warren</a>
+                              <p>Vocalist</p>
+                              </div>
+                            </div>
+                            <div class="more">
+                              <a href="#">
+                                <i class="material-icons"><span class="material-symbols-outlined">more_vert</span></i>
+                              </a>
+                            </div>
+                         </div>         
+                    </div>  <!-- end of card-body -->     
+                  </div>
+              </div> <!-- left wrapper end -->
+
               <!-- middle wrapper start -->
               <div class="col-md-8 col-xl-6 middle-wrapper">
                   <div class="row">
