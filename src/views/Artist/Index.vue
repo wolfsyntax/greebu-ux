@@ -94,6 +94,24 @@
 
                   <div class="card band-members">
                       <div class="card-body">
+                        <div class="d-flex align-items-center justify-content-between mb-2">
+                          <div class="d-flex title">
+                            <img src="@/assets/artist-account/band-members-icon.svg" loading="lazy" alt="band members icon">
+                            <h5 class="card-title mb-0">Band Members</h5>
+                          </div>
+                            
+                          <div class="see-all">
+                              <a href="">See all</a>
+                          </div>
+                          </div>
+                      </div>
+                 </div>       
+
+
+
+
+                  <div class="card band-members">
+                      <div class="card-body">
                         <div class="d-flex align-items-center justify-content-between header">
                           <div class="d-flex title">
                             <img src="@/assets/artist-account/band-members-icon.svg" loading="lazy" alt="band members icon">
@@ -373,7 +391,7 @@
       <p><strong>Member:</strong> {{ members }}</p>
     </div>
   </section>
-  <post />
+
 </template>
 <script>
 // import Layout from '@/components/Layouts/ArtistLayout.vue';

@@ -12,7 +12,7 @@ const router = createRouter({
   routes: [
     {
       path: '',
-      // component: () => import('@/components/Layouts/Layout.vue'),
+    //  component: () => import('@/components/Layouts/Layout.vue'),
       meta: {
         requiresLogin: false,
         role: '',
@@ -114,8 +114,8 @@ const router = createRouter({
     },
     {
       path: '/artist',
-      component: () => import('@/components/Layouts/ArtistLayout.vue'),
-      //component: () => import('@/components/Layouts/Layout.vue'),
+     // component: () => import('@/components/Layouts/ArtistLayout.vue'),
+      component: () => import('@/components/Layouts/Layout.vue'),
       meta: {
         requiresLogin: true,
         role: 'artists',
