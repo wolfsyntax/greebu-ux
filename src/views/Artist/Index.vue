@@ -310,15 +310,17 @@
       <p><strong>Member:</strong> {{ members }}</p>
     </div>
   </section>
-
+  <post />
 </template>
 <script>
-import Layout from '@/components/Layouts/ArtistLayout.vue';
+//import Layout from '@/components/Layouts/ArtistLayout.vue';
+import Post from '@/components/Post/Index.vue';
 import { mapGetters, mapState, mapActions } from "vuex";
 
 export default {
   components: {
-    layout: Layout,
+    // layout: Layout,
+    post: Post,
   },
   data()
   {

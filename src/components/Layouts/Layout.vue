@@ -30,6 +30,8 @@
         </nav>
 
       </header>
+      <!-- <router-view></router-view> -->
+      <!-- <slot/> -->
       
       <router-view></router-view>
       <slot />

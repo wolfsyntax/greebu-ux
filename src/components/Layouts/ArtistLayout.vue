@@ -1,13 +1,21 @@
 <template>
+  <layout>
+    <router-view></router-view>
+  </layout>
+  
   <!-- <router-view></router-view> -->
-  <slot />
+  <!-- <slot /> -->
 </template>
 <script>
+import Layout from '@/components/Layouts/Layout.vue';
 export default {
   setup()
   {
 
   },
+  components: {
+    layout: Layout,
+  }
 }
 </script>
 

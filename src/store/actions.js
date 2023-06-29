@@ -67,19 +67,33 @@ var actions = {
     })
   },
   artistOptions({ commit }, payload) {
-        return new Promise(async(resolve, reject) => {
+    return new Promise(async(resolve, reject) => {
 
-          await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/artist/forms`, payload)
-            .then(response => {
-              resolve(response)
-            })
-            .catch(err => { 
-              reject(err)
-            });
-
+      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/artist/forms`, payload)
+        .then(response => {
+          resolve(response)
         })
-    },
-    
+        .catch(err => { 
+          reject(err)
+        });
+
+    })
+  },
+  plansOptions({ commit }, payload)
+  {
+    return new Promise(async(resolve, reject) => {
+
+      await axios.get(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/subscriptions/plan`)
+        .then(response => {
+          const {data, status} = response
+          resolve(data)
+        })
+        .catch(err => { 
+          reject(err)
+        });
+
+    })
+  }
 };
 
 export default actions

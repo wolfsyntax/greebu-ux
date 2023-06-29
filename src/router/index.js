@@ -12,7 +12,7 @@ const router = createRouter({
   routes: [
     {
       path: '',
-      component: () => import('@/components/Layouts/Layout.vue'),
+      // component: () => import('@/components/Layouts/Layout.vue'),
       meta: {
         requiresLogin: false,
         role: '',
@@ -25,31 +25,79 @@ const router = createRouter({
           path: '/',
           name: 'home',
           component: () => import('@/views/Homepage/Home.vue'),
+          meta: {
+            requiresLogin: false,
+            role: '',
+            parent: 'home',
+            breadcrumb: [
+              {title: '', url: '',},
+            ],
+          },
         },
         {
           path: '/artists',
           name: 'artists',
           component: () => import('@/views/Homepage/Artist.vue'),
+          meta: {
+            requiresLogin: false,
+            role: '',
+            parent: 'artists',
+            breadcrumb: [
+              {title: '', url: '',},
+            ],
+          },          
         },
         {
           path: '/create-song',
           name: 'create-song',
           component: () => import('@/views/Homepage/CreateSong.vue'),
+          meta: {
+            requiresLogin: false,
+            role: '',
+            parent: 'create-song',
+            breadcrumb: [
+              {title: '', url: '',},
+            ],
+          },          
         },
         {
           path: '/events',
           name: 'event',
           component: () => import('@/views/Homepage/Event.vue'),
+          meta: {
+            requiresLogin: false,
+            role: '',
+            parent: 'event',
+            breadcrumb: [
+              {title: '', url: '',},
+            ],
+          },
         },
         {
           path: '/partners',
           name: 'partners',
           component: () => import('@/views/Homepage/Partner.vue'),
+          meta: {
+            requiresLogin: false,
+            role: '',
+            parent: 'partners',
+            breadcrumb: [
+              {title: '', url: '',},
+            ],
+          },
         },
         {
           path: '/services',
           name: 'services',
           component: () => import('@/views/Homepage/Services.vue'),
+          meta: {
+            requiresLogin: true,
+            role: '',
+            parent: 'services',
+            breadcrumb: [
+              {title: '', url: '',},
+            ],
+          },
         },
         {
           path: '/login',
@@ -66,12 +114,12 @@ const router = createRouter({
     },
     {
       path: '/artist',
-
-      // component: () => import('@/components/Layouts/ArtistLayout.vue'),
-      component: () => import('@/components/Layouts/Layout.vue'),
+      component: () => import('@/components/Layouts/ArtistLayout.vue'),
+      //component: () => import('@/components/Layouts/Layout.vue'),
       meta: {
         requiresLogin: true,
         role: 'artists',
+        parent: 'artist',
         breadcrumb: [
           {title: '', url: '',},
         ],
@@ -94,6 +142,19 @@ const router = createRouter({
         },
       ]
     },
+    {
+      path: '/subscription',
+      name: 'event',
+      component: () => import('@/components/Subscription/Index.vue'),
+      meta: {
+        requiresLogin: false,
+        role: '',
+        parent: 'event',
+        breadcrumb: [
+          {title: '', url: '',},
+        ],
+      },
+    },    
     {
       path: '/pages',
       component: () => import('@/components/FullPage.vue'),

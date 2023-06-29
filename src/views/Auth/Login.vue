@@ -98,6 +98,7 @@ export default {
       form: {
         email: null,
         password: null,
+        remember_me: false,
       }
     }
   },
@@ -118,8 +119,14 @@ export default {
       this.signin(this.form).then((response) =>
       {
 
-        const { status } = response;
-
+        const { status, data } = response;
+        console.log('Response: ', response)
+        this.$vs.notification({
+          color: 'success',
+          position: 'top-right',
+          title: 'Signin',
+          text: `${data?.message}`
+        })
         var user = this.$store.state.user;
         var role = this.$store.state.role;
 

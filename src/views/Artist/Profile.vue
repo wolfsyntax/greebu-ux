@@ -1,5 +1,5 @@
 <template>
-  <layout>
+
     <div>
       <p>{{ $filters.timeAgo('2019-12-19') }}</p>
       {{  artistProfile  }}
@@ -216,17 +216,17 @@
       </form>
       
     </div>
-  </layout>
+
 </template>
 <script>
-import Layout from '@/components/Layouts/ArtistLayout.vue';
+// import Layout from '@/components/Layouts/ArtistLayout.vue';
 import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
 import MemberForm from './AddMember.vue';
 import SocialMediaForm from './SocialMedia.vue';
 
 export default {
   components: {
-    layout: Layout,
+    // layout: Layout,
     'member-form': MemberForm,
     'social-media': SocialMediaForm,
   },
@@ -259,6 +259,7 @@ export default {
   },
   mounted()
   {
+    console.log('Route meta: ', this.$route.meta?.parent);
     this.fetchArtistOptions()
     this.form = {
       artist_type: this.artistProfile?.artist_type?.title,
@@ -287,10 +288,24 @@ export default {
       this.updateArtistProfile(this.form).then((response) =>
       {
 
-        const { status } = response;
+        const { status, message } = response;
+        console.log('Message: ', message)
         if (status === 422) { 
           this.errors = response?.result?.errors || {}
+          this.$vs.notification({
+            color: 'danger',
+            position: 'top-right',
+            title: 'Artist Profile',
+            text: `Invalid data`
+          })
         } else {
+
+          this.$vs.notification({
+            color: 'success',
+            position: 'top-right',
+            title: 'Artist Profile',
+            text: `${message}`
+          })
 
           this.$store.commit('SET_ARTIST', response.result?.artist_profile)
           this.$store.commit('SET_PROFILE', response.result?.user_profile)
