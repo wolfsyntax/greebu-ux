@@ -91,23 +91,34 @@
 
                   <div class="card band-members">
                       <div class="card-body">
-                        <div class="d-flex align-items-center justify-content-between mb-2">
+                        <div class="d-flex align-items-center justify-content-between header">
                           <div class="d-flex title">
                             <img src="@/assets/artist-account/band-members-icon.svg" loading="lazy" alt="band members icon">
-                            <h5 class="card-title mb-0">Band Members</h5>
+                            <h5 class="card-title mb-0">Band Memberss</h5>
                           </div>
-                            
                           <div class="see-all">
                               <a href="">See all</a>
                           </div>
-                          </div>
-                      </div>
-                 </div>       
-
-
-
-              </div>
-              <!-- left wrapper end -->
+                        </div>
+                                  <!-- Band Members list -->
+                         <div class="members-list">
+                            <div class="member-profile">
+                              <img src="https://res.cloudinary.com/daorvtlls/image/upload/v1686649329/trending-bicolano-artist-4_o6xjze.png" 
+                              loading="lazy" alt="member profile">
+                              <div class="member-info">
+                              <a href="#">Wade warren</a>
+                              <p>Vocalist</p>
+                              </div>
+                            </div>
+                            <div class="more">
+                              <a href="#">
+                                <i class="material-icons"><span class="material-symbols-outlined">more_vert</span></i>
+                              </a>
+                            </div>
+                         </div>         
+                    </div>  <!-- end of card-body -->     
+                  </div>
+              </div> <!-- left wrapper end -->
 
               <!-- middle wrapper start -->
               <div class="col-md-8 col-xl-6 middle-wrapper">
@@ -333,12 +344,12 @@
 
 </template>
 <script>
-import Layout from '@/components/Layouts/ArtistLayout.vue';
+// import Layout from '@/components/Layouts/ArtistLayout.vue';
 import { mapGetters, mapState, mapActions } from "vuex";
 
 export default {
   components: {
-    layout: Layout,
+    // layout: Layout,
 
   },
   data()
