@@ -1,3 +1,4 @@
+
 :root {
     
   }
@@ -437,25 +438,4 @@ img {
     background-clip: border-box;
     border: 1px solid #f2f4f9;
     border-radius: 0.25rem;
-}
-
-/* Extra large xl */
-@media (min-width: 1200px) and (max-width: 1399.98px){
-    .profile-page .profile-header .cover .cover-body .profile-pic {
-        width: 230px;
-        height: 230px;
-    }
-    .profile-page .profile-header .header-links ul li a {
-        font-size: 18px;
-    }
-    .profile-page .left-wrapper .card .social-media p {
-        font-size: 12px;
-    }
-    .profile-page .left-wrapper .card .social-media .bi-spotify, .profile-page .left-wrapper .card .social-media .bi-youtube {
-        color: #B8BBCF;
-        font-size: 24px;
-    }
-    .profile-page .left-wrapper .card .social-media .calendar {
-        font-size: 26px;
-    }
 }
