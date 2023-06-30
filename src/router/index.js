@@ -62,7 +62,7 @@ const router = createRouter({
         },
         {
           path: '/events',
-          name: 'event',
+          name: 'events',
           component: () => import('@/views/Homepage/Event.vue'),
           meta: {
             requiresLogin: false,
@@ -91,7 +91,7 @@ const router = createRouter({
           name: 'services',
           component: () => import('@/views/Homepage/Services.vue'),
           meta: {
-            requiresLogin: true,
+            requiresLogin: false,
             role: '',
             parent: 'services',
             breadcrumb: [
