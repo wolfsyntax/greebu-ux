@@ -539,18 +539,18 @@ body{
   margin-bottom: 0;
 }
 
-/* Right Side Bar */
-.profile-page .right-wrapper .past-events .card-body .header {
+/* Right Side Bar / Top & Bottom */
+.profile-page .right-wrapper .past-events .card-body .header, .profile-page .right-wrapper .original-songs .card-body .header {
   margin-bottom: 20px;
 }
-.profile-page .right-wrapper .past-events .header .title{
+.profile-page .right-wrapper .past-events .header .title, .profile-page .right-wrapper .original-songs .header .title{
   align-items: center;
 }
-.profile-page .right-wrapper .past-events .header span {
+.profile-page .right-wrapper .past-events .header span, .profile-page .right-wrapper .original-songs .header span {
   margin-right: 6px;
   color: #B8BBCF;
 }
-.profile-page .right-wrapper .past-events .header h5{
+.profile-page .right-wrapper .past-events .header h5, .profile-page .right-wrapper .original-songs .header h5{
   color: #27272E;
   font-size: 16px;
   font-style: normal;
@@ -558,7 +558,7 @@ body{
   line-height: 136.523%;
   text-decoration: none;
 }
-.profile-page .right-wrapper .past-events .see-all a{
+.profile-page .right-wrapper .past-events .see-all a, .profile-page .right-wrapper .original-songs .see-all a{
   color: #FF6B00;
   text-align: right;
   font-size: 12px;
@@ -567,7 +567,8 @@ body{
   line-height: normal;
   text-decoration: none;
 }
-.profile-page .right-wrapper .past-events .card-body .events-list{
+.profile-page .right-wrapper .past-events .card-body .events-list, 
+.profile-page .right-wrapper .original-songs .songs-list {
     border-radius: 10px;
     background: #FFF;
     padding: 16px;
@@ -576,12 +577,12 @@ body{
     display: flex;
     align-items: center;
 }
-.profile-page .right-wrapper .past-events .card-body .events-list .events-info{
+.profile-page .right-wrapper .past-events .card-body .events-list .events-info, .profile-page .right-wrapper .original-songs .songs-list .songs-info{
     display: flex;
     width: 93%;
     align-items: center;
 }
-.profile-page .right-wrapper .past-events .card-body .events-list .events-info img{
+.profile-page .right-wrapper .past-events .card-body .events-list .events-info img, .profile-page .right-wrapper .original-songs .songs-list .songs-info img{
   width: 103px;
   height: 103px;
   flex-shrink: 0;
@@ -593,7 +594,7 @@ body{
   background: lightgray 50% / cover no-repeat, #D9D9D9;
   margin-right: 8px;
 }
-.profile-page .right-wrapper .past-events .card-body .events-list .events-info a {
+.profile-page .right-wrapper .past-events .card-body .events-list .events-info a, .profile-page .right-wrapper .original-songs .songs-list .songs-info a {
   color: var(--text-heading-dark, #27272E);
   font-size: 16px;
   font-style: normal;
@@ -602,7 +603,7 @@ body{
   margin-bottom: 0;
   text-decoration: none;
 }
-.profile-page .right-wrapper .past-events .card-body .events-list .events-info  p {
+.profile-page .right-wrapper .past-events .card-body .events-list .events-info  p, .profile-page .right-wrapper .original-songs .songs-list .songs-info p {
   color: var(--text-body-light, #425466);
   font-size: 14px;
   font-style: normal;
@@ -610,10 +611,10 @@ body{
   line-height: 23px;
   margin-bottom: 0;
 }
-.profile-page .right-wrapper .past-events .card-body .events-list .more {
+.profile-page .right-wrapper .past-events .card-body .events-list .more, .profile-page .right-wrapper .original-songs .songs-list .more {
   width: 7%;
 }
-.profile-page .right-wrapper .past-events .card-body .events-list .more span {
+.profile-page .right-wrapper .past-events .card-body .events-list .more span, .profile-page .right-wrapper .original-songs .songs-list .more span {
   color: #7A7A9D;
 }
 .profile-page .right-wrapper .past-events .card-body .events-list .member-info .text-orange{
