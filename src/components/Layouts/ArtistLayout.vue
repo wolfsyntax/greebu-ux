@@ -1,9 +1,5 @@
 <template>
-  <layout>
-    <router-view></router-view>
-  </layout>
-  
-  <!-- <router-view></router-view> -->
+  <router-view></router-view>
   <!-- <slot /> -->
 </template>
 <script>

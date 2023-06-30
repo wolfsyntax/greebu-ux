@@ -12,7 +12,7 @@ const router = createRouter({
   routes: [
     {
       path: '',
-      // component: () => import('@/components/Layouts/Layout.vue'),
+    //  component: () => import('@/components/Layouts/Layout.vue'),
       meta: {
         requiresLogin: false,
         role: '',
@@ -62,7 +62,7 @@ const router = createRouter({
         },
         {
           path: '/events',
-          name: 'event',
+          name: 'events',
           component: () => import('@/views/Homepage/Event.vue'),
           meta: {
             requiresLogin: false,
@@ -91,7 +91,7 @@ const router = createRouter({
           name: 'services',
           component: () => import('@/views/Homepage/Services.vue'),
           meta: {
-            requiresLogin: true,
+            requiresLogin: false,
             role: '',
             parent: 'services',
             breadcrumb: [
@@ -114,8 +114,8 @@ const router = createRouter({
     },
     {
       path: '/artist',
-      component: () => import('@/components/Layouts/ArtistLayout.vue'),
-      //component: () => import('@/components/Layouts/Layout.vue'),
+     // component: () => import('@/components/Layouts/ArtistLayout.vue'),
+      component: () => import('@/components/Layouts/Layout.vue'),
       meta: {
         requiresLogin: true,
         role: 'artists',

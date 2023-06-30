@@ -1,5 +1,8 @@
 <template>
-  
+  <!-- icon with outlined, rounded and sharp will work only on this file using this cdn  -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0" /> -->
+
   <section class="artist-profile">
     <div class="container">
       <div class="profile-page tx-13">
@@ -65,7 +68,7 @@
           <div class="row profile-body" v-if="activeItem === 'Post'">
               <!-- left wrapper start -->
               <div class="d-none d-md-block col-md-4 col-xl-3 left-wrapper">
-                  <div class="card">
+                  <div class="card artist-info">
                       <div class="card-body">
                           <div class="d-flex align-items-center justify-content-between mb-2">
                               <h5 class="card-title mb-0">Information</h5>
@@ -79,201 +82,251 @@
                             <i class="material-icons"><span class="material-symbols-outlined calendar">calendar_month</span></i><p class="band-name">IDLEPITCH</p>
                           </div>
                           <div class="mt-3 social-media">
-                            <i class="spotify"></i><p>Full Band Artist</p>
+                            <img src="@/assets/social icons/_Spotify.svg" loading="lazy" alt="spotify icon">
+                            <p>Full Band Artist</p>
                           </div>
-                          <div class="mt-3 social-media">
-                            <i class="youtube"></i><p>youtube.com/@idlepitch</p>
+                            <div class="mt-3 social-media">
+                              <img src="@/assets/social icons/_YouTube.svg" loading="lazy" alt="spotify icon">
+                              <p>youtube.com/@idlepitch</p>
                           </div>
-                          
                       </div>
                   </div>
+
+                  <div class="card band-members">
+                      <div class="card-body">
+                        <div class="d-flex align-items-center justify-content-between header">
+                          <div class="d-flex title">
+                            <img src="@/assets/artist-account/band-members-icon.svg" loading="lazy" alt="band members icon">
+                            <h5 class="card-title mb-0">Band Members</h5>
+                          </div>
+                          <div class="see-all">
+                              <a href="">See all</a>
+                          </div>
+                        </div>
+                                  <!-- Band Members list -->
+                         <div class="members-list">
+                            <div class="member-profile">
+                              <img src="https://res.cloudinary.com/daorvtlls/image/upload/v1686649329/trending-bicolano-artist-4_o6xjze.png" 
+                              loading="lazy" alt="member profile">
+                              <div class="member-info">
+                              <a href="#">Wade warren</a>
+                              <p>Vocalist</p>
+                              </div>
+                            </div>
+                            <div class="more">
+                              <a href="#">
+                                <i class="material-icons"><span class="material-symbols-outlined">more_vert</span></i>
+                              </a>
+                            </div>
+                         </div>      
+                         <div class="members-list">
+                            <div class="member-profile">
+                              <img src="https://res.cloudinary.com/daorvtlls/image/upload/v1686649329/trending-bicolano-artist-4_o6xjze.png" 
+                              loading="lazy" alt="member profile">
+                              <div class="member-info">
+                              <a href="#">Brooklyn Simmons</a>
+                              <p>Drummer</p>
+                              </div>
+                            </div>
+                            <div class="more">
+                              <a href="#">
+                                <i class="material-icons"><span class="material-symbols-outlined">more_vert</span></i>
+                              </a>
+                            </div>
+                         </div>    
+                    </div>  <!-- end of card-body -->     
+                  </div>      
               </div>
               <!-- left wrapper end -->
+
               <!-- middle wrapper start -->
               <div class="col-md-8 col-xl-6 middle-wrapper">
-                  <div class="row">
+                <div class="row post">
+                  <div class="col-md-12">
+                    <div class="card">
+                    <div class="card-body">
+                      <div class="write-something">
+                          <img src="https://res.cloudinary.com/daorvtlls/image/upload/v1686649329/trending-bicolano-artist-4_o6xjze.png" 
+                          loading="lazy" alt="member profile">
+                          
+                          <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#postSomething">
+                              Write something...
+                            </button>
+
+                      </div>
+                      <!-- <hr> -->
+                      <div class="post-features">
+                        <div class="post-icon">
+                          <i class="material-icons"><span class="material-symbols-outlined">sentiment_satisfied</span></i>
+                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#postSomething">
+                              Feeling
+                            </button>
+                        </div>
+                        <div class="post-icon">
+                          <i class="material-icons"><span class="material-symbols-outlined">image</span></i>
+                          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#postSomething">
+                            Photo/Video
+                            </button>
+                        </div>
+                        <div class="post-icon">
+                          <i class="material-icons"><span class="material-symbols-outlined">library_music</span></i>
+                          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#postSomething">
+                           Music
+                            </button>
+                        </div>
+                      </div>
+                    </div> <!-- end of card-body -->
+                  </div>
+                  </div>    
+                  </div> <!-- end of row post -->
+                                              <!-- Modal -->
+                  <div class="modal fade" id="postSomething" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          ...
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                                       <!-- Artist Posts -->
+                  <div class="row artist-post">
                       <div class="col-md-12 grid-margin">
-                          <div class="card rounded">
+                          <div class="card">
                               <div class="card-header">
                                   <div class="d-flex align-items-center justify-content-between">
-                                      <div class="d-flex align-items-center">
+                                      <div class="d-flex align-items-center user-posted-info">
                                           <img class="img-xs rounded-circle" src="https://res.cloudinary.com/daorvtlls/image/upload/v1687927639/artist-profile-1_uhpekp.webp" alt="">
-                                          <div class="ml-2">
-                                              <p>Mike Popescu</p>
-                                              <p class="tx-11 text-muted">1 min ago</p>
+                                          <div class="group-posted">
+                                              <a href="#" class="name">Mike Popescu</a>
+                                              <p class="ago">1 min ago</p>
                                           </div>
                                       </div>
                                       <div class="dropdown">
-                                          <button class="btn p-0" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal icon-lg pb-3px">
-                                                  <circle cx="12" cy="12" r="1"></circle>
-                                                  <circle cx="19" cy="12" r="1"></circle>
-                                                  <circle cx="5" cy="12" r="1"></circle>
-                                              </svg>
-                                          </button>
-                                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                                              <a class="dropdown-item d-flex align-items-center" href="#">
-                                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-meh icon-sm mr-2">
-                                                      <circle cx="12" cy="12" r="10"></circle>
-                                                      <line x1="8" y1="15" x2="16" y2="15"></line>
-                                                      <line x1="9" y1="9" x2="9.01" y2="9"></line>
-                                                      <line x1="15" y1="9" x2="15.01" y2="9"></line>
-                                                  </svg> <span class="">Unfollow</span></a>
-                                              <a class="dropdown-item d-flex align-items-center" href="#">
-                                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-corner-right-up icon-sm mr-2">
-                                                      <polyline points="10 9 15 4 20 9"></polyline>
-                                                      <path d="M4 20h7a4 4 0 0 0 4-4V4"></path>
-                                                  </svg> <span class="">Go to post</span></a>
-                                              <a class="dropdown-item d-flex align-items-center" href="#">
-                                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-share-2 icon-sm mr-2">
-                                                      <circle cx="18" cy="5" r="3"></circle>
-                                                      <circle cx="6" cy="12" r="3"></circle>
-                                                      <circle cx="18" cy="19" r="3"></circle>
-                                                      <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-                                                      <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-                                                  </svg> <span class="">Share</span></a>
-                                              <a class="dropdown-item d-flex align-items-center" href="#">
-                                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy icon-sm mr-2">
-                                                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                                                  </svg> <span class="">Copy link</span></a>
-                                          </div>
+                                        <i class="material-icons"><span class="material-symbols-outlined">more_vert</span></i>
                                       </div>
                                   </div>
                               </div>
                               <div class="card-body">
-                                  <p class="mb-3 tx-14">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus minima delectus nemo unde quae recusandae assumenda.</p>
-                                  <img class="img-fluid" src="https://res.cloudinary.com/daorvtlls/image/upload/v1687927639/artist-profile-1_uhpekp.webp" alt="">
+                                  <p class="mb-3">Travel and you will born for a second time️️</p>
+                                  <div class="posted-img">
+                                    <img class="img-fluid" src="https://res.cloudinary.com/daorvtlls/image/upload/v1686465778/samples/imagecon-group.jpg" loading="lazy" alt="posted image">
+                                  </div>
                               </div>
-                              <div class="card-footer">
+                              <div class="card-footer d-flex align-items-center justify-content-between">
                                   <div class="d-flex post-actions">
-                                      <a href="javascript:;" class="d-flex align-items-center text-muted mr-4">
-                                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart icon-md">
-                                              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                                          </svg>
-                                          <p class="d-none d-md-block ml-2">Like</p>
-                                      </a>
-                                      <a href="javascript:;" class="d-flex align-items-center text-muted mr-4">
-                                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-square icon-md">
-                                              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                                          </svg>
-                                          <p class="d-none d-md-block ml-2">Comment</p>
-                                      </a>
-                                      <a href="javascript:;" class="d-flex align-items-center text-muted">
-                                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-share icon-md">
-                                              <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
-                                              <polyline points="16 6 12 2 8 6"></polyline>
-                                              <line x1="12" y1="2" x2="12" y2="15"></line>
-                                          </svg>
-                                          <p class="d-none d-md-block ml-2">Share</p>
-                                      </a>
+                                    <div class="post-icon">
+                                    <i class="material-icons"><span class="material-symbols-outlined">favorite</span></i>
+                                      <p>Like</p>
+                                    </div>
+                                    <div class="post-icon">
+                                      <i class="material-icons"><span class="material-symbols-outlined">chat_bubble</span></i>
+                                      <p>Comment</p>
+                                    </div>
+                                  </div>
+                                  <div class="comments">
+                                    <p>243 comments</p>
                                   </div>
                               </div>
                           </div>
                       </div>
-                      
                   </div>
-              </div>
-              <!-- middle wrapper end -->
-              <!-- right wrapper start -->
+              </div>              <!-- middle wrapper end -->
+
+                                                        <!-- right wrapper start -->
               <div class="d-none d-xl-block col-xl-3 right-wrapper">
                   <div class="row">
                       <div class="col-md-12 grid-margin">
-                          <div class="card rounded">
-                              <div class="card-body">
-                                  <h6 class="card-title">latest photos</h6>
-                                  <div class="latest-photos">
-                                      <div class="row">
-                                          <div class="col-md-4">
-                                              <figure>
-                                                  <img class="img-fluid" src="https://res.cloudinary.com/daorvtlls/image/upload/v1686465790/cld-sample.jpg" alt="">
-                                              </figure>
-                                          </div>
-                                          <div class="col-md-4">
-                                              <figure>
-                                                  <img class="img-fluid" src="https://res.cloudinary.com/daorvtlls/image/upload/v1686465790/cld-sample.jpg" alt="">
-                                              </figure>
-                                          </div>
-                                          <div class="col-md-4">
-                                              <figure>
-                                                  <img class="img-fluid" src="https://res.cloudinary.com/daorvtlls/image/upload/v1686465790/cld-sample.jpg" alt="">
-                                              </figure>
-                                          </div>
-                                          <div class="col-md-4">
-                                              <figure>
-                                                  <img class="img-fluid" src="https://res.cloudinary.com/daorvtlls/image/upload/v1686465790/cld-sample.jpg" alt="">
-                                              </figure>
-                                          </div>
-                                          <div class="col-md-4">
-                                              <figure>
-                                                  <img class="img-fluid" src="https://res.cloudinary.com/daorvtlls/image/upload/v1686465790/cld-sample.jpg" alt="">
-                                              </figure>
-                                          </div>
-                                          <div class="col-md-4">
-                                              <figure>
-                                                  <img class="img-fluid" src="https://res.cloudinary.com/daorvtlls/image/upload/v1686465790/cld-sample.jpg" alt="">
-                                              </figure>
-                                          </div>
-                                          <div class="col-md-4">
-                                              <figure class="mb-0">
-                                                  <img class="img-fluid" src="https://res.cloudinary.com/daorvtlls/image/upload/v1686465790/cld-sample.jpg" alt="">
-                                              </figure>
-                                          </div>
-                                          <div class="col-md-4">
-                                              <figure class="mb-0">
-                                                  <img class="img-fluid" src="https://res.cloudinary.com/daorvtlls/image/upload/v1686465790/cld-sample.jpg" alt="">
-                                              </figure>
-                                          </div>
-                                          <div class="col-md-4">
-                                              <figure class="mb-0">
-                                                  <img class="img-fluid" src="https://res.cloudinary.com/daorvtlls/image/upload/v1686465790/cld-sample.jpg" alt="">
-                                              </figure>
-                                          </div>
-                                      </div>
-                                  </div>
+                        <div class="card past-events">
+                          <div class="card-body">
+                            <div class="d-flex align-items-center justify-content-between header">
+                              <div class="d-flex title">
+                                <i class="material-icons"> <span class="material-symbols-outlined">event_available</span></i>
+                                <h5 class="card-title mb-0">Past Events</h5>
                               </div>
-                          </div>
+                              <div class="see-all">
+                                  <a href="">See all</a>
+                              </div>
+                            </div>
+                                      <!-- Band Members list -->
+                            <div class="events-list">
+                                <div class="events-info">
+                                  <img src="https://res.cloudinary.com/daorvtlls/image/upload/v1686649329/trending-bicolano-artist-4_o6xjze.png" 
+                                  loading="lazy" alt="member profile">
+                                  <div class="member-info">
+                                  <a href="#">Gig for a cause</a>
+                                  <p>Idlepitch</p>
+                                  <p class="text-orange">June 24.2023</p>
+                                  <p class="text-orange">Saturday, 8:00 am - 12:00 pm</p>
+                                  </div>
+                                </div>
+                                <div class="more">
+                                  <a href="#">
+                                    <i class="material-icons"><span class="material-symbols-outlined">more_vert</span></i>
+                                  </a>
+                                </div>
+                            </div>    
+                            <div class="events-list">
+                                <div class="events-info">
+                                  <img src="https://res.cloudinary.com/daorvtlls/image/upload/v1686649329/trending-bicolano-artist-4_o6xjze.png" 
+                                  loading="lazy" alt="member profile">
+                                  <div class="member-info">
+                                  <a href="#">Gig for a cause</a>
+                                  <p>Idlepitch</p>
+                                  <p class="text-orange">June 24.2023</p>
+                                  <p class="text-orange">Saturday, 8:00 am - 12:00 pm</p>
+                                  </div>
+                                </div>
+                                <div class="more">
+                                  <a href="#">
+                                    <i class="material-icons"><span class="material-symbols-outlined">more_vert</span></i>
+                                  </a>
+                                </div>
+                            </div>   
+                        </div>  <!-- end of card-body -->     
+                      </div>  
                       </div>
+                                                  <!-- right wrapper bottom start -->
                       <div class="col-md-12 grid-margin">
-                          <div class="card rounded">
-                              <div class="card-body">
-                                  <h6 class="card-title">suggestions for you</h6>
-                                  <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
-                                      <div class="d-flex align-items-center hover-pointer">
-                                          <img class="img-xs rounded-circle" src="https://res.cloudinary.com/daorvtlls/image/upload/v1686465790/cld-sample.jpg" alt="">
-                                          <div class="ml-2">
-                                              <p>Mike Popescu</p>
-                                              <p class="tx-11 text-muted">12 Mutual Friends</p>
-                                          </div>
-                                      </div>
-                                      <button class="btn btn-icon">
-                                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus" data-toggle="tooltip" title="" data-original-title="Connect">
-                                              <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                              <circle cx="8.5" cy="7" r="4"></circle>
-                                              <line x1="20" y1="8" x2="20" y2="14"></line>
-                                              <line x1="23" y1="11" x2="17" y2="11"></line>
-                                          </svg>
-                                      </button>
-                                  </div>
-                                  <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
-                                      <div class="d-flex align-items-center hover-pointer">
-                                          <img class="img-xs rounded-circle" src="https://res.cloudinary.com/daorvtlls/image/upload/v1686465790/cld-sample.jpg" alt="">
-                                          <div class="ml-2">
-                                              <p>Mike Popescu</p>
-                                              <p class="tx-11 text-muted">12 Mutual Friends</p>
-                                          </div>
-                                      </div>
-                                      <button class="btn btn-icon">
-                                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus" data-toggle="tooltip" title="" data-original-title="Connect">
-                                              <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                              <circle cx="8.5" cy="7" r="4"></circle>
-                                              <line x1="20" y1="8" x2="20" y2="14"></line>
-                                              <line x1="23" y1="11" x2="17" y2="11"></line>
-                                          </svg>
-                                      </button>
-                                  </div>
+                        <div class="card original-songs">
+                          <div class="card-body">
+                            <div class="d-flex align-items-center justify-content-between header">
+                              <div class="d-flex title">
+                                <i class="material-icons"> <span class="material-symbols-outlined">album</span></i>
+                                <h5 class="card-title mb-0">Original Songs</h5>
                               </div>
-                          </div>
+                              <div class="see-all">
+                                  <a href="">See all</a>
+                              </div>
+                            </div>
+                                      <!-- Song list -->
+                             <div class="songs-list">
+                                <div class="songs-info">
+                                  <img src="https://res.cloudinary.com/daorvtlls/image/upload/v1686465774/samples/people/jazz.jpg" 
+                                  loading="lazy" alt="member profile">
+                                  <div class="member-info">
+                                  <a href="#">Loving In Stereo</a>
+                                  <p>Idlepitch - Album</p>
+                                  </div>
+                                </div>
+                                <div class="more">
+                                  <a href="#">
+                                    <i class="material-icons"><span class="material-symbols-outlined">more_vert</span></i>
+                                  </a>
+                                </div>
+                            </div>        
+                        </div>  <!-- end of card-body -->     
+                      </div> 
                       </div>
                   </div>
               </div>
@@ -306,21 +359,23 @@
   <section class="artist-data">
     <div class="container">
       <p><strong>Artist:</strong> {{ artist }}</p> 
-      <p><strong>User:</strong> {{  profile }}</p>
+      <div>
+        <p class="user"><strong>User:</strong> {{  profile }}</p>
+      </div>
       <p><strong>Member:</strong> {{ members }}</p>
     </div>
   </section>
   <post />
 </template>
 <script>
-//import Layout from '@/components/Layouts/ArtistLayout.vue';
-import Post from '@/components/Post/Index.vue';
+// import Layout from '@/components/Layouts/ArtistLayout.vue';
 import { mapGetters, mapState, mapActions } from "vuex";
 
 export default {
   components: {
     // layout: Layout,
-    post: Post,
+    // post: Post,
+
   },
   data()
   {
