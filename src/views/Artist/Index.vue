@@ -346,8 +346,24 @@
               </div>
               <!-- right wrapper end -->
           </div>
-          <div class="row profile-body" v-if="activeItem === 'About'">
-            <h2>About </h2>
+          <div class="row about" v-if="activeItem === 'About'">
+
+            <div class="col-7">
+              <h3 class="overview">Overview</h3>
+              <p class="content">Lorem ipsum dolor sit amet consectetur. Consectetur justo ornare et netus adipiscing nisi nisl tellus a. Venenatis sed augue ultricies 
+                vulputate in. Eu risus neque nisl libero eget in molestie felis sem. Pharetra sagittis eget ipsum pulvinar aliquet libero amet accumsan auctor.</p>
+              <h5 class="capacity">Our capacity:</h5>  
+              <ul class="capacity-list">
+                <li><p>1. Mobile apps design</p></li>
+                <li><p>2. Website design & development</p></li>
+                <li><p>3. Packaging</p></li>
+                <li><p>4. Brand identity</p></li>
+                <li><p>5. Print design</p></li>
+              </ul>
+            </div>
+            <div class="col-5">
+              
+            </div>
           </div>
           <div class="row profile-body" v-if="activeItem === 'Songs'">
             <h2>Songs</h2>

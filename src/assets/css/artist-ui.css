@@ -632,6 +632,35 @@ body{
   color: #FF6B00;
 }
 
+/* About tab */
+.profile-page .about {
+  border-radius: 10px;
+  background: #FFF;
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.14);
+  padding: 90px;
+  margin: 0 .1%;
+}
+.profile-page .about .overview{
+  color: #111827;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.96px;
+}
+.profile-page .about .content, 
+.profile-page .about .capacity,
+ .profile-page .about .capacity-list p  {
+  color: #B8BBCF;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.profile-page .about  ul{
+ list-style-type: none;
+}
+
 /* Data from backend */
 .artist-data .container .user{
   white-space: normal;
