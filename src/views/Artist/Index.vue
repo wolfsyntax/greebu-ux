@@ -295,48 +295,38 @@
                             </div>   
                         </div>  <!-- end of card-body -->     
                       </div>  
-
                       </div>
+                                                  <!-- right wrapper bottom start -->
                       <div class="col-md-12 grid-margin">
-                          <div class="card rounded">
-                              <div class="card-body">
-                                  <h6 class="card-title">suggestions for you</h6>
-                                  <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
-                                      <div class="d-flex align-items-center hover-pointer">
-                                          <img class="img-xs rounded-circle" src="https://res.cloudinary.com/daorvtlls/image/upload/v1686465790/cld-sample.jpg" alt="">
-                                          <div class="ml-2">
-                                              <p>Mike Popescu</p>
-                                              <p class="tx-11 text-muted">12 Mutual Friends</p>
-                                          </div>
-                                      </div>
-                                      <button class="btn btn-icon">
-                                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus" data-toggle="tooltip" title="" data-original-title="Connect">
-                                              <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                              <circle cx="8.5" cy="7" r="4"></circle>
-                                              <line x1="20" y1="8" x2="20" y2="14"></line>
-                                              <line x1="23" y1="11" x2="17" y2="11"></line>
-                                          </svg>
-                                      </button>
-                                  </div>
-                                  <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
-                                      <div class="d-flex align-items-center hover-pointer">
-                                          <img class="img-xs rounded-circle" src="https://res.cloudinary.com/daorvtlls/image/upload/v1686465790/cld-sample.jpg" alt="">
-                                          <div class="ml-2">
-                                              <p>Mike Popescu</p>
-                                              <p class="tx-11 text-muted">12 Mutual Friends</p>
-                                          </div>
-                                      </div>
-                                      <button class="btn btn-icon">
-                                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus" data-toggle="tooltip" title="" data-original-title="Connect">
-                                              <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                              <circle cx="8.5" cy="7" r="4"></circle>
-                                              <line x1="20" y1="8" x2="20" y2="14"></line>
-                                              <line x1="23" y1="11" x2="17" y2="11"></line>
-                                          </svg>
-                                      </button>
-                                  </div>
+                        <div class="card original-songs">
+                          <div class="card-body">
+                            <div class="d-flex align-items-center justify-content-between header">
+                              <div class="d-flex title">
+                                <i class="material-icons"> <span class="material-symbols-outlined">album</span></i>
+                                <h5 class="card-title mb-0">Original Songs</h5>
                               </div>
-                          </div>
+                              <div class="see-all">
+                                  <a href="">See all</a>
+                              </div>
+                            </div>
+                                      <!-- Song list -->
+                             <div class="songs-list">
+                                <div class="songs-info">
+                                  <img src="https://res.cloudinary.com/daorvtlls/image/upload/v1686465774/samples/people/jazz.jpg" 
+                                  loading="lazy" alt="member profile">
+                                  <div class="member-info">
+                                  <a href="#">Loving In Stereo</a>
+                                  <p>Idlepitch - Album</p>
+                                  </div>
+                                </div>
+                                <div class="more">
+                                  <a href="#">
+                                    <i class="material-icons"><span class="material-symbols-outlined">more_vert</span></i>
+                                  </a>
+                                </div>
+                            </div>        
+                        </div>  <!-- end of card-body -->     
+                      </div> 
                       </div>
                   </div>
               </div>
