@@ -1,8 +1,4 @@
 <template>
-  <!-- icon with outlined, rounded and sharp will work only on this file using this cdn  -->
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-  <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0" /> -->
-
   <section class="artist-profile">
     <div class="container">
       <div class="profile-page tx-13">
@@ -12,7 +8,7 @@
                       <div class="cover">
                           <div class="gray-shade"></div>
                           <figure>
-                              <img src="https://res.cloudinary.com/daorvtlls/image/upload/v1687927640/artist-cover-photo-min_fleelu.webp" class="img-fluid" alt="profile cover">
+                              <img src="https://res.cloudinary.com/daorvtlls/image/upload/v1686465779/samples/cloudinary-group.jpg" class="img-fluid" alt="profile cover">
                           </figure>
                           <div class="row cover-body d-flex justify-content-between align-items-center">
                               <div class="col-9">
@@ -21,8 +17,9 @@
                                   <img class="profile-pic" src="https://res.cloudinary.com/daorvtlls/image/upload/v1686465790/cld-sample.jpg" alt="profile">
                                   <!-- https://res.cloudinary.com/daorvtlls/image/upload/v1687927639/artist-profile-1_uhpekp.webp -->
                                     <div class="camera">
-                                      
-                                      <i class="material-icons"><span class="material-symbols-outlined">&#xE412;</span></i>
+                                      <a href="#">
+                                        <i class="material-icons"><span class="material-symbols-outlined">&#xE412;</span></i>
+                                      </a>
                                     </div>
                                   </div>
                                   <div class="profile-wrapper">
@@ -218,7 +215,9 @@
                                   </div>
                               </div>
                               <div class="card-body">
-                                  <p class="mb-3">Travel and you will born for a second time️️</p>
+                                  <p class="mb-3">Travel and you will born for a second time️️ Travel and you will born for a second time️️ Travel and you will born for a second time️️ Travel and you will born for a second time️️
+                                    Travel and you will born for a second time️️ Travel and you will born for a second time️️ Travel and you will born for a second time️️ Travel and you will born for a second time️️
+                                  </p>
                                   <div class="posted-img">
                                     <img class="img-fluid" src="https://res.cloudinary.com/daorvtlls/image/upload/v1686465778/samples/imagecon-group.jpg" loading="lazy" alt="posted image">
                                   </div>
@@ -324,7 +323,22 @@
                                     <i class="material-icons"><span class="material-symbols-outlined">more_vert</span></i>
                                   </a>
                                 </div>
-                            </div>        
+                            </div>   
+                            <div class="songs-list">
+                                <div class="songs-info">
+                                  <img src="https://res.cloudinary.com/daorvtlls/image/upload/v1686465774/samples/people/jazz.jpg" 
+                                  loading="lazy" alt="member profile">
+                                  <div class="member-info">
+                                  <a href="#">Loving In Stereo</a>
+                                  <p>Idlepitch - Album</p>
+                                  </div>
+                                </div>
+                                <div class="more">
+                                  <a href="#">
+                                    <i class="material-icons"><span class="material-symbols-outlined">more_vert</span></i>
+                                  </a>
+                                </div>
+                            </div>      
                         </div>  <!-- end of card-body -->     
                       </div> 
                       </div>
@@ -333,22 +347,22 @@
               <!-- right wrapper end -->
           </div>
           <div class="row profile-body" v-if="activeItem === 'About'">
-            <h2>About po</h2>
+            <h2>About </h2>
           </div>
           <div class="row profile-body" v-if="activeItem === 'Songs'">
-            <h2>Songs po</h2>
+            <h2>Songs</h2>
           </div>
           <div class="row profile-body" v-if="activeItem === 'Videos'">
-            <h2>Videos po</h2>
+            <h2>Videos</h2>
           </div>
           <div class="row profile-body" v-if="activeItem === 'Photos'">
-            <h2>Photos po</h2>
+            <h2>Photos</h2>
           </div>
           <div class="row profile-body" v-if="activeItem === 'Events'">
-            <h2>Events po</h2>
+            <h2>Events</h2>
           </div>
           <div class="row profile-body" v-if="activeItem === 'Reviews'">
-            <h2>Reviews po</h2>
+            <h2>Reviews</h2>
           </div>
           
           
@@ -393,7 +407,8 @@ export default {
       'https://res.cloudinary.com/daorvtlls/video/upload/v1686647605/Nirvana_-_Smells_like_teen_spirit_zs8yo4.mp3',
     ],
       videos:['https://video.wixstatic.com/video/8fd47a_61de9ebf0ad64f0fa93d72e4279551f7/1080p/mp4/file.mp4'],
-      photos:['@/assets/home/birthdays.webp', '@/assets/home/birthdays.webp', '@/assets/home/birthdays.webp', '@/assets/home/birthdays.webp', '@/assets/home/birthdays.webp']
+      photos:['@/assets/home/birthdays.webp', '@/assets/home/birthdays.webp', '@/assets/home/birthdays.webp', '@/assets/home/birthdays.webp', '@/assets/home/birthdays.webp'],
+
 
     }
   },
@@ -410,6 +425,7 @@ export default {
     {
 
     })
+    
   },
   methods: {
     ...mapActions([
@@ -456,7 +472,9 @@ export default {
         default:
           return 0;
       }
-    }
+    },
+
+    
 
   },
   computed: {

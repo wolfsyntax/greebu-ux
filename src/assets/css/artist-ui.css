@@ -4,7 +4,7 @@
 }
 body{   
   font-family: 'Urbanist', sans-serif;
-  background: #F9FAFB;
+  /* background: #F9FAFB; */
   }
 
 .artist-profile .container{
@@ -30,23 +30,15 @@ body{
   margin-bottom: 0;
 }
 
-@media (max-width: 767px) {
-  .profile-page .profile-header .cover figure {
-      height: 110px;
-      overflow: hidden;
-  }
-}
-
-@media (min-width: 2400px) {
-  .profile-page .profile-header .cover figure {
-      height: 280px;
-      overflow: hidden;
-  }
-}
 
 .profile-page .profile-header .cover figure img {
   border-radius: .25rem .25rem 0 0;
   width: 100%;
+  height: 50vh; /* 456px; */
+  position: relative;
+  -o-object-fit: cover;
+  object-fit: cover;
+  backface-visibility: hidden;
 }
 
 @media (max-width: 767px) {
@@ -96,6 +88,10 @@ body{
   background: lightgray 50% / cover no-repeat;
   box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.12);
 }
+.profile-page .profile-header .cover .cover-body .profile-pic:hover{
+  border: 4px solid #FF6B00;
+  transition: .5s ease-in-out;
+}
 .profile-page .profile-header .cover .cover-body .profile-info .camera{
   position: absolute;
   top: 80%;
@@ -103,12 +99,13 @@ body{
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-.profile-page .profile-header .cover .cover-body .profile-info .camera span{
+.profile-page .profile-header .cover .cover-body .profile-info .camera .material-symbols-outlined{
   color: #fff;
   flex-shrink: 0;
   padding: 19px;
   border-radius: 33px;
   background: #FF6B00;
+  font-variation-settings: 'FILL' 0;
 }
 
 @media (max-width: 767px) {
@@ -366,6 +363,10 @@ body{
   height: 48px;
   border-radius: 100%;
   margin-right: 15px;
+  position: relative;
+  -o-object-fit: cover;
+  object-fit: cover;
+  backface-visibility: hidden;
 }
 .profile-page .left-wrapper  .card-body .members-list .member-info a{
   color: var(--text-heading-dark, #27272E);
@@ -414,6 +415,10 @@ body{
   background:  lightgray 50% / cover no-repeat;
   box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.12);
   margin-right: 8px;
+  position: relative;
+  -o-object-fit: cover;
+  object-fit: cover;
+  backface-visibility: hidden;
 }
 .profile-page .middle-wrapper .post .card-body .write-something button {
   color: #536471;
@@ -456,6 +461,8 @@ body{
 .profile-page .middle-wrapper .post .card-body .post-features .post-icon span{
   color: #536471;
   margin-right: 8px;
+  transition: font-variation-setings 0.25s;
+  font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 48;
 }
 
 /* Artist post */
@@ -477,6 +484,10 @@ body{
   background: lightgray 50% / cover no-repeat;
   box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.12);
   margin-right: 10px;
+  position: relative;
+  -o-object-fit: cover;
+  object-fit: cover;
+  backface-visibility: hidden;
 }
 .profile-page .middle-wrapper  .artist-post .card-header .group-posted .name{
   color: #0F1419;
@@ -621,39 +632,56 @@ body{
   color: #FF6B00;
 }
 
+/* Data from backend */
+.artist-data .container .user{
+  white-space: normal;
+  /* overflow: hidden; */
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
 
+@media (max-width: 767px) {
+  .profile-page .profile-header .cover figure {
+      /* height: 110px; */
+      overflow: hidden;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199.98px){
+  .profile-page .right-wrapper .past-events .card-body .events-list .events-info img, .profile-page .right-wrapper .original-songs .songs-list .songs-info img{
+  width: 42px;
+  height: 42px;
+  margin-right: 6px;
+}
+.profile-page .profile-header .cover .cover-body .profile-pic {
+  width: 200px;
+  height: 200px;
+}
+}
+@media (min-width: 1200px) and (max-width: 1399.98px){
+  .profile-page .right-wrapper .past-events .card-body .events-list .events-info img, .profile-page .right-wrapper .original-songs .songs-list .songs-info img{
+  width: 48px;
+  height: 48px;
+  margin-right: 6px;
+}
+.profile-page .profile-header .cover .cover-body .profile-pic {
+  width: 270px;
+  height: 270px;
+}
+}
+@media (min-width: 2400px) {
+  .profile-page .profile-header .cover figure {
+      /* height: 280px; */
+      overflow: hidden;
+  }
+}
 
+/* Special stylings */
 
 .profile-page .profile-body .left-wrapper .social-links a {
   width: 30px;
   height: 30px;
 }
-
-/* .profile-page .profile-body .right-wrapper .latest-photos > .row {
-  margin-right: 0;
-  margin-left: 0;
-}
-
-.profile-page .profile-body .right-wrapper .latest-photos > .row > div {
-  padding-left: 3px;
-  padding-right: 3px;
-}
-
-.profile-page .profile-body .right-wrapper .latest-photos > .row > div figure {
-  -webkit-transition: all .3s ease-in-out;
-  transition: all .3s ease-in-out;
-  margin-bottom: 6px;
-}
-
-.profile-page .profile-body .right-wrapper .latest-photos > .row > div figure:hover {
-  -webkit-transform: scale(1.06);
-  transform: scale(1.06);
-}
-
-.profile-page .profile-body .right-wrapper .latest-photos > .row > div figure img {
-  border-radius: .25rem;
-} */
-
 .rtl .profile-page .profile-header .cover .cover-body .profile-name {
   margin-left: 0;
   margin-right: 17px;
@@ -714,11 +742,3 @@ img {
   border-radius: 0.25rem;
 }
 
-/* Data from backend */
-.artist-data .container .user{
-  white-space: normal;
-  /* overflow: hidden; */
-  word-wrap: break-word;
-  white-space: pre-wrap;
-  word-break: break-word;
-}
