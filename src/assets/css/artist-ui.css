@@ -4,7 +4,7 @@
 }
 body{   
   font-family: 'Urbanist', sans-serif;
-  background: #F9FAFB;
+  /* background: #F9FAFB; */
   }
 
 .artist-profile .container{
@@ -30,23 +30,15 @@ body{
   margin-bottom: 0;
 }
 
-@media (max-width: 767px) {
-  .profile-page .profile-header .cover figure {
-      height: 110px;
-      overflow: hidden;
-  }
-}
-
-@media (min-width: 2400px) {
-  .profile-page .profile-header .cover figure {
-      height: 280px;
-      overflow: hidden;
-  }
-}
 
 .profile-page .profile-header .cover figure img {
   border-radius: .25rem .25rem 0 0;
   width: 100%;
+  height: 50vh; /* 456px; */
+  position: relative;
+  -o-object-fit: cover;
+  object-fit: cover;
+  backface-visibility: hidden;
 }
 
 @media (max-width: 767px) {
@@ -96,6 +88,10 @@ body{
   background: lightgray 50% / cover no-repeat;
   box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.12);
 }
+.profile-page .profile-header .cover .cover-body .profile-pic:hover{
+  border: 4px solid #FF6B00;
+  transition: .5s ease-in-out;
+}
 .profile-page .profile-header .cover .cover-body .profile-info .camera{
   position: absolute;
   top: 80%;
@@ -103,12 +99,17 @@ body{
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-.profile-page .profile-header .cover .cover-body .profile-info .camera span{
+.profile-page .profile-header .cover .cover-body .profile-info .camera .material-symbols-outlined{
   color: #fff;
   flex-shrink: 0;
   padding: 19px;
   border-radius: 33px;
   background: #FF6B00;
+  font-variation-settings: 'FILL' 0;
+}
+.profile-page .profile-header .cover .cover-body .profile-info .camera .material-symbols-outlined:hover{
+  border: 2px solid #FFF;
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.12);
 }
 
 @media (max-width: 767px) {
@@ -366,6 +367,10 @@ body{
   height: 48px;
   border-radius: 100%;
   margin-right: 15px;
+  position: relative;
+  -o-object-fit: cover;
+  object-fit: cover;
+  backface-visibility: hidden;
 }
 .profile-page .left-wrapper  .card-body .members-list .member-info a{
   color: var(--text-heading-dark, #27272E);
@@ -414,6 +419,10 @@ body{
   background:  lightgray 50% / cover no-repeat;
   box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.12);
   margin-right: 8px;
+  position: relative;
+  -o-object-fit: cover;
+  object-fit: cover;
+  backface-visibility: hidden;
 }
 .profile-page .middle-wrapper .post .card-body .write-something button {
   color: #536471;
@@ -456,6 +465,8 @@ body{
 .profile-page .middle-wrapper .post .card-body .post-features .post-icon span{
   color: #536471;
   margin-right: 8px;
+  transition: font-variation-setings 0.25s;
+  font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 48;
 }
 
 /* Artist post */
@@ -477,6 +488,10 @@ body{
   background: lightgray 50% / cover no-repeat;
   box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.12);
   margin-right: 10px;
+  position: relative;
+  -o-object-fit: cover;
+  object-fit: cover;
+  backface-visibility: hidden;
 }
 .profile-page .middle-wrapper  .artist-post .card-header .group-posted .name{
   color: #0F1419;
@@ -621,39 +636,257 @@ body{
   color: #FF6B00;
 }
 
+/* About tab */
+.profile-page .about-tab {
+  border-radius: 10px;
+  background: #FFF;
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.14);
+  padding: 90px;
+  margin: 0 .1%;
+}
+.profile-page .about-tab .overview{
+  color: #111827;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.96px;
+}
+.profile-page .about-tab .content, 
+.profile-page .about-tab .capacity,
+.profile-page .about-tab .capacity-list,
+ .profile-page .about-tab .capacity-list li  {
+  color: #B8BBCF;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.profile-page .about-tab  .capacity-list{
+  padding-left: 1rem;
+  margin-bottom: 48px;
+}
+.profile-page .about-tab  .genres{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+}
+.profile-page .about-tab .genres h4{
+  color: #111827;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.72px;
+  margin-bottom: 0;
+}
+.profile-page .about-tab .genres .genres-list{
+  display: block;
+}
+.profile-page .about-tab .genres .genres-list .badge {
+  border-radius: 12px;
+  border: 2px solid #ABADC6;
+  color:  #ABADC6;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+  padding: 12px 16px;
+  margin-right: 8px;
+  margin-bottom: 6px;
+}
+.profile-page .about-tab .social-media {
+  background: rgba(239, 243, 253, 0.50);
+  padding: 10%;
+  margin-bottom: 48px;
+}
+.profile-page .about-tab .social-media h4{
+  color: #111827;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.72px;
+  margin-bottom: 18px;
+}
+.profile-page .about-tab .social-media ul{
+  list-style-type: none;
+  padding-left: 0rem;
+}
+.profile-page .about-tab .social-media ul img{
+  width: 32px;
+  height: 32px;
+  margin-right: 9px;
+}
+.profile-page .about-tab .social-media ul li{
+  color: #121212;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 26px;
+  text-transform: capitalize;
+  margin-bottom: 10px;
+}
+.profile-page .about-tab .ratings h4{
+  color: #111827;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.72px;
+}
+.profile-page .about-tab .ratings .ratings-wrapper{
+  display: flex;
+  align-items: center;
+}
+.profile-page .about-tab .ratings span {
+  color: #FF6B00;
+  transition: font-variation-setings 0.25s;
+  font-variation-settings: 'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 48;
+  padding-right: 4px;
+}
+.profile-page .about-tab .ratings p {
+  font-style: normal;
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 11px;
+  color: var(--p-color3);
+  margin-bottom: 0rem;
+  margin-top: 3px;
+}
+.profile-page .about-tab .ratings p .reviews {
+  color: #8C8C8C;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 13.5px;
+  margin-bottom: 0rem;
+  padding-left: 4px;
+}
+.profile-page .about-tab .band-members {
+  margin-top: 60px;
+  border-top: 2px solid #E5E7EB;
+}
+.profile-page .about-tab .band-members h4 {
+  color: #121212;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -1.2px;
+  text-transform: capitalize;
+  margin-bottom: 24px;
+  margin-top: 32px;
+}
+.profile-page .about-tab .band-members .card{
+  width: 19%;
+  border: 0;
+  background: none;
+  -webkit-box-shadow: none;
+  display: inline-flex;
+  margin-right: 1%;
+  margin-bottom: 20px;
+}
+.profile-page .about-tab .band-members .card img{
+  border-radius: 10px;
+  position: relative;
+  -o-object-fit: cover;
+  object-fit: cover;
+  backface-visibility: hidden;
+  height: 254px;
+  flex-shrink: 0;
+}
+.profile-page .about-tab .band-members .card .card-body{
+  padding-left: 1%;
+}
+.profile-page .about-tab .band-members .card .card-title{
+  color: #121212;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.32px;
+  margin-bottom: 4px;
+}
+.profile-page .about-tab .band-members .card .card-text{
+  color: #AAA;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.64px;
+}
 
+/* Data from backend - array of objects at the bottom */
+.artist-data .container .user{
+  white-space: normal;
+  /* overflow: hidden; */
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
 
+                                                        /* MEDIA QUERIES */
+
+@media (min-width: 1200px) and (max-width: 1399.98px){
+  .profile-page .about-tab .ratings p {
+    margin-top: 5px;
+}
+.profile-page .about-tab .genres .genres-list .badge {
+    padding: 10px 14px;
+    margin-right: 6px;
+    margin-bottom: 10px;
+}
+.profile-page .about-tab .band-members {
+  margin-top: 40px;
+}
+.profile-page .about-tab {
+    padding: 60px;
+}
+.profile-page .about-tab .band-members .card img {
+  height: 200px;
+}
+  .profile-page .right-wrapper .past-events .card-body .events-list .events-info img, .profile-page .right-wrapper .original-songs .songs-list .songs-info img{
+  width: 48px;
+  height: 48px;
+  margin-right: 6px;
+}
+.profile-page .profile-header .cover .cover-body .profile-pic {
+  width: 270px;
+  height: 270px;
+}
+}
+@media (min-width: 992px) and (max-width: 1199.98px){
+  .profile-page .right-wrapper .past-events .card-body .events-list .events-info img, .profile-page .right-wrapper .original-songs .songs-list .songs-info img{
+  width: 42px;
+  height: 42px;
+  margin-right: 6px;
+}
+.profile-page .profile-header .cover .cover-body .profile-pic {
+  width: 200px;
+  height: 200px;
+}
+}
+@media (min-width: 2400px) {
+  .profile-page .profile-header .cover figure {
+      /* height: 280px; */
+      overflow: hidden;
+  }
+}
+@media (max-width: 767px) {
+  .profile-page .profile-header .cover figure {
+      /* height: 110px; */
+      overflow: hidden;
+  }
+}
+
+/* Special stylings */
 
 .profile-page .profile-body .left-wrapper .social-links a {
   width: 30px;
   height: 30px;
 }
-
-/* .profile-page .profile-body .right-wrapper .latest-photos > .row {
-  margin-right: 0;
-  margin-left: 0;
-}
-
-.profile-page .profile-body .right-wrapper .latest-photos > .row > div {
-  padding-left: 3px;
-  padding-right: 3px;
-}
-
-.profile-page .profile-body .right-wrapper .latest-photos > .row > div figure {
-  -webkit-transition: all .3s ease-in-out;
-  transition: all .3s ease-in-out;
-  margin-bottom: 6px;
-}
-
-.profile-page .profile-body .right-wrapper .latest-photos > .row > div figure:hover {
-  -webkit-transform: scale(1.06);
-  transform: scale(1.06);
-}
-
-.profile-page .profile-body .right-wrapper .latest-photos > .row > div figure img {
-  border-radius: .25rem;
-} */
-
 .rtl .profile-page .profile-header .cover .cover-body .profile-name {
   margin-left: 0;
   margin-right: 17px;
@@ -714,11 +947,3 @@ img {
   border-radius: 0.25rem;
 }
 
-/* Data from backend */
-.artist-data .container .user{
-  white-space: normal;
-  /* overflow: hidden; */
-  word-wrap: break-word;
-  white-space: pre-wrap;
-  word-break: break-word;
-}

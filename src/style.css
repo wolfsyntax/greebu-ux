@@ -2,6 +2,7 @@
 
 :root {
   --orange: #FF6B00;
+  --light-orange: #FED7AA;
   --gray1: #70868F;
   --gray2: #8690A2;
   --gray3: #B0AFB1;
@@ -54,24 +55,191 @@ header nav{
 .main-nav nav .navbar-nav li{
   padding: 0 4px;
 }
-.nav-button .log-in, .nav-button .sign-up, .nav-button .log-out {
+.main-nav .nav-button .log-in, .main-nav .nav-button .sign-up{
   border: 1px solid var(--orange);
   border-radius: 5px;
   color: var(--orange);
   background-color: var(--bg-black1);
   padding: 8px 22px;
 }
-.nav-button .log-out {
+.main-nav .nav-button .log-in{
+  background-color: var(--white);
+}
+.main-nav .nav-button .upgrade {
   border-color: var(--white);
-  color: var(--white);
+  background-color: var(--white);
+  color: var(--orange);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.46px;
+  padding: 8px 22px;
+  border-color: 1px solid var(--orange);
 }
-.nav-button .log-out i{
+.main-nav .nav-button .upgrade:hover {
+  background-color: var(--orange);
   color: var(--white);
+  border-color: 1px solid  var(--white);
 }
-.nav-button .log-in{
+.main-nav  .nav-button{
+  display: flex;
+  align-items: center;
+}
+.main-nav  .nav-button span{
+  margin: 0 20px;
+  color: #FF6B00;
+}
+/* dropdown */
+.main-nav  .nav-button .dropdown button {
+  background-color: var(--white);
+  border: 0;
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+.main-nav  .nav-button .dropdown span{
+  margin: 0 2px;
+}
+/* shake animation */
+.main-nav  .nav-button  span:hover {
+  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+.main-nav  .nav-button .dropdown img {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 48px;
+  position: relative;
+  -o-object-fit: cover;
+  object-fit: cover;
+  backface-visibility: hidden;
+}
+.main-nav .nav-button .dropdown .dropdown-menu {
+  width: 336px;
+  box-shadow: 0px 0px 10px 0px #E5E5E5;
+  border: 0;
+  top: 100%;
+  margin-right: -70px;
+  padding-top: 0;
+  /* transition: 2.5s ease; */
+}
+.main-nav .nav-button .dropdown .dropdown-menu .artist-info img{
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  border-radius: 48px;
+  position: relative;
+  -o-object-fit: cover;
+  object-fit: cover;
+  backface-visibility: hidden;
+  margin-right: 10px;
+}
+.main-nav .nav-button .dropdown .dropdown-menu .artist-info {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.main-nav .nav-button .dropdown .dropdown-menu .artist-info .artist-name {
+  width: 100%;
+}
+.main-nav .nav-button .dropdown .dropdown-menu .artist-info .artist-name .name{
+  color: var(--black-color);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin-bottom: 2px;
+  word-break: break-all;
+}
+.main-nav .nav-button .dropdown .dropdown-menu .artist-info .artist-name .email{
+  color: var(--gray6);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.16px;
+  margin-bottom: 7px;
+  word-break: break-all;
+}
+.main-nav .nav-button .dropdown .dropdown-menu .artist-info .artist-name .view-profile {
+  color: var(--orange);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  padding: 8.5px 13px;
+  border-radius: 4px;
+  background: var(--light-orange);
+  text-align: center;
+  width: fit-content;
+}
+.main-nav .nav-button .dropdown .dropdown-menu li{
+  margin: 30px 1rem;
+  display: flex;
+  align-items: center;
+}
+.main-nav .nav-button .dropdown .dropdown-menu li a:hover{
+  color: var(--orange);
+  background-color: var(--white);
+}
+.main-nav .nav-button .dropdown .dropdown-menu li a{
+  color: var(--black);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.18px;
+  padding: 0;
+}
+.main-nav .nav-button .dropdown .dropdown-menu li span{
+  color: var(--orange);
+  margin: 0 12px 0 14px;
+}
+.main-nav .nav-button .dropdown .dropdown-menu  .dropdown-divider {
+  height: 0;
+  overflow: hidden;
+  border-top: 0.7px solid #CECECE;
+  opacity: 1;
+  width: 90%;
+  margin: 0 auto;
+}
+.main-nav .nav-button .dropdown .dropdown-menu  .logout-wrapper span{
+  color: var(--black);
+  margin: 0 12px 0 14px;
+}
+.main-nav .nav-button .dropdown .dropdown-menu  .logout-wrapper .logout{
+  color: var(--black);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.18px;
+}
+.main-nav .nav-button .dropdown .dropdown-menu  .logout-wrapper .logout:hover{
+  color: var(--orange);
+}
+/* .main-nav .nav-button .log-in{
   background-color: transparent; 
-}
-.nav-button .sign-up{
+} */
+.main-nav .nav-button .sign-up{
   margin-right: 0px;  
   background-color: var(--orange);
   color: var(--white);
@@ -146,6 +314,8 @@ header nav{
   padding: 10px;
   background: #000;
   border-radius: 100%;
+  transition: font-variation-setings 0.25s;
+  font-variation-settings: 'FILL' 1,'wght' 800,'GRAD' 0,'opsz' 48;
 }
 #home-carousel button .prev:hover, #home-carousel button .next:hover{
   background: var(--orange);
@@ -527,6 +697,7 @@ filter: brightness(70%);
   border-radius: 100%;
   display: block;
   clear: both;
+  font-size: 40px;
   border: 10px solid var(--white);
   outline: 10px solid #ffffff5c;
   transition: 0.7s all ease-in;
@@ -1617,6 +1788,8 @@ background-color: var(--orange);
 .artists .container .row .filter span, .events-showing .container .row .filter span, .event-organizers .container .top-row .filter span {
   margin-right: 10px;
   font-weight: 900;
+  transition: font-variation-setings 0.25s;
+  font-variation-settings: 'FILL' 1,'wght' 800,'GRAD' 0,'opsz' 48;
 }
 .artists .container .row .input-group, .events-showing .container .row .input-group, .event-organizers .container .top-row .input-group{
   width: 480px;
@@ -1659,6 +1832,8 @@ background-color: var(--orange);
   background: var(--orange);
   padding: 12px;
   border-radius: 20%;
+  transition: font-variation-setings 0.25s;
+  font-variation-settings: 'FILL' 1,'wght' 800,'GRAD' 0,'opsz' 48;
 }
 .artists .container .top-row h5, .events-showing .container .top-row h5{
   font-style: normal;
@@ -2302,6 +2477,19 @@ header nav {
 }
 .main-nav nav li a {
   font-size: 17px;
+}
+.main-nav .nav-button .dropdown .dropdown-menu li {
+  margin: 24px 1rem;
+}
+.main-nav .nav-button .dropdown .dropdown-menu li a {
+  font-size: 16px;
+}
+.main-nav .nav-button .dropdown .dropdown-menu  .logout-wrapper .logout {
+  font-size: 16px;
+}
+.main-nav .nav-button .upgrade {
+  font-size: 18px;
+  padding: 8px 20px;
 }
 .home-slider {
   background-position: top 50px left -250px,  bottom right -130px;
