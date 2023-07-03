@@ -346,23 +346,52 @@
               </div>
               <!-- right wrapper end -->
           </div>
-          <div class="row about" v-if="activeItem === 'About'">
-
+                                                                             <!-- About tab -->
+          <div class="row about-tab" v-if="activeItem === 'About'">
             <div class="col-7">
               <h3 class="overview">Overview</h3>
-              <p class="content">Lorem ipsum dolor sit amet consectetur. Consectetur justo ornare et netus adipiscing nisi nisl tellus a. Venenatis sed augue ultricies 
-                vulputate in. Eu risus neque nisl libero eget in molestie felis sem. Pharetra sagittis eget ipsum pulvinar aliquet libero amet accumsan auctor.</p>
+              <p class="content">{{ aboutArtist }}</p>
               <h5 class="capacity">Our capacity:</h5>  
-              <ul class="capacity-list">
-                <li><p>1. Mobile apps design</p></li>
-                <li><p>2. Website design & development</p></li>
-                <li><p>3. Packaging</p></li>
-                <li><p>4. Brand identity</p></li>
-                <li><p>5. Print design</p></li>
-              </ul>
+              <ol type="1" class="capacity-list">
+                <li v-for="capacity in artistCapacity">
+                    {{ capacity }}
+                </li>
+              </ol> 
+              <div class="genres">
+                <h4>Genres</h4>
+                <div class="genres-list">
+                  <span class="badge" v-for="genre in artistGenres">{{ genre }}</span>
+                </div>
+              </div>
             </div>
             <div class="col-5">
-              
+              <div class="social-media">
+                <h4>Social Media</h4>
+                <ul>
+                  <li v-for="socialMedia in artistSocialMedia">
+                    <img :src="socialMedia.img">{{ socialMedia.name }}
+                  </li>
+                </ul>
+              </div>
+              <div class="ratings">
+                <h4>Ratings</h4>
+                <div class="ratings-wrapper">
+                  <span class="material-symbols-rounded">star</span>
+                  <p>{{ artistRatings }}<span class="reviews">({{ artistReviews }} reviews)</span></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="band-members">
+                <h4>Band Members</h4>
+                <div class="card" v-for="bandMember in bandMembers">
+                <img :src="bandMember.img" class="card-img-top" alt="band member">
+                <div class="card-body">
+                  <h5 class="card-title">{{ bandMember.name }}</h5>
+                  <p class="card-text">{{ bandMember.role }}</p>
+                </div>
+              </div>
+              </div>
             </div>
           </div>
           <div class="row profile-body" v-if="activeItem === 'Songs'">
@@ -416,6 +445,7 @@ export default {
       errors: {
 
       },
+      // Artist profile and Post tab
       navItems: ['Post', 'About', 'Songs', 'Videos', 'Photos', 'Events', 'Reviews'],
       activeItem: 'Post',
       post: ['Post 1', 'Post 2','Post 1', 'Post 2','Post 1', 'Post 2'],
@@ -424,8 +454,22 @@ export default {
     ],
       videos:['https://video.wixstatic.com/video/8fd47a_61de9ebf0ad64f0fa93d72e4279551f7/1080p/mp4/file.mp4'],
       photos:['@/assets/home/birthdays.webp', '@/assets/home/birthdays.webp', '@/assets/home/birthdays.webp', '@/assets/home/birthdays.webp', '@/assets/home/birthdays.webp'],
-
-
+      
+      // About tab
+      aboutArtist: 'Lorem ipsum dolor sit amet consectetur. Consectetur justo ornare et netus adipiscing nisi nisl tellus a. Venenatis sed augue ultricies vulputate in. Eu risus neque nisl libero eget in molestie felis sem. Pharetra sagittis eget ipsum pulvinar aliquet libero amet accumsan auctor.',
+      artistCapacity: ['Mobile apps design', 'Website design & development', 'Packaging', 'Brand identity', 'Print design' ],
+      artistGenres:['Reggae','Metal','Hip-hop/Rap','Country Acoustic','Electronic','Rock'],
+      artistSocialMedia:[
+        { img: '/src/assets/artist-account/spotify-icon-gray.svg', name: 'IDLEPITCH'},
+        { img: '/src/assets/artist-account/youtube-icon-gray.svg', name: 'youtube.com/@idlepitch'}
+      ],
+      artistRatings: '4.95',
+      artistReviews: '234',
+      bandMembers: [
+        { img: 'src/assets/artist-account/band-member-1.webp', name: 'John Doe', role: 'Vocalist'}, { img: 'src/assets/artist-account/band-member-2.webp', name: 'Jose Diaz', role: 'Guitarist'},
+        { img: 'https://res.cloudinary.com/daorvtlls/image/upload/v1686649329/trending-bicolano-artist-5_lxhfkw.png', name: 'John Doe', role: 'Vocalist'}, { img: 'src/assets/artist-account/band-member-2.webp', name: 'Jose Diaz', role: 'Guitarist'},
+        { img: 'https://res.cloudinary.com/daorvtlls/image/upload/v1686465790/cld-sample.jpg', name: 'Michelle Rose', role: 'Songwriter'},
+      ]
     }
   },
   setup()
