@@ -18,6 +18,10 @@ var mutations = {
   SET_COUNTRIES(state, payload)
   {
     state.countries = payload;
+  },
+  SET_ROLE(state, payload)
+  {
+    state.role = '';
   }
 }
 

@@ -33,6 +33,7 @@ import moment from 'moment'
 import './style.css'
 import 'vuesax/dist/vuesax.css';
 
+import VueSocialauth from 'vue-social-auth'
 
 const app = createApp(App)
   .use(i18n)
@@ -40,6 +41,20 @@ const app = createApp(App)
   .use(store)
   .use(router)
   .use(Vuesax, {})
+  .use(VueSocialauth, {
+    providers: {
+      google: {
+        clientId: import.meta.env.VITE_GOOGLE_CLIENT_ID,
+        clientSecret: import.meta.env.VITE_GOOGLE_CLIENT_SECRET,
+        redirectUri: import.meta.env.VITE_GOOGLE_REDIRECT_URI,
+      },
+      facebook: {
+        clientId: import.meta.env.VITE_FACEBOOK_CLIENT_ID,
+        clientSecret: import.meta.env.VITE_FACEBOOK_CLIENT_SECRET,
+        redirectUri: import.meta.env.VITE_FACEBOOK_REDIRECT_URI,
+      }
+    }
+  })
   // .use(BootstrapVueIcons)
   .component('multiselect', Multiselect)
   .component('font-awesome-icon', FontAwesomeIcon)

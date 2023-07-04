@@ -108,8 +108,13 @@ const router = createRouter({
           path: '/register',
           name: 'register',
           component: () => import('@/views/Auth/Register.vue'),
-        }
-
+        },
+        {
+          path: '/auth/:provider/callback/',
+          component: {
+            template: '<div class="auth-component"></div>'
+          }
+        },
       ]
     },
     {

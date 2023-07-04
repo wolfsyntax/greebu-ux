@@ -5,7 +5,8 @@ var actions = {
     return new Promise(async(resolve, reject) => {
 
       await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/login`, payload)
-          .then(response => {
+        .then(response =>
+        {
             
             commit('SET_AUTH', response.data)
             commit('SET_TOKEN', response.data?.token)
@@ -48,6 +49,7 @@ var actions = {
             commit('SET_AUTH', {})
             commit('SET_TOKEN', '')
             commit('SET_PROFILE', {})
+            commit('SET_ROLE', '')
           }
           resolve(response)
         })
