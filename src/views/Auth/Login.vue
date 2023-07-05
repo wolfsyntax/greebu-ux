@@ -67,9 +67,10 @@
               <div class="col-md-12 continue-with">
                 <p><span>Or Continue with</span></p>
               </div>
-              <a href="" @click="AuthProvider2('google')" class="google"><img src="@/assets/sign-in-with-google.svg" width="20"
+              <GoogleLogin :callback="callback"/>
+              <a href="" @click="AuthProviderGoogle()" class="google"><img src="@/assets/sign-in-with-google.svg" width="20"
                   height="20" alt="Sign-in with Google">Sign-in with Google</a>
-              <a href="" @click="AuthProvider2('facebook')" class="facebook"><img src="@/assets/sign-in-with-facebook.svg"
+              <a href="" @click="AuthProviderFB()" class="facebook"><img src="@/assets/sign-in-with-facebook.svg"
                   width="20" height="20" alt="Sign up with Facebook">Sign up with Facebook</a>
               <div class="forgot-password">
                 <a href="forgot-password">I Forgot my Password</a>
@@ -87,6 +88,7 @@
 <script>
 import Layout from '@/components/Layouts/AuthLayout.vue';
 import { mapGetters, mapState, mapActions } from "vuex";
+import firebase from 'firebase/app';
 
 export default {
   components: {
@@ -167,36 +169,43 @@ export default {
         console.log({ err: err })
       })
     },
-    AuthProvider2(provider)
+    AuthProviderFB()
     {
+      const provider = new firebase.auth.FacebookAuthProvider()
 
-      var self = this
-
-      this.$auth.authenticate(provider).then(response =>
+      firebase.auth().signInWithPopup(provider).then(result =>
       {
+        console.log('Firebase result [Facebook]: ', result);
 
-        self.SocialLogin2(provider, response)
-
-      }).catch(err =>
+      }).catch((err) =>
       {
-        console.log({ err: err })
-      })
-
-    },
-
-    SocialLogin2(provider, response)
-    {
-
-      this.$http.post('/sociallogin/' + provider, response).then(response =>
-      {
-
-        console.log(response.data)
-
-      }).catch(err =>
-      {
-        console.log({ err: err })
+        this.$vs.notification({
+          color: 'danger',
+          position: 'top-right',
+          title: 'Oops',
+          text: err.message
+        })
       })
     },
+    AuthProviderGoogle()
+    {
+      const provider = new firebase.auth.GoogleAuthProvider()
+
+      firebase.auth().signInWithPopup(provider).then((result) =>
+      {
+        console.log('Firebase result [Google]: ', result);
+        // API Login for social media
+      }).catch((err) =>
+      {
+        this.$vs.notification({
+          color: 'danger',
+          position: 'top-right',
+          title: 'Oops',
+          text: err.message
+        })
+      })
+    }
+
   },
   computed: {
     ...mapGetters(["userInfo", "token"]),
