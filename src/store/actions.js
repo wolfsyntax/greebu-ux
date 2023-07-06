@@ -15,6 +15,7 @@ var actions = {
             commit('SET_AUTH', user)
             commit('SET_TOKEN', token)
             commit('SET_PROFILE', profile)
+            commit('SET_ROLE', profile?.role || '');
             localStorage.api_token = token
           }
           
@@ -131,6 +132,8 @@ var actions = {
             commit('SET_AUTH', user)
             commit('SET_TOKEN', token)
             commit('SET_PROFILE', profile)
+            commit('SET_ROLE', profile?.role || '');
+
             localStorage.api_token = token
           }
 
