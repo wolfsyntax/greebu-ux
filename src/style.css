@@ -2299,6 +2299,116 @@ background-color: var(--orange);
   line-height: 34.2px;
 }
 
+                                /* Basic Information - Stepper */
+.basic-information .container{
+  margin: 6.25rem auto;
+}
+/* Stepper*/
+.basic-information .container .step1 .card, .basic-information .container .step3 .card,
+.basic-information .container .step4 .card{
+  margin: 5rem auto;
+  border-radius: 1rem;
+  background: #FFF;
+  box-shadow: 0px 8px 36px 0px rgba(56, 29, 219, 0.10);
+  border: 0;
+  padding: 3.12rem 4rem 4.12rem;
+}
+.basic-information .container .step1 .card-title, .basic-information .container .step2 .title,
+.basic-information .container .step3 .card-title, .basic-information .container .step4 .card-title{
+  color: #000;
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.basic-information .container .step1  .card-text, .basic-information .container .step2 .sub-title,
+.basic-information .container .step4 .card-text{
+  color: #B8BBCF;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+.basic-information .container .step1 form label, .basic-information .container .step3 form label,
+.basic-information .container .step4 form label{
+  color: #121212;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.025rem;
+  margin-bottom: 0.75rem;
+}
+.basic-information .container .step1 form .form-group .form-control, .basic-information .container .step3 form .form-group .form-control{
+  height: 3.5rem;
+  margin-bottom: 2rem
+}
+.basic-information .container .step1 form .form-group .form-control::placeholder, .basic-information .container .step3 form .form-group .form-control::placeholder{
+  color: #B8BBCF;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.3125rem;
+}
+.basic-information .container .step1 form  .button-wrapper, .basic-information .container .step2 .button-wrapper,
+.basic-information .container .step3 form  .button-wrapper, .basic-information .container .step4  .button-wrapper{
+  display: flex;
+  width: 100%;
+  gap: 4%;
+  margin-top: 4.12rem;
+}
+.basic-information .container .step1 form  .button-wrapper .back, .basic-information .container .step1 form  .button-wrapper .next,
+.basic-information .container .step2 .button-wrapper .back, .basic-information .container .step2 .button-wrapper .next,
+.basic-information .container .step3 form  .button-wrapper .back, .basic-information .container .step3 form  .button-wrapper .next,
+.basic-information .container .step4 form .button-wrapper .back,  .basic-information .container .step4 form  .button-wrapper .next{
+  color: #FF6B00;
+  text-align: center;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.5rem;
+  padding: 1rem 0rem;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  border: 1px solid #FF6B00;
+  width: 48%;
+  float: left;
+}
+.basic-information .container .step1 form  .button-wrapper .back:hover, .basic-information .container .step2 .button-wrapper .back:hover,
+.basic-information .container .step3 form  .button-wrapper .back:hover, .basic-information .container .step4 form  .button-wrapper .back:hover{
+  color: #FFF;
+  background: #FF6B00;
+}
+.basic-information .container .step1 form  .button-wrapper .next, .basic-information .container .step2 .button-wrapper .next,
+.basic-information .container .step3 form  .button-wrapper .next, .basic-information .container .step4 form  .button-wrapper .next{
+  width: 48%;
+  float: right;
+  color: #FFF;
+  background: #FF6B00;
+}
+.basic-information .container .step2 {
+  margin: 5rem auto;
+  box-shadow: 0px 8px 36px 0px rgba(56, 29, 219, 0.10);
+  border: 0;
+  padding: 5rem 5rem 6rem;
+}
+.basic-information .container .step2 .button-wrapper{
+  gap: 2%;
+}
+.basic-information .container .step2 .button-wrapper .back, .basic-information .container .step2 .button-wrapper .next {
+  width: 24%;
+}
+.basic-information .container .step3 .card-title, .basic-information .container .step4 .card-title{
+  margin-bottom: 2.5rem;
+}
+.basic-information .container .step4 .card form .form-group select{
+  height: 3.5rem;
+  margin-bottom: 2rem;
+  border-radius: 0.5rem;
+  border: 1px solid #E4EBFF;
+}
 
                                                                     /* MEDIA QUERIES */
 
