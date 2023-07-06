@@ -108,8 +108,38 @@ const router = createRouter({
           path: '/register',
           name: 'register',
           component: () => import('@/views/Auth/Register.vue'),
+        },
+        {
+          path: '/basicinformation',
+          name: 'basicinformation',
+          component: () => import('@/views/BasicInformation/Index.vue'),
+        },
+        {
+          path: '/profile',
+          // component: {
+          //   template: '<div class="auth-component"></div>'
+          // }
+          component: () => import('@/views/Customer/EditProfile.vue'),
+          meta: {
+            requiresLogin: true,
+            role: 'customers',
+            breadcrumb: [
+              {title: '', url: '',},
+            ],
+          },
+        },
+        {
+          path: '/dashboard',
+          name: 'dashboard',
+          component: () => import('@/views/Dashboard.vue'),
+          meta: {
+            requiresLogin: true,
+            role: '',
+            breadcrumb: [
+              {title: '', url: '',},
+            ],
+          },
         }
-
       ]
     },
     {

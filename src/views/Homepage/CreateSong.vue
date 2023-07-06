@@ -12,7 +12,7 @@
               <p>Please note that the process of creating a customized artist song is a meticulous and detailed one, requiring careful attention to 
                 every aspect of the composition, from the lyrics to the melody and instrumentation. As such, we require a minimum of one month to 
                 complete each project to ensure that we deliver the highest quality product possible.</p>
-                <a href="" class="btn btn-primary btn-lg">Get Started</a>
+                <a href="/basicinformation" class="btn btn-primary btn-lg">Get Started</a>
             </div>
           </div>
         </div>
@@ -22,9 +22,11 @@
 </template>
 <script>
 import Layout from '@/components/Layouts/Layout.vue';
+
 export default {
   components: {
     layout: Layout,
+
   },
   setup()
   {

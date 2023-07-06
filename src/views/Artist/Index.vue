@@ -1,12 +1,4 @@
 <template>
-  <!-- icon with outlined, rounded and sharp will work only on this file using this cdn  -->
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-  <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0" /> -->
-
-  <!-- icon with outlined, rounded and sharp will work only on this file using this cdn  -->
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-  <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0" /> -->
-
   <section class="artist-profile">
     <div class="container">
       <div class="profile-page tx-13">
@@ -16,8 +8,13 @@
                       <div class="cover">
                           <div class="gray-shade"></div>
                           <figure>
-                              <img src="https://res.cloudinary.com/daorvtlls/image/upload/v1687927640/artist-cover-photo-min_fleelu.webp" class="img-fluid" alt="profile cover">
+                              <img src="https://res.cloudinary.com/daorvtlls/image/upload/v1686465779/samples/cloudinary-group.jpg" class="img-fluid" alt="profile cover">
                           </figure>
+                            <div class="cover-photo-camera">
+                              <button type="submit" class="btn btn-success">
+                                <span class="material-symbols-outlined">&#xE412;</span>
+                              </button>
+                            </div>
                           <div class="row cover-body d-flex justify-content-between align-items-center">
                               <div class="col-9">
                                 <div class="profile-info">
@@ -25,13 +22,14 @@
                                   <img class="profile-pic" src="https://res.cloudinary.com/daorvtlls/image/upload/v1686465790/cld-sample.jpg" alt="profile">
                                   <!-- https://res.cloudinary.com/daorvtlls/image/upload/v1687927639/artist-profile-1_uhpekp.webp -->
                                     <div class="camera">
-                                      
-                                      <i class="material-icons"><span class="material-symbols-outlined">&#xE412;</span></i>
+                                      <button type="submit" class="btn btn-success">
+                                        <i class="material-icons"><span class="material-symbols-outlined">&#xE412;</span></i>
+                                      </button>
                                     </div>
                                   </div>
                                   <div class="profile-wrapper">
                                     <div class="name-artist">
-                                      <h3 class="profile-name">Idlepitch</h3>
+                                      <h3 class="profile-name">{{ profile.business_name }}</h3>
                                       <h5 class="type-of-artist">Full Band</h5>
                                     </div>
                                     <div class="folow">
@@ -81,7 +79,7 @@
                               </div>
                           </div>
                           <h5 class="about">About</h5>
-                          <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque posuere fermentum urna, eu condimentum mauris</p>
+                          <p class="description">{{ profile.bio }}</p>
                           <div class="mt-3 social-media">
                             <i class="material-icons"><span class="material-symbols-outlined calendar">calendar_month</span></i><p class="band-name">IDLEPITCH</p>
                           </div>
@@ -240,7 +238,9 @@
                                   </div>
                               </div>
                               <div class="card-body">
-                                  <p class="mb-3">Travel and you will born for a second time️️</p>
+                                  <p class="mb-3">Travel and you will born for a second time️️ Travel and you will born for a second time️️ Travel and you will born for a second time️️ Travel and you will born for a second time️️
+                                    Travel and you will born for a second time️️ Travel and you will born for a second time️️ Travel and you will born for a second time️️ Travel and you will born for a second time️️
+                                  </p>
                                   <div class="posted-img">
                                     <img class="img-fluid" src="https://res.cloudinary.com/daorvtlls/image/upload/v1686465778/samples/imagecon-group.jpg" loading="lazy" alt="posted image">
                                   </div>
@@ -346,7 +346,22 @@
                                     <i class="material-icons"><span class="material-symbols-outlined">more_vert</span></i>
                                   </a>
                                 </div>
-                            </div>        
+                            </div>   
+                            <div class="songs-list">
+                                <div class="songs-info">
+                                  <img src="https://res.cloudinary.com/daorvtlls/image/upload/v1686465774/samples/people/jazz.jpg" 
+                                  loading="lazy" alt="member profile">
+                                  <div class="member-info">
+                                  <a href="#">Loving In Stereo</a>
+                                  <p>Idlepitch - Album</p>
+                                  </div>
+                                </div>
+                                <div class="more">
+                                  <a href="#">
+                                    <i class="material-icons"><span class="material-symbols-outlined">more_vert</span></i>
+                                  </a>
+                                </div>
+                            </div>      
                         </div>  <!-- end of card-body -->     
                       </div> 
                       </div>
@@ -354,23 +369,68 @@
               </div>
               <!-- right wrapper end -->
           </div>
-          <div class="row profile-body" v-if="activeItem === 'About'">
-            <h2>About po</h2>
+                                                                             <!-- About tab -->
+          <div class="row about-tab" v-if="activeItem === 'About'">
+            <div class="col-7">
+              <h3 class="overview">Overview</h3>
+              <p class="content">{{ aboutArtist }}</p>
+              <h5 class="capacity">Our capacity:</h5>  
+              <ol type="1" class="capacity-list">
+                <li v-for="capacity in artistCapacity">
+                    {{ capacity }}
+                </li>
+              </ol> 
+              <div class="genres">
+                <h4>Genres</h4>
+                <div class="genres-list">
+                  <span class="badge" v-for="genre in artistGenres">{{ genre }}</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-5">
+              <div class="social-media">
+                <h4>Social Media</h4>
+                <ul>
+                  <li v-for="socialMedia in artistSocialMedia">
+                    <img :src="socialMedia.img">{{ socialMedia.name }}
+                  </li>
+                </ul>
+              </div>
+              <div class="ratings">
+                <h4>Ratings</h4>
+                <div class="ratings-wrapper">
+                  <span class="material-symbols-rounded">star</span>
+                  <p>{{ artistRatings }}<span class="reviews">({{ artistReviews }} reviews)</span></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="band-members">
+                <h4>Band Members</h4>
+                <div class="card" v-for="bandMember in bandMembers">
+                <img :src="bandMember.img" class="card-img-top" alt="band member">
+                <div class="card-body">
+                  <h5 class="card-title">{{ bandMember.name }}</h5>
+                  <p class="card-text">{{ bandMember.role }}</p>
+                </div>
+              </div>
+              </div>
+            </div>
           </div>
           <div class="row profile-body" v-if="activeItem === 'Songs'">
-            <h2>Songs po</h2>
+            <h2>Songs</h2>
           </div>
           <div class="row profile-body" v-if="activeItem === 'Videos'">
-            <h2>Videos po</h2>
+            <h2>Videos</h2>
           </div>
           <div class="row profile-body" v-if="activeItem === 'Photos'">
-            <h2>Photos po</h2>
+            <h2>Photos</h2>
           </div>
           <div class="row profile-body" v-if="activeItem === 'Events'">
-            <h2>Events po</h2>
+            <h2>Events</h2>
           </div>
           <div class="row profile-body" v-if="activeItem === 'Reviews'">
-            <h2>Reviews po</h2>
+            <h2>Reviews</h2>
           </div>
           
           
@@ -408,6 +468,7 @@ export default {
       errors: {
 
       },
+      // Artist profile and Post tab
       navItems: ['Post', 'About', 'Songs', 'Videos', 'Photos', 'Events', 'Reviews'],
       activeItem: 'Post',
       post: ['Post 1', 'Post 2','Post 1', 'Post 2','Post 1', 'Post 2'],
@@ -415,8 +476,23 @@ export default {
       'https://res.cloudinary.com/daorvtlls/video/upload/v1686647605/Nirvana_-_Smells_like_teen_spirit_zs8yo4.mp3',
     ],
       videos:['https://video.wixstatic.com/video/8fd47a_61de9ebf0ad64f0fa93d72e4279551f7/1080p/mp4/file.mp4'],
-      photos:['@/assets/home/birthdays.webp', '@/assets/home/birthdays.webp', '@/assets/home/birthdays.webp', '@/assets/home/birthdays.webp', '@/assets/home/birthdays.webp']
-
+      photos:['@/assets/home/birthdays.webp', '@/assets/home/birthdays.webp', '@/assets/home/birthdays.webp', '@/assets/home/birthdays.webp', '@/assets/home/birthdays.webp'],
+      
+      // About tab
+      aboutArtist: 'Lorem ipsum dolor sit amet consectetur. Consectetur justo ornare et netus adipiscing nisi nisl tellus a. Venenatis sed augue ultricies vulputate in. Eu risus neque nisl libero eget in molestie felis sem. Pharetra sagittis eget ipsum pulvinar aliquet libero amet accumsan auctor.',
+      artistCapacity: ['Mobile apps design', 'Website design & development', 'Packaging', 'Brand identity', 'Print design' ],
+      artistGenres:['Reggae','Metal','Hip-hop/Rap','Country Acoustic','Electronic','Rock'],
+      artistSocialMedia:[
+        { img: '/src/assets/artist-account/spotify-icon-gray.svg', name: 'IDLEPITCH'},
+        { img: '/src/assets/artist-account/youtube-icon-gray.svg', name: 'youtube.com/@idlepitch'}
+      ],
+      artistRatings: '4.95',
+      artistReviews: '234',
+      bandMembers: [
+        { img: 'src/assets/artist-account/band-member-1.webp', name: 'John Doe', role: 'Vocalist'}, { img: 'src/assets/artist-account/band-member-2.webp', name: 'Jose Diaz', role: 'Guitarist'},
+        { img: 'https://res.cloudinary.com/daorvtlls/image/upload/v1686649329/trending-bicolano-artist-5_lxhfkw.png', name: 'John Doe', role: 'Vocalist'}, { img: 'src/assets/artist-account/band-member-2.webp', name: 'Jose Diaz', role: 'Guitarist'},
+        { img: 'https://res.cloudinary.com/daorvtlls/image/upload/v1686465790/cld-sample.jpg', name: 'Michelle Rose', role: 'Songwriter'},
+      ]
     }
   },
   setup()
@@ -432,6 +508,14 @@ export default {
     {
 
     })
+    .catch(err => {
+        this.$vs.notification({
+          color: 'danger',
+          position: 'top-right',
+          title: 'Server Status',
+          text: `${err.message}`
+        })
+      });
   },
   methods: {
     ...mapActions([
@@ -478,7 +562,9 @@ export default {
         default:
           return 0;
       }
-    }
+    },
+
+    
 
   },
   computed: {

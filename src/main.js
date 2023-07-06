@@ -1,4 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 import { createApp } from 'vue';
 
 import axios from 'axios';
@@ -33,6 +34,8 @@ import moment from 'moment'
 import './style.css'
 import 'vuesax/dist/vuesax.css';
 
+import { VueFire, VueFireAuth } from 'vuefire'
+import { firebaseApp } from './firebase/init';
 
 const app = createApp(App)
   .use(i18n)
@@ -40,6 +43,15 @@ const app = createApp(App)
   .use(store)
   .use(router)
   .use(Vuesax, {})
+
+  .use(VueFire, {
+    // imported above but could also just be created here
+    firebaseApp,
+    modules: [
+      // we will see other modules later on
+      VueFireAuth(),
+    ],
+  })
   // .use(BootstrapVueIcons)
   .component('multiselect', Multiselect)
   .component('font-awesome-icon', FontAwesomeIcon)

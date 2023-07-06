@@ -22,8 +22,39 @@
               <a :href="signUp" type="button" class="btn btn-secondary sign-up">Sign Up</a>
             </div>
             <div class="float-end nav-button" v-else>
-              <a href="#" class="btn btn-primary log-in" @click.prevent="logout">Logout</a>
-            </div>
+              <a href="#" class="btn btn-primary upgrade">Upgrade Plan</a>
+              <a href="#"><span class="material-symbols-outlined">&#xe7f4;</span></a>
+
+              <div class="dropdown dropstart">
+              <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                <img src="https://res.cloudinary.com/daorvtlls/image/upload/v1686649329/trending-bicolano-artist-4_o6xjze.png" alt="artist profile">
+                <i class="material-icons"><span class="material-symbols-rounded">&#xe313;</span></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
+                <li>
+                  <div class="artist-info">
+                    <img src="https://res.cloudinary.com/daorvtlls/image/upload/v1686649329/trending-bicolano-artist-4_o6xjze.png" alt="artist profile">
+                    <div class="artist-name">
+                      <p class="name">Idlepitch</p>
+                      <p class="email">idlepitch@gmail.com</p>
+                      <a class="dropdown-item view-profile" href="#">View Profile</a>
+                    </div>
+                  </div>
+                </li>
+                <li><hr class="dropdown-divider"></li>
+                <li v-for="(artistSettings, index) in artistDropdown" :key="index">
+                  <i class="material-icons"><span class="material-symbols-rounded">{{ artistSettings.icon }}</span></i>
+                  <a class="dropdown-item" :href="artistSettings.link">{{ artistSettings.name }}</a>
+                </li>
+                <li><hr class="dropdown-divider"></li>
+                <li class="logout-wrapper">
+                  <i class="material-icons"><span class="material-symbols-rounded">logout</span></i>
+                  <a class="dropdown-item logout" href="#" @click.prevent="logout">Logout</a>
+                </li>
+
+              </ul>
+            </div> <!-- end of dropdown -->
+            </div> <!-- end v-else -->
 
           </div>
         </div>
@@ -133,7 +164,16 @@ export default {
         { page: 'Artist', link: '/artists' },
         { page: 'Events', link: '/events' },
         { page: 'Services', link: '/services' },
-        { page: 'Partner With Us', link: '/partners' }
+        // { page: 'Partner With Us', link: '/partners' }
+      ],
+      artistDropdown: [
+        { icon: 'account_circle', name: 'Artist Account', link: '/artist'},
+        { icon: 'mail', name: 'Message', link: '/message'},
+        { icon: 'library_music	', name: 'Customized Songs', link: '/create-song'},
+        { icon: 'event_available', name: 'My Bookings', link: '/'},
+        { icon: 'queue_music', name: 'My Proposals', link: '/'},
+        { icon: 'upgrade', name: 'My Subscription', link: '/'},
+        { icon: 'help', name: 'Help Center', link: '/'},
       ],
       home: '/',
       createSong: '/create-song',

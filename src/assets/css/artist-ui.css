@@ -3,7 +3,7 @@
 }
 body{   
   font-family: 'Urbanist', sans-serif;
-  background: #F9FAFB;
+  /* background: #F9FAFB; */
   }
 
 .artist-profile .container{
@@ -29,37 +29,15 @@ body{
   margin-bottom: 0;
 }
 
-@media (max-width: 767px) {
-  .profile-page .profile-header .cover figure {
-      height: 110px;
-      overflow: hidden;
-  }
-}
-
-@media (min-width: 2400px) {
-  .profile-page .profile-header .cover figure {
-      height: 280px;
-      overflow: hidden;
-  }
-}
 
 .profile-page .profile-header .cover figure img {
   border-radius: .25rem .25rem 0 0;
   width: 100%;
-}
-
-@media (max-width: 767px) {
-  .profile-page .profile-header .cover figure img {
-      -webkit-transform: scale(2);
-      transform: scale(2);
-      margin-top: 15px;
-  }
-}
-
-@media (min-width: 2400px) {
-  .profile-page .profile-header .cover figure img {
-      margin-top: -55px;
-  }
+  height: 50vh; /* 456px; */
+  position: relative;
+  -o-object-fit: cover;
+  object-fit: cover;
+  backface-visibility: hidden;
 }
 
 .profile-page .profile-header .cover .gray-shade {
@@ -71,7 +49,31 @@ body{
   z-index: 1;
   /* background: linear-gradient(rgba(255, 255, 255, 0.1), #fff 99%); */
 }
-
+.profile-page .profile-header .cover .cover-photo-camera {
+  position: absolute;
+  top: 85%;
+  left: 93%;
+  z-index: 12;
+}
+.profile-page .profile-header .cover .cover-photo-camera button{
+  cursor: pointer;
+  border: 0;
+  background-color: transparent;
+}
+.profile-page .profile-header .cover .cover-photo-camera button span{
+  color: #fff;
+  font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 48;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.30);
+  background: rgba(255, 255, 255, 0.30);
+  transition: .7s;
+}
+.profile-page .profile-header .cover .cover-photo-camera button span:hover{
+  color: #fff;
+  background: #FF6B00;
+  border: 1px solid #FF6B00;
+}
 .profile-page .profile-header .cover .cover-body {
   position: absolute;
   bottom: -225px;
@@ -95,6 +97,10 @@ body{
   background: lightgray 50% / cover no-repeat;
   box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.12);
 }
+.profile-page .profile-header .cover .cover-body .profile-pic:hover{
+  border: 4px solid #FF6B00;
+  transition: .5s ease-in-out;
+}
 .profile-page .profile-header .cover .cover-body .profile-info .camera{
   position: absolute;
   top: 80%;
@@ -102,12 +108,21 @@ body{
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-.profile-page .profile-header .cover .cover-body .profile-info .camera span{
+.profile-page .profile-header .cover .cover-body .profile-info .camera button{
+  border: 0;
+  background-color: transparent;
+}
+.profile-page .profile-header .cover .cover-body .profile-info .camera button .material-symbols-outlined{
   color: #fff;
   flex-shrink: 0;
   padding: 19px;
   border-radius: 33px;
   background: #FF6B00;
+  font-variation-settings: 'FILL' 0;
+}
+.profile-page .profile-header .cover .cover-body .profile-info .camera button .material-symbols-outlined:hover{
+  border: 2px solid #FFF;
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.12);
 }
 
 @media (max-width: 767px) {
@@ -360,10 +375,14 @@ body{
     align-items: center;
 }
 .profile-page .left-wrapper  .card-body .members-list img{
-    width: 48px;
-    height: 48px;
-    border-radius: 100%;
-    margin-right: 15px;
+  width: 48px;
+  height: 48px;
+  border-radius: 100%;
+  margin-right: 15px;
+  position: relative;
+  -o-object-fit: cover;
+  object-fit: cover;
+  backface-visibility: hidden;
 }
 .profile-page .left-wrapper  .card-body .members-list .member-info a{
     color: var(--text-heading-dark, #27272E);
@@ -389,40 +408,920 @@ body{
     color: #7A7A9D;
 }
 
+/* To post - write something */
+.profile-page .middle-wrapper .post .card{
+  border-radius: 10px;
+  background: #FFF;
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.14);
+  margin-bottom: 24px;
+}
+.profile-page .middle-wrapper .post .card-body .write-something {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #F3F3F3;
+}
+.profile-page .middle-wrapper .post .card-body .write-something img{
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 48px;
+  border: 4px solid #FFF;
+  background:  lightgray 50% / cover no-repeat;
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.12);
+  margin-right: 8px;
+  position: relative;
+  -o-object-fit: cover;
+  object-fit: cover;
+  backface-visibility: hidden;
+}
+.profile-page .middle-wrapper .post .card-body .write-something button {
+  color: #536471;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-bottom: 0;
+  background-color: #fff;
+  border: 0;
+  width: 100%;
+  text-align: left;
+  padding: 0;
+}
+.profile-page .middle-wrapper .post .card-body .post-features{
+  display: flex;
+  align-items: center;
+}
+.profile-page .middle-wrapper .post .card-body .post-features button {
+  color: #536471;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin-bottom: 0;
+  background-color: #fff;
+  border: 0;
+  width: 100%;
+  text-align: left;
+  padding: 0;
+}
+.profile-page .middle-wrapper .post .card-body .post-features .post-icon{
+  display: flex;
+  align-items: center;
+  margin: 0 8px;
+}
+.profile-page .middle-wrapper .post .card-body .post-features .post-icon:hover *{
+  color: #EA580C;
+}
+.profile-page .middle-wrapper .post .card-body .post-features .post-icon span{
+  color: #536471;
+  margin-right: 8px;
+  transition: font-variation-setings 0.25s;
+  font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 48;
+}
+
+/* Artist post */
+.profile-page .middle-wrapper .artist-post .card{
+  border-radius: 10px;
+  background: #FFF;
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.14);
+  margin-bottom: 24px;
+}
+.profile-page .middle-wrapper  .artist-post .card-header .user-posted-info{
+  display: flex;
+  align-items: center;
+}
+.profile-page .middle-wrapper  .artist-post .card-header .user-posted-info img{
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 40px;
+  background: lightgray 50% / cover no-repeat;
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.12);
+  margin-right: 10px;
+  position: relative;
+  -o-object-fit: cover;
+  object-fit: cover;
+  backface-visibility: hidden;
+}
+.profile-page .middle-wrapper  .artist-post .card-header .group-posted .name{
+  color: #0F1419;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-decoration: none;
+}
+.profile-page .middle-wrapper  .artist-post .card-header .group-posted .ago{
+  color: #536471;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.profile-page .middle-wrapper  .artist-post .card-header .group-posted p{
+  margin: 0;
+}
+.profile-page .middle-wrapper  .artist-post .card-header .dropdown span{
+  color: #536471;
+}
+.profile-page .middle-wrapper  .artist-post .card-header{
+  border: 0;
+}
+.profile-page .middle-wrapper  .artist-post .card-body p{
+  color: #0F1419;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-top: 0;
+}
+.profile-page .middle-wrapper  .artist-post .card-body .posted-img img{
+  width: 100%;
+  max-height: 345px;
+  position: relative;
+  object-fit: cover;
+  backface-visibility: hidden;
+}
+.profile-page .middle-wrapper  .artist-post .card-footer {
+  border: 0;
+  padding: 5px 17px 17px 17px;
+}
+.profile-page .middle-wrapper  .artist-post .card-footer .post-actions .post-icon{
+  display: flex;
+  align-items: center;
+  margin-right: 24px;
+}
+.profile-page .middle-wrapper  .artist-post .card-footer .post-actions .post-icon span{
+  margin-right: 8px;
+  color: #B8BBCF;
+}
+.profile-page .middle-wrapper  .artist-post .card-footer .post-actions .post-icon p, .profile-page .middle-wrapper  .artist-post .card-footer .comments p{
+  color: #536471;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-bottom: 0;
+}
+
+/* Right Side Bar / Top & Bottom */
+.profile-page .right-wrapper .past-events .card-body .header, .profile-page .right-wrapper .original-songs .card-body .header {
+  margin-bottom: 20px;
+}
+.profile-page .right-wrapper .past-events .header .title, .profile-page .right-wrapper .original-songs .header .title{
+  align-items: center;
+}
+.profile-page .right-wrapper .past-events .header span, .profile-page .right-wrapper .original-songs .header span {
+  margin-right: 6px;
+  color: #B8BBCF;
+}
+.profile-page .right-wrapper .past-events .header h5, .profile-page .right-wrapper .original-songs .header h5{
+  color: #27272E;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 136.523%;
+  text-decoration: none;
+}
+.profile-page .right-wrapper .past-events .see-all a, .profile-page .right-wrapper .original-songs .see-all a{
+  color: #FF6B00;
+  text-align: right;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-decoration: none;
+}
+.profile-page .right-wrapper .past-events .card-body .events-list, 
+.profile-page .right-wrapper .original-songs .songs-list {
+    border-radius: 10px;
+    background: #FFF;
+    padding: 16px;
+    box-shadow: 0px 3px 8px -1px rgba(50, 50, 71, 0.05), 0px 0px 1px 0px rgba(12, 26, 75, 0.24);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+.profile-page .right-wrapper .past-events .card-body .events-list .events-info, .profile-page .right-wrapper .original-songs .songs-list .songs-info{
+    display: flex;
+    width: 93%;
+    align-items: center;
+}
+.profile-page .right-wrapper .past-events .card-body .events-list .events-info img, .profile-page .right-wrapper .original-songs .songs-list .songs-info img{
+  width: 103px;
+  height: 103px;
+  flex-shrink: 0;
+  position: relative;
+  -o-object-fit: cover;
+  object-fit: cover;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  background: lightgray 50% / cover no-repeat, #D9D9D9;
+  margin-right: 8px;
+}
+.profile-page .right-wrapper .past-events .card-body .events-list .events-info a, .profile-page .right-wrapper .original-songs .songs-list .songs-info a {
+  color: var(--text-heading-dark, #27272E);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 136.023%;
+  margin-bottom: 0;
+  text-decoration: none;
+}
+.profile-page .right-wrapper .past-events .card-body .events-list .events-info  p, .profile-page .right-wrapper .original-songs .songs-list .songs-info p {
+  color: var(--text-body-light, #425466);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 23px;
+  margin-bottom: 0;
+}
+.profile-page .right-wrapper .past-events .card-body .events-list .more, .profile-page .right-wrapper .original-songs .songs-list .more {
+  width: 7%;
+}
+.profile-page .right-wrapper .past-events .card-body .events-list .more span, .profile-page .right-wrapper .original-songs .songs-list .more span {
+  color: #7A7A9D;
+}
+.profile-page .right-wrapper .past-events .card-body .events-list .member-info .text-orange{
+  color: #FF6B00;
+}
+
+/* About tab */
+.profile-page .about-tab {
+  border-radius: 10px;
+  background: #FFF;
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.14);
+  padding: 90px;
+  margin: 0 .1%;
+}
+.profile-page .about-tab .overview{
+  color: #111827;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.96px;
+}
+.profile-page .about-tab .content, 
+.profile-page .about-tab .capacity,
+.profile-page .about-tab .capacity-list,
+ .profile-page .about-tab .capacity-list li  {
+  color: #B8BBCF;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.profile-page .about-tab  .capacity-list{
+  padding-left: 1rem;
+  margin-bottom: 48px;
+}
+.profile-page .about-tab  .genres{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+}
+.profile-page .about-tab .genres h4{
+  color: #111827;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.72px;
+  margin-bottom: 0;
+}
+.profile-page .about-tab .genres .genres-list{
+  display: block;
+}
+.profile-page .about-tab .genres .genres-list .badge {
+  border-radius: 12px;
+  border: 2px solid #ABADC6;
+  color:  #ABADC6;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+  padding: 12px 16px;
+  margin-right: 8px;
+  margin-bottom: 6px;
+}
+.profile-page .about-tab .social-media {
+  background: rgba(239, 243, 253, 0.50);
+  padding: 10%;
+  margin-bottom: 48px;
+}
+.profile-page .about-tab .social-media h4{
+  color: #111827;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.72px;
+  margin-bottom: 18px;
+}
+.profile-page .about-tab .social-media ul{
+  list-style-type: none;
+  padding-left: 0rem;
+}
+.profile-page .about-tab .social-media ul img{
+  width: 32px;
+  height: 32px;
+  margin-right: 9px;
+}
+.profile-page .about-tab .social-media ul li{
+  color: #121212;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 26px;
+  text-transform: capitalize;
+  margin-bottom: 10px;
+}
+.profile-page .about-tab .ratings h4{
+  color: #111827;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.72px;
+}
+.profile-page .about-tab .ratings .ratings-wrapper{
+  display: flex;
+  align-items: center;
+}
+.profile-page .about-tab .ratings span {
+  color: #FF6B00;
+  transition: font-variation-setings 0.25s;
+  font-variation-settings: 'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 48;
+  padding-right: 4px;
+}
+.profile-page .about-tab .ratings p {
+  font-style: normal;
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 11px;
+  color: var(--p-color3);
+  margin-bottom: 0rem;
+  margin-top: 3px;
+}
+.profile-page .about-tab .ratings p .reviews {
+  color: #8C8C8C;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 13.5px;
+  margin-bottom: 0rem;
+  padding-left: 4px;
+}
+.profile-page .about-tab .band-members {
+  margin-top: 60px;
+  border-top: 2px solid #E5E7EB;
+}
+.profile-page .about-tab .band-members h4 {
+  color: #121212;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -1.2px;
+  text-transform: capitalize;
+  margin-bottom: 24px;
+  margin-top: 32px;
+}
+.profile-page .about-tab .band-members .card{
+  width: 19%;
+  border: 0;
+  background: none;
+  -webkit-box-shadow: none;
+  display: inline-flex;
+  margin-right: 1%;
+  margin-bottom: 20px;
+}
+.profile-page .about-tab .band-members .card img{
+  border-radius: 10px;
+  position: relative;
+  -o-object-fit: cover;
+  object-fit: cover;
+  backface-visibility: hidden;
+  height: 254px;
+  flex-shrink: 0;
+}
+.profile-page .about-tab .band-members .card .card-body{
+  padding-left: 1%;
+}
+.profile-page .about-tab .band-members .card .card-title{
+  color: #121212;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.32px;
+  margin-bottom: 4px;
+}
+.profile-page .about-tab .band-members .card .card-text{
+  color: #AAA;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.64px;
+}
+
+/* Artist profile form */
+.profile-details .container{
+  margin: 5rem auto;
+}
+.profile-details .container .title{
+  color: #1D1D1D;
+  font-size: 1.75rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140%;
+  letter-spacing: -0.035rem;
+}
+.profile-details .container .sub-heading{
+  color: #2D3748;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
+  letter-spacing: -0.0175rem;
+}
+.profile-details .container .back-wrapper{
+  margin-bottom: 2.5rem;
+}
+.profile-details .container .back-wrapper .back{
+  color: #2D3748;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%;
+  letter-spacing: -0.025rem;
+  margin-bottom: 0rem;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+.profile-details .container .back-wrapper .back:hover{
+  color: #FF6B00;
+}
+.profile-details .container .back-wrapper .back:hover span{
+  background:  #FF6B00;
+  color: #FFF;
+  border: 2px solid #FFF;
+}
+.profile-details .container .back-wrapper span {
+  color: #FF6B00;
+  border-radius: 2.75rem;
+  border: 2px solid #DFDFE6;
+  background: #FFF;
+  margin-right: 0.75rem;
+  padding: 0.60rem;
+}
+.profile-details .container .fill-details  .upload-img {
+  margin: 0rem auto 1rem;
+  display: flex;
+  align-items: center;
+}
+.profile-details .container .fill-details  .upload-img .label-img{
+  position: relative;
+}
+.profile-details .container .fill-details .upload-img .label-img .camera-inner{
+  color: #FFFFFF;
+  background-color: #EAEBF1;
+  padding: 3rem;
+  border-radius: 100%;
+  font-size: 3.5rem;
+  margin-right: 1.5rem;
+  transition: font-variation-setings 0.25s;
+  font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 48;
+}
+.profile-details .container .fill-details .upload-img .label-img:hover .camera-inner{
+  background: #FF6B00;
+}
+.profile-details .container .fill-details .upload-img .label-img:hover .camera-outer{
+  border: 1px solid #fff;
+}
+.profile-details .container .fill-details .upload-img .label-img .camera {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  width: 100%;
+  opacity: 0;
+}
+.profile-details .container .fill-details  .upload-img .label-img .camera input{
+  background-color: transparent;
+  margin-bottom: 0rem!important;
+}
+.profile-details .container .fill-details .upload-img .label-img  .camera-outer {
+  color: #fff;
+  flex-shrink: 0;
+  padding: 0.7rem;
+  border-radius: 33px;
+  background: #FF6B00;
+  font-variation-settings: 'FILL' 0;
+  font-size: 20px;
+  position: absolute;
+  top: 60%;
+  left: 65%;
+  border: 1px solid #FF6B00;;
+}
+.profile-details .container .fill-details .form-group{
+  margin-bottom: 1.75rem;
+}
+.profile-details .container .fill-details label{
+  color: #121212;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.025rem;
+  margin-bottom: 0.62rem;
+}
+.profile-details .container .fill-details form select, .profile-details .container .fill-details select option,
+.profile-details .container .fill-details .form-group .artist-name::-webkit-input-placeholder,
+.profile-details .container .fill-details .form-group .street::-webkit-input-placeholder,
+.profile-details .container .fill-details .form-group .city::-webkit-input-placeholder,
+.profile-details .container .fill-details .form-group .province::-webkit-input-placeholder{ /* Edge */
+  color: #2D3748;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
+  letter-spacing: -0.02rem;
+}
+.profile-details .container .fill-details select, .profile-details .container .fill-details select option,
+.profile-details .container .fill-details .form-group .artist-name:-ms-input-placeholder,
+.profile-details .container .fill-details .form-group .street:-ms-input-placeholder,
+.profile-details .container .fill-details .form-group .city:-ms-input-placeholder,
+.profile-details .container .fill-details .form-group .province:-ms-input-placeholder{ /* Internet Explorer */
+  color: #2D3748;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
+  letter-spacing: -0.02rem;
+}
+.profile-details .container .fill-details select, .profile-details .container .fill-details select option,
+.profile-details .container .fill-details.form-group .artist-name::placeholder,
+.profile-details .container .fill-details.form-group .street::placeholder,
+.profile-details .container .fill-details .form-group .city::placeholder,
+.profile-details .container .fill-details .form-group .province::placeholder{
+  color: #2D3748;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
+  letter-spacing: -0.02rem;
+}
+.profile-details .container .fill-details .form-group .hidden{
+  opacity: 0;
+}
+.profile-details .container .fill-details .form-group .multiselect{
+  margin: 0rem;
+}
+.profile-details .container .fill-details .form-group .multiselect-tag{
+  color: #FF6B00;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 140%;
+  letter-spacing: -0.0175rem;
+  border-radius: 0.375rem;
+  background: #FED7AA;
+}
+.profile-details .container .fill-details .form-group .add-member, .profile-details .container .fill-details .form-group .add-social-media {
+  border: 0;
+  background-color: #fff;
+  color: #FF6B00;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 100%;
+  letter-spacing: 0.05rem;
+  display: flex;
+  align-items: center;
+  padding: 0rem;
+}
+.profile-details .container .fill-details .form-group .add-member span, .profile-details .container .fill-details .form-group .add-social-media span {
+  color: #FF6B00;
+  margin-right: 0.60rem;
+}
+.profile-details .container .fill-details .band-members .list-group-item {
+  border-radius: 0.3125rem;
+  border: 1px solid #B8BBCF;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: .3rem;
+  padding: 1rem 1.5rem;
+}
+.profile-details .container .fill-details .band-members .list-group-item .items {
+  float: left;
+  width: 90%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.profile-details .container .fill-details .band-members .list-group-item .items .band-name,
+.profile-details .container .fill-details .card .card-body .card-title{
+  color: #121212;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 136.023%;
+  margin-bottom: 0;
+}
+.profile-details .container .fill-details .band-members .list-group-item .items .band-role,
+.profile-details .container .fill-details .card .card-body .card-text{
+  color: var(--text-body-light, #425466);
+  font-size: 0.875rem;
+  font-family: Urbanist;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.4375rem;
+  margin-bottom: 0;
+}
+.profile-details .container .fill-details .band-members .list-group-item .options{
+  float: right;
+  width: 10%;
+}
+.profile-details .container .fill-details .band-members .list-group-item button {
+  background-color: #fff;
+  border: 0;
+  padding-right: 0;
+}
+.profile-details .container .fill-details .band-members .list-group-item button span{
+  color: #FF6B00;
+}
+.profile-details .container .fill-details .card{
+  border-radius: 0.3125rem;
+  border: 1px solid #B8BBCF;
+  padding: 1.5rem;
+}
+.profile-details .container .fill-details .card .row{
+  display: flex;
+  align-items: center;
+}
+.profile-details .container .fill-details .card .row .card-body{
+  padding: 0rem;
+}
+.profile-details .container .fill-details .card a{
+  text-align: right;
+}
+.profile-details .container .fill-details .card a span{
+  color: #FF6B00;
+}
+.profile-details .container .fill-details .band-members .list-group-item:last-child{
+  margin-bottom: 2.5rem;
+}
+.profile-details .container .fill-details .form-about-artist{
+  margin-top: 2.5rem;
+}
+.profile-details .container .fill-details .form-group .about-artist{
+  height: 10rem;
+  resize: none;
+  border-radius: 0.5rem;
+  border: 1px solid var(--low-sky-gray, rgba(86, 103, 137, 0.26));
+}
+.profile-details .container .fill-details .submit-form{
+  color: var(--white, #FFF);
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.0175rem;
+  border-radius: 0.3125rem;
+  background: #FF6B00;
+  padding: 1rem 10rem;
+  border: 0;
+  margin: 3.5rem auto;
+}
+/* modal */
+.profile-details .container .modal-content .modal-header{
+  border-bottom: 0;
+}
+.profile-details .container .modal-content .modal-header .container{
+  margin: 0;
+  padding-top: .9rem!important;
+}
+.profile-details .container .modal-content .modal-body .container{
+  margin: 0rem auto;
+}
+.profile-details .container .modal-content .modal-header .container .modal-title{
+  color: var(--color-dark-dark, #23262F);
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 2rem;
+}
+.profile-details .container .modal-content .modal-header .container .sub-heading{
+  color: var(--body-text, #2D3748);
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
+  letter-spacing: -0.0175rem;
+}
+.profile-details .container .modal-content .modal-header .close-modal-icon:hover{
+  cursor: pointer;
+}
+.profile-details .container .modal-content .modal-header .close-modal-icon {
+  color: #23262F;
+  border: 1px solid #DFDFE6;
+  border-radius: 100%;
+  padding: 5px;
+  font-size: 18px;
+}
+.profile-details .container .modal-content .modal-header .close-modal-icon:hover {
+  color: #fff;
+  border: 0;
+  background-color: #FF6B00;
+
+}
+
+/* AddMember.vue & SocialMedia.vue */
+.modal-add-member .member-avatar{
+  margin-bottom: 2rem;
+}
+.modal-add-member .form-group label{
+  color: var(--body-text, #2D3748);
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.02rem;
+  margin-bottom: .3rem;
+}
+.modal-add-member input[type=file]::file-selector-button {
+  /* padding: .2em .4em; */
+  transition: .5s;
+  border-radius: 11.5rem;
+  background-color: #EAEBF1;
+  width: 8.5rem;
+  height: 8.5rem;
+  border: 0;
+}
+.modal-add-member input[type=file]::file-selector-button:hover{
+  background-color: #FF6B00;
+  color: #fff;
+}
+/* .modal-add-member .form-group, .modal-add-social-media .form-group {
+  margin-bottom: .3rem!important;
+} */
+.modal-add-member .form-group .member-name{
+  height: 3rem;
+}
+.modal-add-member .add-member, .modal-add-social-media .add-social-media{
+  color: var(--white, #FFF);
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.025rem;
+  padding: 0.7rem 7rem;
+  border-radius: 0.3125rem;
+  background: #FF6B00;
+  margin: 2rem auto 1rem;
+  border: 0;
+}
+.modal-add-member  .upload-img {
+  margin: 0rem auto 1rem;
+  display: flex;
+  align-items: center;
+}
+.modal-add-member  .upload-img .label-img{
+  position: relative;
+  margin: auto;
+}
+.modal-add-member .upload-img .label-img .camera-inner{
+  color: #FFFFFF;
+  background-color: #EAEBF1;
+  padding: 3rem;
+  border-radius: 100%;
+  font-size: 3.5rem;
+  margin-right: 1.5rem;
+  transition: font-variation-setings 0.25s;
+  font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 48;
+}
+.modal-add-member .upload-img .label-img .camera {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  width: 100%;
+  opacity: 0;
+}
+.modal-add-member .upload-img .label-img .camera input{
+  background-color: transparent;
+  margin-bottom: 0rem!important;
+}
+.modal-add-member .upload-img .label-img  .camera-outer {
+  color: #fff;
+  flex-shrink: 0;
+  padding: 0.7rem;
+  border-radius: 33px;
+  background: #FF6B00;
+  font-variation-settings: 'FILL' 0;
+  font-size: 20px;
+  position: absolute;
+  top: 60%;
+  left: 65%;
+}
 
 
 
+
+
+
+
+/* Data from backend - array of objects at the bottom */
+.artist-data .container .user{
+  white-space: normal;
+  /* overflow: hidden; */
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+                                                        /* MEDIA QUERIES */
+
+@media (min-width: 1200px) and (max-width: 1399.98px){
+  .profile-page .about-tab .ratings p {
+    margin-top: 5px;
+}
+.profile-page .about-tab .genres .genres-list .badge {
+    padding: 10px 14px;
+    margin-right: 6px;
+    margin-bottom: 10px;
+}
+.profile-page .about-tab .band-members {
+  margin-top: 40px;
+}
+.profile-page .about-tab {
+    padding: 60px;
+}
+.profile-page .about-tab .band-members .card img {
+  height: 200px;
+}
+  .profile-page .right-wrapper .past-events .card-body .events-list .events-info img, .profile-page .right-wrapper .original-songs .songs-list .songs-info img{
+  width: 48px;
+  height: 48px;
+  margin-right: 6px;
+}
+.profile-page .profile-header .cover .cover-body .profile-pic {
+  width: 270px;
+  height: 270px;
+}
+}
+@media (min-width: 992px) and (max-width: 1199.98px){
+  .profile-page .right-wrapper .past-events .card-body .events-list .events-info img, .profile-page .right-wrapper .original-songs .songs-list .songs-info img{
+  width: 42px;
+  height: 42px;
+  margin-right: 6px;
+}
+.profile-page .profile-header .cover .cover-body .profile-pic {
+  width: 200px;
+  height: 200px;
+}
+}
+@media (min-width: 2400px) {
+  .profile-page .profile-header .cover figure {
+      /* height: 280px; */
+      overflow: hidden;
+  }
+}
+@media (max-width: 767px) {
+  .profile-page .profile-header .cover figure {
+      /* height: 110px; */
+      overflow: hidden;
+  }
+}
+
+@media (max-width: 767px) {
+  .profile-page .profile-header .cover figure img {
+      -webkit-transform: scale(2);
+      transform: scale(2);
+      margin-top: 15px;
+  }
+}
+
+@media (min-width: 2400px) {
+  .profile-page .profile-header .cover figure img {
+      margin-top: -55px;
+  }
+}
+
+/* Special stylings */
 
 .profile-page .profile-body .left-wrapper .social-links a {
   width: 30px;
   height: 30px;
 }
-
-/* .profile-page .profile-body .right-wrapper .latest-photos > .row {
-  margin-right: 0;
-  margin-left: 0;
-}
-
-.profile-page .profile-body .right-wrapper .latest-photos > .row > div {
-  padding-left: 3px;
-  padding-right: 3px;
-}
-
-.profile-page .profile-body .right-wrapper .latest-photos > .row > div figure {
-  -webkit-transition: all .3s ease-in-out;
-  transition: all .3s ease-in-out;
-  margin-bottom: 6px;
-}
-
-.profile-page .profile-body .right-wrapper .latest-photos > .row > div figure:hover {
-  -webkit-transform: scale(1.06);
-  transform: scale(1.06);
-}
-
-.profile-page .profile-body .right-wrapper .latest-photos > .row > div figure img {
-  border-radius: .25rem;
-} */
-
 .rtl .profile-page .profile-header .cover .cover-body .profile-name {
   margin-left: 0;
   margin-right: 17px;
@@ -483,32 +1382,3 @@ img {
   border-radius: 0.25rem;
 }
 
-/* Data from backend */
-.artist-data .container .user{
-  white-space: normal;
-  /* overflow: hidden; */
-  word-wrap: break-word;
-  white-space: pre-wrap;
-  word-break: break-word;
-}
-
-/* Extra large xl */
-@media (min-width: 1200px) and (max-width: 1399.98px){
-    .profile-page .profile-header .cover .cover-body .profile-pic {
-        width: 230px;
-        height: 230px;
-    }
-    .profile-page .profile-header .header-links ul li a {
-        font-size: 18px;
-    }
-    .profile-page .left-wrapper .card .social-media p {
-        font-size: 12px;
-    }
-    .profile-page .left-wrapper .card .social-media .bi-spotify, .profile-page .left-wrapper .card .social-media .bi-youtube {
-        color: #B8BBCF;
-        font-size: 24px;
-    }
-    .profile-page .left-wrapper .card .social-media .calendar {
-        font-size: 26px;
-    }
-}
