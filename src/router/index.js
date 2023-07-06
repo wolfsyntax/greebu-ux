@@ -114,12 +114,32 @@ const router = createRouter({
           name: 'basicinformation',
           component: () => import('@/views/BasicInformation/Index.vue'),
         },
-          {
-          path: '/auth/:provider/callback/',
-          component: {
-            template: '<div class="auth-component"></div>'
-          }
+        {
+          path: '/profile',
+          // component: {
+          //   template: '<div class="auth-component"></div>'
+          // }
+          component: () => import('@/views/Customer/EditProfile.vue'),
+          meta: {
+            requiresLogin: true,
+            role: 'customers',
+            breadcrumb: [
+              {title: '', url: '',},
+            ],
+          },
         },
+        {
+          path: '/dashboard',
+          name: 'dashboard',
+          component: () => import('@/views/Dashboard.vue'),
+          meta: {
+            requiresLogin: true,
+            role: '',
+            breadcrumb: [
+              {title: '', url: '',},
+            ],
+          },
+        }
       ]
     },
     {

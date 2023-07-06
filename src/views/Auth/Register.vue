@@ -67,7 +67,7 @@
                     Offers Services
                     </label>
                   </div>
-                  <div v-if="errors?.account_type">{{ errors.account_type[0] }}</div>
+                  <div v-if="errors?.account_type" class="text-danger">{{ errors.account_type.shift() }}</div>
                 </div>
               </div>
 
@@ -75,37 +75,37 @@
               <div class="form-group">
                 <label for="email">Email Address</label>
                 <input id="email" :type="form.login_type" class="form-control" name="email" v-model="form.email" required autocomplete="email" autofocus>
-                <div v-if="errors?.email">{{ errors.email[0] }}</div>
+                <div v-if="errors?.email" class="text-danger">{{ errors.email.shift() }}</div>
               </div>
 
               <div class="form-group">
                 <label for="name">First Name</label>
                 <input id="name" type="text" class="form-control " name="name" v-model="form.first_name" required autocomplete="first-name">
-                <div v-if="errors?.first_name">{{ errors.first_name[0] }}</div>
+                <div v-if="errors?.first_name" class="text-danger">{{ errors.first_name.shift() }}</div>
               </div>
 
               <div class="form-group">
                 <label for="name">Last Name</label>
                 <input id="name" type="text" class="form-control " name="name" v-model="form.last_name" required autocomplete="last-name" autofocus>
-                <div v-if="errors?.last_name">{{ errors.last_name[0] }}</div>
+                <div v-if="errors?.last_name" class="text-danger">{{ errors.last_name.shift() }}</div>
               </div>
 
               <div class="form-group">
                 <label for="username">Username</label>
                 <input id="email" type="text" class="form-control" name="username" v-model="form.username" required autocomplete="username">
-                <div v-if="errors?.username">{{ errors.username[0] }}</div>
+                <div v-if="errors?.username" class="text-danger">{{ errors.username.shift() }}</div>
               </div>
 
               <div class="form-group">
                 <label for="password">Password</label>
                 <input id="password" type="password" class="form-control" name="password" v-model="form.password" required autocomplete="new-password">
-                <div v-if="errors?.password">{{ errors.password[0] }}</div>
+                <div v-if="errors?.password" class="text-danger">{{ errors.password.shift() }}</div>
               </div>
 
               <div class="form-group">
                 <label for="password-confirm">Confirm Password</label>
                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" v-model="form.password_confirmation" required autocomplete="new-password">
-                <div v-if="errors?.password_confirmation">{{ errors.password_confirmation[0] }}</div>
+                <div v-if="errors?.password_confirmation" class="text-danger">{{ errors.password_confirmation.shift() }}</div>
               </div>
 
               <div class="form-check form-checkbox">
@@ -202,16 +202,13 @@ export default {
         })
         .catch(err =>
         {
-          // console.log('Test1: ', err)
-          loader.close();
-          //this.$router.push("");
           this.$vs.notification({
             color: 'danger',
             position: 'top-right',
-            title: 'Signup',
-            text: `Server Error`
+            title: 'Server Status',
+            text: `${err.message}`
           })
-        });
+        })
 
     }
   },

@@ -19,7 +19,17 @@ var getters = {
         code: country.plusIso2,
         label: country.phoneCode, 
       }
-    })  
+    }),
+  profileForm: state =>
+  {
+    return {
+      first_name: state?.user.first_name,
+      last_name: state?.user.last_name,
+      email: state?.user.email,
+      username: state?.user.username,
+      phone: state?.user.phone,
+    }
+  }
 }
 
 export default getters

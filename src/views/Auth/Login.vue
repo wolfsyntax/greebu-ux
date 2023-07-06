@@ -44,13 +44,13 @@
                     <label for="email">Email Address</label>
                     <input id="email" type="text" class="form-control" name="email" v-model="form.email" required
                       autocomplete="email">
-                    <div v-if="errors?.email">{{ errors.email }}</div>
+                    <div v-if="errors?.email" class="text-danger">{{ errors.email.shift() }}</div>
                   </div>
                   <div class="form-group">
                     <label for="password">Password</label>
                     <input id="password" type="password" class="form-control" name="password" v-model="form.password"
                       required autocomplete="new-password">
-                    <div v-if="errors?.password">{{ errors.password }}</div>
+                    <div v-if="errors?.password" class="text-danger">{{ errors.password.shift() }}</div>
                   </div>
                   <div class="form-check form-checkbox">
                     <input type="checkbox" class="form-check-input" id="keepLogin">
@@ -67,9 +67,10 @@
               <div class="col-md-12 continue-with">
                 <p><span>Or Continue with</span></p>
               </div>
-              <a href="" @click="AuthProvider2('google')" class="google"><img src="@/assets/sign-in-with-google.svg" width="20"
+              <GoogleLogin :callback="callback"/>
+              <a href="" @click.prevent="AuthProviderGoogle()" class="google"><img src="@/assets/sign-in-with-google.svg" width="20"
                   height="20" alt="Sign-in with Google">Sign-in with Google</a>
-              <a href="" @click="AuthProvider2('facebook')" class="facebook"><img src="@/assets/sign-in-with-facebook.svg"
+              <a href="" @click.prevent="AuthProviderFB()" class="facebook"><img src="@/assets/sign-in-with-facebook.svg"
                   width="20" height="20" alt="Sign up with Facebook">Sign up with Facebook</a>
               <div class="forgot-password">
                 <a href="forgot-password">I Forgot my Password</a>
@@ -87,7 +88,7 @@
 <script>
 import Layout from '@/components/Layouts/AuthLayout.vue';
 import { mapGetters, mapState, mapActions } from "vuex";
-
+import { FacebookAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup, signInWithRedirect } from "firebase/auth";
 export default {
   components: {
     layout: Layout,
@@ -111,7 +112,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      'signin'
+      'signin', 'socialAuth',
     ]),
     submit()
     { 
@@ -135,68 +136,99 @@ export default {
         // }
         this.$router.push("/");
 
+      })
+      .catch(err =>
+      {
+        console.log('Err: ', err)
+        this.$vs.notification({
+          color: 'danger',
+          position: 'top-right',
+          title: 'Server Status',
+          text: `${err.message}`
+        })
       });
 
     },
-    AuthProvider(provider)
+    AuthProviderFB()
     {
-      
-      var self = this
+      const provider = new FacebookAuthProvider();
+      const auth = getAuth();
 
-      this.$auth.authenticate(provider).then(response =>
+      signInWithPopup(auth, provider).then(result =>
       {
-        self.SocialLogin(provider, response)
+        console.log('Firebase result [Facebook]: ', result);
 
-      }).catch(err =>
+      }).catch((err) =>
       {
-        console.log({ err: err })
-      })
-
-    },
-
-    SocialLogin(provider, response)
-    {
-      
-      this.$http.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/login/${provider}`, response).then(response =>
-      {
-
-        console.log('Social Login: ', response.data)
-
-      }).catch(err =>
-      {
-        console.log({ err: err })
+        this.$vs.notification({
+          color: 'danger',
+          position: 'top-right',
+          title: 'Oops',
+          text: err.message
+        })
       })
     },
-    AuthProvider2(provider)
+    AuthProviderGoogle()
     {
+      const provider = new GoogleAuthProvider()
+      const auth = getAuth();
 
-      var self = this
-
-      this.$auth.authenticate(provider).then(response =>
+      signInWithPopup(auth, provider).then(result =>
       {
+        const { _tokenResponse: {federatedId, email, emailVerified, firstName, lastName}, user: {providerData, uid} } = result;
+        const provider = providerData.slice(0, 1).shift();
 
-        self.SocialLogin2(provider, response)
+        const formData = {
+          provider_id: federatedId.replace('https://accounts.google.com/', '') || uid,
+          first_name: firstName,
+          last_name: lastName,
+          email,
+          username: `goo${provider?.uid}gle`,
+          is_verified: emailVerified,
+        }
 
-      }).catch(err =>
+        if (provider?.phoneNumber)
+        {
+          formData.phone = provider.phone
+        }
+        
+        this.socialAuth({
+          provider: 'google',
+          formData
+        })
+        .then(response => {
+
+          const { message } = response;
+
+          this.$vs.notification({
+            color: 'success',
+            position: 'top-right',
+            title: 'Signin',
+            text: `${message}`
+          })
+          
+          this.$router.push("/");
+
+        })
+        .catch(err => {
+            this.$vs.notification({
+              color: 'danger',
+              position: 'top-right',
+              title: 'Server Status',
+              text: `${err.message}`
+            })
+        })
+      }).catch((err) =>
       {
-        console.log({ err: err })
+        this.$vs.notification({
+          color: 'danger',
+          position: 'top-right',
+          title: 'Oops',
+          text: err.message
+        })
       })
+    }
 
-    },
-
-    SocialLogin2(provider, response)
-    {
-
-      this.$http.post('/sociallogin/' + provider, response).then(response =>
-      {
-
-        console.log(response.data)
-
-      }).catch(err =>
-      {
-        console.log({ err: err })
-      })
-    },
   },
   computed: {
     ...mapGetters(["userInfo", "token"]),

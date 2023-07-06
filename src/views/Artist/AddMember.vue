@@ -99,7 +99,7 @@ export default {
     { 
       this.addMember(this.form).then((response) =>
       {
-        
+
         const { status } = response;
         if (status === 422) {
           this.errors = response?.result?.errors || {}
@@ -108,6 +108,15 @@ export default {
           this.$emit('modalClose')
         }
 
+      })
+      .catch(err => {
+        console.log('Err: ', err)
+        this.$vs.notification({
+          color: 'danger',
+          position: 'top-right',
+          title: 'Server Status',
+          text: `${err.message}`
+        })
       });
     }
   },
