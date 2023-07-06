@@ -1,21 +1,26 @@
 import { initializeApp } from "firebase/app"
-import { getFirestore, collection } from 'firebase/firestore'
+import { getFirestore, collection } from 'firebase/firestore';
+import { getAnalytics } from "firebase/analytics";
 import 'firebase/database';
 import 'firebase/messaging';
+import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBXtNf-rupi7DheKW_s_gqdwAKTQ1ygPLE",
-  authDomain: "khq-vue-tutorial.firebaseapp.com",
-  projectId: "khq-vue-tutorial",
-  storageBucket: "khq-vue-tutorial.appspot.com",
-  messagingSenderId: "793965647816",
-  appId: "1:793965647816:web:2c9edded419cdb44de12fd"
+  apiKey: "AIzaSyBcIRQA-Cctt6-D202JlYLwda4V74j-PxE",
+  authDomain: "greebux.firebaseapp.com",
+  projectId: "greebux",
+  storageBucket: "greebux.appspot.com",
+  messagingSenderId: "659950834603",
+  appId: "1:659950834603:web:2c0c1fb0d6117f371178ee",
+  measurementId: "G-DC2FY0N3CY",
 }
 
 
 
 export const firebaseApp = initializeApp(firebaseConfig)
+export const analytics = getAnalytics(firebaseApp);
 
+export const auth = getAuth()
 // use for the firestore ref
 const db = getFirestore(firebaseApp)
 

@@ -32,7 +32,7 @@ library.add(faUserSecret, faTrash, faTwitter, faYoutube, faSpotify, faInstagram)
 import moment from 'moment'
 
 // import { UniversalSocialauth } from 'universal-social-auth'
-import vue3GoogleLogin from 'vue3-google-login';
+// import vue3GoogleLogin from 'vue3-google-login';
 
 import './style.css'
 import 'vuesax/dist/vuesax.css';
@@ -58,7 +58,7 @@ import 'vuesax/dist/vuesax.css';
 // }
 
 import { VueFire, VueFireAuth } from 'vuefire'
-import { firebaseApp } from './firebase'
+import { firebaseApp } from './firebase/init';
 
 const app = createApp(App)
   .use(i18n)

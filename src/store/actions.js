@@ -8,11 +8,17 @@ var actions = {
         .then(response =>
         {
             
-            commit('SET_AUTH', response.data)
-            commit('SET_TOKEN', response.data?.token)
-            commit('SET_PROFILE', response.data)
-            localStorage.api_token = response.data?.token
-            resolve(response)
+          const { data: { message, status, result: { profile, user, token } } } = response;
+
+          if (response.status === 200) {
+            
+            commit('SET_AUTH', user)
+            commit('SET_TOKEN', token)
+            commit('SET_PROFILE', profile)
+            localStorage.api_token = token
+          }
+          
+          resolve(response)
 
         })
         .catch(err => {
@@ -112,7 +118,30 @@ var actions = {
         });
 
     })
-  }
+  },
+  socialAuth({ commit }, {provider, formData}) {
+    return new Promise(async(resolve, reject) => {
+
+      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/auth/${provider}/firebase`, formData)
+        .then(response =>
+        {
+          const { data: { message, status, result: { profile, user, token } } } = response;
+          if (response.status === 200) {
+            
+            commit('SET_AUTH', user)
+            commit('SET_TOKEN', token)
+            commit('SET_PROFILE', profile)
+            localStorage.api_token = token
+          }
+
+          resolve(response?.data)
+
+        })
+        .catch(err => {
+          reject(err)
+        });
+    })
+    },
 };
 
 export default actions

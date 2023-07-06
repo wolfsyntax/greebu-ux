@@ -68,9 +68,9 @@
                 <p><span>Or Continue with</span></p>
               </div>
               <GoogleLogin :callback="callback"/>
-              <a href="" @click="AuthProviderGoogle()" class="google"><img src="@/assets/sign-in-with-google.svg" width="20"
+              <a href="" @click.prevent="AuthProviderGoogle()" class="google"><img src="@/assets/sign-in-with-google.svg" width="20"
                   height="20" alt="Sign-in with Google">Sign-in with Google</a>
-              <a href="" @click="AuthProviderFB()" class="facebook"><img src="@/assets/sign-in-with-facebook.svg"
+              <a href="" @click.prevent="AuthProviderFB()" class="facebook"><img src="@/assets/sign-in-with-facebook.svg"
                   width="20" height="20" alt="Sign up with Facebook">Sign up with Facebook</a>
               <div class="forgot-password">
                 <a href="forgot-password">I Forgot my Password</a>
@@ -88,8 +88,7 @@
 <script>
 import Layout from '@/components/Layouts/AuthLayout.vue';
 import { mapGetters, mapState, mapActions } from "vuex";
-import firebase from 'firebase/app';
-
+import { FacebookAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 export default {
   components: {
     layout: Layout,
@@ -113,7 +112,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      'signin'
+      'signin', 'socialAuth',
     ]),
     submit()
     { 
@@ -171,9 +170,10 @@ export default {
     },
     AuthProviderFB()
     {
-      const provider = new firebase.auth.FacebookAuthProvider()
+      const provider = new FacebookAuthProvider();
+      const auth = getAuth();
 
-      firebase.auth().signInWithPopup(provider).then(result =>
+      signInWithPopup(auth, provider).then(result =>
       {
         console.log('Firebase result [Facebook]: ', result);
 
@@ -189,11 +189,45 @@ export default {
     },
     AuthProviderGoogle()
     {
-      const provider = new firebase.auth.GoogleAuthProvider()
+      const provider = new GoogleAuthProvider()
+      const auth = getAuth();
 
-      firebase.auth().signInWithPopup(provider).then((result) =>
+      signInWithPopup(auth, provider).then((result) =>
       {
-        console.log('Firebase result [Google]: ', result);
+        const { _tokenResponse: {federatedId, email, emailVerified, firstName, lastName}, user: {providerData, uid} } = result;
+
+        const provider = providerData.slice(0, 1).shift();
+        const formData = {
+          provider_id: federatedId.replace('https://accounts.google.com/', '') || uid,
+          first_name: firstName,
+          last_name: lastName,
+          email,
+          username: `goo${provider?.uid}gle`,
+          is_verified: emailVerified,
+        }
+        if (provider?.phoneNumber)
+        {
+          formData.phone = provider.phone
+        }
+
+        this.socialAuth({
+          provider: 'google',
+          formData
+        })
+          .then(response =>
+          {
+            const { message } = response;
+          console.log('Response:: ', response)
+          this.$vs.notification({
+            color: 'success',
+            position: 'top-right',
+            title: 'Signin',
+            text: `${message}`
+          })
+          
+          this.$router.push("/");
+
+        })
         // API Login for social media
       }).catch((err) =>
       {
