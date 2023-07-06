@@ -6,16 +6,14 @@ import 'firebase/messaging';
 import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBcIRQA-Cctt6-D202JlYLwda4V74j-PxE",
-  authDomain: "greebux.firebaseapp.com",
-  projectId: "greebux",
-  storageBucket: "greebux.appspot.com",
-  messagingSenderId: "659950834603",
-  appId: "1:659950834603:web:2c0c1fb0d6117f371178ee",
-  measurementId: "G-DC2FY0N3CY",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 }
-
-
 
 export const firebaseApp = initializeApp(firebaseConfig)
 export const analytics = getAnalytics(firebaseApp);

@@ -88,7 +88,7 @@
 <script>
 import Layout from '@/components/Layouts/AuthLayout.vue';
 import { mapGetters, mapState, mapActions } from "vuex";
-import { FacebookAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import { FacebookAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup, signInWithRedirect } from "firebase/auth";
 export default {
   components: {
     layout: Layout,
@@ -192,11 +192,11 @@ export default {
       const provider = new GoogleAuthProvider()
       const auth = getAuth();
 
-      signInWithPopup(auth, provider).then((result) =>
+      signInWithPopup(auth, provider).then(result =>
       {
         const { _tokenResponse: {federatedId, email, emailVerified, firstName, lastName}, user: {providerData, uid} } = result;
-
         const provider = providerData.slice(0, 1).shift();
+
         const formData = {
           provider_id: federatedId.replace('https://accounts.google.com/', '') || uid,
           first_name: firstName,
@@ -205,19 +205,20 @@ export default {
           username: `goo${provider?.uid}gle`,
           is_verified: emailVerified,
         }
+
         if (provider?.phoneNumber)
         {
           formData.phone = provider.phone
         }
-
+        
         this.socialAuth({
           provider: 'google',
           formData
         })
-          .then(response =>
-          {
-            const { message } = response;
-          console.log('Response:: ', response)
+        .then(response => {
+
+          const { message } = response;
+
           this.$vs.notification({
             color: 'success',
             position: 'top-right',
@@ -228,7 +229,7 @@ export default {
           this.$router.push("/");
 
         })
-        // API Login for social media
+
       }).catch((err) =>
       {
         this.$vs.notification({
