@@ -164,7 +164,7 @@ export default {
         { page: 'Artist', link: '/artists' },
         { page: 'Events', link: '/events' },
         { page: 'Services', link: '/services' },
-        { page: 'Partner With Us', link: '/partners' }
+        // { page: 'Partner With Us', link: '/partners' }
       ],
       artistDropdown: [
         { icon: 'account_circle', name: 'Artist Account', link: '/artist'},

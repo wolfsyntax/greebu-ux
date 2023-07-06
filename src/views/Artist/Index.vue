@@ -10,6 +10,11 @@
                           <figure>
                               <img src="https://res.cloudinary.com/daorvtlls/image/upload/v1686465779/samples/cloudinary-group.jpg" class="img-fluid" alt="profile cover">
                           </figure>
+                            <div class="cover-photo-camera">
+                              <button type="submit" class="btn btn-success">
+                                <span class="material-symbols-outlined">&#xE412;</span>
+                              </button>
+                            </div>
                           <div class="row cover-body d-flex justify-content-between align-items-center">
                               <div class="col-9">
                                 <div class="profile-info">
@@ -17,14 +22,14 @@
                                   <img class="profile-pic" src="https://res.cloudinary.com/daorvtlls/image/upload/v1686465790/cld-sample.jpg" alt="profile">
                                   <!-- https://res.cloudinary.com/daorvtlls/image/upload/v1687927639/artist-profile-1_uhpekp.webp -->
                                     <div class="camera">
-                                      <a href="#">
+                                      <button type="submit" class="btn btn-success">
                                         <i class="material-icons"><span class="material-symbols-outlined">&#xE412;</span></i>
-                                      </a>
+                                      </button>
                                     </div>
                                   </div>
                                   <div class="profile-wrapper">
                                     <div class="name-artist">
-                                      <h3 class="profile-name">Idlepitch</h3>
+                                      <h3 class="profile-name">{{ profile.business_name }}</h3>
                                       <h5 class="type-of-artist">Full Band</h5>
                                     </div>
                                     <div class="folow">
@@ -74,7 +79,7 @@
                               </div>
                           </div>
                           <h5 class="about">About</h5>
-                          <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque posuere fermentum urna, eu condimentum mauris</p>
+                          <p class="description">{{ profile.bio }}</p>
                           <div class="mt-3 social-media">
                             <i class="material-icons"><span class="material-symbols-outlined calendar">calendar_month</span></i><p class="band-name">IDLEPITCH</p>
                           </div>

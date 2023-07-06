@@ -32,8 +32,8 @@
 
           <div class="card-body">
             <form @submit.prevent="submit"> 
-              <!-- Choose account type -->
-              <!-- <div class="row row-checkbox">
+                                               <!-- Choose account type -->
+              <div class="row row-checkbox">
                 <div class="col-md-12">
                   <h3>Account Type</h3>
                   <p>Please choose your Account Type to create an account.</p>
@@ -69,8 +69,9 @@
                   </div>
                   <div v-if="errors?.account_type">{{ errors.account_type[0] }}</div>
                 </div>
-              </div> -->
-                <!-- User inputs -->
+              </div>
+
+                                 <!-- User inputs -->
               <div class="form-group">
                 <label for="email">Email Address</label>
                 <input id="email" :type="form.login_type" class="form-control" name="email" v-model="form.email" required autocomplete="email" autofocus>
