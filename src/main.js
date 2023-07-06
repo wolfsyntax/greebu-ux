@@ -31,31 +31,8 @@ library.add(faUserSecret, faTrash, faTwitter, faYoutube, faSpotify, faInstagram)
 
 import moment from 'moment'
 
-// import { UniversalSocialauth } from 'universal-social-auth'
-// import vue3GoogleLogin from 'vue3-google-login';
-
 import './style.css'
 import 'vuesax/dist/vuesax.css';
-
-// import VueSocialauth from 'vue-social-auth'
-// const options = {
-//   providers: {
-//     // apple: {
-//     //   nonce: '**************',
-//     //   state: '**************',
-//     //   clientId: '**************',
-//     //   redirectUri: 'https://myapp.com/login/github/callback'
-//     // },
-//     google: {
-//       clientId: '***************',
-//       redirectUri: `${import.meta.env.VITE_FACEBOOK_REDIRECT_URI}/login/google/callback`
-//     },
-//     facebook: {
-//       clientId: '************',
-//       redirectUri: `${import.meta.env.VITE_FACEBOOK_REDIRECT_URI}/login/facebook/callback`
-//     },
-//   }
-// }
 
 import { VueFire, VueFireAuth } from 'vuefire'
 import { firebaseApp } from './firebase/init';
@@ -75,28 +52,12 @@ const app = createApp(App)
       VueFireAuth(),
     ],
   })
-  // .use(VueSocialauth, {
-  //   providers: {
-  //     google: {
-  //       clientId: import.meta.env.VITE_GOOGLE_CLIENT_ID,
-  //       clientSecret: import.meta.env.VITE_GOOGLE_CLIENT_SECRET,
-  //       redirectUri: import.meta.env.VITE_GOOGLE_REDIRECT_URI,
-  //     },
-  //     facebook: {
-  //       clientId: import.meta.env.VITE_FACEBOOK_CLIENT_ID,
-  //       clientSecret: import.meta.env.VITE_FACEBOOK_CLIENT_SECRET,
-  //       redirectUri: import.meta.env.VITE_FACEBOOK_REDIRECT_URI,
-  //     }
-  //   }
-  // })
   // .use(BootstrapVueIcons)
   .component('multiselect', Multiselect)
   .component('font-awesome-icon', FontAwesomeIcon)
 
 
 app.config.globalProperties.$filters = {
-  // $Oauth: Oauth,
-  // $axios: axios,
   timeAgo(date) {
   return moment(date).fromNow()
   },
