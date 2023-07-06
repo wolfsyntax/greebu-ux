@@ -3,6 +3,7 @@ import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
+      <!-- {{ $store.state.role }} -->
 
   <router-view></router-view>
   <!-- <div>
@@ -23,7 +24,6 @@ import HelloWorld from './components/HelloWorld.vue'
 <script>
 export default {
   setup() {
-
   },
   // compatConfig: { MODE: 3 },
 }
