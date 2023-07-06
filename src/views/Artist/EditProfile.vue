@@ -112,7 +112,15 @@ export default {
   },
   mounted()
   {
-    this.fetchArtistOptions()
+    this.fetchArtistOptions().catch(err =>
+    {
+      this.$vs.notification({
+        color: 'danger',
+        position: 'top-right',
+        title: 'Server Status',
+        text: `${err.message}`
+      })
+    });
   },
   props: {
     errors: Object,
@@ -136,8 +144,16 @@ export default {
           this.$router.push("/artist");
         }
 
+      })
+      .catch(err =>
+      {
+        this.$vs.notification({
+          color: 'danger',
+          position: 'top-right',
+          title: 'Server Status',
+          text: `${err.message}`
+        })
       });
-
     }
   },
   computed: {

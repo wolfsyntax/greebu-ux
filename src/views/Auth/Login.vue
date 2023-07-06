@@ -44,13 +44,13 @@
                     <label for="email">Email Address</label>
                     <input id="email" type="text" class="form-control" name="email" v-model="form.email" required
                       autocomplete="email">
-                    <div v-if="errors?.email">{{ errors.email }}</div>
+                    <div v-if="errors?.email" class="text-danger">{{ errors.email.shift() }}</div>
                   </div>
                   <div class="form-group">
                     <label for="password">Password</label>
                     <input id="password" type="password" class="form-control" name="password" v-model="form.password"
                       required autocomplete="new-password">
-                    <div v-if="errors?.password">{{ errors.password }}</div>
+                    <div v-if="errors?.password" class="text-danger">{{ errors.password.shift() }}</div>
                   </div>
                   <div class="form-check form-checkbox">
                     <input type="checkbox" class="form-check-input" id="keepLogin">
@@ -136,6 +136,16 @@ export default {
         // }
         this.$router.push("/");
 
+      })
+      .catch(err =>
+      {
+        console.log('Err: ', err)
+        this.$vs.notification({
+          color: 'danger',
+          position: 'top-right',
+          title: 'Server Status',
+          text: `${err.message}`
+        })
       });
 
     },
@@ -200,7 +210,14 @@ export default {
           this.$router.push("/");
 
         })
-
+        .catch(err => {
+            this.$vs.notification({
+              color: 'danger',
+              position: 'top-right',
+              title: 'Server Status',
+              text: `${err.message}`
+            })
+        })
       }).catch((err) =>
       {
         this.$vs.notification({

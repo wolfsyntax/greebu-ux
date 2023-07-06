@@ -332,6 +332,15 @@ export default {
   mounted()
   {
     this.fetchArtistOptions()
+      .catch(err => {
+        this.$vs.notification({
+          color: 'danger',
+          position: 'top-right',
+          title: 'Server Status',
+          text: `${err.message}`
+        })
+      });
+
     this.form = {
       artist_type: this.artistProfile?.artist_type?.title,
       artist_name: this.artistProfile?.profile?.business_name,
@@ -385,6 +394,14 @@ export default {
 
         }
 
+      }).catch(err =>
+      {
+        this.$vs.notification({
+          color: 'danger',
+          position: 'top-right',
+          title: 'Server Status',
+          text: `${err.message}`
+        })
       });
 
     },
