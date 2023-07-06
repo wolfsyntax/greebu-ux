@@ -29,7 +29,10 @@
                                   </div>
                                   <div class="profile-wrapper">
                                     <div class="name-artist">
-                                      <h3 class="profile-name">{{ profile.business_name }}</h3>
+                                      <h3 class="profile-name">
+                                        <!-- {{ profile.business_name }} -->
+                                        Geebu
+                                      </h3>
                                       <h5 class="type-of-artist">Full Band</h5>
                                     </div>
                                     <div class="folow">
@@ -79,7 +82,10 @@
                               </div>
                           </div>
                           <h5 class="about">About</h5>
-                          <p class="description">{{ profile.bio }}</p>
+                          <p class="description">
+                            <!-- {{ profile.bio }} -->
+                            Artist bio will show here
+                          </p>
                           <div class="mt-3 social-media">
                             <i class="material-icons"><span class="material-symbols-outlined calendar">calendar_month</span></i><p class="band-name">IDLEPITCH</p>
                           </div>

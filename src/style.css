@@ -1421,6 +1421,10 @@ z-index: 1;
 .login .login-form .card, .register .register-form .card {
   border: 0px solid var(--white);
   margin-bottom: 25px;
+  box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    -ms-box-shadow: none;
 }
 .login .card .card-header, .register .card .card-header {
   border-radius: 0px;
@@ -2304,7 +2308,7 @@ background-color: var(--orange);
   margin: 6.25rem auto;
 }
 /* Stepper*/
-.basic-information .container .step1 .card, .basic-information .container .step3 .card,
+.basic-information .container .step1 .card, .basic-information .container .step2 .card,
 .basic-information .container .step4 .card{
   margin: 5rem auto;
   border-radius: 1rem;
@@ -2313,17 +2317,15 @@ background-color: var(--orange);
   border: 0;
   padding: 3.12rem 4rem 4.12rem;
 }
-.basic-information .container .step1 .card-title, .basic-information .container .step2 .title,
-.basic-information .container .step3 .card-title, .basic-information .container .step4 .card-title{
+.basic-information .container .card-title{
   color: #000;
   font-size: 2rem;
   font-style: normal;
   font-weight: 700;
-  line-height: 1.5rem;
+  line-height: 2.5rem;
   margin-bottom: 0.5rem;
 }
-.basic-information .container .step1  .card-text, .basic-information .container .step2 .sub-title,
-.basic-information .container .step4 .card-text{
+.basic-information .container .card-text{
   color: #B8BBCF;
   font-size: 1rem;
   font-style: normal;
@@ -2331,8 +2333,7 @@ background-color: var(--orange);
   line-height: 1.5rem;
   margin-bottom: 2.5rem;
 }
-.basic-information .container .step1 form label, .basic-information .container .step3 form label,
-.basic-information .container .step4 form label{
+.basic-information .container form label{
   color: #121212;
   font-size: 1.25rem;
   font-style: normal;
@@ -2341,28 +2342,25 @@ background-color: var(--orange);
   letter-spacing: -0.025rem;
   margin-bottom: 0.75rem;
 }
-.basic-information .container .step1 form .form-group .form-control, .basic-information .container .step3 form .form-group .form-control{
+.basic-information .container form .form-group .form-control{
   height: 3.5rem;
   margin-bottom: 2rem
 }
-.basic-information .container .step1 form .form-group .form-control::placeholder, .basic-information .container .step3 form .form-group .form-control::placeholder{
+.basic-information .container form .form-group .form-control::placeholder{
   color: #B8BBCF;
   font-size: 1.25rem;
   font-style: normal;
   font-weight: 400;
   line-height: 1.3125rem;
 }
-.basic-information .container .step1 form  .button-wrapper, .basic-information .container .step2 .button-wrapper,
-.basic-information .container .step3 form  .button-wrapper, .basic-information .container .step4  .button-wrapper{
+.basic-information .container form  .button-wrapper{
   display: flex;
   width: 100%;
   gap: 4%;
   margin-top: 4.12rem;
 }
-.basic-information .container .step1 form  .button-wrapper .back, .basic-information .container .step1 form  .button-wrapper .next,
-.basic-information .container .step2 .button-wrapper .back, .basic-information .container .step2 .button-wrapper .next,
-.basic-information .container .step3 form  .button-wrapper .back, .basic-information .container .step3 form  .button-wrapper .next,
-.basic-information .container .step4 form .button-wrapper .back,  .basic-information .container .step4 form  .button-wrapper .next{
+.basic-information .container form .button-wrapper .back, .basic-information .container form .button-wrapper .next,
+.basic-information .container .step2 .button-wrapper .back, .basic-information .container .step2 .button-wrapper .next{
   color: #FF6B00;
   text-align: center;
   font-size: 1.25rem;
@@ -2376,19 +2374,17 @@ background-color: var(--orange);
   width: 48%;
   float: left;
 }
-.basic-information .container .step1 form  .button-wrapper .back:hover, .basic-information .container .step2 .button-wrapper .back:hover,
-.basic-information .container .step3 form  .button-wrapper .back:hover, .basic-information .container .step4 form  .button-wrapper .back:hover{
+.basic-information .container form  .button-wrapper .back:hover, .basic-information .container .step2 .button-wrapper .back:hover{
   color: #FFF;
   background: #FF6B00;
 }
-.basic-information .container .step1 form  .button-wrapper .next, .basic-information .container .step2 .button-wrapper .next,
-.basic-information .container .step3 form  .button-wrapper .next, .basic-information .container .step4 form  .button-wrapper .next{
+.basic-information .container form  .button-wrapper .next, .basic-information .container .step2 .button-wrapper .next{
   width: 48%;
   float: right;
   color: #FFF;
   background: #FF6B00;
 }
-.basic-information .container .step2 {
+/* .basic-information .container .step2 {
   margin: 5rem auto;
   box-shadow: 0px 8px 36px 0px rgba(56, 29, 219, 0.10);
   border: 0;
@@ -2396,19 +2392,83 @@ background-color: var(--orange);
 }
 .basic-information .container .step2 .button-wrapper{
   gap: 2%;
-}
+} */
 .basic-information .container .step2 .button-wrapper .back, .basic-information .container .step2 .button-wrapper .next {
   width: 24%;
 }
 .basic-information .container .step3 .card-title, .basic-information .container .step4 .card-title{
   margin-bottom: 2.5rem;
 }
-.basic-information .container .step4 .card form .form-group select{
+.basic-information .container .step3 .card form .form-group select, .basic-information .container .step4 .card form .form-group select{
   height: 3.5rem;
   margin-bottom: 2rem;
   border-radius: 0.5rem;
   border: 1px solid #E4EBFF;
 }
+.basic-information .container form .form-group{
+  margin-bottom: 2rem;
+} 
+.basic-information .container form .dropdown button{
+  width: 100%;
+  text-align: left;
+  border-radius: 0.5rem;
+  border: 1px solid #E4EBFF;
+  background-color: #fff;
+  color: #B8BBCF;
+  color: #B8BBCF;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.3125rem;
+  padding: 1rem;
+  cursor: default;
+  display: block;
+}
+.basic-information .container form .dropdown img{
+  float: right;
+  display: flex;
+  align-items: center;
+}
+.basic-information .container form .dropdown-toggle::after {
+  display: flex;
+  margin-left: 0;
+  vertical-align: 0;
+  content: "";
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 0;
+  border-left: 0;
+}
+.basic-information .container form .dropdown ul {
+  width: 100%;
+  border-radius: 0.3125rem;
+  background: #FFF;
+  border: 0;
+  box-shadow: 0px 8px 36px 0px rgba(56, 29, 219, 0.10);
+    border: 0;
+}
+.basic-information .container form .dropdown ul li{
+  color: var(--body-text, #2D3748);
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 140%;
+  letter-spacing: -0.02rem;
+  cursor: default;
+  display: block;
+  white-space-collapse: collapse;
+  text-wrap: nowrap;
+  min-height: 1.2em;
+  padding: .66rem 1rem;
+}
+.basic-information .container form .dropdown ul li:hover{
+  box-shadow: 0px 4px 10px 0px rgba(56, 29, 219, 0.10);
+  color: var(--orange);
+  border-radius: 0.3125rem;
+}
+
+
+
 
                                                                     /* MEDIA QUERIES */
 
