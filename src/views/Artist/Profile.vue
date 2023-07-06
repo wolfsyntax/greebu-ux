@@ -331,7 +331,6 @@ export default {
   },
   mounted()
   {
-    console.log('Route meta: ', this.$route.meta?.parent);
     this.fetchArtistOptions()
     this.form = {
       artist_type: this.artistProfile?.artist_type?.title,
@@ -361,7 +360,7 @@ export default {
       {
 
         const { status, message } = response;
-        console.log('Message: ', message)
+
         if (status === 422) { 
           this.errors = response?.result?.errors || {}
           this.$vs.notification({

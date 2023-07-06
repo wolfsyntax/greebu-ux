@@ -67,9 +67,9 @@
               <div class="col-md-12 continue-with">
                 <p><span>Or Continue with</span></p>
               </div>
-              <a href="/login/google" class="google"><img src="@/assets/sign-in-with-google.svg" width="20"
+              <a href="" @click="AuthProvider2('google')" class="google"><img src="@/assets/sign-in-with-google.svg" width="20"
                   height="20" alt="Sign-in with Google">Sign-in with Google</a>
-              <a href="/login/facebook" class="facebook"><img src="@/assets/sign-in-with-facebook.svg"
+              <a href="" @click="AuthProvider2('facebook')" class="facebook"><img src="@/assets/sign-in-with-facebook.svg"
                   width="20" height="20" alt="Sign up with Facebook">Sign up with Facebook</a>
               <div class="forgot-password">
                 <a href="forgot-password">I Forgot my Password</a>
@@ -137,7 +137,66 @@ export default {
 
       });
 
-    }
+    },
+    AuthProvider(provider)
+    {
+      
+      var self = this
+
+      this.$auth.authenticate(provider).then(response =>
+      {
+        self.SocialLogin(provider, response)
+
+      }).catch(err =>
+      {
+        console.log({ err: err })
+      })
+
+    },
+
+    SocialLogin(provider, response)
+    {
+      
+      this.$http.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/login/${provider}`, response).then(response =>
+      {
+
+        console.log('Social Login: ', response.data)
+
+      }).catch(err =>
+      {
+        console.log({ err: err })
+      })
+    },
+    AuthProvider2(provider)
+    {
+
+      var self = this
+
+      this.$auth.authenticate(provider).then(response =>
+      {
+
+        self.SocialLogin2(provider, response)
+
+      }).catch(err =>
+      {
+        console.log({ err: err })
+      })
+
+    },
+
+    SocialLogin2(provider, response)
+    {
+
+      this.$http.post('/sociallogin/' + provider, response).then(response =>
+      {
+
+        console.log(response.data)
+
+      }).catch(err =>
+      {
+        console.log({ err: err })
+      })
+    },
   },
   computed: {
     ...mapGetters(["userInfo", "token"]),
