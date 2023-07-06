@@ -139,35 +139,6 @@ export default {
       });
 
     },
-    AuthProvider(provider)
-    {
-      
-      var self = this
-
-      this.$auth.authenticate(provider).then(response =>
-      {
-        self.SocialLogin(provider, response)
-
-      }).catch(err =>
-      {
-        console.log({ err: err })
-      })
-
-    },
-
-    SocialLogin(provider, response)
-    {
-      
-      this.$http.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/login/${provider}`, response).then(response =>
-      {
-
-        console.log('Social Login: ', response.data)
-
-      }).catch(err =>
-      {
-        console.log({ err: err })
-      })
-    },
     AuthProviderFB()
     {
       const provider = new FacebookAuthProvider();
