@@ -204,7 +204,7 @@ export default {
       {
         const { _tokenResponse: {federatedId, email, emailVerified, firstName, lastName}, user: {providerData, uid, photoURL} } = result;
         const provider = providerData.slice(0, 1).shift();
-        console.log('Google login response: ', result);
+
         const formData = {
           provider_id: federatedId.replace('https://accounts.google.com/', '') || uid,
           first_name: firstName,
@@ -240,7 +240,6 @@ export default {
         })
           .catch(err =>
           {
-            console.log('Google login catch error: ', err)
             this.$vs.notification({
               color: 'danger',
               position: 'top-right',
