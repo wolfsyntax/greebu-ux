@@ -226,14 +226,23 @@ export default {
         })
         .then(response => {
 
-          const { message } = response;
+          const { message, status } = response;
+          if (status === 200) {
 
-          this.$vs.notification({
-            color: 'success',
-            position: 'top-right',
-            title: 'Signin',
-            text: `${message}`
-          })
+            this.$vs.notification({
+              color: 'success',
+              position: 'top-right',
+              title: 'Signin',
+              text: `${message}`
+            })
+          } else {
+            this.$vs.notification({
+                color: 'danger',
+                position: 'top-right',
+                title: 'Server Status',
+                text: `${message}`
+              })
+          }
           
           this.$router.push("/");
 
