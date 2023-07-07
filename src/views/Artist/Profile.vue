@@ -63,7 +63,7 @@
                 <span class="material-symbols-outlined camera-inner">&#xe412;</span>
                 <div class="camera">
                   <input type="file" @input="form.avatar = $event.target.files[0]" accept="image/png, image/webp, image/svg, image/jpeg" />
-                  <div v-if="errors?.avatar">{{ errors.avatar }}</div>
+                  <div v-if="errors?.avatar" class="text-danger">{{ errors.avatar }}</div>
                   <progress v-if="form.progress" :value="form.progress.percentage" max="100">{{ form.progress.percentage }}%</progress>
                 </div>
                 <span class="material-symbols-outlined camera-outer" >&#xE412;</span>
@@ -81,20 +81,19 @@
                   {{ artist_type.title }}
                 </option>
               </select>
-              <div v-if="errors?.artist_type">{{ errors.artist_type }}</div>
+              <div v-if="errors?.artist_type" class="artist-type-error text-danger"></div>
             </div>
           
             <div class="form-group">
               <label for="artistName">Name of the Artist/Band</label>
               <input type="text" v-model="form.artist_name" placeholder="Name of the Artist/Band" class="form-control artist-name"/>
-              <div v-if="errors?.artist_name">{{ errors.artist_name }}</div>
+              <div v-if="errors?.artist_name" class="artist-name-error text-danger"></div>
             </div>
-          
          
             <div class="form-group">
               <label for="genre">Genre</label>
               <multiselect v-model="form.genre" :options="genres" mode="tags" class="genre" placeholder="Please select genres" />
-              <div v-if="errors?.genre">{{ errors.genre }}</div>
+              <div v-if="errors?.genre" class="genre-error text-danger"></div>
             </div>
         
             <div class="row">
@@ -102,7 +101,7 @@
                 <div class="form-group">
                 <label for="address">Address</label>
                 <input type="text" v-model="form.street" placeholder="Street" class="form-control street"/>
-                <div v-if="errors?.street">{{ errors.street }}</div>
+                <div v-if="errors?.street" class="street-error text-danger"></div>
               </div>
               </div>
 
@@ -110,14 +109,14 @@
               <div class="form-group">
                 <label for="address" class="hidden">City</label>
                 <input type="text" v-model="form.city" placeholder="City" class="form-control city"/>
-                <div v-if="errors?.city">{{ errors.city }}</div>
+                <div v-if="errors?.city" class="city-error text-danger"></div>
               </div>
             </div>
             <div class="col-4">
               <div class="form-group">
                 <label for="address" class="hidden">Province</label>
                 <input type="text" v-model="form.province" placeholder="Province" class="form-control province"/>
-                <div v-if="errors?.province">{{ errors.province }}</div>
+                <div v-if="errors?.province" class="province-error text-danger"></div>
               </div>
             </div>
             </div> <!-- end of row -->

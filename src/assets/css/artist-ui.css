@@ -1178,14 +1178,14 @@ body{
 .modal-add-member .form-group .member-name{
   height: 3rem;
 }
-.modal-add-member .add-member, .modal-add-social-media .add-social-media{
+.modal-add-member .add-member, .modal-add-social-media .add-social-media {
   color: var(--white, #FFF);
-  font-size: 1.25rem;
+  font-size: 1.01rem;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
   letter-spacing: -0.025rem;
-  padding: 0.7rem 7rem;
+  padding: 0.9rem 7rem;
   border-radius: 0.3125rem;
   background: #FF6B00;
   margin: 2rem auto 1rem;
@@ -1234,8 +1234,27 @@ body{
   top: 60%;
   left: 65%;
 }
-
-
+.profile-details form .artist-type-error::before {
+  content: "The artist type field is required.";
+}
+.profile-details form .artist-name-error::before {
+  content: "The artist name or band field is required.";
+}
+.profile-details form .street-error::before {
+  content: "The street field is required.";
+}
+.profile-details form .city-error::before {
+  content: "The city field is required.";
+}
+.profile-details form .province-error::before {
+  content: "The province field is required.";
+}
+.modal-add-member .member-name::before {
+  content: "The member name field is required.";
+}
+.modal-add-member .role-error::before {
+  content: "The role field is required.";
+}
 
 
 
