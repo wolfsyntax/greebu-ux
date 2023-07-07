@@ -202,7 +202,7 @@ export default {
 
       signInWithPopup(auth, provider).then(result =>
       {
-        const { _tokenResponse: {federatedId, email, emailVerified, firstName, lastName}, user: {providerData, uid} } = result;
+        const { _tokenResponse: {federatedId, email, emailVerified, firstName, lastName}, user: {providerData, uid, photoURL} } = result;
         const provider = providerData.slice(0, 1).shift();
 
         const formData = {
@@ -212,7 +212,8 @@ export default {
           email,
           username: `goo${provider?.uid}gle`,
           is_verified: emailVerified,
-        }
+          avatar: photoURL,
+        };
 
         if (provider?.phoneNumber)
         {
@@ -237,7 +238,8 @@ export default {
           this.$router.push("/");
 
         })
-        .catch(err => {
+          .catch(err =>
+          {
             this.$vs.notification({
               color: 'danger',
               position: 'top-right',
