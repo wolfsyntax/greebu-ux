@@ -1,6 +1,25 @@
 import { createRouter,createWebHistory } from 'vue-router';
 import store from '../store';
 
+const defaultMenu = [
+  { title: '', url: '', },
+];
+const artistMenu = [
+
+]
+
+const customerMenu = [
+
+]
+
+const organizerMenu = [
+
+]
+
+const servicesMenu = [
+
+]
+
 const router = createRouter({
   mode: 'history',
   hashbang: false,
@@ -16,9 +35,7 @@ const router = createRouter({
       meta: {
         requiresLogin: false,
         role: '',
-        breadcrumb: [
-          {title: '', url: '',},
-        ],
+        breadcrumb: defaultMenu,
       },
       children: [
         {

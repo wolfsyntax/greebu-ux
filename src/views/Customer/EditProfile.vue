@@ -13,16 +13,23 @@
             </div>
           </div>
 
-          <form class="" @click.prevent="submit">
+          <form class="" @submit.prevent="submit">
 
             <div class="row d-flex justify-content-center">
               <div class="col-12">
                 <div class="row">
                   <div class="col-12 col-md-6">
+                    <input type="file" @input="form.avatar = $event.target.files[0]" accept="image/png, image/webp, image/svg, image/jpeg"/>
+                    <div v-if="errors?.avatar">{{ errors.avatar }}</div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-12 col-md-6">
                     <div class="form-group">
                       <label for="firstName">First name</label>
                       <input type="text" class="form-control" id="firstName" aria-describedby="First name"
-                        v-model.lazy="form.first_name" autocomplete="off" placeholder="First name">
+                        v-model="form.first_name" autocomplete="off" placeholder="First name">
                       <small v-if="errors.first_name" class="text-danger">{{ errors.first_name.shift() }}</small>
                     </div>
                   </div>
@@ -31,7 +38,7 @@
                     <div class="form-group">
                       <label for="lastName">Last name</label>
                       <input type="text" class="form-control" id="lastName" aria-describedby="Last name"
-                        v-model.lazy="form.last_name" autocomplete="off" placeholder="Last name">
+                        v-model="form.last_name" autocomplete="off" placeholder="Last name">
                       <small v-if="errors.last_name" class="text-danger">{{ errors.last_name.shift() }}</small>
                     </div>
                   </div>
@@ -41,7 +48,7 @@
                     <div class="form-group">
                       <label for="email">Username</label>
                       <input type="text" class="form-control" id="username" aria-describedby="Username"
-                        v-model.lazy="form.username" autocomplete="off" placeholder="Username">
+                        v-model="form.username" autocomplete="off" placeholder="Username">
                       <small v-if="errors.username" class="text-danger">{{ errors.username.shift() }}</small>
                     </div>
                   </div>
@@ -50,7 +57,7 @@
                     <div class="form-group">
                       <label for="username">Email</label>
                       <input type="email" class="form-control" id="email" aria-describedby="Email"
-                        v-model.lazy="form.email" autocomplete="email" placeholder="Email">
+                        v-model="form.email" autocomplete="email" placeholder="Email">
                       <small v-if="errors.email" class="text-danger">{{ errors.email.shift() }}</small>
                     </div>
                   </div>
@@ -59,7 +66,7 @@
                     <div class="form-group">
                       <label for="email">Phone</label>
                       <input type="text" class="form-control" id="phone" aria-describedby="Phone"
-                        v-model.lazy="form.phone" autocomplete="phone" placeholder="Phone">
+                        v-model="form.phone" autocomplete="phone" placeholder="Phone">
                       <small v-if="errors.phone" class="text-danger">{{ errors.phone.shift() }}</small>
                     </div>
                   </div>
@@ -76,7 +83,7 @@
                     <div class="form-group">
                       <label for="currentPassword">Current Password</label>
                       <input type="password" class="form-control" id="currentPassword" aria-describedby="Current Password"
-                        v-model.lazy="form.current_password" autocomplete="current-password"
+                        v-model="form.current_password" autocomplete="current-password"
                         placeholder="Current Password">
                       <small v-if="errors.current_password" class="text-danger">{{ errors.current_password.shift() }}</small>
                     </div>
@@ -87,7 +94,7 @@
                     <div class="form-group">
                       <label for="newPassword">New Password</label>
                       <input type="password" class="form-control" id="newPassword" aria-describedby="New Password"
-                        v-model.lazy="form.password" autocomplete="new-password" placeholder="New Password" />
+                        v-model="form.password" autocomplete="new-password" placeholder="New Password" />
                       <small v-if="errors.password" class="text-danger">{{ errors.password.shift() }}</small>
                     </div>
                   </div>
@@ -97,7 +104,7 @@
                     <div class="form-group">
                       <label for="confirmPassword">Confirm Password</label>
                       <input type="password" class="form-control" id="confirmPassword" aria-describedby="Confirm Password"
-                        autocomplete="new-password" v-model.lazy="form.password_confirmation"
+                        autocomplete="new-password" v-model="form.password_confirmation"
                         placeholder="Confirm Password">
                       <small id="emailHelp" class="form-text text-muted"></small>
                     </div>
@@ -131,6 +138,7 @@ export default {
   {
     return {
       form: {
+        avatar: null,
         first_name: null,
         last_name: null,
         email: null,
@@ -156,6 +164,9 @@ export default {
     ]),
     submit()
     {
+
+      if (this.form.avatar === null) delete this.form.avatar;
+
       this.updateUserProfile(this.form)
         .then(response =>
         {

@@ -10,14 +10,17 @@ var actions = {
         .then(response =>
         {
 
-          const { data: { message, status, result: { profile, user, token } } } = response;
+          const { data: { message, status, result } } = response;
 
-          if (response.status === 200) {
+          if (status === 200) {
 
-            commit('SET_AUTH', user)
-            commit('SET_TOKEN', token)
-            commit('SET_PROFILE', profile)
+            const { profile, user, token, roles } = result;
+            
+            commit('SET_AUTH', user || {});
+            commit('SET_TOKEN', token || '');
+            commit('SET_PROFILE', profile || {});
             commit('SET_ROLE', profile?.role || '');
+            commit('SET_ROLES', roles || []);
             localStorage.api_token = token
           }
 
@@ -171,14 +174,12 @@ var actions = {
     commit('SET_PROFILE', profile)
     commit('SET_AUTH', user)
   },
-  updateUserProfile({ commit, state   }, payload) {
-
-    return new Promise(async (resolve, reject) =>
-    {
-
+  switchUserProfile({ commit }, payload)
+  {
+    return new Promise(async (resolve, reject) => {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
 
-      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/users`, payload)
+      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/users/${payload}/switch`)
         .then(response =>
         {
 
@@ -188,6 +189,7 @@ var actions = {
             const { result: { profile, user } } = data;
             commit('SET_PROFILE', profile);
             commit('SET_AUTH', user);
+            commit('SET_ROLE', profile?.role);
           }
           resolve(data)
         })
@@ -196,10 +198,6 @@ var actions = {
           reject(err)
         });
     })
-  },
-  switchUserProfile({ commit }, payload)
-  {
-    
   }
 }
 
