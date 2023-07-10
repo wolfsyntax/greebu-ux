@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 import createPersistedState from "vuex-persistedstate";
 import SecureLS from "secure-ls";
 import createMutationsSharer from 'vuex-shared-mutations'
+import createCache from 'vuex-cache';
 
 import actions from './actions';
 import mutations from './mutations';
@@ -38,6 +39,9 @@ const ls = new SecureLS({ isCompression: false });
         console.log('Mutation Type: ', mutation.type)
         return predicate.indexOf(mutation.type) >= 0;
       }
+    }),
+    createCache({
+      timeout: 1 * 60 * 60 * 1000 
     })
   ],
   state,
