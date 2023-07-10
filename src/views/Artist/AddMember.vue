@@ -27,7 +27,7 @@
             <div class="form-group">
               <label for="fileUpload">Name of the Member</label>
             <input type="text" v-model="form.member_name" placeholder="Name of the member" class="form-control member-name" />
-            <span v-if="errors?.member_name" class="text-danger">{{ errors.member_name }}</span>
+            <span v-if="errors?.member_name" class="member-name text-danger"></span>
               </div>
           </div>
         </div>
@@ -39,7 +39,7 @@
                 <option value="" selected> - Please Select Role - </option>
                 <option v-for="member_role in roles" :key="member_role.id" :value="member_role.value">{{ member_role.label }}</option>
             </select>
-            <span v-if="errors?.role" class="text-danger">{{ errors.role }}</span>
+            <span v-if="errors?.role" class="role-error text-danger"></span>
           </div>
           </div>
         </div>
