@@ -208,20 +208,12 @@ export default {
           if (status === 200 || status === 401) this.$router.push('/login');
           console.log('Logout Response: ', response)
         })
-    },
+    }
   },
   computed: {
     ...mapGetters(["isLoggedIn"]),
     ...mapState({}),
-  },
-  metaInfo()
-  {
-    return {
-      title: 'Default App Title',
-      titleTemplate: '%s | vue-meta Example App'
-    }
   }
-
 }
 </script>
 
