@@ -36,7 +36,7 @@ const ls = new SecureLS({ isCompression: false });
         // have them called only once (in the tab where the commit happened)
         // ie. save certain values to localStorage
         // pluginStateChanged(mutation, state)
-        console.log('Mutation Type: ', mutation.type)
+
         return predicate.indexOf(mutation.type) >= 0;
       }
     }),

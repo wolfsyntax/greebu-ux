@@ -61,7 +61,7 @@ var actions = {
       await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/logout`)
         .then(response =>
         {
-          console.log('Signout Response: ', response)
+
           const { status, data } = response
           if (status === 200 && data.status === 200) {
             commit('SET_AUTH', {})

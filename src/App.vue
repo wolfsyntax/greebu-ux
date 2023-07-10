@@ -3,6 +3,7 @@ import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
+  {{ $store.state.roles}}
   <router-view></router-view>
 </template>
 <script>

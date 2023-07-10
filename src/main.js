@@ -37,12 +37,20 @@ import 'vuesax/dist/vuesax.css';
 import { VueFire, VueFireAuth } from 'vuefire'
 import { firebaseApp } from './firebase/init';
 
+import Pusher from './plugins/pusher';
+
 const app = createApp(App)
   .use(i18n)
   .use(VueAxios, axios)
   .use(store)
   .use(router)
   .use(Vuesax, {})
+  .use(Pusher, {
+    apiKey: import.meta.env.VITE_PUSHER_APP_KEY,
+    appId: import.meta.env.VITE_PUSHER_APP_ID,
+    secret: import.meta.env.VITE_PUSHER_APP_SECRET,
+    cluster: import.meta.env.VITE_PUSHER_CLUSTER,
+  })
 
   .use(VueFire, {
     // imported above but could also just be created here
