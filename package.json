@@ -35,7 +35,9 @@
     "vuefire": "^3.1.0",
     "vuesax": "^4.0.1-alpha.25",
     "vuex": "^4.1.0",
-    "vuex-persistedstate": "^4.1.0"
+    "vuex-cache": "^3.5.0",
+    "vuex-persistedstate": "^4.1.0",
+    "vuex-shared-mutations": "^1.0.2"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.1.0",
