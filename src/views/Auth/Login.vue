@@ -155,7 +155,7 @@ export default {
         } else {
 
           this.errors = data?.result?.errors;
-          console.log('Response: ', response)
+          
           this.$vs.notification({
             color: 'danger',
             position: 'top-right',

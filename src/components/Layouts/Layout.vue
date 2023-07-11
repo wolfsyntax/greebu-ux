@@ -201,7 +201,6 @@ export default {
     ...mapMutations([]),
     logout()
     {
-      console.log('Logout')
       const loader = this.$vs.loading({
         text: 'Loading...',
       })
