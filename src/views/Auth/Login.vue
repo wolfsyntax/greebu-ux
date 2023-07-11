@@ -28,7 +28,7 @@
 
           <div class="login-form">
             <div class="logo">
-              <a href="/"><img src="@/assets/geebu-logo.svg" width="175" height="46" alt="Logo"></a>
+              <a href="/"><img src="/assets/geebu-logo.svg" width="175" height="46" alt="Logo"></a>
             </div>
             <div class="card">
               <div class="card-header">
@@ -67,9 +67,9 @@
               <div class="col-md-12 continue-with">
                 <p><span>Or Continue with</span></p>
               </div>
-              <a href="" @click="AuthProvider2('google')" class="google"><img src="@/assets/sign-in-with-google.svg" width="20"
+              <a href="" @click="AuthProvider2('google')" class="google"><img src="/assets/sign-in-with-google.svg" width="20"
                   height="20" alt="Sign-in with Google">Sign-in with Google</a>
-              <a href="" @click="AuthProvider2('facebook')" class="facebook"><img src="@/assets/sign-in-with-facebook.svg"
+              <a href="" @click="AuthProvider2('facebook')" class="facebook"><img src="/assets/sign-in-with-facebook.svg"
                   width="20" height="20" alt="Sign up with Facebook">Sign up with Facebook</a>
               <div class="forgot-password">
                 <a href="forgot-password">I Forgot my Password</a>

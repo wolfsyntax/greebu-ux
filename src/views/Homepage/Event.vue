@@ -14,7 +14,7 @@
           </div>
         </div>
         <div class="hidden-img">
-          <img src="@/assets/events/events-hidden-bg.webp" class="img-fluid" alt="Send yourself a reminder">
+          <img src="/assets/events/events-hidden-bg.webp" class="img-fluid" alt="Send yourself a reminder">
         </div>
       </div>
     </section>

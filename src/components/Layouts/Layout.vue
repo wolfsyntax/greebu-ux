@@ -4,7 +4,7 @@
       <nav class="navbar navbar-expand-lg">
         <div class="container">
           <a class="navbar-brand logo" :href="home">
-            <img src="@/assets/geebu-logo.svg" width="175" height="46" alt="logo">
+            <img src="/assets/geebu-logo.svg" width="175" height="46" alt="logo">
           </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -114,7 +114,7 @@
             <div class="col-4">
               <div class="footer-logo">
                 <a href="/">
-                  <img src="@/assets/geebu-logo.svg" width="201" height="53" loading="lazy" alt="logo">
+                  <img src="/assets/geebu-logo.svg" width="201" height="53" loading="lazy" alt="logo">
                 </a>
               </div>
             </div>
@@ -127,16 +127,16 @@
               <div class="social-media-icons">
                 <ul>
                   <li>
-                    <a href="#"  target="_blank"><img src="@/assets/facebook.svg" width="25px" height="25px" loading="lazy" alt="facebook logo"></a>
+                    <a href="#"  target="_blank"><img src="/assets/facebook.svg" width="25px" height="25px" loading="lazy" alt="facebook logo"></a>
                   </li>
                   <li>
-                    <a href="#"  target="_blank"><img src="@/assets/instagram.svg" width="25px" height="25px" loading="lazy" alt="instagram logo"></a>
+                    <a href="#"  target="_blank"><img src="/assets/instagram.svg" width="25px" height="25px" loading="lazy" alt="instagram logo"></a>
                   </li>
                   <li>
-                    <a href="#"  target="_blank"><img src="@/assets/twitter.svg" width="25px" height="25px" loading="lazy" alt="twitter logo"></a>
+                    <a href="#"  target="_blank"><img src="/assets/twitter.svg" width="25px" height="25px" loading="lazy" alt="twitter logo"></a>
                   </li>
                   <li>
-                    <a href="#" target="_blank"><img src="@/assets/youtube.svg" width="25px" height="25px" loading="lazy" alt="youtube logo"></a>
+                    <a href="#" target="_blank"><img src="/assets/youtube.svg" width="25px" height="25px" loading="lazy" alt="youtube logo"></a>
                   </li>
                 </ul>
               </div>

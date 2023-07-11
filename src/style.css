@@ -252,7 +252,7 @@ header nav{
 .home-slider{
   background: var(--bg-black2);
   box-shadow: 0px 64px 26px rgba(0, 0, 0, 0.01), 0px 4px 9px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);
-  background-image: url("@/assets/home-slider-ellipse-bottom.svg"), url("@/assets//home-slider-ellipse-top.svg");
+  background-image: url("/assets/home-slider-ellipse-bottom.svg"), url("/assets//home-slider-ellipse-top.svg");
   background-repeat: no-repeat;
   background-position:
   top 50px left -50px, 
@@ -321,12 +321,12 @@ header nav{
   background: var(--orange);
 }
 #home-carousel .carousel-control-next-icon {
-  background-image: url("@/assets/carousel-icon-next.svg");
+  background-image: url("/assets/carousel-icon-next.svg");
   height: 64px;
   width: 64px;
 }
 /* #home-carousel .carousel-control-next-icon:hover {
-  background-image: url("@/assets/carousel-icon-next-hover.svg");
+  background-image: url("/assets/carousel-icon-next-hover.svg");
 } */
 /* .animate-section {
   position: absolute;
@@ -524,7 +524,7 @@ header nav{
 
 /* first row */
 .discover-artist .wrapper {
-  background-image: url("@/assets/discover-artist-bg.svg");
+  background-image: url("/assets/discover-artist-bg.svg");
   background-blend-mode: overlay;
   background-repeat: no-repeat;
   background-size: cover;
@@ -813,10 +813,10 @@ z-index: 1;
   opacity: 1;
 }
 #trendingArtists .carousel-control-prev-icon, #HipHopArtists .carousel-control-prev-icon {
-  background-image: url("@/assets/arrow-left.svg");
+  background-image: url("/assets/arrow-left.svg");
 }
 #trendingArtists .carousel-control-next-icon, #HipHopArtists .carousel-control-next-icon {
-  background-image: url("@/assets/arrow-right.svg");
+  background-image: url("/assets/arrow-right.svg");
 }
 .featured-artists .row, .artists #ShowArtists .row {
   text-align: center;
@@ -1035,13 +1035,13 @@ z-index: 1;
   font-size: 1.5em;
 } 
 .featured-artists .audio-controls .main-controls .prev, .artists .audio-controls .main-controls .prev {
-  background: url("@/assets/prev-song-icon.svg");
+  background: url("/assets/prev-song-icon.svg");
   background-repeat: no-repeat;
   border: none;
   padding: 10px 13px;
 }
 .featured-artists .audio-controls .main-controls .next, .artists .audio-controls .main-controls .next {
-  background: url("@/assets/next-song-icon.svg");
+  background: url("/assets/next-song-icon.svg");
   background-repeat: no-repeat;
   border: none;
   padding: 10px 13px;
@@ -1394,17 +1394,17 @@ z-index: 1;
   height: 100vh;
 }
 .login #loginCarouselBanner .carousel-item:nth-child(1), .register #registerCarouselBanner .carousel-item:nth-child(1){
-  background: url("@/assets/login-signup/login-slider-1.webp");
+  background: url("/assets/login-signup/login-slider-1.webp");
   background-repeat: no-repeat;
   background-size: cover;
 }
 .login #loginCarouselBanner .carousel-item:nth-child(2), .register #registerCarouselBanner .carousel-item:nth-child(2){
-  background: url("@/assets/login-signup/login-slider-2.webp");
+  background: url("/assets/login-signup/login-slider-2.webp");
   background-repeat: no-repeat;
   background-size: cover;
 }
 .login #loginCarouselBanner .carousel-item:nth-child(3), .register #registerCarouselBanner .carousel-item:nth-child(3){
-  background: url("@/assets/login-signup/login-slider-3.webp");
+  background: url("/assets/login-signup/login-slider-3.webp");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -2499,8 +2499,7 @@ background-color: var(--orange);
   justify-content: space-between;
   display: flex;
   align-items: center;
-  margin: 2rem;
-  margin-bottom: 1px solid #BECDF8;;
+  border-bottom: 1px solid #BECDF8;;
 }
 .basic-information .container .step4 .review-content .title h3{
   color: var(--high-emphasis, #000);
@@ -2508,6 +2507,7 @@ background-color: var(--orange);
   font-style: normal;
   font-weight: 700;
   line-height: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 .basic-information .container .step4 .review-content .title  button {
   display: flex;
@@ -2521,9 +2521,9 @@ background-color: var(--orange);
   font-weight: 500;
   line-height: 1.5rem;
 }
-/* .basic-information .container .step4 .button-wrapper{
+.basic-information .container .step4 .button-wrapper{
   margin: 2rem auto;
-} */
+}
 
 
 

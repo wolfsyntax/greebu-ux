@@ -214,7 +214,7 @@
               <div class="card mb-3" v-if="userInfo?.spotify_profile" style="height: 90px;">
                 <div class="row g-0">
                   <div class="col-md-1">
-                    <img src="@/assets/social icons/_Spotify.svg" class="img-fluid rounded-start mx-2" alt="Spotify">
+                    <img src="/assets/social icons/_Spotify.svg" class="img-fluid rounded-start mx-2" alt="Spotify">
                   </div>
                   <div class="col-md-10">
                     <div class="card-body">
@@ -234,7 +234,7 @@
               <div class="card mb-3" v-if="artistProfile?.twitter_username" style="height: 90px;">
                 <div class="row g-0">
                   <div class="col-md-1">
-                    <img src="@/assets/social icons/_Twitter.svg" class="img-fluid rounded-start mx-2" alt="Twitter">
+                    <img src="/assets/social icons/_Twitter.svg" class="img-fluid rounded-start mx-2" alt="Twitter">
                   </div>
                   <div class="col-md-10">
                     <div class="card-body">
