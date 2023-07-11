@@ -35,8 +35,8 @@
                   </div>
                   <div class="button-wrapper">
                   <button type="button" class="btn btn-primary back" @click="previousStep1" :disabled="currentStep === 0">Back</button>
-                  <button type="button" class="btn btn-primary next" @click="nextStep" :disabled="isButtonInfo">Next</button>
-                  <!-- <button type="button" class="btn btn-primary next" @click="nextStep">Next</button> -->
+                  <!-- <button type="button" class="btn btn-primary next" @click="nextStep" :disabled="isButtonInfo">Next</button> -->
+                  <button type="button" class="btn btn-primary next" @click="nextStep">Next</button>
                 </div>
                </form>
             </div>
@@ -84,8 +84,8 @@
                       </div> 
                       <div class="button-wrapper">
                       <button type="button" class="btn btn-primary back" @click="previousStep" :disabled="currentStep === 0">Back</button>
-                      <button type="button" class="btn btn-primary next" @click="nextStep" :disabled="!selectedOccasion || (isButtonOccasion)">Next</button>
-                      <!-- <button type="button" class="btn btn-primary next" @click="subNextStepStory">Next</button> -->
+                      <!-- <button type="button" class="btn btn-primary next" @click="nextStep" :disabled="!selectedOccasion || (isButtonOccasion)">Next</button> -->
+                      <button type="button" class="btn btn-primary next" @click="subNextStepStory">Next</button>
                     </div>
                   </form>
                 </div>
@@ -103,8 +103,8 @@
                       </div> 
                       <div class="button-wrapper">
                       <button type="button" class="btn btn-primary back" @click="subPreviousStepStory" :disabled="currentStep === 0">Back</button>
-                      <button type="button" class="btn btn-primary next" @click="nextStep" :disabled="!selectedOccasion || (isButtonOccasion)">Next</button>
-                      <!-- <button type="button" class="btn btn-primary next" @click="nextStep">Next</button> -->
+                      <!-- <button type="button" class="btn btn-primary next" @click="nextStep" :disabled="!selectedOccasion || (isButtonOccasion)">Next</button> -->
+                      <button type="button" class="btn btn-primary next" @click="nextStep">Next</button>
                     </div>
                   </form>
                 </div>
