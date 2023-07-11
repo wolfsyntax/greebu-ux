@@ -88,7 +88,7 @@
 <script>
 import Layout from '@/components/Layouts/AuthLayout.vue';
 import { mapGetters, mapState, mapActions } from "vuex";
-import { FacebookAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup, signInWithRedirect } from "firebase/auth";
+import { FacebookAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup, createUserWithEmailAndPassword, signInWithRedirect } from "firebase/auth";
 export default {
   components: {
     layout: Layout,
@@ -100,7 +100,8 @@ export default {
         email: null,
         password: null,
         remember_me: false,
-      }
+      },
+      errors: null,
     }
   },
   setup()
@@ -108,7 +109,7 @@ export default {
     
   },
   props: {
-    errors: Object,
+
   },
   methods: {
     ...mapActions([
@@ -116,26 +117,52 @@ export default {
     ]),
     submit()
     { 
-
+      // const auth = getAuth();
+      // createUserWithEmailAndPassword(auth, this.form.email, this.form.password)
+      //   .then((userCredential) =>
+      //   {
+      //     // Signed in 
+      //     const user = userCredential.user;
+      //     // ...
+      //     console.log('Signed in: ', user)
+      //   })
+      //   .catch((error) =>
+      //   {
+      //     const errorCode = error.code;
+      //     const errorMessage = error.message;
+      //     // ..
+      //     console.log('Error: ', error)
+      //   });
       this.signin(this.form).then((response) =>
       {
 
         const { status, data } = response;
-        console.log('Response: ', response)
-        this.$vs.notification({
-          color: 'success',
-          position: 'top-right',
-          title: 'Signin',
-          text: `${data?.message}`
-        })
-        var user = this.$store.state.user;
-        var role = this.$store.state.role;
+        
+        if (status === 200) {
+          this.$vs.notification({
+            color: 'success',
+            position: 'top-right',
+            title: 'Signin',
+            text: `${data?.message}`
+          })
+          var user = this.$store.state.user;
+          var role = this.$store.state.role;
 
-        // if (role === 'artists') {
-        //   this.$router.push("/");
-        // }
-        this.$router.push("/");
+          // if (role === 'artists') {
+          //   this.$router.push("/");
+          // }
+          this.$router.push("/");
+        } else {
 
+          this.errors = data?.result?.errors;
+
+          this.$vs.notification({
+            color: 'danger',
+            position: 'top-right',
+            title: 'Signin',
+            text: `${data?.message}`
+          })
+        }
       })
       .catch(err =>
       {
@@ -175,7 +202,7 @@ export default {
 
       signInWithPopup(auth, provider).then(result =>
       {
-        const { _tokenResponse: {federatedId, email, emailVerified, firstName, lastName}, user: {providerData, uid} } = result;
+        const { _tokenResponse: {federatedId, email, emailVerified, firstName, lastName}, user: {providerData, uid, photoURL} } = result;
         const provider = providerData.slice(0, 1).shift();
 
         const formData = {
@@ -185,7 +212,8 @@ export default {
           email,
           username: `goo${provider?.uid}gle`,
           is_verified: emailVerified,
-        }
+          avatar: photoURL,
+        };
 
         if (provider?.phoneNumber)
         {
@@ -198,19 +226,29 @@ export default {
         })
         .then(response => {
 
-          const { message } = response;
+          const { message, status } = response;
+          if (status === 200) {
 
-          this.$vs.notification({
-            color: 'success',
-            position: 'top-right',
-            title: 'Signin',
-            text: `${message}`
-          })
+            this.$vs.notification({
+              color: 'success',
+              position: 'top-right',
+              title: 'Signin',
+              text: `${message}`
+            })
+          } else {
+            this.$vs.notification({
+                color: 'danger',
+                position: 'top-right',
+                title: 'Server Status',
+                text: `${message}`
+              })
+          }
           
           this.$router.push("/");
 
         })
-        .catch(err => {
+          .catch(err =>
+          {
             this.$vs.notification({
               color: 'danger',
               position: 'top-right',

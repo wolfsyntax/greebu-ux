@@ -2308,8 +2308,7 @@ background-color: var(--orange);
   margin: 6.25rem auto;
 }
 /* Stepper*/
-.basic-information .container .step1 .card, .basic-information .container .step2 .card,
-.basic-information .container .step4 .card{
+.basic-information .container .card{
   margin: 5rem auto;
   border-radius: 1rem;
   background: #FFF;
@@ -2317,15 +2316,18 @@ background-color: var(--orange);
   border: 0;
   padding: 3.12rem 4rem 4.12rem;
 }
-.basic-information .container .card-title{
+.basic-information .container .card-title, .basic-information .container .step2 .select-artist .title{
   color: #000;
   font-size: 2rem;
   font-style: normal;
   font-weight: 700;
   line-height: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+.basic-information .container .step1 .card-title, .basic-information .container .step2 .select-artist .title{
   margin-bottom: 0.5rem;
 }
-.basic-information .container .card-text{
+.basic-information .container .card-text, .basic-information .container .step2 .select-artist .sub-title{
   color: #B8BBCF;
   font-size: 1rem;
   font-style: normal;
@@ -2353,14 +2355,16 @@ background-color: var(--orange);
   font-weight: 400;
   line-height: 1.3125rem;
 }
-.basic-information .container form  .button-wrapper{
+.basic-information .container form  .button-wrapper, .basic-information .container .step2 .select-artist .button-wrapper,
+.basic-information .container .step4 .select-artist .button-wrapper{
   display: flex;
   width: 100%;
   gap: 4%;
   margin-top: 4.12rem;
 }
 .basic-information .container form .button-wrapper .back, .basic-information .container form .button-wrapper .next,
-.basic-information .container .step2 .button-wrapper .back, .basic-information .container .step2 .button-wrapper .next{
+.basic-information .container .step2 .button-wrapper .back, .basic-information .container .step2 .button-wrapper .next,
+.basic-information .container .step4 .button-wrapper .back, .basic-information .container .step4 .button-wrapper .next{
   color: #FF6B00;
   text-align: center;
   font-size: 1.25rem;
@@ -2374,30 +2378,37 @@ background-color: var(--orange);
   width: 48%;
   float: left;
 }
-.basic-information .container form  .button-wrapper .back:hover, .basic-information .container .step2 .button-wrapper .back:hover{
+.basic-information .container form  .button-wrapper .back:hover, .basic-information .container .step2 .button-wrapper .back:hover,
+.basic-information .container .step4 .button-wrapper .back:hover{
   color: #FFF;
   background: #FF6B00;
 }
-.basic-information .container form  .button-wrapper .next, .basic-information .container .step2 .button-wrapper .next{
+.basic-information .container form  .button-wrapper .next, .basic-information .container .step2 .button-wrapper .next,
+.basic-information .container .step4 .button-wrapper .next{
   width: 48%;
   float: right;
   color: #FFF;
   background: #FF6B00;
 }
-/* .basic-information .container .step2 {
-  margin: 5rem auto;
-  box-shadow: 0px 8px 36px 0px rgba(56, 29, 219, 0.10);
-  border: 0;
-  padding: 5rem 5rem 6rem;
+.basic-information .container .step2 .progress, .basic-information .container .step3 .progress{
+  width: 80%;
+  height: 8px;
+  margin: 0 auto;
+  display: none;
 }
-.basic-information .container .step2 .button-wrapper{
-  gap: 2%;
-} */
-.basic-information .container .step2 .button-wrapper .back, .basic-information .container .step2 .button-wrapper .next {
-  width: 24%;
+.basic-information .container .step2 .content-sub, .basic-information .container .step3 .content-sub {
+  margin-bottom: 3rem;
+  width: 30%;
+  margin: 0 auto 3rem;
+}
+.basic-information .container .step3 .content-sub {
+  width: 50%;
 }
 .basic-information .container .step3 .card-title, .basic-information .container .step4 .card-title{
   margin-bottom: 2.5rem;
+}
+.basic-information .container .step3 .your-story{
+  margin-bottom: 0.5rem;
 }
 .basic-information .container .step3 .card form .form-group select, .basic-information .container .step4 .card form .form-group select{
   height: 3.5rem;
@@ -2466,7 +2477,48 @@ background-color: var(--orange);
   color: var(--orange);
   border-radius: 0.3125rem;
 }
-
+.basic-information .container .step2 .select-artist, .basic-information .container .step4 .review-content{
+  border-radius: 0.625rem;
+  background: #FFF;
+  box-shadow: 0px 8px 36px 0px rgba(56, 29, 219, 0.05);
+  margin-bottom: 2.5rem;
+  padding: 5rem;
+}
+.basic-information .container .step2 .select-artist .button-wrapper {
+  margin:0 auto;
+  width: 60%;
+  gap: 2%;
+}
+.basic-information .container .step3 textarea{
+  border-radius: 0.5rem;
+  border: 1px solid #E4EBFF;
+  height: 12.3rem!important;
+  resize: none;
+}
+.basic-information .container .step4 .review-content .title {
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+}
+.basic-information .container .step4 .review-content .title h3{
+  color: var(--high-emphasis, #000);
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.5rem;
+}
+.basic-information .container .step4 .review-content .title  button {
+  display: flex;
+  gap: .5rem;
+  border: 0;
+  opacity: 1;
+  background: transparent;
+  color: #B8BBCF;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.5rem;
+}
 
 
 

@@ -1,6 +1,25 @@
 import { createRouter,createWebHistory } from 'vue-router';
 import store from '../store';
 
+const defaultMenu = [
+  { title: '', url: '', },
+];
+const artistMenu = [
+
+]
+
+const customerMenu = [
+
+]
+
+const organizerMenu = [
+
+]
+
+const servicesMenu = [
+
+]
+
 const router = createRouter({
   mode: 'history',
   hashbang: false,
@@ -16,9 +35,7 @@ const router = createRouter({
       meta: {
         requiresLogin: false,
         role: '',
-        breadcrumb: [
-          {title: '', url: '',},
-        ],
+        breadcrumb: defaultMenu,
       },
       children: [
         {
@@ -27,6 +44,7 @@ const router = createRouter({
           component: () => import('@/views/Homepage/Home.vue'),
           meta: {
             requiresLogin: false,
+            title: 'Home',
             role: '',
             parent: 'home',
             breadcrumb: [
@@ -40,6 +58,7 @@ const router = createRouter({
           component: () => import('@/views/Homepage/Artist.vue'),
           meta: {
             requiresLogin: false,
+            title: 'Artists',
             role: '',
             parent: 'artists',
             breadcrumb: [
@@ -53,6 +72,7 @@ const router = createRouter({
           component: () => import('@/views/Homepage/CreateSong.vue'),
           meta: {
             requiresLogin: false,
+            title: 'Create a Song',
             role: '',
             parent: 'create-song',
             breadcrumb: [
@@ -66,6 +86,7 @@ const router = createRouter({
           component: () => import('@/views/Homepage/Event.vue'),
           meta: {
             requiresLogin: false,
+            title: '',
             role: '',
             parent: 'event',
             breadcrumb: [
@@ -79,6 +100,7 @@ const router = createRouter({
           component: () => import('@/views/Homepage/Partner.vue'),
           meta: {
             requiresLogin: false,
+            title: 'Partners',
             role: '',
             parent: 'partners',
             breadcrumb: [
@@ -92,6 +114,7 @@ const router = createRouter({
           component: () => import('@/views/Homepage/Services.vue'),
           meta: {
             requiresLogin: false,
+            title: 'Services',
             role: '',
             parent: 'services',
             breadcrumb: [
@@ -103,11 +126,21 @@ const router = createRouter({
           path: '/login',
           name: 'login',
           component: () => import('@/views/Auth/Login.vue'),
+          meta: {
+            requiresLogin: false,
+            title: 'Login',
+            role: '',
+          }
         },
         {
           path: '/register',
           name: 'register',
           component: () => import('@/views/Auth/Register.vue'),
+          meta: {
+            requiresLogin: false,
+            title: 'Register',
+            role: '',
+          }
         },
         {
           path: '/basicinformation',
@@ -122,6 +155,7 @@ const router = createRouter({
           component: () => import('@/views/Customer/EditProfile.vue'),
           meta: {
             requiresLogin: true,
+            title: 'Profile',
             role: 'customers',
             breadcrumb: [
               {title: '', url: '',},
@@ -134,6 +168,7 @@ const router = createRouter({
           component: () => import('@/views/Dashboard.vue'),
           meta: {
             requiresLogin: true,
+            title: 'Dasboard',
             role: '',
             breadcrumb: [
               {title: '', url: '',},
@@ -148,6 +183,7 @@ const router = createRouter({
       component: () => import('@/components/Layouts/Layout.vue'),
       meta: {
         requiresLogin: true,
+        title: 'Artist',
         role: 'artists',
         parent: 'artist',
         breadcrumb: [
@@ -178,6 +214,7 @@ const router = createRouter({
       component: () => import('@/components/Subscription/Index.vue'),
       meta: {
         requiresLogin: false,
+        title: 'Subscription',
         role: '',
         parent: 'event',
         breadcrumb: [
@@ -195,6 +232,7 @@ const router = createRouter({
           component: () => import('@/views/Pages/Error404.vue'),
           meta: {
             requiresLogin: false,            
+            title: 'Error 404 | Not Found',
             role: '',
           }
         },
@@ -204,6 +242,7 @@ const router = createRouter({
           component: () => import('@/views/Pages/Error500.vue'),
           meta: {
             requiresLogin: false,
+            title: 'Error 500 | Server Error',
             role: '',
           }
         },
@@ -213,6 +252,7 @@ const router = createRouter({
           component: () => import('@/views/Pages/NotAuthorized.vue'),
           meta: {
             requiresLogin: false,
+            title: 'Error 403 | Not Authorized',
             role: '',
           }
         },
@@ -222,6 +262,7 @@ const router = createRouter({
           component: () => import('@/views/Pages/Maintenance.vue'),
           meta: {
             requiresLogin: false,
+            title: 'Maintenance',
             role: ''
           }
         }
@@ -263,6 +304,8 @@ router.beforeEach((to, from, next) => {
       next()
     }
   }
+
+  document.title = to.meta.title;
 
 })
 

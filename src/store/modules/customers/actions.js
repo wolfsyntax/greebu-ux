@@ -19,21 +19,34 @@ export const fetchArtistOptions = ({ commit, rootState, state}, payload) => {
   })
 }
 
-export const updateUserProfile = ({ commit, rootState, state}, payload) => {
-  
-  return new Promise(async(resolve, reject) => {
-    
+export const updateUserProfile = ({ commit, rootState   }, payload) => {
+
+  return new Promise(async (resolve, reject) =>
+  {
+
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
-    
-    await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/users`, payload)
-      .then(response => {        
-        
-        const {data} = response
-        console.log('Update User profile: ', response)
-        resolve(response)
+
+    await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/users`, payload, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      }
     })
-    .catch(err => {
-      reject(err)
+      .then(response =>
+      {
+
+        const { data, status } = response
+        if (status === 200) {
+
+          const { result: { profile, user } } = data;
+          commit('SET_PROFILE', profile);
+          commit('SET_AUTH', user);
+        }
+        resolve(data)
+      })
+      .catch(err =>
+      {
+        reject(err)
+      });
     });
-  })
-}
+  }
+  

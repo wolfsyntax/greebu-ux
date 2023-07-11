@@ -1,5 +1,6 @@
 var mutations = {
-  SET_AUTH(state, payload) {
+  SET_AUTH(state, payload)
+  {
     // state.role = payload?.profile?.roles[0].name || 'customers';
     // state.user = payload.user;
     state.user = payload;
@@ -23,6 +24,10 @@ var mutations = {
   SET_ROLE(state, payload)
   {
     state.role = payload;
+  },
+  SET_ROLES(state, payload)
+  {
+    state.roles = payload;
   }
 }
 
