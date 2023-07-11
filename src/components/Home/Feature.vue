@@ -95,7 +95,7 @@
                   </div>
                   <div class="col-lg-6 col-xl-7 col-xxl-7">
                     <div class="customg-song-img">
-                      <img src="@/assets/home/custom-song.webp" class="d-block w-100" loading="lazy" alt="Custom song">
+                      <img src="@/assets/home/your-song.webp" class="d-block w-100" loading="lazy" alt="Custom song">
                     </div>
                   </div>
                 </div>
@@ -112,7 +112,7 @@
                   </div>
                   <div class="col-lg-6 col-xl-7 col-xxl-7">
                     <div class="customg-song-img">
-                      <img src="@/assets/home/custom-song.webp" class="d-block w-100" loading="lazy" alt="Custom song">
+                      <img src="@/assets/home/your-song.webp" class="d-block w-100" loading="lazy" alt="Custom song">
                     </div>
                   </div>
                 </div>
@@ -128,7 +128,7 @@
                   </div>
                   <div class="col-lg-6 col-xl-7 col-xxl-7">
                     <div class="customg-song-img">
-                      <img src="@/assets/home/custom-song.webp" class="d-block w-100" loading="lazy" alt="Custom song">
+                      <img src="@/assets/home/your-song.webp" class="d-block w-100" loading="lazy" alt="Custom song">
                     </div>
                   </div>
                 </div>
