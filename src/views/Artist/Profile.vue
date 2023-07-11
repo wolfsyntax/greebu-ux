@@ -172,7 +172,7 @@
               <div class="card mb-3" v-if="artistProfile?.youtube_channel">
                 <div class="row g-0">
                   <div class="col-md-1">
-                    <img src="@/assets/social icons/_YouTube.svg" class="img-fluid rounded-start mx-2" alt="YouTube">
+                    <img src="/assets/social icons/_YouTube.svg" class="img-fluid rounded-start mx-2" alt="YouTube">
                   </div>
                   <div class="col-md-10">
                     <div class="card-body">
@@ -193,7 +193,7 @@
               <div class="card mb-3" v-if="artistProfile?.instagram_username">
                 <div class="row g-0">
                   <div class="col-md-1">
-                    <img src="@/assets/social icons/_Instagram.svg" class="img-fluid rounded-start mx-2" alt="Instagram">
+                    <img src="/assets/social icons/_Instagram.svg" class="img-fluid rounded-start mx-2" alt="Instagram">
                   </div>
                   <div class="col-md-10">
                     <div class="card-body">

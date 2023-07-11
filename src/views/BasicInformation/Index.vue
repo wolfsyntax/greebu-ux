@@ -99,7 +99,7 @@
                   <form @submit.prevent="submit">
                       <div class="form-group">
                         <label for="story">Write your Story</label>
-                        <textarea v-model="story" class="form-control"></textarea>
+                        <textarea v-model="your_story" class="form-control"></textarea>
                       </div> 
                       <div class="button-wrapper">
                       <button type="button" class="btn btn-primary back" @click="subPreviousStepStory" :disabled="currentStep === 0">Back</button>
@@ -131,18 +131,110 @@
                                                            <!-- SONG SubSteps -->
             <div v-if="currentSubStepSong === 0">
               <div class="row">
-                <div class="col-1"></div>
-                <div class="col-10">
+                
+                <div class="col-12">
                   <div class="select-artist">
                     <h2 class="title">Select your artist</h2>
                   <p class="sub-title">These artists are available now! Tap an artist to hear a sample song that showcases their style and voice.</p>
+
+                <div class="row top-row">
+                  <div class="col-6">
+                    <a href="#" class="btn btn-primary filter"><i class="material-icons"><span class="material-symbols-outlined next">sort</span></i>Filter</a>
+                  </div>
+                  <div class="col-6">
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="Search artist by Name" aria-label="Search artist by Name" aria-describedby="button-addon2">
+                      <button class="btn btn-success border-rad" type="button" id="button-addon2">
+                        <i class="material-icons"><span class="material-symbols-outlined next">search</span></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="col-3">
+                    <h5>Type of Artist</h5>
+                    <select class="form-select" aria-label="Default select example">
+                      <option selected>Solo Artist</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                    </select>
+                  </div>
+                  <div class="col-3">
+                    <h5>Music Genre</h5>
+                    <select class="form-select" aria-label="Default select example">
+                      <option selected>Happy</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                    </select>
+                  </div>
+                  <div class="col-3">
+                    <h5>Sort by Ratings</h5>
+                    <select class="form-select" aria-label="Default select example">
+                      <option selected>Select rating</option>
+                      <option value="1">5</option>
+                      <option value="2">4</option>
+                      <option value="3">3</option>
+                    </select>
+                  </div>
+                  <div class="col-3">
+                    <h5>Sort by Alphabetical</h5>
+                    <select class="form-select" aria-label="Default select example">
+                      <option selected>A-Z</option>
+                      <option value="1">A-Z</option>
+                      <option value="2">Z-A</option>
+                    </select>
+                  </div>
+                </div>
+
+                                                              <!-- Show Artists -->
+                <div id="ShowArtists" class="carousel slide">
+                  <div class="carousel-inner">
+                    <div class="carousel-item" v-for="(slide, index) in showArtists" :key="index"
+                      :class="{ active: index === activeSlide }">
+                      <div class="row select-aritst-row">
+                        <div class="col-4" v-for="(artist, itemIndex) in showArtists" :key="itemIndex">
+                          <div class="card">
+                            <img :src="artist.image" class="card-img-top img-fluid" loading="lazy" alt="Trending Artist" />
+                            <div class="middle">
+                              <a href="/artist"> View Profile</a>
+                            </div>
+                            <div class="card-body">
+                              <div class="artist">
+                                <h5 class="card-title">{{ artist.name }}</h5>
+                                <h6 class="card-text">{{ artist.typeOfArtist }}</h6>
+                                <p><img :src="ratingImage"> {{ artist.ratings }} <span>({{ artist.reviews }}
+                                    reviews)</span></p>
+                              </div>
+                              <div class="audio-btn">
+                                <div class="play-btn">
+                                  <div class="play-btn">
+                                    <div class="play-btn">
+                                      <i :class="{
+                                        'bi bi-play-circle-fill play-icon': !showControls || (showControls && currentIndex !== itemIndex),
+                                        'bi bi-pause-circle-fill play-icon': showControls && currentIndex === itemIndex
+                                      }" @click="toggleControls(itemIndex)"></i>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div> <!-- end of row -->
+                    </div>
+                  </div> <!-- end of carousel inner -->
+                </div> <!-- end of carousel -->
+
+
+
+
                     <div class="button-wrapper">
                     <button type="button" class="btn btn-primary back" @click="previousStep" :disabled="currentStep === 0">Back</button>
                     <button type="button" class="btn btn-primary next" @click="subNextStepSong">Next</button>
                   </div>
                   </div>
                 </div>
-                <div class="col-1"></div>
+                
               </div>
             </div>
             <div class="col-md-6 offset-md-3">
@@ -237,17 +329,53 @@
                 Edit Info
                  </button>
               </div>
-              <div class="d-flex justify-content-between">
-                <h4>First Name</h4>
-                <span>Jeffray</span>
+              <div class="d-flex justify-content-between group-item top-item"><h4>First Name</h4><p>{{ first_name }}</p></div>
+              <div class="d-flex justify-content-between group-item"><h4>Last name</h4><p>{{ last_name }}</p></div>
+              <div class="d-flex justify-content-between group-item last-item"><h4>Email Address</h4><p>{{ email }}</p></div>
+
+              <div class="title">
+                <h3>Song</h3>
+                  <button type="button">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <g clip-path="url(#clip0_964_20368)"><path d="M3 17.25V21H6.75L17.81 9.94L14.06 6.19L3 17.25ZM20.71 7.04C21.1 6.65 21.1 6.02 20.71 5.63L18.37 3.29C17.98 2.9 17.35 2.9 16.96 3.29L15.13 5.12L18.88 8.87L20.71 7.04Z" fill="#B8BBCF"/></g>
+                  <defs><clipPath id="clip0_964_20368"><rect width="24" height="24" fill="white"/></clipPath></defs></svg>
+                Edit Info
+                 </button>
+              </div>
+              <div class="d-flex justify-content-between group-item top-item"><h4>Genre</h4><p>Rock</p></div>
+              <div class="d-flex justify-content-between group-item"><h4>Type of Artist</h4><p>Solo Artist</p></div>
+              <div class="d-flex justify-content-between group-item"><h4>Type of Song (Moods)</h4><p>{{ selectedMood ? selectedMood.name : 'No selected mood' }} </p></div>
+              <div class="d-flex justify-content-between group-item"><h4>Language</h4><p>{{ selectedLanguage ? selectedLanguage.name : 'No selected language' }}</p></div>
+              <div class="d-flex justify-content-between group-item last-item"><h4>Duration of Song</h4><p>{{ selectedSongDuration ? selectedSongDuration.time : 'No selected song' }}</p></div>
+
+              <div class="title">
+                <h3>Story</h3>
+                  <button type="button">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <g clip-path="url(#clip0_964_20368)"><path d="M3 17.25V21H6.75L17.81 9.94L14.06 6.19L3 17.25ZM20.71 7.04C21.1 6.65 21.1 6.02 20.71 5.63L18.37 3.29C17.98 2.9 17.35 2.9 16.96 3.29L15.13 5.12L18.88 8.87L20.71 7.04Z" fill="#B8BBCF"/></g>
+                  <defs><clipPath id="clip0_964_20368"><rect width="24" height="24" fill="white"/></clipPath></defs></svg>
+                Edit Info
+                 </button>
+              </div>
+              <div class="d-flex justify-content-between group-item top-item"><h4>What is the song for?</h4><p>{{ selectedOccasion ? selectedOccasion.name : 'No selected occasion' }}</p></div>
+              <div class="d-flex justify-content-between group-item"><h4>To whom is the song for?</h4><p>{{ song_for }}</p></div>
+              <div class="d-flex justify-content-between group-item"><h4>Where did the song come from?</h4><p>{{ come_from }}</p></div>
+              <div class="d-flex justify-content-between group-item"><h4>Your story</h4></div>
+              <div class="your-story-content">
+                <p>{{ your_story }}</p>
+              </div>
+              <div class="double-check">
+                <h5>Please double-check the spelling and, where necessary, the pronunciation, and ensure that your story makes sense.</h5>
+              </div>
+              <div class="understand">
+                <input type="checkbox" class="form-check-input"  v-model="understand" id="understand">
+                <p>I understand changes cannot be made after checkout – all of my information is good to go!</p>
               </div>
                 <div class="button-wrapper">
                   <button type="button" class="btn btn-primary back" @click="previousStep" :disabled="currentStep === 0">Back</button>
-                  <button type="button" class="btn btn-primary next">Submit</button>
+                  <button type="button" class="btn btn-primary next" :disabled="!understand">Submit</button>
                   </div>
               </div>
-
-
             </div>
                 <div class="col-1"></div>
           </div>      
@@ -265,8 +393,72 @@
       <!-- </div>
     </div> -->
 
+    </div>  <!-- ned of container -->
 
-    </div>
+      <!-- hidden audio controls -->
+      <div class="audio-controls-fixed" v-show="showControls">
+          <div class="d-flex align-items-center audio-menu">
+            <div class="artist">
+              <div class="card">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    <img :src="showArtists[currentIndex].image" class="img-fluid" alt="Artist Image" />
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ showArtists[currentIndex].name }}</h5>
+                      <p class="card-text">{{ showArtists[currentIndex].typeOfArtist }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="audio-controls">
+              <audio ref="audioPlayer" controls style="display: none;"></audio>
+              <div class="main-controls">
+                <button @click="playPrevious" class="btn btn-primary prev">
+                  <!-- <i class="material-icons"><span class="material-symbols-outlined">skip_previous</span></i> -->
+                </button>
+                <button @click="togglePlayPause" class="btn btn-primary play">
+                  <!-- <i :class="playIconClass"></i> -->
+                  <img :src="playIconClass">
+                </button>
+                <button @click="playNext" class="btn btn-primary next"></button>
+              </div>
+              <div class="song-timeline">
+                <div class="current-time">
+                  {{ currentTime }}
+                </div>
+                <div class="timeline">
+                  <div class="progress-bar" :style="{ width: progressBarWidth }"></div>
+                </div>
+                <div class="duration">
+                  {{ duration }}
+                </div>
+              </div>
+            </div>
+
+            <div class="stop-song">
+              <!-- Volume -->
+              <div class="volume-wrapper">
+                <button @click="toggleMute" class="btn btn-primary volume">
+                  <i :class="`bi ${volumeIcon}`"></i>
+                </button>
+                <div class="" style="display: none;">
+                  <button @click="showVolumeSlider = !showVolumeSlider" class="btn btn-primary">
+                    <i class="bi bi-volume-up"></i>
+                  </button>
+                </div>
+                <div v-if="showVolumeSlider" class="volume-slider">
+                  <input type="range" min="0" max="100" v-model="currentVolume" class="form-range" @input="updateVolume">
+                </div>
+              </div>
+              <!-- x icon - stop the song and close the audio controls modal -->
+              <i class="bi bi-x" @click="stopAudio"></i>
+            </div>
+          </div>
+        </div> <!-- end of audio-controls -->
+
   </section>
       
    
@@ -303,6 +495,8 @@
       currentSubStepSong: 0, // Step 2 - SONG
       currentSubStepStory: 0,  // Step 3 - STORY
       selectedMood: null,
+      understand: false,
+      submitted: false,
       // STEP 1 - INFO
       first_name: '',
       last_name: '',
@@ -311,7 +505,7 @@
       moodOptions: [
       { id: 1, name: 'Happy' },
       { id: 2, name: 'Surprise' },
-      { id: 3, name: 'Anger' }
+      { id: 3, name: 'Romance' }
         ],
       selectedLanguage: null,
       languageOptions: [
@@ -329,20 +523,71 @@
       // STEP 3 - STORY
       song_for: '',
       come_from: '',
+      your_story: '',
       selectedOccasion: null, 
       songOccasionOptions: [
       { id: 1, name: 'Birthday' },
       { id: 2, name: 'Graduation' },
       { id: 3, name: 'Wedding' }
     ],
-
       expandMore: {
-        img: 'src/assets/expand-more.svg',
+        img: '/assets/expand-more.svg',
         altText: 'expand icon to see list of items in the dropdown menu'
       },
-      currentStep: 0
+      currentStep: 0,
+                              // STEP 2 - SONG (SELECT YOUR ARTIST)        
+      showArtists: [
+        {
+          name: 'Idlepitch',
+          typeOfArtist: 'Full Band Artist',
+          genre: 'Rock',
+          song: 'https://res.cloudinary.com/daorvtlls/video/upload/v1686647605/Nirvana_-_Smells_like_teen_spirit_zs8yo4.mp3',
+          image: 'https://res.cloudinary.com/daorvtlls/image/upload/v1686649068/trending-bicolano-artist-1_igoz8j.png',
+          ratings: 4.95,
+          reviews: 234,
+        },
+        {
+          name: 'Dante Magno',
+          typeOfArtist: 'Songwriter',
+          genre: 'Hip-hop/Rap',
+          song: 'https://res.cloudinary.com/daorvtlls/video/upload/v1686647609/MORE_THAN_WORDS_ti4mor.mp3',
+          image: 'https://res.cloudinary.com/daorvtlls/image/upload/v1686649067/trending-bicolano-artist-2_ljhog8.png',
+          ratings: 4.95,
+          reviews: 230,
+        },
+      ],
+      ratingImage: 'https://res.cloudinary.com/daorvtlls/image/upload/v1687321042/rating-star-small_axozjd.svg',
+      showControls: false,
+      audioPlayer: null,
+      currentIndex: 0,
+      activeSlide: 0,
+      lastActiveSlide: 0,
+      isPlaying: false,
+      isMuted: false,
+      currentTime: '0:00',
+      duration: '0:00',
+      showVolumeSlider: false,
+      currentVolume: 100,
+      showVolumeSlider: true,
+      muted: false
+
+
+
+
 
         };
+      },
+      mounted()
+      {
+        this.audioPlayer = this.$refs.audioPlayer;
+        this.audioPlayer.addEventListener('play', () =>
+        {
+          this.isPlaying = true;
+        });
+        this.audioPlayer.addEventListener('pause', () =>
+        {
+          this.isPlaying = false;
+        });
       },
       computed: {
         progressWidth() {
@@ -364,13 +609,150 @@
     },
         isButtonOccasion(){
           return this.song_for === '' || this.come_from === ''; 
-        }
+        },
+        playIconClass()
+        {
+          return this.isPlaying ? 'https://res.cloudinary.com/daorvtlls/image/upload/v1687321874/play-pause_ofcx4e.svg' : 'https://res.cloudinary.com/daorvtlls/image/upload/v1687321874/play-black_ftgyx3.svg';
+        },
+        volumeIcon()
+        {
+          if (this.currentVolume === 0) {
+            return 'bi-volume-mute';
+          } else if (this.currentVolume < 1) {
+            return 'bi-volume-mute';
+          } else if (this.currentVolume < 50) {
+            return 'bi-volume-down';
+          } else {
+            return 'bi-volume-up';
+          }
+        },
       },
       methods: {
+        toggleControls(index)
+          {
+            if (this.audioPlayer) {
+              if (this.showControls && this.currentIndex === index) {
+                if (this.audioPlayer.paused) {
+                  this.audioPlayer.play();
+                  this.isPlaying = true;
+                } else {
+                  this.audioPlayer.pause();
+                  this.isPlaying = false;
+                }
+              } else {
+                this.currentIndex = index;
+                this.playSong(this.currentIndex);
+                this.showControls = true;
+                this.isPlaying = true;
+              }
+              this.activeSlide = Math.floor(index / 3);
+            }
+          },
+          togglePlayPause()
+          {
+            if (this.audioPlayer) {
+              if (this.audioPlayer.paused) {
+                this.audioPlayer.play();
+              } else {
+                this.audioPlayer.pause();
+              }
+            }
+          },  
+          playPrevious()
+              {
+                if (this.currentIndex > 0) {
+                  this.currentIndex--;
+                } else {
+                  this.currentIndex = this.showArtists.length - 1;
+                }
+                // this.activeSlide = Math.floor(this.currentIndex / 6);
+                this.playSong(this.currentIndex);
+              },
+
+              playSong(index)
+              {
+                if (this.audioPlayer) {
+                  this.audioPlayer.src = this.showArtists[index].song;
+                  this.audioPlayer.load();
+                  this.audioPlayer.play();
+                }
+                // Update current time and duration when the metadata is loaded
+                this.audioPlayer.addEventListener('loadedmetadata', () =>
+                {
+                  this.duration = this.formatTime(this.audioPlayer.duration);
+                });
+
+                // Update current time during playback
+                this.audioPlayer.addEventListener('timeupdate', () =>
+                {
+                  this.currentTime = this.formatTime(this.audioPlayer.currentTime);
+                  this.updateProgressBar();
+                });
+              },
+
+              stopAudio()
+              {
+                if (this.audioPlayer) {
+                  this.audioPlayer.pause();
+                  this.showControls = false;
+                }
+              },
+              toggleMute()
+              {
+                if (this.audioPlayer) {
+                  this.audioPlayer.muted = !this.audioPlayer.muted;
+                  this.isMuted = this.audioPlayer.muted;
+                }
+              },
+              formatTime(time)
+              {
+                const minutes = Math.floor(time / 60);
+                const seconds = Math.floor(time % 60).toString().padStart(2, '0');
+                return `${minutes}:${seconds}`;
+              },
+
+              updateProgressBar()
+              {
+                const progress = (this.audioPlayer.currentTime / this.audioPlayer.duration) * 100;
+                this.progressBarWidth = `${progress}%`;
+              },
+              updateVolume()
+              {
+                if (this.audioPlayer) {
+                  this.audioPlayer.volume = this.currentVolume / 100;
+                }
+              },
+              toggleMute()
+              {
+                if (this.currentVolume === 0) {
+                  this.currentVolume = this.previousVolume;
+                } else {
+                  this.previousVolume = this.currentVolume;
+                  this.currentVolume = 0;
+                }
+              },
+            watch: {
+              currentVolume()
+              {
+                this.updateVolume();
+              },
+            },
+              playNext()
+              {
+                if (this.currentIndex < this.showArtists.length - 1) {
+                  this.currentIndex++;
+                } else {
+                  this.currentIndex = 0;
+                }
+                // this.activeSlide = Math.floor(this.currentIndex / 6);
+                this.playSong(this.currentIndex);
+              },
+
         nextStep() {
           if (this.currentStep < this.steps.length - 1) {
             this.currentStep++;
           }
+          this.submitted = true;
         },
         subNextStepSong(){
           if (this.currentSubStepSong < this.subStepsSong.length - 1) {
