@@ -325,9 +325,9 @@ header nav{
   height: 64px;
   width: 64px;
 }
-#home-carousel .carousel-control-next-icon:hover {
+/* #home-carousel .carousel-control-next-icon:hover {
   background-image: url("@/assets/carousel-icon-next-hover.svg");
-}
+} */
 /* .animate-section {
   position: absolute;
   top: 0%;
