@@ -179,7 +179,9 @@ export default {
     ...mapActions(['signup']),
     submit()
     {
-      const loader = this.$vs.loading()
+      const loader = this.$vs.loading({
+        text: 'Loading...',
+      })
       this.isDisabled = true;
       this.signup(this.form)
         .then((response) => { 

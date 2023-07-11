@@ -201,12 +201,19 @@ export default {
     ...mapMutations([]),
     logout()
     {
+      const loader = this.$vs.loading({
+        text: 'Loading...',
+      })
       this.signout()
         .then(response =>
         {
           const { status } = response;
           if (status === 200 || status === 401) this.$router.push('/login');
-          console.log('Logout Response: ', response)
+
+          setTimeout(() =>
+          {
+            loader.close()
+          }, 3000)
         })
     }
   },

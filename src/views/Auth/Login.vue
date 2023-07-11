@@ -147,7 +147,7 @@ export default {
           })
           var user = this.$store.state.user;
           var role = this.$store.state.role;
-
+          
           // if (role === 'artists') {
           //   this.$router.push("/");
           // }
@@ -155,7 +155,7 @@ export default {
         } else {
 
           this.errors = data?.result?.errors;
-
+          
           this.$vs.notification({
             color: 'danger',
             position: 'top-right',
@@ -199,7 +199,9 @@ export default {
     {
       const provider = new GoogleAuthProvider()
       const auth = getAuth();
-
+      const loader = this.$vs.loading({
+        text: 'Loading...',
+      })
       signInWithPopup(auth, provider).then(result =>
       {
         const { _tokenResponse: {federatedId, email, emailVerified, firstName, lastName}, user: {providerData, uid, photoURL} } = result;
@@ -228,13 +230,16 @@ export default {
 
           const { message, status } = response;
           if (status === 200) {
-
+            
             this.$vs.notification({
               color: 'success',
               position: 'top-right',
               title: 'Signin',
               text: `${message}`
             })
+
+            this.$router.push("/");
+
           } else {
             this.$vs.notification({
                 color: 'danger',
@@ -243,21 +248,27 @@ export default {
                 text: `${message}`
               })
           }
-          
-          this.$router.push("/");
 
+          setTimeout(() =>
+            {
+              loader.close()
+            }, 3000)
         })
-          .catch(err =>
-          {
-            this.$vs.notification({
-              color: 'danger',
-              position: 'top-right',
-              title: 'Server Status',
-              text: `${err.message}`
-            })
+        .catch(err =>
+        {
+          loader.close()
+
+          this.$vs.notification({
+            color: 'danger',
+            position: 'top-right',
+            title: 'Server Status',
+            text: `${err.message}`
+          })
+            
         })
       }).catch((err) =>
       {
+        loader.close()
         this.$vs.notification({
           color: 'danger',
           position: 'top-right',
