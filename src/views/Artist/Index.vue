@@ -90,7 +90,7 @@
                             <i class="material-icons"><span class="material-symbols-outlined calendar">calendar_month</span></i><p class="band-name">IDLEPITCH</p>
                           </div>
                           <div class="mt-3 social-media">
-                            <img src="@/assets/social icons/_Spotify.svg" loading="lazy" alt="spotify icon">
+                            <!-- <img src="@/assets/social icons/_Spotify.svg" loading="lazy" alt="spotify icon"> -->
                             <p>Full Band Artist</p>
                           </div>
                             <div class="mt-3 social-media">
