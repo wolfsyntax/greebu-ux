@@ -3,6 +3,7 @@ var state = {
   user: {},
   bearerToken: '',
   role: '',
+  roles: [],
   artist_types: null,
   genres: null,
   artists: null,

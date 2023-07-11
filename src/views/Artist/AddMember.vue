@@ -12,7 +12,7 @@
                 <span class="material-symbols-outlined camera-inner">&#xe412;</span>
                 <div class="camera">
                   <input type="file" @input="form.member_avatar = $event.target.files[0]" class="member-avatar" accept="image/png, image/webp, image/svg, image/jpeg"/>
-                  <span v-if="errors?.member_avatar" class="text-danger">{{ errors.member_avatar }}</span>
+                  <span v-if="errors?.member_avatar" class="text-danger">{{ errors.member_avatar.shift() }}</span>
                     
                 </div>
                 <span class="material-symbols-outlined camera-outer" >&#xE412;</span>
@@ -27,7 +27,7 @@
             <div class="form-group">
               <label for="fileUpload">Name of the Member</label>
             <input type="text" v-model="form.member_name" placeholder="Name of the member" class="form-control member-name" />
-            <span v-if="errors?.member_name" class="member-name text-danger"></span>
+            <span v-if="errors?.member_name" class="member-name text-danger">errors.member_name.shift()</span>
               </div>
           </div>
         </div>
@@ -39,7 +39,7 @@
                 <option value="" selected> - Please Select Role - </option>
                 <option v-for="member_role in roles" :key="member_role.id" :value="member_role.value">{{ member_role.label }}</option>
             </select>
-            <span v-if="errors?.role" class="role-error text-danger"></span>
+            <span v-if="errors?.role" class="role-error text-danger">{{ errors.role.shift() }}</span>
           </div>
           </div>
         </div>
@@ -99,7 +99,7 @@ export default {
     { 
       this.addMember(this.form).then((response) =>
       {
-        
+
         const { status } = response;
         if (status === 422) {
           this.errors = response?.result?.errors || {}
@@ -108,6 +108,15 @@ export default {
           this.$emit('modalClose')
         }
 
+      })
+      .catch(err => {
+        console.log('Err: ', err)
+        this.$vs.notification({
+          color: 'danger',
+          position: 'top-right',
+          title: 'Server Status',
+          text: `${err.message}`
+        })
       });
     }
   },

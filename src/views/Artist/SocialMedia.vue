@@ -144,7 +144,15 @@ export default {
       }).then(response =>
       {
         
-      })
+      }).catch(err =>
+      {
+        this.$vs.notification({
+          color: 'danger',
+          position: 'top-right',
+          title: 'Server Status',
+          text: `${err.message}`
+        })
+      });
       // this.signin(this.form).then((response) =>
       // {
 

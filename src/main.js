@@ -34,7 +34,10 @@ import moment from 'moment'
 import './style.css'
 import 'vuesax/dist/vuesax.css';
 
-import VueSocialauth from 'vue-social-auth'
+import { VueFire, VueFireAuth } from 'vuefire'
+import { firebaseApp } from './firebase/init';
+
+import Pusher from './plugins/pusher';
 
 const app = createApp(App)
   .use(i18n)
@@ -42,19 +45,20 @@ const app = createApp(App)
   .use(store)
   .use(router)
   .use(Vuesax, {})
-  .use(VueSocialauth, {
-    providers: {
-      google: {
-        clientId: import.meta.env.VITE_GOOGLE_CLIENT_ID,
-        clientSecret: import.meta.env.VITE_GOOGLE_CLIENT_SECRET,
-        redirectUri: import.meta.env.VITE_GOOGLE_REDIRECT_URI,
-      },
-      facebook: {
-        clientId: import.meta.env.VITE_FACEBOOK_CLIENT_ID,
-        clientSecret: import.meta.env.VITE_FACEBOOK_CLIENT_SECRET,
-        redirectUri: import.meta.env.VITE_FACEBOOK_REDIRECT_URI,
-      }
-    }
+  .use(Pusher, {
+    apiKey: import.meta.env.VITE_PUSHER_APP_KEY,
+    appId: import.meta.env.VITE_PUSHER_APP_ID,
+    secret: import.meta.env.VITE_PUSHER_APP_SECRET,
+    cluster: import.meta.env.VITE_PUSHER_CLUSTER,
+  })
+
+  .use(VueFire, {
+    // imported above but could also just be created here
+    firebaseApp,
+    modules: [
+      // we will see other modules later on
+      VueFireAuth(),
+    ],
   })
   // .use(BootstrapVueIcons)
   .component('multiselect', Multiselect)
@@ -66,6 +70,8 @@ app.config.globalProperties.$filters = {
   return moment(date).fromNow()
   },
 }
+
+app.config.globalProperties.$assets = import.meta.env.VITE_ASSET_URL;
 
 app.mount('#app');
 
