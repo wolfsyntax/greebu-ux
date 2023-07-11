@@ -2499,6 +2499,8 @@ background-color: var(--orange);
   justify-content: space-between;
   display: flex;
   align-items: center;
+  margin: 2rem;
+  margin-bottom: 1px solid #BECDF8;;
 }
 .basic-information .container .step4 .review-content .title h3{
   color: var(--high-emphasis, #000);
@@ -2519,6 +2521,9 @@ background-color: var(--orange);
   font-weight: 500;
   line-height: 1.5rem;
 }
+/* .basic-information .container .step4 .button-wrapper{
+  margin: 2rem auto;
+} */
 
 
 

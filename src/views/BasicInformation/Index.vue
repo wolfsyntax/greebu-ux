@@ -167,7 +167,8 @@
                         </div> 
                         <div class="button-wrapper">
                         <button type="button" class="btn btn-primary back" @click="subPreviousStepSong" :disabled="currentStep === 0">Back</button>
-                        <button type="button" class="btn btn-primary next" @click="subNextStepSong" :disabled="!selectedMood">Next</button>
+                        <!-- <button type="button" class="btn btn-primary next" @click="subNextStepSong" :disabled="!selectedMood">Next</button> -->
+                        <button type="button" class="btn btn-primary next" @click="subNextStepSong">Next</button>
                       </div>
                     </form>
                   </div>
@@ -206,7 +207,8 @@
                       </div> 
                       <div class="button-wrapper">
                       <button type="button" class="btn btn-primary back" @click="subPreviousStepSong" :disabled="currentStep === 0">Back</button>
-                      <button type="button" class="btn btn-primary next" @click="nextStep" :disabled="!(selectedLanguage && selectedSongDuration)">Next</button>
+                      <!-- <button type="button" class="btn btn-primary next" @click="nextStep" :disabled="!(selectedLanguage && selectedSongDuration)">Next</button> -->
+                      <button type="button" class="btn btn-primary next" @click="nextStep">Next</button>
                     </div>
                   </form>
                 </div>
