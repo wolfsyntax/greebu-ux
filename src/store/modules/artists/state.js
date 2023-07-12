@@ -10,7 +10,8 @@ var state = {
     last_page: 1,
     per_page: 10,
     total: 1,
-  }
+  },
+  artist_profile: {},
 }
 
 export default state

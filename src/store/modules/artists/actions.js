@@ -226,3 +226,24 @@ export const artistOptions = ({ commit, rootState, state }, payload) =>
 
   })
 }
+
+
+export const fetchArtist = ({ commit, rootState, state }, payload) =>
+{
+  return new Promise(async (resolve, reject) =>
+  {
+
+    await axios.get(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/artist/${payload}`)
+      .then(response =>
+      {
+        const {data: {status, message, result: {artist}}} = response
+        commit('SET_ARTIST_PROFILE', artist);
+        resolve(response)
+      })
+      .catch(err =>
+      {
+        reject(err)
+      });
+
+  })
+}

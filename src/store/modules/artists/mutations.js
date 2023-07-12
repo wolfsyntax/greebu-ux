@@ -40,3 +40,8 @@ export const SET_PAGINATION = (state, {
     total: total || 1,
   }
 }
+
+export const SET_ARTIST_PROFILE = (state, payload) =>
+{
+  state.artist_profile = payload
+}

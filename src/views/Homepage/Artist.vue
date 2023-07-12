@@ -95,39 +95,14 @@
           </div>
         </div>
 
-                                                                    <!-- Show Artists -->
+        <!-- Show Artists -->
         <div id="ShowArtists" class="carousel slide">
           <div class="carousel-inner">
             <div class="carousel-item" v-for="(slide, index) in showArtists" :key="index"
               :class="{ active: index === activeSlide }">
               <div class="row">
-                <div class="col-4" v-for="(artist, itemIndex) in showArtists" :key="itemIndex">
-                  <div class="card">
-                    <img :src="artist.image" class="card-img-top img-fluid" loading="lazy" alt="Trending Artist" />
-                    <div class="middle">
-                      <a href="/artist"> View Profile</a>
-                    </div>
-                    <div class="card-body">
-                      <div class="artist">
-                        <h5 class="card-title">{{ artist.name }}</h5>
-                        <h6 class="card-text">{{ artist.typeOfArtist }}</h6>
-                        <p><img :src="ratingImage"> {{ artist.ratings }} <span>({{ artist.reviews }}
-                            reviews)</span></p>
-                      </div>
-                      <div class="audio-btn">
-                        <div class="play-btn">
-                          <div class="play-btn">
-                            <div class="play-btn">
-                              <i :class="{
-                                'bi bi-play-circle-fill play-icon': !showControls || (showControls && currentIndex !== itemIndex),
-                                'bi bi-pause-circle-fill play-icon': showControls && currentIndex === itemIndex
-                              }" @click="toggleControls(itemIndex)"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                <div class="col-4" v-for="(artist, itemIndex) in artists" :key="itemIndex">
+                  <card :artist="artist" />
                 </div>
               </div> <!-- end of row -->
             </div>
@@ -213,6 +188,7 @@
 <script>
 import Layout from '@/components/Layouts/Layout.vue';
 import Reminder from '@/components/Home/Reminder.vue';
+import Card from '@/components/Artist/Card.vue';
 import Faq from '@/components/Home/FAQ.vue';
 import { mapGetters, mapState, mapActions } from "vuex";
 
@@ -220,7 +196,8 @@ export default {
   components: {
     layout: Layout,
     faq: Faq,
-    reminder: Reminder
+    reminder: Reminder,
+    card: Card,
   },
   setup()
   {
@@ -338,7 +315,7 @@ export default {
       type: '', genre: '', availability: '',
       language: '',
       city: '', province: '',
-      page: '', per_page: '',
+      page: '', per_page: 9,
       filterBy: '', sortBy: '', search: '',
     })
       .then(response =>
