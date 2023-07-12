@@ -172,3 +172,57 @@ export const updateMember = ({ commit, rootState, state}, payload) => {
   })
   
 }
+
+// Update 
+export const fetchArtists = ({ commit, rootState, state }, {
+  type, genre, availability,
+  language,
+  city, province,
+  page, per_page,
+  filterBy, sortBy, search,
+}) => {
+  
+  return new Promise(async(resolve, reject) => {
+    var url = `${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/artist?type=${type}&genre=${genre}&availability=${availability}&language=${language}&city=${city}&province=${province}&page=${page || 1}&per_page=${per_page || 10}&filterBy=${filterBy || 'created_at'}&sortBy=${sortBy || 'ASC'}&search=${search}`
+    if (rootState.bearerToken) {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
+      url = `${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/artists?type=${type}&genre=${genre}&availability=${availability}&language=${language}&city=${city}&province=${province}&page=${page || 1}&per_page=${per_page || 10}&filterBy=${filterBy || 'created_at'}&sortBy=${sortBy || 'ASC'}&search=${search}`
+    }
+    await axios.get(url)
+      .then(response => {        
+        
+        const { data: {status, message, result: {data, current_page, last_page, per_page, total}} } = response
+        //commit('SET_MEMBERS', data)
+        commit('SET_ARTISTS', data)
+        commit('SET_PAGINATION', { current_page, last_page, per_page, total })
+        
+        resolve(response.data)
+    })
+    .catch(err => {
+      reject(err)
+    });
+  })
+  
+}
+export const artistOptions = ({ commit, rootState, state }, payload) =>
+{
+  return new Promise(async (resolve, reject) =>
+  {
+
+    await axios.get(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/artist/forms`, payload)
+      .then(response =>
+      {
+        //console.log('artistOptions: ', response)
+        const {data: {status, message, result: {genres, artist_types}}} = response
+        commit('SET_GENRES', genres || []);
+        commit('SET_ARTIST_TYPES', artist_types || [])
+        console.log('Artist Options: ', response.data.result);
+        resolve(response)
+      })
+      .catch(err =>
+      {
+        reject(err)
+      });
+
+  })
+}

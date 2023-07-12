@@ -62,19 +62,17 @@
           <div class="col-3">
             <h5>Type of Artist</h5>
             <select class="form-select" aria-label="Default select example">
-              <option selected>Solo Artist</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
+              <option v-for="artist_type in artist_types" :key="artist_type.id">
+              {{  artist_type.title }}
+              </option>
             </select>
           </div>
           <div class="col-3">
             <h5>Music Genre</h5>
             <select class="form-select" aria-label="Default select example">
-              <option selected>Happy</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
+              <option v-for="{title, id} in genres" :key="id">
+                {{ title }}
+                </option>
             </select>
           </div>
           <div class="col-3">
@@ -216,6 +214,7 @@
 import Layout from '@/components/Layouts/Layout.vue';
 import Reminder from '@/components/Home/Reminder.vue';
 import Faq from '@/components/Home/FAQ.vue';
+import { mapGetters, mapState, mapActions } from "vuex";
 
 export default {
   components: {
@@ -326,11 +325,26 @@ export default {
       showVolumeSlider: false,
       currentVolume: 100,
       showVolumeSlider: true,
-      muted: false
+      muted: false,
+      query: {
+        type: 'Solo Artist',
+      }
     };
   },
   mounted()
   {
+    this.artistOptions()
+    this.fetchArtists({
+      type: '', genre: '', availability: '',
+      language: '',
+      city: '', province: '',
+      page: '', per_page: '',
+      filterBy: '', sortBy: '', search: '',
+    })
+      .then(response =>
+      {
+        console.log('Artist.vue: ', response)
+      })
     this.audioPlayer = this.$refs.audioPlayer;
     this.audioPlayer.addEventListener('play', () =>
     {
@@ -342,6 +356,12 @@ export default {
     });
   },
   computed: {
+    ...mapGetters(["userInfo", "token"]),
+    ...mapState({
+      artists: (state) => state.artist.artists,
+      artist_types: (state) => state.artist.artist_types,
+      genres: (state) => state.artist.genres,
+    }),
     playIconClass()
     {
       return this.isPlaying ? 'https://res.cloudinary.com/daorvtlls/image/upload/v1687321874/play-pause_ofcx4e.svg' : 'https://res.cloudinary.com/daorvtlls/image/upload/v1687321874/play-black_ftgyx3.svg';
@@ -361,6 +381,9 @@ export default {
 
   },
   methods: {
+    ...mapActions([
+      'fetchArtists', 'artistOptions',
+    ]),
     toggleControls(index)
     {
       if (this.audioPlayer) {

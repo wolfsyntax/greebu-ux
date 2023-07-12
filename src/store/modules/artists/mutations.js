@@ -20,3 +20,23 @@ export const SET_ARTIST = (state, payload) =>
 {
   state.artist = payload
 }
+
+export const SET_ARTISTS = (state, payload) =>
+{
+  state.artists = payload
+}
+
+export const SET_PAGINATION = (state, {
+    current_page,
+    last_page,
+    per_page,
+    total,
+  }) =>
+{
+  state.pagination = {
+    current_page: current_page || 1,
+    last_page: last_page || 1,
+    per_page: per_page || 10,
+    total: total || 1,
+  }
+}

@@ -5,6 +5,12 @@ var state = {
   genres: null,
   members: null,
   artist: {},
+  pagination: {
+    current_page: 1,
+    last_page: 1,
+    per_page: 10,
+    total: 1,
+  }
 }
 
 export default state

@@ -7,6 +7,8 @@ import HelloWorld from './components/HelloWorld.vue'
 </template>
 <script>
 export default {
+  props: {
+  },
   setup() {
   },
   // compatConfig: { MODE: 3 },
