@@ -120,14 +120,14 @@
             </form>
           </div>
         </div>
-          
-        <div class="row mb-0 text-center select-register">
+        <social-button />
+        <!-- <div class="row mb-0 text-center select-register">
           <div class="col-md-12 continue-with">
             <p><span>Or Continue with</span></p>
           </div>
           <a href="/login/google" target="_self" class="google"><img src="/assets/sign-in-with-google.svg" width="20" height="20" alt="Sign-in with Google">Sign-in with Google</a>
           <a href="/login/facebook" class="facebook"><img src="/assets/sign-in-with-facebook.svg" width="20" height="20" alt="Sign up with Facebook">Sign up with Facebook</a>
-        </div>
+        </div> -->
       </div>
     </div>
   </section>
@@ -137,10 +137,11 @@
 <script>
 import Layout from '@/components/Layouts/AuthLayout.vue';
 import { mapGetters, mapState, mapActions } from "vuex";
-
+import SocialButton from '@/components/Auth/SocialLogin.vue';
 export default {
   components: {
     layout: Layout,
+    'social-button': SocialButton,
   },
   data()
   {

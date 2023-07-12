@@ -1,4 +1,5 @@
 import axios from "axios";
+import { FacebookAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup, createUserWithEmailAndPassword, signInWithRedirect } from "firebase/auth";
 
 var actions = {
   signin({ commit }, payload)
@@ -84,23 +85,6 @@ var actions = {
           }
           reject(err);
         });
-    })
-  },
-  artistOptions({ commit }, payload)
-  {
-    return new Promise(async (resolve, reject) =>
-    {
-
-      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/artist/forms`, payload)
-        .then(response =>
-        {
-          resolve(response)
-        })
-        .catch(err =>
-        {
-          reject(err)
-        });
-
     })
   },
   plansOptions({ commit }, payload = 'artists')
@@ -198,7 +182,59 @@ var actions = {
           reject(err)
         });
     })
+  },
+
+  resyncProfile({ commit, state }, payload)
+  {
+    return new Promise(async (resolve, reject) => {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
+
+      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/user-details`, {role: state.role})
+        .then(response =>
+        {
+
+          const { data, status} = response
+          if (status === 200) {
+
+            const { result: { profile, user } } = data;
+            commit('SET_PROFILE', profile);
+            commit('SET_AUTH', user);
+          }
+          resolve(data)
+        })
+        .catch(err =>
+        {
+          reject(err)
+        });
+    })
+  },
+  socialMediaAuth({ commimt, state }, payload)
+  {
+    return new Promise(async (resolve, reject) =>
+    {
+      const auth = getAuth();      
+      var provider = null;
+      switch (payload) {
+        case 'facebook':
+          provider = new FacebookAuthProvider();
+          break;
+        default: 
+          provider = new GoogleAuthProvider();
+          break;
+      }
+
+      const self = this;
+      signInWithPopup(auth, provider).then(result =>
+      { 
+        resolve(result);
+      })
+      .catch(err =>
+      {
+        reject(err);
+      });
+    });
   }
+
 }
 
 export default actions
