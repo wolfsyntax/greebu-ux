@@ -1,4 +1,5 @@
 import axios from "axios";
+import { FacebookAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup, createUserWithEmailAndPassword, signInWithRedirect } from "firebase/auth";
 
 var actions = {
   signin({ commit }, payload)
@@ -206,6 +207,32 @@ var actions = {
           reject(err)
         });
     })
+  },
+  socialMediaAuth({ commimt, state }, payload)
+  {
+    return new Promise(async (resolve, reject) =>
+    {
+      const auth = getAuth();      
+      var provider = null;
+      switch (payload) {
+        case 'facebook':
+          provider = new FacebookAuthProvider();
+          break;
+        default: 
+          provider = new GoogleAuthProvider();
+          break;
+      }
+
+      const self = this;
+      signInWithPopup(auth, provider).then(result =>
+      { 
+        resolve(result);
+      })
+      .catch(err =>
+      {
+        reject(err);
+      });
+    });
   }
 
 }
