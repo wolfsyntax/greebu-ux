@@ -28,7 +28,7 @@
 
           <div class="login-form">
             <div class="logo">
-              <a href="/"><img src="@/assets/geebu-logo.svg" width="175" height="46" alt="Logo"></a>
+              <a href="/"><img src="/assets/geebu-logo.svg" width="175" height="46" alt="Logo"></a>
             </div>
             <div class="card">
               <div class="card-header">
@@ -67,10 +67,12 @@
               <div class="col-md-12 continue-with">
                 <p><span>Or Continue with</span></p>
               </div>
+
               <GoogleLogin :callback="callback"/>
-              <a href="" @click.prevent="AuthProviderGoogle()" class="google"><img src="@/assets/sign-in-with-google.svg" width="20"
+              <a href="" @click.prevent="AuthProviderGoogle()" class="google"><img src="/assets/sign-in-with-google.svg" width="20"
                   height="20" alt="Sign-in with Google">Sign-in with Google</a>
-              <a href="" @click.prevent="AuthProviderFB()" class="facebook"><img src="@/assets/sign-in-with-facebook.svg"
+              <a href="" @click.prevent="AuthProviderFB()" class="facebook"><img src="/assets/sign-in-with-facebook.svg"
+
                   width="20" height="20" alt="Sign up with Facebook">Sign up with Facebook</a>
               <div class="forgot-password">
                 <a href="forgot-password">I Forgot my Password</a>
@@ -147,7 +149,7 @@ export default {
           })
           var user = this.$store.state.user;
           var role = this.$store.state.role;
-
+          
           // if (role === 'artists') {
           //   this.$router.push("/");
           // }
@@ -155,7 +157,7 @@ export default {
         } else {
 
           this.errors = data?.result?.errors;
-
+          
           this.$vs.notification({
             color: 'danger',
             position: 'top-right',
@@ -199,7 +201,9 @@ export default {
     {
       const provider = new GoogleAuthProvider()
       const auth = getAuth();
-
+      const loader = this.$vs.loading({
+        text: 'Loading...',
+      })
       signInWithPopup(auth, provider).then(result =>
       {
         const { _tokenResponse: {federatedId, email, emailVerified, firstName, lastName}, user: {providerData, uid, photoURL} } = result;
@@ -228,13 +232,16 @@ export default {
 
           const { message, status } = response;
           if (status === 200) {
-
+            
             this.$vs.notification({
               color: 'success',
               position: 'top-right',
               title: 'Signin',
               text: `${message}`
             })
+
+            this.$router.push("/");
+
           } else {
             this.$vs.notification({
                 color: 'danger',
@@ -243,21 +250,27 @@ export default {
                 text: `${message}`
               })
           }
-          
-          this.$router.push("/");
 
+          setTimeout(() =>
+            {
+              loader.close()
+            }, 3000)
         })
-          .catch(err =>
-          {
-            this.$vs.notification({
-              color: 'danger',
-              position: 'top-right',
-              title: 'Server Status',
-              text: `${err.message}`
-            })
+        .catch(err =>
+        {
+          loader.close()
+
+          this.$vs.notification({
+            color: 'danger',
+            position: 'top-right',
+            title: 'Server Status',
+            text: `${err.message}`
+          })
+            
         })
       }).catch((err) =>
       {
+        loader.close()
         this.$vs.notification({
           color: 'danger',
           position: 'top-right',

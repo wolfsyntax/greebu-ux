@@ -22,7 +22,7 @@
 
       <div class="register-form">
         <div class="logo">
-          <a href="/"><img src="@/assets/geebu-logo.svg" width="175" height="46" alt="Logo"></a>
+          <a href="/"><img src="/assets/geebu-logo.svg" width="175" height="46" alt="Logo"></a>
         </div>
         <div class="card">
           <div class="card-header">
@@ -125,8 +125,8 @@
           <div class="col-md-12 continue-with">
             <p><span>Or Continue with</span></p>
           </div>
-          <a href="/login/google" target="_self" class="google"><img src="@/assets/sign-in-with-google.svg" width="20" height="20" alt="Sign-in with Google">Sign-in with Google</a>
-          <a href="/login/facebook" class="facebook"><img src="@/assets/sign-in-with-facebook.svg" width="20" height="20" alt="Sign up with Facebook">Sign up with Facebook</a>
+          <a href="/login/google" target="_self" class="google"><img src="/assets/sign-in-with-google.svg" width="20" height="20" alt="Sign-in with Google">Sign-in with Google</a>
+          <a href="/login/facebook" class="facebook"><img src="/assets/sign-in-with-facebook.svg" width="20" height="20" alt="Sign up with Facebook">Sign up with Facebook</a>
         </div>
       </div>
     </div>
@@ -179,7 +179,9 @@ export default {
     ...mapActions(['signup']),
     submit()
     {
-      const loader = this.$vs.loading()
+      const loader = this.$vs.loading({
+        text: 'Loading...',
+      })
       this.isDisabled = true;
       this.signup(this.form)
         .then((response) => { 

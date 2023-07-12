@@ -7,7 +7,7 @@
           <a href="/events" class="btn btn-primary btn-lg">Schedule Now</a>
         </div>
         <div class="hidden-img">
-          <img src="@/assets/send-yourself-a-reminder.webp" class="img-fluid" loading="lazy" alt="Send yourself a reminder">
+          <img src="/assets/send-yourself-a-reminder.webp" class="img-fluid" loading="lazy" alt="Send yourself a reminder">
         </div>
       </div>
     </section>
