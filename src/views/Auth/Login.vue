@@ -68,7 +68,7 @@
                 <p><span>Or Continue with</span></p>
               </div>
 
-              <GoogleLogin :callback="callback"/>
+              <!-- <GoogleLogin :callback="callback"/> -->
               <a href="" @click.prevent="AuthProviderGoogle()" class="google"><img src="/assets/sign-in-with-google.svg" width="20"
                   height="20" alt="Sign-in with Google">Sign-in with Google</a>
               <a href="" @click.prevent="AuthProviderFB()" class="facebook"><img src="/assets/sign-in-with-facebook.svg"
