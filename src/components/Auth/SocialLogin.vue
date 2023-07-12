@@ -3,8 +3,8 @@
     <div class="col-md-12 continue-with">
       <p><span>Or Continue with</span></p>
     </div>
-    <button @click="login('google')" class="google btn"><img src="/public/assets/sign-in-with-google.svg" width="20" height="20" alt="Sign-in with Google">Sign-in with Google</button>
-    <button @click="login('facebook')" class="facebook"><img src="/public/assets/sign-in-with-facebook.svg" width="20" height="20" alt="Sign up with Facebook">Sign up with Facebook</button>
+    <button @click="login('google')" class="google btn"><img src="/assets/sign-in-with-google.svg" width="20" height="20" alt="Sign-in with Google">Sign-in with Google</button>
+    <button @click="login('facebook')" class="facebook"><img src="/assets/sign-in-with-facebook.svg" width="20" height="20" alt="Sign up with Facebook">Sign up with Facebook</button>
     <div class="forgot-password" v-if="$route.name === 'login'">
       <a href="forgot-password">I Forgot my Password</a>
     </div>
