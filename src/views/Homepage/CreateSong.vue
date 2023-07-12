@@ -26,11 +26,15 @@ import Layout from '@/components/Layouts/Layout.vue';
 export default {
   components: {
     layout: Layout,
-
   },
   setup()
   {
 
+  },
+  data() {
+    return {
+
+    };
   },
 }
 </script>

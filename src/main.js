@@ -16,9 +16,6 @@ import store from './store'
 
 import 'bootstrap';
 
-// import 'bootstrap-vue/dist/bootstrap-vue'
-// import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
-
 import App from './App.vue';
 
 // Fontawesome Icons

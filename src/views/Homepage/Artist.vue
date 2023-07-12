@@ -45,6 +45,7 @@
 
     <section class="artists">
       <div class="container">
+
         <h3>Artists</h3>
         <p>Collaborate with a professional independent artist to turn your story into one-of-a-kind custom song</p>
         <div class="row top-row">
@@ -221,7 +222,7 @@ export default {
   components: {
     layout: Layout,
     faq: Faq,
-    reminder: Reminder
+    reminder: Reminder,
   },
   setup()
   {
