@@ -90,11 +90,11 @@
                             <i class="material-icons"><span class="material-symbols-outlined calendar">calendar_month</span></i><p class="band-name">IDLEPITCH</p>
                           </div>
                           <div class="mt-3 social-media">
-                            <img src="@/assets/social icons/_Spotify.svg" loading="lazy" alt="spotify icon">
+                            <img src="/assets/social icons/_Spotify.svg" loading="lazy" alt="spotify icon">
                             <p>Full Band Artist</p>
                           </div>
                             <div class="mt-3 social-media">
-                              <img src="@/assets/social icons/_YouTube.svg" loading="lazy" alt="spotify icon">
+                              <img src="/assets/social icons/_YouTube.svg" loading="lazy" alt="spotify icon">
                               <p>youtube.com/@idlepitch</p>
                           </div>
                       </div>
@@ -104,7 +104,7 @@
                       <div class="card-body">
                         <div class="d-flex align-items-center justify-content-between header">
                           <div class="d-flex title">
-                            <img src="@/assets/artist-account/band-members-icon.svg" loading="lazy" alt="band members icon">
+                            <img src="/assets/artist-account/band-members-icon.svg" loading="lazy" alt="band members icon">
                             <h5 class="card-title mb-0">Band Members</h5>
                           </div>
                           <div class="see-all">
@@ -464,7 +464,7 @@ export default {
       'https://res.cloudinary.com/daorvtlls/video/upload/v1686647605/Nirvana_-_Smells_like_teen_spirit_zs8yo4.mp3',
     ],
       videos:['https://video.wixstatic.com/video/8fd47a_61de9ebf0ad64f0fa93d72e4279551f7/1080p/mp4/file.mp4'],
-      photos:['@/assets/home/birthdays.webp', '@/assets/home/birthdays.webp', '@/assets/home/birthdays.webp', '@/assets/home/birthdays.webp', '@/assets/home/birthdays.webp'],
+      photos:['/assets/home/birthdays.webp', '/assets/home/birthdays.webp', '/assets/home/birthdays.webp', '/assets/home/birthdays.webp', '/assets/home/birthdays.webp'],
       
       // About tab
       aboutArtist: 'Lorem ipsum dolor sit amet consectetur. Consectetur justo ornare et netus adipiscing nisi nisl tellus a. Venenatis sed augue ultricies vulputate in. Eu risus neque nisl libero eget in molestie felis sem. Pharetra sagittis eget ipsum pulvinar aliquet libero amet accumsan auctor.',
