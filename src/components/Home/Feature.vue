@@ -5,7 +5,7 @@
         <div id="home-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="@/assets/home/home-slider-1.webp" class="d-block w-100"
+              <img src="/assets/home/home-slider-1.webp" class="d-block w-100"
                 alt="Book your Events/Artist, Create your song now let's make magic in music!">
               <div class="carousel-caption d-none d-md-block">
                 <h1>Book your Events/Artist, Create your song now let's make magic in music!</h1>
@@ -14,7 +14,7 @@
               </div>
             </div>
             <div class="carousel-item">
-              <img src="@/assets/home/home-slider-2.webp" class="d-block w-100"
+              <img src="/assets/home/home-slider-2.webp" class="d-block w-100"
                 alt="Find a perfect artists to make a custom song and create amazing memories to your event">
               <div class="carousel-caption d-none d-md-block">
                 <h3>Find a perfect artists to make a custom song and create amazing memories to your event</h3>
@@ -23,21 +23,21 @@
               </div>
               <div class="animate-section">
                 <div class="animate-left">
-                  <img src="@/assets/home/slider-2-animation-1.webp" class="d-block w-100" alt="Playing guitar">
-                  <img src="@/assets/home/slider-2-animation-2.webp" class="d-block w-100" alt="Playing guitar">
-                  <img src="@/assets/home/slider-2-animation-3.webp" class="d-block w-100" alt="Singing">
-                  <img src="@/assets/home/slider-2-animation-4.webp" class="d-block w-100" alt="Playing guitar">
+                  <img src="/assets/home/slider-2-animation-1.webp" class="d-block w-100" alt="Playing guitar">
+                  <img src="/assets/home/slider-2-animation-2.webp" class="d-block w-100" alt="Playing guitar">
+                  <img src="/assets/home/slider-2-animation-3.webp" class="d-block w-100" alt="Singing">
+                  <img src="/assets/home/slider-2-animation-4.webp" class="d-block w-100" alt="Playing guitar">
                 </div>
                 <div class="animate-right">
-                  <img src="@/assets/home/slider-2-animation-4.webp" class="d-block w-100" alt="Playing guitar">
-                  <img src="@/assets/home/slider-2-animation-3.webp" class="d-block w-100" alt="Singing">
-                  <img src="@/assets/home/slider-2-animation-2.webp" class="d-block w-100" alt="Playing guitar">
-                  <img src="@/assets/home/slider-2-animation-1.webp" class="d-block w-100" alt="Playing guitar">
+                  <img src="/assets/home/slider-2-animation-4.webp" class="d-block w-100" alt="Playing guitar">
+                  <img src="/assets/home/slider-2-animation-3.webp" class="d-block w-100" alt="Singing">
+                  <img src="/assets/home/slider-2-animation-2.webp" class="d-block w-100" alt="Playing guitar">
+                  <img src="/assets/home/slider-2-animation-1.webp" class="d-block w-100" alt="Playing guitar">
                 </div>
               </div>
             </div>
             <div class="carousel-item">
-              <img src="@/assets/home/home-slider-3.webp" class="d-block w-100"
+              <img src="/assets/home/home-slider-3.webp" class="d-block w-100"
                 alt="Need a Professional Equipment for your Event?">
               <div class="carousel-caption d-none d-md-block">
                 <h3>Need a Professional Equipment for your Event?</h3>
@@ -47,7 +47,7 @@
               </div>
             </div>
             <div class="carousel-item">
-              <img src="@/assets/home/home-slider-4.webp" class="d-block w-100"
+              <img src="/assets/home/home-slider-4.webp" class="d-block w-100"
                 alt="Noo worries if you're unsure how to create an event - we've got you covered! Come and easily create your own event with us today.">
               <div class="carousel-caption d-none d-md-block content-4">
                 <h3>No worries if you're unsure how to create an event - we've got you covered! Come and easily create
@@ -95,7 +95,7 @@
                   </div>
                   <div class="col-lg-6 col-xl-7 col-xxl-7">
                     <div class="customg-song-img">
-                      <img src="@/assets/home/your-song.webp" class="d-block w-100" loading="lazy" alt="Custom song">
+                      <img src="/assets/home/your-song.webp" class="d-block w-100" loading="lazy" alt="Custom song">
                     </div>
                   </div>
                 </div>
@@ -112,7 +112,7 @@
                   </div>
                   <div class="col-lg-6 col-xl-7 col-xxl-7">
                     <div class="customg-song-img">
-                      <img src="@/assets/home/your-song.webp" class="d-block w-100" loading="lazy" alt="Custom song">
+                      <img src="/assets/home/your-song.webp" class="d-block w-100" loading="lazy" alt="Custom song">
                     </div>
                   </div>
                 </div>
@@ -128,7 +128,7 @@
                   </div>
                   <div class="col-lg-6 col-xl-7 col-xxl-7">
                     <div class="customg-song-img">
-                      <img src="@/assets/home/your-song.webp" class="d-block w-100" loading="lazy" alt="Custom song">
+                      <img src="/assets/home/your-song.webp" class="d-block w-100" loading="lazy" alt="Custom song">
                     </div>
                   </div>
                 </div>
@@ -171,15 +171,15 @@
                 </div>
                 <div class="carousel-inner">
                   <div class="carousel-item active">
-                    <img src="@/assets/home/available-artist-slider-1.webp" class="d-block w-100" loading="lazy"
+                    <img src="/assets/home/available-artist-slider-1.webp" class="d-block w-100" loading="lazy"
                       alt="Choose available artist">
                   </div>
                   <div class="carousel-item">
-                    <img src="@/assets/home/available-artist-slider-2.webp" class="d-block w-100" loading="lazy"
+                    <img src="/assets/home/available-artist-slider-2.webp" class="d-block w-100" loading="lazy"
                       alt="Choose available artist">
                   </div>
                   <div class="carousel-item">
-                    <img src="@/assets/home/available-artist-slider-3.webp" class="d-block w-100" loading="lazy"
+                    <img src="/assets/home/available-artist-slider-3.webp" class="d-block w-100" loading="lazy"
                       alt="Choose available artist">
                   </div>
                 </div>
@@ -199,15 +199,15 @@
                 </div>
                 <div class="carousel-inner">
                   <div class="carousel-item active">
-                    <img src="@/assets/home/book-event-slider-1.webp" class="d-block w-100" loading="lazy"
+                    <img src="/assets/home/book-event-slider-1.webp" class="d-block w-100" loading="lazy"
                       alt="Choose available artist">
                   </div>
                   <div class="carousel-item">
-                    <img src="@/assets/home/book-event-slider-2.webp" class="d-block w-100" loading="lazy"
+                    <img src="/assets/home/book-event-slider-2.webp" class="d-block w-100" loading="lazy"
                       alt="Choose available artist">
                   </div>
                   <div class="carousel-item">
-                    <img src="@/assets/home/book-event-slider-3.webp" class="d-block w-100" loading="lazy"
+                    <img src="/assets/home/book-event-slider-3.webp" class="d-block w-100" loading="lazy"
                       alt="Choose available artist">
                   </div>
                 </div>
@@ -300,19 +300,19 @@ export default {
           return {
       occasions: [
         {
-          image: '/src/assets/home/birthdays.webp',
+          image: '/assets/home/birthdays.webp',
           altText: 'birthdays',
           typeOfOccasion: 'Birthdays',
           numberOfSong: 100
         },
         {
-          image: '/src/assets/home/weddings.webp',
+          image: '/assets/home/weddings.webp',
           altText: 'weddings',
           typeOfOccasion: 'Weddings',
           numberOfSong: 100
         },
         {
-          image: '/src/assets/home/valentines.webp',
+          image: '/assets/home/valentines.webp',
           altText: 'valentines',
           typeOfOccasion: 'Valentines',
           numberOfSong: 100

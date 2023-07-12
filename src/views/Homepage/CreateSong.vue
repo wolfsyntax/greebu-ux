@@ -4,7 +4,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-5 col-xl-5 col-xxl- 6">
-              <img src="@/assets/create-song/mp3-transparent.webp" class="" alt="Transparent mp3">
+              <img src="/assets/create-song/mp3-transparent.webp" class="" alt="Transparent mp3">
           </div>
           <div class="col-lg-7 col-xl-7 col-xxl- 6">
             <div class="content text-center">

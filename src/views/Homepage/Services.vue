@@ -5,17 +5,17 @@
         <div class="row">
           <div class="col-4">
             <div class="hidden-img1">
-              <img src="@/assets/services/show-img-bottom-top-1.webp" class="img-fluid" alt="Other services">
+              <img src="/assets/services/show-img-bottom-top-1.webp" class="img-fluid" alt="Other services">
             </div>
           </div>
           <div class="col-4">
             <div class="hidden-img2">
-              <img src="@/assets/services/show-img-bottom-top-2.webp" class="img-fluid" alt="Other services">
+              <img src="/assets/services/show-img-bottom-top-2.webp" class="img-fluid" alt="Other services">
             </div>
           </div>
           <div class="col-4">
             <div class="hidden-img3">
-              <img src="@/assets/services/show-img-bottom-top-3.webp" class="img-fluid" alt="Other services">
+              <img src="/assets/services/show-img-bottom-top-3.webp" class="img-fluid" alt="Other services">
             </div>
           </div>
         </div>
