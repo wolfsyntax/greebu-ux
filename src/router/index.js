@@ -31,7 +31,7 @@ const router = createRouter({
   routes: [
     {
       path: '',
-    //  component: () => import('@/components/Layouts/Layout.vue'),
+    //  component: () => import('/src/components/Layouts/Layout.vue'),
       meta: {
         requiresLogin: false,
         role: '',
@@ -41,7 +41,7 @@ const router = createRouter({
         {
           path: '/',
           name: 'home',
-          component: () => import('@/views/Homepage/Home.vue'),
+          component: () => import('/src/views/Homepage/Home.vue'),
           meta: {
             requiresLogin: false,
             title: 'Home',
@@ -55,7 +55,7 @@ const router = createRouter({
         {
           path: '/artists',
           name: 'artists',
-          component: () => import('@/views/Homepage/Artist.vue'),
+          component: () => import('/src/views/Homepage/Artist.vue'),
           meta: {
             requiresLogin: false,
             title: 'Artists',
@@ -69,7 +69,7 @@ const router = createRouter({
         {
           path: '/create-song',
           name: 'create-song',
-          component: () => import('@/views/Homepage/CreateSong.vue'),
+          component: () => import('/src/views/Homepage/CreateSong.vue'),
           meta: {
             requiresLogin: false,
             title: 'Create a Song',
@@ -83,7 +83,7 @@ const router = createRouter({
         {
           path: '/events',
           name: 'events',
-          component: () => import('@/views/Homepage/Event.vue'),
+          component: () => import('/src/views/Homepage/Event.vue'),
           meta: {
             requiresLogin: false,
             title: '',
@@ -97,7 +97,7 @@ const router = createRouter({
         {
           path: '/partners',
           name: 'partners',
-          component: () => import('@/views/Homepage/Partner.vue'),
+          component: () => import('/src/views/Homepage/Partner.vue'),
           meta: {
             requiresLogin: false,
             title: 'Partners',
@@ -111,7 +111,7 @@ const router = createRouter({
         {
           path: '/services',
           name: 'services',
-          component: () => import('@/views/Homepage/Services.vue'),
+          component: () => import('/src/views/Homepage/Services.vue'),
           meta: {
             requiresLogin: false,
             title: 'Services',
@@ -125,7 +125,7 @@ const router = createRouter({
         {
           path: '/login',
           name: 'login',
-          component: () => import('@/views/Auth/Login.vue'),
+          component: () => import('/src/views/Auth/Login.vue'),
           meta: {
             requiresLogin: false,
             title: 'Login',
@@ -135,7 +135,7 @@ const router = createRouter({
         {
           path: '/register',
           name: 'register',
-          component: () => import('@/views/Auth/Register.vue'),
+          component: () => import('/src/views/Auth/Register.vue'),
           meta: {
             requiresLogin: false,
             title: 'Register',
@@ -145,14 +145,14 @@ const router = createRouter({
         {
           path: '/basicinformation',
           name: 'basicinformation',
-          component: () => import('@/views/BasicInformation/Index.vue'),
+          component: () => import('/src/views/BasicInformation/Index.vue'),
         },
         {
           path: '/profile',
           // component: {
           //   template: '<div class="auth-component"></div>'
           // }
-          component: () => import('@/views/Customer/EditProfile.vue'),
+          component: () => import('/src/views/Customer/EditProfile.vue'),
           meta: {
             requiresLogin: true,
             title: 'Profile',
@@ -165,7 +165,7 @@ const router = createRouter({
         {
           path: '/dashboard',
           name: 'dashboard',
-          component: () => import('@/views/Dashboard.vue'),
+          component: () => import('/src/views/Dashboard.vue'),
           meta: {
             requiresLogin: true,
             title: 'Dasboard',
@@ -179,8 +179,8 @@ const router = createRouter({
     },
     {
       path: '/artist',
-     // component: () => import('@/components/Layouts/ArtistLayout.vue'),
-      component: () => import('@/components/Layouts/Layout.vue'),
+     // component: () => import('/src/components/Layouts/ArtistLayout.vue'),
+      component: () => import('/src/components/Layouts/Layout.vue'),
       meta: {
         requiresLogin: true,
         title: 'Artist',
@@ -194,24 +194,24 @@ const router = createRouter({
         {
           path: '',
           name: 'index',
-          component: () => import('@/views/Artist/Index.vue'),
+          component: () => import('/src/views/Artist/Index.vue'),
         },
         {
           path: 'profile',
           name: 'profile',
-          component: () => import('@/views/Artist/Profile.vue'),
+          component: () => import('/src/views/Artist/Profile.vue'),
         },
         {
           path: 'edit',
           name: 'edit',
-          component: () => import('@/views/Artist/EditProfile.vue'),
+          component: () => import('/src/views/Artist/EditProfile.vue'),
         },
       ]
     },
     {
       path: '/subscription',
       name: 'event',
-      component: () => import('@/components/Subscription/Index.vue'),
+      component: () => import('/src/components/Subscription/Index.vue'),
       meta: {
         requiresLogin: false,
         title: 'Subscription',
@@ -224,12 +224,12 @@ const router = createRouter({
     },    
     {
       path: '/pages',
-      component: () => import('@/components/FullPage.vue'),
+      component: () => import('/src/components/FullPage.vue'),
       children: [
       {
           path: 'error-404',
           name: 'page-error-404',
-          component: () => import('@/views/Pages/Error404.vue'),
+          component: () => import('/src/views/Pages/Error404.vue'),
           meta: {
             requiresLogin: false,            
             title: 'Error 404 | Not Found',
@@ -239,7 +239,7 @@ const router = createRouter({
         {
           path: 'error-500',
           name: 'page-error-500',
-          component: () => import('@/views/Pages/Error500.vue'),
+          component: () => import('/src/views/Pages/Error500.vue'),
           meta: {
             requiresLogin: false,
             title: 'Error 500 | Server Error',
@@ -249,7 +249,7 @@ const router = createRouter({
         {
           path: 'not-authorized',
           name: 'page-not-authorized',
-          component: () => import('@/views/Pages/NotAuthorized.vue'),
+          component: () => import('/src/views/Pages/NotAuthorized.vue'),
           meta: {
             requiresLogin: false,
             title: 'Error 403 | Not Authorized',
@@ -259,7 +259,7 @@ const router = createRouter({
         {
           path: 'maintenance',
           name: 'page-maintenance',
-          component: () => import('@/views/Pages/Maintenance.vue'),
+          component: () => import('/src/views/Pages/Maintenance.vue'),
           meta: {
             requiresLogin: false,
             title: 'Maintenance',

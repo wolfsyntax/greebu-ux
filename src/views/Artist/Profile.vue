@@ -290,7 +290,7 @@
   </layout>
 </template>
 <script>
-// import Layout from '@/components/Layouts/ArtistLayout.vue';
+// import Layout from '/src/components/Layouts/ArtistLayout.vue';
 import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
 import MemberForm from './AddMember.vue';
 import SocialMediaForm from './SocialMedia.vue';

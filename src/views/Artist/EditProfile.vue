@@ -83,7 +83,7 @@
   </div>
 </template>
 <script>
-import Layout from '@/components/Layouts/AuthLayout.vue';
+import Layout from '/src/components/Layouts/AuthLayout.vue';
 import { mapGetters, mapState, mapActions } from "vuex";
 
 export default {
