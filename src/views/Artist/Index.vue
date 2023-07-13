@@ -122,7 +122,7 @@
                       <div class="card-body">
                         <div class="d-flex align-items-center justify-content-between header">
                           <div class="d-flex title">
-                            <img src="/assets/artist-account/band-members-icon.svg" loading="lazy" alt="band members icon">
+                            <!-- <img src="/assets/artist-account/band-members-icon.svg" loading="lazy" alt="band members icon"> -->
                             <h5 class="card-title mb-0">Band Members</h5>
                           </div>
                           <div class="see-all">
