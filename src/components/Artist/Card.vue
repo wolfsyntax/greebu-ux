@@ -2,7 +2,8 @@
   <div class="card">
     <img :src="artist.avatar" class="card-img-top img-fluid" loading="lazy" alt="Trending Artist" @error="imageUrlAlt" />
     <div class="middle">
-      <a href="/artist"> View Profile</a>
+      <!-- <a href="/artist"> View Profile</a> -->
+      <button class="btn btn-primary" @click="openModal" data-bs-toggle="modal" data-bs-target="#artistModal"> View Details</button>
     </div>
     <div class="card-body">
       <div class="artist">
@@ -25,9 +26,17 @@
       </div>
     </div>
   </div>
+  <artistdetails></artistdetails>
 </template>
 <script>
+
+import ArtistDetails from '/src/components/Artist/ArtistDetails.vue';
+
 export default {
+ components: {
+    layout: Layout,
+    artistdetails: ArtistDetails
+  },
   setup() {
     
   },
@@ -40,6 +49,9 @@ export default {
     artist: Object
   },
   methods: {
+    openModal(data){
+        this.$root.$emit("bv::show::modal", "#artistModal");
+      },
     imageUrlAlt(event)
     {
       console.log('Image Url: ', event)

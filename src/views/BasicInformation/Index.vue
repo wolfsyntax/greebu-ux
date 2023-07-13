@@ -196,10 +196,7 @@
                           <div class="card" v-if="submitted">
                             <img :src="artist.image" class="card-img-top img-fluid" loading="lazy" alt="Trending Artist" />
                             <div class="middle">
-                              <!-- <a href="/artist" data-bs-toggle="modal" data-bs-target="#artistModal"> View Details</a> -->
-                              <a href="#" @click="openModal" data-bs-toggle="modal" data-bs-target="#artistModal"> View Details</a>
-                              <artistdetails/>
-                              
+                              <button class="btn btn-primary" @click="openModal" data-bs-toggle="modal" data-bs-target="#artistModal"> View Details</button>
                             </div>
                             <div class="card-body">
                               <div class="artist">
@@ -207,7 +204,6 @@
                                 <h6 class="card-text">{{ artist.typeOfArtist }}</h6>
                                 <p><img :src="ratingImage"> {{ artist.ratings }} <span>({{ artist.reviews }}
                                     reviews)</span></p>
-                                    <button class="btn btn-info" @click="showModal">show modal</button>
                               </div>
                               <div class="audio-btn">
                                 <div class="play-btn">
@@ -233,7 +229,6 @@
                               class="btn btn-primary select"
                               @click="selectArtist(artist)"
                             >Select</button>
-                            
                           </div>
                         </div>
                       </div> <!-- end of row -->
@@ -471,7 +466,7 @@
             </div>
           </div>
         </div> <!-- end of audio-controls -->
-
+        <artistdetails></artistdetails>
   </section>
       
    
@@ -480,8 +475,7 @@
   </template>
  <script>
  import Layout from '/src/components/Layouts/Layout.vue';
- import ArtistDetails from '/src/views/BasicInformation/ArtistDetails.vue';
-//  import ArtistDeatils from '/src/components/Layouts/ArtistDeatils.vue';
+ import ArtistDetails from '/src/components/Artist/ArtistDetails.vue';
 
  export default {
   components: {
@@ -670,6 +664,9 @@
         },
       },
       methods: {
+        openModal(data){
+        this.$root.$emit("bv::show::modal", "#artistModal");
+      },
         toggleControls(index)
           {
             if (this.audioPlayer) {
