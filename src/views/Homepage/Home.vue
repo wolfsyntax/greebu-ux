@@ -13,7 +13,7 @@ import Feature from '/src/components/Home/Feature.vue';
 import Pricing from '/src/components/Home/Pricing.vue';
 import Reminder from '/src/components/Home/Reminder.vue';
 import Faq from '/src/components/Home/FAQ.vue';
-import FeaturedArtists from '/src/Components/Home/FeaturedArtists.vue';
+import FeaturedArtists from '/src/components/Home/FeaturedArtists.vue';
 
 export default {
   components: {
