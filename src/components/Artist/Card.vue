@@ -34,7 +34,6 @@ import ArtistDetails from '/src/components/Artist/ArtistDetails.vue';
 
 export default {
  components: {
-    layout: Layout,
     artistdetails: ArtistDetails
   },
   setup() {
@@ -42,6 +41,7 @@ export default {
   },
   data() {
     return {
+      showControls: false,
       defaultImage: "https://res.cloudinary.com/daorvtlls/image/upload/v1686649067/trending-bicolano-artist-2_ljhog8.png",
     }
   },

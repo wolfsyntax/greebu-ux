@@ -174,21 +174,16 @@ export const updateMember = ({ commit, rootState, state}, payload) => {
 }
 
 // Update 
-export const fetchArtists = ({ commit, rootState, state }, {
-  type, genre, availability,
-  language,
-  city, province,
-  page, per_page,
-  filterBy, sortBy, search,
-}) => {
+export const fetchArtists = ({ commit, rootState, state }, payload) => {
   
   return new Promise(async(resolve, reject) => {
-    var url = `${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/artist?type=${type}&genre=${genre}&availability=${availability}&language=${language}&city=${city}&province=${province}&page=${page || 1}&per_page=${per_page || 10}&filterBy=${filterBy || 'created_at'}&sortBy=${sortBy || 'ASC'}&search=${search}`
+    var url = `${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/artist-filter`
     if (rootState.bearerToken) {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
-      url = `${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/artists?type=${type}&genre=${genre}&availability=${availability}&language=${language}&city=${city}&province=${province}&page=${page || 1}&per_page=${per_page || 10}&filterBy=${filterBy || 'created_at'}&sortBy=${sortBy || 'ASC'}&search=${search}`
+      url = `${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/artists-filter`
     }
-    await axios.get(url)
+
+    await axios.post(url, payload)
       .then(response => {        
         
         const { data: {status, message, result: {data, current_page, last_page, per_page, total}} } = response
