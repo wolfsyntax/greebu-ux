@@ -107,8 +107,8 @@
   </layout>
 </template>
 <script>
-import Layout from '@/components/Layouts/Layout.vue';
-import Faq from '@/components/Home/FAQ.vue';
+import Layout from '/src/components/Layouts/Layout.vue';
+import Faq from '/src/components/Home/FAQ.vue';
 
 export default {
   components: {

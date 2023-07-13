@@ -7,6 +7,7 @@
   <slot />
 </template>
 <script>
+import Layout from '/src/components/Layouts/Layout.vue';
 export default {
   setup()
   {

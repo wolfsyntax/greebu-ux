@@ -85,8 +85,10 @@
 </div>
 </template>
 <script>
-import Layout from '@/components/Layouts/AuthLayout.vue';
-import SocialButton from '@/components/Auth/SocialLogin.vue';
+
+import Layout from '/src/components/Layouts/AuthLayout.vue';
+import SocialButton from '/src/components/Auth/SocialLogin.vue';
+
 import { mapGetters, mapState, mapActions } from "vuex";
 import { FacebookAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup, createUserWithEmailAndPassword, signInWithRedirect } from "firebase/auth";
 export default {
