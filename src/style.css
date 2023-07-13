@@ -2691,7 +2691,10 @@ background-color: var(--orange);
   font-weight: 600;
   line-height: 1.3125rem;
 }
-
+.basic-information .container .step2 .select-artist .select-aritst-row .selected {
+  background-color: var(--orange)!important;
+  color: var(--white)!important;
+}
 
 
 
