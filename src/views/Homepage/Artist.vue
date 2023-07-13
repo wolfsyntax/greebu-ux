@@ -45,6 +45,7 @@
 
     <section class="artists">
       <div class="container">
+
         <h3>Artists</h3>
         <p>Collaborate with a professional independent artist to turn your story into one-of-a-kind custom song</p>
         <div class="row top-row">
@@ -62,19 +63,17 @@
           <div class="col-3">
             <h5>Type of Artist</h5>
             <select class="form-select" aria-label="Default select example">
-              <option selected>Solo Artist</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
+              <option v-for="artist_type in artist_types" :key="artist_type.id">
+              {{  artist_type.title }}
+              </option>
             </select>
           </div>
           <div class="col-3">
             <h5>Music Genre</h5>
             <select class="form-select" aria-label="Default select example">
-              <option selected>Happy</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
+              <option v-for="{title, id} in genres" :key="id">
+                {{ title }}
+                </option>
             </select>
           </div>
           <div class="col-3">
@@ -97,39 +96,14 @@
           </div>
         </div>
 
-                                                                    <!-- Show Artists -->
+        <!-- Show Artists -->
         <div id="ShowArtists" class="carousel slide">
           <div class="carousel-inner">
             <div class="carousel-item" v-for="(slide, index) in showArtists" :key="index"
               :class="{ active: index === activeSlide }">
               <div class="row">
-                <div class="col-4" v-for="(artist, itemIndex) in showArtists" :key="itemIndex">
-                  <div class="card">
-                    <img :src="artist.image" class="card-img-top img-fluid" loading="lazy" alt="Trending Artist" />
-                    <div class="middle">
-                      <a href="/artist"> View Profile</a>
-                    </div>
-                    <div class="card-body">
-                      <div class="artist">
-                        <h5 class="card-title">{{ artist.name }}</h5>
-                        <h6 class="card-text">{{ artist.typeOfArtist }}</h6>
-                        <p><img :src="ratingImage"> {{ artist.ratings }} <span>({{ artist.reviews }}
-                            reviews)</span></p>
-                      </div>
-                      <div class="audio-btn">
-                        <div class="play-btn">
-                          <div class="play-btn">
-                            <div class="play-btn">
-                              <i :class="{
-                                'bi bi-play-circle-fill play-icon': !showControls || (showControls && currentIndex !== itemIndex),
-                                'bi bi-pause-circle-fill play-icon': showControls && currentIndex === itemIndex
-                              }" @click="toggleControls(itemIndex)"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                <div class="col-4" v-for="(artist, itemIndex) in artists" :key="itemIndex">
+                  <card :artist="artist" />
                 </div>
               </div> <!-- end of row -->
             </div>
@@ -215,13 +189,16 @@
 <script>
 import Layout from '@/components/Layouts/Layout.vue';
 import Reminder from '@/components/Home/Reminder.vue';
+import Card from '@/components/Artist/Card.vue';
 import Faq from '@/components/Home/FAQ.vue';
+import { mapGetters, mapState, mapActions } from "vuex";
 
 export default {
   components: {
     layout: Layout,
     faq: Faq,
-    reminder: Reminder
+    reminder: Reminder,
+    card: Card,
   },
   setup()
   {
@@ -326,11 +303,26 @@ export default {
       showVolumeSlider: false,
       currentVolume: 100,
       showVolumeSlider: true,
-      muted: false
+      muted: false,
+      query: {
+        type: 'Solo Artist',
+      }
     };
   },
   mounted()
   {
+    this.artistOptions()
+    this.fetchArtists({
+      type: '', genre: '', availability: '',
+      language: '',
+      city: '', province: '',
+      page: '', per_page: 9,
+      filterBy: '', sortBy: '', search: '',
+    })
+      .then(response =>
+      {
+        console.log('Artist.vue: ', response)
+      })
     this.audioPlayer = this.$refs.audioPlayer;
     this.audioPlayer.addEventListener('play', () =>
     {
@@ -342,6 +334,12 @@ export default {
     });
   },
   computed: {
+    ...mapGetters(["userInfo", "token"]),
+    ...mapState({
+      artists: (state) => state.artist.artists,
+      artist_types: (state) => state.artist.artist_types,
+      genres: (state) => state.artist.genres,
+    }),
     playIconClass()
     {
       return this.isPlaying ? 'https://res.cloudinary.com/daorvtlls/image/upload/v1687321874/play-pause_ofcx4e.svg' : 'https://res.cloudinary.com/daorvtlls/image/upload/v1687321874/play-black_ftgyx3.svg';
@@ -361,6 +359,9 @@ export default {
 
   },
   methods: {
+    ...mapActions([
+      'fetchArtists', 'artistOptions',
+    ]),
     toggleControls(index)
     {
       if (this.audioPlayer) {

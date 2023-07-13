@@ -62,17 +62,14 @@
                 </form>
               </div>
             </div>
-
-            <div class="row mb-0 text-center select-login">
+            <social-button />
+            <!-- <div class="row mb-0 text-center select-login">
               <div class="col-md-12 continue-with">
                 <p><span>Or Continue with</span></p>
               </div>
-
-              <GoogleLogin :callback="callback"/>
-              <a href="" @click.prevent="AuthProviderGoogle()" class="google"><img src="/assets/sign-in-with-google.svg" width="20"
+              <a href="" @click.prevent="AuthProviderGoogle()" class="google"><img src="@/assets/sign-in-with-google.svg" width="20"
                   height="20" alt="Sign-in with Google">Sign-in with Google</a>
-              <a href="" @click.prevent="AuthProviderFB()" class="facebook"><img src="/assets/sign-in-with-facebook.svg"
-
+              <a href="" @click.prevent="AuthProviderFB()" class="facebook"><img src="@/assets/sign-in-with-facebook.svg"
                   width="20" height="20" alt="Sign up with Facebook">Sign up with Facebook</a>
               <div class="forgot-password">
                 <a href="forgot-password">I Forgot my Password</a>
@@ -80,7 +77,7 @@
               <div class="no-account">
                 <p>Don’t you have an account? <a href="/register">Sign up</a></p>
               </div>
-            </div>
+            </div> -->
           </div>
         </div> <!-- end of container -->
       </section>
@@ -89,11 +86,13 @@
 </template>
 <script>
 import Layout from '@/components/Layouts/AuthLayout.vue';
+import SocialButton from '@/components/Auth/SocialLogin.vue';
 import { mapGetters, mapState, mapActions } from "vuex";
 import { FacebookAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup, createUserWithEmailAndPassword, signInWithRedirect } from "firebase/auth";
 export default {
   components: {
     layout: Layout,
+    'social-button': SocialButton,
   },
   data()
   {
