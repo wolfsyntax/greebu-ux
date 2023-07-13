@@ -113,7 +113,7 @@
         </div> <!-- end of carousel -->
 
         <div class="button-wrapper">
-          <a href="/artist" class="btn btn-primary btn-lg">EXPLORE ALL ARTIST</a>
+          <a href="/artist" class="btn btn-primary btn-lg">SEE MORE ARTIST</a>
         </div>
                                                           
       </div> <!-- end of container  -->   

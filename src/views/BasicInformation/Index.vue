@@ -35,8 +35,8 @@
                   </div>
                   <div class="button-wrapper">
                   <button type="button" class="btn btn-primary back" @click="previousStep1" :disabled="currentStep === 0">Back</button>
-                  <!-- <button type="button" class="btn btn-primary next" @click="nextStep" :disabled="isButtonInfo">Next</button> -->
-                  <button type="button" class="btn btn-primary next" @click="nextStep">Next</button>
+                  <button type="button" class="btn btn-primary next" @click="nextStep" :disabled="isButtonInfo">Next</button>
+                  <!-- <button type="button" class="btn btn-primary next" @click="nextStep">Next</button> -->
                 </div>
                </form>
             </div>
@@ -84,8 +84,8 @@
                       </div> 
                       <div class="button-wrapper">
                       <button type="button" class="btn btn-primary back" @click="previousStep" :disabled="currentStep === 0">Back</button>
-                      <!-- <button type="button" class="btn btn-primary next" @click="nextStep" :disabled="!selectedOccasion || (isButtonOccasion)">Next</button> -->
-                      <button type="button" class="btn btn-primary next" @click="subNextStepStory">Next</button>
+                      <button type="button" class="btn btn-primary next" @click="nextStep" :disabled="!selectedOccasion || (isButtonOccasion)">Next</button>
+                      <!-- <button type="button" class="btn btn-primary next" @click="subNextStepStory">Next</button> -->
                     </div>
                   </form>
                 </div>
@@ -103,8 +103,8 @@
                       </div> 
                       <div class="button-wrapper">
                       <button type="button" class="btn btn-primary back" @click="subPreviousStepStory" :disabled="currentStep === 0">Back</button>
-                      <!-- <button type="button" class="btn btn-primary next" @click="nextStep" :disabled="!selectedOccasion || (isButtonOccasion)">Next</button> -->
-                      <button type="button" class="btn btn-primary next" @click="nextStep">Next</button>
+                      <button type="button" class="btn btn-primary next" @click="nextStep" :disabled="!selectedOccasion || (isButtonOccasion)">Next</button>
+                      <!-- <button type="button" class="btn btn-primary next" @click="nextStep">Next</button> -->
                     </div>
                   </form>
                 </div>
@@ -193,10 +193,10 @@
                       :class="{ active: index === activeSlide }">
                       <div class="row select-aritst-row">
                         <div class="col-4" v-for="(artist, itemIndex) in showArtists" :key="itemIndex">
-                          <div class="card" v-if="submitted">
+                          <div class="card">
                             <img :src="artist.image" class="card-img-top img-fluid" loading="lazy" alt="Trending Artist" />
                             <div class="middle">
-                              <button class="btn btn-primary" @click="openModal" data-bs-toggle="modal" data-bs-target="#artistModal"> View Details</button>
+                              <button class="btn btn-primary" @click="openModal(artist)" data-bs-toggle="modal" data-bs-target="#artistModal"> View Details</button>
                             </div>
                             <div class="card-body">
                               <div class="artist">
@@ -218,17 +218,15 @@
                                 </div>
                               </div>
                             </div>
-                            <span :style="selectedArtist ? { color: '#FF6B00' } : {}">{{ selectedArtist  ? selectedArtist.id  : 'No id' }}</span>
-                            <span :style="selectedArtist ? { color: '#FF6B00' } : {}">{{ selectedArtist  ? selectedArtist.genre  : 'No genre' }}</span>
-                            <span :style="selectedArtist ? { color: '#FF6B00' } : {}">{{ selectedArtist ? selectedArtist.typeOfArtist : 'No artist' }}</span>
-                            <!-- <button type="button" class="btn btn-primary select"
-                             @click="selectArtist(artist)"
-                             :style="selectedArtist ? { color: '#000' } : {}"
-                             >{{isActive ? 'Selected' : 'Select'}}</button> -->
+                            <!-- <span :class="{ 'selected-user': selectedArtist === artist }">{{ artist.id }}</span> -->
                              <button
                               class="btn btn-primary select"
                               @click="selectArtist(artist)"
-                            >Select</button>
+                              :class="{ 'selected': artist === selectedArtist }"
+                            >
+                            <!-- {{ selectedArtist === artist ? 'Selected' : 'Select' }} -->
+                            {{ changeSelectArtist(artist) }}
+                          </button>
                           </div>
                         </div>
                       </div> <!-- end of row -->
@@ -238,7 +236,7 @@
 
                     <div class="button-wrapper">
                     <button type="button" class="btn btn-primary back" @click="previousStep" :disabled="currentStep === 0">Back</button>
-                    <button type="button" class="btn btn-primary next" @click="subNextStepSong">Next</button>
+                    <button type="button" class="btn btn-primary next" :disabled="!selectedArtist" @click="subNextStepSong">Next</button>
                   </div>
                   </div>
                 </div>
@@ -267,8 +265,8 @@
                         </div> 
                         <div class="button-wrapper">
                         <button type="button" class="btn btn-primary back" @click="subPreviousStepSong" :disabled="currentStep === 0">Back</button>
-                        <!-- <button type="button" class="btn btn-primary next" @click="subNextStepSong" :disabled="!selectedMood">Next</button> -->
-                        <button type="button" class="btn btn-primary next" @click="subNextStepSong">Next</button>
+                        <button type="button" class="btn btn-primary next" @click="subNextStepSong" :disabled="!selectedMood">Next</button>
+                        <!-- <button type="button" class="btn btn-primary next" @click="subNextStepSong">Next</button> -->
                       </div>
                     </form>
                   </div>
@@ -307,8 +305,8 @@
                       </div> 
                       <div class="button-wrapper">
                       <button type="button" class="btn btn-primary back" @click="subPreviousStepSong" :disabled="currentStep === 0">Back</button>
-                      <!-- <button type="button" class="btn btn-primary next" @click="nextStep" :disabled="!(selectedLanguage && selectedSongDuration)">Next</button> -->
-                      <button type="button" class="btn btn-primary next" @click="nextStep">Next</button>
+                      <button type="button" class="btn btn-primary next" @click="nextStep" :disabled="!(selectedLanguage && selectedSongDuration)">Next</button>
+                      <!-- <button type="button" class="btn btn-primary next" @click="nextStep">Next</button> -->
                     </div>
                   </form>
                 </div>
@@ -350,9 +348,15 @@
                 Edit Info
                  </button>
               </div>
-              <div class="d-flex justify-content-between group-item top-item"><h4>Genre</h4><p>{{ selectedArtist ? selectedArtist.genre : 'No genre selected' }}</p></div>
-              <div class="d-flex justify-content-between group-item"><h4>Type of Artist</h4><p>{{ selectedArtist ? selectedArtist.typeOfArtist : 'No artist selected' }}</p></div>
-              <div class="d-flex justify-content-between group-item"><h4>Type of Song (Moods)</h4><p>{{ selectedMood ? selectedMood.name : 'No selected mood' }} </p></div>
+              <div class="d-flex justify-content-between group-item top-item"><h4>Genre</h4>
+                <p v-if="selectedArtist">{{ selectedArtist.genre }}</p>
+              </div>
+              <div class="d-flex justify-content-between group-item"><h4>Type of Artist</h4>
+                <p v-if="selectedArtist">{{ selectedArtist.typeOfArtist }}</p>
+              </div>
+              <div class="d-flex justify-content-between group-item"><h4>Type of Song (Moods)</h4>
+                <p>{{ selectedMood ? selectedMood.name : 'No selected mood' }} </p>
+              </div>
               <div class="d-flex justify-content-between group-item"><h4>Language</h4><p>{{ selectedLanguage ? selectedLanguage.name : 'No selected language' }}</p></div>
               <div class="d-flex justify-content-between group-item last-item"><h4>Duration of Song</h4><p>{{ selectedSongDuration ? selectedSongDuration.time : 'No selected song' }}</p></div>
 
@@ -466,7 +470,14 @@
             </div>
           </div>
         </div> <!-- end of audio-controls -->
-        <artistdetails></artistdetails>
+        <artistdetails
+        :selectedArtist="selectedArtist"
+        >
+          
+        </artistdetails>
+
+        <!-- <user-modal :selectedArtist="selectedArtist" :showUserModal="showUserModal" @closeModal="closeModal" /> -->
+
   </section>
       
    
@@ -480,7 +491,7 @@
  export default {
   components: {
      layout: Layout,
-     artistdetails: ArtistDetails
+     artistdetails: ArtistDetails,
    },
    setup()
    {
@@ -557,6 +568,7 @@
           typeOfArtist: 'Full Band Artist',
           genre: 'Rock',
           song: 'https://res.cloudinary.com/daorvtlls/video/upload/v1686647605/Nirvana_-_Smells_like_teen_spirit_zs8yo4.mp3',
+          songName: 'Smells like teen spirit',
           image: 'https://res.cloudinary.com/daorvtlls/image/upload/v1686649068/trending-bicolano-artist-1_igoz8j.png',
           ratings: 4.95,
           reviews: 234,
@@ -567,6 +579,7 @@
           typeOfArtist: 'Songwriter',
           genre: 'Hip-hop/Rap',
           song: 'https://res.cloudinary.com/daorvtlls/video/upload/v1686647609/MORE_THAN_WORDS_ti4mor.mp3',
+          songName: 'More than words',
           image: 'https://res.cloudinary.com/daorvtlls/image/upload/v1686649067/trending-bicolano-artist-2_ljhog8.png',
           ratings: 4.95,
           reviews: 230,
@@ -577,6 +590,7 @@
           typeOfArtist: 'Solo Artist',
           genre: 'Country Rock',
           song: 'https://res.cloudinary.com/daorvtlls/video/upload/v1687411951/please-forgive-me-bryan-adams_bnyj1o.mp3',
+          songName: 'Please forgive me',
           image: 'https://res.cloudinary.com/daorvtlls/image/upload/v1686465790/cld-sample.jpg',
           ratings: 4.90,
           reviews: 123,
@@ -587,6 +601,7 @@
           typeOfArtist: 'Songwriter',
           genre: 'Metal',
           song: 'https://res.cloudinary.com/daorvtlls/video/upload/v1687411918/total-eclipse-of-the-heart_d6wjes.mp3',
+          songName: 'Total eclipse of the heart',
           image: 'https://res.cloudinary.com/daorvtlls/image/upload/v1686465774/samples/people/jazz.jpg',
           ratings: 4.90,
           reviews: 113,
@@ -609,6 +624,7 @@
       muted: false,
       selectedArtist: null,
       isActive: false,
+      showUserModal: false,
 
 
         };
@@ -664,8 +680,17 @@
         },
       },
       methods: {
-        openModal(data){
+        selectArtist(artist){
+          this.selectedArtist = artist;
+          // this.selectedUser = artist === this.selectedUser ? null : artist;
+        }, 
+        changeSelectArtist(artist) {
+          return this.selectedArtist === artist ? 'Selected' : 'Select';
+        },
+        openModal(artist){
         this.$root.$emit("bv::show::modal", "#artistModal");
+        // this.showUserModal = true;
+        this.selectedArtist = artist;
       },
         toggleControls(index)
           {

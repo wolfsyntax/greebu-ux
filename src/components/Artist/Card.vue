@@ -29,7 +29,7 @@
   <artistdetails></artistdetails>
 </template>
 <script>
-
+import Layout from '/src/components/Layouts/Layout.vue';
 import ArtistDetails from '/src/components/Artist/ArtistDetails.vue';
 
 export default {
