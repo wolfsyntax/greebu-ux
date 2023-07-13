@@ -1,0 +1,79 @@
+name: Develop UI Deploy to AWS
+
+on:
+  push:
+    branches:
+      - dev
+
+env:
+  BUILD_RUN_ID: ${{github.run_number}}
+  VITE_APP_TITLE: ${{secrets.DEVELOP_VITE_APP_TITLE}}
+  VITE_APP_ENV: ${{secrets.DEVELOP_VITE_APP_ENV}}
+  VITE_I18N_LOCALE: ${{secrets.DEVELOP_VITE_I18N_LOCALE}}
+  VITE_I18N_FALLBACK_LOCALE: ${{secrets.DEVELOP_VITE_I18N_FALLBACK_LOCALE}}
+  VITE_BASE_URL: ${{secrets.DEVELOP_VITE_BASE_URL}}
+  VITE_APP_SRC_URL: ${{secrets.DEVELOP_VITE_APP_SRC_URL}}
+  VITE_GOOGLE_CLIENT_ID: ${{secrets.DEVELOP_VITE_GOOGLE_CLIENT_ID}}
+  VITE_GOOGLE_CLIENT_SECRET: ${{secrets.DEVELOP_VITE_GOOGLE_CLIENT_SECRET}}
+  VITE_FACEBOOK_CLIENT_ID: ${{secrets.DEVELOP_VITE_FACEBOOK_CLIENT_ID}}
+  VITE_FACEBOOK_CLIENT_SECRET: ${{secrets.DEVELOP_VITE_FACEBOOK_CLIENT_SECRET}}
+  VITE_FIREBASE_API_KEY: ${{secrets.VITE_FIREBASE_API_KEY}}
+  VITE_FIREBASE_AUTH_DOMAIN: ${{secrets.VITE_FIREBASE_AUTH_DOMAIN}}
+  VITE_FIREBASE_PROJECT_ID: ${{secrets.VITE_FIREBASE_PROJECT_ID}}
+  VITE_FIREBASE_STORAGE_BUCKET: ${{secrets.VITE_FIREBASE_STORAGE_BUCKET}}
+  VITE_FIREBASE_MESSAGING_SENDER_ID: ${{secrets.VITE_FIREBASE_MESSAGING_SENDER_ID}}
+  VITE_FIREBASE_APP_ID: ${{secrets.VITE_FIREBASE_APP_ID}}
+  VITE_FIREBASE_MEASUREMENT_ID: ${{secrets.VITE_FIREBASE_MEASUREMENT_ID}}
+  AWS_REGION: ap-southeast-1
+
+jobs:
+  deploy-fe-to-cloudfront:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Prepare Env's for FE Application
+        run: |
+          rm -rf .env
+          echo "VITE_APP_TITLE=${{env.VITE_APP_TITLE}}" >> .env
+          echo "VITE_APP_ENV=${{env.VITE_APP_ENV}}" >> .env
+          echo "VITE_I18N_LOCALE=${{env.VITE_I18N_LOCALE}}" >> .env
+          echo "VITE_I18N_FALLBACK_LOCALE=${{env.VITE_I18N_FALLBACK_LOCALE}}" >> .env
+          echo "VITE_BASE_URL=${{env.VITE_BASE_URL}}" >> .env
+          echo "VITE_APP_SRC_URL=${{env.VITE_APP_SRC_URL}}" >> .env
+          echo "VITE_GOOGLE_CLIENT_ID=${{env.VITE_GOOGLE_CLIENT_ID}}" >> .env
+          echo "VITE_GOOGLE_CLIENT_SECRET=${{env.VITE_GOOGLE_CLIENT_SECRET}}" >> .env
+          echo "VITE_FACEBOOK_CLIENT_ID=${{env.VITE_FACEBOOK_CLIENT_ID}}" >> .env
+          echo "VITE_FACEBOOK_CLIENT_SECRET=${{env.VITE_FACEBOOK_CLIENT_SECRET}}" >> .env
+          echo "VITE_FIREBASE_API_KEY=${{env.VITE_FIREBASE_API_KEY}}" >> .env
+          echo "VITE_FIREBASE_AUTH_DOMAIN=${{env.VITE_FIREBASE_AUTH_DOMAIN}}" >> .env
+          echo "VITE_FIREBASE_PROJECT_ID=${{env.VITE_FIREBASE_PROJECT_ID}}" >> .env
+          echo "VITE_FIREBASE_STORAGE_BUCKET=${{env.VITE_FIREBASE_STORAGE_BUCKET}}" >> .env
+          echo "VITE_FIREBASE_MESSAGING_SENDER_ID=${{env.VITE_FIREBASE_MESSAGING_SENDER_ID}}" >> .env
+          echo "VITE_FIREBASE_APP_ID=${{env.VITE_FIREBASE_APP_ID}}" >> .env
+          echo "VITE_FIREBASE_MEASUREMENT_ID=${{env.VITE_FIREBASE_MEASUREMENT_ID}}" >> .env
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Install Npm dependencies, Linting and create build
+        run: |
+          npm install
+          npm run build
+
+      - name: Deploy to S3
+        run: |
+          ### aws s3 rm s3://geebu-dev-fe-bucket/ --recursive
+          aws s3 sync dist/ s3://geebu-dev-fe-bucket/
+          aws cloudfront create-invalidation --distribution-id E10UUL1NVX96V1 --paths "/*"
