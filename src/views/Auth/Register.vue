@@ -135,7 +135,7 @@
   </layout>
 </template>
 <script>
-import Layout from '@/components/Layouts/AuthLayout.vue';
+import Layout from '/src/components/Layouts/AuthLayout.vue';
 import { mapGetters, mapState, mapActions } from "vuex";
 import SocialButton from '@/components/Auth/SocialLogin.vue';
 export default {

@@ -187,10 +187,11 @@
 </template>
 
 <script>
-import Layout from '@/components/Layouts/Layout.vue';
-import Reminder from '@/components/Home/Reminder.vue';
-import Card from '@/components/Artist/Card.vue';
-import Faq from '@/components/Home/FAQ.vue';
+
+import Layout from '/src/components/Layouts/Layout.vue';
+import Reminder from '/src/components/Home/Reminder.vue';
+import Card from '/src/components/Artist/Card.vue';
+import Faq from '/src/components/Home/FAQ.vue';
 import { mapGetters, mapState, mapActions } from "vuex";
 
 export default {
