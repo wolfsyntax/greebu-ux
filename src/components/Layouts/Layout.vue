@@ -201,19 +201,34 @@ export default {
     ...mapMutations([]),
     logout()
     {
-      const loader = this.$vs.loading({
-        text: 'Loading...',
-      })
+      // this.$vs.loading({
+      //   // text: 'Loading...',
+      //   scale: 0.45,
+      //   type: 'radius'
+      // })
+
+      const self = this;
+        console.log('Router: ', this.$route.meta)
       this.signout()
         .then(response =>
         {
           const { status } = response;
-          if (status === 200 || status === 401) this.$router.push('/login');
 
+          const loading = this.$vs.loading({
+            type: 'waves',
+            text: 'Loading...'
+          })
           setTimeout(() =>
           {
-            loader.close()
-          }, 3000)
+            console.log('Router::: ', this.$route.meta)
+            loading.close()
+            if (this.$route.meta.requiresLogin == false) this.$router.go();
+            else if (status === 200 || status === 401) this.$router.push('/login');
+          }, 3000);
+
+        }).catch(err =>
+        {
+          console.log('Logout: ', err)
         })
     }
   },
