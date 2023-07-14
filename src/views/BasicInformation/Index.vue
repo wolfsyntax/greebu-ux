@@ -17,7 +17,7 @@
         <div class="step1" v-if="currentStep === 0">
           <div class="card">
             <div class="card-body">
-              <h2 class="card-title">Basic Information</h2>
+              <h2 class="card-title step1-title">Basic Information</h2>
               <p class="card-text">Lorem ipsum dolor sit amet consectetur. Nec augue ultrices sit ultricies enim tellus tempus in.</p>
               
               <form @submit.prevent="submit">
@@ -852,7 +852,6 @@
       },
       submitSelectedArtist() {
             window.location.href = '/deliveryform';
-         
     },
       selectMood(mood) {
       this.selectedMood = mood;
@@ -870,78 +869,5 @@
  }
  </script>
 
- <style scoped>
-    .active .step-title {
-          color: #FF6B00;
-    }
-    .step-item.active .substep-title { /* sub step */
-      color: #FF6B00;
-      font-weight: 700;
-    }
-    .substep-title{
-      margin-top: 1rem;
-      font-weight: 600;
-      font-size: 1rem;
-      font-style: normal;
-      line-height: 1.5rem;
-      color: #B8BBCF;
-    }
-    .progress {
-      height: 0.75rem;
-      background-color: #EFF3FD;
-      border-radius: 10px;
-    }
-    
-    .progress-bar {
-      background-color: #FF6B00;
-      border-radius: 10px;
-    }
-    
-    .step-item {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-
-    .step-number {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      background-color: #ddd;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-    }
-    .step-title{
-      margin-top: 1rem;
-      color: #B8BBCF;
-      font-size: 1.25rem;
-      font-style: normal;
-      font-weight: 700;
-      line-height: 1.5rem;
-    }
-    
-    .active .step-number {
-      background-color: orange;
-    }
-    
-    .step-content {
-      display: none;
-    }
-    
-    .step-content.active {
-      display: block;
-    }
-    
-    .button-container {
-      margin-top: 20px;
-      display: flex;
-      justify-content: space-between;
-    }
-</style>
 
 
