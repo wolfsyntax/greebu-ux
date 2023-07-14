@@ -7,7 +7,7 @@
     </div>
     <div class="card-body">
       <div class="artist">
-        <h5 class="card-title">{{ artist.name }}</h5>
+        <h5 class="card-title">From component - {{ artist.name }}</h5>
         <h6 class="card-text">{{ artist.typeOfArtist }}</h6>
         <p><img src="https://res.cloudinary.com/daorvtlls/image/upload/v1687321042/rating-star-small_axozjd.svg" alt="rating-star">
            {{ artist.ratings }} <span>({{ artist.reviews }} reviews)</span></p>
@@ -19,7 +19,7 @@
               <i :class="{
                 'bi bi-play-circle-fill play-icon': !showControls || (showControls && currentIndex !== itemIndex),
                 'bi bi-pause-circle-fill play-icon': showControls && currentIndex === itemIndex
-              }" @click="toggleControls(itemIndex)"></i>
+              }" @click="artistsongtoplay(itemIndex)"></i>
             </div>
           </div>
         </div>
@@ -33,17 +33,17 @@ import Layout from '/src/components/Layouts/Layout.vue';
 import ArtistDetails from '/src/components/Artist/ArtistDetails.vue';
 
 export default {
-  // props: {
-  //   artist: Object
-  // },
+  props: {
+    artist: Object
+  },
   // props: ['name','image','typeOfArtist','ratings','reviews'],
   // props: {
-  //   artists: {
+  //   artist: {
   //     type: Array,
   //     required: true
   //   }
   // },
-  props: ['artist'],
+  // props: ['artist'],
  components: {
     artistdetails: ArtistDetails
   },
@@ -57,6 +57,9 @@ export default {
     }
   },
   methods: {
+    artistsongtoplay() {
+      this.$emit('artistsongtoplay');
+    },
     openModal(data){
         this.$root.$emit("bv::show::modal", "#artistModal");
       },

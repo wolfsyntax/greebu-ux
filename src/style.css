@@ -2354,7 +2354,7 @@ background-color: var(--orange);
   margin: 6.25rem auto;
 }
 /* Stepper*/
-.basic-information .container .card{
+.basic-information .container .card, .delivery-date .container .card {
   margin: 5rem auto;
   border-radius: 1rem;
   background: #FFF;
@@ -2362,7 +2362,8 @@ background-color: var(--orange);
   border: 0;
   padding: 3.12rem 4rem 4.12rem;
 }
-.basic-information .container .card-title, .basic-information .container .step2 .select-artist .title{
+.basic-information .container .card-title, .basic-information .container .step2 .select-artist .title,
+.delivery-date .container .card-title{
   color: #000;
   font-size: 2rem;
   font-style: normal;
@@ -2370,10 +2371,12 @@ background-color: var(--orange);
   line-height: 2.5rem;
   margin-bottom: 2.5rem;
 }
-.basic-information .container .step1 .card-title, .basic-information .container .step2 .select-artist .title{
+.basic-information .container .step1 .card-title, .basic-information .container .step2 .select-artist .title,
+.delivery-date .container .card-title{
   margin-bottom: 0.5rem;
 }
-.basic-information .container .card-text, .basic-information .container .step2 .select-artist .sub-title{
+.basic-information .container .card-text, .basic-information .container .step2 .select-artist .sub-title,
+.delivery-date .container .card-text{
   color: #B8BBCF;
   font-size: 1rem;
   font-style: normal;
@@ -2402,7 +2405,7 @@ background-color: var(--orange);
   line-height: 1.3125rem;
 }
 .basic-information .container form  .button-wrapper, .basic-information .container .step2 .select-artist .button-wrapper,
-.basic-information .container .step4 .select-artist .button-wrapper{
+.basic-information .container .step4 .select-artist .button-wrapper, .delivery-date .container .button-wrapper {
   display: flex;
   width: 100%;
   gap: 4%;
@@ -2410,7 +2413,8 @@ background-color: var(--orange);
 }
 .basic-information .container form .button-wrapper .back, .basic-information .container form .button-wrapper .next,
 .basic-information .container .step2 .button-wrapper .back, .basic-information .container .step2 .button-wrapper .next,
-.basic-information .container .step4 .button-wrapper .back, .basic-information .container .step4 .button-wrapper .next{
+.basic-information .container .step4 .button-wrapper .back, .basic-information .container .step4 .button-wrapper .next,
+.delivery-date .container .button-wrapper .back, .delivery-date .container .button-wrapper .next{
   color: #FF6B00;
   text-align: center;
   font-size: 1.25rem;
@@ -2425,12 +2429,12 @@ background-color: var(--orange);
   float: left;
 }
 .basic-information .container form  .button-wrapper .back:hover, .basic-information .container .step2 .button-wrapper .back:hover,
-.basic-information .container .step4 .button-wrapper .back:hover{
+.basic-information .container .step4 .button-wrapper .back:hover, .delivery-date .container .button-wrapper .back:hover{
   color: #FFF;
   background: #FF6B00;
 }
 .basic-information .container form  .button-wrapper .next, .basic-information .container .step2 .button-wrapper .next,
-.basic-information .container .step4 .button-wrapper .next{
+.basic-information .container .step4 .button-wrapper .next, .delivery-date .container .button-wrapper .next{
   width: 48%;
   float: right;
   color: #FFF;
@@ -2695,6 +2699,77 @@ background-color: var(--orange);
   background-color: var(--orange)!important;
   color: var(--white)!important;
 }
+
+                                        /* Delivery Form */
+.delivery-date form .form-check  {
+  padding: 2.5rem 1.8rem;
+  border-radius: 0.75rem;
+  border: 2px solid #E4E7EC;
+  /* margin-bottom: 1.12rem; */
+  display: block;
+}                 
+.delivery-date form .form-check .form-check-input {
+  margin-left: -0.5em;
+  margin-right: 1.2rem;
+  width: 1.25em;
+  height: 1.25em;
+  margin-top: 0;
+  border-radius: 0.875rem;
+  border: 1px solid #E4E7EC;
+  background: transparent;
+}      
+.delivery-date form .form-check .form-check-input:checked[type=radio] {
+  background-image: url("/assets/create-song/checked-input.svg");
+  border: 0;
+  background-color: transparent;
+}         
+.delivery-date form .form-check.selected *{
+  color: var(--orange)!important;
+}  
+.delivery-date form .form-check.selected{
+  border: 2px solid var(--orange)!important;
+  border-radius: 0.75rem;
+  background: #FFFAF7;
+} 
+/* .delivery-date form .last-form-check{
+  margin-bottom: 9rem!important;
+} */
+.delivery-date form .form-check label {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}     
+.delivery-date form .form-check label h4, .delivery-date form .form-check label .price{
+  color: #475467;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.25rem; 
+  margin-bottom: 0;
+}   
+.delivery-date form .form-check .option-wrapper{
+  float: left;
+  width: 80%;
+}   
+.delivery-date form .form-check .price-wrapper{
+  float: right;
+  width: 20%;
+  text-align: right;
+}  
+.delivery-date form .form-check label .price{
+  font-weight: 700;
+}   
+.delivery-date form .form-check label  .sub-content{
+  color: #475467;
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1rem;  
+  width: 95%;
+  margin: 0.31rem 0;
+}
+
+
+
 
 
 

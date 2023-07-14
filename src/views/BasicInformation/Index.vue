@@ -34,7 +34,7 @@
                     <input id="email" type="email" class="form-control" name="email"  v-model="email" required autocomplete="email"  @input="validateEmail" placeholder="Please type your Email Address">
                   </div>
                   <div class="button-wrapper">
-                  <button type="button" class="btn btn-primary back" @click="previousStep1" :disabled="currentStep === 0">Back</button>
+                  <button type="button" class="btn btn-primary back" @click="previousStep1">Back</button>
                   <button type="button" class="btn btn-primary next" @click="nextStep" :disabled="isButtonInfo">Next</button>
                   <!-- <button type="button" class="btn btn-primary next" @click="nextStep">Next</button> -->
                 </div>
@@ -84,7 +84,7 @@
                       </div> 
                       <div class="button-wrapper">
                       <button type="button" class="btn btn-primary back" @click="previousStep" :disabled="currentStep === 0">Back</button>
-                      <button type="button" class="btn btn-primary next" @click="nextStep" :disabled="!selectedOccasion || (isButtonOccasion)">Next</button>
+                      <button type="button" class="btn btn-primary next" @click="subNextStepStory" :disabled="!selectedOccasion || (isButtonOccasion)">Next</button>
                       <!-- <button type="button" class="btn btn-primary next" @click="subNextStepStory">Next</button> -->
                     </div>
                   </form>
@@ -385,7 +385,7 @@
               </div>
                 <div class="button-wrapper">
                   <button type="button" class="btn btn-primary back" @click="previousStep" :disabled="currentStep === 0">Back</button>
-                  <button type="button" class="btn btn-primary next" :disabled="!understand">Submit</button>
+                  <button type="button" class="btn btn-primary next" @click="submitSelectedArtist" :disabled="!understand">Submit</button>
                   </div>
               </div>
             </div>
@@ -850,6 +850,10 @@
             window.location.href = '/create-song';
          }
       },
+      submitSelectedArtist() {
+            window.location.href = '/deliveryform';
+         
+    },
       selectMood(mood) {
       this.selectedMood = mood;
       },
@@ -861,7 +865,7 @@
       },
       selectOccasion(occasion){
         this.selectedOccasion = occasion;
-      }
+      },
       },
  }
  </script>
