@@ -54,7 +54,7 @@
           </div>
           <div class="col-6">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search artist by Name" aria-label="Search artist by Name" aria-describedby="button-addon2">
+              <input type="text" class="form-control" v-model="search" placeholder="Search artist by Name" aria-label="Search artist by Name" aria-describedby="button-addon2">
               <button class="btn btn-success border-rad" type="button" id="button-addon2">
                 <i class="material-icons"><span class="material-symbols-outlined next">search</span></i>
               </button>
@@ -62,21 +62,23 @@
           </div>
           <div class="col-3">
             <h5>Type of Artist</h5>
-            <select class="form-select" aria-label="Default select example">
-              <option v-for="artist_type in artist_types" :key="artist_type.id">
+            <select class="form-select" v-model="artist_type" aria-label="Default select example">
+              <option value="" selected></option>
+              <option v-for="artist_type in artist_types" :key="artist_type.id" :value="artist_type.id">
               {{  artist_type.title }}
               </option>
             </select>
           </div>
           <div class="col-3">
             <h5>Music Genre</h5>
-            <select class="form-select" aria-label="Default select example">
-              <!-- <option v-for="{title, id} in genres" :key="id">
+            <select class="form-select" v-model="genre" aria-label="Default select example">
+              <option value="" selected></option>
+              <option v-for="{title, id} in genres" :key="id" :value="id">
                 {{ title }}
-                </option> -->
+                </option> 
             </select>
           </div>
-          <div class="col-3">
+          <!-- <div class="col-3">
             <h5>Gender</h5>
             <select class="form-select" aria-label="Default select example">
               <option selected>Male</option>
@@ -93,7 +95,7 @@
               <option value="2">Two</option>
               <option value="3">Three</option>
             </select>
-          </div>
+          </div> -->
         </div>
 
     
@@ -101,7 +103,7 @@
         <!-- Show Artists -->
         <div id="ShowArtists" class="carousel slide">
           <div class="carousel-inner">
-            <div class="carousel-item" v-for="(slide, index) in showArtists" :key="index"
+            <div class="carousel-item" v-for="(slide, index) in artists" :key="index"
               :class="{ active: index === activeSlide }">
               <!-- <div class="carousel-item"> -->
               <div class="row">
@@ -345,24 +347,26 @@ export default {
       currentVolume: 100,
       showVolumeSlider: true,
       muted: false,
-      query: {
-        type: 'Solo Artist',
-      }
+
+      artist_type: null,
+      genre: null,
+      search: ''
+      
     };
   },
   mounted()
   {
     this.artistOptions()
-    this.fetchArtists({
-      type: '', genre: '', availability: '',
-      language: '',
-      city: '', province: '',
-      page: '', per_page: 9,
-      filterBy: '', sortBy: '', search: '',
-    })
+
+    var payload = {}
+    if (this.artist_type) payload.artist_type = this.artist_type
+    if (this.genre) payload.genre = this.genre
+    if (this.search) payload.search = this.search
+
+    this.fetchArtists(payload)
       .then(response =>
       {
-        console.log('Artist.vue: ', response)
+        console.log('Artist.vue: ', response);
       })
     this.audioPlayer = this.$refs.audioPlayer;
     this.audioPlayer.addEventListener('play', () =>
@@ -446,7 +450,7 @@ export default {
 
     playNext()
     {
-      if (this.currentIndex < this.showArtists.length - 1) {
+      if (this.currentIndex < this.artists.length - 1) {
         this.currentIndex++;
       } else {
         this.currentIndex = 0;
@@ -460,7 +464,7 @@ export default {
       if (this.currentIndex > 0) {
         this.currentIndex--;
       } else {
-        this.currentIndex = this.showArtists.length - 1;
+        this.currentIndex = this.artists.length - 1;
       }
       // this.activeSlide = Math.floor(this.currentIndex / 6);
       this.playSong(this.currentIndex);
@@ -536,6 +540,47 @@ export default {
     {
       this.updateVolume();
     },
+    search(newValue)
+    {
+      var payload = {}
+      if (this.artist_type) payload.artist_type = this.artist_type
+      if (this.genre) payload.genre = this.genre
+      if (newValue) payload.search = newValue
+
+      this.fetchArtists(payload)
+        .then(response =>
+        {
+          console.log('Watch Search: ', response)
+          //this.showArtists = this.artists;
+        })
+    },
+    artist_type(newValue)
+    {
+      var payload = {}
+      if (newValue) payload.artist_type = newValue
+      if (this.genre) payload.genre = this.genre
+      if (this.search) payload.search = this.search
+      this.fetchArtists(payload)
+        .then(response =>
+        {
+          console.log('Artist Type: ', response)
+          //this.showArtists = this.artists;
+        })
+    },
+    genre(newValue)
+    {
+      var payload = {}
+      if (this.artist_type) payload.artist_type = this.artist_type
+      if (newValue) payload.genre = newValue
+      if (this.search) payload.search = this.search
+
+      this.fetchArtists(payload)
+        .then(response =>
+        {
+          console.log('Watch Genre: ', response)
+          //this.showArtists = this.artists;
+        })
+    }
   }
 };
 </script>

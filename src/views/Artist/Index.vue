@@ -435,7 +435,7 @@
       <p><strong>Member:</strong> {{ members }}</p>
     </div>
   </section>
-  <post />
+
 </template>
 <script>
 // import Layout from '/src/components/Layouts/ArtistLayout.vue';

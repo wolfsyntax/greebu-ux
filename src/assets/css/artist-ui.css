@@ -1,4 +1,3 @@
-
 :root {
     
 }
@@ -14,7 +13,7 @@ body{
   color: orange;
 }
 .artist-profile .container .profile-page {
-  padding: 0 1%;
+    padding: 0 1%;
 }
 .profile-page .profile-header {
   box-shadow: 0 0 10px 0 rgba(183, 192, 206, 0.2);
@@ -278,9 +277,8 @@ body{
 .profile-page .left-wrapper .artist-info{
   margin-bottom: 24px;
 }
-.profile-page .left-wrapper .artist-info .card-body, .profile-page .left-wrapper .band-members .card-body,
-.profile-page .right-wrapper .past-events .card-body {
-  padding: 24px 20px 26px;
+.profile-page .left-wrapper .artist-info .card-body, .profile-page .left-wrapper .band-members .card-body{
+    padding: 24px 20px 42px;
 }
 .profile-page .left-wrapper .artist-info .card-title{
   color:  #27272E;
@@ -336,7 +334,7 @@ body{
 
 /* left side bar bottom */
 .profile-page .left-wrapper .band-members .header{
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 .profile-page .left-wrapper .band-members .title{
   align-items: center;
@@ -361,20 +359,20 @@ body{
   text-decoration: none;
 }
 .profile-page .left-wrapper  .card-body .members-list {
-  border-radius: 10px;
-  background: #FFF;
-  display: flex;
-  padding: 16px;
-  /* border: 1px solid red; */
-  box-shadow: 0px 3px 8px -1px rgba(50, 50, 71, 0.05), 0px 0px 1px 0px rgba(12, 26, 75, 0.24);
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
+    border-radius: 10px;
+    background: #FFF;
+    display: flex;
+    padding: 16px;
+    /* border: 1px solid red; */
+    box-shadow: 0px 3px 8px -1px rgba(50, 50, 71, 0.05), 0px 0px 1px 0px rgba(12, 26, 75, 0.24);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
 }
 .profile-page .left-wrapper  .card-body .members-list .member-profile {
-  display: flex;
-  width: 93%;
-  align-items: center;
+    display: flex;
+    width: 93%;
+    align-items: center;
 }
 .profile-page .left-wrapper  .card-body .members-list img{
   width: 48px;
@@ -387,27 +385,27 @@ body{
   backface-visibility: hidden;
 }
 .profile-page .left-wrapper  .card-body .members-list .member-info a{
-  color: var(--text-heading-dark, #27272E);
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 136.023%;
-  margin-bottom: 0;
-  text-decoration: none;
+    color: var(--text-heading-dark, #27272E);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 136.023%;
+    margin-bottom: 0;
+    text-decoration: none;
 }
 .profile-page .left-wrapper  .card-body .members-list .member-info  p{
-  color: var(--text-body-light, #425466);
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 23px;
-  margin-bottom: 0;
+    color: var(--text-body-light, #425466);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 23px;
+    margin-bottom: 0;
 }
 .profile-page .left-wrapper  .card-body .members-list .more {
-  width: 7%;
+    width: 7%;
 }
 .profile-page .left-wrapper  .card-body .members-list .more span{
-  color: #7A7A9D;
+    color: #7A7A9D;
 }
 
 /* To post - write something */

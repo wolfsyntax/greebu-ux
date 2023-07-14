@@ -1,6 +1,10 @@
 <template>
-  <router-view></router-view>
-  <!-- <slot /> -->
+  <layout>
+    <router-view></router-view>
+  </layout>
+  
+  <!-- <router-view></router-view> -->
+  <slot />
 </template>
 <script>
 import Layout from '/src/components/Layouts/Layout.vue';
@@ -9,13 +13,9 @@ export default {
   {
 
   },
-  components: {
-    layout: Layout,
-  }
 }
 </script>
 
 <!-- <style>
 @import '@/assets/css/artist-ui.css';
 </style> -->
-
