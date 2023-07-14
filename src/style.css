@@ -2731,6 +2731,10 @@ background-color: var(--orange);
   border-radius: 0.75rem;
   background: #FFFAF7;
 } 
+.delivery-date form .form-check .delivery-wrapper{
+  display: flex;
+  align-items: center;
+}
 /* .delivery-date form .last-form-check{
   margin-bottom: 9rem!important;
 } */
