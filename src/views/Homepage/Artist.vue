@@ -71,9 +71,9 @@
           <div class="col-3">
             <h5>Music Genre</h5>
             <select class="form-select" aria-label="Default select example">
-              <option v-for="{title, id} in genres" :key="id">
+              <!-- <option v-for="{title, id} in genres" :key="id">
                 {{ title }}
-                </option>
+                </option> -->
             </select>
           </div>
           <div class="col-3">
@@ -106,7 +106,39 @@
               <!-- <div class="carousel-item"> -->
               <div class="row">
                 <div class="col-4" v-for="(artist, itemIndex) in showArtists" :key="itemIndex">
-                  <card :artist="artist" />
+
+                  <div class="card">
+                    <img :src="artist.image" class="card-img-top img-fluid" loading="lazy" alt="Trending Artist" @error="imageUrlAlt" />
+                    <div class="middle">
+                      <!-- <button class="btn btn-primary" @click="openModal" data-bs-toggle="modal" data-bs-target="#artistModal"> View Details</button> -->
+                      <a href="/artist"> View Profile</a>
+                    </div>
+                    <div class="card-body">
+                      <div class="artist">
+                        <h5 class="card-title">{{ artist.name }}</h5>
+                        <h6 class="card-text">{{ artist.typeOfArtist }}</h6>
+                        <p><img src="https://res.cloudinary.com/daorvtlls/image/upload/v1687321042/rating-star-small_axozjd.svg" alt="rating-star">
+                          {{ artist.ratings }} <span>({{ artist.reviews }} reviews)</span></p>
+                      </div>
+                      <div class="audio-btn">
+                        <div class="play-btn">
+                          <div class="play-btn">
+                            <div class="play-btn">
+                              <i :class="{
+                                'bi bi-play-circle-fill play-icon': !showControls || (showControls && currentIndex !== itemIndex),
+                                'bi bi-pause-circle-fill play-icon': showControls && currentIndex === itemIndex
+                              }" @click="toggleControls(itemIndex)"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div> <!-- end of card-->
+
+                    <card 
+                  :artist="artist"
+                  @artistsongtoplay="toggleControls"
+                  ></card>
 
                 </div>
               </div> 
@@ -278,26 +310,26 @@ export default {
           ratings: 4.90,
           reviews: 123,
         },
-        {
-          id: 8,
-          name: 'Ricardo Sy',
-          typeOfArtist: 'Songwriter',
-          genre: 'Metal',
-          song: 'https://res.cloudinary.com/daorvtlls/video/upload/v1687411918/total-eclipse-of-the-heart_d6wjes.mp3',
-          image: 'https://res.cloudinary.com/daorvtlls/image/upload/v1686465774/samples/people/jazz.jpg',
-          ratings: 4.90,
-          reviews: 113,
-        },
-        {
-          id: 9,
-          name: 'GG Artists',
-          typeOfArtist: 'Full Band Artist',
-          genre: 'Metal',
-          song: 'https://res.cloudinary.com/daorvtlls/video/upload/v1687411869/merrow-rock-skyline-pigeon-elton-john_h0chm4.mp3',
-          image: 'https://res.cloudinary.com/daorvtlls/image/upload/v1687096461/our-team-slider-1_rqwdxm.webp',
-          ratings: 4.90,
-          reviews: 113,
-        }
+        // {
+        //   id: 8,
+        //   name: 'Ricardo Sy',
+        //   typeOfArtist: 'Songwriter',
+        //   genre: 'Metal',
+        //   song: 'https://res.cloudinary.com/daorvtlls/video/upload/v1687411918/total-eclipse-of-the-heart_d6wjes.mp3',
+        //   image: 'https://res.cloudinary.com/daorvtlls/image/upload/v1686465774/samples/people/jazz.jpg',
+        //   ratings: 4.90,
+        //   reviews: 113,
+        // },
+        // {
+        //   id: 9,
+        //   name: 'GG Artists',
+        //   typeOfArtist: 'Full Band Artist',
+        //   genre: 'Metal',
+        //   song: 'https://res.cloudinary.com/daorvtlls/video/upload/v1687411869/merrow-rock-skyline-pigeon-elton-john_h0chm4.mp3',
+        //   image: 'https://res.cloudinary.com/daorvtlls/image/upload/v1687096461/our-team-slider-1_rqwdxm.webp',
+        //   ratings: 4.90,
+        //   reviews: 113,
+        // }
       ],
       ratingImage: 'https://res.cloudinary.com/daorvtlls/image/upload/v1687321042/rating-star-small_axozjd.svg',
       showControls: false,
