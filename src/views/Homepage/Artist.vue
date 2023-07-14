@@ -109,6 +109,11 @@
               <div class="row">
                 <div class="col-4" v-for="(artist, itemIndex) in showArtists" :key="itemIndex">
 
+                  <!-- <card 
+                  :artist="artist"
+                  @artistsongtoplay="toggleControls"
+                  ></card> -->
+
                   <div class="card">
                     <img :src="artist.image" class="card-img-top img-fluid" loading="lazy" alt="Trending Artist" @error="imageUrlAlt" />
                     <div class="middle">
@@ -136,11 +141,6 @@
                       </div>
                     </div>
                   </div> <!-- end of card-->
-
-                    <card 
-                  :artist="artist"
-                  @artistsongtoplay="toggleControls"
-                  ></card>
 
                 </div>
               </div> 

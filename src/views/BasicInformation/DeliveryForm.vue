@@ -8,7 +8,7 @@
                 <div class="card">
                 <div class="card-body">
                 <h2 class="card-title">Select a delivery date</h2>
-                <p class="card-text">Rest assured that the songs will be delivered by the end of the day.</p>
+                <p class="card-text delivery-subtitle">Rest assured that the songs will be delivered by the end of the day.</p>
                 <form @submit.prevent="submit">
                     <div v-for="option in delivery" :key="option.id" 
                     :class="['form-check', { 'selected': option.id === selectedOption }]"
