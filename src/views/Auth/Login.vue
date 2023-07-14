@@ -282,12 +282,10 @@ export default {
     }
 
   },
-  computed: {
-    ...mapGetters(["userInfo", "token"]),
-    ...mapState({
+  computed: mapState({
       users: (state) => state.user,
     }),
-  }
+  
 }
 </script>
 <style scoped></style>

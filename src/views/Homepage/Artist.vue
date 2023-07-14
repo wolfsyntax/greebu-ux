@@ -508,11 +508,6 @@ export default {
       if (newValue) payload.search = newValue
 
       this.fetchArtists(payload)
-        .then(response =>
-        {
-          console.log('Watch Search: ', response)
-          //this.showArtists = this.artists;
-        })
     },
     artist_type(newValue)
     {
@@ -521,11 +516,6 @@ export default {
       if (this.genre) payload.genre = this.genre
       if (this.search) payload.search = this.search
       this.fetchArtists(payload)
-        .then(response =>
-        {
-          console.log('Artist Type: ', response)
-          //this.showArtists = this.artists;
-        })
     },
     genre(newValue)
     {
@@ -535,11 +525,6 @@ export default {
       if (this.search) payload.search = this.search
 
       this.fetchArtists(payload)
-        .then(response =>
-        {
-          console.log('Watch Genre: ', response)
-          //this.showArtists = this.artists;
-        })
     }
   }
 };
