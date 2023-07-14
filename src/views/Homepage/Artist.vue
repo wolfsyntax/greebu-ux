@@ -64,18 +64,18 @@
             <h5>Type of Artist</h5>
             <select class="form-select" v-model="artist_type" aria-label="Default select example">
               <option value="" selected></option>
-              <option v-for="artist_type in artist_types" :key="artist_type.id" :value="artist_type.id">
+              <!-- <option v-for="artist_type in artist_types" :key="artist_type.id" :value="artist_type.id">
               {{  artist_type.title }}
-              </option>
+              </option> -->
             </select>
           </div>
           <div class="col-3">
             <h5>Music Genre</h5>
             <select class="form-select" v-model="genre" aria-label="Default select example">
               <option value="" selected></option>
-              <option v-for="{title, id} in genres" :key="id" :value="id">
+              <!-- <option v-for="{title, id} in genres" :key="id" :value="id">
                 {{ title }}
-                </option> 
+                </option>  -->
             </select>
           </div>
           <!-- <div class="col-3">
