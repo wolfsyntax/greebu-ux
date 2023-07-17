@@ -208,7 +208,7 @@ export default {
       // })
 
       const self = this;
-        console.log('Router: ', this.$route.meta)
+        // console.log('Router: ', this.$route.meta)
       this.signout()
         .then(response =>
         {
@@ -220,7 +220,7 @@ export default {
           })
           setTimeout(() =>
           {
-            console.log('Router::: ', this.$route.meta)
+            // console.log('Router::: ', this.$route.meta)
             loading.close()
             if (this.$route.meta.requiresLogin == false) this.$router.go();
             else if (status === 200 || status === 401) this.$router.push('/login');
@@ -228,7 +228,7 @@ export default {
 
         }).catch(err =>
         {
-          console.log('Logout: ', err)
+          // console.log('Logout: ', err)
         })
     }
   },

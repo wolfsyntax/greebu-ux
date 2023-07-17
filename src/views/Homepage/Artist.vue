@@ -338,7 +338,7 @@ export default {
     this.fetchArtists(payload)
       .then(response =>
       {
-        console.log('Artist.vue: ', response);
+        // console.log('Artist.vue: ', response);
       })
     this.audioPlayer = this.$refs.audioPlayer;
     this.audioPlayer.addEventListener('play', () =>

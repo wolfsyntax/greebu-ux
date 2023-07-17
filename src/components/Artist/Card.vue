@@ -65,7 +65,7 @@ export default {
       },
     imageUrlAlt(event)
     {
-      console.log('Image Url: ', event)
+      // console.log('Image Url: ', event)
       event.target.src = "https://res.cloudinary.com/daorvtlls/image/upload/v1686649067/trending-bicolano-artist-2_ljhog8.png"
     },
   },
