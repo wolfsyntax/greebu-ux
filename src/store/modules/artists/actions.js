@@ -212,7 +212,7 @@ export const artistOptions = ({ commit, rootState, state }, payload) =>
         if (statusCode === 200) {
           commit('SET_GENRES', result?.genres || []);
           commit('SET_ARTIST_TYPES', result?.artist_types || [])
-          console.log('Artist Options: ', response.data.result);
+          // console.log('Artist Options: ', response.data.result);
         }
         
         resolve(response)

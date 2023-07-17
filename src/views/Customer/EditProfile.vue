@@ -193,7 +193,7 @@ export default {
         })
         .catch(err =>
         {
-          console.log('Err: ', err)
+          // console.log('Err: ', err)
           this.$vs.notification({
             color: 'danger',
             position: 'top-right',
