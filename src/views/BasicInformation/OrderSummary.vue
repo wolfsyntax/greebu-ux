@@ -15,7 +15,7 @@
                          Back
                         </a> 
                     </div>
-                    <h2 class="card-title">Order Summary</h2>
+                    <h2 class="card-title">Order Summary!</h2>
                     <p class="card-text">Lorem ipsum dolor sit amet consectetur.</p>
                     <div class="order-details">
                         <h3 class="title">Order Details</h3>
