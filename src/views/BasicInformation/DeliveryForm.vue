@@ -29,7 +29,7 @@
                     </div>
                     <div class="button-wrapper">
                     <button type="button" class="btn btn-primary back" @click="backToBasicInfo">Back</button>
-                    <button type="button" class="btn btn-primary next">Continue</button>
+                    <button type="button" class="btn btn-primary next" @click="submitDeliveryDate">Continue</button>
                     </div>
                 </form>
 
@@ -92,6 +92,9 @@
     backToBasicInfo() {
         window.location.href = '/basicinformation';
     },
+    submitDeliveryDate(){
+      window.location.href = '/ordersummary';
+    }
   }
   }
   </script>
