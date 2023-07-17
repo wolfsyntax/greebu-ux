@@ -1,5 +1,10 @@
 import axios from "axios";
 import { FacebookAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup, createUserWithEmailAndPassword, signInWithRedirect } from "firebase/auth";
+const instance = axios.create({
+  baseURL: `${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/`,
+  timeout: 1000,
+  headers: {'Access-Control-Allow-Headers': '*'}
+});
 
 var actions = {
   signin({ commit }, payload)
@@ -7,7 +12,8 @@ var actions = {
     return new Promise(async (resolve, reject) =>
     {
       // axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
-      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/login`, payload)
+      // await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/login`, payload)
+      await instance.post(`login`, payload)
         .then(response =>
         {
 
@@ -22,7 +28,8 @@ var actions = {
             commit('SET_PROFILE', profile || {});
             commit('SET_ROLE', profile?.role || '');
             commit('SET_ROLES', roles || []);
-            localStorage.api_token = token
+            // localStorage.api_token = token
+            sessionStorage.api_token = token
           }
           console.log('Status: ', response)
           resolve(response)
@@ -58,7 +65,8 @@ var actions = {
   {
     return new Promise(async (resolve, reject) =>
     {
-      axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
+      // axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || sessionStorage.api_token);
       await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/logout`)
         .then(response =>
         {
@@ -161,7 +169,8 @@ var actions = {
   switchUserProfile({ commit }, payload)
   {
     return new Promise(async (resolve, reject) => {
-      axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
+      // axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || sessionStorage.api_token);
 
       await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/users/${payload}/switch`)
         .then(response =>
