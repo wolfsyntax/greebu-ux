@@ -1844,6 +1844,8 @@ background-color: var(--orange);
   float: right;
   border: 1px solid #F3F5FB;
   border-radius: 10px;
+  display: flex;
+  align-items: center;
 }
 .artists .container .row .input-group .form-control, .events-showing .container .row .input-group .form-control,  
 .event-organizers .container .top-row .input-group .form-control, .basic-information .container .step2 .top-row .input-group .form-control{
@@ -1852,6 +1854,7 @@ background-color: var(--orange);
   border: 0;
   font-size: 24px;
   color: var(--orange);
+  padding: 0 0 0 10px;
 }
 .form-control:focus {
   border-color: var(--orange)!important;
@@ -2354,7 +2357,72 @@ background-color: var(--orange);
   margin: 6.25rem auto;
 }
 /* Stepper*/
-.basic-information .container .card{
+
+.basic-information .container .active .step-title {
+  color: #FF6B00;
+}
+.basic-information .container .step-item.active .substep-title { /* sub step */
+color: #FF6B00;
+font-weight: 700;
+}
+.basic-information .container .substep-title{
+margin-top: 1rem;
+font-weight: 600;
+font-size: 1rem;
+font-style: normal;
+line-height: 1.5rem;
+color: #B8BBCF;
+}
+.basic-information .container .progress {
+height: 0.75rem;
+background-color: #EFF3FD;
+border-radius: 10px;
+}
+.basic-information .container .progress-bar {
+background-color: #FF6B00;
+border-radius: 10px;
+}
+.basic-information .container .step-item {
+flex: 1;
+display: flex;
+align-items: center;
+justify-content: center;
+position: relative;
+}
+.basic-information .container .step-number {
+width: 30px;
+height: 30px;
+border-radius: 50%;
+background-color: #ddd;
+color: #fff;
+display: flex;
+align-items: center;
+justify-content: center;
+font-weight: bold;
+}
+.basic-information .container .step-title{
+margin-top: 1rem;
+color: #B8BBCF;
+font-size: 1.25rem;
+font-style: normal;
+font-weight: 700;
+line-height: 1.5rem;
+}
+.basic-information .container .active .step-number {
+background-color: orange;
+}
+.basic-information .container .step-content {
+display: none;
+}
+.basic-information .container .step-content.active {
+display: block;
+}
+.basic-information .container .button-container {
+margin-top: 20px;
+display: flex;
+justify-content: space-between;
+}
+.basic-information .container .card, .delivery-date .container .card {
   margin: 5rem auto;
   border-radius: 1rem;
   background: #FFF;
@@ -2362,7 +2430,8 @@ background-color: var(--orange);
   border: 0;
   padding: 3.12rem 4rem 4.12rem;
 }
-.basic-information .container .card-title, .basic-information .container .step2 .select-artist .title{
+.basic-information .container .card-title, .basic-information .container .step2 .select-artist .title,
+.delivery-date .container .card-title{
   color: #000;
   font-size: 2rem;
   font-style: normal;
@@ -2370,10 +2439,12 @@ background-color: var(--orange);
   line-height: 2.5rem;
   margin-bottom: 2.5rem;
 }
-.basic-information .container .step1 .card-title, .basic-information .container .step2 .select-artist .title{
+.basic-information .container .step1 .card-title, .basic-information .container .step2 .select-artist .title,
+.delivery-date .container .card-title{
   margin-bottom: 0.5rem;
 }
-.basic-information .container .card-text, .basic-information .container .step2 .select-artist .sub-title{
+.basic-information .container .card-text, .basic-information .container .step2 .select-artist .sub-title,
+.delivery-date .container .card-text{
   color: #B8BBCF;
   font-size: 1rem;
   font-style: normal;
@@ -2402,7 +2473,7 @@ background-color: var(--orange);
   line-height: 1.3125rem;
 }
 .basic-information .container form  .button-wrapper, .basic-information .container .step2 .select-artist .button-wrapper,
-.basic-information .container .step4 .select-artist .button-wrapper{
+.basic-information .container .step4 .select-artist .button-wrapper, .delivery-date .container .button-wrapper {
   display: flex;
   width: 100%;
   gap: 4%;
@@ -2410,7 +2481,8 @@ background-color: var(--orange);
 }
 .basic-information .container form .button-wrapper .back, .basic-information .container form .button-wrapper .next,
 .basic-information .container .step2 .button-wrapper .back, .basic-information .container .step2 .button-wrapper .next,
-.basic-information .container .step4 .button-wrapper .back, .basic-information .container .step4 .button-wrapper .next{
+.basic-information .container .step4 .button-wrapper .back, .basic-information .container .step4 .button-wrapper .next,
+.delivery-date .container .button-wrapper .back, .delivery-date .container .button-wrapper .next{
   color: #FF6B00;
   text-align: center;
   font-size: 1.25rem;
@@ -2425,12 +2497,12 @@ background-color: var(--orange);
   float: left;
 }
 .basic-information .container form  .button-wrapper .back:hover, .basic-information .container .step2 .button-wrapper .back:hover,
-.basic-information .container .step4 .button-wrapper .back:hover{
+.basic-information .container .step4 .button-wrapper .back:hover, .delivery-date .container .button-wrapper .back:hover{
   color: #FFF;
   background: #FF6B00;
 }
 .basic-information .container form  .button-wrapper .next, .basic-information .container .step2 .button-wrapper .next,
-.basic-information .container .step4 .button-wrapper .next{
+.basic-information .container .step4 .button-wrapper .next, .delivery-date .container .button-wrapper .next{
   width: 48%;
   float: right;
   color: #FFF;
@@ -2696,6 +2768,84 @@ background-color: var(--orange);
   color: var(--white)!important;
 }
 
+                                        /* Delivery Form */
+.delivery-date form .form-check  {
+  padding: 2.5rem 1.8rem;
+  border-radius: 0.75rem;
+  border: 2px solid #E4E7EC;
+  /* margin-bottom: 1.12rem; */
+  display: block;
+}                 
+.delivery-date form .form-check .form-check-input {
+  margin-left: -0.5em;
+  margin-right: 1.2rem;
+  width: 1.25em;
+  height: 1.25em;
+  margin-top: 0;
+  border-radius: 0.875rem;
+  border: 1px solid #E4E7EC;
+  background: transparent;
+}      
+.delivery-date form .form-check .form-check-input:checked[type=radio] {
+  background-image: url("/assets/create-song/checked-input.svg");
+  border: 0;
+  background-color: transparent;
+}         
+.delivery-date form .form-check.selected *{
+  color: var(--orange)!important;
+}  
+.delivery-date form .form-check.selected{
+  border: 2px solid var(--orange)!important;
+  border-radius: 0.75rem;
+  background: #FFFAF7;
+} 
+.delivery-date form .form-check .delivery-wrapper{
+  display: flex;
+  align-items: center;
+}
+/* .delivery-date form .last-form-check{
+  margin-bottom: 9rem!important;
+} */
+.delivery-date form .form-check label {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}     
+.delivery-date form .form-check label h4, .delivery-date form .form-check label .price{
+  color: #475467;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.25rem; 
+  margin-bottom: 0;
+}   
+.delivery-date form .form-check .option-wrapper{
+  float: left;
+  width: 80%;
+}   
+.delivery-date form .form-check .price-wrapper{
+  float: right;
+  width: 20%;
+  text-align: right;
+}  
+.delivery-date form .form-check label .price{
+  font-weight: 700;
+}   
+.delivery-date form .form-check label  .sub-content{
+  color: #475467;
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1rem;  
+  width: 95%;
+  margin: 0.31rem 0;
+}
+.delivery-date .delivery-subtitle{
+  margin-bottom: 2.8rem!important;
+}
+
+
+
+
 
 
                                                                     /* MEDIA QUERIES */
@@ -2704,9 +2854,127 @@ background-color: var(--orange);
 @media (min-width: 1200px) and (max-width: 1399.98px){
   /* 
   STANDARD MARGIN:
-  margin-top: 80px
+  margin-top: 80px / 5rem
   margin-bottom: 80px
 */
+
+                                /* Basic Information - Stepper / Delivery Form*/                     
+.basic-information .container{
+  margin: 5rem auto;
+}
+/* Stepper*/
+.basic-information .container .card, .delivery-date .container .card {
+  margin: 3rem auto;
+  padding: 2.12rem 3rem 3.12rem;
+}
+.basic-information .container .step2 .select-artist .card img{
+  height: 250px;
+}
+.basic-information .container .step2 .select-artist .card {
+  padding: 1.5rem!important;
+}
+.basic-information .container .step2 .select-artist .card .select {
+  font-size: 1.16rem;
+  padding: 0.4rem 0;
+}
+.basic-information .container form .button-wrapper .back, .basic-information .container form .button-wrapper .next, .basic-information .container .step2 .button-wrapper .back, .basic-information .container .step2 .button-wrapper .next, .basic-information .container .step4 .button-wrapper .back, .basic-information .container .step4 .button-wrapper .next, .delivery-date .container .button-wrapper .back, .delivery-date .container .button-wrapper .next {
+  padding: .7rem 0rem;
+}
+.basic-information .container .step2 .content-sub, .basic-information .container .step3 .content-sub {
+  width: 45%;
+}
+.basic-information .container .card-title{
+  font-size: 1.8rem;
+  margin-bottom: 1.2rem!important;
+}
+.basic-information .container .step2 .select-artist .title{
+  font-size: 1.8rem;
+  margin-bottom: .2rem!important;
+}
+.basic-information .container .step1-title{
+  margin-bottom: .2rem!important;
+}
+.basic-information .container .step3 .your-story {
+  margin-bottom: 0.3rem!important;
+}
+.basic-information .container .card-text, .basic-information .container .step2 .select-artist .sub-title, .delivery-date .container .card-text {
+  font-size: 1rem;
+  margin-bottom: 1.7rem;
+}
+.basic-information .container .step2 .select-artist, .basic-information .container .step4 .review-content {
+  margin-bottom: 2rem;
+  padding: 4.5rem;
+}
+.artists .container .row .filter, .events-showing .container .row .filter, .event-organizers .container .top-row .filter, 
+.basic-information .container .step2 .top-row .filter {
+  font-size: 20px;
+  padding: 14px 38px;
+}
+.artists .container .row .input-group .form-control, .events-showing .container .row .input-group .form-control, 
+.event-organizers .container .top-row .input-group .form-control, .basic-information .container .step2 .top-row .input-group .form-control {
+  height: 55px;
+  font-size: 20px;
+}
+.artists .container .row .input-group .form-control, .events-showing .container .row .input-group .form-control, 
+.event-organizers .container .top-row .input-group .form-control, .basic-information .container .step2 .top-row .input-group .form-control {
+  height: 55px;
+  font-size: 20px;
+}
+.artists .container .row .input-group button span, .events-showing .container .row .input-group button span, .event-organizers .container .top-row .input-group button span, .basic-information .container .step2 .top-row .input-group button span {
+  font-size: 24px;
+  padding: 8px;
+}
+.artists .container .row .input-group, .events-showing .container .row .input-group, .event-organizers .container .top-row .input-group, .basic-information .container .step2 .top-row .input-group {
+  width: 380px;
+}
+.artists .container .row .input-group .form-control::placeholder, .events-showing .container .row .input-group .form-control::placeholder,
+.event-organizers .container .top-row .input-group .form-control::placeholder, .basic-information .container .step2 .top-row .input-group .form-control::placeholder{
+  font-size: 20px;
+}
+.artists .container .top-row h5, .events-showing .container .top-row h5, .basic-information .container .step2 .top-row h5 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.artists .container .row .form-select, .events-showing .container .row .form-select, .basic-information .container .step2 .form-select {
+  height: 50px;
+  font-size: 16px;
+}
+.basic-information .container .step2 .top-row {
+  margin-bottom: 10px;
+}
+.basic-information .container  .understand .form-check-input {
+  margin-right: 1rem;
+}
+.basic-information .container .step4 .review-content .title h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1.3rem;
+}
+.basic-information .container h4, .basic-information .container p {
+  font-size: 1.18rem;
+}
+.basic-information .container .double-check h5 {
+  font-size: 1.18rem;
+}
+.basic-information .container .your-story-content, .basic-information .container .double-check {
+  margin-bottom: 3rem;
+}
+.basic-information .container .step-title {
+  margin-top: .8rem;
+  font-size: 1.18rem;
+}
+.delivery-date form .form-check {
+  padding: 1.5rem 1.2rem;
+}     
+.delivery-date form .form-check label h4, .delivery-date form .form-check label .price {
+font-size: 1.1rem;
+}     
+.delivery-date .container .card-title{
+margin-bottom: 0.2rem;
+font-size: 1.8rem;
+} 
+.delivery-date .delivery-subtitle{
+  margin-bottom: 2.2rem!important;
+}
 
                                                        /* SERVICES PAGE */
  /* BANNER SECTION */
@@ -3034,7 +3302,7 @@ header nav {
   height: 320px;
   margin-bottom: 10px;
 }
-.featured-artists .card-body .card-title, .artists .card-body .card-title {
+.featured-artists .card-body .card-title, .artists .card-body .card-title, .basic-information .container .step2 .select-artist .card-body .card-title {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -3045,21 +3313,21 @@ header nav {
   white-space: normal;
   overflow: visible;
 }
-.featured-artists .card-body .card-text, .artists .card-body .card-text {
+.featured-artists .card-body .card-text, .artists .card-body .card-text, .basic-information .container .step2 .select-artist .card-body .card-text {
   font-size: 14px;
   margin-bottom: 12px;
 }
-.featured-artists .card-body p, .artists .card-body p{
+.featured-artists .card-body p, .artists .card-body p, .basic-information .container .step2 .select-artist .card-body p{
   font-size: 14px!important;
 }
-.featured-artists .card-body p span, .artists .card-body p span{
+.featured-artists .card-body p span, .artists .card-body p span, .basic-information .container .step2 .select-artist .card-body p span{
   font-size: 14px;
 }
 .featured-artists .card-body p img, .artists .card-body p img{
   width: 20px;
   height: 20px;
 }
-.featured-artists .audio-btn .play-btn  i, .artists  .audio-btn .play-btn  i {
+.featured-artists .audio-btn .play-btn  i, .artists  .audio-btn .play-btn  i, .basic-information .audio-btn .play-btn i {
   font-size: 3.1em;
 }
 .featured-artists .container .card .card-body, .artists .container .card .card-body {

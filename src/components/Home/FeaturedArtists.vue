@@ -9,7 +9,7 @@
 
         <div class="trending">
           <h4>Trending Bicolano Artists</h4>
-          <p>Trending Pop Artists</p>
+          <p>Trending artists</p>
         </div>
 
         <div id="trendingArtists" class="carousel slide">
@@ -63,7 +63,7 @@
         <!-- Popular Hip-Hop Artists -->
         <div class="trending">
           <h4>Popular Hip-Hop Artists</h4>
-          <p>Trending Pop Artists</p>
+          <p>Trending Hip-Hop Artists</p>
         </div>
         <div id="HipHopArtists" class="carousel slide">
           <div class="carousel-inner">
@@ -217,7 +217,7 @@ export default {
           name: 'James Natividad',
           typeOfArtist: 'Solo Artist',
           genre: 'Pop',
-          song: 'https://res.cloudinary.com/dmf10fesn/video/upload/v1548882863/audio/Post_Malone_-_Wow._playvk.com.mp3',
+          song: 'https://res.cloudinary.com/daorvtlls/video/upload/v1687411555/the-script-the-man-who-cant-be-moved_ajmg2q.mp3',
           image: 'https://res.cloudinary.com/daorvtlls/image/upload/v1686649066/trending-bicolano-artist-3_s0ocyh.png',
           ratings: 4.95,
           reviews: 229,
@@ -226,7 +226,7 @@ export default {
           name: 'Kevin Flores',
           typeOfArtist: 'Duo Artist',
           genre: 'Reggae',
-          song: 'https://res.cloudinary.com/dmf10fesn/video/upload/v1548887340/audio/Kwesi-Arthur-Chill-Prod-by-Dannyedtracks.mp3',
+          song: 'https://res.cloudinary.com/daorvtlls/video/upload/v1687411546/rivermaya-elesi_xj8lcy.mp3',
           image: 'https://res.cloudinary.com/daorvtlls/image/upload/v1686649329/trending-bicolano-artist-4_o6xjze.png',
           ratings: 4.95,
           reviews: 228,
