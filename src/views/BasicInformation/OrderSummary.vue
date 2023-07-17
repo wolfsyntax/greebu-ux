@@ -46,7 +46,7 @@
                             <img src="/assets/create-song/vinyl-record.svg">
                             <div>
                             <h4>Personalized song</h4><p>Personalized song</p>
-                        </div>
+                            </div>
                         </div>
                         <div class="right">
                             <h4>₱ 3,000.00</h4>
@@ -56,14 +56,45 @@
                     <form @submit.prevent="submit">
                     <div class="form-group">
                         <label for="discount">Gift Card / Discount code</label>
-                        <input id="text" type="text" class="form-control" name="discount">
-                        <button class="btn apply">Apply</button>
+                        <div class="discount-coupon">
+                        <div class="left">
+                            <input id="text" type="text" class="form-control" name="discount">
+                        </div>
+                        <div class="right">
+                            <button class="btn apply">Apply</button>
+                        </div>
+                        </div>
+                     
                     </div>
-                    <!-- <div class="d-flex justify-content-between sum">
+                    <div class="d-flex justify-content-between sum">
                       <div><h4>Dicount</h4></div>
                       <div><p>-</p></div>
-                    </div> -->
-                    <!-- <div class="sum"><h4>Dicount</h4><p>-</p></div> -->
+                    </div>
+                    <div class="d-flex justify-content-between sum">
+                      <div><h4>Subtotal</h4></div>
+                      <div><p>₱ 3,000.00</p></div>
+                    </div>
+                    <div class="d-flex justify-content-between sum">
+                      <div><h4>Transaction Fee</h4></div>
+                      <div><p>₱ 100.00</p></div>
+                    </div>
+                    <div class="d-flex justify-content-between sum last">
+                      <div><h4>Sales tax</h4></div>
+                      <div><p>₱ 0.00</p></div>
+                    </div>
+
+                    <div class="d-flex justify-content-between total">
+                      <div><h4>Total due</h4></div>
+                      <div><p>₱ 3,100.00</p></div>
+                    </div>
+                   
+                       
+                            
+                        
+                       
+                           
+                        
+                  
                     
                     <div class="button-wrapper">
                         <button type="button" class="btn btn-primary back">Back</button>
