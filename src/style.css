@@ -2963,7 +2963,9 @@ justify-content: space-between;
   margin-bottom: 0;
 }
 .order-summary .card-body .form-group{
-  padding-bottom: 2.06rem;
+  margin-bottom: 2.06rem;
+  /* display: flex;
+  align-items: center; */
 }
 .order-summary .card-body .form-group label{
   color:var(--black);
@@ -2971,43 +2973,64 @@ justify-content: space-between;
   font-weight: 600;
   margin-bottom: 0.5rem;
 }
-.order-summary .card-body .form-group input{
-  float: left;
+.order-summary .card-body .form-group .discount-coupon {
+  display: flex;
+  /* align-items: center; */
+  width: 100%;
+}
+.order-summary .card-body .form-group .discount-coupon .left {
   width: 80%;
+  margin-right: 2%;
+}
+.order-summary .card-body .form-group .discount-coupon .right{
+  width: 18%;
+}
+.order-summary .card-body .form-group input{
   height: 3rem;
   border-radius: 0.25rem;
   border: 1px solid #E3E3E3;
   background: #F9F9F9;
-  margin-right: 2%;
+  margin-bottom: 0.5rem;
 }
-.order-summary .card-body .form-group .apply{
-  float: right;
-  width: 18%;
+.order-summary .card-body .form-group .apply {
   color: var(--orange);
   font-size: 0.875rem;
   font-weight: 600;
-  /* padding: 1rem 2rem; */
   border: 1px solid var(--orange);
   border-radius: 0.25rem;
   height: 3rem;
+  width: 100%;
 } 
 .order-summary .card-body .form-group .apply:hover{
   background-color: var(--orange);
   color: var(--white);
 }
-.order-summary .card-body  form .sum{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.order-summary .card-body  form .last{
+  margin-bottom: 2.06rem;
 }
 .order-summary .card-body  form .sum h4{
   color: var(--black);
   font-size: 1.25rem;
   font-weight: 600;
-  line-height: 1.25rem; /* 100% */
+  line-height: 1.25rem; 
 }
-
-
+.order-summary .card-body  form .total h4{
+  color: var(--black);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.25rem; 
+}
+.order-summary .card-body  form .total p{
+  color: var(--orange);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.25rem; 
+}
+.order-summary .card-body  form .total{
+  padding: 2.06rem 0;
+  border-top: 2px solid #E4E7EC;
+  margin-bottom: 2.06rem;
+}
 
 
                                                                     /* MEDIA QUERIES */
