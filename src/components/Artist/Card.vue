@@ -1,14 +1,14 @@
 <template>
   <div class="card">
-    <img :src="artist.image" class="card-img-top img-fluid" loading="lazy" alt="Trending Artist" @error="imageUrlAlt" />
+    <img :src="artist.avatar" class="card-img-top img-fluid" loading="lazy" alt="Trending Artist" @error="imageUrlAlt" />
     <div class="middle">
       <!-- <button class="btn btn-primary" @click="openModal" data-bs-toggle="modal" data-bs-target="#artistModal"> View Details</button> -->
       <a href="/artist"> View Profile</a>
     </div>
     <div class="card-body">
       <div class="artist">
-        <h5 class="card-title">From component - {{ artist.name }}</h5>
-        <h6 class="card-text">{{ artist.typeOfArtist }}</h6>
+        <h5 class="card-title">{{ artist.artist_name }}</h5>
+        <h6 class="card-text">{{ artist.artist_type }}</h6>
         <p><img src="https://res.cloudinary.com/daorvtlls/image/upload/v1687321042/rating-star-small_axozjd.svg" alt="rating-star">
            {{ artist.ratings }} <span>({{ artist.reviews }} reviews)</span></p>
       </div>
