@@ -214,14 +214,14 @@ export default {
         {
           const { status } = response;
 
-          const loading = this.$vs.loading({
-            type: 'waves',
-            text: 'Loading...'
-          })
+          // const loading = this.$vs.loading({
+          //   type: 'waves',
+          //   text: 'Loading...'
+          // })
           setTimeout(() =>
           {
             // console.log('Router::: ', this.$route.meta)
-            loading.close()
+            // loading.close()
             if (this.$route.meta.requiresLogin == false) this.$router.go();
             else if (status === 200 || status === 401) this.$router.push('/login');
           }, 3000);
