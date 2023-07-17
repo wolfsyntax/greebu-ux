@@ -35,8 +35,8 @@
                   <div class="artist-info">
                     <img src="https://res.cloudinary.com/daorvtlls/image/upload/v1686649329/trending-bicolano-artist-4_o6xjze.png" alt="artist profile">
                     <div class="artist-name">
-                      <p class="name">Idlepitch</p>
-                      <p class="email">idlepitch@gmail.com</p>
+                      <p class="name">{{  userInfo.business_name }}</p>
+                      <p class="email">{{ userInfo.business_email }}</p>
                       <a class="dropdown-item view-profile" href="#">View Profile</a>
                     </div>
                   </div>
@@ -233,7 +233,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["isLoggedIn"]),
+    ...mapGetters(["isLoggedIn", 'userInfo', 'info']),
     ...mapState({}),
   }
 }
