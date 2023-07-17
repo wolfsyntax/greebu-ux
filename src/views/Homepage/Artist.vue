@@ -64,18 +64,18 @@
             <h5>Type of Artist</h5>
             <select class="form-select" v-model="artist_type" aria-label="Default select example">
               <option value="" selected></option>
-              <!-- <option v-for="artist_type in artist_types" :key="artist_type.id" :value="artist_type.id">
+              <option v-for="artist_type in artist_types" :key="artist_type.id" :value="artist_type.id">
               {{  artist_type.title }}
-              </option> -->
+              </option>
             </select>
           </div>
           <div class="col-3">
             <h5>Music Genre</h5>
             <select class="form-select" v-model="genre" aria-label="Default select example">
               <option value="" selected></option>
-              <!-- <option v-for="{title, id} in genres" :key="id" :value="id">
+              <option v-for="{title, id} in genres" :key="id" :value="id">
                 {{ title }}
-                </option>  -->
+                </option> 
             </select>
           </div>
           <!-- <div class="col-3">
@@ -107,40 +107,12 @@
               :class="{ active: index === activeSlide }">
               <!-- <div class="carousel-item"> -->
               <div class="row">
-                <div class="col-4" v-for="(artist, itemIndex) in showArtists" :key="itemIndex">
+                <div class="col-4" v-for="(artist, itemIndex) in artists" :key="itemIndex">
 
-                  <!-- <card 
+                  <card 
                   :artist="artist"
                   @artistsongtoplay="toggleControls"
-                  ></card> -->
-
-                  <div class="card">
-                    <img :src="artist.image" class="card-img-top img-fluid" loading="lazy" alt="Trending Artist" @error="imageUrlAlt" />
-                    <div class="middle">
-                      <!-- <button class="btn btn-primary" @click="openModal" data-bs-toggle="modal" data-bs-target="#artistModal"> View Details</button> -->
-                      <a href="/artist"> View Profile</a>
-                    </div>
-                    <div class="card-body">
-                      <div class="artist">
-                        <h5 class="card-title">{{ artist.name }}</h5>
-                        <h6 class="card-text">{{ artist.typeOfArtist }}</h6>
-                        <p><img src="https://res.cloudinary.com/daorvtlls/image/upload/v1687321042/rating-star-small_axozjd.svg" alt="rating-star">
-                          {{ artist.ratings }} <span>({{ artist.reviews }} reviews)</span></p>
-                      </div>
-                      <div class="audio-btn">
-                        <div class="play-btn">
-                          <div class="play-btn">
-                            <div class="play-btn">
-                              <i :class="{
-                                'bi bi-play-circle-fill play-icon': !showControls || (showControls && currentIndex !== itemIndex),
-                                'bi bi-pause-circle-fill play-icon': showControls && currentIndex === itemIndex
-                              }" @click="toggleControls(itemIndex)"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div> <!-- end of card-->
+                  ></card>
 
                 </div>
               </div> 
