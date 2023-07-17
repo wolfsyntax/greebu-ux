@@ -186,9 +186,9 @@ export const fetchArtists = ({ commit, rootState, state }, payload) => {
     await axios.post(url, payload)
       .then(response => {        
         
-        const { data: {status, message, result: {data, current_page, last_page, per_page, total}} } = response
+        const { data: { status, message, result: { data: artistList, current_page, last_page, per_page, total}} } = response
         //commit('SET_MEMBERS', data)
-        commit('SET_ARTISTS', data)
+        commit('SET_ARTISTS', artistList)
         commit('SET_PAGINATION', { current_page, last_page, per_page, total })
         
         resolve(response.data)
