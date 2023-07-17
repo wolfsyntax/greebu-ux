@@ -328,7 +328,7 @@
               <div class="review-content">
                 <div class="title">
                 <h3>Basic Information</h3>
-                  <button type="button">
+                  <button type="button" @click="editBasicInfo">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                   <g clip-path="url(#clip0_964_20368)"><path d="M3 17.25V21H6.75L17.81 9.94L14.06 6.19L3 17.25ZM20.71 7.04C21.1 6.65 21.1 6.02 20.71 5.63L18.37 3.29C17.98 2.9 17.35 2.9 16.96 3.29L15.13 5.12L18.88 8.87L20.71 7.04Z" fill="#B8BBCF"/></g>
                   <defs><clipPath id="clip0_964_20368"><rect width="24" height="24" fill="white"/></clipPath></defs></svg>
@@ -341,7 +341,7 @@
 
               <div class="title">
                 <h3>Song</h3>
-                  <button type="button">
+                  <button type="button"  @click="editSong(1)">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                   <g clip-path="url(#clip0_964_20368)"><path d="M3 17.25V21H6.75L17.81 9.94L14.06 6.19L3 17.25ZM20.71 7.04C21.1 6.65 21.1 6.02 20.71 5.63L18.37 3.29C17.98 2.9 17.35 2.9 16.96 3.29L15.13 5.12L18.88 8.87L20.71 7.04Z" fill="#B8BBCF"/></g>
                   <defs><clipPath id="clip0_964_20368"><rect width="24" height="24" fill="white"/></clipPath></defs></svg>
@@ -362,7 +362,7 @@
 
               <div class="title">
                 <h3>Story</h3>
-                  <button type="button">
+                  <button type="button" @click="editStory">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                   <g clip-path="url(#clip0_964_20368)"><path d="M3 17.25V21H6.75L17.81 9.94L14.06 6.19L3 17.25ZM20.71 7.04C21.1 6.65 21.1 6.02 20.71 5.63L18.37 3.29C17.98 2.9 17.35 2.9 16.96 3.29L15.13 5.12L18.88 8.87L20.71 7.04Z" fill="#B8BBCF"/></g>
                   <defs><clipPath id="clip0_964_20368"><rect width="24" height="24" fill="white"/></clipPath></defs></svg>
@@ -853,6 +853,23 @@
       submitSelectedArtist() {
             window.location.href = '/deliveryform';
     },
+    editBasicInfo(){
+        // if(this.currentStep === 0){
+        //   this.currentStep === 0;
+        // }
+        if (this.currentStep > 0) {
+        this.currentStep = this.currentStep -= 3;
+        }   
+    }, 
+    editSong(){
+      this.currentStep = 1;  // SONG STEPS
+      this.currentSubStepSong = 0;  // SONG SUBSTEPS 
+    },
+    editStory(){
+      if (this.currentStep > 0) {
+            this.currentStep--;
+          }
+    },
       selectMood(mood) {
       this.selectedMood = mood;
       },
@@ -865,7 +882,7 @@
       selectOccasion(occasion){
         this.selectedOccasion = occasion;
       },
-      },
+   },
  }
  </script>
 

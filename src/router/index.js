@@ -163,6 +163,16 @@ const router = createRouter({
           }
         },
         {
+          path: '/ordersummary',
+          name: 'ordersummary',
+          component: () => import('/src/views/BasicInformation/OrderSummary.vue'),
+          meta: {
+            requiresLogin: false,
+            title: 'Your Order Summary',
+            role: '',
+          }
+        },
+        {
           path: '/profile',
           // component: {
           //   template: '<div class="auth-component"></div>'

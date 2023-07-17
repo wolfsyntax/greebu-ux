@@ -2430,6 +2430,9 @@ justify-content: space-between;
   border: 0;
   padding: 3.12rem 4rem 4.12rem;
 }
+.basic-information .container .card .card-body, .delivery-date .container .card .card-body{
+  padding: 0;
+}
 .basic-information .container .card-title, .basic-information .container .step2 .select-artist .title,
 .delivery-date .container .card-title{
   color: #000;
@@ -2473,7 +2476,8 @@ justify-content: space-between;
   line-height: 1.3125rem;
 }
 .basic-information .container form  .button-wrapper, .basic-information .container .step2 .select-artist .button-wrapper,
-.basic-information .container .step4 .select-artist .button-wrapper, .delivery-date .container .button-wrapper {
+.basic-information .container .step4 .select-artist .button-wrapper, .delivery-date .container .button-wrapper,
+.order-summary .container .button-wrapper {
   display: flex;
   width: 100%;
   gap: 4%;
@@ -2482,7 +2486,8 @@ justify-content: space-between;
 .basic-information .container form .button-wrapper .back, .basic-information .container form .button-wrapper .next,
 .basic-information .container .step2 .button-wrapper .back, .basic-information .container .step2 .button-wrapper .next,
 .basic-information .container .step4 .button-wrapper .back, .basic-information .container .step4 .button-wrapper .next,
-.delivery-date .container .button-wrapper .back, .delivery-date .container .button-wrapper .next{
+.delivery-date .container .button-wrapper .back, .delivery-date .container .button-wrapper .next, 
+.order-summary .container .button-wrapper .back, .order-summary .container .button-wrapper .next {
   color: #FF6B00;
   text-align: center;
   font-size: 1.25rem;
@@ -2497,12 +2502,14 @@ justify-content: space-between;
   float: left;
 }
 .basic-information .container form  .button-wrapper .back:hover, .basic-information .container .step2 .button-wrapper .back:hover,
-.basic-information .container .step4 .button-wrapper .back:hover, .delivery-date .container .button-wrapper .back:hover{
+.basic-information .container .step4 .button-wrapper .back:hover, .delivery-date .container .button-wrapper .back:hover,
+.order-summary .container .button-wrapper .back:hover {
   color: #FFF;
   background: #FF6B00;
 }
 .basic-information .container form  .button-wrapper .next, .basic-information .container .step2 .button-wrapper .next,
-.basic-information .container .step4 .button-wrapper .next, .delivery-date .container .button-wrapper .next{
+.basic-information .container .step4 .button-wrapper .next, .delivery-date .container .button-wrapper .next,
+.order-summary .container .button-wrapper .next{
   width: 48%;
   float: right;
   color: #FFF;
@@ -2843,7 +2850,162 @@ justify-content: space-between;
   margin-bottom: 2.8rem!important;
 }
 
-
+                                                /* Order Summary */
+.order-summary .container .card {
+  margin: 5rem auto;
+  border-radius: 1rem;
+  background: var(--white);
+  box-shadow: 0px 8px 36px 0px rgba(56, 29, 219, 0.10);
+  border: 0;
+  padding: 2.8rem 2.6rem;
+}
+.order-summary .container .card-body{
+  padding: 0;
+}    
+.order-summary .card-body .card-title{
+  color: var(--black-color);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: normal;
+  margin-bottom: 0.75rem;
+}      
+.order-summary .card-body .card-text{
+  color: var(--gray6);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: normal;
+  margin-bottom: 2.5rem;
+} 
+.order-summary .card-body .back-to-delivery{
+  margin-bottom: 2.5rem;
+}
+.order-summary .card-body .back-to-delivery a{
+  display: flex;
+  align-items: center;
+  color: #454F59;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: normal;
+  margin-bottom: 0;
+  text-decoration: none;
+  gap: 0.25rem;
+}     
+.order-summary .card-body .back-to-delivery a:hover{
+  color: var(--orange);
+}
+.order-summary .card-body .order-details .title{
+  color: var(--black);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.025rem;
+}    
+.order-summary .card-body .order-details .group-item {
+  margin-top: 1.75rem;
+  margin-bottom: 1.75rem;
+}   
+.order-summary .card-body .order-details .group-item h4{
+  color: var(--gray6);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.025rem;
+  margin-bottom: 0.37rem;
+}             
+.order-summary .card-body .order-details .group-item p{
+  color: var(--black);
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.025rem;
+  margin-bottom: 0;
+}   
+.order-summary .card-body .order-details .last-item{
+  margin-bottom: 3rem;
+} 
+.order-summary .card-body .order-details .group-item .right{
+  text-align: right;
+}      
+.order-summary .card-body .personalized-song {
+  padding: 2.06rem 0;
+  border-top: 2px solid #E4E7EC;
+  border-bottom: 2px solid #E4E7EC;
+  margin-bottom: 2.06rem;
+}
+.order-summary .card-body .personalized-song .song-wrapper{
+  display: flex;
+  align-items: center;
+}  
+.order-summary .card-body .personalized-song .song-wrapper img{
+  margin-right: 1.19rem;
+}  
+.order-summary .card-body .personalized-song .song-wrapper h4{
+  color: var(--black);
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.025rem;
+  margin-bottom: 0.36rem;
+}
+.order-summary .card-body .personalized-song .song-wrapper p{
+  color: var(--black);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.02rem;
+  margin-bottom: 0;
+}
+.order-summary .card-body .personalized-song .right h4{
+  color: #585858;
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.25rem;
+  margin-bottom: 0;
+}
+.order-summary .card-body .form-group{
+  padding-bottom: 2.06rem;
+}
+.order-summary .card-body .form-group label{
+  color:var(--black);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.order-summary .card-body .form-group input{
+  float: left;
+  width: 80%;
+  height: 3rem;
+  border-radius: 0.25rem;
+  border: 1px solid #E3E3E3;
+  background: #F9F9F9;
+  margin-right: 2%;
+}
+.order-summary .card-body .form-group .apply{
+  float: right;
+  width: 18%;
+  color: var(--orange);
+  font-size: 0.875rem;
+  font-weight: 600;
+  /* padding: 1rem 2rem; */
+  border: 1px solid var(--orange);
+  border-radius: 0.25rem;
+  height: 3rem;
+} 
+.order-summary .card-body .form-group .apply:hover{
+  background-color: var(--orange);
+  color: var(--white);
+}
+.order-summary .card-body  form .sum{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.order-summary .card-body  form .sum h4{
+  color: var(--black);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.25rem; /* 100% */
+}
 
 
 
