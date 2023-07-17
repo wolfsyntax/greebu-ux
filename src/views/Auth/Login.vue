@@ -169,7 +169,7 @@ export default {
       })
       .catch(err =>
       {
-        console.log('Err: ', err)
+        // console.log('Err: ', err)
         this.$vs.notification({
           color: 'danger',
           position: 'top-right',
@@ -186,7 +186,7 @@ export default {
 
       signInWithPopup(auth, provider).then(result =>
       {
-        console.log('Firebase result [Facebook]: ', result);
+        //console.log('Firebase result [Facebook]: ', result);
 
       }).catch((err) =>
       {
