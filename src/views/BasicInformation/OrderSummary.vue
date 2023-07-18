@@ -87,18 +87,10 @@
                       <div><h4>Total due</h4></div>
                       <div><p>₱ 3,100.00</p></div>
                     </div>
-                   
-                       
-                            
-                        
-                       
-                           
-                        
-                  
-                    
+                
                     <div class="button-wrapper">
-                        <button type="button" class="btn btn-primary back">Back</button>
-                        <button type="button" class="btn btn-primary next">Submit Request</button>
+                        <button type="button" class="btn btn-primary back" @click="backRequest">Back</button>
+                        <button type="button" class="btn btn-primary next" @click="submitRequest">Submit Request</button>
                     </div>
                 </form>
 
@@ -128,7 +120,12 @@
     }
   },
   methods: {
-
+    backRequest(){
+        window.location.href = '/deliveryform';
+    },
+    submitRequest(){
+        window.location.href = '/successfully-sent';
+    }
   }
   }
   </script>

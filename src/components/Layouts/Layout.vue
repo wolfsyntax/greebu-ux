@@ -23,7 +23,7 @@
             </div>
             <div class="float-end nav-button" v-else>
               <a href="#" class="btn btn-primary upgrade">Upgrade Plan</a>
-              <a href="#"><span class="material-symbols-outlined">&#xe7f4;</span></a>
+              <a href="#"><span class="material-symbols-outlined bell-icon">&#xe7f4;</span></a>
 
               <div class="dropdown dropstart">
               <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
