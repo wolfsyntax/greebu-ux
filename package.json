@@ -34,7 +34,6 @@
     "vue-i18n": "^9.2.2",
     "vue-router": "^4.2.2",
     "vuefire": "^3.1.0",
-    "vuesax": "^4.0.1-alpha.25",
     "vuex": "^4.1.0",
     "vuex-cache": "^3.5.0",
     "vuex-persistedstate": "^4.1.0",
