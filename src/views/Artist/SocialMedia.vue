@@ -77,16 +77,16 @@ export default {
         if (this.url) {
 
           if (/^(?:(?:http|https):\/\/)?(?:www.)?(?:instagram.com|instagr.am|instagr.com)\/(\w+)/.test(this.url) && nv === 'instagram') {
-            console.log('Valid IG Url: ', this.url)
+            // console.log('Valid IG Url: ', this.url)
             this.validUrl = true;
           } else if (/^(https?:\/\/open.spotify.com\/(track|user|artist|album)\/[a-zA-Z0-9]+(\/playlist\/[a-zA-Z0-9]+|)|spotify:(track|user|artist|album):[a-zA-Z0-9]+(:playlist:[a-zA-Z0-9]+|))$/.test(this.url) && nv === 'spotify') {
-            console.log('Valid Spotify profile: ', this.url)
+            // console.log('Valid Spotify profile: ', this.url)
             this.validUrl = true;
           } else if (/^http(s)?:\/\/(www|m)\.youtube\.com\/((channel|c)\/)?(?!feed|user\/|watch\?)([a-zA-Z0-9-_.])*.*$/.test(this.url) && nv === 'youtube') {
-            console.log('Valid YouTube URL: ', this.url)
+            // console.log('Valid YouTube URL: ', this.url)
             this.validUrl = true;
           } else if (/^(https:\/\/twitter.com\/(?![a-zA-Z0-9_]+\/)([a-zA-Z0-9_]+))$/.test(this.url) && nv === 'twitter') {
-            console.log('Valid Twitter Profile: ', this.url)
+            // console.log('Valid Twitter Profile: ', this.url)
             this.validUrl = true;
           } else {
             this.validType = false;
@@ -109,19 +109,19 @@ export default {
       this.validUrl = false;
 
       if (/^(?:(?:http|https):\/\/)?(?:www.)?(?:instagram.com|instagr.am|instagr.com)\/(\w+)/.test(nv) && this.media_type === 'instagram') {
-        console.log('Valid IG Url: ', this.url)
+        // console.log('Valid IG Url: ', this.url)
         this.validUrl = true;
         this.validType = this.media_type ? true : false;
       } else if (/^(https?:\/\/open.spotify.com\/(track|user|artist|album)\/[a-zA-Z0-9]+(\/playlist\/[a-zA-Z0-9]+|)|spotify:(track|user|artist|album):[a-zA-Z0-9]+(:playlist:[a-zA-Z0-9]+|))$/.test(nv) && this.media_type === 'spotify') {
-        console.log('Valid Spotify profile: ', this.url)
+        // console.log('Valid Spotify profile: ', this.url)
         this.validUrl = true;
         this.validType = this.media_type ? true : false;
       } else if (/^http(s)?:\/\/(www|m)\.youtube\.com\/((channel|c)\/)?(?!feed|user\/|watch\?)([a-zA-Z0-9-_.])*.*$/.test(nv) && this.media_type === 'youtube') {
-        console.log('Valid YouTube URL: ', this.url)
+        // console.log('Valid YouTube URL: ', this.url)
         this.validUrl = true;
         this.validType = this.media_type ? true : false;
       } else if (/^(https:\/\/twitter.com\/(?![a-zA-Z0-9_]+\/)([a-zA-Z0-9_]+))$/.test(nv) && this.media_type === 'twitter') {
-        console.log('Valid Twitter Profile: ', this.url)
+        // console.log('Valid Twitter Profile: ', this.url)
         this.validUrl = true;
         this.validType = this.media_type ? true : false;
       }

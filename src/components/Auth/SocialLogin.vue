@@ -42,7 +42,7 @@ export default {
       this.socialMediaAuth(provider)
         .then(response =>
         {
-          console.log('Response [SocialLogin]: ', response)
+          // console.log('Response [SocialLogin]: ', response)
           var formData = {};
 
           if (provider === 'google')

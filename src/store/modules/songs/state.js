@@ -1,5 +1,5 @@
 var state = {
-  artist_types: null,
+  song_artist_types: null,
   moods: null,
   languages: null,
   durations: null,

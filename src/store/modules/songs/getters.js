@@ -2,7 +2,7 @@
 // export const stepOne = (state,getters, rootState) => {}
 // export const artistProfile = state => state.artist
 
-export const _artist_types = state.artist_types
+export const _artist_types = state => state.artist_types
   .map(function (artist_type)
   {
     return {
@@ -11,7 +11,7 @@ export const _artist_types = state.artist_types
     }
   })
 
-export const _moods = state.moods
+export const _moods = state => state.moods
   .map(function (mood)
   {
     return {
@@ -20,7 +20,7 @@ export const _moods = state.moods
     }
   })
 
-export const _languages = state.languages
+export const _languages = state => state.languages
   .map(function (language)
   {
     return {
@@ -29,7 +29,7 @@ export const _languages = state.languages
     }
   })
 
-export const _durations = state.durations
+export const _durations = state => state.durations
   .map(function (data)
   {
     return {
@@ -38,7 +38,7 @@ export const _durations = state.durations
     }
   })
 
-export const _purposes = state.purposes
+export const _purposes = state => state.purposes
   .map(function (data)
   {
     return {

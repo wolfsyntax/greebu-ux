@@ -23,7 +23,7 @@
             </div>
             <div class="float-end nav-button" v-else>
               <a href="#" class="btn btn-primary upgrade">Upgrade Plan</a>
-              <a href="#"><span class="material-symbols-outlined">&#xe7f4;</span></a>
+              <a href="#"><span class="material-symbols-outlined bell-icon">&#xe7f4;</span></a>
 
               <div class="dropdown dropstart">
               <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
@@ -35,8 +35,8 @@
                   <div class="artist-info">
                     <img src="https://res.cloudinary.com/daorvtlls/image/upload/v1686649329/trending-bicolano-artist-4_o6xjze.png" alt="artist profile">
                     <div class="artist-name">
-                      <p class="name">Idlepitch</p>
-                      <p class="email">idlepitch@gmail.com</p>
+                      <p class="name">{{  userInfo.business_name }}</p>
+                      <p class="email">{{ userInfo.business_email }}</p>
                       <a class="dropdown-item view-profile" href="#">View Profile</a>
                     </div>
                   </div>
@@ -208,7 +208,7 @@ export default {
       // })
 
       const self = this;
-        console.log('Router: ', this.$route.meta)
+        // console.log('Router: ', this.$route.meta)
       this.signout()
         .then(response =>
         {
@@ -220,7 +220,7 @@ export default {
           // })
           setTimeout(() =>
           {
-            console.log('Router::: ', this.$route.meta)
+            // console.log('Router::: ', this.$route.meta)
             // loading.close()
             if (this.$route.meta.requiresLogin == false) this.$router.go();
             else if (status === 200 || status === 401) this.$router.push('/login');
@@ -228,12 +228,12 @@ export default {
 
         }).catch(err =>
         {
-          console.log('Logout: ', err)
+          // console.log('Logout: ', err)
         })
     }
   },
   computed: {
-    ...mapGetters(["isLoggedIn"]),
+    ...mapGetters(["isLoggedIn", 'userInfo', 'info']),
     ...mapState({}),
   }
 }

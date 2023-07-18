@@ -19,4 +19,12 @@ export default defineConfig({
       vue: '@vue/compat'
     }
   },
+  preview: {
+    cors: {
+      "origin": "*",
+      "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+      "preflightContinue": false,
+      "optionsSuccessStatus": 204
+    }
+  }
 })

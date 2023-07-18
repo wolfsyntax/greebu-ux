@@ -75,7 +75,7 @@
               <option value="" selected></option>
               <option v-for="{title, id} in genres" :key="id" :value="id">
                 {{ title }}
-                </option>
+                </option> 
             </select>
           </div>
           <!-- <div class="col-3">
@@ -98,19 +98,22 @@
           </div> -->
         </div>
 
+    
+
         <!-- Show Artists -->
         <div id="ShowArtists" class="carousel slide">
           <div class="carousel-inner">
             <div class="carousel-item" v-for="(slide, index) in artists" :key="index"
               :class="{ active: index === activeSlide }">
+              <!-- <div class="carousel-item"> -->
               <div class="row">
                 <div class="col-4" v-for="(artist, itemIndex) in artists" :key="itemIndex">
                   <card :artist="artist" @play="playButton" :cardIndex="itemIndex"/>
                 </div>
-              </div> <!-- end of row -->
+              </div> 
             </div>
-          </div> <!-- end of carousel inner -->
-        </div> <!-- end of carousel -->
+          </div> 
+        </div> 
 
         <div class="button-wrapper">
           <a href="/artist" class="btn btn-primary btn-lg">SEE MORE ARTIST</a>
@@ -140,10 +143,8 @@
             <audio ref="audioPlayer" controls style="display: none;"></audio>
             <div class="main-controls">
               <button @click="playPrevious" class="btn btn-primary prev">
-                <!-- <i class="material-icons"><span class="material-symbols-outlined">skip_previous</span></i> -->
               </button>
               <button @click="togglePlayPause" class="btn btn-primary play">
-                <!-- <i :class="playIconClass"></i> -->
                 <img :src="playIconClass">
               </button>
               <button @click="playNext" class="btn btn-primary next"></button>
@@ -162,7 +163,6 @@
           </div>
 
           <div class="stop-song">
-            <!-- Volume -->
             <div class="volume-wrapper">
               <button @click="toggleMute" class="btn btn-primary volume">
                 <i :class="`bi ${volumeIcon}`"></i>
@@ -176,12 +176,10 @@
                 <input type="range" min="0" max="100" v-model="currentVolume" class="form-range" @input="updateVolume">
               </div>
             </div>
-            <!-- x icon - stop the song and close the audio controls modal -->
             <i class="bi bi-x" @click="stopAudio"></i>
           </div>
         </div>
-      </div> <!-- end of audio-controls -->  
-
+      </div> 
     </section>
     <reminder />
     <faq />
@@ -212,6 +210,7 @@ export default {
     return {
       showArtists: [
         {
+          id: 1,
           name: 'Idlepitch',
           typeOfArtist: 'Full Band Artist',
           genre: 'Rock',
@@ -221,6 +220,7 @@ export default {
           reviews: 234,
         },
         {
+          id: 2,
           name: 'Dante Magno',
           typeOfArtist: 'Songwriter',
           genre: 'Hip-hop/Rap',
@@ -230,6 +230,7 @@ export default {
           reviews: 230,
         },
         {
+          id: 3,
           name: 'James Natividad',
           typeOfArtist: 'Solo Artist',
           genre: 'Pop',
@@ -239,6 +240,7 @@ export default {
           reviews: 229,
         },
         {
+          id: 4,
           name: 'Kevin Flores',
           typeOfArtist: 'Duo Artist',
           genre: 'Reggae',
@@ -248,6 +250,7 @@ export default {
           reviews: 228,
         },
         {
+          id: 5,
           name: 'Mark Escueta Mike Elgar Nathan Azarcon',
           typeOfArtist: 'Trio Artist',
           genre: 'Metal',
@@ -257,6 +260,7 @@ export default {
           reviews: 227,
         },
         {
+          id: 6,
           name: 'The Emps',
           typeOfArtist: 'Full Band Artist',
           genre: 'R&B/Soul',
@@ -266,6 +270,7 @@ export default {
           reviews: 200,
         },
         {
+          id: 7,
           name: 'Sarah Heart',
           typeOfArtist: 'Solo Artist',
           genre: 'Country Rock',
@@ -274,24 +279,26 @@ export default {
           ratings: 4.90,
           reviews: 123,
         },
-        {
-          name: 'Ricardo Sy',
-          typeOfArtist: 'Songwriter',
-          genre: 'Metal',
-          song: 'https://res.cloudinary.com/daorvtlls/video/upload/v1687411918/total-eclipse-of-the-heart_d6wjes.mp3',
-          image: 'https://res.cloudinary.com/daorvtlls/image/upload/v1686465774/samples/people/jazz.jpg',
-          ratings: 4.90,
-          reviews: 113,
-        },
-        {
-          name: 'GG Artists',
-          typeOfArtist: 'Full Band Artist',
-          genre: 'Metal',
-          song: 'https://res.cloudinary.com/daorvtlls/video/upload/v1687411869/merrow-rock-skyline-pigeon-elton-john_h0chm4.mp3',
-          image: 'https://res.cloudinary.com/daorvtlls/image/upload/v1687096461/our-team-slider-1_rqwdxm.webp',
-          ratings: 4.90,
-          reviews: 113,
-        }
+        // {
+        //   id: 8,
+        //   name: 'Ricardo Sy',
+        //   typeOfArtist: 'Songwriter',
+        //   genre: 'Metal',
+        //   song: 'https://res.cloudinary.com/daorvtlls/video/upload/v1687411918/total-eclipse-of-the-heart_d6wjes.mp3',
+        //   image: 'https://res.cloudinary.com/daorvtlls/image/upload/v1686465774/samples/people/jazz.jpg',
+        //   ratings: 4.90,
+        //   reviews: 113,
+        // },
+        // {
+        //   id: 9,
+        //   name: 'GG Artists',
+        //   typeOfArtist: 'Full Band Artist',
+        //   genre: 'Metal',
+        //   song: 'https://res.cloudinary.com/daorvtlls/video/upload/v1687411869/merrow-rock-skyline-pigeon-elton-john_h0chm4.mp3',
+        //   image: 'https://res.cloudinary.com/daorvtlls/image/upload/v1687096461/our-team-slider-1_rqwdxm.webp',
+        //   ratings: 4.90,
+        //   reviews: 113,
+        // }
       ],
       ratingImage: 'https://res.cloudinary.com/daorvtlls/image/upload/v1687321042/rating-star-small_axozjd.svg',
       showControls: false,
@@ -327,7 +334,7 @@ export default {
     this.fetchArtists(payload)
       .then(response =>
       {
-        console.log('Artist.vue: ', response);
+        // console.log('Artist.vue: ', response);
       })
     this.audioPlayer = this.$refs.audioPlayer;
     this.audioPlayer.addEventListener('play', () =>

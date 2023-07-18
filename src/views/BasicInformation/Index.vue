@@ -17,7 +17,7 @@
         <div class="step1" v-if="currentStep === 0">
           <div class="card">
             <div class="card-body">
-              <h2 class="card-title">Basic Information</h2>
+              <h2 class="card-title step1-title">Basic Information</h2>
               <p class="card-text">Lorem ipsum dolor sit amet consectetur. Nec augue ultrices sit ultricies enim tellus tempus in.</p>
               
               <form @submit.prevent="submit">
@@ -34,7 +34,7 @@
                     <input id="email" type="email" class="form-control" name="email"  v-model="email" required autocomplete="email"  @input="validateEmail" placeholder="Please type your Email Address">
                   </div>
                   <div class="button-wrapper">
-                  <button type="button" class="btn btn-primary back" @click="previousStep1" :disabled="currentStep === 0">Back</button>
+                  <button type="button" class="btn btn-primary back" @click="previousStep1">Back</button>
                   <button type="button" class="btn btn-primary next" @click="nextStep" :disabled="isButtonInfo">Next</button>
                   <!-- <button type="button" class="btn btn-primary next" @click="nextStep">Next</button> -->
                 </div>
@@ -84,7 +84,7 @@
                       </div> 
                       <div class="button-wrapper">
                       <button type="button" class="btn btn-primary back" @click="previousStep" :disabled="currentStep === 0">Back</button>
-                      <button type="button" class="btn btn-primary next" @click="nextStep" :disabled="!selectedOccasion || (isButtonOccasion)">Next</button>
+                      <button type="button" class="btn btn-primary next" @click="subNextStepStory" :disabled="!selectedOccasion || (isButtonOccasion)">Next</button>
                       <!-- <button type="button" class="btn btn-primary next" @click="subNextStepStory">Next</button> -->
                     </div>
                   </form>
@@ -328,7 +328,7 @@
               <div class="review-content">
                 <div class="title">
                 <h3>Basic Information</h3>
-                  <button type="button">
+                  <button type="button" @click="editBasicInfo">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                   <g clip-path="url(#clip0_964_20368)"><path d="M3 17.25V21H6.75L17.81 9.94L14.06 6.19L3 17.25ZM20.71 7.04C21.1 6.65 21.1 6.02 20.71 5.63L18.37 3.29C17.98 2.9 17.35 2.9 16.96 3.29L15.13 5.12L18.88 8.87L20.71 7.04Z" fill="#B8BBCF"/></g>
                   <defs><clipPath id="clip0_964_20368"><rect width="24" height="24" fill="white"/></clipPath></defs></svg>
@@ -341,7 +341,7 @@
 
               <div class="title">
                 <h3>Song</h3>
-                  <button type="button">
+                  <button type="button"  @click="editSong(1)">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                   <g clip-path="url(#clip0_964_20368)"><path d="M3 17.25V21H6.75L17.81 9.94L14.06 6.19L3 17.25ZM20.71 7.04C21.1 6.65 21.1 6.02 20.71 5.63L18.37 3.29C17.98 2.9 17.35 2.9 16.96 3.29L15.13 5.12L18.88 8.87L20.71 7.04Z" fill="#B8BBCF"/></g>
                   <defs><clipPath id="clip0_964_20368"><rect width="24" height="24" fill="white"/></clipPath></defs></svg>
@@ -362,7 +362,7 @@
 
               <div class="title">
                 <h3>Story</h3>
-                  <button type="button">
+                  <button type="button" @click="editStory">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                   <g clip-path="url(#clip0_964_20368)"><path d="M3 17.25V21H6.75L17.81 9.94L14.06 6.19L3 17.25ZM20.71 7.04C21.1 6.65 21.1 6.02 20.71 5.63L18.37 3.29C17.98 2.9 17.35 2.9 16.96 3.29L15.13 5.12L18.88 8.87L20.71 7.04Z" fill="#B8BBCF"/></g>
                   <defs><clipPath id="clip0_964_20368"><rect width="24" height="24" fill="white"/></clipPath></defs></svg>
@@ -385,7 +385,7 @@
               </div>
                 <div class="button-wrapper">
                   <button type="button" class="btn btn-primary back" @click="previousStep" :disabled="currentStep === 0">Back</button>
-                  <button type="button" class="btn btn-primary next" :disabled="!understand">Submit</button>
+                  <button type="button" class="btn btn-primary next" @click="submitSelectedArtist" :disabled="!understand">Submit</button>
                   </div>
               </div>
             </div>
@@ -850,6 +850,26 @@
             window.location.href = '/create-song';
          }
       },
+      submitSelectedArtist() {
+            window.location.href = '/deliveryform';
+    },
+    editBasicInfo(){
+        // if(this.currentStep === 0){
+        //   this.currentStep === 0;
+        // }
+        if (this.currentStep > 0) {
+        this.currentStep = this.currentStep -= 3;
+        }   
+    }, 
+    editSong(){
+      this.currentStep = 1;  // SONG STEPS
+      this.currentSubStepSong = 0;  // SONG SUBSTEPS 
+    },
+    editStory(){
+      if (this.currentStep > 0) {
+            this.currentStep--;
+          }
+    },
       selectMood(mood) {
       this.selectedMood = mood;
       },
@@ -861,83 +881,10 @@
       },
       selectOccasion(occasion){
         this.selectedOccasion = occasion;
-      }
       },
+   },
  }
  </script>
 
- <style scoped>
-    .active .step-title {
-          color: #FF6B00;
-    }
-    .step-item.active .substep-title { /* sub step */
-      color: #FF6B00;
-      font-weight: 700;
-    }
-    .substep-title{
-      margin-top: 1rem;
-      font-weight: 600;
-      font-size: 1rem;
-      font-style: normal;
-      line-height: 1.5rem;
-      color: #B8BBCF;
-    }
-    .progress {
-      height: 0.75rem;
-      background-color: #EFF3FD;
-      border-radius: 10px;
-    }
-    
-    .progress-bar {
-      background-color: #FF6B00;
-      border-radius: 10px;
-    }
-    
-    .step-item {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-
-    .step-number {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      background-color: #ddd;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-    }
-    .step-title{
-      margin-top: 1rem;
-      color: #B8BBCF;
-      font-size: 1.25rem;
-      font-style: normal;
-      font-weight: 700;
-      line-height: 1.5rem;
-    }
-    
-    .active .step-number {
-      background-color: orange;
-    }
-    
-    .step-content {
-      display: none;
-    }
-    
-    .step-content.active {
-      display: block;
-    }
-    
-    .button-container {
-      margin-top: 20px;
-      display: flex;
-      justify-content: space-between;
-    }
-</style>
 
 

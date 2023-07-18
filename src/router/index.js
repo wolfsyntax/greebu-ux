@@ -146,6 +146,41 @@ const router = createRouter({
           path: '/basicinformation',
           name: 'basicinformation',
           component: () => import('/src/views/BasicInformation/Index.vue'),
+          meta: {
+            requiresLogin: false,
+            title: 'Create a Song step by step',
+            role: '',
+          }
+        },
+        {
+          path: '/deliveryform',
+          name: 'deliveryform',
+          component: () => import('/src/views/BasicInformation/DeliveryForm.vue'),
+          meta: {
+            requiresLogin: false,
+            title: 'Select delivery date',
+            role: '',
+          }
+        },
+        {
+          path: '/ordersummary',
+          name: 'ordersummary',
+          component: () => import('/src/views/BasicInformation/OrderSummary.vue'),
+          meta: {
+            requiresLogin: false,
+            title: 'Your Order Summary',
+            role: '',
+          }
+        },
+        {
+          path: '/successfully-sent',
+          name: 'successfully-sent',
+          component: () => import('/src/views/BasicInformation/SuccessfullySent.vue'),
+          meta: {
+            requiresLogin: false,
+            title: 'Successfully Sent!',
+            role: '',
+          }
         },
         {
           path: '/profile',

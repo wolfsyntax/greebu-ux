@@ -1,5 +1,6 @@
 var getters = {
   userInfo: state => state.profile,
+  info: state => state.user,
   token: state => state.bearerToken,
   userRole: state => state.role,
   isLoggedIn: (state) => state.bearerToken && Object.keys(state.profile).length !== 0, //

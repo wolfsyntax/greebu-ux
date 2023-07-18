@@ -186,9 +186,9 @@ export const fetchArtists = ({ commit, rootState, state }, payload) => {
     await axios.post(url, payload)
       .then(response => {        
         
-        const { data: {status, message, result: {data, current_page, last_page, per_page, total}} } = response
+        const { data: { status, message, result: { data: artistList, current_page, last_page, per_page, total}} } = response
         //commit('SET_MEMBERS', data)
-        commit('SET_ARTISTS', data)
+        commit('SET_ARTISTS', artistList)
         commit('SET_PAGINATION', { current_page, last_page, per_page, total })
         
         resolve(response.data)
@@ -208,10 +208,13 @@ export const artistOptions = ({ commit, rootState, state }, payload) =>
       .then(response =>
       {
         //console.log('artistOptions: ', response)
-        const {data: {status, message, result: {genres, artist_types}}} = response
-        commit('SET_GENRES', genres || []);
-        commit('SET_ARTIST_TYPES', artist_types || [])
-        console.log('Artist Options: ', response.data.result);
+        const { status: statusCode, data: { status, message, result } } = response
+        if (statusCode === 200) {
+          commit('SET_GENRES', result?.genres || []);
+          commit('SET_ARTIST_TYPES', result?.artist_types || [])
+          // console.log('Artist Options: ', response.data.result);
+        }
+        
         resolve(response)
       })
       .catch(err =>
