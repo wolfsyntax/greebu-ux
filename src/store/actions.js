@@ -6,8 +6,8 @@ var actions = {
   {
     return new Promise(async (resolve, reject) =>
     {
-      // axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
-      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/login`, payload)
+console.log('payload', JSON.stringify(payload));
+      await axios.post(`https://api-dev.geebu.ph/api/login`, payload)
         .then(response =>
         {
 
@@ -24,7 +24,7 @@ var actions = {
             commit('SET_ROLES', roles || []);
             localStorage.api_token = token
           }
-          console.log('Status: ', response)
+
           resolve(response)
 
         })
