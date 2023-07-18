@@ -180,9 +180,9 @@ export default {
     ...mapActions(['signup']),
     submit()
     {
-      const loader = this.$vs.loading({
-        text: 'Loading...',
-      })
+      // const loader = this.$vs.loading({
+      //   text: 'Loading...',
+      // })
       this.isDisabled = true;
       this.signup(this.form)
         .then((response) => { 
@@ -193,24 +193,24 @@ export default {
           if (status === 201)
           {
             this.$router.push("/login");
-            this.$vs.notification({
-              color: 'success',
-              position: 'top-right',
-              title: 'Signup',
-              text: `${data.message}`
-            })
+            // this.$vs.notification({
+            //   color: 'success',
+            //   position: 'top-right',
+            //   title: 'Signup',
+            //   text: `${data.message}`
+            // })
           } else if (status === 203) {
             this.errors = data?.results?.errors || {};
           }
         })
         .catch(err =>
         {
-          this.$vs.notification({
-            color: 'danger',
-            position: 'top-right',
-            title: 'Server Status',
-            text: `${err.message}`
-          })
+          // this.$vs.notification({
+          //   color: 'danger',
+          //   position: 'top-right',
+          //   title: 'Server Status',
+          //   text: `${err.message}`
+          // })
         })
 
     }

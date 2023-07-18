@@ -35,9 +35,9 @@ export default {
     ]),
     login(provider)
     {
-      const loader = this.$vs.loading({
-        text: 'Loading...',
-      })
+      // const loader = this.$vs.loading({
+      //   text: 'Loading...',
+      // })
 
       this.socialMediaAuth(provider)
         .then(response =>
@@ -78,22 +78,22 @@ export default {
                 const { message, status } = result;
                 if (status === 200) {
 
-                  this.$vs.notification({
-                    color: 'success',
-                    position: 'top-right',
-                    title: 'Signin',
-                    text: `${message}`
-                  })
+                  // this.$vs.notification({
+                  //   color: 'success',
+                  //   position: 'top-right',
+                  //   title: 'Signin',
+                  //   text: `${message}`
+                  // })
 
                   this.$router.push("/");
 
                 } else {
-                  this.$vs.notification({
-                    color: 'danger',
-                    position: 'top-right',
-                    title: 'Server Status',
-                    text: `${message}`
-                  })
+                  // this.$vs.notification({
+                  //   color: 'danger',
+                  //   position: 'top-right',
+                  //   title: 'Server Status',
+                  //   text: `${message}`
+                  // })
                 }
 
                 setTimeout(() =>
@@ -103,14 +103,14 @@ export default {
               })
               .catch(err =>
               {
-                loader.close()
+                // loader.close()
 
-                this.$vs.notification({
-                  color: 'danger',
-                  position: 'top-right',
-                  title: 'Server Status',
-                  text: `${err.message}`
-                })
+                // this.$vs.notification({
+                //   color: 'danger',
+                //   position: 'top-right',
+                //   title: 'Server Status',
+                //   text: `${err.message}`
+                // })
 
               })
           }

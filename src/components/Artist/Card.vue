@@ -19,7 +19,7 @@
               <i :class="{
                 'bi bi-play-circle-fill play-icon': !showControls || (showControls && currentIndex !== itemIndex),
                 'bi bi-pause-circle-fill play-icon': showControls && currentIndex === itemIndex
-              }" @click="artistsongtoplay(itemIndex)"></i>
+              }" @click="toggleControls(artist)"></i>
             </div>
           </div>
         </div>
@@ -56,6 +56,10 @@ export default {
       defaultImage: "https://res.cloudinary.com/daorvtlls/image/upload/v1686649067/trending-bicolano-artist-2_ljhog8.png",
     }
   },
+  props: {
+    artist: Object,
+    cardIndex: Number
+  },
   methods: {
     artistsongtoplay() {
       this.$emit('artistsongtoplay');
@@ -68,6 +72,11 @@ export default {
       // console.log('Image Url: ', event)
       event.target.src = "https://res.cloudinary.com/daorvtlls/image/upload/v1686649067/trending-bicolano-artist-2_ljhog8.png"
     },
+    toggleControls(index = null)
+    {
+      console.log('Toggle Control: ', index)
+      this.$emit('play', index, this.cardIndex)
+    }
   },
 }
 </script>

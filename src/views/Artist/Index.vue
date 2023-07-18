@@ -497,12 +497,12 @@ export default {
 
     })
     .catch(err => {
-        this.$vs.notification({
-          color: 'danger',
-          position: 'top-right',
-          title: 'Server Status',
-          text: `${err.message}`
-        })
+        // this.$vs.notification({
+        //   color: 'danger',
+        //   position: 'top-right',
+        //   title: 'Server Status',
+        //   text: `${err.message}`
+        // })
       });
   },
   methods: {

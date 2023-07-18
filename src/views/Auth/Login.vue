@@ -120,7 +120,6 @@ export default {
     ]),
     submit()
     { 
-
       this.signin(this.form).then((response) =>
       {
 
@@ -187,9 +186,9 @@ export default {
     {
       const provider = new GoogleAuthProvider()
       const auth = getAuth();
-      const loader = this.$vs.loading({
-        text: 'Loading...',
-      })
+      // const loader = this.$vs.loading({
+      //   text: 'Loading...',
+      // })
       signInWithPopup(auth, provider).then(result =>
       {
         const { _tokenResponse: {federatedId, email, emailVerified, firstName, lastName}, user: {providerData, uid, photoURL} } = result;
@@ -237,14 +236,14 @@ export default {
             //   })
           }
 
-          setTimeout(() =>
-            {
-              loader.close()
-            }, 3000)
+          // setTimeout(() =>
+          //   {
+          //     loader.close()
+          //   }, 3000)
         })
         .catch(err =>
         {
-          loader.close()
+          // loader.close()
 
           // this.$vs.notification({
           //   color: 'danger',
@@ -256,7 +255,7 @@ export default {
         })
       }).catch((err) =>
       {
-        loader.close()
+        // loader.close()
         // this.$vs.notification({
         //   color: 'danger',
         //   position: 'top-right',
