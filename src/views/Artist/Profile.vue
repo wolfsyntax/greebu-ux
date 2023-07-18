@@ -338,7 +338,7 @@ export default {
       //     title: 'Server Status',
       //     text: `${err.message}`
       //   })
-      // });
+      });
 
     this.form = {
       artist_type: this.artistProfile?.artist_type?.title,
