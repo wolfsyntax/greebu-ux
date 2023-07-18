@@ -351,9 +351,6 @@ export default {
       province: this.artistProfile?.profile?.province,
     };
   },
-  props: {
-    // errors: Object,
-  },
   methods: {
     ...mapActions([
       'fetchArtistOptions', 'updateArtistProfile', 'removeMember', 'removeSocialMedia',
