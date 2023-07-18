@@ -5,7 +5,7 @@ import { createApp } from 'vue';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 
-import Vuesax from 'vuesax'
+// import Vuesax from 'vuesax'
 
 import Multiselect  from '@vueform/multiselect'
 import '@vueform/multiselect/themes/default.css';
@@ -28,8 +28,9 @@ library.add(faUserSecret, faTrash, faTwitter, faYoutube, faSpotify, faInstagram)
 
 import moment from 'moment'
 
-import './style.css'
-import 'vuesax/dist/vuesax.css';
+import './style.css';
+import './vuesax.css';
+// import 'vuesax/dist/vuesax.css';
 
 import { VueFire, VueFireAuth } from 'vuefire'
 import { firebaseApp } from './firebase/init';
@@ -41,7 +42,7 @@ const app = createApp(App)
   .use(VueAxios, axios)
   .use(store)
   .use(router)
-  .use(Vuesax, {})
+  // .use(Vuesax, {})
   .use(Pusher, {
     apiKey: import.meta.env.VITE_PUSHER_APP_KEY,
     appId: import.meta.env.VITE_PUSHER_APP_ID,

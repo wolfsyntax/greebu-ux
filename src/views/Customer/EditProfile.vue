@@ -174,32 +174,32 @@ export default {
           if (status === 422)
           {
             this.errors = result.errors
-            this.$vs.notification({
-              color: 'danger',
-              position: 'top-right',
-              title: 'Customer Profile',
-              text: `${message}`
-            })
+            // this.$vs.notification({
+            //   color: 'danger',
+            //   position: 'top-right',
+            //   title: 'Customer Profile',
+            //   text: `${message}`
+            // })
           } else {
 
-            this.$vs.notification({
-              color: 'success',
-              position: 'top-right',
-              title: 'Customer Profile',
-              text: `${message}`
-            })
+            // this.$vs.notification({
+            //   color: 'success',
+            //   position: 'top-right',
+            //   title: 'Customer Profile',
+            //   text: `${message}`
+            // })
           }
           
         })
         .catch(err =>
         {
           console.log('Err: ', err)
-          this.$vs.notification({
-            color: 'danger',
-            position: 'top-right',
-            title: 'Server Status',
-            text: `${err.message}`
-          })
+          // this.$vs.notification({
+          //   color: 'danger',
+          //   position: 'top-right',
+          //   title: 'Server Status',
+          //   text: `${err.message}`
+          // })
         })
     }
   },
