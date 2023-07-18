@@ -173,6 +173,16 @@ const router = createRouter({
           }
         },
         {
+          path: '/successfully-sent',
+          name: 'successfully-sent',
+          component: () => import('/src/views/BasicInformation/SuccessfullySent.vue'),
+          meta: {
+            requiresLogin: false,
+            title: 'Successfully Sent!',
+            role: '',
+          }
+        },
+        {
           path: '/profile',
           // component: {
           //   template: '<div class="auth-component"></div>'

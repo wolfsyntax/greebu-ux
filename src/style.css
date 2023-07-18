@@ -107,7 +107,7 @@ header nav{
   margin: 0 2px;
 }
 /* shake animation */
-.main-nav  .nav-button  span:hover {
+.main-nav  .nav-button  .bell-icon:hover {
   animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
@@ -3008,11 +3008,21 @@ justify-content: space-between;
 .order-summary .card-body  form .last{
   margin-bottom: 2.06rem;
 }
+.order-summary .card-body  form .sum{
+  margin: 1rem 0;
+}
 .order-summary .card-body  form .sum h4{
   color: var(--black);
   font-size: 1.25rem;
   font-weight: 600;
   line-height: 1.25rem; 
+}
+.order-summary .card-body  form .sum p{
+  color: #585858;
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.25rem;
+  margin-bottom: 0;
 }
 .order-summary .card-body  form .total h4{
   color: var(--black);
@@ -3032,6 +3042,39 @@ justify-content: space-between;
   margin-bottom: 2.06rem;
 }
 
+/* Successfull Sent */
+.successfully-sent .container{
+  height: 90vh;
+  position: relative;
+}
+.successfully-sent .container .message{
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.successfully-sent .container .message svg{
+  margin-bottom: 1rem;
+}
+.successfully-sent .message .title{
+  color: var(--orange);
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 2.375rem; /* 79.167% */
+  margin-bottom: 0.75rem;
+}
+.successfully-sent .message .content{
+  color: #8690A2;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: normal;
+}
+
+
+
 
                                                                     /* MEDIA QUERIES */
 
@@ -3042,10 +3085,81 @@ justify-content: space-between;
   margin-top: 80px / 5rem
   margin-bottom: 80px
 */
+                    /* Successfull Sent */
+.successfully-sent .container .message svg{
+  margin-bottom: .8rem;
+}
+.successfully-sent .message .title{
+  font-size: 2.3rem;
+  margin-bottom: 0.5rem;
+}
+.successfully-sent .message .content{
+  font-size: 1.2rem;
+}
 
-                                /* Basic Information - Stepper / Delivery Form*/                     
+                                /* Basic Information - Stepper / Delivery Form / Order Summary */   
+     /* Order Summary */
+.order-summary .card-body .card-title {
+  margin-bottom: 0.2rem;
+  font-size: 1.5rem;
+}             
+.order-summary .card-body .card-text {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}   
+.order-summary .card-body .back-to-delivery {
+  margin-bottom: 2rem;
+}                                 
 .basic-information .container{
   margin: 5rem auto;
+}
+.order-summary .card-body  form .sum{
+  margin: .8rem 0;
+}
+.order-summary .card-body .back-to-delivery a, .order-summary .card-body .order-details .title,
+.order-summary .card-body .order-details .group-item p, .order-summary .card-body .personalized-song .right h4, 
+.order-summary .card-body .form-group label, .order-summary .card-body  form .sum h4, .order-summary .card-body  form .sum p, 
+.order-summary .card-body form .total h4, .order-summary .card-body form .total p {
+  font-size: 1rem;
+}
+.order-summary .card-body .order-details .group-item h4 {
+  font-size: 1rem;
+  margin-bottom: 0.20rem;
+}
+.order-summary .card-body .order-details .group-item {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+.order-summary .card-body .personalized-song {
+  padding: 1.75rem 0;
+  margin-bottom: 1.756rem;
+}
+.order-summary .card-body .personalized-song .song-wrapper img {
+  margin-right: 1rem;
+  width: 72px;
+  height: 72px;
+}
+.order-summary .card-body .personalized-song .song-wrapper h4 {
+  font-size: 1.12rem;
+  margin-bottom: 0.24rem;
+}
+.order-summary .card-body .personalized-song .song-wrapper p {
+  font-size: .9rem;
+}
+.order-summary .card-body .form-group{
+  margin-bottom: 1.75rem;
+}
+.order-summary .card-body .form-group input, .order-summary .card-body .form-group .apply {
+  height: 2.5rem;
+}
+.order-summary .card-body  form .last {
+  margin-bottom: 1.75rem;
+}
+.order-summary .card-body form .total {
+  margin-bottom: 0;
+}
+.order-summary .container .button-wrapper{
+  margin-top: 1.75rem;
 }
 /* Stepper*/
 .basic-information .container .card, .delivery-date .container .card {
@@ -3062,8 +3176,13 @@ justify-content: space-between;
   font-size: 1.16rem;
   padding: 0.4rem 0;
 }
-.basic-information .container form .button-wrapper .back, .basic-information .container form .button-wrapper .next, .basic-information .container .step2 .button-wrapper .back, .basic-information .container .step2 .button-wrapper .next, .basic-information .container .step4 .button-wrapper .back, .basic-information .container .step4 .button-wrapper .next, .delivery-date .container .button-wrapper .back, .delivery-date .container .button-wrapper .next {
+.basic-information .container form .button-wrapper .back, .basic-information .container form .button-wrapper .next, 
+.basic-information .container .step2 .button-wrapper .back, .basic-information .container .step2 .button-wrapper .next, 
+.basic-information .container .step4 .button-wrapper .back, .basic-information .container .step4 .button-wrapper .next, 
+.delivery-date .container .button-wrapper .back, .delivery-date .container .button-wrapper .next,
+.order-summary .container .button-wrapper .back, .order-summary .container .button-wrapper .next {
   padding: .7rem 0rem;
+  font-size: 1rem;
 }
 .basic-information .container .step2 .content-sub, .basic-information .container .step3 .content-sub {
   width: 45%;
