@@ -304,6 +304,15 @@ const router = createRouter({
       ]
     },
     {
+      path: '/vue-fire',
+      component: () => import('/src/views/VueFire.vue'),
+      meta: {
+        requiresLogin: false,
+        title: 'Firebase Auth',
+        role: ''
+      }
+    },
+    {
       path: '/:pathMatch(.*)*',
       redirect: '/pages/error-404'
     }

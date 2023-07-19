@@ -1,5 +1,16 @@
 import axios from "axios";
-import { FacebookAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup, createUserWithEmailAndPassword, signInWithRedirect } from "firebase/auth";
+// import { FacebookAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup, createUserWithEmailAndPassword, signInWithRedirect } from "firebase/auth";
+
+import {
+  getRedirectResult,
+  signInWithRedirect,
+  signOut,
+  signInWithPopup,
+  GoogleAuthProvider,
+  FacebookAuthProvider
+} from 'firebase/auth'
+
+import { useCurrentUser, useFirebaseAuth } from 'vuefire';
 
 var actions = {
   signin({ commit }, payload)
@@ -212,7 +223,8 @@ var actions = {
   {
     return new Promise(async (resolve, reject) =>
     {
-      const auth = getAuth();      
+      const auth = useFirebaseAuth();
+
       var provider = null;
       switch (payload) {
         case 'facebook':
@@ -228,9 +240,9 @@ var actions = {
       { 
         resolve(result);
       })
-      .catch(err =>
+      .catch(reason =>
       {
-        reject(err);
+        reject(reason);
       });
     });
   }
