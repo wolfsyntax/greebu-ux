@@ -186,7 +186,7 @@ export default {
       this.isDisabled = true;
       this.signup(this.form)
         .then((response) => { 
-          loader.close();
+          // loader.close();
           this.isDisabled = false;
           const { status,data } = response;
 
