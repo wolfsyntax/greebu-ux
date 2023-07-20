@@ -2,7 +2,7 @@
   <layout>
 
   <section class="register">
-    <div class="container-fluid">
+    <div class="container-fluid" v-if="!$route.query.id">
       <div id="registerCarouselBanner" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <div class="carousel-indicators">
           <button type="button" data-bs-target="#registerCarouselBanner" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -97,6 +97,12 @@
               </div>
 
               <div class="form-group">
+                <label for="username">Mobile number</label>
+                <input id="email" type="text" class="form-control" name="phone" v-model="form.phone" required autocomplete="phone">
+                <div v-if="errors?.phone" class="text-danger">{{ errors.phone.shift() }}</div>
+              </div>
+
+              <div class="form-group">
                 <label for="password">Password</label>
                 <input id="password" type="password" class="form-control" name="password" v-model="form.password" required autocomplete="new-password">
                 <div v-if="errors?.password" class="text-danger">{{ errors.password.shift() }}</div>
@@ -121,14 +127,23 @@
           </div>
         </div>
         <social-button />
-        <!-- <div class="row mb-0 text-center select-register">
-          <div class="col-md-12 continue-with">
-            <p><span>Or Continue with</span></p>
-          </div>
-          <a href="/login/google" target="_self" class="google"><img src="/assets/sign-in-with-google.svg" width="20" height="20" alt="Sign-in with Google">Sign-in with Google</a>
-          <a href="/login/facebook" class="facebook"><img src="/assets/sign-in-with-facebook.svg" width="20" height="20" alt="Sign up with Facebook">Sign up with Facebook</a>
-        </div> -->
       </div>
+    </div>
+    <div class="container-fluid" v-else>
+      <form @submit.prevent="confirm">
+        <div class="">
+          <div class="row">
+            <div class="col">
+              <label for="username">Verification Code</label>
+                <input id="verifyCode" max="6" type="text" class="form-control" name="verifyCode" v-model="verifyCode" required autocomplete="off">  
+                <span v-if="verifyMessage" class="text-danger">{{ verifyMessage }}</span>
+            </div>
+            
+            <button @click.prevent="resendCode">Resend Code {{ $filters.timer(countdown) }}</button>
+          </div>
+        </div>
+        <button type="submit">Confirm</button>
+      </form>
     </div>
   </section>
 
@@ -146,6 +161,9 @@ export default {
   data()
   {
     return {
+      step: 'register',
+      verifyCode: null,
+      verifyMessage: null,
       form: {
         first_name: null,
         last_name: null,
@@ -153,12 +171,14 @@ export default {
         username: null,
         password: null,
         password_confirmation: null,
-        
+        phone: null,
         account_type: 'customers',
         login_type: 'email',
         isDisabled: false,
       },
       errors: {},
+      countdown: 150,
+      countdown_enabled: false,
       agree_term: false,
     }
   },
@@ -177,30 +197,35 @@ export default {
     //...mapState({})
   },
   methods: {
-    ...mapActions(['signup']),
-    submit()
+    ...mapActions(['signup', 'resendOTPCode', 'verifyOTP']),
+    async submit()
     {
-      // const loader = this.$vs.loading({
-      //   text: 'Loading...',
-      // })
-      this.isDisabled = true;
-      this.signup(this.form)
-        .then((response) => { 
-          // loader.close();
-          this.isDisabled = false;
-          const { status,data } = response;
 
-          if (status === 201)
+      this.isDisabled = true;
+      await this.signup(this.form)
+        .then((response) => { 
+
+          this.isDisabled = false;
+          const { status: statusCode, data: {status, result} } = response;
+          
+          if (statusCode === 201)
           {
-            this.$router.push("/login");
+
+            this.step = '';
+            setTimeout(() => this.countdown--, 100);
+            this.$router.push({ path: this.$route.path, query: { id: result?.user_id } });
+
+            
+            //this.$router.push("/login");
             // this.$vs.notification({
             //   color: 'success',
             //   position: 'top-right',
             //   title: 'Signup',
             //   text: `${data.message}`
             // })
-          } else if (status === 203) {
-            this.errors = data?.results?.errors || {};
+          } else if (statusCode === 203) {
+            this.errors = data?.result?.errors || {};
+            console.log('Status with Error: ', response, '\nErrors: ', this.errors);
           }
         })
         .catch(err =>
@@ -213,7 +238,77 @@ export default {
           // })
         })
 
+    },
+    resendCode()
+    {
+      if (!this.countdown_enabled) {
+        this.countdown_enabled = true;
+        // resend request
+        this.resendOTPCode(this.$route.query.id)
+          .then(response =>
+          {
+            const { status } = response;
+            console.log('Resend Code Response: ', response);
+          })
+          .catch(err =>
+          {
+            this.countdown_enabled = false;
+            this.countdown = 150;
+          });
+      }
+    },
+    confirm()
+    {
+
+      this.verifyMessage = '';
+
+      this.verifyOTP({ id: this.$route.query.id, code: this.verifyCode })
+        .then(response =>
+        {
+          const { status: statusCode, data: {status, message, result} } = response
+          if (statusCode === 200 && status === 200) this.$router.push("/login");
+          else if (statusCode === 203) {
+            if (status === 422) {
+              this.verifyMessage = 'Invalid verification code entered.';
+            } else if (status === 500) {
+              this.verifyMessage = 'Too Many Attempts.';
+            }
+          }
+          console.log('Verify OTP Response: ', response)
+        })
+        .catch(err =>
+        {
+          
+        })
     }
   },
+  watch: {
+    countdown_enabled(value)
+    {
+      if (value) {
+        setTimeout(() =>
+        {
+          this.countdown--;
+        }, 1000);
+      }
+    },
+    countdown: {
+      handler(value)
+      {
+
+        if (value > 0 && this.countdown_enabled) {
+          setTimeout(() =>
+          {
+            this.countdown--;
+          }, 1000);
+        } else {
+          this.countdown_enabled = false;
+          this.countdown = 150;
+        }
+        
+      },
+      immediate: true
+    }
+  }
 }
 </script>

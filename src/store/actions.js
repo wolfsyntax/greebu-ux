@@ -3,9 +3,9 @@ import axios from "axios";
 
 import {
   getRedirectResult,
-  signInWithRedirect,
   signOut,
   signInWithPopup,
+  signInWithRedirect,
   GoogleAuthProvider,
   FacebookAuthProvider
 } from 'firebase/auth'
@@ -219,7 +219,7 @@ var actions = {
         });
     })
   },
-  socialMediaAuth({ commimt, state }, payload)
+  socialMediaAuth({ commit, state }, payload)
   {
     return new Promise(async (resolve, reject) =>
     {
@@ -235,8 +235,7 @@ var actions = {
           break;
       }
 
-      const self = this;
-      signInWithPopup(auth, provider).then(result =>
+      signInWithRedirect(auth, provider).then(result =>
       { 
         resolve(result);
       })
@@ -245,8 +244,39 @@ var actions = {
         reject(reason);
       });
     });
+  },
+  resendOTPCode({ commit, state }, payload)
+  {
+    return new Promise(async (resolve, reject) =>
+    {
+      await axios.get(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/phone/resend/${payload}`)
+        .then(response =>
+        {
+          resolve(response);
+        })
+        .catch(err =>
+        {
+          reject(err)
+        });
+    });
+  },
+  verifyOTP({ commit, state }, payload)
+  {
+    return new Promise(async (resolve, reject) =>
+    {
+      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/phone/verify/${payload?.id}`, {
+        code: payload?.code,
+      })
+        .then(response =>
+        {
+          resolve(response);
+        })
+        .catch(err =>
+        {
+          reject(err)
+        });
+    });
   }
-
 }
 
 export default actions
