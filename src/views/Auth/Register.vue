@@ -129,7 +129,8 @@
         <social-button />
       </div>
     </div>
-    <div class="container-fluid" v-else>
+    <verify-card :phone="form.phone" v-else/>
+    <!-- <div class="container-fluid" v-else>
       <form @submit.prevent="confirm">
         <div class="">
           <div class="row">
@@ -144,7 +145,7 @@
         </div>
         <button type="submit">Confirm</button>
       </form>
-    </div>
+    </div> -->
   </section>
 
   </layout>
@@ -152,11 +153,13 @@
 <script>
 import Layout from '/src/components/Layouts/AuthLayout.vue';
 import { mapGetters, mapState, mapActions } from "vuex";
+import Verify from '@/components/Auth/Verify.vue';
 import SocialButton from '@/components/Auth/SocialLogin.vue';
 export default {
   components: {
     layout: Layout,
     'social-button': SocialButton,
+    'verify-card': Verify
   },
   data()
   {
@@ -164,6 +167,7 @@ export default {
       step: 'register',
       verifyCode: null,
       verifyMessage: null,
+      
       form: {
         first_name: null,
         last_name: null,
@@ -177,8 +181,10 @@ export default {
         isDisabled: false,
       },
       errors: {},
-      countdown: 150,
+      countdown: 180,
       countdown_enabled: false,
+      rate_countdown_enable: false,
+      rate_countdown: 600,
       agree_term: false,
     }
   },
@@ -190,7 +196,7 @@ export default {
 
   },
   mounted() {
-    
+
   },
   computed: {
     //...mapGetters([''])
@@ -212,7 +218,7 @@ export default {
           {
 
             this.step = '';
-            setTimeout(() => this.countdown--, 100);
+            // setTimeout(() => this.countdown--, 100);
             this.$router.push({ path: this.$route.path, query: { id: result?.user_id } });
 
             
@@ -253,7 +259,7 @@ export default {
           .catch(err =>
           {
             this.countdown_enabled = false;
-            this.countdown = 150;
+            this.countdown = 180;
           });
       }
     },
@@ -269,9 +275,10 @@ export default {
           if (statusCode === 200 && status === 200) this.$router.push("/login");
           else if (statusCode === 203) {
             if (status === 422) {
-              this.verifyMessage = 'Invalid verification code entered.';
+              this.verifyMessage = 'The provided OTP code is invalid. Please try again with the correct code.';
             } else if (status === 500) {
-              this.verifyMessage = 'Too Many Attempts.';
+              // this.verifyMessage = 'Too Many Attempts.';
+              this.verifyMessage = `You have already surpassed the limit for resending the OTP code to your number Please wait ${this.$filters.timer(this.rate_countdown)} minutes to re send a new OTP code`;
             }
           }
           console.log('Verify OTP Response: ', response)
@@ -283,6 +290,13 @@ export default {
     }
   },
   watch: {
+    step(value)
+    {
+      if (value === '')
+      {
+        this.rate_countdown_enabled = true;
+      }
+    },
     countdown_enabled(value)
     {
       if (value) {
@@ -303,9 +317,35 @@ export default {
           }, 1000);
         } else {
           this.countdown_enabled = false;
-          this.countdown = 150;
+          this.countdown = 180;
         }
         
+      },
+      immediate: true
+    },
+    rate_countdown_enabled(value)
+    {
+      if (value) {
+        setTimeout(() =>
+        {
+          this.rate_countdown--;
+        }, 1000);
+      }
+    },
+    rate_countdown: {
+      handler(value)
+      {
+
+        if (value > 0 && this.countdown_enabled) {
+          setTimeout(() =>
+          {
+            this.rate_countdown--;
+          }, 1000);
+        } else {
+          this.rate_countdown_enabled = false;
+          this.rate_countdown = 600;
+        }
+
       },
       immediate: true
     }

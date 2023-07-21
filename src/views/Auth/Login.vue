@@ -90,7 +90,7 @@ import Layout from '/src/components/Layouts/AuthLayout.vue';
 import SocialButton from '/src/components/Auth/SocialLogin.vue';
 
 import { mapGetters, mapState, mapActions } from "vuex";
-import { FacebookAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup, createUserWithEmailAndPassword, signInWithRedirect } from "firebase/auth";
+// import { FacebookAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup, createUserWithEmailAndPassword, signInWithRedirect } from "firebase/auth";
 export default {
   components: {
     layout: Layout,
@@ -163,107 +163,107 @@ export default {
       });
 
     },
-    AuthProviderFB()
-    {
-      const provider = new FacebookAuthProvider();
-      const auth = getAuth();
+    // AuthProviderFB()
+    // {
+    //   const provider = new FacebookAuthProvider();
+    //   const auth = getAuth();
 
-      signInWithPopup(auth, provider).then(result =>
-      {
-        //console.log('Firebase result [Facebook]: ', result);
+    //   signInWithPopup(auth, provider).then(result =>
+    //   {
+    //     //console.log('Firebase result [Facebook]: ', result);
 
-      }).catch((err) =>
-      {
-        // this.$vs.notification({
-        //   color: 'danger',
-        //   position: 'top-right',
-        //   title: 'Oops',
-        //   text: err.message
-        // })
-      })
-    },
-    AuthProviderGoogle()
-    {
-      const provider = new GoogleAuthProvider()
-      const auth = getAuth();
-      // const loader = this.$vs.loading({
-      //   text: 'Loading...',
-      // })
-      signInWithPopup(auth, provider).then(result =>
-      {
-        const { _tokenResponse: {federatedId, email, emailVerified, firstName, lastName}, user: {providerData, uid, photoURL} } = result;
-        const provider = providerData.slice(0, 1).shift();
+    //   }).catch((err) =>
+    //   {
+    //     // this.$vs.notification({
+    //     //   color: 'danger',
+    //     //   position: 'top-right',
+    //     //   title: 'Oops',
+    //     //   text: err.message
+    //     // })
+    //   })
+    // },
+    // AuthProviderGoogle()
+    // {
+    //   const provider = new GoogleAuthProvider()
+    //   const auth = getAuth();
+    //   // const loader = this.$vs.loading({
+    //   //   text: 'Loading...',
+    //   // })
+    //   signInWithPopup(auth, provider).then(result =>
+    //   {
+    //     const { _tokenResponse: {federatedId, email, emailVerified, firstName, lastName}, user: {providerData, uid, photoURL} } = result;
+    //     const provider = providerData.slice(0, 1).shift();
 
-        const formData = {
-          provider_id: federatedId.replace('https://accounts.google.com/', '') || uid,
-          first_name: firstName,
-          last_name: lastName,
-          email,
-          username: `goo${provider?.uid}gle`,
-          is_verified: emailVerified,
-          avatar: photoURL,
-        };
+    //     const formData = {
+    //       provider_id: federatedId.replace('https://accounts.google.com/', '') || uid,
+    //       first_name: firstName,
+    //       last_name: lastName,
+    //       email,
+    //       username: `goo${provider?.uid}gle`,
+    //       is_verified: emailVerified,
+    //       avatar: photoURL,
+    //     };
 
-        if (provider?.phoneNumber)
-        {
-          formData.phone = provider.phone
-        }
+    //     if (provider?.phoneNumber)
+    //     {
+    //       formData.phone = provider.phone
+    //     }
         
-        this.socialAuth({
-          provider: 'google',
-          formData
-        })
-        .then(response => {
+    //     this.socialAuth({
+    //       provider: 'google',
+    //       formData
+    //     })
+    //     .then(response => {
 
-          const { message, status } = response;
-          if (status === 200) {
+    //       const { message, status } = response;
+    //       if (status === 200) {
             
-            // this.$vs.notification({
-            //   color: 'success',
-            //   position: 'top-right',
-            //   title: 'Signin',
-            //   text: `${message}`
-            // })
+    //         // this.$vs.notification({
+    //         //   color: 'success',
+    //         //   position: 'top-right',
+    //         //   title: 'Signin',
+    //         //   text: `${message}`
+    //         // })
 
-            this.$router.push("/");
+    //         this.$router.push("/");
 
-          } else {
-            // this.$vs.notification({
-            //     color: 'danger',
-            //     position: 'top-right',
-            //     title: 'Server Status',
-            //     text: `${message}`
-            //   })
-          }
+    //       } else {
+    //         // this.$vs.notification({
+    //         //     color: 'danger',
+    //         //     position: 'top-right',
+    //         //     title: 'Server Status',
+    //         //     text: `${message}`
+    //         //   })
+    //       }
 
-          // setTimeout(() =>
-          //   {
-          //     loader.close()
-          //   }, 3000)
-        })
-        .catch(err =>
-        {
-          // loader.close()
+    //       // setTimeout(() =>
+    //       //   {
+    //       //     loader.close()
+    //       //   }, 3000)
+    //     })
+    //     .catch(err =>
+    //     {
+    //       // loader.close()
 
-          // this.$vs.notification({
-          //   color: 'danger',
-          //   position: 'top-right',
-          //   title: 'Server Status',
-          //   text: `${err.message}`
-          // })
+    //       // this.$vs.notification({
+    //       //   color: 'danger',
+    //       //   position: 'top-right',
+    //       //   title: 'Server Status',
+    //       //   text: `${err.message}`
+    //       // })
             
-        })
-      }).catch((err) =>
-      {
-        // loader.close()
-        // this.$vs.notification({
-        //   color: 'danger',
-        //   position: 'top-right',
-        //   title: 'Oops',
-        //   text: err.message
-        // })
-      })
-    }
+    //     })
+    //   }).catch((err) =>
+    //   {
+    //     // loader.close()
+    //     // this.$vs.notification({
+    //     //   color: 'danger',
+    //     //   position: 'top-right',
+    //     //   title: 'Oops',
+    //     //   text: err.message
+    //     // })
+    //   })
+    // }
 
   },
   computed: mapState({

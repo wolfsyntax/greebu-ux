@@ -63,6 +63,7 @@ const app = createApp(App)
   .component('font-awesome-icon', FontAwesomeIcon)
 
 
+app.config.globalProperties.$moment = moment();
 app.config.globalProperties.$filters = {
   timeAgo(date) {
   return moment(date).fromNow()
