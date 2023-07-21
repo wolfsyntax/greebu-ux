@@ -143,6 +143,16 @@ const router = createRouter({
           }
         },
         {
+          path: '/phoneverification',
+          name: 'phoneverification',
+          component: () => import('/src/views/Auth/PhoneVerfication.vue'),
+          meta: {
+            requiresLogin: false,
+            title: 'Phone Verification',
+            role: '',
+          }
+        },
+        {
           path: '/basicinformation',
           name: 'basicinformation',
           component: () => import('/src/views/BasicInformation/Index.vue'),

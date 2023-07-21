@@ -872,7 +872,7 @@ z-index: 1;
   -ms-transform: translate(-50%, -50%);
   text-align: center;
 }
-.featured-artists .card .middle button, .artists .card .middle button, .basic-information .container .step2 .select-artist .middle button {
+.featured-artists .card .middle a, .artists .card .middle button, .basic-information .container .step2 .select-artist .middle button {
   font-style: normal;
   font-weight: 600;
   font-size: 20px;
@@ -1534,6 +1534,87 @@ z-index: 1;
   color: var(--p-color4);
   margin-top: 4.5px;
 }
+.register .row-checkbox .account-type{
+  color: #1D1D1D;
+  font-size: 1.75rem;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: -0.035rem;
+}
+.register .row-checkbox .account-description{
+  color: #2D3748;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 140%;
+  letter-spacing: -0.0175rem;
+  margin-bottom: 2.5rem;
+}
+.register .row-checkbox .form-check {
+  display: flex;
+  align-items: center;
+  border-radius: 0.3125rem;
+  border: 1px solid #D1D1D1;
+  padding: 0.75rem 1rem;
+}
+.register .row-checkbox .form-check:hover{
+  border: 1px solid var(--orange);
+}
+.register .row-checkbox .form-check:hover label{
+  color: var(--orange);
+}
+.register .row-checkbox .form-check:hover input{
+  /* background-color: var(--orange); */
+  border-color: var(--orange);
+}
+.register .row-checkbox .form-check label{
+  color:#2D3748;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 140%;
+  letter-spacing: -0.02rem;
+  margin-top: .1rem;
+}
+.register .row-checkbox .form-check-input {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+  color: #D1D1D1;
+  margin-right: 0.81rem;
+  margin-left: .5rem;
+  /* background-color: transparent;
+  border-color: #D1D1D1; */
+  /* background-image: none; */
+}
+.register .row-checkbox .form-check-input:checked {
+  background-color: var(--orange);
+  border-color: var(--orange);
+}
+  /* Style the label to be orange when radio is selected */
+.register .row-checkbox .form-check-input:checked + .form-check-label {
+    color: var(--orange);
+}
+.register .row-checkbox .form-check-input:checked + .register .row-checkbox .form-check {
+  border: 1px solid var(--orange);
+}
+.register .row-checkbox .have-account {
+  text-align: center;
+}
+.register .row-checkbox .have-account p, .register .row-checkbox .have-account a{
+  color: var(--black-color);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: -0.0175rem;
+  margin-bottom: 0;
+  text-decoration: none;
+  display: inline;
+}
+.register .row-checkbox .have-account a{
+  padding-left: .5rem;
+  color: var(--orange);
+}
+.register .row-checkbox .have-account a:hover{
+  text-decoration: underline;
+}
 .register form .form-checkbox .form-check-label a {
   font-weight: 400;
   font-size: 14px;
@@ -1542,7 +1623,7 @@ z-index: 1;
   color: #007AFF;
   text-decoration: none;
 }
-.login form button, .register form button {
+.login form button, .register form button, .register .btn-account-type button {
   font-style: normal;
   font-weight: 700;
   font-size: 14px;
@@ -1555,10 +1636,16 @@ z-index: 1;
   padding-top: 15px;
   padding-bottom: 15px;
 }
-.login form button:hover, .register form button:hover {
+.register .btn-account-type{
+  margin: 2.5rem 0 4rem 0;
+}
+.login form .btn-login button:hover, .register form .btn-sign-up button:hover{
   color: var(--orange);
   background-color: var(--white);
   border: 1px solid var(--orange);
+}
+.register form .btn-sign-up{
+  margin-bottom: 3rem;
 }
 .register form .btn.disabled, .register form .btn:disabled, .register form fieldset:disabled .btn {
   font-style: normal;
@@ -3076,6 +3163,115 @@ justify-content: space-between;
   line-height: normal;
 }
 
+                                                        /* PHONE VERIFICATION */      
+.phone-verification .check-message{
+  width: 50%;
+  margin: 7% auto;
+  border-radius: 0.75rem;
+  background: #FFF;
+  box-shadow: 0px 4px 28px 0px rgba(18, 18, 18, 0.12);
+  margin-top: 7%;
+}    
+.phone-verification .card-header {
+  border: 0;
+  background-color: transparent;
+  padding: 0;
+}
+.phone-verification .card-header a span {
+  color: var(--orange);
+  font-size: 24px;
+  margin: 2.13rem 0 0 2.13rem;
+  padding: 0.63rem;
+  border: 3px solid #DFDFE6;
+  border-radius: 100%;
+}
+.phone-verification .card-header a span:hover{
+  background-color: var(--orange);
+  border-color: var(--orange);
+  color: var(--white);
+}
+.phone-verification .check-message .card-body svg{
+  margin-bottom: 1.5rem;
+}
+.phone-verification .check-message .card-title{
+  color: var(--black);
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.63rem;
+}
+.phone-verification .check-message .card-text{
+  color: #8690A2;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+}
+.phone-verification .check-message .phone-number{
+  color: var(--black);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+}
+/* phone shake animation */
+.phone-verification .check-message .card-body:hover svg {
+  animation: shakephone 0.82s cubic-bezier(.36,.07,.19,.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+@keyframes shakephone {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+.phone-verification .check-message .phone-screen {
+  display: flex;
+  height: 6.5rem;
+  padding: 1rem 0.375rem 1rem 0.3125rem;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0.6875rem;
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+.phone-verification .check-message .verification-box {
+  width: 3.75rem;
+  height: 4.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--low-sky-gray, rgba(86, 103, 137, 0.26));
+  font-size: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+}
+.phone-verification .check-message .resend-code{
+  color: rgba(45, 55, 72, 0.30);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 140%; 
+  letter-spacing: -0.02rem;
+  margin-bottom: 1.5rem;
+}
+.phone-verification .check-message .btn-wrapper button{
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.02rem;
+  padding: 0.88rem 11rem;
+  background-color: var(--orange);
+  border-radius: 0.3125rem;
+  background: #FF6B00;
+  border: 0;
+  margin-bottom: 5rem;
+}
+
 
 
 
@@ -3088,6 +3284,10 @@ justify-content: space-between;
   margin-top: 80px / 5rem
   margin-bottom: 80px
 */
+              /* PHONE VERIFICATION */
+.phone-verification .check-message .btn-wrapper button {
+    margin-bottom: 3rem;
+}           
                     /* Successfull Sent */
 .successfully-sent .container .message svg{
   margin-bottom: .8rem;
@@ -3726,9 +3926,25 @@ header nav {
   margin-left: 48px;
 }
 
-/* LOGIN page */
+/* LOGIN page / REGISTER */
 .select-login .forgot-password{
   margin-top: 25px;
+}
+.login form .form-check, .register form .form-check {
+  margin-bottom: 1rem;
+}
+.register .btn-account-type {
+  margin: 2rem 0 3.5rem 0;
+}
+.register .row-checkbox .account-description {
+  margin-bottom: 2rem;
+}
+.register .row-checkbox .form-check {
+  padding: 0.70rem .9rem;
+}
+.register .row-checkbox .form-check-input {
+  width: 1.3rem;
+  height: 1.3rem;
 }
 } /* end of Extra large xl*/
 
