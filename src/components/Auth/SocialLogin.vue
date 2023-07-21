@@ -16,6 +16,9 @@
 
 <script>
 import { mapGetters, mapState, mapActions } from "vuex";
+import { getRedirectResult } from 'firebase/auth';
+import { useCurrentUser, useFirebaseAuth } from 'vuefire';
+
 export default {
   setup() {
     
@@ -42,7 +45,7 @@ export default {
       this.socialMediaAuth(provider)
         .then(response =>
         {
-          // console.log('Response [SocialLogin]: ', response)
+
           var formData = {};
 
           if (provider === 'google')
@@ -60,57 +63,43 @@ export default {
               avatar: photoURL,
             };
 
-            if (provider?.phoneNumber) {
-              formData.phone = provider.phone
-            }
+            // if (provider?.phoneNumber) {
+            //   formData.phone = provider.phone
+            // }
             
           }
 
           if (Object.keys(formData))
           {
+
+            // Works with signInWithPopup
             this.socialAuth({
               provider: provider,
               formData
             })
-              .then(result =>
+              .then(response =>
               {
 
-                const { message, status } = result;
+                console.log('Response: ', response);
+                const { message, status, result } = response;
+
                 if (status === 200) {
-
-                  // this.$vs.notification({
-                  //   color: 'success',
-                  //   position: 'top-right',
-                  //   title: 'Signin',
-                  //   text: `${message}`
-                  // })
-
-                  this.$router.push("/");
+                  // Firebase Authenticated details:
+                  // const { value: providerData } = useCurrentUser();
+                  // console.log('useCurrentUser: ', providerData);
+                  if (!result?.user?.phone_verified_at)
+                  {
+                    this.$router.push({ name: 'verify' })
+                  } else {
+                    this.$router.push({ name: 'home' });
+                  }
 
                 } else {
-                  // this.$vs.notification({
-                  //   color: 'danger',
-                  //   position: 'top-right',
-                  //   title: 'Server Status',
-                  //   text: `${message}`
-                  // })
-                }
 
-                setTimeout(() =>
-                {
-                  loader.close()
-                }, 3000)
+                }
               })
               .catch(err =>
               {
-                // loader.close()
-
-                // this.$vs.notification({
-                //   color: 'danger',
-                //   position: 'top-right',
-                //   title: 'Server Status',
-                //   text: `${err.message}`
-                // })
 
               })
           }

@@ -433,7 +433,7 @@
                 </button>
                 <button @click="togglePlayPause" class="btn btn-primary play">
                   <!-- <i :class="playIconClass"></i> -->
-                  <img :src="playIconClass">
+                  <img :src="playIconClass" alt="">
                 </button>
                 <button @click="playNext" class="btn btn-primary next"></button>
               </div>
@@ -487,6 +487,7 @@
  <script>
  import Layout from '/src/components/Layouts/Layout.vue';
  import ArtistDetails from '/src/components/Artist/ArtistDetails.vue';
+ import { mapGetters, mapState, mapActions } from "vuex";
 
  export default {
   components: {
@@ -642,6 +643,12 @@
         });
       },
       computed: {
+        ...mapGetters(["userInfo", "token"]),
+        ...mapState({
+          artists: (state) => state.artist.artists,
+          artist_types: (state) => state.artist.artist_types,
+          genres: (state) => state.artist.genres,
+        }),        
         progressWidth() {
           return ((this.currentStep + 1) / this.steps.length) * 100 + '%';
         },

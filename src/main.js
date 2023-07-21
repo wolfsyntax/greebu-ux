@@ -63,10 +63,15 @@ const app = createApp(App)
   .component('font-awesome-icon', FontAwesomeIcon)
 
 
+app.config.globalProperties.$moment = moment();
 app.config.globalProperties.$filters = {
   timeAgo(date) {
   return moment(date).fromNow()
   },
+  timer(sec)
+  {
+    return moment.utc(sec*1000).format('mm:ss');
+  }
 }
 
 app.config.globalProperties.$assets = import.meta.env.VITE_ASSET_URL;
