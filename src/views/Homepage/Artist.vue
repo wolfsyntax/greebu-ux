@@ -64,18 +64,18 @@
             <h5>Type of Artist</h5>
             <select class="form-select" v-model="artist_type" aria-label="Default select example">
               <option value="" selected></option>
-              <!-- <option v-for="artist_type in artist_types" :key="artist_type.id" :value="artist_type.id">
+              <option v-for="artist_type in artist_types" :key="artist_type.id" :value="artist_type.id">
               {{  artist_type.title }}
-              </option> -->
+              </option>
             </select>
           </div>
           <div class="col-3">
             <h5>Music Genre</h5>
             <select class="form-select" v-model="genre" aria-label="Default select example">
               <option value="" selected></option>
-              <!-- <option v-for="{title, id} in genres" :key="id" :value="id">
+              <option v-for="{title, id} in genres" :key="id" :value="id">
                 {{ title }}
-                </option>  -->
+                </option> 
             </select>
           </div>
           <!-- <div class="col-3">
@@ -108,7 +108,7 @@
               <!-- <div class="carousel-item"> -->
               <div class="row">
                 <div class="col-4" v-for="(artist, itemIndex) in artists" :key="itemIndex">
-                  <card :artist="artist" />
+                  <card :artist="artist" @play="playButton" :cardIndex="itemIndex"/>
                 </div>
               </div> 
             </div>
@@ -128,12 +128,12 @@
             <div class="card">
               <div class="row g-0">
                 <div class="col-md-4">
-                  <img :src="showArtists[currentIndex].image" class="img-fluid" alt="Artist Image" />
+                  <img :src="artist?.avatar" class="img-fluid" alt="Artist Image" />
                 </div>
                 <div class="col-md-8">
                   <div class="card-body">
-                    <h5 class="card-title">{{ showArtists[currentIndex].name }}</h5>
-                    <p class="card-text">{{ showArtists[currentIndex].typeOfArtist }}</p>
+                    <h5 class="card-title">{{ artist?.artist_name }}</h5>
+                    <p class="card-text">{{ artist?.artist_type }}</p>
                   </div>
                 </div>
               </div>
@@ -317,8 +317,9 @@ export default {
 
       artist_type: null,
       genre: null,
-      search: ''
-      
+      search: '',
+      artist: null,
+      artistIndex: 0,
     };
   },
   mounted()
@@ -333,7 +334,7 @@ export default {
     this.fetchArtists(payload)
       .then(response =>
       {
-        console.log('Artist.vue: ', response);
+        // console.log('Artist.vue: ', response);
       })
     this.audioPlayer = this.$refs.audioPlayer;
     this.audioPlayer.addEventListener('play', () =>
@@ -374,6 +375,27 @@ export default {
     ...mapActions([
       'fetchArtists', 'artistOptions',
     ]),
+    playButton(val, cardIndex)
+    {
+      console.log('Card Index value: ', cardIndex)
+      this.artist = val;
+      if (this.audioPlayer) {
+        if (this.showControls) {
+          if (this.audioPlayer.paused) {
+            this.audioPlayer.play();
+            this.isPlaying = true;
+          } else {
+            this.audioPlayer.pause();
+            this.isPlaying = false;
+          }
+        } else {
+          this.currentIndex = cardIndex;
+          this.playSong(val);
+          this.showControls = true;
+          this.isPlaying = true;
+        }
+      }
+    },
     toggleControls(index)
     {
       if (this.audioPlayer) {
@@ -423,7 +445,7 @@ export default {
         this.currentIndex = 0;
       }
       // this.activeSlide = Math.floor(this.currentIndex / 6);
-      this.playSong(this.currentIndex);
+      this.playSong(this.artists[this.currentIndex]);
     },
 
     playPrevious()
@@ -434,13 +456,14 @@ export default {
         this.currentIndex = this.artists.length - 1;
       }
       // this.activeSlide = Math.floor(this.currentIndex / 6);
-      this.playSong(this.currentIndex);
+      this.playSong(this.artists[this.currentIndex]);
     },
 
     playSong(index)
     {
+      console.log('playSong: ', index)
       if (this.audioPlayer) {
-        this.audioPlayer.src = this.showArtists[index].song;
+        this.audioPlayer.src = index.song;
         this.audioPlayer.load();
         this.audioPlayer.play();
       }
@@ -515,11 +538,6 @@ export default {
       if (newValue) payload.search = newValue
 
       this.fetchArtists(payload)
-        .then(response =>
-        {
-          console.log('Watch Search: ', response)
-          //this.showArtists = this.artists;
-        })
     },
     artist_type(newValue)
     {
@@ -528,11 +546,6 @@ export default {
       if (this.genre) payload.genre = this.genre
       if (this.search) payload.search = this.search
       this.fetchArtists(payload)
-        .then(response =>
-        {
-          console.log('Artist Type: ', response)
-          //this.showArtists = this.artists;
-        })
     },
     genre(newValue)
     {
@@ -542,11 +555,6 @@ export default {
       if (this.search) payload.search = this.search
 
       this.fetchArtists(payload)
-        .then(response =>
-        {
-          console.log('Watch Genre: ', response)
-          //this.showArtists = this.artists;
-        })
     }
   }
 };

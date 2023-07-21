@@ -14,6 +14,7 @@ import artist from './modules/artists';
 import customer from './modules/customers';
 import organizer from './modules/organizers';
 import services from './modules/services';
+import songs from './modules/songs';
 
 const ls = new SecureLS({ isCompression: false });
 
@@ -53,6 +54,7 @@ const ls = new SecureLS({ isCompression: false });
     customer,
     // organizer,
     // services,
+    songs,
   },
   strict: true,
 });

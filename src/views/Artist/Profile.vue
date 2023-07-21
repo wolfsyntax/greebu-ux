@@ -332,12 +332,12 @@ export default {
   {
     this.fetchArtistOptions()
       .catch(err => {
-        this.$vs.notification({
-          color: 'danger',
-          position: 'top-right',
-          title: 'Server Status',
-          text: `${err.message}`
-        })
+      //   this.$vs.notification({
+      //     color: 'danger',
+      //     position: 'top-right',
+      //     title: 'Server Status',
+      //     text: `${err.message}`
+      //   })
       });
 
     this.form = {
@@ -350,9 +350,6 @@ export default {
       city: this.artistProfile?.profile?.city,
       province: this.artistProfile?.profile?.province,
     };
-  },
-  props: {
-    // errors: Object,
   },
   methods: {
     ...mapActions([
@@ -371,20 +368,20 @@ export default {
 
         if (status === 422) { 
           this.errors = response?.result?.errors || {}
-          this.$vs.notification({
-            color: 'danger',
-            position: 'top-right',
-            title: 'Artist Profile',
-            text: `Invalid data`
-          })
+          // this.$vs.notification({
+          //   color: 'danger',
+          //   position: 'top-right',
+          //   title: 'Artist Profile',
+          //   text: `Invalid data`
+          // })
         } else {
 
-          this.$vs.notification({
-            color: 'success',
-            position: 'top-right',
-            title: 'Artist Profile',
-            text: `${message}`
-          })
+          // this.$vs.notification({
+          //   color: 'success',
+          //   position: 'top-right',
+          //   title: 'Artist Profile',
+          //   text: `${message}`
+          // })
 
           this.$store.commit('SET_ARTIST', response.result?.artist_profile)
           this.$store.commit('SET_PROFILE', response.result?.user_profile)
@@ -395,12 +392,12 @@ export default {
 
       }).catch(err =>
       {
-        this.$vs.notification({
-          color: 'danger',
-          position: 'top-right',
-          title: 'Server Status',
-          text: `${err.message}`
-        })
+        // this.$vs.notification({
+        //   color: 'danger',
+        //   position: 'top-right',
+        //   title: 'Server Status',
+        //   text: `${err.message}`
+        // })
       });
 
     },

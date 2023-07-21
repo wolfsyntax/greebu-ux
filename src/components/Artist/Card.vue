@@ -8,8 +8,8 @@
       <div class="artist">
         <h5 class="card-title">{{ artist.artist_name }}</h5>
         <h6 class="card-text">{{ artist.artist_type }}</h6>
-        <p><img src="https://res.cloudinary.com/daorvtlls/image/upload/v1687321042/rating-star-small_axozjd.svg" alt="rating-star"> {{ artist.ratings }} <span>({{ artist.reviews }}
-            reviews)</span></p>
+        <p><img src="https://res.cloudinary.com/daorvtlls/image/upload/v1687321042/rating-star-small_axozjd.svg" alt="rating-star">
+           {{ artist.ratings }} <span>({{ artist.reviews }} reviews)</span></p>
       </div>
       <div class="audio-btn">
         <div class="play-btn">
@@ -18,7 +18,7 @@
               <i :class="{
                 'bi bi-play-circle-fill play-icon': !showControls || (showControls && currentIndex !== itemIndex),
                 'bi bi-pause-circle-fill play-icon': showControls && currentIndex === itemIndex
-              }" @click="toggleControls(itemIndex)"></i>
+              }" @click="toggleControls(artist)"></i>
             </div>
           </div>
         </div>
@@ -45,7 +45,8 @@ export default {
     }
   },
   props: {
-    artist: Object
+    artist: Object,
+    cardIndex: Number
   },
   methods: {
     openModal(data){
@@ -53,9 +54,14 @@ export default {
       },
     imageUrlAlt(event)
     {
-      console.log('Image Url: ', event)
+      // console.log('Image Url: ', event)
       event.target.src = "https://res.cloudinary.com/daorvtlls/image/upload/v1686649067/trending-bicolano-artist-2_ljhog8.png"
     },
+    toggleControls(index = null)
+    {
+      console.log('Toggle Control: ', index)
+      this.$emit('play', index, this.cardIndex)
+    }
   },
 }
 </script>

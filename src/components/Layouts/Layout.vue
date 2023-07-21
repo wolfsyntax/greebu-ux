@@ -27,16 +27,16 @@
 
               <div class="dropdown dropstart">
               <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                <img src="https://res.cloudinary.com/daorvtlls/image/upload/v1686649329/trending-bicolano-artist-4_o6xjze.png" alt="artist profile">
+                <img :src="userInfo.avatar" alt="artist profile">
                 <i class="material-icons"><span class="material-symbols-rounded">&#xe313;</span></i>
               </button>
               <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
                 <li>
                   <div class="artist-info">
-                    <img src="https://res.cloudinary.com/daorvtlls/image/upload/v1686649329/trending-bicolano-artist-4_o6xjze.png" alt="artist profile">
+                    <img :src="userInfo.avatar" alt="artist profile">
                     <div class="artist-name">
-                      <p class="name">Idlepitch</p>
-                      <p class="email">idlepitch@gmail.com</p>
+                      <p class="name">{{  userInfo.business_name }}</p>
+                      <p class="email">{{ userInfo.business_email }}</p>
                       <a class="dropdown-item view-profile" href="#">View Profile</a>
                     </div>
                   </div>
@@ -201,24 +201,39 @@ export default {
     ...mapMutations([]),
     logout()
     {
-      const loader = this.$vs.loading({
-        text: 'Loading...',
-      })
+      // this.$vs.loading({
+      //   // text: 'Loading...',
+      //   scale: 0.45,
+      //   type: 'radius'
+      // })
+
+      const self = this;
+        // console.log('Router: ', this.$route.meta)
       this.signout()
         .then(response =>
         {
           const { status } = response;
-          if (status === 200 || status === 401) this.$router.push('/login');
 
+          // const loading = this.$vs.loading({
+          //   type: 'waves',
+          //   text: 'Loading...'
+          // })
           setTimeout(() =>
           {
-            loader.close()
-          }, 3000)
+            // console.log('Router::: ', this.$route.meta)
+            // loading.close()
+            if (this.$route.meta.requiresLogin == false) this.$router.go();
+            else if (status === 200 || status === 401) this.$router.push('/login');
+          }, 3000);
+
+        }).catch(err =>
+        {
+          // console.log('Logout: ', err)
         })
     }
   },
   computed: {
-    ...mapGetters(["isLoggedIn"]),
+    ...mapGetters(["isLoggedIn", 'userInfo', 'info']),
     ...mapState({}),
   }
 }

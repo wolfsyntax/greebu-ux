@@ -120,36 +120,20 @@ export default {
     ]),
     submit()
     { 
-      // const auth = getAuth();
-      // createUserWithEmailAndPassword(auth, this.form.email, this.form.password)
-      //   .then((userCredential) =>
-      //   {
-      //     // Signed in 
-      //     const user = userCredential.user;
-      //     // ...
-      //     console.log('Signed in: ', user)
-      //   })
-      //   .catch((error) =>
-      //   {
-      //     const errorCode = error.code;
-      //     const errorMessage = error.message;
-      //     // ..
-      //     console.log('Error: ', error)
-      //   });
       this.signin(this.form).then((response) =>
       {
 
         const { status, data } = response;
         
         if (status === 200) {
-          this.$vs.notification({
-            color: 'success',
-            position: 'top-right',
-            title: 'Signin',
-            text: `${data?.message}`
-          })
-          var user = this.$store.state.user;
-          var role = this.$store.state.role;
+          // this.$vs.notification({
+          //   color: 'success',
+          //   position: 'top-right',
+          //   title: 'Signin',
+          //   text: `${data?.message}`
+          // })
+          // var user = this.$store.state.user;
+          // var role = this.$store.state.role;
           
           // if (role === 'artists') {
           //   this.$router.push("/");
@@ -159,23 +143,23 @@ export default {
 
           this.errors = data?.result?.errors;
           
-          this.$vs.notification({
-            color: 'danger',
-            position: 'top-right',
-            title: 'Signin',
-            text: `${data?.message}`
-          })
+          // this.$vs.notification({
+          //   color: 'danger',
+          //   position: 'top-right',
+          //   title: 'Signin',
+          //   text: `${data?.message}`
+          // })
         }
       })
       .catch(err =>
       {
-        console.log('Err: ', err)
-        this.$vs.notification({
-          color: 'danger',
-          position: 'top-right',
-          title: 'Server Status',
-          text: `${err.message}`
-        })
+        // console.log('Err: ', err)
+        // this.$vs.notification({
+        //   color: 'danger',
+        //   position: 'top-right',
+        //   title: 'Server Status',
+        //   text: `${err.message}`
+        // })
       });
 
     },
@@ -186,25 +170,25 @@ export default {
 
       signInWithPopup(auth, provider).then(result =>
       {
-        console.log('Firebase result [Facebook]: ', result);
+        //console.log('Firebase result [Facebook]: ', result);
 
       }).catch((err) =>
       {
-        this.$vs.notification({
-          color: 'danger',
-          position: 'top-right',
-          title: 'Oops',
-          text: err.message
-        })
+        // this.$vs.notification({
+        //   color: 'danger',
+        //   position: 'top-right',
+        //   title: 'Oops',
+        //   text: err.message
+        // })
       })
     },
     AuthProviderGoogle()
     {
       const provider = new GoogleAuthProvider()
       const auth = getAuth();
-      const loader = this.$vs.loading({
-        text: 'Loading...',
-      })
+      // const loader = this.$vs.loading({
+      //   text: 'Loading...',
+      // })
       signInWithPopup(auth, provider).then(result =>
       {
         const { _tokenResponse: {federatedId, email, emailVerified, firstName, lastName}, user: {providerData, uid, photoURL} } = result;
@@ -234,60 +218,58 @@ export default {
           const { message, status } = response;
           if (status === 200) {
             
-            this.$vs.notification({
-              color: 'success',
-              position: 'top-right',
-              title: 'Signin',
-              text: `${message}`
-            })
+            // this.$vs.notification({
+            //   color: 'success',
+            //   position: 'top-right',
+            //   title: 'Signin',
+            //   text: `${message}`
+            // })
 
             this.$router.push("/");
 
           } else {
-            this.$vs.notification({
-                color: 'danger',
-                position: 'top-right',
-                title: 'Server Status',
-                text: `${message}`
-              })
+            // this.$vs.notification({
+            //     color: 'danger',
+            //     position: 'top-right',
+            //     title: 'Server Status',
+            //     text: `${message}`
+            //   })
           }
 
-          setTimeout(() =>
-            {
-              loader.close()
-            }, 3000)
+          // setTimeout(() =>
+          //   {
+          //     loader.close()
+          //   }, 3000)
         })
         .catch(err =>
         {
-          loader.close()
+          // loader.close()
 
-          this.$vs.notification({
-            color: 'danger',
-            position: 'top-right',
-            title: 'Server Status',
-            text: `${err.message}`
-          })
+          // this.$vs.notification({
+          //   color: 'danger',
+          //   position: 'top-right',
+          //   title: 'Server Status',
+          //   text: `${err.message}`
+          // })
             
         })
       }).catch((err) =>
       {
-        loader.close()
-        this.$vs.notification({
-          color: 'danger',
-          position: 'top-right',
-          title: 'Oops',
-          text: err.message
-        })
+        // loader.close()
+        // this.$vs.notification({
+        //   color: 'danger',
+        //   position: 'top-right',
+        //   title: 'Oops',
+        //   text: err.message
+        // })
       })
     }
 
   },
-  computed: {
-    ...mapGetters(["userInfo", "token"]),
-    ...mapState({
+  computed: mapState({
       users: (state) => state.user,
     }),
-  }
+  
 }
 </script>
 <style scoped></style>

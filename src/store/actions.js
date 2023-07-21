@@ -1,12 +1,23 @@
 import axios from "axios";
-import { FacebookAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup, createUserWithEmailAndPassword, signInWithRedirect } from "firebase/auth";
+// import { FacebookAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup, createUserWithEmailAndPassword, signInWithRedirect } from "firebase/auth";
+
+import {
+  getRedirectResult,
+  signInWithRedirect,
+  signOut,
+  signInWithPopup,
+  GoogleAuthProvider,
+  FacebookAuthProvider
+} from 'firebase/auth'
+
+import { useCurrentUser, useFirebaseAuth } from 'vuefire';
 
 var actions = {
   signin({ commit }, payload)
   {
     return new Promise(async (resolve, reject) =>
     {
-
+      // axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
       await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/login`, payload)
         .then(response =>
         {
@@ -24,7 +35,7 @@ var actions = {
             commit('SET_ROLES', roles || []);
             localStorage.api_token = token
           }
-
+          console.log('Status: ', response)
           resolve(response)
 
         })
@@ -212,7 +223,8 @@ var actions = {
   {
     return new Promise(async (resolve, reject) =>
     {
-      const auth = getAuth();      
+      const auth = useFirebaseAuth();
+
       var provider = null;
       switch (payload) {
         case 'facebook':
@@ -228,9 +240,9 @@ var actions = {
       { 
         resolve(result);
       })
-      .catch(err =>
+      .catch(reason =>
       {
-        reject(err);
+        reject(reason);
       });
     });
   }

@@ -111,12 +111,12 @@ export default {
       })
       .catch(err => {
         console.log('Err: ', err)
-        this.$vs.notification({
-          color: 'danger',
-          position: 'top-right',
-          title: 'Server Status',
-          text: `${err.message}`
-        })
+        // this.$vs.notification({
+        //   color: 'danger',
+        //   position: 'top-right',
+        //   title: 'Server Status',
+        //   text: `${err.message}`
+        // })
       });
     }
   },
