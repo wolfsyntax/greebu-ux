@@ -2,8 +2,7 @@
   <div class="card">
     <img :src="artist.avatar" class="card-img-top img-fluid" loading="lazy" alt="Trending Artist" @error="imageUrlAlt" />
     <div class="middle">
-      <!-- <button class="btn btn-primary" @click="openModal" data-bs-toggle="modal" data-bs-target="#artistModal"> View Details</button> -->
-      <a href="/artist"> View Profile</a>
+      <button class="btn btn-primary" @click="openModal" data-bs-toggle="modal" data-bs-target="#artistModal"> View Details</button>
     </div>
     <div class="card-body">
       <div class="artist">
@@ -26,24 +25,13 @@
       </div>
     </div>
   </div>
-  <!-- <artistdetails></artistdetails> -->
+  <artistdetails></artistdetails>
 </template>
 <script>
 import Layout from '/src/components/Layouts/Layout.vue';
 import ArtistDetails from '/src/components/Artist/ArtistDetails.vue';
 
 export default {
-  props: {
-    artist: Object
-  },
-  // props: ['name','image','typeOfArtist','ratings','reviews'],
-  // props: {
-  //   artist: {
-  //     type: Array,
-  //     required: true
-  //   }
-  // },
-  // props: ['artist'],
  components: {
     artistdetails: ArtistDetails
   },
@@ -61,9 +49,6 @@ export default {
     cardIndex: Number
   },
   methods: {
-    artistsongtoplay() {
-      this.$emit('artistsongtoplay');
-    },
     openModal(data){
         this.$root.$emit("bv::show::modal", "#artistModal");
       },

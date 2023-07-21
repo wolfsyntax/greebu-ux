@@ -841,6 +841,9 @@ z-index: 1;
   max-width: 100%;
   margin-bottom: 60px;
 }
+.artists .container .card{
+  margin-bottom: 0px;
+}
 .featured-artists .card img, .artists .card img, .basic-information .container .step2 .select-artist .card img {
   position: relative;
   border-radius: 10px;
@@ -869,7 +872,7 @@ z-index: 1;
   -ms-transform: translate(-50%, -50%);
   text-align: center;
 }
-.featured-artists .card .middle a, .artists .card .middle a, .basic-information .container .step2 .select-artist .middle button {
+.featured-artists .card .middle button, .artists .card .middle button, .basic-information .container .step2 .select-artist .middle button {
   font-style: normal;
   font-weight: 600;
   font-size: 20px;
