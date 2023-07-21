@@ -2,8 +2,6 @@ import axios from "axios";
 // import { FacebookAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup, createUserWithEmailAndPassword, signInWithRedirect } from "firebase/auth";
 
 import {
-  getRedirectResult,
-  signInWithRedirect,
   signOut,
   signInWithPopup,
   GoogleAuthProvider,
@@ -11,6 +9,7 @@ import {
 } from 'firebase/auth'
 
 import { useCurrentUser, useFirebaseAuth } from 'vuefire';
+
 
 var actions = {
   signin({ commit }, payload)
@@ -145,6 +144,7 @@ var actions = {
         .then(response =>
         {
           const { data: { message, status, result: { profile, user, token } } } = response;
+          console.log(`Firebase login via ${provider}: `, response);
           if (response.status === 200) {
 
             commit('SET_AUTH', user)
@@ -219,7 +219,7 @@ var actions = {
         });
     })
   },
-  socialMediaAuth({ commimt, state }, payload)
+  socialMediaAuth({ commit, state }, payload)
   {
     return new Promise(async (resolve, reject) =>
     {
@@ -230,12 +230,11 @@ var actions = {
         case 'facebook':
           provider = new FacebookAuthProvider();
           break;
-        default: 
+        default:
           provider = new GoogleAuthProvider();
           break;
       }
 
-      const self = this;
       signInWithPopup(auth, provider).then(result =>
       { 
         resolve(result);
@@ -244,9 +243,87 @@ var actions = {
       {
         reject(reason);
       });
+      
+    });
+  },
+  sendOTPCode({ commit, state }, payload)
+  {
+    return new Promise(async (resolve, reject) =>
+    {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
+
+      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/phone/send`, payload)
+        .then(response =>
+        {
+          console.log('OTP Response: ', response);
+          const { data: { message, status, result } } = response;
+
+          if (status === 200) {
+
+            const { user } = result;
+            commit('SET_AUTH', user || {});
+
+          }
+
+          resolve(response);
+        })
+        .catch(err =>
+        {
+          reject(err)
+        });
+    });
+  },  
+  resendOTPCode({ commit, state }, payload)
+  {
+    return new Promise(async (resolve, reject) =>
+    {
+      await axios.get(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/phone/resend/${payload}`)
+        .then(response =>
+        {
+          resolve(response);
+        })
+        .catch(err =>
+        {
+          reject(err)
+        });
+    });
+  },
+  verifyOTP({ commit, state }, payload)
+  {
+    return new Promise(async (resolve, reject) =>
+    {
+      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/phone/verify/${payload?.id}`, {
+        code: payload?.code,
+      })
+        .then(response =>
+        {
+          resolve(response);
+        })
+        .catch(err =>
+        {
+          reject(err)
+        });
+    });
+  },
+  verifyOTPF({ commit, state }, payload)
+  {
+    return new Promise(async (resolve, reject) =>
+    {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
+
+      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/phone/verify`, {
+        code: payload?.code,
+      })
+        .then(response =>
+        {
+          resolve(response);
+        })
+        .catch(err =>
+        {
+          reject(err)
+        });
     });
   }
-
 }
 
 export default actions

@@ -304,11 +304,12 @@ const router = createRouter({
       ]
     },
     {
-      path: '/vue-fire',
-      component: () => import('/src/views/VueFire.vue'),
+      path: '/verify',
+      name: 'verify',
+      component: () => import('/src/views/Auth/Verify.vue'),
       meta: {
         requiresLogin: false,
-        title: 'Firebase Auth',
+        title: 'Verify',
         role: ''
       }
     },
