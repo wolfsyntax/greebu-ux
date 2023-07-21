@@ -107,41 +107,8 @@
               :class="{ active: index === activeSlide }">
               <!-- <div class="carousel-item"> -->
               <div class="row">
-                <div class="col-4" v-for="(artist, itemIndex) in showArtists" :key="itemIndex">
-
-                  <!-- <card 
-                  :artist="artist"
-                  @artistsongtoplay="toggleControls"
-                  ></card> -->
-
-                  <div class="card">
-                    <img :src="artist.image" class="card-img-top img-fluid" loading="lazy" alt="Trending Artist" @error="imageUrlAlt" />
-                    <div class="middle">
-                      <!-- <button class="btn btn-primary" @click="openModal" data-bs-toggle="modal" data-bs-target="#artistModal"> View Details</button> -->
-                      <a href="/artist"> View Profile</a>
-                    </div>
-                    <div class="card-body">
-                      <div class="artist">
-                        <h5 class="card-title">{{ artist.name }}</h5>
-                        <h6 class="card-text">{{ artist.typeOfArtist }}</h6>
-                        <p><img src="https://res.cloudinary.com/daorvtlls/image/upload/v1687321042/rating-star-small_axozjd.svg" alt="rating-star">
-                          {{ artist.ratings }} <span>({{ artist.reviews }} reviews)</span></p>
-                      </div>
-                      <div class="audio-btn">
-                        <div class="play-btn">
-                          <div class="play-btn">
-                            <div class="play-btn">
-                              <i :class="{
-                                'bi bi-play-circle-fill play-icon': !showControls || (showControls && currentIndex !== itemIndex),
-                                'bi bi-pause-circle-fill play-icon': showControls && currentIndex === itemIndex
-                              }" @click="toggleControls(itemIndex)"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div> <!-- end of card-->
-
+                <div class="col-4" v-for="(artist, itemIndex) in artists" :key="itemIndex">
+                  <card :artist="artist" />
                 </div>
               </div> 
             </div>
@@ -252,66 +219,66 @@ export default {
           ratings: 4.95,
           reviews: 234,
         },
-        {
-          id: 2,
-          name: 'Dante Magno',
-          typeOfArtist: 'Songwriter',
-          genre: 'Hip-hop/Rap',
-          song: 'https://res.cloudinary.com/daorvtlls/video/upload/v1686647609/MORE_THAN_WORDS_ti4mor.mp3',
-          image: 'https://res.cloudinary.com/daorvtlls/image/upload/v1686649067/trending-bicolano-artist-2_ljhog8.png',
-          ratings: 4.95,
-          reviews: 230,
-        },
-        {
-          id: 3,
-          name: 'James Natividad',
-          typeOfArtist: 'Solo Artist',
-          genre: 'Pop',
-          song: 'https://res.cloudinary.com/daorvtlls/video/upload/v1687411555/the-script-the-man-who-cant-be-moved_ajmg2q.mp3',
-          image: 'https://res.cloudinary.com/daorvtlls/image/upload/v1686649066/trending-bicolano-artist-3_s0ocyh.png',
-          ratings: 4.95,
-          reviews: 229,
-        },
-        {
-          id: 4,
-          name: 'Kevin Flores',
-          typeOfArtist: 'Duo Artist',
-          genre: 'Reggae',
-          song: 'https://res.cloudinary.com/daorvtlls/video/upload/v1687411551/white-lion-till-death-do-us-part_hj97pv.mp3',
-          image: 'https://res.cloudinary.com/daorvtlls/image/upload/v1686649329/trending-bicolano-artist-4_o6xjze.png',
-          ratings: 4.95,
-          reviews: 228,
-        },
-        {
-          id: 5,
-          name: 'Mark Escueta Mike Elgar Nathan Azarcon',
-          typeOfArtist: 'Trio Artist',
-          genre: 'Metal',
-          song: 'https://res.cloudinary.com/daorvtlls/video/upload/v1687411546/rivermaya-elesi_xj8lcy.mp3',
-          image: 'https://res.cloudinary.com/daorvtlls/image/upload/v1686649329/trending-bicolano-artist-5_lxhfkw.png',
-          ratings: 4.91,
-          reviews: 227,
-        },
-        {
-          id: 6,
-          name: 'The Emps',
-          typeOfArtist: 'Full Band Artist',
-          genre: 'R&B/Soul',
-          song: 'https://res.cloudinary.com/daorvtlls/video/upload/v1687411536/thinking-out-loud_-ed-sheeran_abhtbv.mp4',
-          image: 'https://res.cloudinary.com/daorvtlls/image/upload/v1686465778/samples/imagecon-group.jpg',
-          rating: 4.90,
-          reviews: 200,
-        },
-        {
-          id: 7,
-          name: 'Sarah Heart',
-          typeOfArtist: 'Solo Artist',
-          genre: 'Country Rock',
-          song: 'https://res.cloudinary.com/daorvtlls/video/upload/v1687411951/please-forgive-me-bryan-adams_bnyj1o.mp3',
-          image: 'https://res.cloudinary.com/daorvtlls/image/upload/v1686465790/cld-sample.jpg',
-          ratings: 4.90,
-          reviews: 123,
-        },
+        // {
+        //   id: 2,
+        //   name: 'Dante Magno',
+        //   typeOfArtist: 'Songwriter',
+        //   genre: 'Hip-hop/Rap',
+        //   song: 'https://res.cloudinary.com/daorvtlls/video/upload/v1686647609/MORE_THAN_WORDS_ti4mor.mp3',
+        //   image: 'https://res.cloudinary.com/daorvtlls/image/upload/v1686649067/trending-bicolano-artist-2_ljhog8.png',
+        //   ratings: 4.95,
+        //   reviews: 230,
+        // },
+        // {
+        //   id: 3,
+        //   name: 'James Natividad',
+        //   typeOfArtist: 'Solo Artist',
+        //   genre: 'Pop',
+        //   song: 'https://res.cloudinary.com/daorvtlls/video/upload/v1687411555/the-script-the-man-who-cant-be-moved_ajmg2q.mp3',
+        //   image: 'https://res.cloudinary.com/daorvtlls/image/upload/v1686649066/trending-bicolano-artist-3_s0ocyh.png',
+        //   ratings: 4.95,
+        //   reviews: 229,
+        // },
+        // {
+        //   id: 4,
+        //   name: 'Kevin Flores',
+        //   typeOfArtist: 'Duo Artist',
+        //   genre: 'Reggae',
+        //   song: 'https://res.cloudinary.com/daorvtlls/video/upload/v1687411551/white-lion-till-death-do-us-part_hj97pv.mp3',
+        //   image: 'https://res.cloudinary.com/daorvtlls/image/upload/v1686649329/trending-bicolano-artist-4_o6xjze.png',
+        //   ratings: 4.95,
+        //   reviews: 228,
+        // },
+        // {
+        //   id: 5,
+        //   name: 'Mark Escueta Mike Elgar Nathan Azarcon',
+        //   typeOfArtist: 'Trio Artist',
+        //   genre: 'Metal',
+        //   song: 'https://res.cloudinary.com/daorvtlls/video/upload/v1687411546/rivermaya-elesi_xj8lcy.mp3',
+        //   image: 'https://res.cloudinary.com/daorvtlls/image/upload/v1686649329/trending-bicolano-artist-5_lxhfkw.png',
+        //   ratings: 4.91,
+        //   reviews: 227,
+        // },
+        // {
+        //   id: 6,
+        //   name: 'The Emps',
+        //   typeOfArtist: 'Full Band Artist',
+        //   genre: 'R&B/Soul',
+        //   song: 'https://res.cloudinary.com/daorvtlls/video/upload/v1687411536/thinking-out-loud_-ed-sheeran_abhtbv.mp4',
+        //   image: 'https://res.cloudinary.com/daorvtlls/image/upload/v1686465778/samples/imagecon-group.jpg',
+        //   rating: 4.90,
+        //   reviews: 200,
+        // },
+        // {
+        //   id: 7,
+        //   name: 'Sarah Heart',
+        //   typeOfArtist: 'Solo Artist',
+        //   genre: 'Country Rock',
+        //   song: 'https://res.cloudinary.com/daorvtlls/video/upload/v1687411951/please-forgive-me-bryan-adams_bnyj1o.mp3',
+        //   image: 'https://res.cloudinary.com/daorvtlls/image/upload/v1686465790/cld-sample.jpg',
+        //   ratings: 4.90,
+        //   reviews: 123,
+        // },
         // {
         //   id: 8,
         //   name: 'Ricardo Sy',
