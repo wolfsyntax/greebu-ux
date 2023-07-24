@@ -219,7 +219,37 @@ const router = createRouter({
               {title: '', url: '',},
             ],
           },
-        }
+        },
+        {
+          path: '/verify',
+          name: 'verify',
+          component: () => import('/src/views/Auth/Verify.vue'),
+          meta: {
+            requiresLogin: true,
+            title: 'Verify',
+            role: ''
+          }
+        },
+        {
+          path: '/forgot',
+          name: 'forgot',
+          component: () => import('/src/views/Auth/Forgot.vue'),
+          meta: {
+            requiresLogin: false,
+            title: 'Forgot',
+            role: ''
+          }
+        },
+        {
+          path: '/password/reset/:token',
+          name: 'reset-token',
+          component: () => import('/src/views/Auth/ResetPassword.vue'),
+          meta: {
+            requiresLogin: false,
+            title: 'Verify',
+            role: ''
+          }
+        },
       ]
     },
     {
@@ -312,16 +342,6 @@ const router = createRouter({
           }
         }
       ]
-    },
-    {
-      path: '/verify',
-      name: 'verify',
-      component: () => import('/src/views/Auth/Verify.vue'),
-      meta: {
-        requiresLogin: false,
-        title: 'Verify',
-        role: ''
-      }
     },
     {
       path: '/:pathMatch(.*)*',

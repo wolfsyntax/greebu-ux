@@ -323,7 +323,71 @@ var actions = {
           reject(err)
         });
     });
-  }
+  },
+  forgotPassword({ commit }, payload)
+  {
+    return new Promise(async (resolve, reject) =>
+    {
+
+      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/password/email`, payload)
+        .then(response =>
+        {
+
+          const { data: { message, status, result } } = response;
+
+          if (status === 200) {
+
+            // const { profile, user, token, roles } = result;
+            
+            // commit('SET_AUTH', user || {});
+            // commit('SET_TOKEN', token || '');
+            // commit('SET_PROFILE', profile || {});
+            // commit('SET_ROLE', profile?.role || '');
+            // commit('SET_ROLES', roles || []);
+            // localStorage.api_token = token
+          }
+          console.log('Status: ', response)
+          resolve(response)
+
+        })
+        .catch(err =>
+        {
+          reject(err)
+        });
+    })
+  },
+  resetPassword({ commit }, payload)
+  {
+    return new Promise(async (resolve, reject) =>
+    {
+
+      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/password/reset`, payload)
+        .then(response =>
+        {
+
+          const { status: statusCode, data: { message, status, result } } = response;
+
+          if (statusCode === 200) {
+
+            // const { profile, user, token, roles } = result;
+            
+            // commit('SET_AUTH', user || {});
+            // commit('SET_TOKEN', token || '');
+            // commit('SET_PROFILE', profile || {});
+            // commit('SET_ROLE', profile?.role || '');
+            // commit('SET_ROLES', roles || []);
+            // localStorage.api_token = token
+          }
+          console.log('Status: ', response)
+          resolve(response)
+
+        })
+        .catch(err =>
+        {
+          reject(err)
+        });
+    })
+  },
 }
 
 export default actions

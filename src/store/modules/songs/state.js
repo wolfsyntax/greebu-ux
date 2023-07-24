@@ -4,6 +4,7 @@ var state = {
   languages: null,
   durations: null,
   purposes: null,
+  song: null,
 }
 
 export default state
