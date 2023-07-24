@@ -337,14 +337,6 @@ var actions = {
 
           if (status === 200) {
 
-            // const { profile, user, token, roles } = result;
-            
-            // commit('SET_AUTH', user || {});
-            // commit('SET_TOKEN', token || '');
-            // commit('SET_PROFILE', profile || {});
-            // commit('SET_ROLE', profile?.role || '');
-            // commit('SET_ROLES', roles || []);
-            // localStorage.api_token = token
           }
           console.log('Status: ', response)
           resolve(response)
@@ -369,14 +361,6 @@ var actions = {
 
           if (statusCode === 200) {
 
-            // const { profile, user, token, roles } = result;
-            
-            // commit('SET_AUTH', user || {});
-            // commit('SET_TOKEN', token || '');
-            // commit('SET_PROFILE', profile || {});
-            // commit('SET_ROLE', profile?.role || '');
-            // commit('SET_ROLES', roles || []);
-            // localStorage.api_token = token
           }
           console.log('Status: ', response)
           resolve(response)
