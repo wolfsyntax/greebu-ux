@@ -6,7 +6,7 @@
     <button @click="login('google')" class="google btn"><img src="/assets/sign-in-with-google.svg" width="20" height="20" alt="Sign-in with Google">Sign-in with Google</button>
     <button @click="login('facebook')" class="facebook"><img src="/assets/sign-in-with-facebook.svg" width="20" height="20" alt="Sign up with Facebook">Sign up with Facebook</button>
     <div class="forgot-password" v-if="$route.name === 'login'">
-      <a href="forgot-password">I Forgot my Password</a>
+      <a href="/forgot">I Forgot my Password</a>
     </div>
     <div class="no-account" v-if="$route.name === 'login'">
       <p>Don’t you have an account? <a href="/register">Sign up</a></p>

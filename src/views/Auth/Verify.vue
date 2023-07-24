@@ -1,7 +1,5 @@
 <template>
   <div>
-        {{ userInfo }}
-
     <form @submit.prevent="submit" v-if="page === 'request'">
       <div class="form-group">
         <label for="phone">Phone</label>
