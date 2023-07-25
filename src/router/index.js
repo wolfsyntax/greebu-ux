@@ -44,7 +44,7 @@ const router = createRouter({
           component: () => import('/src/views/Homepage/Home.vue'),
           meta: {
             requiresLogin: false,
-            title: 'Home',
+            title: 'Book your Events/Artist, Create your song now!',
             role: '',
             parent: 'home',
             breadcrumb: [

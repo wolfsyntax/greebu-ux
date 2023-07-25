@@ -1635,6 +1635,7 @@ z-index: 1;
   margin-bottom: 24px;
   padding-top: 15px;
   padding-bottom: 15px;
+  border: 1px solid var(--orange);
 }
 .register .btn-account-type{
   margin: 2.5rem 0 4rem 0;
@@ -3163,8 +3164,9 @@ justify-content: space-between;
   line-height: normal;
 }
 
-                                                        /* PHONE VERIFICATION */      
-.phone-verification .check-message, .phone-verification .verify-phone{
+                                                     /* PHONE VERIFICATION  / FORGOT PASSWORD */      
+.phone-verification .check-message, .phone-verification .verify-phone, .phone-verification .verify-email, .forgot-password .verify-password,
+.forgot-password .verify-email{
   width: 50%;
   margin: 7% auto;
   border-radius: 0.75rem;
@@ -3172,12 +3174,17 @@ justify-content: space-between;
   box-shadow: 0px 4px 28px 0px rgba(18, 18, 18, 0.12);
   margin-top: 7%;
 }    
-.phone-verification .check-message .card-header, .phone-verification .verify-phone .card-header{
+.phone-verification .check-message .card-header, .phone-verification .verify-phone .card-header,
+.forgot-password .verify-password .card-header {
   border: 0;
   background-color: transparent;
   padding: 0;
 }
-.phone-verification .check-message .card-header a span, .phone-verification .verify-phone a span {
+.phone-verification .verify-email .card-body, .forgot-password .verify-email .card-body{
+  margin-top: 4.5rem;
+}
+.phone-verification .check-message .card-header a span, .phone-verification .verify-phone a span, .phone-verification .verify-email  a span,
+.forgot-password .verify-password  a span{
   color: var(--orange);
   font-size: 24px;
   margin: 2.13rem 0 0 2.13rem;
@@ -3185,41 +3192,120 @@ justify-content: space-between;
   border: 3px solid #DFDFE6;
   border-radius: 100%;
 }
-.phone-verification .check-message  .card-header a span:hover, .phone-verification .verify-phone a span:hover{
+.phone-verification .verify-email  a, .phone-verification .verify-email  a span, 
+.forgot-password .verify-email a span  {
+ opacity: 0;
+ cursor: crosshair;
+}
+.phone-verification .check-message  .card-header a span:hover, .phone-verification .verify-phone a span:hover,
+.forgot-password .verify-password  .card-header  a span:hover{
   background-color: var(--orange);
   border-color: var(--orange);
   color: var(--white);
 }
-.phone-verification .check-message .card-body svg, .phone-verification .verify-phone .card-body svg{
+.phone-verification .check-message .card-body svg, .phone-verification .verify-phone .card-body svg, .phone-verification .verify-email .card-body svg,
+.forgot-password .verify-password .card-body svg, .forgot-password .verify-email .card-body svg  {
   margin-bottom: 1.5rem;
 }
-.phone-verification .check-message .card-body .content, .phone-verification .verify-phone .card-body .content{
+.phone-verification .check-message .card-body .content, .phone-verification .verify-phone .card-body .content, 
+ .phone-verification .verify-email .card-body .content, .forgot-password .verify-password  .card-body .content,
+ .forgot-password .verify-email .card-body .content{
   width: 80%;
   margin: 0 auto;
 }
-.phone-verification .check-message .card-title, .phone-verification .verify-phone .card-title{
+.phone-verification .check-message .card-title, .phone-verification .verify-phone .card-title, 
+.phone-verification .verify-email .card-title, .forgot-password .verify-password .card-title, 
+.forgot-password .verify-email .card-title, .forgot-password .verify-email .card-title {
   color: var(--black);
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 0.63rem;
 }
-.phone-verification .check-message .card-text, .phone-verification .verify-phone .card-text{
+.phone-verification .check-message .card-text, .phone-verification .verify-phone .card-text,
+.phone-verification .verify-email .card-text, .forgot-password .verify-password .card-text,
+.forgot-password .verify-email .card-text {
   color: #8690A2;
   font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 1.25rem;
+  font-weight: 500;
+  /* margin-bottom: 1.25rem; */
+  width: 85%;
+  margin: 0 auto 1.25rem;
+}
+.forgot-password .verify-password .card-text{
+  margin-bottom: 3.25rem;
+}
+.forgot-password .verify-password .form-group{
+  display: -ms-flexbox; 
+  display: flex;
+  width: 100%;
+  position: relative;
+  margin-bottom: 5rem;
+}
+.forgot-password .verify-password .form-group input{
+  border-radius: 0.5rem;
+  border: 1px solid var(--low-sky-gray, rgba(86, 103, 137, 0.26));
+  padding: 1.03125rem 8% 0.96875rem 1.125rem;
+  width: 75%;
+  margin: 0 auto;
+}
+.forgot-password .verify-password .form-group span {
+  color: #8690A2;
+  position: absolute;
+  top: 30%;
+  left: 80.5%;
+  font-size: 1.5rem;
+}
+.forgot-password .verify-password .form-group .material-symbols-rounded.active {
+  color: var(--orange)!important; 
+}
+/* Style for the inactive icon */
+.forgot-password .verify-password .form-group .material-symbols-rounded:not(.active) {
+  color: #8690A2; 
+}
+.forgot-password .verify-password .form-group input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  opacity: 1; /* Firefox */
+  color: #B8BBCF;
+  font-size: 1rem;
+  font-weight: 500;
+  width: 90%;
+}
+.forgot-password .verify-password .form-group input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #B8BBCF;
+  font-size: 1rem;
+  font-weight: 500;
+  width: 90%;
+}
+.forgot-password .verify-password .form-group input::-ms-input-placeholder { /* Microsoft Edge */
+  color: #B8BBCF;
+  font-size: 1rem;
+  font-weight: 500;
+  width: 90%;
 }
 .phone-verification .verify-phone .card-text{
   margin-bottom: 5rem;
 }
-.phone-verification .check-message .phone-number{
+.phone-verification .check-message .phone-number, .phone-verification .verify-email .email-add, .forgot-password .verify-email .email-add {
   color: var(--black);
   font-size: 1.25rem;
   font-weight: 700;
   margin-bottom: 2.5rem;
 }
+.forgot-password .verify-email .email-add{
+  margin-bottom: 4rem;
+}
+.phone-verification .verify-email .email-add {
+  margin-bottom: 2.09rem;
+}
+.phone-verification .verify-email .check-email{
+  color: #8690A2;
+  font-size: 1.25rem;
+  font-weight: 600;
+  width: 90%;
+  margin: 0 auto 4rem;
+}
 /* phone shake animation */
-.phone-verification .check-message .card-body:hover .phone, .phone-verification .verify-phone .card-body:hover .phone {
+.phone-verification .check-message .card-body:hover .phone,
+.phone-verification .verify-email .card-body:hover .inbox {
   animation: shakephone 0.82s cubic-bezier(.36,.07,.19,.97) both;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
@@ -3274,19 +3360,27 @@ justify-content: space-between;
 .phone-verification .check-message .orange-text{
   color: var(--orange)!important;
 }
-.phone-verification .check-message .btn-wrapper button, .phone-verification .verify-phone .btn-wrapper button{
+.phone-verification .check-message .btn-wrapper button, .phone-verification .verify-phone .btn-wrapper button,
+.phone-verification .verify-email .btn-wrapper button, .forgot-password .verify-password .btn-wrapper button,
+.forgot-password .verify-email .btn-wrapper button {
   color: var(--white);
   font-size: 1rem;
   font-weight: 700;
   letter-spacing: -0.02rem;
-  padding: 0.88rem 11rem;
+  padding: 1rem 0;
+  width: 75%;
   background-color: var(--orange);
   border-radius: 0.3125rem;
   border: 0;
   margin-bottom: 5rem;
+  border: 1px solid var(--orange);
 }
-.phone-verification .verify-phone .btn-wrapper button{
-  padding: 0.88rem 8.63rem;
+.phone-verification .check-message .btn-wrapper button:hover, .phone-verification .verify-phone .btn-wrapper button:hover,
+.phone-verification .verify-email .btn-wrapper button:hover, .forgot-password .verify-password .btn-wrapper button:hover,
+.forgot-password .verify-email .btn-wrapper button:hover  {
+  background-color: var(--white);
+  color: var(--orange);
+  border: 1px solid var(--orange);
 }
 .phone-verification .check-message .alert {
   display: flex;
@@ -3338,34 +3432,66 @@ justify-content: space-between;
   20 px	1.3 rem
   24 px	1.5 rem
 */
-              /* PHONE VERIFICATION */
-.phone-verification .check-message .btn-wrapper button, .phone-verification .verify-phone .btn-wrapper button  {
+              /* PHONE VERIFICATION / FORGOT PASSWORD  */
+.phone-verification .check-message .btn-wrapper button, .phone-verification .verify-phone .btn-wrapper button,
+.phone-verification .verify-email .btn-wrapper button, .forgot-password .verify-password .btn-wrapper button,
+.forgot-password .verify-email .btn-wrapper button   {
     margin-bottom: 3rem;
+    padding: .9rem 0;
 }   
 .phone-verification .check-message .phone-screen{
   margin-bottom: 2rem;
   padding: 1rem 0.1rem 1rem 0.1rem;
 }
-.phone-verification .check-message .card-title, .phone-verification .verify-phone .card-title{
+.phone-verification .verify-email  a span, .forgot-password .verify-email a span {
+  opacity: 0;
+  cursor: crosshair;
+  margin-top: 0rem;
+}
+.phone-verification .check-message .card-title, .phone-verification .verify-phone .card-title, .phone-verification .verify-email .card-title,
+.forgot-password .verify-password .card-title, .forgot-password .verify-email .card-title{
   font-size: 1.5rem;
 }
-.phone-verification .check-message .card-text{
+.phone-verification .check-message .card-text, .phone-verification .verify-email .card-text, .forgot-password .verify-email .card-text{
   margin-bottom: 1rem;
   font-size: 1.1rem;
 }
-.phone-verification .verify-phone .card-text {
+.phone-verification .verify-phone .card-text, .forgot-password .verify-password .card-text {
   margin-bottom: 3rem;
   font-size: 1.1rem;
 }
 .phone-verification .check-message .phone-number{
   margin-bottom: 2rem;
 }
+.forgot-password .verify-password .form-group {
+  margin-bottom: 3.5rem;
+}
+.forgot-password .verify-password .form-group input{
+  /* width: 70%;
+  padding: .03125rem 8% 0.96875rem 1.125rem; */
+}
+.forgot-password .verify-password .form-group span {
+  top: 35%;
+  left: 78.8%;
+  font-size: 1.3rem;
+}
+.phone-verification .verify-email .email-add, .forgot-password .verify-email{
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+.forgot-password .verify-email{
+  margin-bottom: 3rem;
+}
+.phone-verification .verify-email .check-email{
+  font-size: 1.1rem;
+  margin-bottom: 3.5rem;
+}
 .phone-verification .check-message .verification-box {
   width: 3.5rem;
   height: 4.3rem;
   font-size: 2.3rem;
 }        
-                    /* Successfull Sent */
+                    /* Successfully Sent */
 .successfully-sent .container .message svg{
   margin-bottom: .8rem;
 }
