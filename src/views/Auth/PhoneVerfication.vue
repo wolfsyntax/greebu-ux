@@ -1,8 +1,19 @@
 <template>
+  
+   <header class="main-nav">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand logo" href="/">
+            <img src="/assets/geebu-logo.svg" width="175" height="46" alt="logo">
+          </a>
+        </div>
+        </nav>
+      </header>
+
     <div>
       <section class="phone-verification">
         <div class="container">
-          <div v-if="!submitted">
+          <div v-if="submitted">
             <div class="verify-phone">
                 <div class="card">
                     <div class="card-header">
@@ -18,15 +29,15 @@
                         <div class="content">
                           <h5 class="card-title">Phone number verification required for further access</h5>
                           <p class="card-text">By verifying your phone number, we can add an extra level of protection against unauthorized access to your account.</p>
-                        </div>
                         <div class="btn-wrapper">
                         <button type="button" class="btn btn-primary next" @click="verifyPhone">Verify Phone Number</button>
                         </div>
+                      </div>
                     </div>
                 </div>
               </div>
           </div>
-          <div v-if="submitted">
+          <div v-if="!submitted && verifyEmail">
             <div class="check-message">
                 <div class="card">
                     <div class="card-header">
@@ -63,7 +74,7 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                             <path d="M11 15H13V17H11V15ZM11 7H13V13H11V7ZM11.99 2C6.47 2 2 6.48 2 12C2 17.52 6.47 22 11.99 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 11.99 2ZM12 20C7.58 20 4 16.42 4 12C4 7.58 7.58 4 12 4C16.42 4 20 7.58 20 12C20 16.42 16.42 20 12 20Z" fill="#EF4444"/>
                           </svg>
-                          <p class="err-msg">Phone number verification required for further access!</p>
+                          <p class="err-msg">Please indicate verification code for further access.</p>
                           </div>
                           <div class="right">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -72,7 +83,6 @@
                           </div>
                         </div>
 
-                        </div>
                         <form @submit.prevent="submit"> 
                         <div class="phone-screen">
                           <input
@@ -99,13 +109,53 @@
                             <button type="button" class="btn btn-primary next" :disabled="!isInputComplete" @click="submitCode">Submit</button>
                         </div>
                         </form>
+                      </div>
                     </div>
                 </div>
               </div>
             </div>
-            <!-- <div v-if="submitted">
-              Email
-            </div> -->
+
+            <div v-if="!verifyEmail && !submit">
+              <div class="verify-email">
+                <div class="card">
+                    <!-- <div class="card-header">
+                        <a href="/register">
+                            <span class="material-symbols-outlined">&#xe5c4;</span>
+                        </a>
+                    </div> -->
+                    <div class="card-body text-center">
+                      <svg class="inbox" xmlns="http://www.w3.org/2000/svg" width="77" height="76" viewBox="0 0 77 76" fill="none">
+                        <g clip-path="url(#clip0_4593_108262)">
+                          <path d="M68.8084 65.4325H8.10727C4.14306 65.4325 0.917969 62.2066 0.917969 58.2424V17.6727C0.917969 13.7085 4.14306 10.4834 8.10727 10.4834H68.8084C72.7726 10.4834 75.9977 13.7085 75.9977 17.6727V58.2433C75.9977 62.2066 72.7726 65.4325 68.8084 65.4325ZM8.10727 13.8194C5.98335 13.8194 4.25484 15.5479 4.25484 17.6727V58.2433C4.25484 60.368 5.98335 62.0957 8.10727 62.0957H68.8084C70.9331 62.0957 72.6608 60.368 72.6608 58.2433V17.6727C72.6608 15.5488 70.9331 13.8203 68.8084 13.8203L8.10727 13.8194Z" fill="#8690A2"/>
+                          <path d="M38.458 41.2702C37.5054 41.2702 36.5527 41.065 35.6651 40.6554L1.88672 25.053L3.28654 22.0239L37.0641 37.6263C37.95 38.0351 38.9652 38.0359 39.852 37.6263L73.5578 22.0573L74.9576 25.0863L41.2518 40.6545C40.3634 41.065 39.4115 41.2702 38.458 41.2702Z" fill="#8690A2"/>
+                        </g>
+                        <defs>
+                          <clipPath id="clip0_4593_108262">
+                            <rect width="76" height="76" fill="white" transform="translate(0.5)"/>
+                          </clipPath>
+                        </defs>
+                      </svg>
+                        <div class="content">
+                          <h5 class="card-title">Please verify your Email</h5>
+                          <p class="card-text">You’re almost there! We sent a confirmation email to:</p>
+                          <p class="email-add">kenzi.lawson@example.com</p>
+                          <p class="check-email">Check your email and click on the confirmation link to complete your signup</p>
+                        <div class="btn-wrapper">
+                        <button type="button" class="btn btn-primary next" :disabled="resendVerifyEmail > 0" @click="startResendEmailLink">
+                          <template v-if="resendVerifyEmail > 0">
+                            Resend Link ({{ resendVerifyEmail }}s)
+                          </template>
+                          <template v-else>
+                            Resend Link
+                          </template>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+              </div>
+           </div>
+
         </div>
       </section>
     </div>
@@ -118,7 +168,9 @@
       return {
         codes: ['', '', '', '', '', ''],
         resendCode: 0,
-        submitted: false,
+        resendVerifyEmail: 0,
+        submitted: true,
+        verifyEmail: true,
         wrongCode: false,
         codeIsRequired: false,
         timerId: null,  // Store the ID of the timer
@@ -153,7 +205,7 @@
     },
     startResendCode(){
       if(!this.resendCode){
-        this.resendCode = 180;
+        this.resendCode = 60;
 
         // this.timerId = setTimeout(() => {
         //   this.codeIsRequired = true; // show alert when the timer reaches the desired time to input
@@ -169,7 +221,7 @@
       }
     },
     verifyPhone(){
-      this.submitted = true;
+      this.submitted = false;
       this.startResendCode();
 
        this.timerId = setTimeout(() => {
@@ -180,8 +232,8 @@
         // Set a timer to hide the alert after 5 seconds
         setTimeout(() => {
           this.codeIsRequired = false;
-        }, 5000);
-      }, 100000);  // half of the currect this.resendCode = 30; show the alert message
+        }, 3000);
+      }, 55000);  // half of the currect this.resendCode = 30; show the alert message
       
     }, 
     submitCode(){
@@ -194,6 +246,20 @@
         console.log('Correct verification code:', enteredCode);
         // Clear the inputted codes after submitting
         this.codes = ['', '', '', '', '', ''];
+        this.verifyEmail = false;
+
+        // send email link automatically
+        if(!this.resendVerifyEmail){
+        this.resendVerifyEmail = 60;
+
+        const interval = setInterval(() => {
+          this.resendVerifyEmail--;
+          if(this.resendVerifyEmail <= 0){
+            clearInterval(interval);
+          }
+        }, 1000)
+      }
+        
       }else{
         // incorrect code
         this.wrongCode = true;
@@ -204,11 +270,18 @@
         this.codes = ['', '', '', '', '', ''];
       }
 
-      if(this.timerId){
-        clearTimeout(this.timerId); // clear the stored id
+    },
+    startResendEmailLink(){
+      if(!this.resendVerifyEmail){
+        this.resendVerifyEmail = 60;
+
+        const interval = setInterval(() => {
+          this.resendVerifyEmail--;
+          if(this.resendVerifyEmail <= 0){
+            clearInterval(interval);
+          }
+        }, 1000)
       }
-
-
     },
     setOrangeTextColor() {
       this.$refs.resendButton.classList.add('orange-text');
