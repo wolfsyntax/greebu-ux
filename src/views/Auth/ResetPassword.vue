@@ -78,6 +78,8 @@ export default {
               this.errors = result?.errors
             } else if (statusCode === 203) {
               console.log('Status [203]: ', message);
+            } else if (statusCode === 200) {
+              this.$router.push({name: 'login'});
             }
             console.log('Reset password response: ', response)
           })
