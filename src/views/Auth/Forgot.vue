@@ -1,21 +1,13 @@
 <template>
-  <header class="main-nav">
-    <nav class="navbar navbar-expand-lg">
-      <div class="container">
-        <a class="navbar-brand logo" href="/">
-          <img src="/assets/geebu-logo.svg" width="175" height="46" alt="logo">
-        </a>
-      </div>
-      </nav>
-  </header>
+  <BlankHeader />
   <section class="forgot-password">
     <div class="container">
 
-      <div v-if="submitted">
-      <div class="verify-password">
+     
+      <div  v-if="submitted" class="verify-password">
                 <div class="card">
                     <div class="card-header">
-                        <a href="/register">
+                        <a href="/login">
                             <span class="material-symbols-outlined">&#xe5c4;</span>
                         </a>
                     </div>
@@ -55,13 +47,11 @@
                     </div>
                 </div>
             </div> <!-- end of verify-password -->
-          </div>
-
-            <div v-if="!submitted">
-              <div class="verify-email">
+           
+              <div v-if="!submitted" class="verify-email">
                 <div class="card">
                     <!-- <div class="card-header">
-                        <a href="/register">
+                        <a href="/login">
                             <span class="material-symbols-outlined">&#xe5c4;</span>
                         </a>
                     </div> -->
@@ -95,17 +85,18 @@
                     </div>
                 </div>
               </div>
-           </div>
+         
 
     </div>
   </section>
 </template>
 <script>
 import { mapGetters, mapState, mapActions } from "vuex";
+import BlankHeader from "@/components/Home/BlankHeader.vue";
 
 export default {
   components: {
-
+    BlankHeader
   },
   setup()
   {

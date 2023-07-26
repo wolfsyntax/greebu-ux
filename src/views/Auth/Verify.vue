@@ -13,9 +13,11 @@
     <verify-card v-else />
   </div>
 </template>
+
 <script>
 import { mapGetters, mapState, mapActions } from "vuex";
 import Verify from '@/components/Auth/Verify.vue';
+
 export default {
   components: {
     'verify-card': Verify
