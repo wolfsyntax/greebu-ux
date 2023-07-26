@@ -27,3 +27,8 @@ export const SET_SONG_REQUEST = (state, payload) =>
 {
   state.song = payload
 }
+
+export const SET_SONG = (state, payload) =>
+{
+  state.song = payload;
+}

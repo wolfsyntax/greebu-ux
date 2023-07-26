@@ -17,12 +17,12 @@
           <step-three class="step3" @step="stepper" :page="currentStep" @stepData="updateForm" v-if="currentStep === 2" />
           <step-four class="step4" @step="stepper" :page="currentStep" @stepData="updateForm" v-if="currentStep === 3" />
         </div>
-        <div class="col-12 d-flex justify-content-center">
+        <div class="col-12 d-flex justify-content-center"  v-if="currentStep === 1">
           <div class="step2 " >
             <div class="step-content active">
               <step-two style="width: 100vh;" @step="stepper" @view="openModal" :page="currentStep" @stepData="updateForm" />
             </div>
-          
+            {{  currentStep }}
           </div>
         </div>
     </div> 
@@ -151,6 +151,23 @@ export default {
       selectedMood: null,
       understand: false,
       submitted: false,
+      form: {
+        first_name: 'John',
+        last_name: null,
+        email: null,
+        artists: [],
+        artist_type_id: null,
+        genre_id: null,
+        mood: null,
+        language_id: null,
+        duration_id: null,
+        song_type_id: null,
+        purpose_id: null,
+        sender: null,
+        receiver: null,
+        user_story: null,
+        page_status: null,
+      },
 
       // STEP 1 - INFO
       first_name: '',
@@ -241,6 +258,7 @@ export default {
       artists: (state) => state.artist.artists,
       artist_types: (state) => state.artist.artist_types,
       genres: (state) => state.artist.genres,
+      song: state => state.songs.song,
     }),        
     progressWidth() {
       return ((this.currentStep + 1) / this.steps.length) * 100 + '%';
@@ -281,9 +299,12 @@ export default {
       console.log('Stepper: ', step)
       this.currentStep = step;
     },
-     updateForm(form)
+    updateForm(form)
     {
-      
+      console.log('UpdateForm: ', form)
+      Object.assign(this.form, form);
+      this.$store.commit('SET_SONG', this.form);
+      // console.log('New (form): ', this.form)
     },
     selectArtist(artist){
       this.selectedArtist = artist;

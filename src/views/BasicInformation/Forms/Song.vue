@@ -105,7 +105,7 @@
             </div>
 
             <div class="button-wrapper">
-              <button type="button" class="btn btn-primary back" @click="previousStep" :disabled="currentStep === 0">Back</button>
+              <button type="button" class="btn btn-primary back" @click="previousStep" :disabled="page === 0">Back</button>
               <button type="button" class="btn btn-primary next" :disabled="!choosenArtist" @click="subNextStepSong">Next</button>
             </div>
           </div>
@@ -120,7 +120,7 @@
                     <label for="mood">Select mood</label>
                     <div class="dropdown">
                       <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span :style="selectedMood ? { color: '#FF6B00' } : {}">{{ selectedMood ? selectedMood.name : 'Select mood' }}</span>
+                        <span :style="selectedMood ? { color: '#FF6B00' } : {}">{{ mood ? mood.name : 'Select mood' }}</span>
                         <img :src="expandMore.img" :alt="expandMore.altText">
                       </button>
 
@@ -132,7 +132,7 @@
 
                   <div class="button-wrapper">
                     <button type="button" class="btn btn-primary back" @click="subPreviousStepSong" :disabled="currentStep === 0">Back</button>
-                    <button type="button" class="btn btn-primary next" @click="subNextStepSong" :disabled="!selectedMood">Next</button>
+                    <button type="button" class="btn btn-primary next" @click="subNextStepSong" :disabled="!mood">Next</button>
                     <!-- <button type="button" class="btn btn-primary next" @click="subNextStepSong">Next</button> -->
                   </div>
                 </form>
@@ -142,19 +142,19 @@
         </div>
         <div class="col-md-12" v-if="currentSubStepSong === 2">
           <div class="card">
-            <div class="card-body">
+            <div class="card-body w-100">
               <h2 class="card-title">More Details</h2>
               <form @submit.prevent="submit">
                 <div class="form-group">
                   <label for="language">Select Language</label>
                   <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      <span :style="selectedLanguage ? { color: '#FF6B00' } : {}">{{ selectedLanguage ? selectedLanguage.name : 'Select Language' }}</span>
+                      <span :style="language ? { color: '#FF6B00' } : {}">{{ language ? language.name : 'Select Language' }}</span>
                       <img :src="expandMore.img" :alt="expandMore.altText">
                     </button>
 
                     <ul class="dropdown-menu">
-                      <li v-for="language in languageOptions" :key="language.id" @click="selectLanguage(language)">{{ language.name }}</li>
+                      <li v-for="language in languages" :key="language.id" @click="selectLanguage(language)">{{ language.name }}</li>
                     </ul>
                   </div>
                 </div>
@@ -163,19 +163,19 @@
                   <label for="language">Duration of Song</label>
                   <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      <span :style="selectedSongDuration ? { color: '#FF6B00' } : {}">{{ selectedSongDuration ? selectedSongDuration.time : 'Select Duration of Song' }}</span>
+                      <span :style="duration ? { color: '#FF6B00' } : {}">{{ duration ? duration.title : 'Select Duration of Song' }}</span>
                       <img :src="expandMore.img" :alt="expandMore.altText">
                     </button>
 
                     <ul class="dropdown-menu">
-                      <li v-for="duration in songDurationOptions" :key="duration.id" @click="selectSongDuration(duration)">{{ duration.time }}</li>
+                      <li v-for="duration in durations" :key="duration.id" @click="selectSongDuration(duration)">{{ duration.title }}</li>
                     </ul>
                   </div>
                 </div> 
 
-                <div class="button-wrapper">
-                  <button type="button" class="btn btn-primary back" @click="subPreviousStepSong" :disabled="currentStep === 0">Back</button>
-                  <button type="button" class="btn btn-primary next" @click="nextStep" :disabled="!(selectedLanguage && selectedSongDuration)">Next</button>
+                <div class="button-wrapper">{{  !(language && duration) }}
+                  <button type="button" class="btn btn-primary back" @click="subPreviousStepSong" :disabled="page === 0">Back</button>
+                  <button type="button" class="btn btn-primary next" @click="nextStep" :disabled="!(language && duration)">Next</button>
                 </div>
               </form>
             </div>
@@ -225,11 +225,13 @@ export default {
       sort: null,
       search: null,
       mood: null,
+      moodIndex: 0,
+      occasion: null,
       language: null,
       duration: null,
       // artists: [],
       selectedMood: null,
-      selectLanguage: null,
+      // selectLanguage: null,
       selectedSongDuration: null,
       currentSubStepSong: 0,
       expandMore: {
@@ -260,16 +262,26 @@ export default {
     ]),
     selectMood(mood)
     {
-      this.selectedMood = mood;
+      this.mood = mood;
     },    
     subPreviousStepSong()
     {
-
+      // this.$emit('step', 0);
+      if (this.currentSubStepSong > 0) {
+        this.currentSubStepSong--;
+      }
     },
     fetchForm()
     {
 
     },
+    nextStep()
+    {
+      if (this.currentStep < this.steps.length - 1) {
+        this.currentStep++;
+      }
+      this.submitted = true;
+    },    
     subNextStepSong()
     {
       if (this.currentSubStepSong < this.subStepsSong.length - 1) {
@@ -300,6 +312,7 @@ export default {
     },
     previousStep()
     {
+      this.$emit('step', 0)
       if (this.currentStep > 0) {
         this.currentStep--;
       } else if (this.currentStep === 0) {
@@ -310,6 +323,18 @@ export default {
     {
       this.$emit('view', artist)
     }, 
+    selectLanguage(language)
+    {
+      this.language = language;
+    },
+    selectSongDuration(duration)
+    {
+      this.duration = duration;
+    },
+    selectOccasion(occasion)
+    {
+      this.occasion = occasion;
+    },
   },
   mounted()
   {
@@ -339,9 +364,10 @@ export default {
       artist_types: (state) => state.artist.artist_types,
       genres: (state) => state.artist.genres,
       moods: state => state.songs.moods,
-      languages: state => state.songs.langs,
+      languages: state => state.songs.languages,
       durations: state => state.songs.durations,
       purposes: state => state.songs.purposes,
+      song: state => state.songs.song,
     }),
     subProgressWidthSong()
     {

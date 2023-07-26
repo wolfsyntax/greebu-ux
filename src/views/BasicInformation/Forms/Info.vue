@@ -75,7 +75,7 @@ export default {
   },
   mounted()
   {
-    
+    this.form = this.song;
   },
   computed: {
     ...mapGetters(["userInfo", "token"]),
@@ -83,6 +83,7 @@ export default {
       artists: (state) => state.artist.artists,
       artist_types: (state) => state.artist.artist_types,
       genres: (state) => state.artist.genres,
+      song: state => state.songs.song,
     }),
     isButtonInfo()
     {
