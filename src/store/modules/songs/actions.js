@@ -15,7 +15,7 @@ export const fetchSongForm = ({ commit, rootState, state}, payload) => {
           const { result } = data
           
           commit('SET_SONG_ARTIST_TYPE', result?.artist_types)
-          commit('SET_SONG_MOODS', result?.moods)
+          commit('SET_SONG_MOODS', result?.mood)
           commit('SET_SONG_LANGUAGES', result?.languages);
           commit('SET_SONG_DURATIONS', result?.durations)
           commit('SET_SONG_PURPOSES', result?.purposes)

@@ -30,7 +30,7 @@
             <p>Lorem ipsum dolor sit amet consectetur.</p>
           </div>
 
-          <div class="card-body">
+          <div class="card-body">{{ errors }}
             <form @submit.prevent="submit"> 
                                                <!-- Choose account type -->
               <div class="row row-checkbox">
@@ -67,7 +67,7 @@
                     Offers Services
                     </label>
                   </div>
-                  <div v-if="errors?.account_type" class="text-danger">{{ errors.account_type.shift() }}</div>
+                  <div v-for="error in errors?.account_type" :key="error" class="text-danger">{{ error }}</div>
                 </div>
               </div>
 
@@ -75,43 +75,43 @@
               <div class="form-group">
                 <label for="email">Email Address</label>
                 <input id="email" :type="form.login_type" class="form-control" name="email" v-model="form.email" required autocomplete="email" autofocus>
-                <div v-if="errors?.email" class="text-danger">{{ errors.email.shift() }}</div>
+                <div v-for="error in errors?.email" :key="error" class="text-danger">{{ error }}</div>
               </div>
 
               <div class="form-group">
                 <label for="name">First Name</label>
                 <input id="name" type="text" class="form-control " name="name" v-model="form.first_name" required autocomplete="first-name">
-                <div v-if="errors?.first_name" class="text-danger">{{ errors.first_name.shift() }}</div>
+                <div v-for="error in errors?.first_name" :key="error" class="text-danger">{{ error }}</div>
               </div>
 
               <div class="form-group">
                 <label for="name">Last Name</label>
                 <input id="name" type="text" class="form-control " name="name" v-model="form.last_name" required autocomplete="last-name" autofocus>
-                <div v-if="errors?.last_name" class="text-danger">{{ errors.last_name.shift() }}</div>
+                <div v-for="error in errors?.last_name" :key="error" class="text-danger">{{ error }}</div>
               </div>
 
               <div class="form-group">
                 <label for="username">Username</label>
                 <input id="email" type="text" class="form-control" name="username" v-model="form.username" required autocomplete="username">
-                <div v-if="errors?.username" class="text-danger">{{ errors.username.shift() }}</div>
+                <div v-for="error in errors?.username" :key="error" class="text-danger">{{ error }}</div>
               </div>
 
               <div class="form-group">
                 <label for="username">Mobile number</label>
                 <input id="email" type="text" class="form-control" name="phone" v-model="form.phone" required autocomplete="phone">
-                <div v-if="errors?.phone" class="text-danger">{{ errors.phone.shift() }}</div>
+                <div v-for="error in errors?.phone" :key="error" class="text-danger">{{ error }}</div>
               </div>
 
               <div class="form-group">
                 <label for="password">Password</label>
                 <input id="password" type="password" class="form-control" name="password" v-model="form.password" required autocomplete="new-password">
-                <div v-if="errors?.password" class="text-danger">{{ errors.password.shift() }}</div>
+                <div v-for="error in errors?.password" :key="error" class="text-danger">{{ error }}</div>
               </div>
 
               <div class="form-group">
                 <label for="password-confirm">Confirm Password</label>
                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" v-model="form.password_confirmation" required autocomplete="new-password">
-                <div v-if="errors?.password_confirmation" class="text-danger">{{ errors.password_confirmation.shift() }}</div>
+                <!-- <div v-if="errors?.password_confirmation" class="text-danger">{{ errors.password_confirmation.shift() }}</div> -->
               </div>
 
               <div class="form-check form-checkbox">
@@ -213,7 +213,7 @@ export default {
 
           this.isDisabled = false;
           const { status: statusCode, data: {status, result} } = response;
-          
+          console.log('Register response: ', response)
           if (statusCode === 201)
           {
 
@@ -230,7 +230,7 @@ export default {
             //   text: `${data.message}`
             // })
           } else if (statusCode === 203) {
-            this.errors = data?.result?.errors || {};
+            this.errors = result?.errors || {};
             console.log('Status with Error: ', response, '\nErrors: ', this.errors);
           }
         })
