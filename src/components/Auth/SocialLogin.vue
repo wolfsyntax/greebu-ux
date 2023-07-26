@@ -9,7 +9,7 @@
       <a href="/forgot">I Forgot my Password</a>
     </div>
     <div class="no-account" v-if="$route.name === 'login'">
-      <p>Don’t you have an account? <a href="/register">Sign up</a></p>
+      <p>Don’t have an account? <a href="/register">Sign up</a></p>
     </div>
   </div>
 </template>

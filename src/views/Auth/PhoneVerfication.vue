@@ -1,16 +1,5 @@
 <template>
-  
-   <header class="main-nav">
-      <nav class="navbar navbar-expand-lg">
-        <div class="container">
-          <a class="navbar-brand logo" href="/">
-            <img src="/assets/geebu-logo.svg" width="175" height="46" alt="logo">
-          </a>
-        </div>
-        </nav>
-      </header>
-
-    <div>
+  <BlankHeader />
       <section class="phone-verification">
         <div class="container">
           <div v-if="submitted">
@@ -158,11 +147,15 @@
 
         </div>
       </section>
-    </div>
   </template>
   
   <script>
+  import BlankHeader from "@/components/Home/BlankHeader.vue";
+
   export default {
+    components: {
+    BlankHeader
+  },
     data()
     {
       return {
