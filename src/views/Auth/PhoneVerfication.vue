@@ -2,8 +2,7 @@
   <BlankHeader />
       <section class="phone-verification">
         <div class="container">
-          <div v-if="submitted">
-            <div class="verify-phone">
+            <div v-if="submitted" class="verify-phone">
                 <div class="card">
                     <div class="card-header">
                         <a href="/register">
@@ -25,9 +24,7 @@
                     </div>
                 </div>
               </div>
-          </div>
-          <div v-if="!submitted && verifyEmail">
-            <div class="check-message">
+            <div v-if="!submitted && verifyEmail" class="check-message">
                 <div class="card">
                     <div class="card-header">
                         <a href="/register">
@@ -102,10 +99,8 @@
                     </div>
                 </div>
               </div>
-            </div>
 
-            <div v-if="!verifyEmail && !submit">
-              <div class="verify-email">
+              <div v-if="!verifyEmail && !submit" class="verify-email">
                 <div class="card">
                     <!-- <div class="card-header">
                         <a href="/register">
@@ -143,7 +138,6 @@
                     </div>
                 </div>
               </div>
-           </div>
 
         </div>
       </section>
@@ -226,7 +220,7 @@
         setTimeout(() => {
           this.codeIsRequired = false;
         }, 3000);
-      }, 55000);  // half of the currect this.resendCode = 30; show the alert message
+      }, 55000); 
       
     }, 
     submitCode(){
