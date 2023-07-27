@@ -3169,7 +3169,8 @@ justify-content: space-between;
 
                                           /* PHONE VERIFICATION  / FORGOT PASSWORD / RESET PASSWORD*/      
 .phone-verification .check-message, .phone-verification .verify-phone, .phone-verification .verify-email, .forgot-password .verify-password,
-.forgot-password .verify-email, .reset-password .change-password, .reset-password .reset-successfully {
+.forgot-password .verify-email, .reset-password .change-password, .reset-password .reset-successfully,
+.social-phone-verification .social-verify-phone, .social-phone-verification .check-message, .social-phone-verification .successfully-signup {
   width: 50%;
   margin: 7% auto;
   border-radius: 0.75rem;
@@ -3179,16 +3180,20 @@ justify-content: space-between;
 }    
 .phone-verification .check-message .card-header, .phone-verification .verify-phone .card-header,
 .forgot-password .verify-password .card-header, .reset-password .change-password .card-header,
-.reset-password .reset-successfully .card-header  {
+.reset-password .reset-successfully .card-header, .social-phone-verification .social-verify-phone .card-header,
+.social-phone-verification .check-message .card-header, .social-phone-verification .successfully-signup .card-header {
   border: 0;
   background-color: transparent;
   padding: 0;
 }
-.phone-verification .verify-email .card-body, .forgot-password .verify-email .card-body, .reset-password .reset-successfully .card-body {
+.phone-verification .verify-email .card-body, .forgot-password .verify-email .card-body, .reset-password .reset-successfully .card-body,
+.social-phone-verification .successfully-signup .card-body {
   margin-top: 4.5rem;
 }
 .phone-verification .check-message .card-header a span, .phone-verification .verify-phone a span, .phone-verification .verify-email  a span,
-.forgot-password .verify-password  a span, .reset-password .change-password  a span, .reset-password .reset-successfully a span {
+.forgot-password .verify-password  a span, .reset-password .change-password  a span, .reset-password .reset-successfully a span,
+.social-phone-verification .social-verify-phone .card-header a span, .social-phone-verification .check-message .card-header a span,
+.social-phone-verification .successfully-signup .card-header a span   {
   color: var(--orange);
   font-size: 24px;
   margin: 2.13rem 0 0 2.13rem;
@@ -3197,36 +3202,41 @@ justify-content: space-between;
   border-radius: 100%;
 }
 .phone-verification .verify-email  a, .phone-verification .verify-email  a span, 
-.forgot-password .verify-email a span,  .reset-password .reset-successfully a span {
+.forgot-password .verify-email a span,  .reset-password .reset-successfully a span,
+.social-phone-verification .successfully-signup a span {
  opacity: 0;
  cursor: crosshair;
 }
 .phone-verification .check-message  .card-header a span:hover, .phone-verification .verify-phone a span:hover,
-.forgot-password .verify-password  .card-header  a span:hover, .reset-password .change-password a span:hover {
+.forgot-password .verify-password  .card-header  a span:hover, .reset-password .change-password a span:hover,
+.social-phone-verification .social-verify-phone .card-header a span:hover, .social-phone-verification .check-message .card-header a span:hover {
   background-color: var(--orange);
   border-color: var(--orange);
   color: var(--white);
 }
 .phone-verification .check-message .card-body svg, .phone-verification .verify-phone .card-body svg, .phone-verification .verify-email .card-body svg,
 .forgot-password .verify-password .card-body svg, .forgot-password .verify-email .card-body svg, .reset-password .change-password .card-body svg,
-.reset-password .reset-successfully .card-body svg{
+.reset-password .reset-successfully .card-body svg, .social-phone-verification .social-verify-phone .card-body svg,
+.social-phone-verification .check-message .card-body svg, .social-phone-verification .successfully-signup .card-body svg {
   margin-bottom: 1.5rem;
 }
-.reset-password .change-password .card-body span {
+.reset-password .change-password .card-body span, .forgot-password .verify-password .card-body span {
   font-size: 76px;
   color: #8690A2;
 }
 .phone-verification .check-message .card-body .content, .phone-verification .verify-phone .card-body .content, 
  .phone-verification .verify-email .card-body .content, .forgot-password .verify-password  .card-body .content,
  .forgot-password .verify-email .card-body .content, .reset-password .change-password .card-body .content, 
- .reset-password .reset-successfully .card-body .content {
+ .reset-password .reset-successfully .card-body .content, .social-phone-verification .social-verify-phone .card-body .content,
+ .social-phone-verification .check-message .card-body .content, .social-phone-verification .successfully-signup .card-body .content {
   width: 80%;
   margin: 0 auto;
 }
 .phone-verification .check-message .card-title, .phone-verification .verify-phone .card-title, 
 .phone-verification .verify-email .card-title, .forgot-password .verify-password .card-title, 
 .forgot-password .verify-email .card-title, .forgot-password .verify-email .card-title, .reset-password .change-password .card-title,
-.reset-password .reset-successfully .card-title  {
+.reset-password .reset-successfully .card-title, .social-phone-verification .social-verify-phone .card-title,
+.social-phone-verification .check-message .card-title, .social-phone-verification .successfully-signup .card-title {
   color: var(--black);
   font-size: 2rem;
   font-weight: 700;
@@ -3234,7 +3244,9 @@ justify-content: space-between;
 }
 .phone-verification .check-message .card-text, .phone-verification .verify-phone .card-text,
 .phone-verification .verify-email .card-text, .forgot-password .verify-password .card-text,
-.forgot-password .verify-email .card-text, .reset-password .change-password .card-text, .reset-password .reset-successfully .card-text {
+.forgot-password .verify-email .card-text, .reset-password .change-password .card-text, .reset-password .reset-successfully .card-text,
+.social-phone-verification .social-verify-phone .card-text, .social-phone-verification .check-message .card-text,
+.social-phone-verification .successfully-signup .card-text {
   color: #8690A2;
   font-size: 1.25rem;
   font-weight: 500;
@@ -3245,10 +3257,17 @@ justify-content: space-between;
 .forgot-password .verify-password .card-text, .reset-password .change-password .card-text {
   margin-bottom: 3.25rem;
 }
-.reset-password .reset-successfully .card-text {
+.reset-password .reset-successfully .card-text, .social-phone-verification .successfully-signup .card-text  {
   margin-bottom: 5rem;
 }
-.forgot-password .verify-password .form-group, .reset-password .change-password .form-group {
+.phone-verification .verify-phone .card-text, .social-phone-verification .social-verify-phone .card-text{
+  margin-bottom: 5rem;
+}
+.social-phone-verification .social-verify-phone .card-text{
+  margin-bottom: 3rem;
+}
+.forgot-password .verify-password .form-group, .reset-password .change-password .form-group,
+.social-phone-verification .social-verify-phone .form-group{
   display: -ms-flexbox; 
   display: flex;
   width: 100%;
@@ -3258,10 +3277,11 @@ justify-content: space-between;
 .reset-password .change-password .form-group {
   margin-bottom: 1.1rem;
 }
-.reset-password .change-password .last{
+.reset-password .change-password .last, .social-phone-verification .social-verify-phone .form-group{
   margin-bottom: 5rem;
 }
-.forgot-password .verify-password .form-group input, .reset-password .change-password .form-group input{
+.forgot-password .verify-password .form-group input, .reset-password .change-password .form-group input,
+.social-phone-verification .social-verify-phone .form-group input{
   border-radius: 0.5rem;
   border: 1px solid var(--low-sky-gray, rgba(86, 103, 137, 0.26));
   padding: 1.03125rem 8% 0.96875rem 1.125rem;
@@ -3291,30 +3311,30 @@ justify-content: space-between;
 /* .reset-password .change-password .form-group .form-control[type="password"] {
   font-size: 1.1rem;
 } */
-.forgot-password .verify-password .form-group input::placeholder, .reset-password .change-password  .form-group input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+.forgot-password .verify-password .form-group input::placeholder, .reset-password .change-password  .form-group input::placeholder,
+.social-phone-verification .social-verify-phone .form-group input::placeholder{ /* Chrome, Firefox, Opera, Safari 10.1+ */
   opacity: 1; /* Firefox */
   color: #B8BBCF;
   font-size: 1rem;
   font-weight: 500;
   width: 90%;
 }
-.forgot-password .verify-password .form-group input:-ms-input-placeholder, .reset-password .change-password  .form-group input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+.forgot-password .verify-password .form-group input:-ms-input-placeholder, .reset-password .change-password  .form-group input:-ms-input-placeholder,
+.social-phone-verification .social-verify-phone .form-group input:-ms-input-placeholder { /* Internet Explorer 10-11 */
   color: #B8BBCF;
   font-size: 1rem;
   font-weight: 500;
   width: 90%;
 }
-.forgot-password .verify-password .form-group input::-ms-input-placeholder, .reset-password .change-password .form-group input::-ms-input-placeholder { /* Microsoft Edge */
+.forgot-password .verify-password .form-group input::-ms-input-placeholder, .reset-password .change-password .form-group input::-ms-input-placeholder,
+.social-phone-verification .social-verify-phone .form-group input::-ms-input-placeholder { /* Microsoft Edge */
   color: #B8BBCF;
   font-size: 1rem;
   font-weight: 500;
   width: 90%;
-}
-.phone-verification .verify-phone .card-text{
-  margin-bottom: 5rem;
 }
 .phone-verification .check-message .phone-number, .phone-verification .verify-email .email-add, .forgot-password .verify-email .email-add,
-.reset-password .change-password .email-add {
+.reset-password .change-password .email-add, .social-phone-verification .check-message .phone-number  {
   color: var(--black);
   font-size: 1.25rem;
   font-weight: 700;
@@ -3335,7 +3355,8 @@ justify-content: space-between;
 }
 /* phone shake animation */
 .phone-verification .check-message .card-body:hover .phone,
-.phone-verification .verify-email .card-body:hover .inbox {
+.phone-verification .verify-email .card-body:hover .inbox,
+.social-phone-verification .check-message .card-body:hover .phone {
   animation: shakephone 0.82s cubic-bezier(.36,.07,.19,.97) both;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
@@ -3355,8 +3376,14 @@ justify-content: space-between;
     transform: translate3d(4px, 0, 0);
   }
 }
-.forgot-password .verify-email .card-body .inbox, .reset-password .reset-successfully .card-body .check{
+.forgot-password .verify-email .card-body .inbox, .reset-password .reset-successfully .card-body .check,
+.social-phone-verification .successfully-signup  .card-body .success-badge {
   animation: bounce 1.5s 3; /* Animation will play 3 times */
+}
+.social-phone-verification .successfully-signup  .card-body .success-badge{
+  width: 8.3125rem;
+  height: 8.3125rem;
+  margin-bottom: 1.75rem;
 }
 @keyframes bounce {
   0%, 20%, 50%, 80%, 100% {
@@ -3369,7 +3396,7 @@ justify-content: space-between;
     transform: translateY(-10px);
   }
 }
-.phone-verification .check-message .phone-screen{
+.phone-verification .check-message .phone-screen, .social-phone-verification .check-message .phone-screen{
   display: flex;
   height: 6.5rem;
   padding: 1rem 0.375rem 1rem 0.3125rem;
@@ -3379,7 +3406,7 @@ justify-content: space-between;
   text-align: center;
   margin-bottom: 2.5rem;
 }
-.phone-verification .check-message .verification-box{
+.phone-verification .check-message .verification-box, .social-phone-verification .check-message .verification-box{
   width: 3.75rem;
   height: 4.5rem;
   border-radius: 0.5rem;
@@ -3390,7 +3417,7 @@ justify-content: space-between;
   font-size: 2.75rem;
   font-weight: 600;
 }
-.phone-verification .check-message .resend-code{
+.phone-verification .check-message .resend-code, .social-phone-verification .check-message .resend-code {
   color: rgba(45, 55, 72, 0.30);
   /* color: var(--orange); */
   font-size: 1rem;
@@ -3401,13 +3428,14 @@ justify-content: space-between;
   border: 0;
   background-color: transparent;
 }
-.phone-verification .check-message .orange-text{
+.phone-verification .check-message .orange-text, .social-phone-verification .check-message .orange-text{
   color: var(--orange)!important;
 }
 .phone-verification .check-message .btn-wrapper button, .phone-verification .verify-phone .btn-wrapper button,
 .phone-verification .verify-email .btn-wrapper button, .forgot-password .verify-password .btn-wrapper button,
 .forgot-password .verify-email .btn-wrapper button, .reset-password .change-password .btn-wrapper button, 
-.reset-password .reset-successfully .btn-wrapper button {
+.reset-password .reset-successfully .btn-wrapper  button, .social-phone-verification .social-verify-phone .btn-wrapper  button,
+.social-phone-verification .check-message .btn-wrapper button, .social-phone-verification .successfully-signup .btn-wrapper  button   {
   color: var(--white);
   font-size: 1rem;
   font-weight: 700;
@@ -3423,12 +3451,14 @@ justify-content: space-between;
 .phone-verification .check-message .btn-wrapper button:hover, .phone-verification .verify-phone .btn-wrapper button:hover,
 .phone-verification .verify-email .btn-wrapper button:hover, .forgot-password .verify-password .btn-wrapper button:hover,
 .forgot-password .verify-email .btn-wrapper button:hover, .reset-password .change-password .btn-wrapper button:hover,
-.reset-password .reset-successfully .btn-wrapper button:hover  {
+.reset-password .reset-successfully .btn-wrapper button:hover, .social-phone-verification .social-verify-phone .btn-wrapper button:hover,
+.social-phone-verification .check-message .btn-wrapper button:hover, .social-phone-verification .successfully-signup .btn-wrapper button:hover    {
   background-color: var(--white);
   color: var(--orange);
   border: 1px solid var(--orange);
 }
-.phone-verification .check-message .alert {
+.phone-verification .check-message .alert, .social-phone-verification .social-verify-phone .alert,
+.social-phone-verification .check-message .alert {
   display: flex;
   align-items: center;
   border-radius: 0.75rem;
@@ -3438,10 +3468,12 @@ justify-content: space-between;
   padding: 0.75rem;
   border: 0;
 }
-.phone-verification .check-message .alert svg{
+.phone-verification .check-message .alert svg, .social-phone-verification .social-verify-phone .alert svg,
+.social-phone-verification .check-message .alert svg  {
   margin-bottom: 0;
 }
-.phone-verification .check-message .alert .err-msg{
+.phone-verification .check-message .alert .err-msg, .social-phone-verification .social-verify-phone .alert .err-msg,
+.social-phone-verification .check-message .alert .err-msg {
   color: #EF4444;
   font-size: 0.875rem;
   font-weight: 600;
@@ -3449,15 +3481,18 @@ justify-content: space-between;
   margin-bottom: 0;
   text-align: left;
 }
-.phone-verification .check-message .alert .left {
+.phone-verification .check-message .alert .left, .social-phone-verification .social-verify-phone .alert .left,
+.social-phone-verification .check-message .alert .left   {
   display: flex;
   align-items: center;
   width: 90%;
 }
-.phone-verification .check-message .alert .left svg{
+.phone-verification .check-message .alert .left svg, .social-phone-verification .social-verify-phone .alert .left svg,
+.social-phone-verification .check-message .alert .left svg {
   margin-right: 0.5rem;
 }
-.phone-verification .check-message .alert .right{
+.phone-verification .check-message .alert .right, .social-phone-verification .social-verify-phone .alert .right,
+.social-phone-verification .check-message .alert .right {
   width: 10%;
 }
 
