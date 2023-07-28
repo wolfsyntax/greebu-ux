@@ -207,12 +207,12 @@ export const artistOptions = ({ commit, rootState, state }, payload) =>
     await axios.get(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/artist/forms`, payload)
       .then(response =>
       {
-        //console.log('artistOptions: ', response)
+
         const { status: statusCode, data: { status, message, result } } = response
         if (statusCode === 200) {
           commit('SET_GENRES', result?.genres || []);
           commit('SET_ARTIST_TYPES', result?.artist_types || [])
-          // console.log('Artist Options: ', response.data.result);
+
         }
         
         resolve(response)

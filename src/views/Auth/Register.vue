@@ -30,7 +30,7 @@
             <p>Lorem ipsum dolor sit amet consectetur.</p>
           </div>
 
-          <div class="card-body">{{ errors }}
+          <div class="card-body">
             <form @submit.prevent="submit"> 
                                                <!-- Choose account type -->
               <div class="row row-checkbox">

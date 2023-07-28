@@ -22,7 +22,7 @@
             <div class="step-content active">
               <step-two style="width: 100vh;" @step="stepper" @view="openModal" :page="currentStep" @stepData="updateForm" />
             </div>
-            {{  currentStep }}
+            
           </div>
         </div>
     </div> 
@@ -155,10 +155,9 @@ export default {
         first_name: 'John',
         last_name: null,
         email: null,
-        artists: [],
-        artist_type_id: null,
-        genre_id: null,
-        mood: null,
+        // artist_type_id: null,
+        // genre_id: null,
+        song_type_id: null, // mood
         language_id: null,
         duration_id: null,
         song_type_id: null,
@@ -292,7 +291,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      'fetchArtists', 'artistOptions',
+      'fetchArtists', 'artistOptions', 'storeSong',
     ]),
     stepper(step)
     {
@@ -301,9 +300,12 @@ export default {
     },
     updateForm(form)
     {
-      console.log('UpdateForm: ', form)
+      console.log('\n\nForm Data: ', form)
+      console.log('UpdateForm (current): ', this.form)
       Object.assign(this.form, form);
-      this.$store.commit('SET_SONG', this.form);
+
+      console.log('UpdateForm (new): ', this.form,'\n\n')
+      // this.storeSong(this.form);
       // console.log('New (form): ', this.form)
     },
     selectArtist(artist){

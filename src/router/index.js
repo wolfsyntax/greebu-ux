@@ -161,9 +161,9 @@ const router = createRouter({
           name: 'basicinformation',
           component: () => import('/src/views/BasicInformation/Index.vue'),
           meta: {
-            requiresLogin: false,
+            requiresLogin: true,
             title: 'Create a Song step by step',
-            role: '',
+            role: 'customers',
           }
         },
         {

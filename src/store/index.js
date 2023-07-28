@@ -18,7 +18,7 @@ import songs from './modules/songs';
 
 const ls = new SecureLS({ isCompression: false });
 
-  export default new Vuex.Store({
+export default new Vuex.Store({
     plugins: [
     createPersistedState({
       storage: {

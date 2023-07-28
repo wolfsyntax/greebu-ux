@@ -31,4 +31,10 @@ export const SET_SONG_REQUEST = (state, payload) =>
 export const SET_SONG = (state, payload) =>
 {
   state.song = payload;
+  console.log('Set Song: ', state.song)
+}
+
+export const SET_SONG_ARTIST = (state, payload) =>
+{
+  state.song_artists = payload;
 }

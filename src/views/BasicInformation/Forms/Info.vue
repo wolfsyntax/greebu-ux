@@ -57,12 +57,21 @@ export default {
   },
   methods: {
     ...mapActions([
-      
+      'storeSong', 'songStepOne',
     ]),
     submit()
     {
+      // console.log('Old Form: ', this.form)
+      this.storeSong(this.form);
+      // console.log('New Form: ', this.form)
       this.$emit('step', 1)
       this.$emit('stepData', this.form)
+      
+      this.songStepOne(this.form)
+        .then(response =>
+        {
+          console.log('Step One: ', response)
+        });
     }, 
     previous()
     {
@@ -75,7 +84,7 @@ export default {
   },
   mounted()
   {
-    this.form = this.song;
+    this.form = Object.assign(this.form, this.song);
   },
   computed: {
     ...mapGetters(["userInfo", "token"]),
@@ -91,9 +100,9 @@ export default {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       
       var result = (
-        this.form.first_name === '' ||
-        this.form.last_name === '' ||
-        !emailRegex.test(this.form.email)
+        this.form?.first_name === '' ||
+        this.form?.last_name === '' ||
+        !emailRegex.test(this.form?.email)
       );
 
       console.log('Button Info: ', result)

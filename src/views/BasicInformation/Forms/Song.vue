@@ -1,5 +1,5 @@
 <template>
-  <div class="w-100">
+  <div class="w-100">{{ song }}
     <div class="progress">
       <div class="progress-bar" :style="{ width: subProgressWidthSong }"></div>
     </div>
@@ -9,9 +9,9 @@
         <div class="substep-title">{{ subStep.title }}</div>
       </div>
     </div>
-
+    {{  currentSubStepSong }}
     <!-- SONG SubSteps -->
-    <div >
+    <div class="">
       <div class="row" >
         <div class="col-12" v-if="currentSubStepSong === 0">
           <div class="select-artist">
@@ -110,7 +110,8 @@
             </div>
           </div>
         </div>
-        <div class="col-md-12" v-if="currentSubStepSong === 1">
+        
+        <div class="col-md-6 offset-md-3" v-if="currentSubStepSong === 1">
           <div >
             <div class="card">
               <div class="card-body">
@@ -131,20 +132,20 @@
                   </div> 
 
                   <div class="button-wrapper">
-                    <button type="button" class="btn btn-primary back" @click="subPreviousStepSong" :disabled="currentStep === 0">Back</button>
+                    <button type="button" class="btn btn-primary back" @click="subPreviousStepSong" :disabled="currentSubStepSong === 0">Back</button>
                     <button type="button" class="btn btn-primary next" @click="subNextStepSong" :disabled="!mood">Next</button>
-                    <!-- <button type="button" class="btn btn-primary next" @click="subNextStepSong">Next</button> -->
                   </div>
                 </form>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-md-12" v-if="currentSubStepSong === 2">
-          <div class="card">
-            <div class="card-body w-100">
+
+        <div class="col-md-6 offset-md-3" v-if="currentSubStepSong === 2">
+          <div class="card ">
+            <div class="card-body ">
               <h2 class="card-title">More Details</h2>
-              <form @submit.prevent="submit">
+              <form class="w-100" @submit.prevent="submit">
                 <div class="form-group">
                   <label for="language">Select Language</label>
                   <div class="dropdown">
@@ -173,7 +174,7 @@
                   </div>
                 </div> 
 
-                <div class="button-wrapper">{{  !(language && duration) }}
+                <div class="button-wrapper">
                   <button type="button" class="btn btn-primary back" @click="subPreviousStepSong" :disabled="page === 0">Back</button>
                   <button type="button" class="btn btn-primary next" @click="nextStep" :disabled="!(language && duration)">Next</button>
                 </div>
@@ -247,6 +248,14 @@ export default {
       ],
       showControls: false,
       choosenArtist: null,
+      form: {
+        artists: null,
+        genre_id: null,
+        song_type_id: null,
+        language_id: null,
+        duration_id: null,
+        purpose_id: null,
+      }
     }
   },
   props: {
@@ -258,7 +267,7 @@ export default {
   },  
   methods: {
     ...mapActions([
-      'fetchArtists', 'artistOptions', 'fetchSongForm',
+      'fetchArtists', 'artistOptions', 'fetchSongForm', 'storeArtist', 'songStepTwo',
     ]),
     selectMood(mood)
     {
@@ -277,15 +286,39 @@ export default {
     },
     nextStep()
     {
-      if (this.currentStep < this.steps.length - 1) {
-        this.currentStep++;
-      }
+      // if (this.currentStep < this.steps.length - 1) {
+      //   this.currentStep++;
+      // }
+      var newForm = Object.assign(this.form, {
+        language_id: this.language,
+        duration_id: this.duration,
+      })
+
+      this.$emit('step', 2)
+      this.$emit('stepData', this.form)
+      console.log('Song.vue nextStep')
+      this.songStepTwo(newForm)
+
       this.submitted = true;
     },    
     subNextStepSong()
     {
+      
       if (this.currentSubStepSong < this.subStepsSong.length - 1) {
         this.currentSubStepSong++;
+        // this.$emit('stepData', this.form)
+      }
+
+      if (this.currentSubStepSong === 2) {
+
+        console.log('Setting Mood: ', this.mood)
+        var newObj = Object.assign(this.form, { song_type_id: this.mood });
+        // this.storeSong(newObj)
+      } else if (this.currentSubStepSong === 3) {
+        console.log('Language and Duration: ', this.form)
+        var newObj = Object.assign(this.form, { language_id: this.language, duration_id: this.duration });
+        console.log('Language and Duration (new): ', this.form)
+        console.log('Language and Duration (clone): ', this.form)
       }
     },
     playButton()
@@ -294,8 +327,7 @@ export default {
     },
     submit()
     {
-      this.$emit('step', 2)
-      this.$emit('stepData', this.form)
+
     },
     previous()
     {
@@ -348,14 +380,17 @@ export default {
     this.fetchSongForm()
       .then(response =>
       {
-        console.log('Fetch Song Form: ', response)
+        
       })
 
     this.fetchArtists(payload)
-      .then(response =>
-        {
-          console.log('Artist Option: ', response)
-        })
+    .then(response =>
+      {
+        // console.log('Artist Option: ', response)
+    })
+
+    this.form = this.song;
+
   },
   computed: {
     ...mapGetters(["userInfo", "token"]),
@@ -368,6 +403,7 @@ export default {
       durations: state => state.songs.durations,
       purposes: state => state.songs.purposes,
       song: state => state.songs.song,
+      song_artists: state => state.songs.song_artists,
     }),
     subProgressWidthSong()
     {
@@ -375,6 +411,29 @@ export default {
     },
   },
   watch: {
+    currentSubStepSong(value, prev)
+    {
+
+      if (prev === 0) {
+        // this.$emit('stepData', { artists: this.choosenArtist })
+        this.storeArtist(this.choosenArtist)
+      } else if (prev === 1) {
+        // console.log(`Current Watch[${prev}]: `,this.form)
+        // this.form['song_type_id'] = this.mood
+
+        // console.log(`New Watch[${prev}]: `, this.form)
+        // this.storeSong(this.form);
+
+      } else if (prev === 2) {
+
+        this.$emit('stepData', {
+          language_id: this.language?.id || null,
+          duration_id: this.duration?.id || null,
+        })
+
+      }
+
+    },
     search(newValue)
     {
       var payload = {}
