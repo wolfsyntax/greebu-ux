@@ -12,8 +12,8 @@
                         </a>
                     </div>
                     <div class="card-body text-center">
-                      <span class="material-symbols-rounded" :class="{ 'material-symbols-open': isIconOpen }">
-                        {{ icon }}
+                      <span class="material-symbols-rounded">
+                        {{ showLockOpen ? '&#xe897;' : '&#xe898;' }}
                       </span>
                         <div class="content">
                           <h5 class="card-title">Forgot Password</h5>
@@ -36,7 +36,16 @@
                         <span class="material-symbols-rounded" :class="{ 'active': isInputActive }">&#xe158;</span>
                         </div>
                         <div class="btn-wrapper">
-                        <button type="submit" class="btn btn-primary next" @mouseover="toggleIcon" @mouseleave="toggleIcon" :disabled="emailValidate" @click="submitResetPassword">Reset Password</button>
+                        <button type="submit" class="btn btn-primary next" 
+                        @mouseenter="showLockOpen = false; showForwardIcon = true"
+                        @mouseleave="showLockOpen = true; showForwardIcon = false"
+                        :disabled="emailValidate"
+                         @click="submitResetPassword">
+                        Reset 
+                        <span class="material-symbols-rounded forward-icon" v-show="showForwardIcon">
+                          &#xe941;
+                        </span>
+                      </button>
                         </div>
                         </form>
                       </div> <!-- end of content -->
@@ -68,12 +77,19 @@
                           <p class="card-text">Please open the link to reset your password in your email we sent to</p>
                           <p class="email-add">{{ this.form.email }}</p>
                         <div class="btn-wrapper">
-                        <button type="button" class="btn btn-primary next" :disabled="resendResetPassword > 0" @click="startResendResetPassword">
+                        <button type="button" class="btn btn-primary next" 
+                        @mouseenter="showForwardIcon = true"
+                        @mouseleave="showForwardIcon = false"
+                        :disabled="resendResetPassword > 0"
+                         @click="startResendResetPassword">
                           <template v-if="resendResetPassword > 0">
                             Resend Link ({{ resendResetPassword }}s)
                           </template>
                           <template v-else>
                             Resend Link
+                            <span class="material-symbols-rounded forward-icon" v-show="showForwardIcon">
+                              &#xe941;
+                            </span>
                           </template>
                           </button>
                         </div>
@@ -81,7 +97,6 @@
                     </div>
                 </div>
               </div>
-         
 
     </div>
   </section>
@@ -101,11 +116,12 @@ export default {
   data()
   {
     return {
+      showForwardIcon: false,
+      showLockOpen: true,
       errors: null,
       isInputActive: false,
       submitted: true,
       resendResetPassword: 0, 
-      isIconOpen: false,
       form: {
         email: null,
       }
@@ -126,6 +142,7 @@ export default {
     },
     submitResetPassword(){
        this.submitted = false;
+       this.showForwardIcon = false; // hide the arrow forward icon
 
        if(!this.resendResetPassword){
         this.resendResetPassword = 60;
@@ -159,9 +176,6 @@ export default {
         }, 1000)
       }
     },
-    toggleIcon() {
-      this.isIconOpen = !this.isIconOpen;
-    },
   },
   mounted() {
     document.addEventListener("click", this.onClickOutside);
@@ -179,9 +193,9 @@ export default {
             !emailRegex.test(this.form.email)
           );
     },
-    icon() {
-      return this.isIconOpen ? 'lock_open' : 'lock';
-    },
   }
 }
 </script>
+
+<style scoped>
+</style>

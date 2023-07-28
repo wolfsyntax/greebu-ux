@@ -11,8 +11,8 @@
                         </a>
                     </div>
                     <div class="card-body text-center">
-                      <span class="material-symbols-rounded" :class="{ 'material-symbols-open': isIconOpen }">
-                        {{ icon }}
+                      <span class="material-symbols-rounded">
+                        {{ showLockOpen ? '&#xe897;' : '&#xe898;' }}
                       </span>
                         <div class="content">
                           <h5 class="card-title">Change your password</h5>
@@ -76,7 +76,17 @@
                           <!-- <div v-if="errors?.password_confirmation" class="text-danger">{{ errors.password_confirmation }}</div> -->
                         </div>
                         <div class="btn-wrapper">
-                          <button type="submit" class="btn btn-primary"  @mouseover="toggleIcon" @mouseleave="toggleIcon" :disabled="!isFormValid" @click="submitResetPassword" >Continue</button>
+                          <button type="submit" class="btn btn-primary"  
+                          @mouseenter="showLockOpen = false; showForwardIcon = true"
+                          @mouseleave="showLockOpen = true; showForwardIcon = false"
+                          :disabled="!isFormValid"
+                           @click="submitResetPassword" 
+                           >
+                           Continue
+                           <span class="material-symbols-rounded forward-icon" v-show="showForwardIcon">
+                          &#xe941;
+                        </span>
+                          </button>
                         </div>
                         </form>
                       </div> <!-- end of content -->
@@ -99,7 +109,16 @@
                           <h5 class="card-title">Your Password has been reset Successfully!</h5>
                           <p class="card-text">You can now use your new password to log in to your account</p>
                         <div class="btn-wrapper">
-                          <button type="submit" class="btn btn-primary" @click="backToLogin" >Login</button>
+                          <button type="submit" class="btn btn-primary" 
+                          @mouseenter="showForwardIcon = true"
+                          @mouseleave="showForwardIcon = false"
+                          @click="backToLogin"
+                          >
+                          Login
+                          <span class="material-symbols-rounded forward-icon" v-show="showForwardIcon">
+                              &#xe941;
+                            </span>
+                        </button>
                         </div>
                       </div>
                     </div>
@@ -154,12 +173,12 @@ export default {
   data()
   {
     return {
+      showForwardIcon: false,
       errors: null,
       submitted: true,
       isInputActive: false,
       showPassword: false,
       showPasswordConfirm: false,
-      isIconOpen: false,
       form: {
         email: null,
         password: null,
@@ -221,6 +240,7 @@ export default {
     },
     submitResetPassword(){
       this.submitted = false;
+      this.showForwardIcon = false; // hide the arrow forward icon
 
       console.log("Password reset request for: ", this.form.email);
       console.log("Password: ", this.form.password);
@@ -228,9 +248,6 @@ export default {
     },
     backToLogin(){
       window.location.href = '/login';
-    },
-    toggleIcon() {
-      this.isIconOpen = !this.isIconOpen;
     },
 
   },
@@ -252,9 +269,6 @@ export default {
             emailRegex.test(this.form.email) &&
             this.form.password && this.form.password_confirmation === this.form.password
           );
-    },
-    icon() {
-      return this.isIconOpen ? 'lock_open' : 'lock';
     },
   }
 }

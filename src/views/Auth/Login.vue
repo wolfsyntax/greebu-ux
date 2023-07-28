@@ -57,7 +57,16 @@
                     <label class="form-check-label" for="keepLogin">Keep me logged in</label>
                   </div>
                   <div class="d-grid gap-2 btn-login">
-                    <button class="btn btn-primary" type="submit" :disabled="form.processing">Login</button>
+                    <button class="btn btn-primary" type="submit" 
+                    @mouseenter="showForwardIcon = true"
+                    @mouseleave="showForwardIcon = false"
+                    :disabled="form.processing"
+                    >
+                    Login
+                    <span class="material-symbols-rounded forward-icon" v-show="showForwardIcon">
+                      &#xe941;
+                    </span>
+                  </button>
                   </div>
                 </form>
               </div>
@@ -99,6 +108,7 @@ export default {
   data()
   {
     return {
+      showForwardIcon: false,
       form: {
         email: null,
         password: null,

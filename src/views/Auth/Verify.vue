@@ -20,7 +20,16 @@
                   <h5 class="card-title">Phone number verification required for further access</h5>
                   <p class="card-text">By verifying your phone number, we can add an extra level of protection against unauthorized access to your account.</p>
                 <div class="btn-wrapper">
-                <button type="button" class="btn btn-primary next" @click="verifyPhone">Verify Phone Number</button>
+                <button type="button" class="btn btn-primary next" 
+                @click="verifyPhone"
+                @mouseenter="showForwardIcon = true"
+                @mouseleave="showForwardIcon = false"
+                >
+                Verify Phone Number
+                <span class="material-symbols-rounded forward-icon" v-show="showForwardIcon">
+                    &#xe941;
+                  </span>
+              </button>
                 </div>
               </div>
             </div>
@@ -73,7 +82,17 @@
                         <!-- <div v-if="errors?.phone" class="text-danger">{{ errors.phone.shift() }}</div> -->
                         </div>
                 <div class="btn-wrapper">
-                  <button type="button" class="btn btn-primary next" @click="submitForm" :disabled="!isValidPhoneNumber">Submit</button>
+                  <button type="button" class="btn btn-primary next"
+                  @mouseenter="showForwardIcon = true"
+                  @mouseleave="showForwardIcon = false"
+                   @click="submitForm" 
+                   :disabled="!isValidPhoneNumber"
+                   >
+                   Submit
+                   <span class="material-symbols-rounded forward-icon" v-show="showForwardIcon">
+                      &#xe941;
+                    </span>
+                  </button>
                 </div>
                 </form>
                 <!-- <verify-card v-else /> -->
@@ -150,7 +169,16 @@
                   </template>
                   </button>
                 <div class="btn-wrapper">
-                    <button type="button" class="btn btn-primary next" :disabled="!isInputComplete" @click="submitCode">Submit</button>
+                    <button type="button" class="btn btn-primary next"
+                     :disabled="!isInputComplete"
+                      @click="submitCode"
+                      @mouseenter="showForwardIcon = true"
+                      @mouseleave="showForwardIcon = false"
+                      >Submit
+                      <span class="material-symbols-rounded forward-icon" v-show="showForwardIcon">
+                        &#xe941;
+                      </span>
+                    </button>
                 </div>
                 </form>
               </div>
@@ -167,14 +195,20 @@
               </div> -->
               <div class="card-body text-center">
                 <img src="/assets/login-signup/signup-success-badge.webp" class="success-badge" alt="Congratulations, you have successfully Sign Up!">
-                <!-- <svg class="check" xmlns="http://www.w3.org/2000/svg" width="78" height="78" viewBox="0 0 78 78" fill="none">
-                  <path d="M33.3212 56.5175L60.56 29.2786L56.1325 24.9473L33.3212 47.7587L21.7712 36.2086L17.44 40.5399L33.3212 56.5175ZM39 77.5001C33.7383 77.5001 28.7654 76.4894 24.0812 74.4682C19.3971 72.4469 15.3065 69.6877 11.8094 66.1906C8.31229 62.6935 5.55312 58.6029 3.53187 53.9187C1.51062 49.2345 0.5 44.2616 0.5 38.9999C0.5 33.6741 1.51062 28.669 3.53187 23.9848C5.55312 19.3007 8.31229 15.2261 11.8094 11.761C15.3065 8.29604 19.3971 5.5529 24.0812 3.53164C28.7654 1.51038 33.7383 0.499756 39 0.499756C44.3258 0.499756 49.3308 1.51038 54.015 3.53164C58.6992 5.5529 62.7737 8.29604 66.2387 11.761C69.7037 15.2261 72.4469 19.3007 74.4681 23.9848C76.4894 28.669 77.5 33.6741 77.5 38.9999C77.5 44.2616 76.4894 49.2345 74.4681 53.9187C72.4469 58.6029 69.7037 62.6935 66.2387 66.1906C62.7737 69.6877 58.6992 72.4469 54.015 74.4682C49.3308 76.4894 44.3258 77.5001 39 77.5001Z" fill="#FF6B00"/>
-                </svg> -->
                   <div class="content">
-                    <h5 class="card-title">Congratulations, you have successfully Sign Up!</h5>
+                    <h5 class="card-title">Congratulations, you have successfully <span class="signup">Sign Up!</span></h5>
                     <p class="card-text">Now that you have successfully signed up, feel free to take a moment to familiarize yourself with the various features and functionalities we offer.</p>
                   <div class="btn-wrapper">
-                    <button type="submit" class="btn btn-primary" @click="backToLogin" >Let’s Get Started</button>
+                    <button type="submit" class="btn btn-primary" 
+                    @click="backToLogin" 
+                    @mouseenter="showForwardIcon = true"
+                    @mouseleave="showForwardIcon = false"
+                    >
+                    Let’s Get Started
+                  <span class="material-symbols-rounded forward-icon" v-show="showForwardIcon">
+                    &#xe941;
+                  </span>
+                  </button>
                   </div>
                 </div>
               </div>
@@ -202,6 +236,7 @@ export default {
   data()
   {
     return {
+      showForwardIcon: false,
       step: 1,
       showError: false,
       codes: ['', '', '', '', '', ''],
@@ -246,6 +281,7 @@ export default {
     },
     verifyPhone(){
       this.step = 2;
+      this.showForwardIcon = false; // hide the arrow forward icon
     },
     onInput() {
       this.form.phone = this.form.phone.replace(/[^+\d]/g, '').replace(/\+{2,}/g, '+');
@@ -260,7 +296,7 @@ export default {
 
       if (!/^(0|\+)(?!\+|0)/.test(this.form.phone)) {
         this.showError = true;
-        // Hide the error message smoothly after 3 seconds
+        // Hide the error message smoothly after 5 seconds
         setTimeout(() => {
           this.showError = false;
         }, 5000);
@@ -269,6 +305,7 @@ export default {
 
       console.log("Submitting form with phone number:", this.form.phone);
       this.step = 3;
+      this.showForwardIcon = false; // hide the arrow forward icon
 
       this.startResendCode();
 
@@ -310,6 +347,7 @@ export default {
         this.resendCode = 60;
 
         const interval = setInterval(() => {
+          
           this.resendCode--;
           if(this.resendCode <= 0){
             clearInterval(interval);
@@ -318,10 +356,12 @@ export default {
       }
     },
     submitCode(){
+
       // this.submitted = true;
       const correctCode = '123456'; // sample CORRECT code
       const enteredCode = this.codes.join('');
       if(enteredCode === correctCode){
+        this.showForwardIcon = false; // hide the arrow forward icon
         // code is correct
         this.wrongCode = false;
         console.log('Correct verification code:', enteredCode);
@@ -329,6 +369,10 @@ export default {
         this.codes = ['', '', '', '', '', ''];
         // this.verifyEmail = false;
         this.step = 4;
+
+      //   setTimeout(() => {
+      //   window.location.href = '/login';
+      // }, 10000);
 
       }else{
         // incorrect code
