@@ -18,7 +18,15 @@
                           <h5 class="card-title">Phone number verification required for further access</h5>
                           <p class="card-text">By verifying your phone number, we can add an extra level of protection against unauthorized access to your account.</p>
                         <div class="btn-wrapper">
-                        <button type="button" class="btn btn-primary next" @click="verifyPhone">Verify Phone Number</button>
+                        <button type="button" class="btn btn-primary next"
+                        @mouseenter="showForwardIcon = true"
+                        @mouseleave="showForwardIcon = false"
+                         @click="verifyPhone">
+                          Verify Phone Number
+                          <span class="material-symbols-rounded forward-icon" v-show="showForwardIcon">
+                              &#xe941;
+                          </span>
+                        </button>
                         </div>
                       </div>
                     </div>
@@ -92,7 +100,17 @@
                           </template>
                           </button>
                         <div class="btn-wrapper">
-                            <button type="button" class="btn btn-primary next" :disabled="!isInputComplete" @click="submitCode">Submit</button>
+                            <button type="button" class="btn btn-primary next" 
+                            :disabled="!isInputComplete" 
+                            @click="submitCode"
+                            @mouseenter="showForwardIcon = true"
+                            @mouseleave="showForwardIcon = false"
+                            >
+                            Submit
+                            <span class="material-symbols-rounded forward-icon" v-show="showForwardIcon">
+                              &#xe941;
+                            </span>
+                          </button>
                         </div>
                         </form>
                       </div>
@@ -125,12 +143,20 @@
                           <p class="email-add">kenzi.lawson@example.com</p>
                           <p class="check-email">Check your email and click on the confirmation link to complete your signup</p>
                         <div class="btn-wrapper">
-                        <button type="button" class="btn btn-primary next" :disabled="resendVerifyEmail > 0" @click="startResendEmailLink">
+                        <button type="button" class="btn btn-primary next" 
+                        :disabled="resendVerifyEmail > 0"
+                         @click="startResendEmailLink"
+                         @mouseenter="showForwardIcon = true"
+                         @mouseleave="showForwardIcon = false"
+                         >
                           <template v-if="resendVerifyEmail > 0">
                             Resend Link ({{ resendVerifyEmail }}s)
                           </template>
                           <template v-else>
                             Resend Link
+                            <span class="material-symbols-rounded forward-icon" v-show="showForwardIcon">
+                              &#xe941;
+                            </span>
                           </template>
                           </button>
                         </div>
@@ -153,6 +179,7 @@
     data()
     {
       return {
+        showForwardIcon: false,
         codes: ['', '', '', '', '', ''],
         resendCode: 0,
         resendVerifyEmail: 0,
@@ -209,6 +236,7 @@
     },
     verifyPhone(){
       this.submitted = false;
+      this.showForwardIcon = false; // hide the arrow forward icon
       this.startResendCode();
 
        this.timerId = setTimeout(() => {
@@ -234,6 +262,7 @@
         // Clear the inputted codes after submitting
         this.codes = ['', '', '', '', '', ''];
         this.verifyEmail = false;
+        this.showForwardIcon = false; // hide the arrow forward icon
 
         // send email link automatically
         if(!this.resendVerifyEmail){
@@ -250,9 +279,11 @@
       }else{
         // incorrect code
         this.wrongCode = true;
+        this.showForwardIcon = false; // hide the arrow forward icon
          // Set a timer to hide the alert after 5 seconds
          setTimeout(() => {
           this.wrongCode = false;
+          this.showForwardIcon = false; // hide the arrow forward icon
         }, 5000);
         this.codes = ['', '', '', '', '', ''];
       }

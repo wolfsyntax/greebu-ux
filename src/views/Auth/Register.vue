@@ -65,7 +65,16 @@
                   </div>
                   <div v-if="errors?.account_type" class="text-danger">{{ errors.account_type.shift() }}</div>
                   <div class="d-grid gap-2 btn-account-type">
-                    <button class="btn btn-primary" @click.prevent="submitAccountType" :disabled="!isAccountTypeSelected">Next</button>
+                    <button class="btn btn-primary"
+                    @mouseenter="showForwardIcon = true"
+                    @mouseleave="showForwardIcon = false"
+                     @click.prevent="submitAccountType" 
+                    :disabled="!isAccountTypeSelected">
+                      Next
+                      <span class="material-symbols-rounded forward-icon" v-show="showForwardIcon">
+                      &#xe941;
+                    </span>
+                    </button>
                   </div>
                   <div class="have-account">
                       <p class="text-center">Already have an Account?</p><a href="/login">Log In</a>
@@ -129,7 +138,15 @@
               </div>
 
               <div class="d-grid gap-2 btn-sign-up">
-                <button class="btn btn-primary" type="submit" :disabled="!agree_term">Create Account</button>
+                <button class="btn btn-primary" type="submit"
+                @mouseenter="showForwardIcon = true"
+                @mouseleave="showForwardIcon = false" 
+                :disabled="!agree_term">
+                  Create Account
+                  <span class="material-symbols-rounded forward-icon" v-show="showForwardIcon">
+                      &#xe941;
+                    </span>
+                </button>
               </div>
 
               <social-button />
@@ -175,6 +192,7 @@ export default {
   data()
   {
     return {
+      showForwardIcon: false,
       step: 'register',
       verifyCode: null,
       verifyMessage: null,
@@ -229,6 +247,7 @@ export default {
     //   this.showRadioButtons = false;
     // },
     submitAccountType() {
+      this.showForwardIcon = false; // hide the arrow forward icon
       if (this.form.account_type) {
         this.showRadioButtons = false;
       }

@@ -19,6 +19,8 @@
   --p-color2: #757575;
   --p-color3: #1E1E1E;
   --p-color4: #2D3748;
+  --btn-hovered: #ED6300;
+  --btn-focus: #FFE4C5;
 }
 body{   
 font-family: 'Urbanist', sans-serif;
@@ -1459,6 +1461,12 @@ z-index: 1;
   overflow: scroll;
   height: 100vh;
 }
+.login form .btn-login button:hover, .register form .btn-sign-up button:hover, 
+.register form .row-checkbox .btn-account-type button:hover {
+  color: var(--white);
+  background-color: var(--btn-hovered);
+  border: 1px solid var(--btn-hovered);
+}
 .login .login-form .logo, .register .register-form .logo{
   margin-bottom: 24px;
 }
@@ -1624,7 +1632,7 @@ z-index: 1;
   text-decoration: none;
 }
 .login form button, .register form button, .register .btn-account-type button {
-  font-style: normal;
+  /* font-style: normal;
   font-weight: 700;
   font-size: 14px;
   line-height: 17px;
@@ -1635,15 +1643,32 @@ z-index: 1;
   margin-bottom: 24px;
   padding-top: 15px;
   padding-bottom: 15px;
+  border: 1px solid var(--orange); */
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.0175rem;
+  padding: 0.94rem 0;
+  width: 100%;
+  background-color: var(--orange);
+  border-radius: 0.3125rem;
   border: 1px solid var(--orange);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto 5rem;
+}
+.login form .btn-login .forward-icon, .register form .btn-sign-up .forward-icon, 
+.register form .row-checkbox .btn-account-type .forward-icon{
+  transition: opacity 0.3s;
+  font-size: 1.4rem;
+  margin-left: 2px;
+  color: var(--white);
+  opacity: 1;
 }
 .register .btn-account-type{
   margin: 2.5rem 0 4rem 0;
-}
-.login form .btn-login button:hover, .register form .btn-sign-up button:hover{
-  color: var(--orange);
-  background-color: var(--white);
-  border: 1px solid var(--orange);
 }
 .register form .btn-sign-up{
   margin-bottom: 3rem;
@@ -3242,6 +3267,9 @@ justify-content: space-between;
   font-weight: 700;
   margin-bottom: 0.63rem;
 }
+.social-phone-verification .successfully-signup .card-title .signup{
+  color: var(--orange);
+}
 .phone-verification .check-message .card-text, .phone-verification .verify-phone .card-text,
 .phone-verification .verify-email .card-text, .forgot-password .verify-password .card-text,
 .forgot-password .verify-email .card-text, .reset-password .change-password .card-text, .reset-password .reset-successfully .card-text,
@@ -3445,17 +3473,36 @@ justify-content: space-between;
   background-color: var(--orange);
   border-radius: 0.3125rem;
   border: 0;
-  margin-bottom: 5rem;
+  /* margin-bottom: 5rem; */
   border: 1px solid var(--orange);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto 5rem;
 }
+.phone-verification .check-message .btn-wrapper .forward-icon, .phone-verification .verify-phone .forward-icon .btn-wrapper button .forward-icon,
+.phone-verification .verify-email .btn-wrapper button .forward-icon, .forgot-password .verify-password .btn-wrapper button .forward-icon,
+.forgot-password .verify-email .btn-wrapper button .forward-icon, .reset-password .change-password .btn-wrapper button .forward-icon, 
+.reset-password .reset-successfully .btn-wrapper  button .forward-icon, .social-phone-verification .social-verify-phone .btn-wrapper  button .forward-icon,
+.social-phone-verification .check-message .btn-wrapper button .forward-icon, .social-phone-verification .successfully-signup .btn-wrapper button .forward-icon {
+  transition: opacity 0.3s;
+  font-size: 1.5rem!important;
+  margin-left: 2px;
+  color: var(--white)!important;
+  opacity: 1;
+}
+/* .forgot-password .verify-password .btn-wrapper button .forward-icon{
+  opacity: 1;
+} */
 .phone-verification .check-message .btn-wrapper button:hover, .phone-verification .verify-phone .btn-wrapper button:hover,
 .phone-verification .verify-email .btn-wrapper button:hover, .forgot-password .verify-password .btn-wrapper button:hover,
 .forgot-password .verify-email .btn-wrapper button:hover, .reset-password .change-password .btn-wrapper button:hover,
 .reset-password .reset-successfully .btn-wrapper button:hover, .social-phone-verification .social-verify-phone .btn-wrapper button:hover,
 .social-phone-verification .check-message .btn-wrapper button:hover, .social-phone-verification .successfully-signup .btn-wrapper button:hover    {
-  background-color: var(--white);
-  color: var(--orange);
-  border: 1px solid var(--orange);
+  color: var(--white);
+  background-color: var(--btn-hovered);
+  border: 1px solid var(--btn-hovered);
 }
 .phone-verification .check-message .alert, .social-phone-verification .social-verify-phone .alert,
 .social-phone-verification .check-message .alert {
@@ -3517,11 +3564,13 @@ justify-content: space-between;
               /* PHONE VERIFICATION / FORGOT PASSWORD  */
 .phone-verification .check-message .btn-wrapper button, .phone-verification .verify-phone .btn-wrapper button,
 .phone-verification .verify-email .btn-wrapper button, .forgot-password .verify-password .btn-wrapper button,
-.forgot-password .verify-email .btn-wrapper button, .reset-password .change-password .btn-wrapper button   {
+.forgot-password .verify-email .btn-wrapper button, .reset-password .change-password .btn-wrapper button,
+.social-phone-verification .check-message .btn-wrapper button, .social-phone-verification .successfully-signup .btn-wrapper button,
+.social-phone-verification .social-verify-phone .btn-wrapper button   {
     margin-bottom: 3rem;
     padding: .9rem 0;
 }   
-.phone-verification .check-message .phone-screen{
+.phone-verification .check-message .phone-screen, .social-phone-verification .check-message .phone-screen{
   margin-bottom: 2rem;
   padding: 1rem 0.1rem 1rem 0.1rem;
 }
@@ -3531,19 +3580,23 @@ justify-content: space-between;
   margin-top: 0rem;
 }
 .phone-verification .check-message .card-title, .phone-verification .verify-phone .card-title, .phone-verification .verify-email .card-title,
-.forgot-password .verify-password .card-title, .forgot-password .verify-email .card-title, .reset-password .change-password .card-title{
-  font-size: 1.75rem;
+.forgot-password .verify-password .card-title, .forgot-password .verify-email .card-title, .reset-password .change-password .card-title,
+.social-phone-verification .check-message .card-title, .social-phone-verification .successfully-signup .card-title,
+.social-phone-verification .social-verify-phone .card-title{
+  font-size: 1.5rem;
+  margin-bottom: 0.63rem;
 }
-.phone-verification .check-message .card-text, .phone-verification .verify-email .card-text, .forgot-password .verify-email .card-text{
+.phone-verification .check-message .card-text, .phone-verification .verify-email .card-text, .forgot-password .verify-email .card-text,
+.social-phone-verification .check-message .card-text{
   margin-bottom: 1rem;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 .phone-verification .verify-phone .card-text, .forgot-password .verify-password .card-text, 
-.reset-password .change-password .card-text{
+.reset-password .change-password .card-text, .social-phone-verification .successfully-signup .card-text{
   margin-bottom: 3rem;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
-.phone-verification .check-message .phone-number{
+.phone-verification .check-message .phone-number, .social-phone-verification .check-message .phone-number{
   margin-bottom: 2rem;
 }
 .forgot-password .verify-password .form-group, .reset-password .change-password .last {
@@ -3565,7 +3618,7 @@ justify-content: space-between;
   font-size: 1.1rem;
   margin-bottom: 3.5rem;
 }
-.phone-verification .check-message .verification-box {
+.phone-verification .check-message .verification-box, .social-phone-verification .check-message .verification-box {
   width: 3.5rem;
   height: 4.3rem;
   font-size: 2.3rem;
@@ -4209,6 +4262,15 @@ header nav {
 }
 
 /* LOGIN page / REGISTER */
+.login form button, .register form button, .register .btn-account-type button{
+  font-size: 0.875rem;
+  padding: 0.875rem 0!important;
+  margin-bottom: 3rem;
+}
+.login form .btn-login .forward-icon, .register form .btn-sign-up .forward-icon, 
+.register form .row-checkbox .btn-account-type .forward-icon{
+  font-size: 1.35rem;
+}
 .select-login .forgot-password{
   margin-top: 25px;
 }

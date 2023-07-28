@@ -241,7 +241,8 @@ const router = createRouter({
           }
         },
         {
-          path: '/password/reset/:token',
+          // path: '/password/reset/:token',
+          path: '/password/reset/',
           name: 'reset-token',
           component: () => import('/src/views/Auth/ResetPassword.vue'),
           meta: {
