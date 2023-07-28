@@ -8,6 +8,12 @@
           <div class="progress">
             <div class="progress-bar progress-bar-striped progress-bar-animated" :style="{ width: progressWidth }"></div>
           </div>
+          <h5>Song</h5>{{ song }}<br/>
+          <h5>Artists</h5>{{ song_artists }}
+          <h5>Language</h5>{{ song_language }}
+          <h5>Duration</h5>{{ song_duration }}
+          <h5>Purpose</h5>{{ song_purpose }}
+          <h5>Mood</h5>{{ song_mood }}
           <div class="d-flex justify-content-center mb-3">
             <div v-for="(step, index) in steps" :key="index" :class="['step-item', { 'active': index === currentStep }]">
               <div class="step-title">{{ step.title }}</div>
@@ -17,14 +23,14 @@
           <step-three class="step3" @step="stepper" :page="currentStep" @stepData="updateForm" v-if="currentStep === 2" />
           <step-four class="step4" @step="stepper" :page="currentStep" @stepData="updateForm" v-if="currentStep === 3" />
         </div>
-        <div class="col-12 d-flex justify-content-center"  v-if="currentStep === 1">
-          <div class="step2 " >
+        <!-- <div class="d-flex justify-content-center"  > -->
+          <div class="step2 w-100" v-if="currentStep === 1">
             <div class="step-content active">
               <step-two style="width: 100vh;" @step="stepper" @view="openModal" :page="currentStep" @stepData="updateForm" />
             </div>
             
           </div>
-        </div>
+        <!-- </div> -->
     </div> 
 
     </div>  <!-- end of container -->
@@ -258,6 +264,11 @@ export default {
       artist_types: (state) => state.artist.artist_types,
       genres: (state) => state.artist.genres,
       song: state => state.songs.song,
+      song_artists: state => state.songs.song_artists,
+      song_language: state => state.songs.song_language,
+      song_duration: state => state.songs.song_duration,
+      song_purpose: state => state.songs.song_purpose,
+      song_mood: state => state.songs.song_mood,
     }),        
     progressWidth() {
       return ((this.currentStep + 1) / this.steps.length) * 100 + '%';
@@ -441,13 +452,13 @@ export default {
       // this.activeSlide = Math.floor(this.currentIndex / 6);
       this.playSong(this.currentIndex);
     },
-    nextStep() {
-      if (this.currentStep < this.steps.length - 1) {
-        this.currentStep++;
-      }
+    // nextStep() {
+    //   if (this.currentStep < this.steps.length - 1) {
+    //     this.currentStep++;
+    //   }
 
-      this.submitted = true;
-    },
+    //   this.submitted = true;
+    // },
     subNextStepSong(){
       if (this.currentSubStepSong < this.subStepsSong.length - 1) {
         this.currentSubStepSong++;
@@ -475,7 +486,7 @@ export default {
         this.currentSubStepStory--;
       } 
     },
-    previousStep1(){
+    previousStep(){
       if (this.currentStep === 0) {
         window.location.href = '/create-song';
       }

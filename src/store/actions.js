@@ -137,6 +137,10 @@ var actions = {
             commit('SET_SONG_LANGUAGES', null)
             commit('SET_SONG_DURATIONS', null)
             commit('SET_SONG_PURPOSES', null)
+            commit('SET_SONG_MOOD', {})
+            commit('SET_SONG_LANGUAGE', {})
+            commit('SET_SONG_DURATION', {})
+            commit('SET_SONG_PURPOSE', {})
             commit('SET_SONG_REQUEST', null)
             commit('SET_SONG', {
               first_name: null,

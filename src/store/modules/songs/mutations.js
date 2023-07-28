@@ -38,3 +38,23 @@ export const SET_SONG_ARTIST = (state, payload) =>
 {
   state.song_artists = payload;
 }
+
+export const SET_SONG_LANGUAGE = (state, payload) =>
+{
+  state.song_language = payload;
+}
+
+export const SET_SONG_DURATION = (state, payload) =>
+{
+  state.song_duration = payload;
+}
+
+export const SET_SONG_PURPOSE = (state, payload) =>
+{
+  state.song_purpose = payload;
+}
+
+export const SET_SONG_MOOD = (state, payload) =>
+{
+  state.song_mood = payload;
+}

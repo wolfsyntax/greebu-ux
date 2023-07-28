@@ -1,20 +1,22 @@
 <template>
-  <div class="w-100">{{ song }}
+  <div class="w-100">
     <div class="progress">
       <div class="progress-bar" :style="{ width: subProgressWidthSong }"></div>
     </div>
-
+{{ language }}<br/><br/>
+{{ mood }}<br/><br/>
+{{ duration }}<br/><br/>
     <div class="d-flex justify-content-center content-sub">
       <div v-for="(subStep, subIndex) in subStepsSong" :key="subIndex" :class="['step-item', { 'active': subIndex === currentSubStepSong }]">
         <div class="substep-title">{{ subStep.title }}</div>
       </div>
     </div>
-    {{  currentSubStepSong }}
+    
     <!-- SONG SubSteps -->
-    <div class="">
+    <div class="justify-content-center p-0">
       <div class="row" >
         <div class="col-12" v-if="currentSubStepSong === 0">
-          <div class="select-artist">
+          <div class="select-artist ">
             <h2 class="title">Select your artist</h2>
             <p class="sub-title">These artists are available now! Tap an artist to hear a sample song that showcases their style and voice.</p>
             <div class="row top-row">
@@ -112,11 +114,11 @@
         </div>
         
         <div class="col-md-6 offset-md-3" v-if="currentSubStepSong === 1">
-          <div >
+          <!-- <div class=""> -->
             <div class="card">
               <div class="card-body">
                 <h2 class="card-title">How the song make them feel?</h2>
-                <form @submit.prevent="submit">
+                <form @submit.prevent="subNextStepSong">
                   <div class="form-group">
                     <label for="mood">Select mood</label>
                     <div class="dropdown">
@@ -133,19 +135,19 @@
 
                   <div class="button-wrapper">
                     <button type="button" class="btn btn-primary back" @click="subPreviousStepSong" :disabled="currentSubStepSong === 0">Back</button>
-                    <button type="button" class="btn btn-primary next" @click="subNextStepSong" :disabled="!mood">Next</button>
+                    <button type="submit" class="btn btn-primary next" :disabled="!mood">Next</button>
                   </div>
                 </form>
               </div>
             </div>
-          </div>
+          <!-- </div> -->
         </div>
 
         <div class="col-md-6 offset-md-3" v-if="currentSubStepSong === 2">
           <div class="card ">
             <div class="card-body ">
               <h2 class="card-title">More Details</h2>
-              <form class="w-100" @submit.prevent="submit">
+              <form class="w-100" @submit.prevent="nextStep">
                 <div class="form-group">
                   <label for="language">Select Language</label>
                   <div class="dropdown">
@@ -176,7 +178,7 @@
 
                 <div class="button-wrapper">
                   <button type="button" class="btn btn-primary back" @click="subPreviousStepSong" :disabled="page === 0">Back</button>
-                  <button type="button" class="btn btn-primary next" @click="nextStep" :disabled="!(language && duration)">Next</button>
+                  <button type="submit" class="btn btn-primary next" :disabled="!(language && duration)">Next</button>
                 </div>
               </form>
             </div>
@@ -267,11 +269,12 @@ export default {
   },  
   methods: {
     ...mapActions([
-      'fetchArtists', 'artistOptions', 'fetchSongForm', 'storeArtist', 'songStepTwo',
-    ]),
-    selectMood(mood)
+      'fetchArtists', 'artistOptions', 'fetchSongForm', 'storeArtist', 'songStepTwo', 'storeMood', 'storeLanguage', 'storeDuration',
+      ]),
+    selectMood(value)
     {
-      this.mood = mood;
+      this.mood = value;
+      this.storeMood(value);
     },    
     subPreviousStepSong()
     {
@@ -279,6 +282,9 @@ export default {
       if (this.currentSubStepSong > 0) {
         this.currentSubStepSong--;
       }
+      this.language = this._getSongLanguage;
+      this.mood = this._getSongMood;
+      this.duration = this._getSongDuration;
     },
     fetchForm()
     {
@@ -289,15 +295,16 @@ export default {
       // if (this.currentStep < this.steps.length - 1) {
       //   this.currentStep++;
       // }
-      var newForm = Object.assign(this.form, {
-        language_id: this.language,
-        duration_id: this.duration,
-      })
+      // var newForm = Object.assign(this.form, {
+      //   language_id: this.language,
+      //   duration_id: this.duration,
+      // })
 
       this.$emit('step', 2)
-      this.$emit('stepData', this.form)
-      console.log('Song.vue nextStep')
-      this.songStepTwo(newForm)
+      // this.$emit('stepData', this.form)
+      
+
+      this.songStepTwo()
 
       this.submitted = true;
     },    
@@ -312,13 +319,14 @@ export default {
       if (this.currentSubStepSong === 2) {
 
         console.log('Setting Mood: ', this.mood)
-        var newObj = Object.assign(this.form, { song_type_id: this.mood });
+        // var newObj = Object.assign(this.form, { song_type_id: this.mood });
+        this.storeMood(this.mood);
         // this.storeSong(newObj)
       } else if (this.currentSubStepSong === 3) {
         console.log('Language and Duration: ', this.form)
-        var newObj = Object.assign(this.form, { language_id: this.language, duration_id: this.duration });
-        console.log('Language and Duration (new): ', this.form)
-        console.log('Language and Duration (clone): ', this.form)
+        // var newObj = Object.assign(this.form, { language_id: this.language, duration_id: this.duration });
+        // this.storeLanguage(this.language);
+        // this.storeDuration(this.duration);
       }
     },
     playButton()
@@ -358,24 +366,22 @@ export default {
     selectLanguage(language)
     {
       this.language = language;
+      this.storeLanguage(language);
     },
     selectSongDuration(duration)
     {
       this.duration = duration;
-    },
-    selectOccasion(occasion)
-    {
-      this.occasion = occasion;
+      this.storeDuration(duration)
     },
   },
   mounted()
   {
     var payload = {}
-
+    
     if (this.artist_type) payload.artist_type = this.artist_type
     if (this.genre) payload.genre = this.genre
     if (this.search) payload.search = this.search
-
+    
     this.artistOptions()
     this.fetchSongForm()
       .then(response =>
@@ -390,10 +396,13 @@ export default {
     })
 
     this.form = this.song;
-
+    this.language = this._getSongLanguage;
+    this.mood = this._getSongMood;
+    this.duration = this._getSongDuration;
+    console.log('Song.vue mounted', this.mood);
   },
   computed: {
-    ...mapGetters(["userInfo", "token"]),
+    ...mapGetters(["userInfo", "token", "_getSongArtists", "_getSongLanguage", "_getSongDuration", "_getSongPurpose", "_getSongMood"]),
     ...mapState({
       artists: (state) => state.artist.artists,
       artist_types: (state) => state.artist.artist_types,
@@ -403,7 +412,11 @@ export default {
       durations: state => state.songs.durations,
       purposes: state => state.songs.purposes,
       song: state => state.songs.song,
-      song_artists: state => state.songs.song_artists,
+      // song_artists: state => state.songs.song_artists,
+      // song_language: state => state.songs.song_language,
+      // song_duration: state => state.songs.song_duration,
+      // song_purpose: state => state.songs.song_purpose,
+      // song_mood: state => state.songs.song_mood,
     }),
     subProgressWidthSong()
     {
@@ -426,10 +439,10 @@ export default {
 
       } else if (prev === 2) {
 
-        this.$emit('stepData', {
-          language_id: this.language?.id || null,
-          duration_id: this.duration?.id || null,
-        })
+        // this.$emit('stepData', {
+        //   language_id: this.language?.id || null,
+        //   duration_id: this.duration?.id || null,
+        // })
 
       }
 

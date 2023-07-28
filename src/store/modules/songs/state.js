@@ -10,7 +10,12 @@ var state = {
     last_name: null,
     email: null,
   },
-  song_artists: [],
+  song_language: {},
+  song_duration: {},
+  song_purpose: {},
+  song_mood: {},
+  // song_artists: [],
+  song_artists: {},
   
 }
 

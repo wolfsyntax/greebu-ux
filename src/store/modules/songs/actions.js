@@ -115,17 +115,22 @@ export const songStepOne = ({ commit, rootState, state}, payload) => {
   })
 }
 
-export const songStepTwo = ({ commit, rootState, state}, payload) => {
+export const songStepTwo = ({ commit, rootState, state}) => {
   
   return new Promise(async(resolve, reject) => {
     
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
 
     var form = new FormData();
+    console.log('Saving Step Two')
+    console.log('Mood: ',state.song_mood.id)
+    console.log('Language: ',state.song_language.id)
+    console.log('Duration: ', state.song_duration.id);
+    console.log('Artists: ', state.song_artists);
 
-    form.append('song_type_id', payload.song_type_id.id);
-    form.append('language_id', payload.language_id.id);
-    form.append('duration_id', payload.duration_id.id);
+    form.append('song_type_id', state.song_mood.id);
+    form.append('language_id', state.song_language.id);
+    form.append('duration_id', state.song_duration.id);
     form.append('artists[]', state.song_artists);
 
     await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/song-requests/song/${state.song?.id}?role=${rootState.role}`, form, {
@@ -137,7 +142,7 @@ export const songStepTwo = ({ commit, rootState, state}, payload) => {
       .then(response => {        
         
         const { data, status: statusCode } = response
-
+        console.log('Response Step Two', response)
         if (statusCode === 200)
         { 
           const { result, status } = data
@@ -188,34 +193,72 @@ export const songStepThree = ({ commit, rootState, state}, payload) => {
   })
 }
 
-export const songStepFinal = ({ commit, rootState, state}, payload) => {
-  
-  return new Promise(async(resolve, reject) => {
-    
+export const songStepFinal = ({ commit, rootState, state }, payload) =>
+{
+
+  return new Promise(async (resolve, reject) =>
+  {
+
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
 
     await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/song-requests/review/${state.song?.id}?role=${rootState.role}`, payload)
-      .then(response => {        
-        
+      .then(response =>
+      {
+
         const { data, status: statusCode } = response
         console.log('Song Request form: ', response);
 
-        if (statusCode === 200)
-        { 
+        if (statusCode === 200) {
           const { result, status } = data
-          
-          if (status === 200)
-          {
+
+          if (status === 200) {
             commit('SET_SONG', result?.song_request)
 
           }
-          
+
         }
-        
+
         resolve(response)
-    })
-    .catch(err => {
-      reject(err)
-    });
+      })
+      .catch(err =>
+      {
+        reject(err)
+      });
+  })
+}
+
+export const storeMood = ({ commit, rootState, state}, payload) => {
+  
+  return new Promise(async (resolve, reject) =>
+  {
+    console.log('Store Mood: ', payload);
+    commit('SET_SONG_MOOD', payload);
+  })
+}
+
+export const storeLanguage = ({ commit, rootState, state}, payload) => {
+  
+  return new Promise(async (resolve, reject) =>
+  {
+    console.log('Store Language: ', payload);
+    commit('SET_SONG_LANGUAGE', payload);
+  })
+}
+
+export const storeDuration = ({ commit, rootState, state}, payload) => {
+  
+  return new Promise(async (resolve, reject) =>
+  {
+    console.log('Store Duration: ', payload);
+    commit('SET_SONG_DURATION', payload);
+  })
+}
+
+export const storePurpose = ({ commit, rootState, state}, payload) => {
+  
+  return new Promise(async (resolve, reject) =>
+  {
+    console.log('Store Purpose: ', payload);
+    commit('SET_SONG_PURPOSE', payload);
   })
 }
