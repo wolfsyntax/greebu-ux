@@ -109,13 +109,13 @@
 
               <div class="form-group">
                 <label for="username">Username</label>
-                <input id="email" type="text" class="form-control" name="username" v-model="form.username" required autocomplete="username">
+                <input id="username" type="text" class="form-control" name="username" v-model="form.username" required autocomplete="username">
                 <div v-for="error in errors?.username" :key="error" class="text-danger">{{ error }}</div>
               </div>
 
               <div class="form-group">
-                <label for="username">Mobile number</label>
-                <input id="email" type="text" class="form-control" name="phone" v-model="form.phone" required autocomplete="phone">
+                <label for="phone">Mobile number</label>
+                <input id="phone" type="text" class="form-control" name="phone" v-model="form.phone" required autocomplete="phone">
                 <div v-for="error in errors?.phone" :key="error" class="text-danger">{{ error }}</div>
               </div>
 
@@ -255,7 +255,7 @@ export default {
     ...mapActions(['signup', 'resendOTPCode', 'verifyOTP']),
     async submit()
     {
-
+      console.log('Submit registration info')
       this.isDisabled = true;
       await this.signup(this.form)
         .then((response) => { 
