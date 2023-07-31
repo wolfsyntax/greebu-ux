@@ -59,6 +59,10 @@ header nav{
 .main-nav .logo{
   color: var(--orange)
 }
+.main-nav .logo img{
+  width: 175px;
+  height: 46px;
+}
 .main-nav nav .navbar-nav li{
   padding: 0 4px;
 }
@@ -71,6 +75,15 @@ header nav{
 }
 .main-nav .nav-button .log-in{
   background-color: var(--white);
+  font-weight: 500;
+}
+.main-nav .nav-button .log-in:hover{
+  background-color: var(--orange);
+  color: var(--white);
+}
+.main-nav .nav-button .sign-up:hover{
+  background-color: var(--btn-hovered);
+  border: 1px solid var(--btn-hovered);
 }
 .main-nav .nav-button .upgrade {
   border-color: var(--white);
@@ -300,7 +313,7 @@ header nav{
   border-radius: 5px;
   color: var(--white);
   background-color: var(--orange);
-  padding: 20px 60px;
+  padding: 20px 40px;
   font-style: normal;
   font-weight: 700;
   font-size: 24px;
@@ -383,13 +396,91 @@ header nav{
   75%  { bottom: 450px;} */
   100% { bottom: 600px;}
 }
-
-/* HOME PAGE - Custom Song section */ 
-.custom-song .container,  .discover-artist .container, .songs-for-occasion .container, .testimonials .container, .featured-artists .container,
+.geebu-presentation .container, .custom-song .container,  .discover-artist .container, .songs-for-occasion .container, .testimonials .container, .featured-artists .container,
 .reminder .container, .plans-and-pricing .container {
   margin-top: 100px;
   margin-bottom: 100px;
 }
+/* HOME PAGE - Unlock the Rhythm of Your Celebrations! section */
+.geebu-presentation .container .title{
+  color: var(--black);
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 52.8px;
+  margin-bottom: 80px;
+}
+.geebu-presentation .container .content{
+  color: var(--p-color1);
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 33.4px;
+  width: 95%;
+  text-align: left;
+  margin-bottom: 24px;
+}
+.geebu-presentation .container ul {
+  margin-bottom: 40px;
+}
+.geebu-presentation .container ul li::marker{
+  color: var(--orange);
+  font-size: 24px;
+}
+.geebu-presentation .container ul li{
+  color: var(--p-color1);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 33.4px;
+  margin-bottom: 8px;
+}
+.geebu-presentation .container .video-container{
+    position: relative;
+    width: 99.9%;
+    background-color: var(--white);
+    margin: 0;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+.geebu-presentation .video-container video{
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  box-shadow: 0px 32px 44px 0px #B8BBCF;
+}
+.geebu-presentation .video-container .play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 48px;
+  color: #fff;
+  cursor: pointer;
+  z-index: 1;
+}
+.geebu-presentation .video-container .play-button img {
+  width: 112px;
+  height: 112px;
+  fill: rgba(255, 255, 255, 0.32);
+  backdrop-filter: blur(1px);
+}
+.geebu-presentation .container .learn-more, #custom-song-carousel .carousel-caption a{
+    border: 1px solid var(--orange);
+    border-radius: 10px;
+    color: var(--white);
+    background-color: var(--orange);
+    padding: 22px 48px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 100%;
+    letter-spacing: 0.05em;
+}
+.geebu-presentation .container .learn-more:hover, #custom-song-carousel .carousel-caption a:hover{
+  background-color: var(--btn-hovered);
+}
+
+/* HOME PAGE - Custom Song section */ 
 .featured-artists .container{
   margin-bottom: 150px;
 }
@@ -494,18 +585,6 @@ header nav{
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
   text-align: left;
-}
-#custom-song-carousel .carousel-caption a {
-  border: 1px solid var(--orange);
-  border-radius: 10px;
-  color: var(--white);
-  background-color: var(--orange);
-  padding: 22px 47px;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 100%;
-  letter-spacing: 0.05em;
 }
 
 /* HOME PAGE - Discover you dream artist section */ 
@@ -710,7 +789,7 @@ filter: brightness(70%);
   transition: 0.7s all ease-in;
 }
 .testimonials .video-container .play-button span.material-symbols-outlined:hover {
-  outline: 10px solid rgb(168 168 168 / 30%);
+   outline: 10px solid rgb(168 168 168 / 30%); 
 }
 
 .testimonials .play-button {
@@ -1342,8 +1421,8 @@ z-index: 1;
 
 /* HOME PAGE - Frequent Ask Questions section */ 
 .faq .container{
-  margin-top: 150px;
-  margin-bottom: 200px;
+  margin-top: 6.5rem;
+  margin-bottom: 10rem;
 }
 .faq h2{
   margin-bottom: 16px;
@@ -1460,12 +1539,6 @@ z-index: 1;
   padding: 5% 7% 1%;
   overflow: scroll;
   height: 100vh;
-}
-.login form .btn-login button:hover, .register form .btn-sign-up button:hover, 
-.register form .row-checkbox .btn-account-type button:hover {
-  color: var(--white);
-  background-color: var(--btn-hovered);
-  border: 1px solid var(--btn-hovered);
 }
 .login .login-form .logo, .register .register-form .logo{
   margin-bottom: 24px;
@@ -1632,18 +1705,6 @@ z-index: 1;
   text-decoration: none;
 }
 .login form button, .register form button, .register .btn-account-type button {
-  /* font-style: normal;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 17px;
-  letter-spacing: -0.02em;
-  color: var(--white);
-  background-color: var(--orange);
-  border: 0px solid var(--orange);
-  margin-bottom: 24px;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  border: 1px solid var(--orange); */
   color: var(--white);
   font-size: 1rem;
   font-weight: 700;
@@ -1659,13 +1720,22 @@ z-index: 1;
   text-align: center;
   margin: 0 auto 5rem;
 }
-.login form .btn-login .forward-icon, .register form .btn-sign-up .forward-icon, 
-.register form .row-checkbox .btn-account-type .forward-icon{
-  transition: opacity 0.3s;
+.login form .btn-login button:hover, .register form .btn-sign-up button:hover, 
+.register form .row-checkbox .btn-account-type button:hover {
+  color: var(--white);
+  background-color: var(--btn-hovered);
+  border: 1px solid var(--btn-hovered);
+}
+.login form .btn-login button:hover .forward-icon, .register form .btn-sign-up button:hover .forward-icon, 
+.register form .row-checkbox .btn-account-type button:hover .forward-icon{
   font-size: 1.4rem;
   margin-left: 2px;
   color: var(--white);
-  opacity: 1;
+  display: block;
+}
+.login form .btn-login .forward-icon, .register form .btn-sign-up .forward-icon, 
+.register form .row-checkbox .btn-account-type .forward-icon{
+ display: none;
 }
 .register .btn-account-type{
   margin: 2.5rem 0 4rem 0;
@@ -3481,20 +3551,6 @@ justify-content: space-between;
   text-align: center;
   margin: 0 auto 5rem;
 }
-.phone-verification .check-message .btn-wrapper .forward-icon, .phone-verification .verify-phone .forward-icon .btn-wrapper button .forward-icon,
-.phone-verification .verify-email .btn-wrapper button .forward-icon, .forgot-password .verify-password .btn-wrapper button .forward-icon,
-.forgot-password .verify-email .btn-wrapper button .forward-icon, .reset-password .change-password .btn-wrapper button .forward-icon, 
-.reset-password .reset-successfully .btn-wrapper  button .forward-icon, .social-phone-verification .social-verify-phone .btn-wrapper  button .forward-icon,
-.social-phone-verification .check-message .btn-wrapper button .forward-icon, .social-phone-verification .successfully-signup .btn-wrapper button .forward-icon {
-  transition: opacity 0.3s;
-  font-size: 1.5rem!important;
-  margin-left: 2px;
-  color: var(--white)!important;
-  opacity: 1;
-}
-/* .forgot-password .verify-password .btn-wrapper button .forward-icon{
-  opacity: 1;
-} */
 .phone-verification .check-message .btn-wrapper button:hover, .phone-verification .verify-phone .btn-wrapper button:hover,
 .phone-verification .verify-email .btn-wrapper button:hover, .forgot-password .verify-password .btn-wrapper button:hover,
 .forgot-password .verify-email .btn-wrapper button:hover, .reset-password .change-password .btn-wrapper button:hover,
@@ -3503,6 +3559,23 @@ justify-content: space-between;
   color: var(--white);
   background-color: var(--btn-hovered);
   border: 1px solid var(--btn-hovered);
+}
+.phone-verification .check-message .btn-wrapper button:hover .forward-icon, .phone-verification .verify-phone .btn-wrapper button:hover .forward-icon, 
+.phone-verification .verify-email .btn-wrapper button:hover .forward-icon, .forgot-password .verify-password .btn-wrapper button:hover .forward-icon, 
+.forgot-password .verify-email .btn-wrapper button:hover .forward-icon, .reset-password .change-password .btn-wrapper button:hover .forward-icon, 
+.reset-password .reset-successfully .btn-wrapper button:hover .forward-icon, .social-phone-verification .social-verify-phone .btn-wrapper button:hover .forward-icon, 
+.social-phone-verification .check-message .btn-wrapper button:hover .forward-icon, .social-phone-verification .successfully-signup .btn-wrapper button:hover .forward-icon{
+  display: block;
+  font-size: 1.5rem!important;
+  margin-left: 2px;
+  color: var(--white)!important;
+}
+.phone-verification .check-message .btn-wrapper .forward-icon, .phone-verification .verify-phone .btn-wrapper button .forward-icon,
+.phone-verification .verify-email .btn-wrapper button .forward-icon, .forgot-password .verify-password .btn-wrapper button .forward-icon,
+.forgot-password .verify-email .btn-wrapper button .forward-icon, .reset-password .change-password .btn-wrapper button .forward-icon, 
+.reset-password .reset-successfully .btn-wrapper  button .forward-icon, .social-phone-verification .social-verify-phone .btn-wrapper  button .forward-icon,
+.social-phone-verification .check-message .btn-wrapper button .forward-icon, .social-phone-verification .successfully-signup .btn-wrapper button .forward-icon {
+  display: none;
 }
 .phone-verification .check-message .alert, .social-phone-verification .social-verify-phone .alert,
 .social-phone-verification .check-message .alert {
@@ -3974,17 +4047,29 @@ font-size: 1.8rem;
 
 /* HOME PAGE - Top Carousel section */ 
 header nav {
-  height: 85px;
+  height: 5rem;
 }
 .main-nav nav .navbar-nav li {
   padding: 0 2px;
 }
 .nav-button .log-in, .nav-button .sign-up, .nav-button .log-out {
-  padding: 6px 18px;
-  font-size: 16px;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  padding: 0.41px 1.41px;
+}
+.main-nav .nav-button .sign-up{
+  margin-left: 0.31rem!important;
+}
+.main-nav .logo img {
+  width: 8.1875rem;
+  height: 2.1875rem;
 }
 .main-nav nav li a {
-  font-size: 17px;
+  font-size: 1rem;
+  letter-spacing: 0.0125rem;
+  padding: 0 1rem!important;
 }
 .main-nav .nav-button .dropdown .dropdown-menu li {
   margin: 24px 1rem;
@@ -4031,14 +4116,75 @@ header nav {
   0%   { bottom: 0px;}
   100% { bottom: 480px;}
 }
-
+/* HOME PAGE - Unlock the Rhythm of Your Celebrations! section */
+.geebu-presentation .container{
+  margin-bottom: 5rem;
+  margin-top: 5rem;
+}
+.geebu-presentation .container .title{
+  font-size: 2.5rem;
+  line-height: 3.3rem;
+  margin-bottom: 3.75rem;
+}
+.geebu-presentation .container .content{
+  font-size: 1.25rem;
+  line-height: 2.0875rem;
+  margin-bottom: 1.5rem
+}
+.geebu-presentation .container ul{
+  margin-bottom: 1.5rem;
+}
+.geebu-presentation .container ul li::marker{
+  font-size: 1.25rem;
+}
+.geebu-presentation .container ul li{
+  font-size: 1.25rem;
+  margin-bottom: 0.87rem;
+}
+.geebu-presentation .container .video-container{
+  position: relative;
+  width: 100%;
+  background-color: var(--white);
+}
+.geebu-presentation .video-container video{
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  box-shadow: 0px 32px 44px 0px #B8BBCF;
+}
+.geebu-presentation .video-container .play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 48px;
+  color: #fff;
+  cursor: pointer;
+  z-index: 1;
+}
+.geebu-presentation .video-container .play-button img {
+  width: 112px;
+  height: 112px;
+  fill: rgba(255, 255, 255, 0.32);
+  backdrop-filter: blur(1px);
+}
+.geebu-presentation .container .learn-more, #custom-song-carousel .carousel-caption a,
+.available-artist .content a, .book-your-event .content a, .songs-for-occasion .button-wrapper a{
+  font-size: 1rem;
+  letter-spacing: 0.05rem;
+  padding: 1rem 3rem;
+}
+.geebu-presentation .container .learn-more:hover, #custom-song-carousel .carousel-caption a:hover{
+  background-color: var(--btn-hovered);
+}
 /* HOME PAGE - A Custom Song in 3 Simple Steps */  
 .custom-song .container {
-  margin-top: 80px;
-  margin-bottom: 80px;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
 }
 .custom-song h2 {
-  margin-bottom: 40px;
+  font-size: 2.5rem;
+  margin-bottom: 1.75rem;
 }
 #custom-song-carousel .carousel-indicators {
   top: 80px;
@@ -4052,6 +4198,10 @@ header nav {
   border: 2.5px solid var(--gray2);
   padding-top: 13px;
 }
+#custom-song-carousel .carousel-caption h3 {
+  font-size: 2.5rem;
+  margin-bottom: 0.94rem;
+}
 #custom-song-carousel .carousel-caption {
   top: 30%;
 }
@@ -4061,60 +4211,108 @@ header nav {
   margin-bottom: 20px;
 }
 #custom-song-carousel .carousel-caption p {
-  margin-bottom: 32px;
+  font-size: 1.25rem;
+  margin-bottom: 1.75rem;
 }
 .available-artist .content {
-  margin: 60px 0px 0px 50px;
+  margin: 4.56rem 0px 0px 5.12rem;
   width: 90%;
 }
 
 /* HOME PAGE - Discover the Easy Way to Book Your Dream Artist section */ 
-.discover-artist p {
-  margin-bottom: 24px;
+.discover-artist .container{
+  margin-bottom: 5rem;
+  margin-top: 5rem;
+}
+.discover-artist h2, .songs-for-occasion h2, .testimonials h2, .featured-artists h2, .plans-and-pricing h2, .faq h2 {
+  font-size: 2.5rem;
+  line-height:normal;
+  margin-bottom: 0.63rem;
+}
+.discover-artist .sub-heading, .songs-for-occasion .sub-heading, .testimonials .sub-heading, .featured-artists .sub-heading, .plans-and-pricing .sub-heading, .faq .sub-heading{
+  font-size: 1.25rem;
+  margin-bottom: 3.75rem;
+}
+.available-artist .content h3, .book-your-event .content h3{
+  font-size: 2.5rem;
+  font-style: normal;
+  line-height: normal;
+  margin-bottom: 1.25rem;
+}
+.available-artist .content p, .book-your-event .content p{
+  font-size: 1.25rem;
+  font-style: normal;
+  line-height: normal;
+  margin-bottom: 1.5rem;
+}
+.available-artist .content ul li, .book-your-event .content ul li{
+  font-size: 1rem;
+  font-style: normal;
+  line-height: normal;
+  margin-bottom: 0.75rem;
 }
 .discover-artist #availableArtist {
-  margin: 150px auto;
+  margin: 6.5rem auto;
 }
 .book-your-event .content {
-  margin: 80px auto 80px;
+  margin: 5rem auto 5rem;
   width: 90%;
 }
 .discover-artist #bookYourEvent {
-  margin: 150px auto;
-}
-#custom-song-carousel .carousel-caption a, .available-artist .content a, .book-your-event .content a, .songs-for-occasion .button-wrapper a {
-  padding: 20px 46px;
-  font-size: 20px;
+  margin: 6.5rem auto;
 }
 
 /* HOME PAGE - Songs for every Occasion section */ 
 .songs-for-occasion .button-wrapper a {
-  padding: 20px 56px;
+  padding: 1.25rem 3.63rem;
+}
+.songs-for-occasion .content{
+  margin-top: 1.75rem;
 }
 .songs-for-occasion .content h5 {
-  font-size: 28px;
+  font-size: 1.5rem;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.075rem;
+  margin-bottom: 0.25rem;
 }
 .songs-for-occasion .content p {
-  font-size: 16px;
+  font-size: 1rem;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.05rem;
 }
 .songs-for-occasion .row {
-  margin-bottom: 80px;
+  margin-bottom: 5rem;
 }
 
 /* HOME PAGE - Testimonails section */ 
+.testimonials .container{
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
 .testimonials #testimonialsSlider .video-wrapper .video-block .play-button {
   background-size: contain;
 }
 .testimonials #testimonialsSlider .carousel-caption p {
-  font-size: 24px;
-  line-height: 32px;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.0125rem;
+  text-transform: capitalize;
+  margin-bottom: 1.25rem;
 }
 .testimonials #testimonialsSlider .carousel-caption h6 {
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.75rem; 
+  letter-spacing: 0.0125rem;
+  text-transform: capitalize;
 }
 .testimonials #testimonialsSlider {
-  padding: 45px 55px;
+  padding: 2.88rem 3.63rem;
 }
 .testimonials .video-container .play-button i {
   font-size: 42px;
@@ -4132,17 +4330,32 @@ header nav {
   margin-right: 6px;
   margin-left: 6px;
 }
-.testimonials .sub-heading {
+/* .testimonials .sub-heading {
   margin-bottom: 30px;
-}
+} */
 
 /* HOME / ARTIST PAGE - Company Featured Artists section */ 
 .featured-artists .container{
-  margin-bottom: 125px;
+  margin-top: 9rem;
+  margin-bottom: 9rem;
 }
 .featured-artists .card img, .artists #ShowArtists .card img {
-  height: 320px;
+  height: 20.625rem;
   margin-bottom: 10px;
+}
+.featured-artists .trending h4, .featured-artists .popular h4 {
+  font-size: 1.75rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-bottom: 0.62rem;
+}
+.featured-artists .trending p, .featured-artists .popular p{
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.0625rem;
 }
 .featured-artists .card-body .card-title, .artists .card-body .card-title, .basic-information .container .step2 .select-artist .card-body .card-title {
   white-space: nowrap;
@@ -4191,12 +4404,11 @@ header nav {
   border-radius: 10px;
   color: var(--white);
   background-color: var(--orange);
-  padding: 20px 80px;
+  padding: 1.25rem 3.6rem;
+  font-size: 1rem;
   font-style: normal;
   font-weight: 700;
-  font-size: 20px;
-  line-height: 100%;
-  letter-spacing: 0.05em;
+  line-height: normal;
 }
 
 /* HOME PAGE - Plans & Pricing section */ 
@@ -4208,9 +4420,38 @@ header nav {
 }
 
 /* HOME PAGE - Send Yourself A Reminder section */ 
+.reminder .container{
+  margin-bottom: 7rem;
+  margin-top: 5rem;
+}
+.reminder .content h2 {
+  font-size: 2.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.0125rem;
+  text-transform: capitalize;
+  margin-bottom: 1.12rem;
+}
+.reminder .content p{
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.0125rem;
+  margin-bottom: 2rem;
+}
+.reminder .content a{
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%; /* 1.25rem */
+  letter-spacing: 0.0625rem;
+  padding: 0.88 2.88rem;
+}
 .reminder .content {
   width: 65%;
-  padding: 100px 0px 100px 5%;
+  padding: 5rem 0px 5rem 5%;
 }
 .reminder .container:hover{
   margin: 100px auto 150px;
@@ -4222,18 +4463,21 @@ header nav {
   padding: 140px 0px 140px 3.5%;
 }
 .reminder .container:hover h2{
-  font-size: 68px;
-  line-height: 78px;
+  font-size: 3.35rem;
+  line-height: 4.25rem;
   transition: .7s ease-in;
 }
 .reminder .container:hover p{
-  font-size: 32px;
-  line-height: 40px;
+  font-size: 1.75rem;
+  line-height: 2.50rem;
   transition: .6s ease-in;
 }
 .reminder .container:hover img {
-  margin-top: -600px;
+  margin-top: -650px;
   transition:  .5s ease;
+}
+.reminder .container:hover .content{
+  padding: 7rem 0px 7rem 5%;
 }
 
 /* HOME PAGE - Frequent Ask Questions section */ 
@@ -4241,15 +4485,22 @@ header nav {
   width: 80%;
 }
 .faq .container {
-  margin-top: 80px;
+  margin-top: 5rem;
 }
 .faq .sub-heading {
-  margin-bottom: 54px;
+  margin-bottom: 3.5rem;
 }
 .faq .accordion-button {
-  font-size: 20px;
-  line-height: 24px;
-  padding: 12px 10px;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.75rem; 
+  letter-spacing: 0.0125rem;
+  text-transform: capitalize;
+  padding: 1.25rem 0.94rem;
+}
+.faq h2{
+  margin-bottom: 0;
 }
 .faq .accordion-body {
   font-size: 16px;
@@ -4257,6 +4508,11 @@ header nav {
   padding-bottom: 16px;
 }
 .faq .accordion-body .content {
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5rem; /* 150% */
+  letter-spacing: 0.0125rem;
   padding-left: 8px;
   margin-left: 48px;
 }
@@ -4410,7 +4666,7 @@ header nav {
 
 /* HOME PAGE - Navigation section */ 
 .main-nav nav .navbar-nav li {
-  padding: 0 1px;
+  padding: 0 2.44rem;
 }
 .main-nav nav li a {
   font-size: 15px;

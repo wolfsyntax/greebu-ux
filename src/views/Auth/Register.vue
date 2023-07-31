@@ -66,12 +66,10 @@
                   <div v-for="error in errors?.account_type" :key="error" class="text-danger">{{ error }}</div>
                   <div class="d-grid gap-2 btn-account-type">
                     <button class="btn btn-primary"
-                    @mouseenter="showForwardIcon = true"
-                    @mouseleave="showForwardIcon = false"
                      @click.prevent="submitAccountType" 
                     :disabled="!isAccountTypeSelected">
                       Next
-                      <span class="material-symbols-rounded forward-icon" v-show="showForwardIcon">
+                      <span class="material-symbols-rounded forward-icon">
                       &#xe941;
                     </span>
                     </button>
@@ -139,11 +137,9 @@
 
               <div class="d-grid gap-2 btn-sign-up">
                 <button class="btn btn-primary" type="submit"
-                @mouseenter="showForwardIcon = true"
-                @mouseleave="showForwardIcon = false" 
                 :disabled="!agree_term">
                   Create Account
-                  <span class="material-symbols-rounded forward-icon" v-show="showForwardIcon">
+                  <span class="material-symbols-rounded forward-icon">
                       &#xe941;
                     </span>
                 </button>
@@ -192,7 +188,6 @@ export default {
   data()
   {
     return {
-      showForwardIcon: false,
       step: 'register',
       verifyCode: null,
       verifyMessage: null,
@@ -247,7 +242,6 @@ export default {
     //   this.showRadioButtons = false;
     // },
     submitAccountType() {
-      this.showForwardIcon = false; // hide the arrow forward icon
       if (this.form.account_type) {
         this.showRadioButtons = false;
       }

@@ -58,12 +58,10 @@
                   </div>
                   <div class="d-grid gap-2 btn-login">
                     <button class="btn btn-primary" type="submit" 
-                    @mouseenter="showForwardIcon = true"
-                    @mouseleave="showForwardIcon = false"
                     :disabled="form.processing"
                     >
                     Login
-                    <span class="material-symbols-rounded forward-icon" v-show="showForwardIcon">
+                    <span class="material-symbols-rounded forward-icon">
                       &#xe941;
                     </span>
                   </button>
@@ -108,7 +106,6 @@ export default {
   data()
   {
     return {
-      showForwardIcon: false,
       form: {
         email: null,
         password: null,

@@ -22,11 +22,9 @@
                 <div class="btn-wrapper">
                 <button type="button" class="btn btn-primary next" 
                 @click="verifyPhone"
-                @mouseenter="showForwardIcon = true"
-                @mouseleave="showForwardIcon = false"
                 >
                 Verify Phone Number
-                <span class="material-symbols-rounded forward-icon" v-show="showForwardIcon">
+                <span class="material-symbols-rounded forward-icon">
                     &#xe941;
                   </span>
               </button>
@@ -83,13 +81,14 @@
                         </div>
                 <div class="btn-wrapper">
                   <button type="button" class="btn btn-primary next"
-                  @mouseenter="showForwardIcon = true"
-                  @mouseleave="showForwardIcon = false"
+                   @click="submitForm" 
+                   >
+                   <!-- <button type="button" class="btn btn-primary next"
                    @click="submitForm" 
                    :disabled="!isValidPhoneNumber"
-                   >
+                   > -->
                    Submit
-                   <span class="material-symbols-rounded forward-icon" v-show="showForwardIcon">
+                   <span class="material-symbols-rounded forward-icon">
                       &#xe941;
                     </span>
                   </button>
@@ -172,10 +171,8 @@
                     <button type="button" class="btn btn-primary next"
                      :disabled="!isInputComplete"
                       @click="submitCode"
-                      @mouseenter="showForwardIcon = true"
-                      @mouseleave="showForwardIcon = false"
                       >Submit
-                      <span class="material-symbols-rounded forward-icon" v-show="showForwardIcon">
+                      <span class="material-symbols-rounded forward-icon">
                         &#xe941;
                       </span>
                     </button>
@@ -201,11 +198,9 @@
                   <div class="btn-wrapper">
                     <button type="submit" class="btn btn-primary" 
                     @click="backToLogin" 
-                    @mouseenter="showForwardIcon = true"
-                    @mouseleave="showForwardIcon = false"
                     >
                     Let’s Get Started
-                  <span class="material-symbols-rounded forward-icon" v-show="showForwardIcon">
+                  <span class="material-symbols-rounded forward-icon">
                     &#xe941;
                   </span>
                   </button>
@@ -236,7 +231,6 @@ export default {
   data()
   {
     return {
-      showForwardIcon: false,
       step: 1,
       showError: false,
       codes: ['', '', '', '', '', ''],
@@ -281,7 +275,6 @@ export default {
     },
     verifyPhone(){
       this.step = 2;
-      this.showForwardIcon = false; // hide the arrow forward icon
     },
     onInput() {
       this.form.phone = this.form.phone.replace(/[^+\d]/g, '').replace(/\+{2,}/g, '+');
@@ -305,7 +298,6 @@ export default {
 
       console.log("Submitting form with phone number:", this.form.phone);
       this.step = 3;
-      this.showForwardIcon = false; // hide the arrow forward icon
 
       this.startResendCode();
 
@@ -361,7 +353,6 @@ export default {
       const correctCode = '123456'; // sample CORRECT code
       const enteredCode = this.codes.join('');
       if(enteredCode === correctCode){
-        this.showForwardIcon = false; // hide the arrow forward icon
         // code is correct
         this.wrongCode = false;
         console.log('Correct verification code:', enteredCode);

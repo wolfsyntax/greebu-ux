@@ -37,12 +37,12 @@
                         </div>
                         <div class="btn-wrapper">
                         <button type="submit" class="btn btn-primary next" 
-                        @mouseenter="showLockOpen = false; showForwardIcon = true"
-                        @mouseleave="showLockOpen = true; showForwardIcon = false"
+                        @mouseenter="showLockOpen = false"
+                        @mouseleave="showLockOpen = true"
                         :disabled="emailValidate"
                          @click="submitResetPassword">
                         Reset 
-                        <span class="material-symbols-rounded forward-icon" v-show="showForwardIcon">
+                        <span class="material-symbols-rounded forward-icon">
                           &#xe941;
                         </span>
                       </button>
@@ -78,8 +78,6 @@
                           <p class="email-add">{{ this.form.email }}</p>
                         <div class="btn-wrapper">
                         <button type="button" class="btn btn-primary next" 
-                        @mouseenter="showForwardIcon = true"
-                        @mouseleave="showForwardIcon = false"
                         :disabled="resendResetPassword > 0"
                          @click="startResendResetPassword">
                           <template v-if="resendResetPassword > 0">
@@ -87,7 +85,7 @@
                           </template>
                           <template v-else>
                             Resend Link
-                            <span class="material-symbols-rounded forward-icon" v-show="showForwardIcon">
+                            <span class="material-symbols-rounded forward-icon">
                               &#xe941;
                             </span>
                           </template>
@@ -116,7 +114,6 @@ export default {
   data()
   {
     return {
-      showForwardIcon: false,
       showLockOpen: true,
       errors: null,
       isInputActive: false,
@@ -142,7 +139,6 @@ export default {
     },
     submitResetPassword(){
        this.submitted = false;
-       this.showForwardIcon = false; // hide the arrow forward icon
 
        if(!this.resendResetPassword){
         this.resendResetPassword = 60;
