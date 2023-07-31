@@ -131,7 +131,10 @@ export default {
   },
   setup()
   {
-
+    // window.addEventListener('beforeunload', function (e) {
+    //   e.preventDefault();
+    //   e.returnValue = '';
+    // });
   },
   data()
   {
@@ -302,7 +305,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      'fetchArtists', 'artistOptions', 'storeSong',
+      'fetchArtists', 'artistOptions', 'storeSong', 'clearSongForm',
     ]),
     stepper(step)
     {
@@ -525,6 +528,9 @@ export default {
     selectOccasion(occasion){
       this.selectedOccasion = occasion;
     },
+  },
+  beforeMount() {
+    this.clearSongForm()
   },
 }
 </script>

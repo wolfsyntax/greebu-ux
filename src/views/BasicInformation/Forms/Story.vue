@@ -22,7 +22,7 @@
                 <label for="language">What is the song for?</label>
                 <div class="dropdown">
                   <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <span :style="selectedOccasion ? { color: '#FF6B00' } : {}">{{ form.purpose ? form.purpose?.name : 'Select Occasion' }}</span>
+                    <span :style="form.purpose ? { color: '#FF6B00' } : {}">{{ form.purpose ? form.purpose?.name : 'Select Occasion' }}</span>
                     <img :src="expandMore.img" :alt="expandMore.altText">
                   </button>
                   
@@ -63,10 +63,10 @@
                 <label for="story">Write your Story</label>
                 <textarea v-model="form.user_story" class="form-control"></textarea>
               </div> 
-
+              {{ !form.user_story }}
               <div class="button-wrapper">
                 <button type="button" class="btn btn-primary back" @click="subPreviousStepStory" :disabled="currentStep === 0">Back</button>
-                <button type="button" class="btn btn-primary next" @click="nextStep" :disabled="!form.user_story">Next</button>
+                <button type="submit" class="btn btn-primary next" :disabled="!form.user_story">Next</button>
               </div>
             </form>
           </div>
@@ -119,11 +119,20 @@ export default {
   },
   methods: {
     ...mapActions([
-      'fetchArtists', 'artistOptions',
+      'songStepThree',
     ]),
     submit()
     {
 
+      this.songStepThree(this.form)
+        .then(response =>
+        {
+          const { status: statusCode } = response
+          console.log('Step Three response: ', response);
+          if (statusCode === 200) {
+            this.$emit('step', 3);
+          }
+      })
     },
     previousStep()
     {
@@ -145,6 +154,7 @@ export default {
     selectOccasion(occasion)
     {
       this.form.purpose = occasion;
+      this.$store.commit('SET_SONG_PURPOSE', occasion)
     },
   },
   mounted()
@@ -166,7 +176,7 @@ export default {
     },
   },
   watch: {
-
+    
   }
 }
 </script>

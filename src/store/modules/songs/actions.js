@@ -90,7 +90,8 @@ export const songStepOne = ({ commit, rootState, state}, payload) => {
     } else {
       url = `api/song-requests/info`
     }
-
+    console.log('Step One target: ', url);
+    console.log('Step One Payload: ', payload)
     await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/${url}?role=${rootState.role}`, payload)
       .then(response => {        
         
@@ -169,11 +170,17 @@ export const songStepThree = ({ commit, rootState, state}, payload) => {
     
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
 
-    await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/song-requests/story/${state.song?.id}?role=${rootState.role}`, payload)
+    var form = new FormData();
+    form.append('purpose_id', state.song_purpose.id);
+    form.append('sender', payload?.sender || '');
+    form.append('receiver', payload?.receiver || '');
+    form.append('user_story', payload?.user_story || '');
+
+    await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/song-requests/story/${state.song?.id}?role=${rootState.role}`, form)
       .then(response => {        
         
         const { data, status: statusCode } = response
-
+        console.log('Step Three API')
         if (statusCode === 200)
         { 
           const { result, status } = data
@@ -231,7 +238,6 @@ export const storeMood = ({ commit, rootState, state}, payload) => {
   
   return new Promise(async (resolve, reject) =>
   {
-    console.log('Store Mood: ', payload);
     commit('SET_SONG_MOOD', payload);
   })
 }
@@ -240,7 +246,6 @@ export const storeLanguage = ({ commit, rootState, state}, payload) => {
   
   return new Promise(async (resolve, reject) =>
   {
-    console.log('Store Language: ', payload);
     commit('SET_SONG_LANGUAGE', payload);
   })
 }
@@ -249,7 +254,6 @@ export const storeDuration = ({ commit, rootState, state}, payload) => {
   
   return new Promise(async (resolve, reject) =>
   {
-    console.log('Store Duration: ', payload);
     commit('SET_SONG_DURATION', payload);
   })
 }
@@ -258,7 +262,38 @@ export const storePurpose = ({ commit, rootState, state}, payload) => {
   
   return new Promise(async (resolve, reject) =>
   {
-    console.log('Store Purpose: ', payload);
     commit('SET_SONG_PURPOSE', payload);
+  })
+}
+
+export const clearSongForm = ({ commit, rootState, state}) => {
+  
+  return new Promise(async (resolve, reject) =>
+  {
+    commit('SET_SONG_ARTIST_TYPE', null)
+    commit('SET_SONG_MOODS', null)
+    commit('SET_SONG_LANGUAGES', null)
+    commit('SET_SONG_DURATIONS', null)
+    commit('SET_SONG_PURPOSES', null)
+    commit('SET_SONG_MOOD', {})
+    commit('SET_SONG_LANGUAGE', {})
+    commit('SET_SONG_DURATION', {})
+    commit('SET_SONG_PURPOSE', {})
+    commit('SET_SONG_REQUEST', null)
+    commit('SET_SONG', {
+      first_name: null,
+      last_name: null,
+      email: null,
+      genre_id: null,
+      song_type_id: null,
+      language_id: null,
+      duration_id: null,
+      purpose_id: null,
+      sender: null,
+      receiver: null,
+      user_story: null,
+      page_status: null,
+    })
+    commit('SET_SONG_ARTIST', {})
   })
 }

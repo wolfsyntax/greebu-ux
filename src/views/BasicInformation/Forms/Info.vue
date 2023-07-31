@@ -64,12 +64,15 @@ export default {
       // console.log('Old Form: ', this.form)
       this.storeSong(this.form);
       // console.log('New Form: ', this.form)
-      this.$emit('step', 1)
-      this.$emit('stepData', this.form)
       
       this.songStepOne(this.form)
         .then(response =>
         {
+          const { status: statusCode } = response;
+          if (statusCode === 200) {
+            this.$emit('step', 1)
+            this.$emit('stepData', this.form)
+          }
           console.log('Step One: ', response)
         });
     }, 
