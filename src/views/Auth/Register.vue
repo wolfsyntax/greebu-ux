@@ -11,11 +11,11 @@
         </div>
 
         <div class="carousel-inner">
-          <div class="carousel-item active" data-bs-interval="5000">
+          <div class="carousel-item active">
           </div>
-          <div class="carousel-item" data-bs-interval="5000">
+          <div class="carousel-item">
           </div>
-          <div class="carousel-item" data-bs-interval="5000">
+          <div class="carousel-item">
           </div>
         </div>
       </div>
@@ -25,52 +25,69 @@
           <a href="/"><img src="/assets/geebu-logo.svg" width="175" height="46" alt="Logo"></a>
         </div>
         <div class="card">
-          <div class="card-header">
-            <h2>Create Account</h2>
-            <p>Lorem ipsum dolor sit amet consectetur.</p>
-          </div>
-
           <div class="card-body">
             <form @submit.prevent="submit"> 
                                                <!-- Choose account type -->
+           <div v-if="showRadioButtons">                                  
               <div class="row row-checkbox">
                 <div class="col-md-12">
-                  <h3>Account Type</h3>
-                  <p>Please choose your Account Type to create an account.</p>
+                  <h3 class="account-type">Account Type</h3>
+                  <p class="account-description">Please choose your Account Type to create an account.</p>
                 </div>
 
                 <div class="col-md-12">
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" name="accountType" id="accountType" v-model="form.account_type" value="customers" checked>
-                    <label class="form-check-label" for="accountType">
+                    <input class="form-check-input" type="radio" name="accountType" id="accountType" v-model="form.account_type" value="customers" >
+                    <label :class="{ 'selected': form.account_type === 'customers' }" class="form-check-label" for="accountType">
                     I want to create a song
                     </label>
                   </div>
 
                   <div class="form-check">
                     <input class="form-check-input" type="radio" name="accountType" id="accountType" v-model="form.account_type" value="artists" >
-                    <label class="form-check-label" for="accountType">
+                    <label :class="{ 'selected': form.account_type === 'artists' }" class="form-check-label" for="accountType">
                     I'm an Artist
                     </label>
                   </div>
 
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" name="accountType" id="accountType" v-model="form.account_type" value="organizer" >
-                    <label class="form-check-label" for="accountType">
+                    <input class="form-check-input" type="radio" name="accountType" id="accountType" v-model="form.account_type" value="organizer">
+                    <label :class="{ 'selected': form.account_type === 'organizer' }" class="form-check-label" for="accountType">
                     I'm an Organizer
                     </label>
                   </div>
 
                   <div class="form-check">
                     <input class="form-check-input" type="radio" name="accountType" id="accountType" v-model="form.account_type" value="service-provider" >
-                    <label class="form-check-label" for="accountType">
+                    <label :class="{ 'selected': form.account_type === 'service-provider' }" class="form-check-label" for="accountType">
                     Offers Services
                     </label>
                   </div>
                   <div v-for="error in errors?.account_type" :key="error" class="text-danger">{{ error }}</div>
+                  <div class="d-grid gap-2 btn-account-type">
+                    <button class="btn btn-primary"
+                    @mouseenter="showForwardIcon = true"
+                    @mouseleave="showForwardIcon = false"
+                     @click.prevent="submitAccountType" 
+                    :disabled="!isAccountTypeSelected">
+                      Next
+                      <span class="material-symbols-rounded forward-icon" v-show="showForwardIcon">
+                      &#xe941;
+                    </span>
+                    </button>
+                  </div>
+                  <div class="have-account">
+                      <p class="text-center">Already have an Account?</p><a href="/login">Log In</a>
+                  </div>
                 </div>
               </div>
+              </div>
 
+            <div v-if="!showRadioButtons">
+              <div class="card-header">
+              <h2>Create Account</h2>
+              <p>Lorem ipsum dolor sit amet consectetur.</p>
+            </div>
                                  <!-- User inputs -->
               <div class="form-group">
                 <label for="email">Email Address</label>
@@ -120,13 +137,24 @@
                 &nbsp; I agree to all the <a href="/terms">Terms</a> and <a href="/policy">Privacy policy</a></label>
               </div>
 
-              <div class="d-grid gap-2">
-                <button class="btn btn-primary" type="submit" :disabled="!agree_term">Create Account</button>
+              <div class="d-grid gap-2 btn-sign-up">
+                <button class="btn btn-primary" type="submit"
+                @mouseenter="showForwardIcon = true"
+                @mouseleave="showForwardIcon = false" 
+                :disabled="!agree_term">
+                  Create Account
+                  <span class="material-symbols-rounded forward-icon" v-show="showForwardIcon">
+                      &#xe941;
+                    </span>
+                </button>
               </div>
+
+              <social-button />
+
+              </div> 
             </form>
           </div>
         </div>
-        <social-button />
       </div>
     </div>
     <verify-card :phone="form.phone" v-else/>
@@ -164,6 +192,7 @@ export default {
   data()
   {
     return {
+      showForwardIcon: false,
       step: 'register',
       verifyCode: null,
       verifyMessage: null,
@@ -173,12 +202,15 @@ export default {
         last_name: null,
         email: null,
         username: null,
+        phone: null,
         password: null,
         password_confirmation: null,
-        phone: null,
         account_type: 'customers',
+       // account_type: '',
+        phone: null,
         login_type: 'email',
         isDisabled: false,
+       
       },
       errors: {},
       countdown: 180,
@@ -186,6 +218,8 @@ export default {
       rate_countdown_enable: false,
       rate_countdown: 600,
       agree_term: false,
+
+      showRadioButtons: true,
     }
   },
   props: {
@@ -201,8 +235,23 @@ export default {
   computed: {
     //...mapGetters([''])
     //...mapState({})
+    isAccountTypeSelected() {
+      return this.form.account_type !== '';
+    }
   },
+  // created() {
+  //   console.log(this.form.account_type);
+  // },
   methods: {
+    // toggleRadioButtons() {
+    //   this.showRadioButtons = false;
+    // },
+    submitAccountType() {
+      this.showForwardIcon = false; // hide the arrow forward icon
+      if (this.form.account_type) {
+        this.showRadioButtons = false;
+      }
+    },
     ...mapActions(['signup', 'resendOTPCode', 'verifyOTP']),
     async submit()
     {

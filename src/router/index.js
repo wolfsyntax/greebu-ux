@@ -44,7 +44,7 @@ const router = createRouter({
           component: () => import('/src/views/Homepage/Home.vue'),
           meta: {
             requiresLogin: false,
-            title: 'Home',
+            title: 'Book your Events/Artist, Create your song now!',
             role: '',
             parent: 'home',
             breadcrumb: [
@@ -157,6 +157,16 @@ const router = createRouter({
           }
         },
         {
+          path: '/phoneverification',
+          name: 'phoneverification',
+          component: () => import('/src/views/Auth/PhoneVerfication.vue'),
+          meta: {
+            requiresLogin: false,
+            title: 'Phone Verification',
+            role: '',
+          }
+        },
+        {
           path: '/basicinformation',
           name: 'basicinformation',
           component: () => import('/src/views/BasicInformation/Index.vue'),
@@ -229,7 +239,7 @@ const router = createRouter({
           name: 'verify',
           component: () => import('/src/views/Auth/Verify.vue'),
           meta: {
-            requiresLogin: true,
+            requiresLogin: false,
             title: 'Verify',
             role: ''
           }
@@ -245,7 +255,8 @@ const router = createRouter({
           }
         },
         {
-          path: '/password/reset/:token',
+          // path: '/password/reset/:token',
+          path: '/password/reset/',
           name: 'reset-token',
           component: () => import('/src/views/Auth/ResetPassword.vue'),
           meta: {

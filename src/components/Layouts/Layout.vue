@@ -167,6 +167,7 @@ export default {
         // { page: 'Partner With Us', link: '/partners' }
       ],
       artistDropdown: [
+        // change all icons name to &#x + Code point
         { icon: 'account_circle', name: 'Artist Account', link: '/artist'},
         // { icon: 'mail', name: 'Message', link: '/message'},
         { icon: 'library_music	', name: 'Customized Songs', link: '/create-song'},

@@ -7,7 +7,7 @@
       <section class="login">
         <div class="container-fluid">
 
-          <div id="loginCarouselBanner" class="carousel slide carousel-fade" data-bs-ride="carousel">
+          <div id="loginCarouselBanner" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
             <div class="carousel-indicators">
               <button type="button" data-bs-target="#loginCarouselBanner" data-bs-slide-to="0" class="active"
                 aria-current="true" aria-label="Slide 1"></button>
@@ -17,11 +17,11 @@
                 aria-label="Slide 3"></button>
             </div>
             <div class="carousel-inner">
-              <div class="carousel-item active" data-bs-interval="5000">
+              <div class="carousel-item active">
               </div>
-              <div class="carousel-item" data-bs-interval="5000">
+              <div class="carousel-item">
               </div>
-              <div class="carousel-item" data-bs-interval="5000">
+              <div class="carousel-item">
               </div>
             </div>
           </div>
@@ -56,8 +56,17 @@
                     <input type="checkbox" class="form-check-input" id="keepLogin">
                     <label class="form-check-label" for="keepLogin">Keep me logged in</label>
                   </div>
-                  <div class="d-grid gap-2">
-                    <button class="btn btn-primary" type="submit" :disabled="form.processing">Login</button>
+                  <div class="d-grid gap-2 btn-login">
+                    <button class="btn btn-primary" type="submit" 
+                    @mouseenter="showForwardIcon = true"
+                    @mouseleave="showForwardIcon = false"
+                    :disabled="form.processing"
+                    >
+                    Login
+                    <span class="material-symbols-rounded forward-icon" v-show="showForwardIcon">
+                      &#xe941;
+                    </span>
+                  </button>
                   </div>
                 </form>
               </div>
@@ -99,6 +108,7 @@ export default {
   data()
   {
     return {
+      showForwardIcon: false,
       form: {
         email: null,
         password: null,
