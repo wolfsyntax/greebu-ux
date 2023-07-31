@@ -330,7 +330,6 @@ export default {
     {
       const { result, message, status } = response;
 
-      // console.log('Plan Option subscription: ', response)
       this.pricing = result?.plans || [];
     })
   },

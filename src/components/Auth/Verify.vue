@@ -4,7 +4,7 @@
       <div class="">
         <div class="row">
           <div class="col">
-            {{  phone }}
+            {{  phone_num }}
           </div>
         </div>
         <div class="row">
@@ -34,6 +34,7 @@ export default {
       countdown_enabled: false,
       rate_countdown_enable: false,
       rate_countdown: 600,
+      phone_num: null,
     }
   },
   props: {
@@ -45,7 +46,11 @@ export default {
 
   },
   computed: {
-    ...mapGetters(["userInfo", "token", "isLoggedIn"])
+    ...mapGetters(["userInfo", "info", "token", "isLoggedIn"])
+    
+  },
+  mounted() {
+    this.phone_num = this.phone || this.info?.phone;
   },
   setup () {
     

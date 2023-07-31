@@ -67,6 +67,20 @@ const router = createRouter({
           },          
         },
         {
+          path: '/artists/:id',
+          name: 'artists',
+          component: () => import('/src/views/Artist/Details.vue'),
+          meta: {
+            requiresLogin: false,
+            title: 'Artists',
+            role: '',
+            parent: 'artists',
+            breadcrumb: [
+              {title: '', url: '',},
+            ],
+          },          
+        },
+        {
           path: '/create-song',
           name: 'create-song',
           component: () => import('/src/views/Homepage/CreateSong.vue'),
@@ -157,9 +171,9 @@ const router = createRouter({
           name: 'basicinformation',
           component: () => import('/src/views/BasicInformation/Index.vue'),
           meta: {
-            requiresLogin: false,
+            requiresLogin: true,
             title: 'Create a Song step by step',
-            role: '',
+            role: 'customers',
           }
         },
         {

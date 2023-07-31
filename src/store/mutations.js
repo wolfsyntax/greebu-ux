@@ -28,6 +28,10 @@ var mutations = {
   SET_ROLES(state, payload)
   {
     state.roles = payload;
+  },
+  SET_PHONE(state, payload)
+  {
+    state.phone = payload;
   }
 }
 

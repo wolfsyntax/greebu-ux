@@ -16,6 +16,42 @@ var actions = {
   {
     return new Promise(async (resolve, reject) =>
     {
+
+      commit('SET_AUTH', {})
+      commit('SET_TOKEN', '')
+      commit('SET_PROFILE', {})
+      commit('SET_ROLE', '')
+      // Clearing for other modules
+      commit('SET_GENRES', null)
+      commit('SET_ARTIST_TYPES', null)
+      commit('SET_ARTIST_GENRES', null)
+      commit('SET_MEMBERS', null)
+      commit('SET_ARTIST', {})
+      commit('SET_ARTISTS', null)
+      commit('SET_PAGINATION', {current_page: 1, last_page: 1, per_page: 10, total: 1, })
+
+      commit('SET_SONG_ARTIST_TYPE', null)
+      commit('SET_SONG_MOODS', null)
+      commit('SET_SONG_LANGUAGES', null)
+      commit('SET_SONG_DURATIONS', null)
+      commit('SET_SONG_PURPOSES', null)
+      commit('SET_SONG_REQUEST', null)
+      commit('SET_SONG', {
+        first_name: null,
+        last_name: null,
+        email: null,
+        genre_id: null,
+        song_type_id: null,
+        language_id: null,
+        duration_id: null,
+        purpose_id: null,
+        sender: null,
+        receiver: null,
+        user_story: null,
+        page_status: null,
+      })
+      commit('SET_SONG_ARTIST', {})
+
       // axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
       await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/login`, payload)
         .then(response =>
@@ -34,7 +70,7 @@ var actions = {
             commit('SET_ROLES', roles || []);
             localStorage.api_token = token
           }
-          console.log('Status: ', response)
+
           resolve(response)
 
         })
@@ -48,12 +84,20 @@ var actions = {
   {
     return new Promise(async (resolve, reject) =>
     {
-
+            
       await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/register`, payload, {
         Accept: "application/json"
       })
         .then(response =>
         {
+          const { status: statusCode, data } = response
+          if (statusCode === 200) {
+            const { status, result: {user}} = data;
+
+            commit('SET_AUTH', user || user);
+            commit('SET_PHONE', user?.phone);
+
+          }
           resolve(response)
         })
         .catch(err =>
@@ -79,11 +123,46 @@ var actions = {
             commit('SET_TOKEN', '')
             commit('SET_PROFILE', {})
             commit('SET_ROLE', '')
+            // Clearing for other modules
+            commit('SET_GENRES', null)
+            commit('SET_ARTIST_TYPES', null)
+            commit('SET_ARTIST_GENRES', null)
+            commit('SET_MEMBERS', null)
+            commit('SET_ARTIST', {})
+            commit('SET_ARTISTS', null)
+            commit('SET_PAGINATION', {current_page: 1, last_page: 1, per_page: 10, total: 1, })
+
+            commit('SET_SONG_ARTIST_TYPE', null)
+            commit('SET_SONG_MOODS', null)
+            commit('SET_SONG_LANGUAGES', null)
+            commit('SET_SONG_DURATIONS', null)
+            commit('SET_SONG_PURPOSES', null)
+            commit('SET_SONG_MOOD', {})
+            commit('SET_SONG_LANGUAGE', {})
+            commit('SET_SONG_DURATION', {})
+            commit('SET_SONG_PURPOSE', {})
+            commit('SET_SONG_REQUEST', null)
+            commit('SET_SONG', {
+              first_name: null,
+              last_name: null,
+              email: null,
+              genre_id: null,
+              song_type_id: null,
+              language_id: null,
+              duration_id: null,
+              purpose_id: null,
+              sender: null,
+              receiver: null,
+              user_story: null,
+              page_status: null,
+            })
+            commit('SET_SONG_ARTIST', {})
           }
           resolve(response)
         })
         .catch(err =>
         {
+          console.error('Signout Error ', err)
           const { response } = err
           if (response.status === 401) {
 
@@ -338,12 +417,13 @@ var actions = {
           if (status === 200) {
 
           }
-          console.log('Status: ', response)
+
           resolve(response)
 
         })
         .catch(err =>
         {
+          console.error('Forgot Password Error ', err)
           reject(err)
         });
     })

@@ -80,13 +80,11 @@ export default {
               .then(response =>
               {
 
-                console.log('Response: ', response);
                 const { message, status, result } = response;
 
                 if (status === 200) {
                   // Firebase Authenticated details:
                   // const { value: providerData } = useCurrentUser();
-                  // console.log('useCurrentUser: ', providerData);
                   if (!result?.user?.phone_verified_at)
                   {
                     this.$router.push({ name: 'verify' })

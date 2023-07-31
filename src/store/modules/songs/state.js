@@ -4,7 +4,19 @@ var state = {
   languages: null,
   durations: null,
   purposes: null,
-  song: null,
+  song: {
+    id: null,
+    first_name: null,
+    last_name: null,
+    email: null,
+  },
+  song_language: {},
+  song_duration: {},
+  song_purpose: {},
+  song_mood: {},
+  // song_artists: [],
+  song_artists: {},
+  
 }
 
 export default state

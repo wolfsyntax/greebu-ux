@@ -46,3 +46,9 @@ export const _purposes = state => state.purposes
       text: data.name,
     }
   })
+
+export const _getSongArtists = state => state.song_artists;
+export const _getSongLanguage = state => state.song_language;
+export const _getSongDuration = state => state.song_duration;
+export const _getSongMood = state => state.song_mood;
+export const _getSongPurpose = state => state.song_purpose;
