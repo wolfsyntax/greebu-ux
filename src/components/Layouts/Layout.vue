@@ -4,7 +4,7 @@
       <nav class="navbar navbar-expand-lg">
         <div class="container">
           <a class="navbar-brand logo" :href="home">
-            <img src="/assets/geebu-logo.svg" width="175" height="46" alt="logo">
+            <img src="/assets/geebu-logo.svg" alt="Geebu logo">
           </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -114,7 +114,7 @@
             <div class="col-4">
               <div class="footer-logo">
                 <a href="/">
-                  <img src="/assets/geebu-logo.svg" width="201" height="53" loading="lazy" alt="logo">
+                  <img src="/assets/geebu-logo.svg" loading="lazy" alt="logo">
                 </a>
               </div>
             </div>
@@ -257,11 +257,11 @@ export default {
 
 .footer .container .row:nth-child(1) {
   border-bottom: 1px solid #B8BBCF;
-  margin-bottom: 40px;
+  margin-bottom: 3rem;
 }
 
 .footer .container .row:nth-child(2) {
-  margin-bottom: 40px;
+  margin-bottom: 3rem;
 }
 
 .footer .menu h4 {
@@ -378,6 +378,10 @@ export default {
   color: #212121;
   margin: 0rem;
 }
+.footer-logo a img{
+  width: 201px;
+  height: 53px;
+}
 
 @media (min-width: 1200px) and (max-width: 1399.98px) {
 
@@ -386,10 +390,49 @@ export default {
   .footer .menu .for-artist {
     padding: 0 40px;
   }
-
+  .footer .menu h4{
+    font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.75rem;
+  margin-bottom: 0.94rem;
+  }
+  .footer .menu ul li a{
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 0.81rem;
+  }
+  .footer .card h5{
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.75rem; /* 175% */
+  }
+  .footer .card p{
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  .footer .copy p{
+    font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  }
+  .footer .copy, .social-media-icons{
+    margin-top: 0.3rem;
+  }
+  .footer-logo a img{
+    width: 9.4375rem;
+    height: 2.5rem;
+}
   .footer .container .row[data-v-29a7c690]:nth-child(2) {
     margin-bottom: 20px;
   }
+
 }
 
 @media (min-width: 992px) and (max-width: 1199.98px) {

@@ -225,7 +225,7 @@ const router = createRouter({
           name: 'verify',
           component: () => import('/src/views/Auth/Verify.vue'),
           meta: {
-            requiresLogin: false,
+            requiresLogin: true, // true
             title: 'Verify',
             role: ''
           }
@@ -241,8 +241,7 @@ const router = createRouter({
           }
         },
         {
-          // path: '/password/reset/:token',
-          path: '/password/reset/',
+          path: '/password/reset/:token', //:token
           name: 'reset-token',
           component: () => import('/src/views/Auth/ResetPassword.vue'),
           meta: {
