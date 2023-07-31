@@ -255,7 +255,7 @@ export default {
     ...mapActions(['signup', 'resendOTPCode', 'verifyOTP']),
     async submit()
     {
-
+      console.log('Submit registration info')
       this.isDisabled = true;
       await this.signup(this.form)
         .then((response) => { 
