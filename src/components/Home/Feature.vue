@@ -10,7 +10,7 @@
               <div class="carousel-caption d-none d-md-block">
                 <h1>Book your Events/Artist, Create your song now let's make magic in music!</h1>
                 <p>Custom tunes for any mood, and booking the best artists just got easier with our website!</p>
-                <a href="/create-song" class="btn btn-primary btn-lg">Create a song</a>
+                <a href="/create-song" class="btn btn-primary btn-lg">Create your song</a>
               </div>
             </div>
             <div class="carousel-item">
@@ -19,7 +19,7 @@
               <div class="carousel-caption d-none d-md-block">
                 <h3>Find a perfect artists to make a custom song and create amazing memories to your event</h3>
                 <p>Custom tunes for any mood, and booking the best artists just got easier with our website!</p>
-                <a href="/artist" class="btn btn-primary btn-lg">Find Artist</a>
+                <a href="/artist" class="btn btn-primary btn-lg">Find your artist</a>
               </div>
               <div class="animate-section">
                 <div class="animate-left">
@@ -68,6 +68,35 @@
       </div>
     </section>
 
+    <section class="geebu-presentation">
+      <div class="container">
+        <div class="row">
+          <h2 class="text-center title">Unlock the Rhythm of Your Celebrations!</h2>
+          <div class="col-6">
+          <p class="content">Experience the Ultimate Fusion of Creativity and Entertainment with Geebu Create Your Custom Song, Tailored Exclusively 
+            for Your Special Event or Party. Connect with Talented Artists Ready to Elevate Your Celebrations to Unforgettable Heights. 
+            Get Started Today and Let the Music Speak the Language of Your Joy!"</p>
+            <ul>
+              <li v-for="feature in geebuFeatures">{{ feature }}</li>
+            </ul>
+            <a href="/login" class="btn btn-primary btn-lg learn-more">Learn more</a>
+        </div>
+        <div class="col-6">
+          <div class="video-container">
+            <video width="778" height="440.693"
+             ref="videoPlayer" @click="togglePresentaionVideo" :poster=videoThumbnail>
+             <source :src="presentationVideo"
+                type="video/mp4">
+            </video>
+            <div class="play-button" v-if="!isPlaying" @click="togglePresentaionVideo">
+              <img src="/assets/video-play-icon.svg" alt="Click to play the video">
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </section>
+
     <section class="custom-song">
       <div class="container">
         <h2>A Custom Song in 3 Simple Steps</h2>
@@ -90,7 +119,7 @@
                       <h3>Share your Story</h3>
                       <p>Tell us who the song is for or what it’s all about. Artist just need a little inspiration to make
                         it trully custom and unique.</p>
-                      <a href="/create-song" class="btn btn-primary btn-lg">Create a song</a>
+                      <a href="/create-song" class="btn btn-primary btn-lg">Create your song</a>
                     </div>
                   </div>
                   <div class="col-lg-6 col-xl-7 col-xxl-7">
@@ -107,7 +136,7 @@
                       <h3>Find an artist. Create your song</h3>
                       <p>Select the artist you want. Then pick your preffered genre, tempo, and mood so that they can get
                         started.</p>
-                      <a href="/create-song" class="btn btn-primary btn-lg">Create a song</a>
+                      <a href="/create-song" class="btn btn-primary btn-lg">Create your song</a>
                     </div>
                   </div>
                   <div class="col-lg-6 col-xl-7 col-xxl-7">
@@ -123,7 +152,7 @@
                     <div class="carousel-caption d-none d-md-block step3">
                       <h3>Make your music</h3>
                       <p>Any story can inspire a song. Let us guide you through the creation process and make a song.</p>
-                      <a href="/create-song" class="btn btn-primary btn-lg">Create a song</a>
+                      <a href="/create-song" class="btn btn-primary btn-lg">Create your song</a>
                     </div>
                   </div>
                   <div class="col-lg-6 col-xl-7 col-xxl-7">
@@ -156,7 +185,7 @@
                   <li>Lorem ipsum dolor sit amet consectetur.</li>
                   <li>Lorem ipsum dolor sit amet consectetur.</li>
                 </ul>
-                <a href="/artist" class="btn btn-primary btn-lg">Find Artists</a>
+                <a href="/artist" class="btn btn-primary btn-lg">Find your artist</a>
               </div>
             </div>
             <div class="col-lg-6 col-xl-6 col-xxl-6">
@@ -269,8 +298,8 @@
                 <div class="col-6">
                   <div class="video-container">
                     <div class="video">
-                      <video :src="review.video" ref="videos" @click="toggleVideo(index)"></video>
-                      <div class="play-button" v-if="!review.playing" @click="toggleVideo(index)">
+                      <video :src="review.video" ref="videos" @click="toggleTestimonialVideo(index)"></video>
+                      <div class="play-button" v-if="!review.playing" @click="toggleTestimonialVideo(index)">
                         <i class="material-icons"><span class="material-symbols-outlined">play_arrow</span></i>
                       </div>
                     </div>
@@ -337,10 +366,16 @@ export default {
         }
       ],
       activeIndex: 0,
+      geebuFeatures: ['Create a Song','Booked Artist for Special Occasions and Events','Post Events','Hire Artist for your Events',
+      'Post your Original and Cover Songs','Listen to Artist songs'],
+      presentationVideo: '/assets/videos/geebu-presentation.mp4',
+      isPlaying: false,
+      videoThumbnail: '/assets/home/presentation-thumbnail-image.webp',
+    //  showPlayButton: false,
     }
   },
   methods: {
-    toggleVideo(index)
+    toggleTestimonialVideo(index)
     {
       const videos = this.$refs.videos;
       const video = videos[index];
@@ -353,6 +388,24 @@ export default {
         this.reviews[index].playing = false;
       }
     },
+    togglePresentaionVideo()
+    {
+      const video = this.$refs.videoPlayer;
+      if(video){
+       if(this.isPlaying){
+        video.pause();
+       }else{
+        video.play();
+       }
+       this.isPlaying = !this.isPlaying;
+      }
+    },
+    // showButton(){
+    //   this.showPlayButton = true;
+    // },
+    // hideButton(){
+    //   this.showPlayButton = false;
+    // },
     changeVideo(index)
     {
       const videos = this.$refs.videos;

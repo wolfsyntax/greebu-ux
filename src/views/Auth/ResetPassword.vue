@@ -77,13 +77,13 @@
                         </div>
                         <div class="btn-wrapper">
                           <button type="submit" class="btn btn-primary"  
-                          @mouseenter="showLockOpen = false; showForwardIcon = true"
-                          @mouseleave="showLockOpen = true; showForwardIcon = false"
+                          @mouseenter="showLockOpen = false;"
+                          @mouseleave="showLockOpen = true"
                           :disabled="!isFormValid"
                            @click="submitResetPassword" 
                            >
                            Continue
-                           <span class="material-symbols-rounded forward-icon" v-show="showForwardIcon">
+                           <span class="material-symbols-rounded forward-icon">
                           &#xe941;
                         </span>
                           </button>
@@ -110,12 +110,10 @@
                           <p class="card-text">You can now use your new password to log in to your account</p>
                         <div class="btn-wrapper">
                           <button type="submit" class="btn btn-primary" 
-                          @mouseenter="showForwardIcon = true"
-                          @mouseleave="showForwardIcon = false"
                           @click="backToLogin"
                           >
                           Login
-                          <span class="material-symbols-rounded forward-icon" v-show="showForwardIcon">
+                          <span class="material-symbols-rounded forward-icon">
                               &#xe941;
                             </span>
                         </button>
@@ -173,7 +171,6 @@ export default {
   data()
   {
     return {
-      showForwardIcon: false,
       errors: null,
       submitted: true,
       isInputActive: false,
@@ -240,7 +237,6 @@ export default {
     },
     submitResetPassword(){
       this.submitted = false;
-      this.showForwardIcon = false; // hide the arrow forward icon
 
       console.log("Password reset request for: ", this.form.email);
       console.log("Password: ", this.form.password);
