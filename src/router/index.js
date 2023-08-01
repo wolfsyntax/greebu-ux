@@ -171,7 +171,7 @@ const router = createRouter({
           name: 'basicinformation',
           component: () => import('/src/views/BasicInformation/Index.vue'),
           meta: {
-            requiresLogin: true,
+            requiresLogin: true, // true
             title: 'Create a Song step by step',
             role: 'customers',
           }
@@ -181,8 +181,8 @@ const router = createRouter({
           name: 'deliveryform',
           component: () => import('/src/views/BasicInformation/DeliveryForm.vue'),
           meta: {
-            requiresLogin: false,
-            title: 'Select delivery date',
+            requiresLogin: false, // true
+            title: 'Select your delivery date',
             role: '',
           }
         },
@@ -191,7 +191,7 @@ const router = createRouter({
           name: 'ordersummary',
           component: () => import('/src/views/BasicInformation/OrderSummary.vue'),
           meta: {
-            requiresLogin: false,
+            requiresLogin: false, // true
             title: 'Your Order Summary',
             role: '',
           }

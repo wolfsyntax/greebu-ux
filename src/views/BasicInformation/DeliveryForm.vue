@@ -7,7 +7,7 @@
               <div class="col-md-6 offset-md-3">
                 <div class="card">
                 <div class="card-body">
-                <h2 class="card-title">Select a delivery date</h2>
+                <h2 class="card-title">Select your delivery date</h2>
                 <p class="card-text delivery-subtitle">Rest assured that the songs will be delivered by the end of the day.</p>
                 <form @submit.prevent="submit">
                     <div v-for="option in delivery" :key="option.id" 
