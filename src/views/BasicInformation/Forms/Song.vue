@@ -318,7 +318,7 @@ export default {
 
       if (this.currentSubStepSong === 2) {
 
-        console.log('Setting Mood: ', this.mood)
+        console.log('Setting Mood 3: ', this.mood)
         // var newObj = Object.assign(this.form, { song_type_id: this.mood });
         this.storeMood(this.mood);
         // this.storeSong(newObj)
