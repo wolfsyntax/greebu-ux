@@ -39,6 +39,9 @@
                 <!-- <div v-if="$page.props.flash.message" class="alert">
                   {{ $page.props.flash.message }}
                 </div> -->
+                <div class="alert alert-danger" role="alert" v-if="message">
+                  {{ message }}
+                </div>
                 <form @submit.prevent="submit">
                   <div class="form-group">
                     <label for="email">Email Address</label>
@@ -112,6 +115,7 @@ export default {
         remember_me: false,
       },
       errors: null,
+      message: null,
     }
   },
   setup()
@@ -129,7 +133,7 @@ export default {
     { 
       this.signin(this.form).then((response) =>
       {
-
+        console.log('Login Response: ', response)
         const { status, data } = response;
         
         if (status === 200) {
@@ -141,15 +145,20 @@ export default {
           // })
           // var user = this.$store.state.user;
           // var role = this.$store.state.role;
-          
+
           // if (role === 'artists') {
           //   this.$router.push("/");
           // }
-          this.$router.push("/");
+
+          if (this.$route.query.redirect) {
+            this.$router.push(this.$route.query.redirect)
+          } else {
+            this.$router.push('/')
+          }
         } else {
 
           this.errors = data?.result?.errors;
-          
+          this.message = data?.message;
           // this.$vs.notification({
           //   color: 'danger',
           //   position: 'top-right',

@@ -1,6 +1,6 @@
 <template>
 
-<div >
+<div >{{ song}}
 <div class="row">
 <div class="col-1"></div>
 <div class="col-10">
@@ -105,7 +105,7 @@ export default {
     ...mapState({
       artists: (state) => state.artist.artists,
       artist_types: (state) => state.artist.artist_types,
-      genres: (state) => state.artist.genres,
+      song: state => state.songs.song,
     }),
   },
   watch: {
