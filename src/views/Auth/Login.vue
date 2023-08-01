@@ -148,11 +148,16 @@ export default {
           // })
           // var user = this.$store.state.user;
           // var role = this.$store.state.role;
-          
+
           // if (role === 'artists') {
           //   this.$router.push("/");
           // }
-          this.$router.push("/");
+
+          if (this.$route.query.redirect) {
+            this.$router.push(this.$route.query.redirect)
+          } else {
+            this.$router.push('/')
+          }
         } else {
 
           this.errors = data?.result?.errors;

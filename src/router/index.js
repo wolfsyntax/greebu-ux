@@ -389,7 +389,10 @@ router.beforeEach((to, from, next) => {
   } else {
 
     if (reqSession) {
-      next({name: 'login'})
+      next({
+        name: 'login',
+        query: { redirect: to.fullPath }
+      })
     } else {
       next()
     }

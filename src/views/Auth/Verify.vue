@@ -86,7 +86,6 @@
                   @mouseenter="showForwardIcon = true"
                   @mouseleave="showForwardIcon = false"
                    @click="submitForm" 
-                   :disabled="!isValidPhoneNumber"
                    >
                    Submit
                    <span class="material-symbols-rounded forward-icon" v-show="showForwardIcon">

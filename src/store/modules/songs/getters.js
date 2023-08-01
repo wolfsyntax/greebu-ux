@@ -52,3 +52,8 @@ export const _getSongLanguage = state => state.song_language;
 export const _getSongDuration = state => state.song_duration;
 export const _getSongMood = state => state.song_mood;
 export const _getSongPurpose = state => state.song_purpose;
+
+// export const getSongArtist = (state, getters, rootState) => (id) =>
+// {
+//   return (rootState.artist.find(artist => artist.id === id)) 
+// }

@@ -145,7 +145,7 @@ export default {
           // this.submitted = false;
           // this.startResendResetPassword()
           const { status: statusCode, data: {message} } = response
-          if (status === 200) {
+          if (statusCode === 200) {
             this.submitResetPassword();
           } else {
             this.message = message;
