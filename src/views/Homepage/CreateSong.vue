@@ -8,7 +8,7 @@
           </div>
           <div class="col-lg-7 col-xl-7 col-xxl- 6">
             <div class="content text-center">
-              <h2>Let's start create your custom song.</h2>
+              <h2>Let's start create your <br>custom song.</h2>
               <p>Please note that the process of creating a customized artist song is a meticulous and detailed one, requiring careful attention to 
                 every aspect of the composition, from the lyrics to the melody and instrumentation. As such, we require a minimum of one month to 
                 complete each project to ensure that we deliver the highest quality product possible.</p>

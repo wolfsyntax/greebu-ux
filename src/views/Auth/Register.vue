@@ -83,7 +83,7 @@
 
             <div v-if="!showRadioButtons">
               <div class="card-header">
-              <h2>Create Account</h2>
+              <h2>Create your account</h2>
               <p>Lorem ipsum dolor sit amet consectetur.</p>
             </div>
                                  <!-- User inputs -->

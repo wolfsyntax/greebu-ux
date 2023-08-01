@@ -32,7 +32,7 @@
             </div>
             <div class="card">
               <div class="card-header">
-                <h2>Login</h2>
+                <h2>Login to your account</h2>
                 <p>Lorem ipsum dolor sit amet consectetur.</p>
               </div>
               <div class="card-body">
