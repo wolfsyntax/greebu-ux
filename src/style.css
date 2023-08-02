@@ -3644,6 +3644,17 @@ justify-content: space-between;
 .social-phone-verification .check-message .alert .right {
   width: 10%;
 }
+                        /* Hide Arrows From Input Number */
+/* Chrome, Safari, Edge, Opera */
+.phone-verification .check-message input::-webkit-outer-spin-button,
+.phone-verification .check-message input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+.phone-verification .check-message input[type=number] {
+  -moz-appearance: textfield;
+}
 
 
 

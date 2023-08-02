@@ -113,7 +113,7 @@
 
               <div class="form-group">
                 <label for="phone">Mobile number</label>
-                <input id="phone" type="text" class="form-control" name="phone" v-model="form.phone" required autocomplete="phone">
+                <input id="phone" type="text" class="form-control" name="phone" v-model="form.phone" required autocomplete="phone" placeholder="+63">
                 <div v-for="error in errors?.phone" :key="error" class="text-danger">{{ error }}</div>
               </div>
 
