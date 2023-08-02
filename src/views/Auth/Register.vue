@@ -246,7 +246,7 @@ export default {
         this.showRadioButtons = false;
       }
     },
-    ...mapActions(['signup', 'resendOTPCode', 'verifyOTP']),
+    ...mapActions(['signup', 'resendOTPCode', 'verifyOTP', 'phoneOTP']),
     async submit()
     {
       console.log('Submit registration info')
@@ -259,6 +259,8 @@ export default {
           console.log('Register response: ', response)
           if (statusCode === 201)
           {
+            // Send OTP
+            this.phoneOTP(result?.user_id);
 
             this.step = '';
             // setTimeout(() => this.countdown--, 100);

@@ -297,3 +297,27 @@ export const clearSongForm = ({ commit, rootState, state}) => {
     commit('SET_SONG_ARTIST', {})
   })
 }
+
+export const fetchSongRequest = ({ commit, rootState, state}, payload = null) => {
+  
+  return new Promise(async(resolve, reject) => {
+    
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
+
+    await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/song-requests/${payload || state.song.id}?role=${rootState.role}`)
+      .then(response => {        
+        
+        const { data: {status, result}, status: statusCode } = response
+
+        if (statusCode === 200 && status === 200)
+        {           
+          commit('SET_SONG', result?.song_request)          
+        }
+        
+        resolve(response)
+    })
+    .catch(err => {
+      reject(err)
+    });
+  })
+}

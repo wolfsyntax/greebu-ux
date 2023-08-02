@@ -1,6 +1,6 @@
 <template>
 
-<div >{{ song}}
+<div >
 <div class="row">
 <div class="col-1"></div>
 <div class="col-10">
@@ -14,9 +14,9 @@
 Edit Info
 </button>
 </div>
-<div class="d-flex justify-content-between group-item top-item"><h4>First Name</h4><p>{{ first_name }}</p></div>
-<div class="d-flex justify-content-between group-item"><h4>Last name</h4><p>{{ last_name }}</p></div>
-<div class="d-flex justify-content-between group-item last-item"><h4>Email Address</h4><p>{{ email }}</p></div>
+<div class="d-flex justify-content-between group-item top-item"><h4>First Name</h4><p>{{ song?.first_name }}</p></div>
+<div class="d-flex justify-content-between group-item"><h4>Last name</h4><p>{{ song.last_name }}</p></div>
+<div class="d-flex justify-content-between group-item last-item"><h4>Email Address</h4><p>{{ song.email }}</p></div>
 
 <div class="title">
 <h3>Song</h3>
@@ -34,9 +34,9 @@ Edit Info
 <p v-if="selectedArtist">{{ selectedArtist.typeOfArtist }}</p>
 </div>
 <div class="d-flex justify-content-between group-item"><h4>Type of Song (Moods)</h4>
-<p>{{ selectedMood ? selectedMood.name : 'No selected mood' }} </p>
+<p>{{ song?.mood || 'No selected mood' }} </p>
 </div>
-<div class="d-flex justify-content-between group-item"><h4>Language</h4><p>{{ selectedLanguage ? selectedLanguage.name : 'No selected language' }}</p></div>
+<div class="d-flex justify-content-between group-item"><h4>Language</h4><p>{{ song?.language || 'No selected language' }}</p></div>
 <div class="d-flex justify-content-between group-item last-item"><h4>Duration of Song</h4><p>{{ selectedSongDuration ? selectedSongDuration.time : 'No selected song' }}</p></div>
 
 <div class="title">
@@ -49,11 +49,11 @@ Edit Info
 </button>
 </div>
 <div class="d-flex justify-content-between group-item top-item"><h4>What is the song for?</h4><p>{{ selectedOccasion ? selectedOccasion.name : 'No selected occasion' }}</p></div>
-<div class="d-flex justify-content-between group-item"><h4>To whom is the song for?</h4><p>{{ song_for }}</p></div>
-<div class="d-flex justify-content-between group-item"><h4>Where did the song come from?</h4><p>{{ come_from }}</p></div>
+<div class="d-flex justify-content-between group-item"><h4>To whom is the song for?</h4><p>{{ song?.receiver }}</p></div>
+<div class="d-flex justify-content-between group-item"><h4>Where did the song come from?</h4><p>{{ song?.sender }}</p></div>
 <div class="d-flex justify-content-between group-item"><h4>Your story</h4></div>
 <div class="your-story-content">
-<p>{{ your_story }}</p>
+<p>{{ song?.user_story }}</p>
 </div>
 <div class="double-check">
 <h5>Please double-check the spelling and, where necessary, the pronunciation, and ensure that your story makes sense.</h5>
@@ -63,7 +63,7 @@ Edit Info
 <p>I understand changes cannot be made after checkout – all of my information is good to go!</p>
 </div>
 <div class="button-wrapper">
-<button type="button" class="btn btn-primary back" @click="previousStep" :disabled="currentStep === 0">Back</button>
+<button type="button" class="btn btn-primary back" @click="previousStep" >Back</button>
 <button type="button" class="btn btn-primary next" @click="submitSelectedArtist" :disabled="!understand">Submit</button>
 </div>
 </div>
@@ -89,16 +89,32 @@ export default {
   },
   methods: {
     ...mapActions([
-      'fetchArtists', 'artistOptions',
+      'fetchSongRequest', 'songStepFinal',
     ]),
     submit()
     {
 
+    },
+    editBasicInfo()
+    {
+      this.$emit('step', 0)
+    },
+    editSong()
+    {
+      this.$emit('step', 1)
+    },
+    editStory()
+    {
+      this.$emit('step', 1)
+    },
+    previousStep()
+    {
+      this.$emit('step', 2)
     }
   },
   mounted()
   {
-
+    this.fetchSongRequest(this.song?.id);
   },
   computed: {
     ...mapGetters(["userInfo", "token"]),
