@@ -1,5 +1,10 @@
 <template>
-  <div class="container-fluid" >123
+  <!-- <BlankHeader /> -->
+
+  <section class="phone-verification">
+    <div class="container">
+
+       <div class="container-fluid" >123
     <form @submit.prevent="confirm">
       <div class="">
         <div class="row">
@@ -9,7 +14,7 @@
         </div>
         <div class="row">
           <div class="col">
-            <label for="username">Verification Code</label>
+            <label for="username">Verification Code!</label>
               <input id="verifyCode" max="6" type="text" class="form-control" name="verifyCode" v-model="verifyCode" required autocomplete="off">  
               <span v-if="verifyMessage" class="text-danger">{{ verifyMessage }}</span>
           </div>
@@ -20,11 +25,26 @@
       <button type="submit">Confirm</button>
     </form>
   </div>
+
+    </div>
+  </section>
+
+
+
+
+
+
+
 </template>
 
 <script>
 import { mapGetters, mapState, mapActions } from "vuex";
+import BlankHeader from "@/components/Home/BlankHeader.vue";
+
 export default {
+  components: {
+  BlankHeader
+},
   data()
   {
     return {
