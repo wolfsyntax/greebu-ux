@@ -44,7 +44,7 @@ const router = createRouter({
           component: () => import('/src/views/Homepage/Home.vue'),
           meta: {
             requiresLogin: false,
-            title: 'Book your Events/Artist, Create your song now!',
+            title: 'Geebu Artists',
             role: '',
             parent: 'home',
             breadcrumb: [
@@ -181,7 +181,7 @@ const router = createRouter({
           name: 'deliveryform',
           component: () => import('/src/views/BasicInformation/DeliveryForm.vue'),
           meta: {
-            requiresLogin: false, // true
+            requiresLogin: true, // true
             title: 'Select your delivery date',
             role: '',
           }
@@ -191,7 +191,7 @@ const router = createRouter({
           name: 'ordersummary',
           component: () => import('/src/views/BasicInformation/OrderSummary.vue'),
           meta: {
-            requiresLogin: false, // true
+            requiresLogin: true, // true
             title: 'Your Order Summary',
             role: '',
           }
@@ -201,7 +201,7 @@ const router = createRouter({
           name: 'successfully-sent',
           component: () => import('/src/views/BasicInformation/SuccessfullySent.vue'),
           meta: {
-            requiresLogin: false,
+            requiresLogin: true, // true
             title: 'Successfully Sent!',
             role: '',
           }
@@ -388,10 +388,7 @@ router.beforeEach((to, from, next) => {
   } else {
 
     if (reqSession) {
-      next({
-        name: 'login',
-        query: { redirect: to.fullPath }
-      })
+      next({name: 'login'})
     } else {
       next()
     }
