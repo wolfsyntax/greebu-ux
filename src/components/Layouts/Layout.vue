@@ -376,7 +376,7 @@ export default {
   height: 53px;
 }
 
-@media (min-width: 1200px) and (max-width: 1399.98px) {
+@media (min-width: 992px) and (max-width: 1399.98px) {
 
   .footer .menu .our-company,
   .footer .menu .songs,
@@ -422,46 +422,19 @@ export default {
     width: 9.4375rem;
     height: 2.5rem;
 }
-  .footer .container .row[data-v-29a7c690]:nth-child(2) {
-    margin-bottom: 20px;
+  .footer .container .row:nth-child(2) {
+    margin-bottom: 0.99rem;
   }
 
 }
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
-
-  .footer .menu .our-company,
-  .footer .menu .songs,
-  .footer .menu .for-artist {
-    padding: 0 30px;
-  }
-
-  .footer .container .row[data-v-29a7c690]:nth-child(2) {
-    margin-bottom: 20px;
-  }
-
-  .footer .copy p[data-v-29a7c690] {
-    font-size: 16px;
-    line-height: 20px;
-  }
-
-  .footer .notify .card {
-    width: 27rem !important;
-  }
-
-  .footer .menu h4[data-v-29a7c690] {
-    font-size: 20px;
-    line-height: 24px;
-  }
-
-  .footer .menu ul li a[data-v-29a7c690] {
-    font-size: 18px;
-    line-height: 20px;
-  }
-
-  .footer .card h5[data-v-29a7c690] {
-    font-size: 20px;
-    line-height: 24px;
-  }
-}</style>
+  .footer .card .card-body {
+    padding: 1.8rem 1.8rem 2.8rem;
+}
+.footer .menu .our-company, .footer .menu .songs, .footer .menu .for-artist {
+    padding: 0 1.7rem;
+}
+}
+</style>
 

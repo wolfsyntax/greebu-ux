@@ -27,12 +27,16 @@
                   <img src="/assets/home/slider-2-animation-2.webp" class="d-block w-100" alt="Playing guitar">
                   <img src="/assets/home/slider-2-animation-3.webp" class="d-block w-100" alt="Singing">
                   <img src="/assets/home/slider-2-animation-4.webp" class="d-block w-100" alt="Playing guitar">
+                  <img src="/assets/home/slider-2-animation-5.webp" class="d-block w-100" alt="Singing">
+                  <img src="/assets/home/slider-2-animation-6.webp" class="d-block w-100" alt="Playing guitar">
                 </div>
                 <div class="animate-right">
-                  <img src="/assets/home/slider-2-animation-4.webp" class="d-block w-100" alt="Playing guitar">
-                  <img src="/assets/home/slider-2-animation-3.webp" class="d-block w-100" alt="Singing">
-                  <img src="/assets/home/slider-2-animation-2.webp" class="d-block w-100" alt="Playing guitar">
-                  <img src="/assets/home/slider-2-animation-1.webp" class="d-block w-100" alt="Playing guitar">
+                  <img src="/assets/home/slider-2-animation-7.webp" class="d-block w-100" alt="Playing guitar">
+                  <img src="/assets/home/slider-2-animation-8.webp" class="d-block w-100" alt="Playing guitar">
+                  <img src="/assets/home/slider-2-animation-9.webp" class="d-block w-100" alt="Singing">
+                  <img src="/assets/home/slider-2-animation-10.webp" class="d-block w-100" alt="Playing guitar">
+                  <img src="/assets/home/slider-2-animation-11.webp" class="d-block w-100" alt="Singing">
+                  <img src="/assets/home/slider-2-animation-12.webp" class="d-block w-100" alt="Playing guitar">
                 </div>
               </div>
             </div>
@@ -84,11 +88,11 @@
         <div class="col-6">
           <div class="video-container">
             <video width="778" height="440.693"
-             ref="videoPlayer" @click="togglePresentaionVideo" :poster=videoThumbnail>
+             ref="videoPlayer" @click="togglePresentationVideo" :poster=videoThumbnail>
              <source :src="presentationVideo"
                 type="video/mp4">
             </video>
-            <div class="play-button" v-if="!isPlaying" @click="togglePresentaionVideo">
+            <div class="play-button" v-if="!isPlaying" @click="togglePresentationVideo">
               <img src="/assets/video-play-icon.svg" alt="Click to play the video">
             </div>
           </div>
@@ -97,9 +101,9 @@
       </div>
     </section>
 
-    <section class="custom-song">
+    <section class="custom-song" ref="customSongSection">
       <div class="container">
-        <h2>A Custom Song in 3 Simple Steps</h2>
+        <h2 class="title">A Custom Song in 3 Simple Steps</h2>
         <div class="row">
           <div id="custom-song-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-indicators">
@@ -112,7 +116,7 @@
                   class="number3">3</span></button>
             </div>
             <div class="carousel-inner">
-              <div class="carousel-item active" data-bs-interval="3500">
+              <div class="carousel-item active" data-bs-ride="carousel" data-bs-interval="3500">
                 <div class="row">
                   <div class="col-lg-6 col-xl-5 col-xxl-5">
                     <div class="carousel-caption d-none d-md-block step1">
@@ -189,7 +193,7 @@
               </div>
             </div>
             <div class="col-lg-6 col-xl-6 col-xxl-6">
-              <div id="availableArtist" class="carousel slide" data-bs-interval="3000" data-bs-ride="carousel">
+              <div id="availableArtist" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
                 <div class="carousel-indicators">
                   <button type="button" data-bs-target="#availableArtist" data-bs-slide-to="0" class="active"
                     aria-current="true" aria-label="Slide 1"></button>
@@ -217,13 +221,13 @@
           </div> <!-- end of row -->
           <div class="row book-your-event">
             <div class="col-lg-6 col-xl-6 col-xxl-6">
-              <div id="bookYourEvent" class="carousel slide" data-bs-interval="3000" data-bs-ride="carousel">
+              <div id="bookYourEvent" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
                 <div class="carousel-indicators">
-                  <button type="button" data-bs-target="#availableArtist" data-bs-slide-to="0" class="active"
+                  <button type="button" data-bs-target="#bookYourEvent" data-bs-slide-to="0" class="active"
                     aria-current="true" aria-label="Slide 1"></button>
-                  <button type="button" data-bs-target="#availableArtist" data-bs-slide-to="1"
+                  <button type="button" data-bs-target="#bookYourEvent" data-bs-slide-to="1"
                     aria-label="Slide 2"></button>
-                  <button type="button" data-bs-target="#availableArtist" data-bs-slide-to="2"
+                  <button type="button" data-bs-target="#bookYourEvent" data-bs-slide-to="2"
                     aria-label="Slide 3"></button>
                 </div>
                 <div class="carousel-inner">
@@ -371,6 +375,7 @@ export default {
       presentationVideo: '/assets/videos/geebu-presentation.mp4',
       isPlaying: false,
       videoThumbnail: '/assets/home/presentation-thumbnail-image.webp',
+      observer: null,
     //  showPlayButton: false,
     }
   },
@@ -388,7 +393,14 @@ export default {
         this.reviews[index].playing = false;
       }
     },
-    togglePresentaionVideo()
+    pauseVideoOnScroll() {
+      const video = this.$refs.videoPlayer;
+      if (video && this.isPlaying) {
+        video.pause();
+        this.isPlaying = false;
+      }
+    },
+    togglePresentationVideo()
     {
       const video = this.$refs.videoPlayer;
       if(video){
@@ -400,12 +412,6 @@ export default {
        this.isPlaying = !this.isPlaying;
       }
     },
-    // showButton(){
-    //   this.showPlayButton = true;
-    // },
-    // hideButton(){
-    //   this.showPlayButton = false;
-    // },
     changeVideo(index)
     {
       const videos = this.$refs.videos;
@@ -417,8 +423,35 @@ export default {
       }
 
       this.activeIndex = index;
+    },
+  },
+  mounted() {
+    this.observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting && entry.target === this.$refs.customSongSection) {
+          this.pauseVideoOnScroll();
+        }
+      });
+    });
+    this.observer.observe(this.$refs.customSongSection);
+    //this.observer.observe(this.$el);
+
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  beforeDestroy() {
+    if (this.observer) {
+      this.observer.disconnect();
     }
-  }
+
+    window.removeEventListener('scroll', this.handleScroll);
+  },
+    handleScroll() {
+      const scrollY = window.scrollY || window.pageYOffset;
+      if (scrollY >= 1) {
+        this.pauseVideoOnScroll();
+      }
+    },
+  
 }
 </script>
 
