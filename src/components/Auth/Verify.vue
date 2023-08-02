@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid" >123
+  <div class="container-fluid" >
     <form @submit.prevent="confirm">
       <div class="">
         <div class="row">
@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { mapGetters, mapState, mapActions } from "vuex";
+import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
 export default {
   data()
   {
@@ -46,7 +46,7 @@ export default {
 
   },
   computed: {
-    ...mapGetters(["userInfo", "info", "token", "isLoggedIn"])
+    ...mapGetters(["userInfo", "info", "token", "isLoggedIn", 'userRole'])
     
   },
   mounted() {
@@ -59,6 +59,9 @@ export default {
   },
   methods: {
     ...mapActions(['resendOTPCode', 'verifyOTP', 'verifyOTPF']),
+    // ...mapMutations([
+    //   'CLEAR_STATE',
+    // ]),
     async resendCode()
     {
       if (!this.countdown_enabled) {
@@ -82,47 +85,73 @@ export default {
 
       this.verifyMessage = '';
 
-      if (!this.isLoggedIn) {
-        await this.verifyOTP({ id: this.$route.query.id, code: this.verifyCode })
-          .then(response =>
-          {
-            const { status: statusCode, data: { status, message, result } } = response
-            if (statusCode === 200 && status === 200) this.$router.push("/login");
-            else if (statusCode === 203) {
-              if (status === 422) {
-                this.verifyMessage = 'The provided OTP code is invalid. Please try again with the correct code.';
-              } else if (status === 500) {
-                // this.verifyMessage = 'Too Many Attempts.';
-                this.verifyMessage = `You have already surpassed the limit for resending the OTP code to your number Please wait ${this.$filters.timer(this.rate_countdown)} minutes to re send a new OTP code`;
-              }
+      this.verifyOTPF({ id: this.$route.query.id, code: this.verifyCode })
+        .then(response =>
+        {
+          const { status: statusCode, data: { status, message, result } } = response
+          if (statusCode === 200 && status === 200) {
+            if (this.userRole === 'customers') {
+              this.$router.push("/");
+            } else {
+              this.$store.commit('CLEAR_STATE');
+              this.$router.push("/login");
             }
-            console.log('Verify OTP Response: ', response)
-          })
-          .catch(err =>
-          {
 
-          })
-      } else {
-        await this.verifyOTPF({ id: this.userInfo?.id, code: this.verifyCode })
-          .then(response =>
-          {
-            const { status: statusCode, data: { status, message, result } } = response
-            if (statusCode === 200 && status === 200) this.$router.push("/login");
-            else if (statusCode === 203) {
-              if (status === 422) {
-                this.verifyMessage = 'The provided OTP code is invalid. Please try again with the correct code.';
-              } else if (status === 500) {
-                // this.verifyMessage = 'Too Many Attempts.';
-                this.verifyMessage = `You have already surpassed the limit for resending the OTP code to your number Please wait ${this.$filters.timer(this.rate_countdown)} minutes to re send a new OTP code`;
-              }
+          } else if (statusCode === 203) {
+            if (status === 422) {
+              this.verifyMessage = 'The provided OTP code is invalid. Please try again with the correct code.';
+            } else if (status === 500) {
+              // this.verifyMessage = 'Too Many Attempts.';
+              this.verifyMessage = `You have already surpassed the limit for resending the OTP code to your number Please wait ${this.$filters.timer(this.rate_countdown)} minutes to re send a new OTP code`;
             }
-            console.log('Verify OTP Response: ', response)
-          })
-          .catch(err =>
-          {
+          }
+          console.log('Verify OTP Response: ', response)
+        })
+        .catch(err =>
+        {
 
-          })
-      }
+        })
+      // if (!this.isLoggedIn) {
+      //   await this.verifyOTP({ id: this.$route.query.id, code: this.verifyCode })
+      //     .then(response =>
+      //     {
+      //       const { status: statusCode, data: { status, message, result } } = response
+      //       if (statusCode === 200 && status === 200) this.$router.push("/login");
+      //       else if (statusCode === 203) {
+      //         if (status === 422) {
+      //           this.verifyMessage = 'The provided OTP code is invalid. Please try again with the correct code.';
+      //         } else if (status === 500) {
+      //           // this.verifyMessage = 'Too Many Attempts.';
+      //           this.verifyMessage = `You have already surpassed the limit for resending the OTP code to your number Please wait ${this.$filters.timer(this.rate_countdown)} minutes to re send a new OTP code`;
+      //         }
+      //       }
+      //       console.log('Verify OTP Response: ', response)
+      //     })
+      //     .catch(err =>
+      //     {
+
+      //     })
+      // } else {
+      //   await this.verifyOTPF({ id: this.userInfo?.id, code: this.verifyCode })
+      //     .then(response =>
+      //     {
+      //       const { status: statusCode, data: { status, message, result } } = response
+      //       if (statusCode === 200 && status === 200) this.$router.push("/login");
+      //       else if (statusCode === 203) {
+      //         if (status === 422) {
+      //           this.verifyMessage = 'The provided OTP code is invalid. Please try again with the correct code.';
+      //         } else if (status === 500) {
+      //           // this.verifyMessage = 'Too Many Attempts.';
+      //           this.verifyMessage = `You have already surpassed the limit for resending the OTP code to your number Please wait ${this.$filters.timer(this.rate_countdown)} minutes to re send a new OTP code`;
+      //         }
+      //       }
+      //       console.log('Verify OTP Response: ', response)
+      //     })
+      //     .catch(err =>
+      //     {
+
+      //     })
+      // }
     }
   },
   watch: {

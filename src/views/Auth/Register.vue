@@ -26,7 +26,7 @@
         </div>
         <div class="card">
           <div class="card-body">
-            <form @submit.prevent="submit"> 
+            <form @submit.prevent="submit">
                                                <!-- Choose account type -->
            <div v-if="showRadioButtons">                                  
               <div class="row row-checkbox">
@@ -247,20 +247,20 @@ export default {
       }
     },
     ...mapActions(['signup', 'resendOTPCode', 'verifyOTP', 'phoneOTP']),
-    async submit()
+    submit()
     {
       console.log('Submit registration info')
       this.isDisabled = true;
-      await this.signup(this.form)
+      this.signup(this.form)
         .then((response) => { 
-
+          console.log('Register response: ', response)
           this.isDisabled = false;
           const { status: statusCode, data: {status, result} } = response;
-          console.log('Register response: ', response)
+          
           if (statusCode === 201)
           {
             // Send OTP
-            this.phoneOTP(result?.user_id);
+            // this.phoneOTP(result?.user_id);
 
             this.step = '';
             // setTimeout(() => this.countdown--, 100);
@@ -287,6 +287,7 @@ export default {
           //   title: 'Server Status',
           //   text: `${err.message}`
           // })
+          console.log('Registration Error: ', err);
         })
 
     },

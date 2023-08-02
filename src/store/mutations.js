@@ -32,6 +32,15 @@ var mutations = {
   SET_PHONE(state, payload)
   {
     state.phone = payload;
+  },
+  CLEAR_STATE(state)
+  {
+    state.profile = {};
+    state.user = {};
+    state.bearerToken = '';
+    state.role = '';
+    state.roles = [];
+    state.phone = null;
   }
 }
 
