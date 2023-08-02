@@ -8,12 +8,7 @@
           <div class="progress">
             <div class="progress-bar progress-bar-striped progress-bar-animated" :style="{ width: progressWidth }"></div>
           </div>
-          <h5>Song</h5>{{ song }}<br/>
-          <h5>Artists</h5>{{ song_artists }}
-          <h5>Language</h5>{{ song_language }}
-          <h5>Duration</h5>{{ song_duration }}
-          <h5>Purpose</h5>{{ song_purpose }}
-          <h5>Mood</h5>{{ song_mood }}
+
           <div class="d-flex justify-content-center mb-3">
             <div v-for="(step, index) in steps" :key="index" :class="['step-item', { 'active': index === currentStep }]">
               <div class="step-title">{{ step.title }}</div>

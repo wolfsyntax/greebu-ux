@@ -452,6 +452,30 @@ var actions = {
         });
     })
   },
+  phoneOTP({ commit }, payload)
+  {
+    return new Promise(async (resolve, reject) =>
+    {
+
+      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/sms-otp/${payload}`)
+        .then(response =>
+        {
+
+          const { status: statusCode, data: { message, status, result } } = response;
+
+          if (statusCode === 200) {
+
+          }
+          console.log('Status: ', response)
+          resolve(response)
+
+        })
+        .catch(err =>
+        {
+          reject(err)
+        });
+    })
+  },
 }
 
 export default actions
