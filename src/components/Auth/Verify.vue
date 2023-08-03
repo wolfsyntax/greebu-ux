@@ -167,11 +167,8 @@ export default {
 
   },
   computed: {
-    ...mapGetters(["userInfo", "info", "token", "isLoggedIn"]),
-
-    // isInputComplete(){
-    //   return this.verifyCode !== null && this.verifyCode.length === 6;
-    //   }
+    ...mapGetters(["userInfo", "info", "token", "isLoggedIn", 'userRole'])
+    
   },
   mounted() {
     this.phone_num = this.phone || this.info?.phone;
@@ -183,6 +180,9 @@ export default {
   },
   methods: {
     ...mapActions(['resendOTPCode', 'verifyOTP', 'verifyOTPF']),
+    // ...mapMutations([
+    //   'CLEAR_STATE',
+    // ]),
     async resendCode()
     {
       if (!this.countdown_enabled) {
@@ -206,92 +206,74 @@ export default {
 
       this.verifyMessage = '';
 
-      if (!this.isLoggedIn) {
-        await this.verifyOTP({ id: this.$route.query.id, code: this.verifyCode })
-          .then(response =>
-          {
-            const { status: statusCode, data: { status, message, result } } = response
-            if (statusCode === 200 && status === 200) this.$router.push("/login");
-            else if (statusCode === 203) {
-              if (status === 422) {
-        
-                  this.verifyMessage = 'The provided OTP code is invalid. Please try again with the correct code.';
-                  setTimeout(() => {
-                  this.verifyMessage = '';
-                }, 5000);
-              } else if (status === 500) {
-               // .replace(":00", "")
-                this.verifyMessage = `Kindly wait for ${this.$filters.timer(this.rate_countdown)} minutes before attempting to request a new OTP code.`;
-                  setTimeout(() => {
-                  this.verifyMessage = '';
-                }, 5000); 
-              }
+      this.verifyOTPF({ id: this.$route.query.id, code: this.verifyCode })
+        .then(response =>
+        {
+          const { status: statusCode, data: { status, message, result } } = response
+          if (statusCode === 200 && status === 200) {
+            if (this.userRole === 'customers') {
+              this.$router.push("/");
+            } else {
+              this.$store.commit('CLEAR_STATE');
+              this.$router.push("/login");
             }
-            console.log('Verify OTP Response: ', response)
-          })
-          .catch(err =>
-          {
 
-          })
-      } else {
-        await this.verifyOTPF({ id: this.userInfo?.id, code: this.verifyCode })
-          .then(response =>
-          {
-            const { status: statusCode, data: { status, message, result } } = response
-            if (statusCode === 200 && status === 200) this.$router.push("/login");
-            else if (statusCode === 203) {
-              if (status === 422) {
-       
-                  this.verifyMessage = 'The provided OTP code is invalid. Please try again with the correct code.';
-                  setTimeout(() => {
-                  this.verifyMessage = '';
-                }, 5000);
-              } else if (status === 500) {
-                // this.verifyMessage = 'Too Many Attempts.';
-            
-                  this.verifyMessage = `Kindly wait for ${this.$filters.timer(this.rate_countdown)}'.replace(":00", "") + ' minutes before attempting to request a new OTP code.`;
-                  setTimeout(() => {
-                    this.verifyMessage = '';
-                  }, 5000);
-              }
+          } else if (statusCode === 203) {
+            if (status === 422) {
+              this.verifyMessage = 'The provided OTP code is invalid. Please try again with the correct code.';
+            } else if (status === 500) {
+              // this.verifyMessage = 'Too Many Attempts.';
+              this.verifyMessage = `You have already surpassed the limit for resending the OTP code to your number Please wait ${this.$filters.timer(this.rate_countdown)} minutes to re send a new OTP code`;
             }
-            console.log('Verify OTP Response: ', response)
-          })
-          .catch(err =>
-          {
+          }
+          console.log('Verify OTP Response: ', response)
+        })
+        .catch(err =>
+        {
 
-          })
-      }
-    },
-    // handleInput() {
-    //   if (this.verifyCode.length === 1) {
-    //     // Move to the next input field when the current one has a single character
-    //     if (this.verifyCode.length - 1) {
-    //       this.$refs.inputs[index + 1].focus();
-    //     }
-    //   }
-    // },
-    // handleKeyDown(event, index) {
-    //   const charCode = event.which ? event.which : event.keyCode;
-    //   if (charCode < 48 || charCode > 57) {
-    //     // Prevent input if it's not a number or the Backspace key
-    //     if (charCode !== 8) {
-    //       event.preventDefault();
-    //     }
-    //   } else if (charCode === 8 && index > 0 && !this.codes[index]) {
-    //     // Handle Backspace key to clear the current input and move focus to the previous input
-    //     this.$refs.inputs[index - 1].focus();
-    //     this.codes[index - 1] = '';
-    //   }
-    // },
-    verifyPhone(){
-      this.submitted = false;
-    }, 
-    submitCode(){
-      // this.submitted = true;
-      this.verifyEmail = false;
+        })
+      // if (!this.isLoggedIn) {
+      //   await this.verifyOTP({ id: this.$route.query.id, code: this.verifyCode })
+      //     .then(response =>
+      //     {
+      //       const { status: statusCode, data: { status, message, result } } = response
+      //       if (statusCode === 200 && status === 200) this.$router.push("/login");
+      //       else if (statusCode === 203) {
+      //         if (status === 422) {
+      //           this.verifyMessage = 'The provided OTP code is invalid. Please try again with the correct code.';
+      //         } else if (status === 500) {
+      //           // this.verifyMessage = 'Too Many Attempts.';
+      //           this.verifyMessage = `You have already surpassed the limit for resending the OTP code to your number Please wait ${this.$filters.timer(this.rate_countdown)} minutes to re send a new OTP code`;
+      //         }
+      //       }
+      //       console.log('Verify OTP Response: ', response)
+      //     })
+      //     .catch(err =>
+      //     {
 
-    },
+      //     })
+      // } else {
+      //   await this.verifyOTPF({ id: this.userInfo?.id, code: this.verifyCode })
+      //     .then(response =>
+      //     {
+      //       const { status: statusCode, data: { status, message, result } } = response
+      //       if (statusCode === 200 && status === 200) this.$router.push("/login");
+      //       else if (statusCode === 203) {
+      //         if (status === 422) {
+      //           this.verifyMessage = 'The provided OTP code is invalid. Please try again with the correct code.';
+      //         } else if (status === 500) {
+      //           // this.verifyMessage = 'Too Many Attempts.';
+      //           this.verifyMessage = `You have already surpassed the limit for resending the OTP code to your number Please wait ${this.$filters.timer(this.rate_countdown)} minutes to re send a new OTP code`;
+      //         }
+      //       }
+      //       console.log('Verify OTP Response: ', response)
+      //     })
+      //     .catch(err =>
+      //     {
+
+      //     })
+      // }
+    }
   },
   watch: {
     step(value)
