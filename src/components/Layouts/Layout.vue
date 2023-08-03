@@ -1,5 +1,90 @@
 <template>
   <main>
+    <div v-if="!isLoggedIn"></div>
+    <div  v-else>
+      <div class="onboarding-message">
+      <input type="checkbox" id="modal-toggle" class="modal-toggle" checked style="display: none;">
+
+        <div class="modal">
+          <div class="modal-content">
+            <h2 class="title">Welcome Aboard!</h2>
+            <p class="description">In order to access the full range of features within the app, it is necessary to subscribe to the artist plan. 
+              You can still browse the app and explore its interface, but your access to certain features will be limited until you 
+              upgrade to the subscription.</p>
+              <label for="modal-toggle" class="close-modal-button" 
+              data-bs-toggle="modal" data-bs-target="#selectPlanModal">View Subscription</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="selectPlanModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+              <h2 class="title">Upgrade to Subscription</h2>
+              <p class="description">With the upgraded artist subscription, you'll gain access to a wide range 
+                of exclusive features designed to support your career and expand your reach.</p>
+                <div class="select">
+                  <div class="free">
+                    <h3 class="type">FREE</h3>
+                    <div class="d-flex justify-content-between group-item">
+                    <h4><span class="peso">₱</span>0</h4> <p class="desc">Limited Access</p>
+                   </div>
+                   <p class="benefits"><span class="material-symbols-rounded">done</span>Request Custom songs to Artist</p>
+                   <p class="benefits"><span class="material-symbols-rounded">done</span>Request custom song to be edited</p>
+                   <p class="benefits"><span class="material-symbols-rounded">done</span>Book an Artist to an events </p>
+                   <p class="benefits last"><span class="material-symbols-rounded">done</span>Listen to Artist Songs</p>
+                   <div class="flex-item">
+                    <button type="button" class="current-plan btn">Get Started</button>
+                   </div>
+                  </div>
+                  <div class="monthly">
+                    <h3 class="type">Monthly</h3>
+                    <div class="d-flex justify-content-between group-item">
+                    <h4><span class="peso">₱</span>₱123/ m</h4> <p class="desc">Limited Access</p>
+                   </div>
+                   <p class="benefits"><span class="material-symbols-rounded">done</span>Accept Bookings</p>
+                   <p class="benefits"><span class="material-symbols-rounded">done</span>Create a custom Songs</p>
+                   <p class="benefits"><span class="material-symbols-rounded">done</span>Apply for Events</p>
+                   <p class="benefits"><span class="material-symbols-rounded">done</span>Accept Bookings</p>
+                   <p class="benefits"><span class="material-symbols-rounded">done</span>Create a custom Songs</p>
+                   <p class="benefits last"><span class="material-symbols-rounded">done</span>Apply for Events</p>
+                   <div class="flex-item">
+                    <button type="button" class="monthly-plan btn">Get Started</button>
+                   </div>
+                  </div>
+                  <div class="yearly">
+                    <div class="d-flex justify-content-between">
+                    <h3 class="type">YEARLY</h3> <button type="button" class="save">Save 30%</button>
+                   </div>
+                    <div class="d-flex justify-content-between group-item">
+                    <h4><span class="peso">₱</span>₱123/ m</h4> <p class="desc">Limited Access</p>
+                   </div>
+                   <p class="benefits"><span class="material-symbols-rounded">done</span>Accept Bookings</p>
+                   <p class="benefits"><span class="material-symbols-rounded">done</span>Create a custom Songs</p>
+                   <p class="benefits"><span class="material-symbols-rounded">done</span>Apply for Events</p>
+                   <p class="benefits"><span class="material-symbols-rounded">done</span>Accept Bookings</p>
+                   <p class="benefits"><span class="material-symbols-rounded">done</span>Create a custom Songs</p>
+                   <p class="benefits last"><span class="material-symbols-rounded">done</span>Apply for Events</p>
+                   <div class="flex-item">
+                    <button type="button" class="yearly-plan btn">Get Started</button>
+                   </div>
+                  </div>
+                </div>
+            </div>
+            <!-- <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div> -->
+          </div>
+        </div>
+      </div>
+
+    </div>
     <header class="main-nav">
       <nav class="navbar navbar-expand-lg">
         <div class="container">
@@ -22,6 +107,7 @@
               <a :href="signUp" type="button" class="btn btn-secondary sign-up">Sign Up</a>
             </div>
             <div class="float-end nav-button" v-else>
+         
               <a href="#" class="btn btn-primary upgrade">Upgrade Plan</a>
               <a href="#"><span class="material-symbols-outlined bell-icon">&#xe7f4;</span></a>
 
@@ -61,6 +147,7 @@
         </nav>
 
       </header>
+
       
       <router-view></router-view>
       <slot />
@@ -148,9 +235,9 @@
 </template>
 <script>
 import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
+
 export default {
   components: {
-
   },
   setup() {
     

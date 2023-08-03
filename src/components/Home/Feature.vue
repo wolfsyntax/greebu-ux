@@ -1,5 +1,12 @@
 <template>
-  <div>
+  <div >
+    <div v-if="!isLoggedIn">   
+      
+    </div>
+    <div v-else>
+
+      </div>
+      
     <section class="home-slider">
       <div class="container">
         <div id="home-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5500">
@@ -8,6 +15,7 @@
               <img src="/assets/home/home-slider-1.webp" class="d-block w-100"
                 alt="Book your Events/Artist, Create your song now let's make magic in music!">
               <div class="carousel-caption d-none d-md-block">
+
                 <h1>Book your Events/Artist, Create your song now let's make magic in music!</h1>
                 <p>Custom tunes for any mood, and booking the best artists just got easier with our website!</p>
                 <a href="/create-song" class="btn btn-primary btn-lg">Create your song</a>
@@ -322,13 +330,18 @@
 
       </div>
     </section>
-
   </div>
+
+
 </template>
 
 <script>
+import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
+// import OnBoardingMessage from '/src/components/Artist/OnBoardingMessage.vue';
 
 export default {
+  components: {
+  },
       data() {
           return {
       occasions: [
@@ -377,9 +390,20 @@ export default {
       videoThumbnail: '/assets/home/presentation-thumbnail-image.webp',
       observer: null,
     //  showPlayButton: false,
+    // showModal: true,
     }
   },
+  computed: {
+    ...mapGetters(["isLoggedIn", 'userInfo', 'info']),
+    ...mapState({}),
+  },
+  mounted() {
+  }
+  ,
   methods: {
+    // closeModal() {
+    //   this.showModal = false;
+    // },
     toggleTestimonialVideo(index)
     {
       const videos = this.$refs.videos;
@@ -455,7 +479,8 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+</style> 
 
 
 

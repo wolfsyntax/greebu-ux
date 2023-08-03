@@ -3656,7 +3656,202 @@ justify-content: space-between;
   -moz-appearance: textfield;
 }
 
-
+                                                    /* ONBOARDING MESSAGES */
+.onboarding-message .modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+.onboarding-message .modal-toggle:checked + .modal {
+  display: flex;
+}
+.onboarding-message .modal-content {
+  background-color: var(--white);
+  padding: 3.5rem 1.75rem 3rem;
+  border-radius: 0.625rem;
+  background: #FFF;
+  box-shadow: 0px 25px 50px -12px rgba(0, 0, 0, 0.25);
+  max-width: 32.25rem;
+  text-align: center;
+}
+.onboarding-message .modal-content .title{
+  color: var(--black);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.06rem;
+}
+.onboarding-message .modal-content .description{
+  color: #536471;
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin-bottom: 3rem;
+}
+.onboarding-message .close-modal-button {
+  padding: 1rem 9rem;
+  border-radius: 0.5rem;
+  background: var(--orange);
+  cursor: pointer;
+  color: var(--white);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.5rem; 
+}
+.onboarding-message .close-modal-button:hover{
+  background: var(--btn-hovered);
+}
+                                                        /* SELECT PLAN MODAL */
+#selectPlanModal .modal-content .title {
+  color: var(--black);
+  font-size: 2.625rem;
+  font-weight: 700;
+  margin-bottom: 1.06rem;
+}  
+#selectPlanModal .modal-content{
+  border-radius: 0.625rem;
+  background: var(--white);
+  /* Shadow 4 */
+  box-shadow: 0px 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+#selectPlanModal .modal-content .description{
+  color: #8690A2;
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin-bottom: 2.8rem;
+}                                                     
+#selectPlanModal .modal-content .modal-header {
+  border-bottom: 0;
+  padding: 2rem 2rem 1rem;
+}
+#selectPlanModal .modal-content .modal-body{
+  padding: 0rem 4rem 4rem;
+}
+#selectPlanModal .modal-content .select{
+  position: relative;
+  width: 100%;
+  display: flex;
+}
+#selectPlanModal .modal-content .modal-header .btn-close {
+  padding: 0.8rem;
+  border: 1px solid #DFDFE6;
+  border-radius: 100%;
+  color: #23262F;
+  background: var(white);
+}
+#selectPlanModal .modal-content .modal-header .btn-close:hover {
+  border: 1px solid #23262F;
+}
+#selectPlanModal .modal-content .free, #selectPlanModal .modal-content .monthly,  #selectPlanModal .modal-content .yearly{
+  width: 33.3%;
+  background-color: var(--white);
+  border: 1px solid #DCDCDC;
+  border-radius: 20px;
+  filter: drop-shadow(0px -8px 41px rgba(193, 193, 193, 0.25));
+  /* padding: 2rem 1rem; */
+}
+#selectPlanModal .modal-content .monthly{
+  margin: 0rem 1.3rem;
+}
+#selectPlanModal .modal-content .select .type{
+  color: #2F2F2F;
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 110%;
+  text-transform: uppercase;
+  text-align: left;
+  margin-bottom: 2rem;
+  padding: 2.5rem 1.5rem .1rem;
+}
+#selectPlanModal .select .group-item{
+  border-top: 1px solid #DCDCDC;
+  border-left: 0;
+  border-bottom: 1px solid #DCDCDC;
+  border-right:.0;
+  padding: 1.5rem;
+  margin-bottom: 1.7rem;
+}
+#selectPlanModal .select .group-item h4{
+  color: #2F2F2F;
+  font-size: 1.75rem;
+  font-weight: 800;
+  line-height: 110%;
+  margin-bottom: 0;
+}
+#selectPlanModal .select .group-item .peso{
+  color: #2F2F2F;
+  font-style: normal;
+  font-weight: 400;
+}
+#selectPlanModal .select .group-item .desc{
+  color: #808080;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 150.5%; 
+  margin-bottom: 0;
+}
+#selectPlanModal .select span{
+  color: var(--orange);
+  padding-right: 0.5rem;
+}
+#selectPlanModal .select .benefits {
+  color: #2F2F2F;
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0 5%;
+  margin-bottom: 0.94rem;
+}
+#selectPlanModal .select .last{
+  margin-bottom: 3rem;
+}
+/* see  https://stackoverflow.com/questions/48406628/bootstrap-align-button-to-the-bottom-of-card#:~:text=If%20you%20want%20the%20button,card%2Dbody. */
+#selectPlanModal .select .current-plan, #selectPlanModal .select .yearly-plan, #selectPlanModal .select .monthly-plan {
+  color: var(--white);
+  font-size: 1.125rem;
+  font-weight: 700;
+  background: var(--orange);
+  border: 0;
+  padding: 1rem 0;
+  width: 90%;
+  border-radius: 2.4375rem;
+  margin: 2rem 0 3rem;
+  /* position: absolute;
+  bottom: 0;
+  left: 5%; */
+}
+#selectPlanModal .select .current-plan{
+  background: #FED7AA;
+  color: var(--orange);
+  position: absolute;
+  bottom: 0;
+  left: 5%;
+}
+#selectPlanModal .select .yearly-plan:hover, #selectPlanModal .select .monthly-plan:hover {
+  background: var(--btn-hovered);
+}
+#selectPlanModal .select .current-plan:hover{
+  background: var(--orange);
+  color: var(--white);
+}
+#selectPlanModal .select .yearly .save {
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 800;
+  border-radius: 1.8rem;
+  background: #2F2F2F;
+  padding: 0.8rem 1.44rem;
+  margin: 1rem;
+}
+#selectPlanModal .select .yearly .save:hover{
+  background: var(--black-color);
+}
 
 
                                                                     /* MEDIA QUERIES */

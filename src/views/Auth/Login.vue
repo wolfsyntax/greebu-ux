@@ -68,11 +68,13 @@
                       &#xe941;
                     </span>
                   </button>
+              
                   </div>
                 </form>
               </div>
             </div>
             <social-button />
+            <!-- <OnBoardingMessage /> -->
             <!-- <div class="row mb-0 text-center select-login">
               <div class="col-md-12 continue-with">
                 <p><span>Or Continue with</span></p>
@@ -179,6 +181,9 @@ export default {
       });
 
     },
+    // openModal(data){
+    //     this.$root.$emit("bv::show::modal", "#OnBoardingMessage");
+    //   },
     // AuthProviderFB()
     // {
     //   const provider = new FacebookAuthProvider();

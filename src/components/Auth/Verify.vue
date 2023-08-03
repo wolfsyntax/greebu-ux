@@ -3,8 +3,8 @@
 
   <section class="phone-verification">
     <div class="container">
-
-      <div v-if="submitted" class="verify-phone">
+      <!-- <div v-if="submitted" class="verify-phone"> -->
+      <!-- <div v-if="submitted" class="verify-phone">
                 <div class="card">
                     <div class="card-header">
                         <a href="/register">
@@ -31,9 +31,9 @@
                       </div>
                     </div>
                 </div>
-              </div>
-
-      <div v-if="!submitted && verifyEmail"  class="check-message">
+              </div> -->
+              <!-- <div v-if="!submitted && verifyEmail"  class="check-message"> -->
+      <div class="check-message">
                 <div class="card">
                     <div class="card-header">
                         <a href="/register">
@@ -68,19 +68,77 @@
                         </span>
                         
                         <div class="phone-screen">
-                        <input
+                        <!-- <input
                         v-for="(code, index) in 6"
                         :key="index"
                         type="number"
                         class="verification-box"
                         maxlength="1"
                         v-model="verifyCode"
+                      > -->
+                      <!-- {{ codes.length }}
+                      {{ codes }}
+                      <input
+                        type="number"
+                        class="verification-box"
+                        maxlength="1"
+                        v-model="codes[0]"
                       >
+                      <input
+                        type="number"
+                        class="verification-box"
+                        maxlength="1"
+                        v-model="codes[1]"
+                      >
+                      <input
+                        type="number"
+                        class="verification-box"
+                        maxlength="1"
+                        v-model="codes[2]"
+                      >
+                      <input
+                        type="number"
+                        class="verification-box"
+                        maxlength="1"
+                        v-model="codes[3]"
+                      >
+                      <input
+                        type="number"
+                        class="verification-box"
+                        maxlength="1"
+                        v-model="codes[4]"
+                      >
+                      <input
+                        type="number"
+                        class="verification-box"
+                        maxlength="1"
+                        v-model="codes[5]"
+                      >
+                        </div> -->
+           
+                        <!-- <input
+                        type="number"
+                        class=""
+                        maxlength="1"
+                        v-model="verifyCode"
+                      > -->
+                      <input
+                      v-for="(code, index) in verifyCode"
+                      :key="index"
+                      ref="inputField"
+                      type="text"
+                      class="verification-box"
+                      maxlength="1"
+                      v-model="verifyCode[index]"
+                      @input="handleInput(index)"
+                    >
+
                         </div>
+                        <p style="">Length: {{ verifyCode }} - {{ computedLength }}</p>
 
                           <button class="resend-code" @click.prevent="resendCode">Resend Code {{ $filters.timer(countdown) }}</button>
                         <div class="btn-wrapper">
-                          <button type="submit">Confirm</button>
+                          <button type="submit" :disabled="!isAllFieldsFilled">Confirm</button>
                         </div>
                         </form>
                       </div>
@@ -146,10 +204,11 @@ export default {
   data()
   {
     return {
-      codes: ['', '', '', '', '', ''],
-      submitted: true,
-      verifyEmail: true,
-      verifyCode: null,
+     // codes: [],
+     // submitted: true,
+    //  verifyEmail: true,
+     // verifyCode: null,
+       verifyCode: [null, null, null, null, null, null], // Initialize with null values
       verifyMessage: null,
       countdown: 180,
       countdown_enabled: false,
@@ -167,6 +226,13 @@ export default {
 
   },
   computed: {
+  //  ...mapGetters(["userInfo", "info", "token", "isLoggedIn"]),
+    computedLength() {
+      return this.verifyCode.filter(code => code !== null).length;
+    },
+    isAllFieldsFilled() {
+      return this.verifyCode.every(code => code !== null);
+    }
     ...mapGetters(["userInfo", "info", "token", "isLoggedIn", 'userRole'])
     
   },
