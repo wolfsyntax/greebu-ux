@@ -39,7 +39,7 @@
                   <div class="form-check">
                     <input class="form-check-input" type="radio" name="accountType" id="accountType" v-model="form.account_type" value="customers" >
                     <label :class="{ 'selected': form.account_type === 'customers' }" class="form-check-label" for="accountType">
-                    I want to create a song
+                    I'm a Customer
                     </label>
                   </div>
 
