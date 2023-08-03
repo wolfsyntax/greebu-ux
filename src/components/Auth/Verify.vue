@@ -232,7 +232,7 @@ export default {
     },
     isAllFieldsFilled() {
       return this.verifyCode.every(code => code !== null);
-    }
+    },
     ...mapGetters(["userInfo", "info", "token", "isLoggedIn", 'userRole'])
     
   },
@@ -296,8 +296,38 @@ export default {
         })
         .catch(err =>
         {
-
-        })
+          })
+      
+    },
+    handleInput(index) {
+      if (this.verifyCode[index].length === 1 && index < this.verifyCode.length - 1) {
+        this.$nextTick(() => {
+          this.$refs.inputField[index + 1].focus();
+        });
+      }
+    },
+    // isAllFieldsFilled() {
+    //   return this.verifyCode.every(code => code !== null);
+    // },
+    // handleKeyDown(event, index) {
+    //   const charCode = event.which ? event.which : event.keyCode;
+    //   if (charCode < 48 || charCode > 57) {
+    //     // Prevent input if it's not a number or the Backspace key
+    //     if (charCode !== 8) {
+    //       event.preventDefault();
+    //     }
+    //   } else if (charCode === 8 && index > 0 && !this.codes[index]) {
+    //     // Handle Backspace key to clear the current input and move focus to the previous input
+    //     this.$refs.inputs[index - 1].focus();
+    //     this.codes[index - 1] = '';
+    //   }
+    // },
+    // verifyPhone(){
+    //   this.submitted = false;
+    // }, 
+    submitCode(){
+      // this.submitted = true;
+      this.verifyEmail = false;
       // if (!this.isLoggedIn) {
       //   await this.verifyOTP({ id: this.$route.query.id, code: this.verifyCode })
       //     .then(response =>
