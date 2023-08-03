@@ -1,4 +1,5 @@
 <template>
+
   <section class="artist-profile">
     <div class="container">
       <div class="profile-page tx-13">
@@ -146,7 +147,6 @@
                   </div>      
               </div>
               <!-- left wrapper end -->
-
               <!-- middle wrapper start -->
               <div class="col-md-8 col-xl-6 middle-wrapper">
                 <div class="row post">
@@ -189,11 +189,11 @@
                   </div>    
                   </div> <!-- end of row post -->
                                               <!-- Modal -->
-                  <div class="modal fade" id="postSomething" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
+                  <div class="modal fade " id="postSomething" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">Create Post</h1>
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -435,17 +435,25 @@
       <p><strong>Member:</strong> {{ members }}</p>
     </div>
   </section>
-
+  <button @click="openModal">Open Modal</button>
+    
+  <div>
+    <button @click="isModalVisible = true">Open Modal</button>
+    
+    <modal-component :show-modal="isModalVisible" @close="isModalVisible = false">
+      <!-- Content for your modal -->
+      <p>This is the modal content.</p>
+    </modal-component>
+  </div>
 </template>
 <script>
 // import Layout from '/src/components/Layouts/ArtistLayout.vue';
 import { mapGetters, mapState, mapActions } from "vuex";
+import ModalComponent from '/src/components/Artist/ModalComponent.vue';
 
 export default {
   components: {
-    // layout: Layout,
-    // post: Post,
-
+    ModalComponent,
   },
   data()
   {
@@ -480,7 +488,8 @@ export default {
         { img: 'src/assets/artist-account/band-member-1.webp', name: 'John Doe', role: 'Vocalist'}, { img: 'src/assets/artist-account/band-member-2.webp', name: 'Jose Diaz', role: 'Guitarist'},
         { img: 'https://res.cloudinary.com/daorvtlls/image/upload/v1686649329/trending-bicolano-artist-5_lxhfkw.png', name: 'John Doe', role: 'Vocalist'}, { img: 'src/assets/artist-account/band-member-2.webp', name: 'Jose Diaz', role: 'Guitarist'},
         { img: 'https://res.cloudinary.com/daorvtlls/image/upload/v1686465790/cld-sample.jpg', name: 'Michelle Rose', role: 'Songwriter'},
-      ]
+      ],
+      isModalVisible: false,
     }
   },
   setup()

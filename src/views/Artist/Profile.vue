@@ -189,6 +189,25 @@
                   </div>
                 </div>
               </div>
+
+              <div class="d-flex justify-content-between group-item">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Do you want to accept events?</label>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                </div>
+              </div>
+              <div class="d-flex justify-content-between group-item">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Do you want to accept custom song?</label>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                </div>
+              </div>
+              <div class="d-flex justify-content-between group-item">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Do you want to accept booking for special occassions?</label>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                </div>
+              </div>
               
               <div class="card mb-3" v-if="artistProfile?.instagram_username">
                 <div class="row g-0">
@@ -254,7 +273,9 @@
                       <!-- About artist - Textarea -->
             <div class="form-group form-about-artist">
                 <label for="about-artist">About the Artist</label><br>  
-                <textarea v-model="form.bio" class="form-control about-artist"></textarea>
+                <textarea v-model="form.bio" class="form-control about-artist"
+                placeholder="My name is [Your Name], and I am a [genre/ style] music artist based in [city, country]. I am writing to propose a music collaboration opportunity that I believe would be mutually beneficial and creatively inspiring......">
+                </textarea>
                 <div v-if="errors?.bio">{{ errors.bio }}</div>
             </div>
           <div class="text-center">

@@ -1088,6 +1088,41 @@ body{
   border-radius: 0.5rem;
   border: 1px solid var(--low-sky-gray, rgba(86, 103, 137, 0.26));
 }
+.profile-details .group-item{
+  margin-bottom: 2rem;
+}
+.profile-details .group-item .form-check-label{
+  color: #121212;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+.profile-details .group-item .form-switch input{
+  width: 3.5625rem;
+  height: 1.75rem;
+  color: #B8BBCF;
+  /* background-color: #B8BBCF; */
+}
+.profile-details .group-item .form-check-input {
+  border: var(--bs-border-width) solid #B8BBCF;
+  /* background: #B8BBCF; */
+  /* --bs-form-switch-bg: url("/assets/artist-account/off-switch.svg"); */
+}
+
+.profile-details .group-item .form-check-input:checked {
+  background-color:#FF6B00;
+  border-color: #FF6B00;
+}
+.profile-details .fill-details .form-about-artist textarea:-moz-placeholder, /* Firefox 18- */
+.profile-details .fill-details .form-about-artist textarea::-moz-placeholder, /* Firefox 19+ */
+.profile-details .fill-details .form-about-artist textarea:-ms-input-placeholder, /* IE 10+ */
+.profile-details .fill-details .form-about-artist textarea::-webkit-input-placeholder, /* Webkit based */
+.profile-details .fill-details .form-about-artist textarea::placeholder { /* Modern browsers */
+  color: #B8BBCF;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.3125rem;
+}
+
 .profile-details .container .fill-details .submit-form{
   color: var(--white, #FFF);
   font-size: 0.875rem;

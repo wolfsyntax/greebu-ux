@@ -271,7 +271,7 @@ const router = createRouter({
      // component: () => import('/src/components/Layouts/ArtistLayout.vue'),
       component: () => import('/src/components/Layouts/Layout.vue'),
       meta: {
-        requiresLogin: true,
+        requiresLogin: true, // true
         title: 'Artist',
         role: 'artists',
         parent: 'artist',
