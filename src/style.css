@@ -936,7 +936,7 @@ z-index: 1;
 }
 .featured-artists .card img, .artists .card img, .basic-information .container .step2 .select-artist .card img {
   position: relative;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   width: 424px;
   height: 424px;
   object-fit: cover;
@@ -3644,6 +3644,17 @@ justify-content: space-between;
 .social-phone-verification .check-message .alert .right {
   width: 10%;
 }
+                        /* Hide Arrows From Input Number */
+/* Chrome, Safari, Edge, Opera */
+.phone-verification .check-message input::-webkit-outer-spin-button,
+.phone-verification .check-message input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+.phone-verification .check-message input[type=number] {
+  -moz-appearance: textfield;
+}
 
 
 
@@ -4453,9 +4464,10 @@ header nav {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 1.25rem;
-  font-style: normal;
-  font-weight: 700;
+  font-size: 0.875rem!important;
+  font-style: normal!important;
+  font-weight: 600!important;
+  line-height: normal!important;
   line-height: 100%; 
   letter-spacing: 0.0625rem;
   width: 95%;
@@ -4465,11 +4477,11 @@ header nav {
   overflow: visible;
 }
 .featured-artists .card-body .card-text, .artists .card-body .card-text, .basic-information .container .step2 .select-artist .card-body .card-text {
-  font-size: 0.875rem;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 100%; 
-  letter-spacing: 0.04375rem;
+  font-size: 0.6875rem!important;
+  font-style: normal!important;
+  font-weight: 400!important;
+  line-height: normal!important;
+  letter-spacing: -0.00688rem;
   margin-bottom: 0.63rem;
 }
 .featured-artists .card-body p, .artists .card-body p, .basic-information .container .step2 .select-artist .card-body p{
@@ -4512,6 +4524,12 @@ header nav {
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+}
+/* AUDIO CONTROLS */
+.featured-artists .audio-menu .stop-song .volume-wrapper, .artists  .audio-menu .stop-song .volume-wrapper, .basic-information .audio-menu .stop-song .volume-wrapper {
+  display: flex;
+  width: 90%;
+  margin-left: 23%;
 }
 
 /* HOME PAGE - Plans & Pricing section */ 
