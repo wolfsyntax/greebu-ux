@@ -82,20 +82,29 @@ var actions = {
   },
   signup({ commit }, payload)
   {
+    commit('CLEAR_STATE');
     return new Promise(async (resolve, reject) =>
     {
-            
+      
       await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/register`, payload, {
         Accept: "application/json"
       })
         .then(response =>
         {
-          const { status: statusCode, data } = response
-          if (statusCode === 200) {
-            const { status, result: {user}} = data;
+          const { status: statusCode, data } = response;
+          
+          if (statusCode === 201) {
+            const { status, result: {user, profile, roles, token}} = data;
 
-            commit('SET_AUTH', user || user);
+            commit('SET_AUTH', user || {});
             commit('SET_PHONE', user?.phone);
+            commit('SET_ROLE', profile?.role || '');
+            commit('SET_ROLES', roles || []);
+
+            if (profile?.role === 'customers') {
+              commit('SET_TOKEN', token || '');
+              commit('SET_PROFILE', profile || {});
+            }
 
           }
           resolve(response)
@@ -389,8 +398,8 @@ var actions = {
     return new Promise(async (resolve, reject) =>
     {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
-
-      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/phone/verify`, {
+      
+      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/phone/verify?role=${state.role}`, {
         code: payload?.code,
       })
         .then(response =>
