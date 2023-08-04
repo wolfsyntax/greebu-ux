@@ -231,9 +231,9 @@ var actions = {
       await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/auth/${provider}/firebase`, formData)
         .then(response =>
         {
-          const { data: { message, status, result: { profile, user, token } } } = response;
+          const { status: statusCode, data: { message, status, result: { profile, user, token } } } = response;
           console.log(`Firebase login via ${provider}: `, response);
-          if (response.status === 200) {
+          if (statusCode === 200) {
 
             commit('SET_AUTH', user)
             commit('SET_TOKEN', token)

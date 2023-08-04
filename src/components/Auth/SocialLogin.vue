@@ -32,6 +32,14 @@ export default {
 
     }
   },
+  props: {
+    account_type: { 
+      type: String,
+      default: null,
+      required: false
+    },
+
+  },
   methods: {
     ...mapActions([
       'socialMediaAuth', 'socialAuth',
@@ -71,6 +79,8 @@ export default {
 
           if (Object.keys(formData))
           {
+            formData.auth_type = this.$route.name;
+            formData.account_type = this.account_type;
 
             // Works with signInWithPopup
             this.socialAuth({
@@ -84,7 +94,7 @@ export default {
 
                 if (status === 200) {
                   // Firebase Authenticated details:
-                  console.log('Social Auth: ', response)
+                  // console.log('Social Auth: ', response)
                   if (!result?.user?.phone_verified_at)
                   {
                     this.$router.push({ name: 'verify' })
@@ -93,12 +103,12 @@ export default {
                   }
 
                 } else {
-
+                  this.$emit('request', 'Account not registered.');
                 }
               })
               .catch(err =>
               {
-
+                this.$emit('request', 'Server Error.');
               })
           }
         });
@@ -107,7 +117,7 @@ export default {
   computed: {
     ...mapGetters([]),
     ...mapState({
-      
+      userType: state => state.account_type,
     }),
   },
   mounted() {

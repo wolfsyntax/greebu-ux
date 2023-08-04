@@ -11,6 +11,7 @@ var state = {
   base_url: import.meta.env.BASE_URL,
   countries: null,
   phone: null,
+  account_type: '',
 }
 
 export default state
