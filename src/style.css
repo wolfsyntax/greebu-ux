@@ -3667,7 +3667,13 @@ justify-content: space-between;
   background-color: rgba(0, 0, 0, 0.5);
   justify-content: center;
   align-items: center;
+  /* animation: fadeIn 0.5s 1.5s forwards; 
+  opacity: 0; */
 }
+/* @keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+} */
 .onboarding-message .modal-toggle:checked + .modal {
   display: flex;
 }
@@ -3851,7 +3857,263 @@ justify-content: space-between;
 }
 #selectPlanModal .select .yearly .save:hover{
   background: var(--black-color);
+  cursor: default;
 }
+
+                                                          /* BILLING INFORMATION */
+.subscription .container{
+    margin: 4rem auto 10rem;
+}
+.subscription .back{
+  display: flex;
+  align-items: center;
+  margin-bottom: 2.81rem;
+}
+.subscription .back .arrow-back {
+  font-size: 2rem;
+  color: var(--orange);
+  border: 3px solid #DFDFE6;
+  border-radius: 100px;
+  padding: 0.60rem;
+}
+.subscription .back .main-title{
+  color: var(--black);
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.1rem;
+  margin-left: 2rem;
+  margin-bottom: 0;
+}
+.subscription .billing-information, .subscription .your-plan {
+  padding: 2.375rem 3.375rem 4.5rem 3.375rem;
+  border-radius: 1rem;
+  background: var(--white);
+  box-shadow: 0px 0px 10px 0px rgba(18, 18, 18, 0.10);
+}
+.subscription .billing-information .title, .subscription .your-plan .title{
+  color: var(--black);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+.subscription .billing-information .sub-title, .subscription .your-plan .sub-title{
+  color: var(--gray6);
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 2.75rem;
+}
+.subscription .billing-information .step{
+  color: #585858;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.25rem; 
+  margin-bottom: 2.75rem;
+}
+.subscription .billing-information .step .one {
+  color: var(--white);
+  border-radius: 100%;
+  background-color: var(--orange);
+  padding: 0.25rem 0.63rem 0.25rem 0.69rem;
+  border: 1px solid var(--orange);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.25rem;
+}
+.subscription .billing-information .form-group{
+  margin-bottom: 1.25rem;
+}
+.subscription .billing-information .form-group label{
+  color: #585858;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.375rem;
+  letter-spacing: 0.00469rem;
+  margin-bottom: 0.25rem;
+}
+.subscription .billing-information .form-group input{
+  border-radius: 0.25rem;
+  border: 1px solid rgba(60, 66, 87, 0.12);
+  background: var(--white);
+  height: 2.625rem;
+  padding: 0.5625rem 0.75rem;
+}
+.subscription .billing-information .form-group .form-select{
+  height: 2.625rem;
+}
+.subscription .billing-information .address .form-group input::placeholder{
+  color: var(--gray6);
+  font-size: 0.9375rem;
+  font-weight: 400;
+}
+.subscription .billing-information .phone {
+  display: flex;
+  align-items: center;
+}
+.subscription .billing-information .phone .phone-dropdown{
+  width: 12%;
+  margin-right: 1%;
+}
+.subscription .billing-information .phone .form-select{
+  color: #585858;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.375rem; 
+  letter-spacing: 0.00469rem;
+  height: 2.625rem;
+}
+.subscription .billing-information .phone .phone-field{
+  width: 87%;
+}
+.subscription .billing-information .country-postal-code{
+  margin-bottom: 2.75rem;
+}
+.subscription .billing-information .country-postal-code .form-group{
+  margin-bottom: 0;
+}
+.subscription .billing-information .card-wrapper .group-item, .subscription .billing-information .gcash-wrapper .group-item  {
+  width: 95%;
+  margin: 0 auto 2.2rem;
+}
+.subscription .billing-information .card-wrapper, .subscription .billing-information .gcash-wrapper {
+  border-radius: 0.75rem;
+  border: 2px solid #E4E7EC;
+  padding: 2rem 2rem 0rem;
+  margin-bottom: 1.25rem;
+}
+.subscription .billing-information .gcash-wrapper{
+  margin-bottom: 0;
+}
+.subscription .billing-information .card-wrapper .card-details, .subscription .billing-information .gcash-wrapper .gcash-content{
+  margin: 2rem auto;
+}
+.subscription .billing-information  .choose-card label {
+  margin-left: 0.4rem;
+}
+.subscription .billing-information  .choose-card label h5{
+  color: #475467;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1rem; 
+  letter-spacing: 0.03125rem;
+  margin-bottom: 0.38rem;
+}
+.subscription .billing-information  .choose-card label span{
+  color: #475467;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1rem;
+  letter-spacing: 0.03125rem;
+}
+.subscription .billing-information  .choose-card .form-check-input:checked {
+  background-color: var(--orange);
+  border-color: var(--orange)!important;
+  width: 1.1em;
+  height: 1.1em;
+}
+.subscription .billing-information  .choose-card .form-check-input[type=radio]{
+  border-color: #6C6C6C;
+}
+.subscription .billing-information .card-details .form-group {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.subscription .billing-information .card-details .form-group input{
+  border-radius: 0.25rem;
+  border: 1px solid #F9F9F9;
+  background: #F9F9F9;
+  width: 100%;
+  padding-right: 2.5rem;
+}
+.subscription .billing-information .card-details .form-group svg {
+  position: absolute;
+  right: 0.69rem;
+}
+.subscription .billing-information .card-details .form-group input::placeholder{
+  color: #585858;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.25rem; 
+}
+.subscription .billing-information .gcash-wrapper .description{
+  color: #475467;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  line-height: 1rem; 
+  letter-spacing: 0.03125rem;
+  margin-bottom: 1.75rem;
+}
+.subscription .billing-information .gcash-wrapper .link-gcash{
+  color: var(--orange);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1rem; 
+  letter-spacing: 0.03125rem;
+  text-decoration: none;
+}
+.subscription .billing-information .gcash-wrapper .link-gcash:hover{
+  color: var(--btn-hovered);
+  text-decoration: underline;
+}
+.subscription .your-plan .group-item{
+  border-radius: 0.75rem;
+  border: 2px solid #E4E7EC;
+  padding: 2rem;
+  margin-bottom: 2.25rem;
+}
+.subscription .your-plan .group-item-total{
+  margin-bottom: 2.25rem;
+}
+.subscription .your-plan .group-item .subsciption-selected{
+  color: #475467;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.03125rem;
+  margin-bottom: 0;
+}
+.subscription .your-plan .group-item .cost{
+  color: rgba(71, 84, 103, 0.80);
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1rem;
+  letter-spacing: 0.03125rem;
+  margin-bottom: 0;
+}
+.subscription .your-plan .group-item-total .total{
+  color: #475467;
+  font-variant-numeric: lining-nums tabular-nums;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.25rem; 
+  margin-bottom: 4rem;
+}
+.subscription .your-plan .group-item-total .amount{
+  color: #454F59;
+  font-variant-numeric: lining-nums tabular-nums;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.25rem; 
+  margin-bottom: 0;
+}
+.subscription .your-plan .button-wrapper button {
+  color: var(--white);
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.5rem;
+  border-radius: 0.5rem;
+  background: var(--orange);
+  padding: 1rem 0;
+  width: 100%;
+}
+.subscription .your-plan .button-wrapper button:hover{
+  background: var(--btn-hovered);
+}
+.subscription .your-plan{
+  padding: 2rem 2.5rem 3rem;
+}
+
 
 
                                                                     /* MEDIA QUERIES */
@@ -3869,6 +4131,187 @@ justify-content: space-between;
   24 px	1.5 rem
   28px 1.75 rem
 */
+                                    /* BILLING INFORMATION */
+.subscription .back .main-title {
+  font-size: 1.5rem;
+  letter-spacing: -0.075rem;
+  margin-left: 1.2rem;
+}
+.subscription .back .arrow-back {
+  font-size: 1.3rem;
+  padding: 0.43rem 0.49rem 0.49rem;
+}
+.subscription .back{
+  margin-bottom: 2.06rem;
+}
+.subscription .billing-information{
+  padding: 2rem 2.5rem 4rem;
+}
+.subscription .billing-information .title, .subscription .your-plan .title {
+  font-size: 1.25rem;
+  margin-bottom: 0.19rem;
+}
+.subscription .billing-information .sub-title, .subscription .your-plan .sub-title {
+  font-size: 0.875rem;
+  margin-bottom: 1.75rem;
+}
+.subscription .billing-information .step {
+  font-size: 1.125rem;
+  margin-bottom: 2.13rem;
+}
+.subscription .billing-information .step .one {
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.25rem;
+  padding: 0.06rem 0.42rem 0.006rem 0.5rem;
+  margin-right: 0.2rem;
+}
+.subscription .billing-information .form-group label {
+  font-size: 0.75rem;
+  line-height: normal;
+  letter-spacing: 0.00375rem;
+}
+.subscription .billing-information .form-group input {
+  height: 2rem;
+  font-size: 0.8rem;
+}
+.subscription .billing-information .form-group {
+  margin-bottom: 1rem;
+}
+.subscription .billing-information .phone .form-select, .subscription .billing-information .form-group .form-select{
+  margin-bottom: 0;
+  height: 2rem;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.00375rem;
+}
+.subscription .billing-information .phone .phone-dropdown {
+  width: 13%;
+  margin-right: 1%;
+}
+.subscription .billing-information .phone .phone-field {
+  width: 86%;
+}
+.subscription .billing-information .address .form-group input::placeholder{
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}.subscription .billing-information .country-postal-code {
+  margin-bottom: 1.75rem;
+}
+.subscription .billing-information .card-wrapper, .subscription .billing-information .gcash-wrapper {
+  padding: 0.75rem 1.44rem 0rem;
+  margin-bottom: 1rem;
+}
+.subscription .billing-information  .choose-card label h5 {
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.03125rem;
+  margin-bottom: -0.2rem;
+}
+.subscription .billing-information  .choose-card label span {
+  font-size: 0.625rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.03125rem;
+}
+.subscription .billing-information .card-wrapper .group-item, .subscription .billing-information .gcash-wrapper .group-item {
+  width: 92%;
+  margin-bottom: 1rem;
+}
+.subscription .billing-information .gcash-wrapper .group-item .card-icons img{
+  width: 2.5rem;
+  height: 1.9375rem;
+}
+.subscription .billing-information .gcash-wrapper .link-gcash {
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1rem;
+  letter-spacing: 0.03125rem;
+}
+.subscription .billing-information .gcash-wrapper .description {
+  font-size: 0.625rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1rem; /* 160% */
+  letter-spacing: 0.03125rem;
+  margin-bottom: 1rem;
+}
+.subscription .billing-information .card-wrapper .card-details, .subscription .billing-information .gcash-wrapper .gcash-content {
+  margin: 1rem auto;
+}
+.subscription .billing-information .card-details .form-group input {
+  height: 2.5rem;
+  padding-right: 2.5rem;
+}
+.subscription .billing-information .card-details .form-group svg {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+.subscription .billing-information .card-details .form-group input::placeholder{
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.25rem; 
+}
+.subscription .your-plan .group-item {
+  padding: 1.5rem;
+  margin-bottom: 1.81rem;
+}
+.subscription .your-plan .group-item .subsciption-selected {
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.03125rem;
+}
+.subscription .your-plan .group-item .cost {
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1rem;
+  letter-spacing: 0.03125rem;
+}
+.subscription .your-plan .group-item-total {
+  margin-bottom: 2rem;
+}
+.subscription .your-plan .group-item-total .total {
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.25rem; /* 125% */
+  margin-bottom: 0rem;
+}
+.subscription .your-plan .group-item-total .amount {
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.25rem; 
+}
+.subscription .your-plan .button-wrapper button {
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.5rem;
+  padding: 0.75rem 0;
+}
+.subscription .your-plan {
+  padding: 2rem 2.5rem 3rem;
+}
+
+
+
+
+
+
               /* PHONE VERIFICATION / FORGOT PASSWORD  */
 .phone-verification .check-message .btn-wrapper button, .phone-verification .verify-phone .btn-wrapper button,
 .phone-verification .verify-email .btn-wrapper button, .forgot-password .verify-password .btn-wrapper button,
