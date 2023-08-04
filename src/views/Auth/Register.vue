@@ -249,7 +249,7 @@ export default {
     ...mapActions(['signup', 'resendOTPCode', 'verifyOTP', 'phoneOTP']),
     submit()
     {
-      console.log('Submit registration info')
+      
       this.isDisabled = true;
       this.signup(this.form)
         .then((response) => { 
