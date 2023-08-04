@@ -304,7 +304,7 @@ export default {
           console.log('Signout: ', response)
 
           if (status === 203) {
-            this.$store.commit('CLEAR_DATA');
+            this.$store.commit('CLEAR_STATE');
             this.$router.push('/login');
           } else if (status === 200 || status === 401) {
             this.$router.push('/login');
