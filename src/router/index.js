@@ -302,8 +302,8 @@ const router = createRouter({
       name: 'event',
       component: () => import('/src/components/Subscription/Index.vue'),
       meta: {
-        requiresLogin: false,
-        title: 'Subscription',
+        requiresLogin: false, // true
+        title: 'Billing information',
         role: '',
         parent: 'event',
         breadcrumb: [
