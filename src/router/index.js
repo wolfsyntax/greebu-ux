@@ -239,7 +239,7 @@ const router = createRouter({
           name: 'verify',
           component: () => import('/src/views/Auth/Verify.vue'),
           meta: {
-            requiresLogin: true, // true
+            requiresLogin: false, // true
             title: 'Verify',
             role: ''
           }

@@ -84,8 +84,7 @@ export default {
 
                 if (status === 200) {
                   // Firebase Authenticated details:
-                  // const { value: providerData } = useCurrentUser();
-                  console.log('Is Phone verified: ', !result?.user?.phone_verified_at);
+                  console.log('Social Auth: ', response)
                   if (!result?.user?.phone_verified_at)
                   {
                     this.$router.push({ name: 'verify' })
