@@ -1,7 +1,7 @@
 <template>
   <main>
-    <div v-if="!isLoggedIn"></div>
-    <div  v-else>
+    <!-- <div v-if="!isLoggedIn"></div> -->
+    <div  v-if="isLoggedIn">
       <div class="onboarding-message">
       <input type="checkbox" id="modal-toggle" class="modal-toggle" checked style="display: none;">
 
@@ -301,11 +301,14 @@ export default {
         .then(response =>
         {
           const { status } = response;
+          console.log('Signout: ', response)
 
-          if (this.$route.meta.requiresLogin == false) this.$router.go();
-          else if (status === 200 || status === 401) {
+          if (status === 203) {
+            this.$store.commit('CLEAR_DATA');
             this.$router.push('/login');
-          }
+          } else if (status === 200 || status === 401) {
+            this.$router.push('/login');
+          } else if (this.$route.meta.requiresLogin == false) this.$router.go();
           
         }).catch(err =>
         {
