@@ -73,7 +73,7 @@
                 </form>
               </div>
             </div>
-            <social-button />
+            <social-button @request="vuefire"/>
             <!-- <OnBoardingMessage /> -->
             <!-- <div class="row mb-0 text-center select-login">
               <div class="col-md-12 continue-with">
@@ -162,6 +162,10 @@ export default {
       });
 
     },
+    vuefire(msg)
+    {
+      this.message = msg;
+    }
   },
   computed: mapState({
       users: (state) => state.user,

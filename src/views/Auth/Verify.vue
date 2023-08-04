@@ -424,7 +424,7 @@ export default {
     },
 
     backToLogin(){
-      window.location.href = '/login';
+      window.location.href = '/';
     },
 
   },
