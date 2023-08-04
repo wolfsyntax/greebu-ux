@@ -383,7 +383,7 @@ router.beforeEach((to, from, next) => {
   if (!reqSession) {
     next()
   } else if (isAuth) {
-    if (role === store.getters.userRole) next()
+    if (role === store.getters.userRole || role === '') next()
     else next({name: 'page-not-authorized'})
   } else {
 

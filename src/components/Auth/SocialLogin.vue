@@ -47,7 +47,7 @@ export default {
         {
 
           var formData = {};
-
+          console.log('Firebase login response: ', response)
           if (provider === 'google')
           {
             const { _tokenResponse: { federatedId, email, emailVerified, firstName, lastName }, user: { providerData, uid, photoURL } } = response;
@@ -85,6 +85,7 @@ export default {
                 if (status === 200) {
                   // Firebase Authenticated details:
                   // const { value: providerData } = useCurrentUser();
+                  console.log('Is Phone verified: ', !result?.user?.phone_verified_at);
                   if (!result?.user?.phone_verified_at)
                   {
                     this.$router.push({ name: 'verify' })
