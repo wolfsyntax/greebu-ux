@@ -101,7 +101,7 @@ var actions = {
             commit('SET_ROLE', profile?.role || '');
             commit('SET_ROLES', roles || []);
 
-            if (profile?.role === 'customers') {
+            if (profile?.role === 'customers' && user?.phone_verified_at) {
               commit('SET_TOKEN', token || '');
               commit('SET_PROFILE', profile || {});
             }
@@ -231,9 +231,9 @@ var actions = {
       await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/auth/${provider}/firebase`, formData)
         .then(response =>
         {
-          const { data: { message, status, result: { profile, user, token } } } = response;
+          const { status: statusCode, data: { message, status, result: { profile, user, token } } } = response;
           console.log(`Firebase login via ${provider}: `, response);
-          if (response.status === 200) {
+          if (statusCode === 200) {
 
             commit('SET_AUTH', user)
             commit('SET_TOKEN', token)
@@ -334,6 +334,55 @@ var actions = {
       
     });
   },
+  forgotPassword({ commit }, payload)
+  {
+    return new Promise(async (resolve, reject) =>
+    {
+
+      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/password/email`, payload)
+        .then(response =>
+        {
+
+          const { data: { message, status, result } } = response;
+
+          if (status === 200) {
+
+          }
+
+          resolve(response)
+
+        })
+        .catch(err =>
+        {
+          console.error('Forgot Password Error ', err)
+          reject(err)
+        });
+    })
+  },
+  resetPassword({ commit }, payload)
+  {
+    return new Promise(async (resolve, reject) =>
+    {
+
+      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/password/reset`, payload)
+        .then(response =>
+        {
+
+          const { status: statusCode, data: { message, status, result } } = response;
+
+          if (statusCode === 200) {
+
+          }
+          console.log('Status: ', response)
+          resolve(response)
+
+        })
+        .catch(err =>
+        {
+          reject(err)
+        });
+    })
+  },
   sendOTPCode({ commit, state }, payload)
   {
     return new Promise(async (resolve, reject) =>
@@ -412,55 +461,6 @@ var actions = {
         });
     });
   },
-  forgotPassword({ commit }, payload)
-  {
-    return new Promise(async (resolve, reject) =>
-    {
-
-      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/password/email`, payload)
-        .then(response =>
-        {
-
-          const { data: { message, status, result } } = response;
-
-          if (status === 200) {
-
-          }
-
-          resolve(response)
-
-        })
-        .catch(err =>
-        {
-          console.error('Forgot Password Error ', err)
-          reject(err)
-        });
-    })
-  },
-  resetPassword({ commit }, payload)
-  {
-    return new Promise(async (resolve, reject) =>
-    {
-
-      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/password/reset`, payload)
-        .then(response =>
-        {
-
-          const { status: statusCode, data: { message, status, result } } = response;
-
-          if (statusCode === 200) {
-
-          }
-          console.log('Status: ', response)
-          resolve(response)
-
-        })
-        .catch(err =>
-        {
-          reject(err)
-        });
-    })
-  },
   phoneOTP({ commit }, payload)
   {
     return new Promise(async (resolve, reject) =>
@@ -484,6 +484,95 @@ var actions = {
           reject(err)
         });
     })
+  },
+  // Version 2
+  requestCode({ commit, state }, payload)
+  {
+    return new Promise(async (resolve, reject) =>
+    {
+      // axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
+      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/user/${state.user?.id}/send-otp`, payload)
+        .then(response =>
+        {
+          console.log('Request Code Response: ', response);
+          const { status: statusCode, data: { message, status, result } } = response;
+
+          if (statusCode === 200) {
+
+            const { user } = result;
+            commit('SET_AUTH', user || {});
+
+          }
+
+          resolve(response);
+        })
+        .catch(err =>
+        {
+          console.log('Error response: ', err);
+          reject(err)
+        });
+    });
+  },
+  resendCode({ commit, state }, payload)
+  {
+    return new Promise(async (resolve, reject) =>
+    {
+      // axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
+
+      await axios.get(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/user/${state.user?.id}/resend-otp`)
+        .then(response =>
+        {
+          console.log('Resend Code response: ', response);
+          const { data: { message, status, result } } = response;
+
+          if (status === 200) {
+
+            const { user } = result;
+            commit('SET_AUTH', user || {});
+
+          }
+
+          resolve(response);
+        })
+        .catch(err =>
+        {
+          reject(err)
+        });
+    });
+  },
+  validateCode({ commit, state }, payload)
+  {
+    return new Promise(async (resolve, reject) =>
+    {
+      // axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
+      
+      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/user/${state.user?.id}/verify?role=${state.role}`, {
+        code: payload?.code,
+      })
+        .then(response =>
+        {
+          
+          const { status: statusCode, data } = response;
+
+          if (statusCode === 201) {
+
+            const { result: { user, profile, roles, token } } = data;
+            // commit('SET_AUTH', user || {});
+
+            commit('SET_AUTH', user || {})
+            commit('SET_TOKEN', token || '')
+            commit('SET_PROFILE', profile || {})
+            commit('SET_ROLE', profile?.role || '')
+            
+          }
+
+          resolve(response);
+        })
+        .catch(err =>
+        {
+          reject(err)
+        });
+    });
   },
 }
 

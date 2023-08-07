@@ -86,6 +86,9 @@
               <h2>Create your account</h2>
               <p>Lorem ipsum dolor sit amet consectetur.</p>
             </div>
+            <div class="alert alert-danger" role="alert" v-if="message">
+              {{ message }}
+            </div>
                                  <!-- User inputs -->
               <div class="form-group">
                 <label for="email">Email Address</label>
@@ -145,7 +148,7 @@
                 </button>
               </div>
 
-              <social-button />
+              <social-button :account_type="form.account_type" @request="setMessage"/>
 
               </div> 
             </form>
@@ -191,7 +194,7 @@ export default {
       step: 'register',
       verifyCode: null,
       verifyMessage: null,
-      
+      message: '',
       form: {
         first_name: null,
         last_name: null,
@@ -247,9 +250,13 @@ export default {
       }
     },
     ...mapActions(['signup', 'resendOTPCode', 'verifyOTP', 'phoneOTP']),
+    setMessage(msg)
+    {
+      this.message = msg;
+    },
     submit()
     {
-      console.log('Submit registration info')
+      
       this.isDisabled = true;
       this.signup(this.form)
         .then((response) => { 
