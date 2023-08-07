@@ -71,7 +71,7 @@
     </div> -->
 
     <section class="subscription">
-      <div class="container">
+      <div class="container" v-if="step === 1">
         <div class="back">
           <span class="material-symbols-outlined arrow-back">&#xe5c4;</span>
           <h2 class="main-title">Subscription</h2>
@@ -303,7 +303,7 @@
               <h4 class="amount">₱ 3,000.00</h4>
             </div>
             <div class="button-wrapper">
-              <button type="button" class="btn">Start Subscription</button>
+              <button type="button" class="btn" @click="paymentMade()">Start Subscription</button>
             </div>
            </div>
           </dv>
@@ -314,6 +314,85 @@
 
           </dv>
         </div> -->
+      </div>  <!-- end of container-->
+      <div class="container" v-if="step === 2">
+
+            <div class="payment-made">
+              <div class="text-center thank-you">
+                <svg xmlns="http://www.w3.org/2000/svg" width="61" height="60" viewBox="0 0 61 60" fill="none">
+                <path d="M23 30L28 35L38 25M53 30C53 42.4264 42.9264 52.5 30.5 52.5C18.0736 52.5 8 42.4264 8 30C8 17.5736 18.0736 7.5 30.5 7.5C42.9264 7.5 53 17.5736 53 30Z" stroke="#FF6B00" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+                <h2 class="title">Thank you for subscribing!</h2>
+                <p class="sub-title">Your payment for subscription has been successfully done</p>
+              </div>
+
+              <div class="total-payment">
+                <div class="text-center total">
+                  <h4>Total payment</h4>
+                   <h2>₱ 3,000.00</h2>
+                   <svg xmlns="http://www.w3.org/2000/svg" width="719" height="2" viewBox="0 0 719 2" fill="none">
+                    <path d="M0 1L719 0.999937" stroke="#8690A2" stroke-dasharray="14 14"/>
+                  </svg>
+                </div>
+
+                <div class="d-flex justify-content-between group-item">
+                  <div class="artist">
+                    <div>
+                      <img src="/assets/subscription/artist-profile.webp" alt="artist profile">
+                    </div>
+                    <div>
+                      <h4>Idlepitch</h4>
+                      <p>Idlepitch@gmail.com</p>
+                    </div>
+                  </div>
+
+                  <div class="contact">
+                   <p>+639123454122</p>
+                   <p>2972 Westheimer Rd. Santa Ana, Illinois 85486 </p>
+                   <p>4400</p>
+                  </div>
+
+                </div>
+
+                <div class="d-flex justify-content-between type">
+                  <div class="date">
+                    <div><h5>Type of Subscription</h5></div>
+                    <div><p>Monthly</p></div>
+                  </div>
+                  <div class="payment">
+                    <div><h5>Type of Account</h5></div>
+                    <div><p>Artist Account</p></div>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-between type">
+                  <div class="date">
+                    <div><h5>Date of Payment</h5></div>
+                    <div><p>July 11,2023</p></div>
+                  </div>
+                  <div class="payment">
+                    <div><h5>Source of payment</h5></div>
+                    <div><p>Gcash</p></div>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-between type">
+                  <div class="date">
+                    <div><h5>Next Bill Date</h5></div>
+                    <div><p>August 11,2023</p></div>
+                  </div>
+                  <div class="payment">
+                  </div>
+                </div>
+                
+                <div class="button-wrapper">
+                    <button type="button" class="btn btn-primary download">Download</button>
+                    <button type="button" class="btn btn-primary done">Done</button>
+                </div>
+
+              </div>
+
+
+             </div>
+       
       </div>
     </section>
   </layout>
@@ -347,6 +426,7 @@ export default {
         account_type: null,
       },
       step: 'account_type',
+      step: 1,
       errors: {},
       pricing: [
         {
@@ -387,7 +467,10 @@ export default {
     submit()
     {
 
-    }
+    },
+    paymentMade(){
+      this.step = 2;
+    },
   },
   mounted()
   {

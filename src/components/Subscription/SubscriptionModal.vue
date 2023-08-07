@@ -9,6 +9,7 @@
               @click="$emit('close')"></button>
             </div>
             <div class="modal-body text-center">
+              <li v-for="plan in subscriptionPlans">{{ plan }}</li>
               <h2 class="title">Upgrade to Subscription</h2>
               <p class="description">With the upgraded artist subscription, you'll gain access to a wide range 
                 of exclusive features designed to support your career and expand your reach.</p>
@@ -71,10 +72,23 @@
     props: {
         show: Boolean,
     },
+    data()
+  {
+    return {
+      subscriptionPlans: [
+        { id: 1, name: 'Basic', price: '$9.99' },
+        { id: 2, name: 'Pro', price: '$19.99' },
+        { id: 3, name: 'Premium', price: '$29.99' },
+      ],
+    }
+  },
     methods: {
       // closeModal() {
       //   this.$emit('close');
       // },
+      selectedPlan(){
+      window.location.href = '/subscription';
+    },
     },
   };
   </script>

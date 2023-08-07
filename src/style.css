@@ -1887,7 +1887,7 @@ background-color: var(--orange);
   color: var(--gray2);
   margin-bottom: 2.5rem;
 }
-.create-song .content a{
+.create-song .content .get-started{
   font-size: 1.25rem;
   font-weight: 700;
   line-height: 1.5rem; 
@@ -1897,9 +1897,102 @@ background-color: var(--orange);
   border-radius: 8px;
   border: 0;
 }
-.create-song .content a:hover{
+.create-song .content .get-started:hover{
   background: var(--btn-hovered);
 }
+
+#mustSignUp .modal-content{
+  border-radius: 2.1875rem;
+  background: var(white);
+  overflow: hidden;
+}
+#mustSignUp .modal-body{
+  display: flex;
+  padding: 0;
+}
+#mustSignUp .modal-body .left{
+width: 45%;
+overflow: hidden;
+height: 100%;
+}
+#mustSignUp .modal-body .left img{
+  position: relative;
+  -o-object-fit: cover;
+  object-fit: cover;
+  backface-visibility: hidden;
+}
+#mustSignUp .modal-body .right{
+  width: 55%;
+  position: relative;
+}
+#mustSignUp .modal-body .right .content-modal{
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 90%;
+}
+#mustSignUp .modal-body .right .title{
+  color: #223644;
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.05rem;
+  margin-bottom: 0.88rem;
+}
+#mustSignUp .modal-body .right .sub-title{
+  font-size: 1.3rem;
+  font-weight: 500;
+  letter-spacing: -0.03rem;
+  margin-bottom: 2.5rem;
+}
+#mustSignUp .modal-body .right .btn-close {
+  margin: 0;
+  position: absolute;
+  top: 5%;
+  left: 90%;
+  padding: 0.6rem;
+  border: 1px solid #DFDFE6;
+  border-radius: 100%;
+  color: #23262F;
+  background: var(white);
+  font-size: 0.8rem;
+}
+#mustSignUp .modal-body .right .btn-close:hover{
+  border: 1px solid #23262F;
+}
+#mustSignUp .modal-body .right .content-modal .signup{
+  color: var(--white);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 2.5rem;
+  padding: 0.75rem 7rem;
+  border-radius: 0.3125rem;
+  background: var(--orange);
+  border: 0;
+}
+#mustSignUp .modal-body .right .content-modal .signup:hover{
+  background: var(--btn-hovered);
+}
+#mustSignUp .modal-body .right .account, #mustSignUp .modal-body .right .login{
+  color: var(--black-color);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: -0.0175rem;
+  margin-bottom: 0;
+  
+}
+#mustSignUp .modal-body .right .login{
+  color: var(--orange);
+  text-decoration: none;
+  padding-left: 0.3rem;
+}
+#mustSignUp .modal-body .right .login:hover{
+  text-decoration: underline;
+}
+
 
                                                     /* ARTIST PAGE (FOR NOT REGISTERED USERS) */
  /* BANNER CAROUSEL SECTION */                                                   
@@ -3860,7 +3953,7 @@ justify-content: space-between;
   cursor: default;
 }
 
-                                                          /* BILLING INFORMATION */
+                                                          /* BILLING INFORMATION / Thank you for subscribing! */
 .subscription .container{
     margin: 4rem auto 10rem;
 }
@@ -3884,11 +3977,14 @@ justify-content: space-between;
   margin-left: 2rem;
   margin-bottom: 0;
 }
-.subscription .billing-information, .subscription .your-plan {
+.subscription .billing-information, .subscription .your-plan, .subscription .payment-made .total-payment {
   padding: 2.375rem 3.375rem 4.5rem 3.375rem;
   border-radius: 1rem;
   background: var(--white);
   box-shadow: 0px 0px 10px 0px rgba(18, 18, 18, 0.10);
+}
+.subscription .payment-made .total-payment{
+  padding: 4rem;
 }
 .subscription .billing-information .title, .subscription .your-plan .title{
   color: var(--black);
@@ -4113,6 +4209,144 @@ justify-content: space-between;
 .subscription .your-plan{
   padding: 2rem 2.5rem 3rem;
 }
+.subscription .payment-made {
+  margin: 0 auto;
+  width: 60%;
+}
+.subscription .payment-made .thank-you {
+  padding-top: 3rem;
+  padding-bottom: 2.31rem;
+}
+.subscription .payment-made .thank-you svg{
+  margin-bottom: 1rem;
+}
+.subscription .payment-made .thank-you .title{
+  color: var(--orange);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 2.375rem;
+  margin-bottom: 0.75rem;
+}
+.subscription .payment-made .thank-you .sub-title{
+  color: #8690A2;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+.subscription .payment-made .total-payment .total {
+  position: relative;
+  margin-bottom: 2.5rem;
+}
+.subscription .payment-made .total-payment .total h4{
+  color: #475467;
+  font-variant-numeric: lining-nums tabular-nums;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+.subscription .payment-made .total-payment .total h2{
+  color: #454F59;
+  font-variant-numeric: lining-nums tabular-nums;
+  font-size: 2.25rem;
+  font-weight: 600;
+  margin-bottom: 2.5rem;
+}
+.subscription .payment-made .total-payment .total svg {
+width: 100%;
+}
+.subscription .payment-made .total-payment .group-item{
+  border-radius: 0.75rem;
+  border: 2px solid #E4E7EC;
+  padding: 1.8rem 1.6rem;
+  margin-bottom: 2.5rem;
+}
+.subscription .payment-made .total-payment .group-item .artist{
+  display: flex;
+  align-items: center;
+}
+.subscription .payment-made .total-payment .group-item .artist img{
+  width: 3.813rem;
+  height: 3.813rem;
+  position: relative;
+  -o-object-fit: cover;
+  object-fit: cover;
+  left: 0;
+  backface-visibility: hidden;
+  border-radius: 100px;
+  margin-right: 1rem;
+}
+.subscription .payment-made .total-payment .group-item .artist h4{
+  color: #121212;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.03125rem;
+  margin-bottom: 0.19rem;
+}
+.subscription .payment-made .total-payment .group-item .artist p{
+  color: #B8BBCF;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.03125rem;
+  margin-bottom: 0;
+}
+.subscription .payment-made .total-payment .type{
+  margin-bottom: 2.13rem;
+}
+.subscription .payment-made .total-payment .type h5{
+  color: #475467;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.03125rem;
+}
+.subscription .payment-made .total-payment .type p{
+  color: rgba(71, 84, 103, 0.80);
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: 0.03125rem;
+  margin-bottom: 0;
+}
+.subscription .payment-made .total-payment .group-item .contact p{
+  color: #8690A2;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.03125rem;
+  margin-bottom: 0.75rem;
+  text-align: right;
+}
+.subscription .payment-made .button-wrapper {
+  margin-top: 6rem;
+  display: flex;
+  align-items: center;
+  gap: 1%;
+  margin-bottom: 2rem;
+}
+.subscription .payment-made .button-wrapper .download, .subscription .payment-made .button-wrapper .done{
+  color: var(--orange);
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.5rem; 
+  padding: 1rem 0;
+}
+.subscription .payment-made .button-wrapper .download{
+  width: 49.5%;
+  border-radius: 0.5rem;
+  color: var(--orange);
+  border: 1px solid #FF6B00;
+  background-color: var(--white);
+}
+.subscription .payment-made .button-wrapper .download:hover{
+  background-color: var(--orange);
+  color: var(--white);
+}
+.subscription .payment-made .button-wrapper .done{
+  width: 49.5%;
+  color: var(--white);
+  border: 1px solid #FF6B00;
+  background-color: var(--orange);
+}
+.subscription .payment-made .button-wrapper .done:hover{
+  background-color: var(--btn-hovered);
+}
+
+
 
 
 
@@ -4131,7 +4365,82 @@ justify-content: space-between;
   24 px	1.5 rem
   28px 1.75 rem
 */
-                                    /* BILLING INFORMATION */
+                                    /* BILLING INFORMATION / Thank you for subscribing! */
+
+ .subscription .payment-made .button-wrapper .download, .subscription .payment-made .button-wrapper .done {
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.5rem; /* 150% */
+  padding: 0.75rem 0;
+}                                   
+.subscription .payment-made .button-wrapper {
+    margin-top: 4.5rem;
+    margin-bottom: 1.5rem;
+}
+.subscription .payment-made .total-payment .type p {
+  font-size: 0.9rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.03125rem;
+}
+.subscription .payment-made .total-payment .type h5 {
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.03125rem;
+}
+.subscription .payment-made .total-payment .group-item {
+    padding: 1.8rem 0.72rem;
+    margin-bottom: 2.5rem;
+}
+.subscription .payment-made .total-payment .group-item .artist p {
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.03125rem;
+}                                    
+.subscription .payment-made .total-payment .group-item .artist h4 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.03125rem;
+}
+.subscription .payment-made .total-payment .group-item .artist img {
+  margin-right: 0.5rem;
+}
+.subscription .payment-made .total-payment .group-item .contact p {
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.03125rem;
+}
+.subscription .payment-made .total-payment .total h4 {
+  font-size: 1.25rem;
+  font-weight: 500;
+}   
+.subscription .payment-made .total-payment .total h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 2.5rem;
+}                                 
+.subscription .payment-made .total-payment {
+    padding: 3.5rem 2.5rem;
+}
+.subscription .payment-made .thank-you .title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 2.375rem;
+}     
+.subscription .payment-made .thank-you .sub-title {
+  font-size: 1rem;
+  font-weight: 600;
+}                               
+.subscription .payment-made .thank-you {
+    padding-top: 2rem;
+    padding-bottom: 2.5rem;
+}
+
+
 .subscription .back .main-title {
   font-size: 1.5rem;
   letter-spacing: -0.075rem;
@@ -4763,9 +5072,29 @@ justify-content: space-between;
   color: var(--gray2);
   margin-bottom: 2.5rem;
 }
-.create-song .content a {
-  font-size: 1rem;line-height: 1.5rem;
+.create-song .content .get-started {
+  font-size: 1rem;
+  line-height: 1.5rem;
   color: var(--white);
+}
+#mustSignUp .modal-body .right .title {
+  font-size: 2rem;
+  letter-spacing: -0.04rem;
+  margin-bottom: 0.88rem;
+}
+#mustSignUp .modal-body .right .sub-title {
+  font-size: 1.125rem;
+  font-weight: 400;
+  letter-spacing: -0.0225rem;
+  margin-bottom: 2.5rem;
+}
+#mustSignUp .modal-body .right .content-modal .signup {
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  padding: 0.72rem 6rem;
+  margin-bottom: 2.5rem;
 }
 
 /* HOME PAGE - Top Carousel section */ 
