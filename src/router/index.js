@@ -239,7 +239,7 @@ const router = createRouter({
           name: 'verify',
           component: () => import('/src/views/Auth/Verify.vue'),
           meta: {
-            requiresLogin: true, // true
+            requiresLogin: false, // true
             title: 'Verify',
             role: ''
           }
@@ -264,6 +264,48 @@ const router = createRouter({
             role: ''
           }
         },
+        {
+          path: '/email/verify/verified',
+          name: 'verify-done',
+          component: () => import('/src/views/Auth/Verification/Verified.vue'),
+          meta: {
+            requiresLogin: false, // true
+            title: 'Email Verification - Verified',
+            role: ''
+          },
+        },
+        {
+          path: '/email/verify/success',
+          name: 'verify-success',
+          component: () => import('/src/views/Auth/Verification/Success.vue'),
+          meta: {
+            requiresLogin: false, // true
+            title: 'Email Verification - Success',
+            role: ''
+          },
+        },
+        {
+          path: '/email/resend',
+          name: 'verify-resend',
+          component: () => import('/src/views/Auth/Verification/Resend.vue'),
+          meta: {
+            requiresLogin: true, // true
+            title: 'Email Verification - Resend',
+            role: ''
+          },
+        },
+        {
+          path: '/email/verify/invalid',
+          name: 'verify-invalid',
+          component: () => import('/src/views/Auth/Verification/Invalid.vue'),
+          meta: {
+            requiresLogin: false, // true
+            title: 'Email Verification - Invalid',
+            role: ''
+          },
+        },
+          
+
       ]
     },
     {
@@ -383,7 +425,7 @@ router.beforeEach((to, from, next) => {
   if (!reqSession) {
     next()
   } else if (isAuth) {
-    if (role === store.getters.userRole) next()
+    if (role === store.getters.userRole || role === '') next()
     else next({name: 'page-not-authorized'})
   } else {
 

@@ -2,7 +2,7 @@
   <layout>
 
   <section class="register">
-    <div class="container-fluid" v-if="!$route.query.id">
+    <div class="container-fluid" v-if="!info.id">
       <div id="registerCarouselBanner" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <div class="carousel-indicators">
           <button type="button" data-bs-target="#registerCarouselBanner" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -86,6 +86,9 @@
               <h2>Create your account</h2>
               <p>Lorem ipsum dolor sit amet consectetur.</p>
             </div>
+            <div class="alert alert-danger" role="alert" v-if="message">
+              {{ message }}
+            </div>
                                  <!-- User inputs -->
               <div class="form-group">
                 <label for="email">Email Address</label>
@@ -145,7 +148,7 @@
                 </button>
               </div>
 
-              <social-button />
+              <social-button :account_type="form.account_type" @request="setMessage"/>
 
               </div> 
             </form>
@@ -153,7 +156,7 @@
         </div>
       </div>
     </div>
-    <verify-card :phone="form.phone" v-else/>
+    <verify-card v-else/>
     <!-- <div class="container-fluid" v-else>
       <form @submit.prevent="confirm">
         <div class="">
@@ -191,7 +194,7 @@ export default {
       step: 'register',
       verifyCode: null,
       verifyMessage: null,
-      
+      message: '',
       form: {
         first_name: null,
         last_name: null,
@@ -228,7 +231,7 @@ export default {
 
   },
   computed: {
-    //...mapGetters([''])
+    ...mapGetters(["userInfo", "info", "token", "isLoggedIn"]),
     //...mapState({})
     isAccountTypeSelected() {
       return this.form.account_type !== '';
@@ -246,10 +249,14 @@ export default {
         this.showRadioButtons = false;
       }
     },
-    ...mapActions(['signup', 'resendOTPCode', 'verifyOTP', 'phoneOTP']),
+    ...mapActions(['signup', 'resendCode', 'verifyOTP', 'phoneOTP']),
+    setMessage(msg)
+    {
+      this.message = msg;
+    },
     submit()
     {
-      console.log('Submit registration info')
+      
       this.isDisabled = true;
       this.signup(this.form)
         .then((response) => { 
@@ -264,7 +271,7 @@ export default {
 
             this.step = '';
             // setTimeout(() => this.countdown--, 100);
-            this.$router.push({ path: this.$route.path, query: { id: result?.user_id } });
+            // this.$router.push({ path: this.$route.path, query: { id: result?.user_id } });
 
             
             //this.$router.push("/login");
@@ -296,7 +303,7 @@ export default {
       if (!this.countdown_enabled) {
         this.countdown_enabled = true;
         // resend request
-        this.resendOTPCode(this.$route.query.id)
+        this.resendCode(this.$route.query.id)
           .then(response =>
           {
             const { status } = response;

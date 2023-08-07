@@ -30,28 +30,6 @@ var actions = {
       commit('SET_ARTISTS', null)
       commit('SET_PAGINATION', {current_page: 1, last_page: 1, per_page: 10, total: 1, })
 
-      // commit('SET_SONG_ARTIST_TYPE', null)
-      // commit('SET_SONG_MOODS', null)
-      // commit('SET_SONG_LANGUAGES', null)
-      // commit('SET_SONG_DURATIONS', null)
-      // commit('SET_SONG_PURPOSES', null)
-      // commit('SET_SONG_REQUEST', null)
-      // commit('SET_SONG', {
-      //   first_name: null,
-      //   last_name: null,
-      //   email: null,
-      //   genre_id: null,
-      //   song_type_id: null,
-      //   language_id: null,
-      //   duration_id: null,
-      //   purpose_id: null,
-      //   sender: null,
-      //   receiver: null,
-      //   user_story: null,
-      //   page_status: null,
-      // })
-      // commit('SET_SONG_ARTIST', {})
-
       // axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
       await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/login`, payload)
         .then(response =>
@@ -68,7 +46,9 @@ var actions = {
             commit('SET_PROFILE', profile || {});
             commit('SET_ROLE', profile?.role || '');
             commit('SET_ROLES', roles || []);
-            localStorage.api_token = token
+
+            localStorage.api_token = token;
+
           }
 
           resolve(response)
@@ -101,7 +81,7 @@ var actions = {
             commit('SET_ROLE', profile?.role || '');
             commit('SET_ROLES', roles || []);
 
-            if (profile?.role === 'customers') {
+            if (profile?.role === 'customers' && user?.phone_verified_at) {
               commit('SET_TOKEN', token || '');
               commit('SET_PROFILE', profile || {});
             }
@@ -231,9 +211,9 @@ var actions = {
       await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/auth/${provider}/firebase`, formData)
         .then(response =>
         {
-          const { data: { message, status, result: { profile, user, token } } } = response;
+          const { status: statusCode, data: { message, status, result: { profile, user, token } } } = response;
           console.log(`Firebase login via ${provider}: `, response);
-          if (response.status === 200) {
+          if (statusCode === 200) {
 
             commit('SET_AUTH', user)
             commit('SET_TOKEN', token)
@@ -334,6 +314,55 @@ var actions = {
       
     });
   },
+  forgotPassword({ commit }, payload)
+  {
+    return new Promise(async (resolve, reject) =>
+    {
+
+      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/password/email`, payload)
+        .then(response =>
+        {
+
+          const { data: { message, status, result } } = response;
+
+          if (status === 200) {
+
+          }
+
+          resolve(response)
+
+        })
+        .catch(err =>
+        {
+          console.error('Forgot Password Error ', err)
+          reject(err)
+        });
+    })
+  },
+  resetPassword({ commit }, payload)
+  {
+    return new Promise(async (resolve, reject) =>
+    {
+
+      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/password/reset`, payload)
+        .then(response =>
+        {
+
+          const { status: statusCode, data: { message, status, result } } = response;
+
+          if (statusCode === 200) {
+
+          }
+          console.log('Status: ', response)
+          resolve(response)
+
+        })
+        .catch(err =>
+        {
+          reject(err)
+        });
+    })
+  },
   sendOTPCode({ commit, state }, payload)
   {
     return new Promise(async (resolve, reject) =>
@@ -412,55 +441,6 @@ var actions = {
         });
     });
   },
-  forgotPassword({ commit }, payload)
-  {
-    return new Promise(async (resolve, reject) =>
-    {
-
-      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/password/email`, payload)
-        .then(response =>
-        {
-
-          const { data: { message, status, result } } = response;
-
-          if (status === 200) {
-
-          }
-
-          resolve(response)
-
-        })
-        .catch(err =>
-        {
-          console.error('Forgot Password Error ', err)
-          reject(err)
-        });
-    })
-  },
-  resetPassword({ commit }, payload)
-  {
-    return new Promise(async (resolve, reject) =>
-    {
-
-      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/password/reset`, payload)
-        .then(response =>
-        {
-
-          const { status: statusCode, data: { message, status, result } } = response;
-
-          if (statusCode === 200) {
-
-          }
-          console.log('Status: ', response)
-          resolve(response)
-
-        })
-        .catch(err =>
-        {
-          reject(err)
-        });
-    })
-  },
   phoneOTP({ commit }, payload)
   {
     return new Promise(async (resolve, reject) =>
@@ -484,6 +464,122 @@ var actions = {
           reject(err)
         });
     })
+  },
+  // Version 2
+  requestCode({ commit, state }, payload)
+  {
+    return new Promise(async (resolve, reject) =>
+    {
+      // axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
+      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/user/${state.user?.id}/send-otp`, payload)
+        .then(response =>
+        {
+          console.log('Request Code Response: ', response);
+          const { status: statusCode, data: { message, status, result } } = response;
+
+          if (statusCode === 200) {
+
+            const { user } = result;
+            commit('SET_AUTH', user || {});
+
+          }
+
+          resolve(response);
+        })
+        .catch(err =>
+        {
+          console.log('Error response: ', err);
+          reject(err)
+        });
+    });
+  },
+  resendCode({ commit, state }, payload)
+  {
+    return new Promise(async (resolve, reject) =>
+    {
+      // axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
+
+      await axios.get(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/user/${state.user?.id}/resend-otp`)
+        .then(response =>
+        {
+          // console.log('Resend Code response: ', response);
+          const { data: { message, status, result } } = response;
+
+          if (status === 200) {
+
+            const { user } = result;
+            commit('SET_AUTH', user || {});
+
+          }
+
+          resolve(response);
+        })
+        .catch(err =>
+        {
+          reject(err)
+        });
+    });
+  },
+  validateCode({ commit, state }, payload)
+  {
+    return new Promise(async (resolve, reject) =>
+    {
+      // axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
+      
+      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/user/${state.user?.id}/verify?role=${state.role}`, {
+        code: payload?.code,
+      })
+        .then(response =>
+        {
+          // console.log('Validate Code: ', response);
+          const { status: statusCode, data } = response;
+
+          if (statusCode === 201) {
+
+            const { result: { user, profile, roles, token } } = data;
+            // commit('SET_AUTH', user || {});
+
+            commit('SET_AUTH', user || {})
+            commit('SET_TOKEN', token || '')
+            commit('SET_PROFILE', profile || {})
+            commit('SET_ROLE', profile?.role || '')
+            
+          }
+
+          resolve(response);
+        })
+        .catch(err =>
+        {
+          reject(err)
+        });
+    });
+  },
+
+  // Resend Email verification
+  resendEmail({ commit, state })
+  {
+    return new Promise(async (resolve, reject) =>
+    {
+      // axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
+
+      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/email/resend/${state.user?.id}`)
+        .then(response =>
+        {
+          // console.log('Resend Code response: ', response);
+          const { data: { message, status, result } } = response;
+          console.log('Email Resend: ', response)
+          if (status === 200) {
+
+
+          }
+
+          resolve(response);
+        })
+        .catch(err =>
+        {
+          reject(err)
+        });
+    });
   },
 }
 
