@@ -2,7 +2,7 @@
   <layout>
 
   <section class="register">
-    <div class="container-fluid" v-if="!$route.query.id">
+    <div class="container-fluid" v-if="!info.id">
       <div id="registerCarouselBanner" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <div class="carousel-indicators">
           <button type="button" data-bs-target="#registerCarouselBanner" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -156,7 +156,7 @@
         </div>
       </div>
     </div>
-    <verify-card :phone="form.phone" v-else/>
+    <verify-card v-else/>
     <!-- <div class="container-fluid" v-else>
       <form @submit.prevent="confirm">
         <div class="">
@@ -231,7 +231,7 @@ export default {
 
   },
   computed: {
-    //...mapGetters([''])
+    ...mapGetters(["userInfo", "info", "token", "isLoggedIn"]),
     //...mapState({})
     isAccountTypeSelected() {
       return this.form.account_type !== '';
@@ -249,7 +249,7 @@ export default {
         this.showRadioButtons = false;
       }
     },
-    ...mapActions(['signup', 'resendOTPCode', 'verifyOTP', 'phoneOTP']),
+    ...mapActions(['signup', 'resendCode', 'verifyOTP', 'phoneOTP']),
     setMessage(msg)
     {
       this.message = msg;
@@ -271,7 +271,7 @@ export default {
 
             this.step = '';
             // setTimeout(() => this.countdown--, 100);
-            this.$router.push({ path: this.$route.path, query: { id: result?.user_id } });
+            // this.$router.push({ path: this.$route.path, query: { id: result?.user_id } });
 
             
             //this.$router.push("/login");
@@ -303,7 +303,7 @@ export default {
       if (!this.countdown_enabled) {
         this.countdown_enabled = true;
         // resend request
-        this.resendOTPCode(this.$route.query.id)
+        this.resendCode(this.$route.query.id)
           .then(response =>
           {
             const { status } = response;

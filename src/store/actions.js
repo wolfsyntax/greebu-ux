@@ -30,28 +30,6 @@ var actions = {
       commit('SET_ARTISTS', null)
       commit('SET_PAGINATION', {current_page: 1, last_page: 1, per_page: 10, total: 1, })
 
-      // commit('SET_SONG_ARTIST_TYPE', null)
-      // commit('SET_SONG_MOODS', null)
-      // commit('SET_SONG_LANGUAGES', null)
-      // commit('SET_SONG_DURATIONS', null)
-      // commit('SET_SONG_PURPOSES', null)
-      // commit('SET_SONG_REQUEST', null)
-      // commit('SET_SONG', {
-      //   first_name: null,
-      //   last_name: null,
-      //   email: null,
-      //   genre_id: null,
-      //   song_type_id: null,
-      //   language_id: null,
-      //   duration_id: null,
-      //   purpose_id: null,
-      //   sender: null,
-      //   receiver: null,
-      //   user_story: null,
-      //   page_status: null,
-      // })
-      // commit('SET_SONG_ARTIST', {})
-
       // axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
       await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/login`, payload)
         .then(response =>
@@ -68,7 +46,9 @@ var actions = {
             commit('SET_PROFILE', profile || {});
             commit('SET_ROLE', profile?.role || '');
             commit('SET_ROLES', roles || []);
-            localStorage.api_token = token
+
+            localStorage.api_token = token;
+
           }
 
           resolve(response)
@@ -522,7 +502,7 @@ var actions = {
       await axios.get(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/user/${state.user?.id}/resend-otp`)
         .then(response =>
         {
-          console.log('Resend Code response: ', response);
+          // console.log('Resend Code response: ', response);
           const { data: { message, status, result } } = response;
 
           if (status === 200) {
@@ -551,7 +531,7 @@ var actions = {
       })
         .then(response =>
         {
-          
+          // console.log('Validate Code: ', response);
           const { status: statusCode, data } = response;
 
           if (statusCode === 201) {
