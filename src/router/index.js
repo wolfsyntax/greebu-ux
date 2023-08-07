@@ -264,6 +264,48 @@ const router = createRouter({
             role: ''
           }
         },
+        {
+          path: '/email/verify/verified',
+          name: 'verify-done',
+          component: () => import('/src/views/Auth/Verification/Verified.vue'),
+          meta: {
+            requiresLogin: false, // true
+            title: 'Email Verification - Verified',
+            role: ''
+          },
+        },
+        {
+          path: '/email/verify/success',
+          name: 'verify-success',
+          component: () => import('/src/views/Auth/Verification/Success.vue'),
+          meta: {
+            requiresLogin: false, // true
+            title: 'Email Verification - Success',
+            role: ''
+          },
+        },
+        {
+          path: '/email/resend',
+          name: 'verify-resend',
+          component: () => import('/src/views/Auth/Verification/Resend.vue'),
+          meta: {
+            requiresLogin: true, // true
+            title: 'Email Verification - Resend',
+            role: ''
+          },
+        },
+        {
+          path: '/email/verify/invalid',
+          name: 'verify-invalid',
+          component: () => import('/src/views/Auth/Verification/Invalid.vue'),
+          meta: {
+            requiresLogin: false, // true
+            title: 'Email Verification - Invalid',
+            role: ''
+          },
+        },
+          
+
       ]
     },
     {

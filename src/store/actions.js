@@ -554,6 +554,33 @@ var actions = {
         });
     });
   },
+
+  // Resend Email verification
+  resendEmail({ commit, state })
+  {
+    return new Promise(async (resolve, reject) =>
+    {
+      // axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
+
+      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/email/resend/${state.user?.id}`)
+        .then(response =>
+        {
+          // console.log('Resend Code response: ', response);
+          const { data: { message, status, result } } = response;
+          console.log('Email Resend: ', response)
+          if (status === 200) {
+
+
+          }
+
+          resolve(response);
+        })
+        .catch(err =>
+        {
+          reject(err)
+        });
+    });
+  },
 }
 
 export default actions
