@@ -50,13 +50,13 @@
               <h5 class="card-title">Phone verification</h5>
               <p class="card-text">In order to protect the security of your account, please type your phone number. We will send you a text message with a verification code that you'll need to enter on the next screen</p>
 
-              <div v-if="showError" class="alert alert-danger" role="alert">
+              <div v-for="error in errors?.phone" :key="error" class="alert alert-danger" role="alert">
                 <div class="left">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                     <path d="M11 15H13V17H11V15ZM11 7H13V13H11V7ZM11.99 2C6.47 2 2 6.48 2 12C2 17.52 6.47 22 11.99 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 11.99 2ZM12 20C7.58 20 4 16.42 4 12C4 7.58 7.58 4 12 4C16.42 4 20 7.58 20 12C20 16.42 16.42 20 12 20Z" fill="#EF4444"/>
                   </svg>
                   
-                  <p class="err-msg">The provided OTP code is invalid. Please try again with the correct code.</p>
+                  <p class="err-msg">{{ error }}</p>
                 </div>
 
                 <div class="right">
@@ -237,7 +237,7 @@ export default {
 
       page: 'request',
       errors: null,
-      message: null,
+      message: "The provided OTP code is invalid. Please try again with the correct code.",
       form: {
         phone: null,
       }
@@ -299,12 +299,19 @@ export default {
       this.requestCode(this.form)
         .then(response =>
         {
-          const { status: statusCode } = response;
-
+          const { status: statusCode, data: {message, status, result: {errors}} } = response;
+          console.log('Phone number send otp: ', response)
           if (statusCode === 200) {
             this.step = 3;
           } else if (statusCode === 203) {
             this.showError = true;
+            
+            if (status === 422) {
+              this.errors = errors || null
+              this.message = message;
+            } else if (status === 500) {
+              this.errors.phone.push('Too many attempts. Please try again after 10 minutes.')
+            }
           }
         })
 
