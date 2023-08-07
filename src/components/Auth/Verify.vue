@@ -48,7 +48,7 @@
                         <div class="content">
                           <h5 class="card-title">Check your text messages</h5>
                           <p class="card-text">Enter verification code we sent to</p>
-                          <p class="phone-number">{{  phone_num }}</p>
+                          <p class="phone-number">{{  info.phonemask }}</p>
 
                         <form @submit.prevent="confirm"> 
                           <span v-if="verifyMessage" class="text-danger message">
@@ -136,7 +136,7 @@
                         </div>
                         <p style="">Length: {{ verifyCode }} - {{ computedLength }}</p>
 
-                          <button class="resend-code" @click.prevent="resendCode">Resend Code {{ $filters.timer(countdown) }}</button>
+                          <button class="resend-code" @click.prevent="resendMyCode">Resend Code {{ $filters.timer(countdown) }}</button>
                         <div class="btn-wrapper">
                           <button type="submit" :disabled="!isAllFieldsFilled">Confirm</button>
                         </div>
@@ -217,16 +217,7 @@ export default {
       phone_num: null,
     }
   },
-  props: {
-    phone: { 
-      type: String,
-      default: null,
-      required: true
-    },
-
-  },
   computed: {
-  //  ...mapGetters(["userInfo", "info", "token", "isLoggedIn"]),
     computedLength() {
       return this.verifyCode.filter(code => code !== null).length;
     },
@@ -234,7 +225,6 @@ export default {
       return this.verifyCode.every(code => code !== null);
     },
     ...mapGetters(["userInfo", "info", "token", "isLoggedIn", 'userRole'])
-    
   },
   mounted() {
     this.phone_num = this.phone || this.info?.phone;
@@ -245,16 +235,17 @@ export default {
     return {}
   },
   methods: {
-    ...mapActions(['resendOTPCode', 'verifyOTP', 'verifyOTPF']),
+    ...mapActions(['resendCode', 'verifyOTP', 'validateCode']),
     // ...mapMutations([
     //   'CLEAR_STATE',
     // ]),
-    async resendCode()
+    async resendMyCode()
     {
       if (!this.countdown_enabled) {
         this.countdown_enabled = true;
         // resend request
-        await this.resendOTPCode(this.$route.query.id)
+        // await this.resendOTPCode(this.$route.query.id)
+        await this.resendCode()
           .then(response =>
           {
             const { status } = response;
@@ -271,17 +262,23 @@ export default {
     {
 
       this.verifyMessage = '';
-
-      this.verifyOTPF({ id: this.$route.query.id, code: this.verifyCode })
+      const enteredCode = this.verifyCode.join('');
+      this.validateCode({ code: enteredCode })
         .then(response =>
         {
           const { status: statusCode, data: { status, message, result } } = response
-          if (statusCode === 200 && status === 200) {
-            if (this.userRole === 'customers') {
-              this.$router.push("/");
+          if (statusCode === 201) {
+            if (status === 200) {
+
+              if (this.userRole === 'customers') {
+                this.$router.push("/");
+              } else {
+                this.$store.commit('CLEAR_STATE');
+                this.$router.push("/login");
+              }
+
             } else {
-              this.$store.commit('CLEAR_STATE');
-              this.$router.push("/login");
+              
             }
 
           } else if (statusCode === 203) {
