@@ -37,7 +37,7 @@ var actions = {
         {
 
           const { data: { message, status, result }, status: statusCode } = response;
-
+          console.log('Response: ', response)
           if (statusCode === 200) {
 
             const { profile, user, token, roles, account } = result;
