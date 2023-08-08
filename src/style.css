@@ -100,14 +100,14 @@ header nav{
 .main-nav .nav-button .upgrade:hover {
   background-color: var(--orange);
   color: var(--white);
-  border-color: 1px solid  var(--white);
+  border-color: 1px solid  var(--orange);
 }
 .main-nav  .nav-button{
   display: flex;
   align-items: center;
 }
 .main-nav  .nav-button span{
-  margin: 0 20px;
+  margin: 4px 16px;
   color: #FF6B00;
 }
 /* dropdown */
@@ -232,6 +232,10 @@ header nav{
 .main-nav .nav-button .dropdown .dropdown-menu li span{
   color: var(--orange);
   margin: 0 12px 0 14px;
+  font-variation-settings: 'FILL' 1,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 48;
 }
 .main-nav .nav-button .dropdown .dropdown-menu  .dropdown-divider {
   height: 0;
@@ -1471,7 +1475,7 @@ z-index: 1;
   letter-spacing: 0.2px;
   text-transform: capitalize;
   color: var(--black);
-  padding: 20px 17px;
+  padding: 20px 17px 10px;
 }
 .faq .accordion-item{
   border: 1px solid white;
@@ -3835,16 +3839,6 @@ justify-content: space-between;
   width: 100%;
   display: flex;
 }
-#selectPlanModal .modal-content .modal-header .btn-close {
-  padding: 0.8rem;
-  border: 1px solid #DFDFE6;
-  border-radius: 100%;
-  color: #23262F;
-  background: var(white);
-}
-#selectPlanModal .modal-content .modal-header .btn-close:hover {
-  border: 1px solid #23262F;
-}
 #selectPlanModal .modal-content .free, #selectPlanModal .modal-content .monthly,  #selectPlanModal .modal-content .yearly{
   width: 33.3%;
   background-color: var(--white);
@@ -3885,6 +3879,7 @@ justify-content: space-between;
   color: #2F2F2F;
   font-style: normal;
   font-weight: 400;
+  padding-right: 0.2rem;
 }
 #selectPlanModal .select .group-item .desc{
   color: #808080;
@@ -3906,38 +3901,45 @@ justify-content: space-between;
   width: 100%;
   padding: 0 5%;
   margin-bottom: 0.94rem;
+  text-align: left;
 }
 #selectPlanModal .select .last{
   margin-bottom: 3rem;
 }
 /* see  https://stackoverflow.com/questions/48406628/bootstrap-align-button-to-the-bottom-of-card#:~:text=If%20you%20want%20the%20button,card%2Dbody. */
-#selectPlanModal .select .current-plan, #selectPlanModal .select .yearly-plan, #selectPlanModal .select .monthly-plan {
-  color: var(--white);
+#selectPlanModal .select .current-plan, #selectPlanModal .select .yearly-plan, #selectPlanModal .select .monthly-plan, #selectPlanModal .create-profile {
+  color: var(--orange);
   font-size: 1.125rem;
   font-weight: 700;
-  background: var(--orange);
-  border: 0;
+  background: var(--white);
   padding: 1rem 0;
   width: 90%;
   border-radius: 2.4375rem;
+  border: 1px solid var(--orange);
   margin: 2rem 0 3rem;
-  /* position: absolute;
-  bottom: 0;
-  left: 5%; */
 }
 #selectPlanModal .select .current-plan{
+  border: 1px solid var(--white);
   background: #FED7AA;
-  color: var(--orange);
+  color: var(--white);
   position: absolute;
   bottom: 0;
   left: 5%;
+  cursor: not-allowed;
+  opacity: .6;
 }
 #selectPlanModal .select .yearly-plan:hover, #selectPlanModal .select .monthly-plan:hover {
-  background: var(--btn-hovered);
-}
-#selectPlanModal .select .current-plan:hover{
   background: var(--orange);
   color: var(--white);
+}
+#selectPlanModal .create-profile{
+  background: var(--orange);
+  color: var(--white);
+  width: 33%;
+  margin: 3rem auto 0rem;
+}
+#selectPlanModal .create-profile:hover{
+  background: var(--btn-hovered);
 }
 #selectPlanModal .select .yearly .save {
   color: var(--white);
@@ -3955,7 +3957,7 @@ justify-content: space-between;
 
                                                           /* BILLING INFORMATION / Thank you for subscribing! */
 .subscription .container{
-    margin: 4rem auto 10rem;
+    margin: 4rem auto 12rem;
 }
 .subscription .back{
   display: flex;
@@ -4312,29 +4314,27 @@ width: 100%;
   text-align: right;
 }
 .subscription .payment-made .button-wrapper {
-  margin-top: 6rem;
   display: flex;
   align-items: center;
   gap: 1%;
-  margin-bottom: 2rem;
+  width: 80%;
+  margin: 6rem auto 0rem;
 }
 .subscription .payment-made .button-wrapper .download, .subscription .payment-made .button-wrapper .done{
   color: var(--orange);
   font-size: 1.25rem;
-  font-weight: 500;
-  line-height: 1.5rem; 
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.5rem; /* 120% */
   padding: 1rem 0;
 }
 .subscription .payment-made .button-wrapper .download{
   width: 49.5%;
-  border-radius: 0.5rem;
   color: var(--orange);
-  border: 1px solid #FF6B00;
+  border: 0;
   background-color: var(--white);
-}
-.subscription .payment-made .button-wrapper .download:hover{
-  background-color: var(--orange);
-  color: var(--white);
+  display: flex;
+  align-items: center;
 }
 .subscription .payment-made .button-wrapper .done{
   width: 49.5%;
@@ -4365,6 +4365,107 @@ width: 100%;
   24 px	1.5 rem
   28px 1.75 rem
 */
+
+                                    /* Onboarding Message and Subscription Plan */
+
+
+#selectPlanModal .modal-content .modal-header {
+    padding: 1.8rem 1.6rem 1rem;
+}
+#selectPlanModal .modal-content .title {
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-bottom: 0.62rem;
+}
+#selectPlanModal .modal-content .description {
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  width: 70%;
+  margin: 0 auto 2.3rem;
+}
+#selectPlanModal .modal-content .select .type {
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 110%; 
+  margin-bottom: 1.9rem;
+  padding: 2rem 1.2rem .1rem;
+}
+#selectPlanModal .select .yearly .save {
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+  padding: 0.7rem 1.2rem;
+}
+#selectPlanModal .select .group-item h4 {
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 110%; 
+}
+#selectPlanModal .select .group-item .peso {
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+#selectPlanModal .select .group-item .desc {
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150.5%;
+}
+#selectPlanModal .select .group-item {
+  padding: 1.3rem;
+  margin-bottom: 1.5rem;
+}
+#selectPlanModal .select .benefits {
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin-bottom: 0.69rem;
+}
+#selectPlanModal .select .current-plan, #selectPlanModal .select .yearly-plan, #selectPlanModal .select .monthly-plan, #selectPlanModal .create-profile {
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin: 1.75rem 0 2rem;
+}
+#selectPlanModal .create-profile{
+  margin: 3rem auto 0rem;
+}
+.onboarding-message .modal-content {
+    padding: 3rem 1.75rem 2.5rem;
+    width: 28rem;
+}
+.onboarding-message .modal-content .title {
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-bottom: 1.06rem;
+}
+.onboarding-message .modal-content .description {
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.3rem;
+}
+.onboarding-message .close-modal-button {
+  padding: 0.75rem 8rem;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.5rem; 
+}
+
+
+
                                     /* BILLING INFORMATION / Thank you for subscribing! */
 
  .subscription .payment-made .button-wrapper .download, .subscription .payment-made .button-wrapper .done {
@@ -4439,8 +4540,6 @@ width: 100%;
     padding-top: 2rem;
     padding-bottom: 2.5rem;
 }
-
-
 .subscription .back .main-title {
   font-size: 1.5rem;
   letter-spacing: -0.075rem;
@@ -4615,11 +4714,6 @@ width: 100%;
 .subscription .your-plan {
   padding: 2rem 2.5rem 3rem;
 }
-
-
-
-
-
 
               /* PHONE VERIFICATION / FORGOT PASSWORD  */
 .phone-verification .check-message .btn-wrapper button, .phone-verification .verify-phone .btn-wrapper button,
@@ -5123,6 +5217,10 @@ header nav {
   letter-spacing: 0.0125rem;
   padding: 0 1rem!important;
 }
+.main-nav  .nav-button span {
+  margin: 4px 10px;
+  font-size: 20px;
+}
 .main-nav .nav-button .dropdown .dropdown-menu li {
   margin: 24px 1rem;
 }
@@ -5585,7 +5683,7 @@ header nav {
   line-height: 1.75rem; 
   letter-spacing: 0.0125rem;
   text-transform: capitalize;
-  padding: 1.25rem 0.94rem;
+  padding: 1.25rem 0.94rem 0.5rem;
 }
 .faq .accordion-body {
   font-size: 16px;
