@@ -140,7 +140,7 @@
 
               <div class="d-grid gap-2 btn-sign-up">
                 <button class="btn btn-primary" type="submit"
-                :disabled="!agree_term">
+                :disabled="!agree_term && !isDisabled">
                   Create Account
                   <span class="material-symbols-rounded forward-icon">
                       &#xe941;
@@ -207,7 +207,7 @@ export default {
        // account_type: '',
         phone: null,
         login_type: 'email',
-        isDisabled: false,
+
        
       },
       errors: {},
@@ -216,7 +216,7 @@ export default {
       rate_countdown_enable: false,
       rate_countdown: 600,
       agree_term: false,
-
+      isDisabled: false,
       showRadioButtons: true,
     }
   },
@@ -254,14 +254,18 @@ export default {
     {
       this.message = msg;
     },
-    submit()
+    async submit()
     {
       
       this.isDisabled = true;
-      this.signup(this.form)
+      await this.signup(this.form)
         .then((response) => { 
           console.log('Register response: ', response)
-          this.isDisabled = false;
+          this.$nextTick(() =>
+          {
+            this.isDisabled = false;
+          })
+          
           const { status: statusCode, data: {status, result} } = response;
           
           if (statusCode === 201)

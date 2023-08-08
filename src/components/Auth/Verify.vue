@@ -35,10 +35,10 @@
               <!-- <div v-if="!submitted && verifyEmail"  class="check-message"> -->
       <div class="check-message">
                 <div class="card">
-                    <div class="card-header">
-                        <a href="/register">
+                    <div class="card-header py-2">&nbsp;
+                        <!-- <a href="/register">
                             <span class="material-symbols-outlined">&#xe5c4;</span>
-                        </a>
+                        </a> -->
                     </div>
                     <div class="card-body text-center">
                         <svg class="phone" xmlns="http://www.w3.org/2000/svg" width="76" height="76" viewBox="0 0 76 76" fill="none">

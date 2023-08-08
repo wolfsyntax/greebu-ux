@@ -36,9 +36,9 @@ var actions = {
         .then(response =>
         {
 
-          const { data: { message, status, result } } = response;
+          const { data: { message, status, result }, status: statusCode } = response;
 
-          if (status === 200) {
+          if (statusCode === 200) {
 
             const { profile, user, token, roles, account } = result;
             
@@ -48,6 +48,16 @@ var actions = {
             commit('SET_PROFILE', profile || {});
             commit('SET_ROLE', profile?.role || '');
             commit('SET_ROLES', roles || []);
+
+            localStorage.api_token = token;
+
+          } else if (statusCode === 203 && status === 403) {
+
+            const { profile, user, token } = result;
+            
+            commit('SET_AUTH', user || {});
+            commit('SET_PROFILE', profile || {});
+            commit('SET_ROLE', profile?.role || '');
 
             localStorage.api_token = token;
 
