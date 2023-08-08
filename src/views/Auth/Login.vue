@@ -1,7 +1,7 @@
 
 <template>
   <div>
-    <layout>
+    <layout v-if="!users.id">
 
       <Head title="Login" />
       <section class="login">
@@ -94,12 +94,14 @@
         </div> <!-- end of container -->
       </section>
   </layout>
+  <verify-card v-else/>
 </div>
 </template>
 <script>
 
 import Layout from '/src/components/Layouts/AuthLayout.vue';
 import SocialButton from '/src/components/Auth/SocialLogin.vue';
+import Verify from '@/components/Auth/Verify.vue';
 
 import { mapGetters, mapState, mapActions } from "vuex";
 // import { FacebookAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup, createUserWithEmailAndPassword, signInWithRedirect } from "firebase/auth";
@@ -107,6 +109,7 @@ export default {
   components: {
     layout: Layout,
     'social-button': SocialButton,
+    'verify-card': Verify
   },
   data()
   {
@@ -136,9 +139,9 @@ export default {
       this.signin(this.form).then((response) =>
       {
         console.log('Login Response: ', response)
-        const { status, data } = response;
+        const { status: statusCode, data: {result, status, message}} = response;
         
-        if (status === 200) {
+        if (statusCode === 200) {
 
           // if (role === 'artists') {
           //   this.$router.push("/");
@@ -150,9 +153,13 @@ export default {
             this.$router.push('/')
           }
         } else {
+          
+          this.errors = result?.errors;
+          this.message = message;
 
-          this.errors = data?.result?.errors;
-          this.message = data?.message;
+          // if (status === 403) {
+          //   this.$router.push({ path: this.$route.path, query: { id: result?.user?.id } });
+          // }
 
         }
       })

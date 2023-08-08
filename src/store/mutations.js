@@ -13,6 +13,10 @@ var mutations = {
   {
     state.profile = payload;    
   },
+  SET_ACCOUNT(state, payload)
+  {
+    state.account = payload;    
+  },
   SET_PLANS(state, payload)
   {
     state.plans = payload;    
@@ -41,6 +45,7 @@ var mutations = {
     state.role = '';
     state.roles = [];
     state.phone = null;
+    state.account = {};
   }
 }
 

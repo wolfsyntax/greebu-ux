@@ -17,35 +17,47 @@ var actions = {
     return new Promise(async (resolve, reject) =>
     {
 
-      commit('SET_AUTH', {})
-      commit('SET_TOKEN', '')
-      commit('SET_PROFILE', {})
-      commit('SET_ROLE', '')
+      commit('SET_AUTH', {});
+      commit('SET_ACCOUNT', {});
+      commit('SET_TOKEN', '');
+      commit('SET_PROFILE', {});
+      commit('SET_ROLE', '');
       // Clearing for other modules
-      commit('SET_GENRES', null)
-      commit('SET_ARTIST_TYPES', null)
-      commit('SET_ARTIST_GENRES', null)
-      commit('SET_MEMBERS', null)
-      commit('SET_ARTIST', {})
-      commit('SET_ARTISTS', null)
-      commit('SET_PAGINATION', {current_page: 1, last_page: 1, per_page: 10, total: 1, })
+      commit('SET_GENRES', null);
+      commit('SET_ARTIST_TYPES', null);
+      commit('SET_ARTIST_GENRES', null);
+      commit('SET_MEMBERS', null);
+      commit('SET_ARTIST', {});
+      commit('SET_ARTISTS', null);
+      commit('SET_PAGINATION', { current_page: 1, last_page: 1, per_page: 10, total: 1, });
 
       // axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
       await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/login`, payload)
         .then(response =>
         {
 
-          const { data: { message, status, result } } = response;
+          const { data: { message, status, result }, status: statusCode } = response;
 
-          if (status === 200) {
+          if (statusCode === 200) {
 
-            const { profile, user, token, roles } = result;
+            const { profile, user, token, roles, account } = result;
             
             commit('SET_AUTH', user || {});
+            commit('SET_ACCOUNT', account || {});
             commit('SET_TOKEN', token || '');
             commit('SET_PROFILE', profile || {});
             commit('SET_ROLE', profile?.role || '');
             commit('SET_ROLES', roles || []);
+
+            localStorage.api_token = token;
+
+          } else if (statusCode === 203 && status === 403) {
+
+            const { profile, user, token } = result;
+            
+            commit('SET_AUTH', user || {});
+            commit('SET_PROFILE', profile || {});
+            commit('SET_ROLE', profile?.role || '');
 
             localStorage.api_token = token;
 
@@ -108,29 +120,31 @@ var actions = {
 
           const { status, data } = response
           if (status === 200 && data.status === 200) {
-            commit('SET_AUTH', {})
-            commit('SET_TOKEN', '')
-            commit('SET_PROFILE', {})
-            commit('SET_ROLE', '')
-            // Clearing for other modules
-            commit('SET_GENRES', null)
-            commit('SET_ARTIST_TYPES', null)
-            commit('SET_ARTIST_GENRES', null)
-            commit('SET_MEMBERS', null)
-            commit('SET_ARTIST', {})
-            commit('SET_ARTISTS', null)
-            commit('SET_PAGINATION', {current_page: 1, last_page: 1, per_page: 10, total: 1, })
 
-            commit('SET_SONG_ARTIST_TYPE', null)
-            commit('SET_SONG_MOODS', null)
-            commit('SET_SONG_LANGUAGES', null)
-            commit('SET_SONG_DURATIONS', null)
-            commit('SET_SONG_PURPOSES', null)
-            commit('SET_SONG_MOOD', {})
-            commit('SET_SONG_LANGUAGE', {})
-            commit('SET_SONG_DURATION', {})
-            commit('SET_SONG_PURPOSE', {})
-            commit('SET_SONG_REQUEST', null)
+            commit('SET_AUTH', {});
+            commit('SET_TOKEN', '');
+            commit('SET_PROFILE', {});
+            commit('SET_ROLE', '');
+            // Clearing for other modules
+            commit('SET_GENRES', null);
+            commit('SET_ARTIST_TYPES', null);
+            commit('SET_ARTIST_GENRES', null);
+            commit('SET_MEMBERS', null);
+            commit('SET_ARTIST', {});
+            commit('SET_ARTISTS', null);
+            commit('SET_ACCOUNT', {});
+            commit('SET_PAGINATION', { current_page: 1, last_page: 1, per_page: 10, total: 1, });
+
+            commit('SET_SONG_ARTIST_TYPE', null);
+            commit('SET_SONG_MOODS', null);
+            commit('SET_SONG_LANGUAGES', null);
+            commit('SET_SONG_DURATIONS', null);
+            commit('SET_SONG_PURPOSES', null);
+            commit('SET_SONG_MOOD', {});
+            commit('SET_SONG_LANGUAGE', {});
+            commit('SET_SONG_DURATION', {});
+            commit('SET_SONG_PURPOSE', {});
+            commit('SET_SONG_REQUEST', null);
             commit('SET_SONG', {
               first_name: null,
               last_name: null,
@@ -144,8 +158,8 @@ var actions = {
               receiver: null,
               user_story: null,
               page_status: null,
-            })
-            commit('SET_SONG_ARTIST', {})
+            });
+            commit('SET_SONG_ARTIST', {});
           }
           resolve(response)
         })
@@ -249,10 +263,12 @@ var actions = {
           const { data, status} = response
           if (status === 200) {
 
-            const { result: { profile, user } } = data;
+            const { result: { profile, user, account } } = data;
             commit('SET_PROFILE', profile);
             commit('SET_AUTH', user);
             commit('SET_ROLE', profile?.role);
+            commit('SET_ACCOUNT', account);
+
           }
           resolve(data)
         })
@@ -536,13 +552,15 @@ var actions = {
 
           if (statusCode === 201) {
 
-            const { result: { user, profile, roles, token } } = data;
+            const { result: { user, profile, roles, token, account } } = data;
             // commit('SET_AUTH', user || {});
 
             commit('SET_AUTH', user || {})
             commit('SET_TOKEN', token || '')
             commit('SET_PROFILE', profile || {})
+            commit('SET_ACCOUNT', account || {})
             commit('SET_ROLE', profile?.role || '')
+            commit('SET_ROLES', roles || null)
             
           }
 
