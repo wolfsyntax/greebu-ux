@@ -36,6 +36,9 @@
       <div class="check-message">
                 <div class="card">
                     <div class="card-header py-2">&nbsp;
+                      <a href="" v-if="$route.path === '/login'" @click="$store.commit('CLEAR_STATE')">
+                        <span class="material-symbols-outlined">&#xe5c4;</span>
+                      </a>
                         <!-- <a href="/register">
                             <span class="material-symbols-outlined">&#xe5c4;</span>
                         </a> -->
