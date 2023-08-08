@@ -310,8 +310,8 @@ const router = createRouter({
     },
     {
       path: '/artist',
-     // component: () => import('/src/components/Layouts/ArtistLayout.vue'),
-      component: () => import('/src/components/Layouts/Layout.vue'),
+      component: () => import('/src/components/Layouts/ArtistLayout.vue'),
+     // component: () => import('/src/components/Layouts/Layout.vue'),
       meta: {
         requiresLogin: true, // true
         title: 'Artist',
