@@ -2,7 +2,7 @@
   <layout>
 
   <section class="register">
-    <div class="container-fluid" v-if="!info.id">
+    <div class="container-fluid" v-if="!$route.query.id">
       <div id="registerCarouselBanner" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <div class="carousel-indicators">
           <button type="button" data-bs-target="#registerCarouselBanner" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -271,7 +271,7 @@ export default {
 
             this.step = '';
             // setTimeout(() => this.countdown--, 100);
-            // this.$router.push({ path: this.$route.path, query: { id: result?.user_id } });
+            this.$router.push({ path: this.$route.path, query: { id: result?.user_id } });
 
             
             //this.$router.push("/login");
