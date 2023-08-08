@@ -12,6 +12,7 @@ var state = {
   countries: null,
   phone: null,
   account_type: '',
+  account: {},
 }
 
 export default state
