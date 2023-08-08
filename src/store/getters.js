@@ -4,6 +4,7 @@ var getters = {
   token: state => state.bearerToken,
   userRole: state => state.role,
   isLoggedIn: (state) => state.bearerToken && Object.keys(state.profile).length !== 0, //
+  isFreeloader: (state) => state.profile?.is_freeloader ? true : false,
   countryList: state => state.countries
     .map(function (country)
     {
