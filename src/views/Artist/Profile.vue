@@ -1,5 +1,6 @@
 <template>
-  <layout>
+ 
+    <BlankHeader />
     <div>
       <section class="profile-details">
         <div class="container">
@@ -308,19 +309,21 @@
       </section>
       
     </div>
-  </layout>
+
 </template>
 <script>
 // import Layout from '/src/components/Layouts/ArtistLayout.vue';
 import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
 import MemberForm from './AddMember.vue';
 import SocialMediaForm from './SocialMedia.vue';
+import BlankHeader from "@/components/Home/BlankHeader.vue";
 
 export default {
   components: {
     // layout: Layout,
     'member-form': MemberForm,
     'social-media': SocialMediaForm,
+    BlankHeader
   },
   data()
   {
