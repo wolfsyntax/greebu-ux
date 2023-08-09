@@ -37,11 +37,12 @@
                                       </h3>
                                       <h5 class="type-of-artist">Full Band</h5>
                                     </div>
-                                    <div class="folow">
+                                    <!-- for future na muna ini -->
+                                    <!-- <div class="folow">
                                       <p class="followers">1,254 <br> <span>Followers</span></p> <span class="divider"></span>
                                       <p class="followers">1,254 <br> <span>Following</span></p> <span class="divider"></span>
                                       <p class="followers">385 <br> <span>Playlist</span></p>
-                                    </div>
+                                    </div> -->
                                     <div class="music-genre">
                                       <h5 class="title">Genres:</h5> 
                                       <span class="badge">Country Rock</span> <span class="badge">Electronic</span> <span class="badge">Rock</span> <span class="badge">Reggae</span>
@@ -471,7 +472,8 @@ export default {
 
       },
       // Artist profile and Post tab
-      navItems: ['Post', 'About', 'Songs', 'Videos', 'Photos', 'Events', 'Reviews'],
+      navItems: ['Post', 'About', 'Songs', 'Videos', 'Photos'],
+     // navItems: ['Post', 'About', 'Songs', 'Videos', 'Photos', 'Events', 'Reviews'],
       activeItem: 'Post',
       post: ['Post 1', 'Post 2','Post 1', 'Post 2','Post 1', 'Post 2'],
       songs: ['https://res.cloudinary.com/daorvtlls/video/upload/v1686647605/Nirvana_-_Smells_like_teen_spirit_zs8yo4.mp3',

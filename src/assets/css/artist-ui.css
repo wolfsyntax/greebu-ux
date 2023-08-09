@@ -1,5 +1,24 @@
 :root {
-    
+  --orange: #FF6B00;
+  --light-orange: #FED7AA;
+  --gray1: #70868F;
+  --gray2: #8690A2;
+  --gray3: #B0AFB1;
+  --gray4: #C4C4C4;
+  --gray5: #AAAAAA;
+  --gray6: #B8BBCF;
+  --white: #FFFFFF;
+  --black: #121212;
+  --black-color: #000000;
+  --black-heading: #231D4F;
+  --bg-black1: #0C0D0F;
+  --bg-black2: #111317;
+  --p-color1: #575757;
+  --p-color2: #757575;
+  --p-color3: #1E1E1E;
+  --p-color4: #2D3748;
+  --btn-hovered: #ED6300;
+  --btn-focus: #FFE4C5;
 }
 body{   
   font-family: 'Urbanist', sans-serif;
@@ -135,8 +154,9 @@ body{
   align-items: center;
 }
 .profile-page .profile-header .cover .cover-body .profile-info .profile-wrapper {
-  margin-top: 5rem;
-  margin-left: 50px;
+  /* margin-top: 5rem;  if the followers features is uncomment */
+  margin-top: 3rem; 
+  margin-left: 45px;
 }
 .profile-page .profile-header .cover .cover-body .profile-info .folow{
   display: inline-flex;
@@ -230,6 +250,7 @@ body{
   height: 50px;
   position: absolute;
   top: 260px;
+  left: 25%;
 } 
 .profile-page .profile-header .header-links ul li a{
   color: #7C828F;
@@ -836,19 +857,26 @@ body{
 }
 .profile-details .container .title{
   color: #1D1D1D;
+  font-size: 2.3rem;
+  font-weight: 700;
+  line-height: 140%;
+  letter-spacing: -0.05rem;
+}
+.profile-details .container .sub-heading{
+  color: #8690A2;
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 140%; 
+  letter-spacing: -0.025rem;
+  margin-bottom: 2.5rem;
+}
+.profile-details .container .profile-details{
+  color: #1D1D1D;
   font-size: 1.75rem;
-  font-style: normal;
   font-weight: 700;
   line-height: 140%;
   letter-spacing: -0.035rem;
-}
-.profile-details .container .sub-heading{
-  color: #2D3748;
-  font-size: 0.875rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 140%;
-  letter-spacing: -0.0175rem;
+  margin-bottom: 2.5rem;
 }
 .profile-details .container .back-wrapper{
   margin-bottom: 2.5rem;
@@ -889,7 +917,12 @@ body{
 .profile-details .container .fill-details  .upload-img .label-img{
   position: relative;
 }
-.profile-details .container .fill-details .upload-img .label-img .camera-inner{
+.profile-details .upload-img .label-img .default-avatar {
+  width: 11.5rem;
+  height: 11.5rem;
+  border-radius: 100%;
+}
+/* .profile-details .container .fill-details .upload-img .label-img .camera-inner{
   color: #FFFFFF;
   background-color: #EAEBF1;
   padding: 3rem;
@@ -901,7 +934,7 @@ body{
 }
 .profile-details .container .fill-details .upload-img .label-img:hover .camera-inner{
   background: #FF6B00;
-}
+} */
 .profile-details .container .fill-details .upload-img .label-img:hover .camera-outer{
   border: 1px solid #fff;
 }
@@ -919,65 +952,109 @@ body{
 }
 .profile-details .container .fill-details .upload-img .label-img  .camera-outer {
   color: #fff;
-  flex-shrink: 0;
   padding: 0.7rem;
   border-radius: 33px;
   background: #FF6B00;
   font-variation-settings: 'FILL' 0;
   font-size: 20px;
   position: absolute;
-  top: 60%;
-  left: 65%;
-  border: 1px solid #FF6B00;;
+  top: 70%;
+  left: 72%;
+  border: 1px solid #FF6B00;
 }
 .profile-details .container .fill-details .form-group{
   margin-bottom: 1.75rem;
 }
-.profile-details .container .fill-details label{
+.profile-details .container .fill-details .required-fields label, .profile-details .container .fill-details .band-and-social,
+.profile-details .fill-details .form-about-artist label{
   color: #121212;
   font-size: 1.25rem;
-  font-style: normal;
   font-weight: 600;
-  line-height: normal;
+  letter-spacing: -0.025rem;
+  margin-bottom: 0.63rem;
+}
+.profile-details .container .fill-details .required-fields .typeArtist{
+  margin-top: 2.5rem;
+}
+.profile-details .container .fill-details .upload-img .description{
+  color: #121212;
+  font-size: 1.25rem;
+  font-weight: 600;
   letter-spacing: -0.025rem;
   margin-bottom: 0.62rem;
+  margin-left: 1.3rem;
 }
-.profile-details .container .fill-details form select, .profile-details .container .fill-details select option,
-.profile-details .container .fill-details .form-group .artist-name::-webkit-input-placeholder,
-.profile-details .container .fill-details .form-group .street::-webkit-input-placeholder,
-.profile-details .container .fill-details .form-group .city::-webkit-input-placeholder,
-.profile-details .container .fill-details .form-group .province::-webkit-input-placeholder{ /* Edge */
-  color: #2D3748;
+.profile-details .container .fill-details .required-fields select, .profile-details .container .fill-details .required-fields input {
+  padding: 0.8rem;
+  color: var(--black-color);
   font-size: 1rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 140%;
-  letter-spacing: -0.02rem;
+  font-weight: 600;
+  line-height: 1.3125rem; 
 }
-.profile-details .container .fill-details select, .profile-details .container .fill-details select option,
-.profile-details .container .fill-details .form-group .artist-name:-ms-input-placeholder,
-.profile-details .container .fill-details .form-group .street:-ms-input-placeholder,
-.profile-details .container .fill-details .form-group .city:-ms-input-placeholder,
-.profile-details .container .fill-details .form-group .province:-ms-input-placeholder{ /* Internet Explorer */
-  color: #2D3748;
+.profile-details .container .fill-details .required-fields .multiselect-tags {
+  padding-top: 0.8rem;
+  padding-bottom: 0.75rem;
+  margin-top: 0;
+}
+
+/* WebKit, Edge */
+.profile-details .container .fill-details .required-fields select::-webkit-input-placeholder,
+.profile-details .container .fill-details .required-fields input ::-webkit-input-placeholder,
+.profile-details .fill-details .form-about-artist textarea:-webkit-input-placeholder{
+  color: var(--gray6);
   font-size: 1rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 140%;
-  letter-spacing: -0.02rem;
+  font-weight: 500;
+  line-height: 1.3125rem; 
 }
-.profile-details .container .fill-details select, .profile-details .container .fill-details select option,
-.profile-details .container .fill-details.form-group .artist-name::placeholder,
-.profile-details .container .fill-details.form-group .street::placeholder,
-.profile-details .container .fill-details .form-group .city::placeholder,
-.profile-details .container .fill-details .form-group .province::placeholder{
-  color: #2D3748;
+/* Firefox 4-18 */
+.profile-details .container .fill-details .required-fields select:-moz-placeholder,
+.profile-details .container .fill-details .required-fields input:-moz-placeholder,
+.profile-details .fill-details .form-about-artist textarea:-moz-placeholder{ 
+  color: var(--gray6);
   font-size: 1rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 140%;
-  letter-spacing: -0.02rem;
+  font-weight: 500;
+  line-height: 1.3125rem; 
 }
+/* Firefox 19+ */
+.profile-details .container .fill-details .required-fields select::-moz-placeholder,
+.profile-details .container .fill-details .required-fields input::-moz-placeholder,
+.profile-details .fill-details .form-about-artist textarea::-moz-placeholder{ 
+  color: var(--gray6);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.3125rem; 
+}
+/* IE 10-11 */
+.profile-details .container .fill-details .required-fields select:-ms-input-placeholder, 
+.profile-details .container .fill-details .required-fields input:-ms-input-placeholder,  
+.profile-details .fill-details .form-about-artist textarea:-ms-input-placeholder{ 
+  color: var(--gray6);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.3125rem; 
+}
+/* Edge */
+.profile-details .container .fill-details .required-fields select::-ms-input-placeholder,
+.profile-details .container .fill-details .required-fields input::-ms-input-placeholder,
+.profile-details .fill-details .form-about-artist textarea::-ms-input-placeholder{ 
+  color: var(--gray6);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.3125rem; 
+}
+/* MODERN BROWSER */
+.profile-details .container .fill-details .required-fields select::placeholder, 
+.profile-details .container .fill-details .required-fields input::placeholder, 
+.profile-details .fill-details .form-about-artist textarea::placeholder { 
+  color: var(--gray6);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.3125rem; 
+}
+.profile-details .fill-details .form-about-artist textarea::placeholder{
+  padding: 0.2rem;
+}
+
 .profile-details .container .fill-details .form-group .hidden{
   opacity: 0;
 }
@@ -993,6 +1070,7 @@ body{
   letter-spacing: -0.0175rem;
   border-radius: 0.375rem;
   background: #FED7AA;
+  padding-bottom: 0;
 }
 .profile-details .container .fill-details .form-group .add-member, .profile-details .container .fill-details .form-group .add-social-media {
   border: 0;
@@ -1005,7 +1083,7 @@ body{
   letter-spacing: 0.05rem;
   display: flex;
   align-items: center;
-  padding: 0rem;
+  padding: 0.5rem 0 0;
 }
 .profile-details .container .fill-details .form-group .add-member span, .profile-details .container .fill-details .form-group .add-social-media span {
   color: #FF6B00;
@@ -1124,17 +1202,18 @@ body{
 }
 
 .profile-details .container .fill-details .submit-form{
-  color: var(--white, #FFF);
-  font-size: 0.875rem;
-  font-style: normal;
+  color: var(white);
+  font-size: 1.2rem;
   font-weight: 700;
-  line-height: normal;
   letter-spacing: -0.0175rem;
   border-radius: 0.3125rem;
-  background: #FF6B00;
+  background: var(--orange);
   padding: 1rem 10rem;
   border: 0;
   margin: 3.5rem auto;
+}
+.profile-details .container .fill-details .submit-form:hover{
+background: var(--btn-hovered);
 }
 /* modal */
 .profile-details .container .modal-content .modal-header{
@@ -1150,14 +1229,12 @@ body{
 .profile-details .container .modal-content .modal-header .container .modal-title{
   color: var(--color-dark-dark, #23262F);
   font-size: 1.5rem;
-  font-style: normal;
   font-weight: 600;
   line-height: 2rem;
 }
 .profile-details .container .modal-content .modal-header .container .sub-heading{
   color: var(--body-text, #2D3748);
   font-size: 0.875rem;
-  font-style: normal;
   font-weight: 400;
   line-height: 140%;
   letter-spacing: -0.0175rem;
@@ -1303,8 +1380,175 @@ body{
 }
 
                                                         /* MEDIA QUERIES */
-
+/* Large (lg) and Extra large (xl) */
 @media (min-width: 1200px) and (max-width: 1399.98px){
+  /* 
+  STANDARD MARGIN:
+  margin-top: 80px / 5rem
+  margin-bottom: 80px
+  Pixels	REM
+  16 px	1 rem
+  18 px	1.1 rem
+  20 px	1.3 rem
+  24 px	1.5 rem
+  28px 1.75 rem
+*/
+                                  /* ARTIST PROFILE DETAILS*/
+ .profile-details .container {
+    margin: 5rem auto;
+}          
+.profile-details .container .back-wrapper .back {
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%; 
+  letter-spacing: -0.02rem;
+} 
+.profile-details .container .back-wrapper span {
+  font-size: 1.5rem;
+  padding: 0.21rem;
+}    
+.profile-details .container .title {
+  font-size: 2.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.045rem;
+}      
+.profile-details .container .sub-heading {
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%; 
+  letter-spacing: -0.02rem;
+}  
+.profile-details .container .profile-details {
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140%;
+  letter-spacing: -0.03rem
+}    
+.profile-details .upload-img .label-img .default-avatar {
+  width: 9.125rem;
+  height: 9.125rem;
+} 
+.profile-details .container .fill-details .upload-img .label-img  .camera-outer {
+  padding: 0.6rem;
+  font-size: 18px;
+  top: 68%;
+  left: 72%;
+}   
+.profile-details .container .fill-details .upload-img .description {
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 140%;
+  letter-spacing: -0.02rem;
+  margin-left: 1rem;
+}
+.profile-details .container .fill-details .required-fields label, .profile-details .container .fill-details .band-and-social, .profile-details .fill-details .form-about-artist label {
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.02rem;
+}
+.profile-details .container .fill-details .required-fields select, .profile-details .container .fill-details .required-fields input {
+  padding: 0.65rem;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.3125rem; 
+}
+.profile-details .container .fill-details .required-fields .multiselect-tags {
+  padding-top: 0.65rem;
+  padding-bottom: 0.60rem;
+}
+.profile-details .container .fill-details .form-group .add-member, .profile-details .container .fill-details .form-group .add-social-media {
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 100%; 
+  letter-spacing: 0.04375rem;
+  padding-top: 0.4rem;
+}
+.profile-details .group-item .form-check-label {
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.profile-details .group-item {
+  margin-bottom: 1.5rem;
+}
+.profile-details .group-item .form-switch input {
+  width: 3.0625rem;
+  height: 1.5rem;
+}
+.profile-details .container .fill-details .submit-form {
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.0175rem;
+}
+/* WebKit, Edge */
+.profile-details .container .fill-details .required-fields select::-webkit-input-placeholder,
+.profile-details .container .fill-details .required-fields input ::-webkit-input-placeholder,
+.profile-details .fill-details .form-about-artist textarea:-webkit-input-placeholder{
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.3125rem; 
+}
+/* Firefox 4-18 */
+.profile-details .container .fill-details .required-fields select:-moz-placeholder,
+.profile-details .container .fill-details .required-fields input:-moz-placeholder,
+.profile-details .fill-details .form-about-artist textarea:-moz-placeholder{ 
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.3125rem;  
+}
+/* Firefox 19+ */
+.profile-details .container .fill-details .required-fields select::-moz-placeholder,
+.profile-details .container .fill-details .required-fields input::-moz-placeholder,
+.profile-details .fill-details .form-about-artist textarea::-moz-placeholder{ 
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.3125rem; 
+}
+/* IE 10-11 */
+.profile-details .container .fill-details .required-fields select:-ms-input-placeholder, 
+.profile-details .container .fill-details .required-fields input:-ms-input-placeholder,  
+.profile-details .fill-details .form-about-artist textarea:-ms-input-placeholder{ 
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.3125rem;  
+}
+/* Edge */
+.profile-details .container .fill-details .required-fields select::-ms-input-placeholder,
+.profile-details .container .fill-details .required-fields input::-ms-input-placeholder,
+.profile-details .fill-details .form-about-artist textarea::-ms-input-placeholder{ 
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.3125rem; 
+}
+/* MODERN BROWSER */
+.profile-details .container .fill-details .required-fields select::placeholder, 
+.profile-details .container .fill-details .required-fields input::placeholder, 
+.profile-details .fill-details .form-about-artist textarea::placeholder { 
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.3125rem; 
+}
+
+                                  /* ARTIST PROFILE */
   .profile-page .about-tab .ratings p {
     margin-top: 5px;
 }
@@ -1331,9 +1575,11 @@ body{
   width: 270px;
   height: 270px;
 }
-}
+
+} /*  end of 1200px to 1399.98px  */
+
 @media (min-width: 992px) and (max-width: 1199.98px){
-  .profile-page .right-wrapper .past-events .card-body .events-list .events-info img, .profile-page .right-wrapper .original-songs .songs-list .songs-info img{
+  /* .profile-page .right-wrapper .past-events .card-body .events-list .events-info img, .profile-page .right-wrapper .original-songs .songs-list .songs-info img{
   width: 42px;
   height: 42px;
   margin-right: 6px;
@@ -1341,14 +1587,17 @@ body{
 .profile-page .profile-header .cover .cover-body .profile-pic {
   width: 200px;
   height: 200px;
-}
-}
+} */
+
+} /*  end of 992px to 1199.98px  */
+
 @media (min-width: 2400px) {
   .profile-page .profile-header .cover figure {
       /* height: 280px; */
       overflow: hidden;
   }
 }
+
 @media (max-width: 767px) {
   .profile-page .profile-header .cover figure {
       /* height: 110px; */

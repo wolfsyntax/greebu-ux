@@ -3831,6 +3831,17 @@ justify-content: space-between;
   border-bottom: 0;
   padding: 2rem 2rem 1rem;
 }
+#selectPlanModal .modal-content .modal-header .btn-close {
+  padding: 0.8rem;
+  border: 1px solid #DFDFE6;
+  border-radius: 100%;
+  color: #23262F;
+  background: var(white);
+  opacity: 1;
+}
+#selectPlanModal .modal-content .modal-header .btn-close:hover {
+  border: 1px solid #23262F;
+}
 #selectPlanModal .modal-content .modal-body{
   padding: 0rem 4rem 4rem;
 }
@@ -4371,6 +4382,10 @@ width: 100%;
 
 #selectPlanModal .modal-content .modal-header {
     padding: 1.8rem 1.6rem 1rem;
+}
+#selectPlanModal .modal-content .modal-header .btn-close {
+  padding: 0.7rem;
+  font-size: 0.7rem;
 }
 #selectPlanModal .modal-content .title {
   font-size: 2rem;
@@ -5715,6 +5730,14 @@ header nav {
 }
 .login form .form-check, .register form .form-check {
   margin-bottom: 1rem;
+}
+.login form .form-checkbox .form-check-input, .register form .form-checkbox .form-check-input {
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+}
+.login form .form-checkbox .form-check-label, .register form .form-checkbox .form-check-label {
+  margin-top: 3px;
 }
 .register .btn-account-type {
   margin: 2rem 0 3.5rem 0;
