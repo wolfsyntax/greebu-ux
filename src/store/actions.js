@@ -547,13 +547,15 @@ var actions = {
       })
         .then(response =>
         {
-          // console.log('Validate Code: ', response);
+          console.log('validateCode: ', response);
           const { status: statusCode, data } = response;
 
           if (statusCode === 201) {
 
             const { result: { user, profile, roles, token, account } } = data;
             // commit('SET_AUTH', user || {});
+
+            console.log('Data: ', data?.result);
 
             commit('SET_AUTH', user || {})
             commit('SET_TOKEN', token || '')
