@@ -43,8 +43,8 @@
               <!-- <button type="button"  data-bs-dismiss="modal" aria-label="Close" class="btn-close" data-dismiss="modal" @click="toggle"></button> -->
             </div>
             <div class="modal-body">
-              <member-form @modalClose="dismiss" v-if="formType === 'members'"/>
-              <social-media @modalClose="dismiss" v-else />
+              <member-form @modalClose="dismiss" @form="updateMember" v-if="formType === 'members'"/>
+              <social-media @modalClose="dismiss" @form="updateSocial" v-else />
             </div>
           </div>
         </div>
@@ -368,11 +368,15 @@ export default {
       artist_type: this.artistProfile?.artist_type?.title,
       artist_name: this.artistProfile?.profile?.business_name,
       genre: this.artistGenre,
-      bio: this.artistProfile?.profile?.bio,
-      avatar: this.artistProfile?.profile?.avatar,
-      street: this.artistProfile?.profile?.street_address,
-      city: this.artistProfile?.profile?.city,
-      province: this.artistProfile?.profile?.province,
+      bio: this.account?.bio,
+      avatar: this.account?.avatar,
+      street: this.account?.street_address,
+      city: this.account?.city,
+      province: this.account?.province,
+      youtube_channel: this.account?.youtube_channel,
+      twitter_username: this.account?.twitter_username,
+      spotify_profile: this.account?.spotify_profile,
+      instagram_username: this.account?.instagram_username,
     };
   },
   methods: {
@@ -445,6 +449,14 @@ export default {
     replaceByDefault(e) 
     {
       e.target.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm3RFDZM21teuCMFYx_AROjt-AzUwDBROFww&usqp=CAU';
+    },
+    updateSocial(val)
+    {
+      console.log('Update Social: ', val)
+    },
+    updateMember(val)
+    {
+      console.log('Update Member: ', val)
     }
   },
   computed: {
@@ -453,6 +465,7 @@ export default {
       artistTypes: (state) => state.artist.artist_types,
       genres: (state) => state.artist.genres,
       members: (state) => state.artist.members,
+      account: (state) => state.account,
     }),
   }
 }

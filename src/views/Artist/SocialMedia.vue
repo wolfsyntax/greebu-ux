@@ -137,22 +137,28 @@ export default {
     ]),
     submit()
     {
-      this.$emit('modalClose')
-      this.addSocialMedia({
+      this.$emit('modalClose');
+      
+      this.$emit('form', {
         url: this.url,
         media_type: this.media_type,
-      }).then(response =>
-      {
+      })
+
+      // this.addSocialMedia({
+      //   url: this.url,
+      //   media_type: this.media_type,
+      // }).then(response =>
+      // {
         
-      }).catch(err =>
-      {
-        this.$vs.notification({
-          color: 'danger',
-          position: 'top-right',
-          title: 'Server Status',
-          text: `${err.message}`
-        })
-      });
+      // }).catch(err =>
+      // {
+      //   // this.$vs.notification({
+      //   //   color: 'danger',
+      //   //   position: 'top-right',
+      //   //   title: 'Server Status',
+      //   //   text: `${err.message}`
+      //   // })
+      // });
       // this.signin(this.form).then((response) =>
       // {
 
