@@ -1,7 +1,7 @@
 
 <template>
   <div>
-    <layout v-if="!users.id">
+    <layout v-if="isInitial">
 
       <Head title="Login" />
       <section class="login">
@@ -94,7 +94,7 @@
         </div> <!-- end of container -->
       </section>
   </layout>
-  <verify-card v-else-if="users.id && !users.phone_verified_at"/>
+  <verify-card v-else-if="!isVerified" />
 </div>
 </template>
 <script>
@@ -119,6 +119,8 @@ export default {
         password: null,
         remember_me: false,
       },
+      isInitial: true,
+      isVerified: true,
       errors: null,
       message: null,
     }
@@ -147,11 +149,19 @@ export default {
           //   this.$router.push("/");
           // }
 
+          // -if="users.id && !users.phone_verified_at"
+
           if (this.$route.query.redirect) {
             this.$router.push(this.$route.query.redirect)
           } else {
             this.$router.push('/')
           }
+
+        } else if (statusCode === 203 && !result?.user?.phone_verified_at) {
+
+          this.isVerified = false;
+          this.isInitial = false;
+
         } else {
           
           this.errors = result?.errors;

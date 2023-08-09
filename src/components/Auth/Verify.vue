@@ -270,15 +270,17 @@ export default {
         .then(response =>
         {
           const { status: statusCode, data: { status, message, result } } = response
+          console.log('\n\nValidate Response: ', response)
           if (statusCode === 201) {
             if (status === 200) {
-
-              if (this.userRole === 'customers') {
-                this.$router.push("/");
-              } else {
-                this.$store.commit('CLEAR_STATE');
-                this.$router.push("/login");
-              }
+              console.log('Redirect to home');
+              this.$router.push({name: 'home'});
+              // if (this.userRole === 'customers') {
+              //   this.$router.push("/");
+              // } else {
+              //   this.$store.commit('CLEAR_STATE');
+              //   this.$router.push("/login");
+              // }
 
             } else {
               
