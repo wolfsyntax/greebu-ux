@@ -1,4 +1,5 @@
 <template>
+  <layout>
 
   <section class="artist-profile">
     <div class="container">
@@ -441,18 +442,23 @@
     <button @click="isModalVisible = true">Open Modal</button>
     
     <modal-component :show-modal="isModalVisible" @close="isModalVisible = false">
-      <!-- Content for your modal -->
+
       <p>This is the modal content.</p>
     </modal-component>
   </div>
+     
+</layout>
+
 </template>
 <script>
 // import Layout from '/src/components/Layouts/ArtistLayout.vue';
 import { mapGetters, mapState, mapActions } from "vuex";
+import Layout from '/src/components/Layouts/Layout.vue';
 import ModalComponent from '/src/components/Artist/ModalComponent.vue';
 
 export default {
   components: {
+    layout: Layout,
     ModalComponent,
   },
   data()

@@ -3,6 +3,7 @@
 
     <div v-if="!isLoggedIn"></div>
     <div  v-else>
+      <div class="" v-if="userRole === 'artists'">
       <div class="onboarding-message">
       <input type="checkbox" id="modal-toggle" class="modal-toggle" checked style="display: none;">
 
@@ -23,7 +24,7 @@
         <div class="modal-dialog modal-xl">
           <div class="modal-content">
             <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
             </div>
             <div class="modal-body text-center">
               <h2 class="title">Upgrade to Subscription</h2>
@@ -33,20 +34,20 @@
                   <div class="free">
                     <h3 class="type">FREE</h3>
                     <div class="d-flex justify-content-between group-item">
-                    <h4><span class="peso">₱</span>0</h4> <p class="desc">Limited Access</p>
+                    <h4><span class="peso">₱</span>0</h4> <p class="desc">15 days free trial</p>
                    </div>
                    <p class="benefits"><span class="material-symbols-rounded">done</span>Request Custom songs to Artist</p>
                    <p class="benefits"><span class="material-symbols-rounded">done</span>Request custom song to be edited</p>
                    <p class="benefits"><span class="material-symbols-rounded">done</span>Book an Artist to an events </p>
                    <p class="benefits last"><span class="material-symbols-rounded">done</span>Listen to Artist Songs</p>
                    <div class="flex-item">
-                    <button type="button" class="current-plan btn" data-bs-dismiss="modal">Get Started</button>
+                    <button type="button" class="current-plan btn" data-bs-dismiss="modal" disabled>Current Plan</button>
                    </div>
                   </div>
                   <div class="monthly">
                     <h3 class="type">Monthly</h3>
                     <div class="d-flex justify-content-between group-item">
-                    <h4><span class="peso">₱</span>₱123/ m</h4> <p class="desc">Limited Access</p>
+                    <h4><span class="peso">₱</span>123/m</h4> <p class="desc">Limited Access</p>
                    </div>
                    <p class="benefits"><span class="material-symbols-rounded">done</span>Accept Bookings</p>
                    <p class="benefits"><span class="material-symbols-rounded">done</span>Create a custom Songs</p>
@@ -63,7 +64,7 @@
                     <h3 class="type">YEARLY</h3> <button type="button" class="save">Save 30%</button>
                    </div>
                     <div class="d-flex justify-content-between group-item">
-                    <h4><span class="peso">₱</span>₱123/ m</h4> <p class="desc">Limited Access</p>
+                    <h4><span class="peso">₱</span>123/m</h4> <p class="desc">Limited Access</p>
                    </div>
                    <p class="benefits"><span class="material-symbols-rounded">done</span>Accept Bookings</p>
                    <p class="benefits"><span class="material-symbols-rounded">done</span>Create a custom Songs</p>
@@ -75,11 +76,15 @@
                     <button type="button" class="yearly-plan btn" @click="selectedPlan()">Get Started</button>
                    </div>
                   </div>
-                </div>
+                </div> <!-- end of select -->
+
+                <button type="button" class="btn create-profile" @click="createProfile()">Create your Profile</button>
+
             </div>
           </div>
         </div>
       </div>
+    </div>
     </div> <!-- end of v-else -->
   
     <section class="home-slider">
@@ -468,7 +473,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["isLoggedIn", 'userInfo', 'info']),
+    ...mapGetters(["isLoggedIn", 'userInfo', 'info', 'userRole']),
     ...mapState({}),
   },
   mounted() {
@@ -480,6 +485,9 @@ export default {
     // },
     selectedPlan(){
       window.location.href = '/subscription';
+    },
+    createProfile(){
+      window.location.href = '/artist/profile';
     },
     toggleTestimonialVideo(index)
     {

@@ -1,5 +1,5 @@
 <template>
-  <layout>
+  <BlankHeader />
     <!-- <div class="row">
       <div class="col">
         {{ form }}
@@ -382,28 +382,29 @@
                   <div class="payment">
                   </div>
                 </div>
-                
-                <div class="button-wrapper">
-                    <button type="button" class="btn btn-primary download">Download</button>
-                    <button type="button" class="btn btn-primary done">Done</button>
-                </div>
+          
+              </div> <!-- edn of total-payment card/receipt -->
 
-              </div>
+              <div class="button-wrapper">
+                    <button type="button" class="btn btn-primary download">
+                      <span class="material-symbols-rounded">download</span>Download</button>
+                    <button type="button" class="btn btn-primary done" @click="createProfile()">Complete your profile</button>
+                </div>
 
 
              </div>
        
       </div>
     </section>
-  </layout>
 </template>
 
 <script>
 import { mapGetters, mapState, mapActions } from "vuex";
-import Layout from '/src/components/Layouts/Layout.vue';
+// import Layout from '/src/components/Layouts/Layout.vue';
+import BlankHeader from "@/components/Home/BlankHeader.vue";
 export default {
   components: {
-    layout: Layout,
+    BlankHeader
   },
   data()
   {
@@ -470,6 +471,9 @@ export default {
     },
     paymentMade(){
       this.step = 2;
+    },
+    createProfile(){
+      window.location.href = '/artist/profile';
     },
   },
   mounted()
