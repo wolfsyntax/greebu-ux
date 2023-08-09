@@ -120,7 +120,7 @@ export default {
         remember_me: false,
       },
       isInitial: true,
-      isVerified: false,
+      isVerified: true,
       errors: null,
       message: null,
     }
