@@ -302,9 +302,11 @@ export default {
 
           if (status === 203) {
             this.$store.commit('CLEAR_STATE');
-            this.$router.push('/login');
+            this.$router.push('/');
+           // this.$router.push('/login');
           } else if (status === 200 || status === 401) {
-            this.$router.push('/login');
+            this.$router.push('/');
+           // this.$router.push('/login');
           } else if (this.$route.meta.requiresLogin == false) this.$router.go();
           
         }).catch(err =>

@@ -3,8 +3,25 @@
 
     <div v-if="!isLoggedIn"></div>
     <div  v-else>
+
+      <div class="onboarding-message" v-if="userRole === 'customers'" >
+        <div v-if="showOnboardingMessage">
+      <input type="checkbox" id="modal-toggle" class="modal-toggle" checked style="display: none;">
+
+        <div class="modal">
+          <div class="modal-content">
+            <h2 class="title">Welcome Aboard!</h2>
+            <p class="description">Welcome to Geebu! We're thrilled to have you on board. Get ready to embark on an exciting journey of Music and 
+              Events, and explore a world of possibilities. Whether you're a seasoned user or just starting out, we're here to support 
+              you every step of the way. Let's dive in and make the most of your experience with Geebu together!"</p>
+              <label for="modal-toggle" class="close-modal-button">Let's Get Started!</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
       <div class="" v-if="userRole === 'artists'">
-      <div class="onboarding-message">
+      <div class="onboarding-message" v-if="showOnboardingMessage">
       <input type="checkbox" id="modal-toggle" class="modal-toggle" checked style="display: none;">
 
         <div class="modal">
@@ -14,17 +31,20 @@
               You can still browse the app and explore its interface, but your access to certain features will be limited until you 
               upgrade to the subscription.</p>
               <label for="modal-toggle" class="close-modal-button" 
-              data-bs-toggle="modal" data-bs-target="#selectPlanModal">View Subscription</label>
+              data-bs-toggle="modal" data-bs-target="#selectPlanModal"> 
+              View Subscription</label>
           </div>
         </div>
       </div>
 
       <!-- Modal -->
-      <div class="modal fade" id="selectPlanModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal" id="selectPlanModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" 
+      data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog modal-xl">
           <div class="modal-content">
             <div class="modal-header">
-              <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+              <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" @click="createProfile()"></button> -->
+              <button type="button" class="btn-close" @click="createProfile()"></button>
             </div>
             <div class="modal-body text-center">
               <h2 class="title">Upgrade to Subscription</h2>
@@ -36,10 +56,12 @@
                     <div class="d-flex justify-content-between group-item">
                     <h4><span class="peso">₱</span>0</h4> <p class="desc">15 days free trial</p>
                    </div>
-                   <p class="benefits"><span class="material-symbols-rounded">done</span>Request Custom songs to Artist</p>
-                   <p class="benefits"><span class="material-symbols-rounded">done</span>Request custom song to be edited</p>
-                   <p class="benefits"><span class="material-symbols-rounded">done</span>Book an Artist to an events </p>
-                   <p class="benefits last"><span class="material-symbols-rounded">done</span>Listen to Artist Songs</p>
+                   <p class="benefits"><span class="material-symbols-rounded">done</span>Accept Bookings</p>
+                   <p class="benefits"><span class="material-symbols-rounded">done</span>Create a custom Songs</p>
+                   <p class="benefits"><span class="material-symbols-rounded">done</span>Apply for Events</p>
+                   <p class="benefits"><span class="material-symbols-rounded">done</span>Accept Bookings</p>
+                   <p class="benefits"><span class="material-symbols-rounded">done</span>Create a custom Songs</p>
+                   <p class="benefits last"><span class="material-symbols-rounded">done</span>Apply for Events</p>
                    <div class="flex-item">
                     <button type="button" class="current-plan btn" data-bs-dismiss="modal" disabled>Current Plan</button>
                    </div>
@@ -470,19 +492,44 @@ export default {
       observer: null,
     //  showPlayButton: false,
     // showModal: true,
+    showOnboardingMessage: false,
     }
   },
   computed: {
     ...mapGetters(["isLoggedIn", 'userInfo', 'info', 'userRole']),
     ...mapState({}),
   },
+  beforeDestroy() {
+    // this.showOnboardingMessage = true;
+  },
+  created() {
+    this.checkAndShowModal();
+  },
   mounted() {
-  }
-  ,
+  },
   methods: {
     // closeModal() {
     //   this.showModal = false;
     // },
+    checkAndShowModal() {
+      // const lastShown = localStorage.getItem('modalLastShown');
+      // const currentTime = new Date().getTime();
+      // // show modal very 15 days
+      // if (!lastShown || currentTime - lastShown >= 15 * 24 * 60 * 60 * 1000) {
+      //   this.show = true;
+      //   localStorage.setItem('modalLastShown', currentTime);
+      // }
+
+      const lastShown = localStorage.getItem('modalLastShown');
+      const currentTime = new Date().getTime();
+                            // 14400000 = 4 hrs
+                            // 60000 milliseconds = 1 minute
+      if (!lastShown || currentTime - lastShown >= 14400000) { 
+        this.showOnboardingMessage = true;
+        localStorage.setItem('modalLastShown', currentTime);
+      }
+
+    },
     selectedPlan(){
       window.location.href = '/subscription';
     },

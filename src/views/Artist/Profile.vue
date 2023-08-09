@@ -13,9 +13,9 @@
               <span class="material-symbols-outlined">&#xef7d;</span>Back
             </a>
           </div>
-          <h2 class="title">Profile Details</h2>
-          <p class="sub-heading">Lorem ipsum dolor sit amet consectetur. Nam lacus viverra nec orci arcu id fringilla ultrices.</p>
-
+          <h2 class="title">Welcome! Let's create your profile as an artist</h2>
+          <p class="sub-heading">Let customers and other co-artists know you better!</p>
+          <h3 class="profile-details">Profile Details</h3>
                                  <!-- DISPLAY MODAL -->
           <div
         ref="modal"
@@ -61,7 +61,8 @@
               <progress v-if="form.progress" :value="form.progress.percentage" max="100">{{ form.progress.percentage }}%</progress> -->
 
               <label class="label-img">
-                <span class="material-symbols-outlined camera-inner">&#xe412;</span>
+                <img src="/assets/artist-account/new.svg" class="img-fluid default-avatar" alt="default user avatar">
+                <!-- <span class="material-symbols-outlined camera-inner">&#xe412;</span> -->
                 <div class="camera">
                   <input type="file" @input="form.avatar = $event.target.files[0]" accept="image/png, image/webp, image/svg, image/jpeg" />
                   <div v-if="errors?.avatar" class="text-danger">{{ errors.avatar }}</div>
@@ -70,10 +71,11 @@
                 <span class="material-symbols-outlined camera-outer" >&#xE412;</span>
               </label>
 
-              <label for="fileUpload">Upload profile picture</label>
+              <label for="fileUpload" class="description">Upload profile picture</label>
               <!-- see https://stackoverflow.com/questions/2855589/replace-input-type-file-by-an-image#answer-18803568 -->
             </div>
 
+            <div class="required-fields">
             <div class="form-group typeArtist">
               <label for="typeArtist">Type of the Artist</label>
               <select v-model="form.artist_type" class="form-select">
@@ -97,7 +99,7 @@
               <div v-if="errors?.genre" class="genre-error text-danger"></div>
             </div>
         
-            <div class="row">
+            <div class="row address">
               <div class="col-4">
                 <div class="form-group">
                 <label for="address">Address</label>
@@ -121,9 +123,10 @@
               </div>
             </div>
             </div> <!-- end of row -->
-         
+          </div> <!-- end of required-fields class -->
                                            <!-- Band Members -->
 
+            <div class="band-and-social">                           
             <div class="form-group">
                 <label for="members">Band Members</label><br>
                 <button type="button" class="btn btn-primary add-member" @click="toggle()"><span class="material-symbols-rounded">add_box</span>Add Member</button>
@@ -190,6 +193,7 @@
                   </div>
                 </div>
               </div>
+            </div>   <!-- end of band-and-social--> 
 
               <div class="d-flex justify-content-between group-item">
                 <label class="form-check-label" for="flexSwitchCheckDefault">Do you want to accept events?</label>
@@ -283,17 +287,7 @@
             <button type="submit" class="btn btn-success submit-form">Submit</button>
           </div>
          </form>
-
-      
-            <vs-avatar>
-              <template #text>
-                Lily
-              </template>
-            </vs-avatar>
-
-            <vs-avatar>
-              <img src="https://thumbs.dreamstime.com/b/businessman-icon-vector-male-avatar-profile-image-profile-businessman-icon-vector-male-avatar-profile-image-182095609.jpg" alt="">
-            </vs-avatar>
+   
 
            </div>
            <div class="col-3"></div>
@@ -303,6 +297,15 @@
 
       <section class="artist-data">
         <div class="container">
+          <vs-avatar>
+              <template #text>
+                Lily
+              </template>
+            </vs-avatar>
+
+            <vs-avatar>
+              <img width="100" height="100" src="https://thumbs.dreamstime.com/b/businessman-icon-vector-male-avatar-profile-image-profile-businessman-icon-vector-male-avatar-profile-image-182095609.jpg" alt="">
+            </vs-avatar>
           <p>{{ $filters.timeAgo('2019-12-19') }}</p>
           {{  artistProfile  }}
         </div>

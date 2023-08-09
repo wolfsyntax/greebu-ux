@@ -68,7 +68,7 @@
               <form @submit.prevent="submitForm" v-if="page === 'request'">
                 <div class="form-group">
                   <input ref="phoneInput" id="phone" type="text" class="form-control" name="phone" v-model="form.phone"
-                    required autocomplete="off" placeholder="Phone  Number" @input="onInput"
+                    required autocomplete="off" placeholder="+63" @input="onInput"
                   />
                   <!-- <div v-if="errors?.phone" class="text-danger">{{ errors.phone.shift() }}</div> -->
                 </div>
