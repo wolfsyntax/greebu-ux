@@ -94,7 +94,7 @@
         </div> <!-- end of container -->
       </section>
   </layout>
-  <verify-card v-else/>
+  <verify-card v-else-if="users.id && !users.phone_verified_at"/>
 </div>
 </template>
 <script>
