@@ -512,6 +512,7 @@ export default {
     //   this.showModal = false;
     // },
     checkAndShowModal() {
+       // // show modal very 15 days
       // const lastShown = localStorage.getItem('modalLastShown');
       // const currentTime = new Date().getTime();
       // // show modal very 15 days
@@ -524,7 +525,7 @@ export default {
       const currentTime = new Date().getTime();
                             // 14400000 = 4 hrs
                             // 60000 milliseconds = 1 minute
-      if (!lastShown || currentTime - lastShown >= 14400000) { 
+      if (!lastShown || currentTime - lastShown >= 60000) { 
         this.showOnboardingMessage = true;
         localStorage.setItem('modalLastShown', currentTime);
       }
