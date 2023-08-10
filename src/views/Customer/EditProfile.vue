@@ -157,10 +157,11 @@ export default {
   mounted()
   {
     this.form = this.profileForm
+    this.test2()
   },
   methods: {
     ...mapActions([
-      'updateUserProfile',
+      'updateUserProfile', 'test2',
     ]),
     submit()
     {
@@ -170,6 +171,7 @@ export default {
       this.updateUserProfile(this.form)
         .then(response =>
         {
+          console.log('Update User profile: ', response);
           const { status, result, message } = response;
           if (status === 422)
           {
