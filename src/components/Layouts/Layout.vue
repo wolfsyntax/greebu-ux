@@ -244,7 +244,7 @@ export default {
       ],
       customersDropdown: [
         // change all icons name to &#x + Code point
-        { icon: 'account_circle', name: 'My Account', link: ''},
+        { icon: 'account_circle', name: 'Account Settings', link: ''},
         { icon: 'mail', name: 'Message', link: ''},
         { icon: 'library_music	', name: 'My Songs', link: '/'},
         { icon: 'event_available', name: 'My Bookings', link: '/'},
@@ -252,7 +252,7 @@ export default {
         { icon: 'help', name: 'Help Center', link: '/'},
       ],
       artistsDropdown: [
-        { icon: 'account_circle', name: 'Artist Account', link: '/artist'},
+        { icon: 'account_circle', name: 'Account Settings', link: '/artist'},
         // { icon: 'mail', name: 'Message', link: '/message'},
         { icon: 'library_music	', name: 'Customized Songs', link: '/create-song'},
         { icon: 'event_available', name: 'My Bookings', link: '/'},
