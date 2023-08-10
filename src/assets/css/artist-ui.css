@@ -28,9 +28,9 @@ body{
 .artist-profile .container{
   margin: 50px auto 100px;
 }
-.artist-profile .container h2{
+/* .artist-profile .container h2{
   color: orange;
-}
+} */
 .artist-profile .container .profile-page {
     padding: 0 1%;
 }
@@ -1437,6 +1437,63 @@ background: var(--btn-hovered);
 .modal-add-member .role-error::before {
   content: "The role field is required.";
 }
+
+/* ARTIST POST MODAL */
+
+#artistPost .modal-content {
+  padding: 2.5rem 2.5rem 3rem;
+}
+#artistPost .modal-content .modal-header, #artistPost .modal-body {
+  border: 0;
+  padding: 0;
+}
+#artistPost .modal-content .modal-header{
+  margin-bottom: 1.5rem;
+}
+#artistPost .modal-body{
+  margin-bottom: 3rem;
+}
+#artistPost .modal-content .modal-header .btn-close {
+  font-size: 0.6rem;
+  padding: 0.6rem;
+  border: 1px solid #23262F;
+  border-radius: 100px;
+  color: #23262F;
+}
+ #artistPost .modal-content .modal-header .modal-title{
+  color:  #23262F;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 2rem; 
+}
+#artistPost .modal-body .artist-image{
+  margin-bottom: 1.5rem;
+}
+#artistPost .modal-body .artist-image img{
+  width: 4.375rem;
+  height: 4.375rem;
+  border-radius: 100px;
+  position: relative;
+  -o-object-fit: cover;
+  object-fit: cover;
+  backface-visibility: hidden;
+  margin-right: 0.5rem;
+}
+#artistPost .modal-body .artist-image .band-name{
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+#artistPost .modal-body .form-group textarea{
+  height: 12rem;
+  border-radius: 0.625rem;
+  resize: none;
+}
+#artistPost .modal-body .form-group textarea::placeholder{
+  color: black!important;
+}
+
 
 
 

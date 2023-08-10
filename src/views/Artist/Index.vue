@@ -160,7 +160,7 @@
                           loading="lazy" alt="member profile">
                           
                           <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#postSomething">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#artistPost">
                               Write something...
                             </button>
 
@@ -169,19 +169,19 @@
                       <div class="post-features">
                         <div class="post-icon">
                           <i class="material-icons"><span class="material-symbols-outlined">sentiment_satisfied</span></i>
-                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#postSomething">
+                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#artistPost">
                               Feeling
                             </button>
                         </div>
                         <div class="post-icon">
                           <i class="material-icons"><span class="material-symbols-outlined">image</span></i>
-                          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#postSomething">
+                          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#artistPost">
                             Photo/Video
                             </button>
                         </div>
                         <div class="post-icon">
                           <i class="material-icons"><span class="material-symbols-outlined">library_music</span></i>
-                          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#postSomething">
+                          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#artistPost">
                            Music
                             </button>
                         </div>
@@ -190,17 +190,33 @@
                   </div>
                   </div>    
                   </div> <!-- end of row post -->
+
+
                                               <!-- Modal -->
-                  <div class="modal fade " id="postSomething" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal fade " id="artistPost" tabindex="-1" aria-labelledby="artistPostLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h1 class="modal-title fs-5" id="exampleModalLabel">Create Post</h1>
+                          <h2 class="modal-title" id="artistPostLabel">Create Post</h2>
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                          ...
-                        </div>
+                          <div class="d-flex align-items-center artist-image">
+                            <img src="https://res.cloudinary.com/daorvtlls/image/upload/v1686465790/cld-sample.jpg" alt="profile">
+                            <h3 class="band-name">Idlepitch</h3>
+                          </div>
+
+                          <form>
+                            <div class="form-group"> 
+                              <textarea class="form-control" placeholder="Write something...">
+                              </textarea>
+                            </div>
+
+                          </form>
+
+
+
+                        </div> <!-- end of modal-body-->
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                           <button type="button" class="btn btn-primary">Save changes</button>

@@ -1,7 +1,7 @@
 <template>
-  <div>
 
-  <section class="plans-and-pricing">
+
+  <!-- <section class="plans-and-pricing">
       <div class="container">
           <h2>Lorem ipsum dolor sit amet consectetur.</h2>
           <p class="sub-heading">Lorem ipsum dolor sit amet consectetur. Lorem tellus donec est id elit amet. Tristique et egestas lectus egestas.</p>
@@ -21,9 +21,55 @@
               </div>
           </div>
      </div>
+  </section> -->
+
+  <section class="artist-subscription">
+    <div class="container">
+        <h2>Access Exclusive Benefits through Our <br>Artist Subscription:</h2>
+        <p class="sub-heading">Discover Unique Perks and Content</p>
+
+        <!-- <div class="select">
+
+            <div class="monthly">
+            <h3 class="type">Monthly</h3>
+            <div class="d-flex justify-content-between group-item">
+            <h4><span class="peso">₱</span>123/m</h4> <p class="desc">Limited Access</p>
+            </div>
+            <p class="benefits"><span class="material-symbols-rounded">done</span>Accept Bookings</p>
+            <p class="benefits"><span class="material-symbols-rounded">done</span>Create a custom Songs</p>
+            <p class="benefits"><span class="material-symbols-rounded">done</span>Apply for Events</p>
+            <p class="benefits"><span class="material-symbols-rounded">done</span>Accept Bookings</p>
+            <p class="benefits"><span class="material-symbols-rounded">done</span>Create a custom Songs</p>
+            <p class="benefits last"><span class="material-symbols-rounded">done</span>Apply for Events</p>
+            <div class="flex-item">
+            <button type="button" class="monthly-plan btn" @click="selectedPlan()">Get Started</button>
+            </div>
+            </div>
+
+            <div class="yearly">
+            <div class="d-flex justify-content-between">
+            <h3 class="type">YEARLY</h3> <button type="button" class="save">Save 30%</button>
+            </div>
+            <div class="d-flex justify-content-between group-item">
+            <h4><span class="peso">₱</span>123/m</h4> <p class="desc">Limited Access</p>
+            </div>
+            <p class="benefits"><span class="material-symbols-rounded">done</span>Accept Bookings</p>
+            <p class="benefits"><span class="material-symbols-rounded">done</span>Create a custom Songs</p>
+            <p class="benefits"><span class="material-symbols-rounded">done</span>Apply for Events</p>
+            <p class="benefits"><span class="material-symbols-rounded">done</span>Accept Bookings</p>
+            <p class="benefits"><span class="material-symbols-rounded">done</span>Create a custom Songs</p>
+            <p class="benefits last"><span class="material-symbols-rounded">done</span>Apply for Events</p>
+            <div class="flex-item">
+            <button type="button" class="yearly-plan btn" @click="selectedPlan()">Get Started</button>
+            </div>
+            </div>
+        </div>  -->
+
+
+    </div>
   </section>
 
-</div>
+
 </template>
 
 <script>

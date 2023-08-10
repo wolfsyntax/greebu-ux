@@ -407,7 +407,7 @@ header nav{
   100% { bottom: 600px;}
 }
 .geebu-presentation .container, .custom-song .container,  .discover-artist .container, .songs-for-occasion .container, .testimonials .container, .featured-artists .container,
-.reminder .container, .plans-and-pricing .container {
+.reminder .container, .plans-and-pricing .container, .artist-subscription .container {
   margin-top: 100px;
   margin-bottom: 100px;
 }
@@ -601,7 +601,8 @@ header nav{
 }
 
 /* HOME PAGE - Discover you dream artist section */ 
-.discover-artist h2, .songs-for-occasion h2, .testimonials h2, .featured-artists h2, .plans-and-pricing h2, .faq h2 {
+.discover-artist h2, .songs-for-occasion h2, .testimonials h2, .featured-artists h2, .plans-and-pricing h2, .faq h2,
+.artist-subscription h2 {
    font-style: normal;
    font-weight: 700;
    font-size: 48px;
@@ -611,7 +612,7 @@ header nav{
    margin-bottom: 10px;
 }
 .discover-artist .sub-heading, .songs-for-occasion .sub-heading, .testimonials .sub-heading, .featured-artists .sub-heading,
-.plans-and-pricing .sub-heading, .faq .sub-heading{
+.plans-and-pricing .sub-heading, .faq .sub-heading, .artist-subscription .sub-heading {
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
@@ -1335,8 +1336,100 @@ z-index: 1;
   letter-spacing: 0.05em;
 }
 
-/* HOME PAGE - Plans & Pricing section */ 
-.plans-and-pricing .card-body{
+/* HOME PAGE - Access Exclusive Benefits through Our Artist Subscription: */ 
+
+.artist-subscription .select {
+    position: relative;
+    width: 100%;
+    display: flex;
+}
+.artist-subscription .select .monthly, .artist-subscription .select .yearly {
+  width: 33.3%;
+  background-color: var(--white);
+  border: 1px solid #DCDCDC;
+  border-radius: 20px;
+  filter: drop-shadow(0px -8px 41px rgba(193, 193, 193, 0.25));
+  /* padding: 2rem 1rem; */
+}
+.artist-subscription .select .monthly {
+  margin: 0rem 1.3rem;
+}
+.artist-subscription .select .type {
+  color: #2F2F2F;
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 110%;
+  text-transform: uppercase;
+  text-align: left;
+  margin-bottom: 2rem;
+  padding: 2.5rem 1.5rem .1rem;
+}
+.artist-subscription .select .type .yearly .save {
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 800;
+  border-radius: 1.8rem;
+  background: #2F2F2F;
+  padding: 0.8rem 1.44rem;
+  margin: 1rem;
+}
+.artist-subscription .select .type .group-item {
+  border-top: 1px solid #DCDCDC;
+  border-left: 0;
+  border-bottom: 1px solid #DCDCDC;
+  border-right: .0;
+  padding: 1.5rem;
+  margin-bottom: 1.7rem;
+}
+.artist-subscription .select .type .group-item h4 {
+  color: #2F2F2F;
+  font-size: 1.75rem;
+  font-weight: 800;
+  line-height: 110%;
+  margin-bottom: 0;
+}
+.artist-subscription .select .type .group-item .desc {
+  color: #808080;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 150.5%;
+  margin-bottom: 0;
+}
+.artist-subscription .select .type .group-item .peso {
+  color: #2F2F2F;
+  font-style: normal;
+  font-weight: 400;
+  padding-right: 0.2rem;
+}
+.artist-subscription .select .type .benefits {
+  color: #2F2F2F;
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0 5%;
+  margin-bottom: 0.94rem;
+  text-align: left;
+}
+.artist-subscription .select span {
+  color: var(--orange);
+  padding-right: 0.5rem;
+}
+.artist-subscription .select .yearly-plan, .artist-subscription .select .monthly-plan{
+    color: var(--orange);
+    font-size: 1.125rem;
+    font-weight: 700;
+    background: var(--white);
+    padding: 1rem 0;
+    width: 90%;
+    border-radius: 2.4375rem;
+    border: 1px solid var(--orange);
+    margin: 2rem 0 3rem;
+}
+
+
+/* .plans-and-pricing .card-body{
   padding: 56px 33px;
 }
 .plans-and-pricing .sub-heading{
@@ -1433,7 +1526,7 @@ z-index: 1;
 .plans-and-pricing .card li .bi-check-circle-fill{
   color: #FF6B00;
   margin-right: 12px;
-}
+} */
 
 /* HOME PAGE - Frequent Ask Questions section */ 
 .faq .container{
@@ -5241,6 +5334,12 @@ header nav {
 }
 .main-nav .nav-button .dropdown .dropdown-menu li a {
   font-size: 16px;
+  padding: 0!important;
+}
+.main-nav .nav-button .dropdown .dropdown-menu .artist-info .artist-name .view-profile {
+  font-size: 12px;
+  line-height: normal;
+  padding: 7px 12px!important;
 }
 .main-nav .nav-button .dropdown .dropdown-menu  .logout-wrapper .logout {
   font-size: 16px;
@@ -5407,12 +5506,14 @@ header nav {
   margin-bottom: 5rem;
   margin-top: 5rem;
 }
-.discover-artist h2, .songs-for-occasion h2, .testimonials h2, .featured-artists h2, .plans-and-pricing h2, .faq h2 {
+.discover-artist h2, .songs-for-occasion h2, .testimonials h2, .featured-artists h2, .faq h2, .artist-subscription h2 {
   font-size: 2.5rem;
   line-height:normal;
   margin-bottom: 0.63rem;
 }
-.discover-artist .sub-heading, .songs-for-occasion .sub-heading, .testimonials .sub-heading, .featured-artists .sub-heading, .plans-and-pricing .sub-heading, .faq .sub-heading{
+.discover-artist .sub-heading, .songs-for-occasion .sub-heading, .testimonials .sub-heading, .featured-artists .sub-heading, .faq .sub-heading,
+.artist-subscription .sub-heading 
+{
   font-size: 1.25rem;
   margin-bottom: 3.75rem;
 }
@@ -5612,13 +5713,6 @@ header nav {
   margin-left: 23%;
 }
 
-/* HOME PAGE - Plans & Pricing section */ 
-.plans-and-pricing .card-body {
-  padding: 56px 33px 40px;
-}
-.plans-and-pricing .card li:last-child{
-  margin-bottom: 30px;
-}
 
 /* HOME PAGE - Send Yourself A Reminder section */ 
 .reminder .container{

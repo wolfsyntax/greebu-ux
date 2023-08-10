@@ -342,8 +342,8 @@
 <script>
 // import Layout from '/src/components/Layouts/ArtistLayout.vue';
 import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
-import MemberForm from './AddMember.vue';
-import SocialMediaForm from './SocialMedia.vue';
+import MemberForm from '/src/views/Artist/AddMember.vue';
+import SocialMediaForm from '/src/views/Artist/SocialMedia.vue';
 import BlankHeader from "@/components/Home/BlankHeader.vue";
 
 export default {
