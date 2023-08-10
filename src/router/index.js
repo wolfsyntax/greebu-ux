@@ -207,6 +207,40 @@ const router = createRouter({
           }
         },
         {
+          path: '/account', // src\components\Layouts\AccountLayout.vue
+          component: () => import('/src/components/Layouts/AccountLayout.vue'),
+          meta: {
+            requiresLogin: true,
+            // title: 'Profile',
+            // role: '',
+            // breadcrumb: [
+            //   {title: '', url: '',},
+            // ],
+          },
+          children: [
+            {
+              path: 'setting',
+              name: 'account-setting',
+              component: () => import('/src/views/Auth/Account/Setting.vue'),
+              meta: {
+                // requiresLogin: false,            
+                title: 'Account Setting',
+                role: '',
+              }
+            },
+            {
+              path: 'profile',
+              name: 'account-profile',
+              component: () => import('/src/views/Auth/Account/Profile.vue'),
+              meta: {
+                // requiresLogin: false,            
+                title: 'Account Profile',
+                role: '',
+              }
+            },
+          ]
+        },
+        {
           path: '/profile',
           // component: {
           //   template: '<div class="auth-component"></div>'
