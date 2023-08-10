@@ -132,7 +132,7 @@ export const songStepTwo = ({ commit, rootState, state}) => {
     form.append('song_type_id', state.song_mood.id);
     form.append('language_id', state.song_language.id);
     form.append('duration_id', state.song_duration.id);
-    form.append('artists[]', state.song_artists);
+    form.append('artists[]', JSON.stringify(state.song_artists));
 
     await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/song-requests/song/${state.song?.id}?role=${rootState.role}`, form, {
       headers: {
