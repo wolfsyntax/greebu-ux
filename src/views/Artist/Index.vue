@@ -160,7 +160,7 @@
                           loading="lazy" alt="member profile">
                           
                           <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#postSomething">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#artistPost">
                               Write something...
                             </button>
 
@@ -169,19 +169,19 @@
                       <div class="post-features">
                         <div class="post-icon">
                           <i class="material-icons"><span class="material-symbols-outlined">sentiment_satisfied</span></i>
-                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#postSomething">
+                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#artistPost">
                               Feeling
                             </button>
                         </div>
                         <div class="post-icon">
                           <i class="material-icons"><span class="material-symbols-outlined">image</span></i>
-                          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#postSomething">
+                          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#artistPost">
                             Photo/Video
                             </button>
                         </div>
                         <div class="post-icon">
                           <i class="material-icons"><span class="material-symbols-outlined">library_music</span></i>
-                          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#postSomething">
+                          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#artistPost">
                            Music
                             </button>
                         </div>
@@ -190,24 +190,116 @@
                   </div>
                   </div>    
                   </div> <!-- end of row post -->
+
+
                                               <!-- Modal -->
-                  <div class="modal fade " id="postSomething" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal fade " id="artistPost"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" 
+      data-bs-backdrop="static" data-bs-keyboard="false">
                     <div class="modal-dialog modal-lg">
-                      <div class="modal-content">
+                      <div class="modal-content" v-if="showCreatePost">
                         <div class="modal-header">
-                          <h1 class="modal-title fs-5" id="exampleModalLabel">Create Post</h1>
+                          <h2 class="modal-title" id="artistPostLabel">Create Post</h2>
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                          ...
+                          <div class="d-flex align-items-center artist-image">
+                            <img src="https://res.cloudinary.com/daorvtlls/image/upload/v1686465790/cld-sample.jpg" alt="profile">
+                            <h3 class="band-name">Idlepitch</h3>
+                          </div>
+
+                          <form>
+                            <div class="form-group"> 
+                              <textarea class="form-control" placeholder="Write something..."></textarea>
+                            </div>
+                            <h3 class="add-post">Add to your post</h3>
+                            <div class="d-flex align-items-center manage-to-post">
+                              <div class="d-flex align-items-center feeling">
+                                <button type="button" class="btn d-flex align-items-center" @click="showFeelingsIconContent()">
+                                  <span class="material-symbols-rounded post-icon">sentiment_satisfied</span>
+                                  <span class="selected">Feeling</span>
+                                </button>
+                              </div>
+
+                              <div class="d-flex align-items-center photo-video">
+                                <button type="button" class="btn d-flex align-items-center">
+                                  <span class="material-symbols-rounded post-icon">image</span>
+                                  <span class="selected">Photo/Video</span>
+                                </button>
+                              </div>
+
+                              <div class="d-flex align-items-center music">
+                                <button type="button" class="btn d-flex align-items-center">
+                                  <span class="material-symbols-rounded post-icon">library_music</span>
+                                  <span class="selected">Music</span>
+                                </button>
+                              </div>                            
+                            </div>
+
+                            <div class="text-center button-wrapper">
+                              <button type="submit" class="btn">Post</button>
+                            </div>
+
+                          </form>
+
+                        </div> <!-- end of modal-body-->
+                      </div> <!-- end of modal content -->
+
+                      <div class="modal-content" v-else>
+                        <div class="modal-header" @click="showCreatePost = true">
+                          <h2 class="modal-title" id="artistPostLabel">
+                            <span class="material-symbols-rounded back-to-post">arrow_back</span>Feelings</h2>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" @click="showCreatePost = true"></button>
                         </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-primary">Save changes</button>
+                        <div class="modal-body">
+
+                          <div class="search-container">
+                          <input type="text" class="search-input" placeholder="Search...">
+                          <span class="material-symbols-rounded">search</span>
                         </div>
-                      </div>
-                    </div>
-                  </div>
+
+                        <div class="d-flex align-items-center icons-list">
+                          <div class="left-icon">
+                            <img src="/assets/artist-account/emojis/slightly-smiling-face.svg" class="img-fluid">Happy
+                          </div>
+                          <div class="right-icon">
+                            <img src="/assets/artist-account/emojis/slightly-smiling-face.svg" class="img-fluid">Sad
+                          </div>
+                        </div>
+                        <div class="d-flex align-items-center icons-list">
+                          <div class="left-icon">
+                            <img src="/assets/artist-account/emojis/slightly-smiling-face.svg" class="img-fluid">Happy
+                          </div>
+                          <div class="right-icon">
+                            <img src="/assets/artist-account/emojis/slightly-smiling-face.svg" class="img-fluid">Sad
+                          </div>
+                        </div>
+                        <div class="d-flex align-items-center icons-list">
+                          <div class="left-icon">
+                            <img src="/assets/artist-account/emojis/slightly-smiling-face.svg" class="img-fluid">Happy
+                          </div>
+                          <div class="right-icon">
+                            <img src="/assets/artist-account/emojis/slightly-smiling-face.svg" class="img-fluid">Sad
+                          </div>
+                        </div>
+                        <div class="d-flex align-items-center icons-list">
+                          <div class="left-icon">
+                            <img src="/assets/artist-account/emojis/slightly-smiling-face.svg" class="img-fluid">Happy
+                          </div>
+                          <div class="right-icon">
+                            <img src="/assets/artist-account/emojis/slightly-smiling-face.svg" class="img-fluid">Sad
+                          </div>
+                        </div>
+
+                        </div> <!-- end of modal-body-->
+                      </div> <!-- end of modal-cotent -->
+
+                    </div> <!-- end of modal-dialog -->
+
+                    
+
+
+
+                  </div> <!-- end of artistPost -->
 
                                        <!-- Artist Posts -->
                   <div class="row artist-post">
@@ -498,6 +590,7 @@ export default {
         { img: 'https://res.cloudinary.com/daorvtlls/image/upload/v1686465790/cld-sample.jpg', name: 'Michelle Rose', role: 'Songwriter'},
       ],
       isModalVisible: false,
+      showCreatePost: true,
     }
   },
   setup()
@@ -544,6 +637,9 @@ export default {
       // });
       
 
+    },
+    showFeelingsIconContent(){
+      this.showCreatePost = !this.showCreatePost;
     },
     setActiveItem(item) {
     this.activeItem = item;
