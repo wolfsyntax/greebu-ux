@@ -24,48 +24,100 @@
   </section> -->
 
   <section class="artist-subscription">
-    <div class="container">
+    <div class="container-fluid">
+        <div class="container">
         <h2>Access Exclusive Benefits through Our <br>Artist Subscription:</h2>
         <p class="sub-heading">Discover Unique Perks and Content</p>
 
-        <!-- <div class="select">
+    <div class="w-100 d-flex align-items-center subscription-wrapper">
+        <div class="benefits">
+            <div class="d-flex justify-content-between group-item-title">
+                <div class="date-hide">
+                    <h3 class="date-title">DATE</h3>
+                </div>
+                <div class="d-flex d-flex justify-content-between date">
+                    <h4>MONTHLY</h4>
+                    <h4>YEARLY</h4>
+                </div>
+            </div>
 
-            <div class="monthly">
-            <h3 class="type">Monthly</h3>
             <div class="d-flex justify-content-between group-item">
-            <h4><span class="peso">₱</span>123/m</h4> <p class="desc">Limited Access</p>
-            </div>
-            <p class="benefits"><span class="material-symbols-rounded">done</span>Accept Bookings</p>
-            <p class="benefits"><span class="material-symbols-rounded">done</span>Create a custom Songs</p>
-            <p class="benefits"><span class="material-symbols-rounded">done</span>Apply for Events</p>
-            <p class="benefits"><span class="material-symbols-rounded">done</span>Accept Bookings</p>
-            <p class="benefits"><span class="material-symbols-rounded">done</span>Create a custom Songs</p>
-            <p class="benefits last"><span class="material-symbols-rounded">done</span>Apply for Events</p>
-            <div class="flex-item">
-            <button type="button" class="monthly-plan btn" @click="selectedPlan()">Get Started</button>
-            </div>
-            </div>
-
-            <div class="yearly">
-            <div class="d-flex justify-content-between">
-            <h3 class="type">YEARLY</h3> <button type="button" class="save">Save 30%</button>
+                <div class="list"><h3>Accept Bookings</h3></div>
+                <div class="d-flex d-flex justify-content-between check">
+                    <span class="material-symbols-rounded">check</span> <span class="material-symbols-rounded">check</span>
+                </div>
             </div>
             <div class="d-flex justify-content-between group-item">
-            <h4><span class="peso">₱</span>123/m</h4> <p class="desc">Limited Access</p>
+                <div class="list"><h3>Create a custom song</h3></div>
+                <div class="d-flex d-flex justify-content-between check">
+                    <span class="material-symbols-rounded">check</span> <span class="material-symbols-rounded">check</span>
+                </div>
             </div>
-            <p class="benefits"><span class="material-symbols-rounded">done</span>Accept Bookings</p>
-            <p class="benefits"><span class="material-symbols-rounded">done</span>Create a custom Songs</p>
-            <p class="benefits"><span class="material-symbols-rounded">done</span>Apply for Events</p>
-            <p class="benefits"><span class="material-symbols-rounded">done</span>Accept Bookings</p>
-            <p class="benefits"><span class="material-symbols-rounded">done</span>Create a custom Songs</p>
-            <p class="benefits last"><span class="material-symbols-rounded">done</span>Apply for Events</p>
-            <div class="flex-item">
-            <button type="button" class="yearly-plan btn" @click="selectedPlan()">Get Started</button>
+            <div class="d-flex justify-content-between group-item">
+                <div class="list"><h3>Apply for Events</h3></div>
+                <div class="d-flex d-flex justify-content-between check">
+                    <span class="material-symbols-rounded">check</span> <span class="material-symbols-rounded">check</span>
+                </div>
             </div>
+            <div class="d-flex justify-content-between group-item">
+                <div class="list"><h3>Accept Bookings</h3></div>
+                <div class="d-flex d-flex justify-content-between check">
+                    <span class="material-symbols-rounded">check</span> <span class="material-symbols-rounded">check</span>
+                </div>
             </div>
-        </div>  -->
+            <div class="d-flex justify-content-between group-item">
+                <div class="list"><h3>Create a custom Songs</h3></div>
+                <div class="d-flex d-flex justify-content-between check">
+                    <span class="material-symbols-rounded">check</span> <span class="material-symbols-rounded">check</span>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between group-item">
+                <div class="list"><h3>Apply for Events</h3></div>
+                <div class="d-flex d-flex justify-content-between check">
+                    <span class="material-symbols-rounded">check</span> <span class="material-symbols-rounded">check</span>
+                </div>
+            </div>
+        </div>
 
+        <div class="subscription">
+            <div class="yearly-subscription">
+            <div class="d-flex justify-content-between yearly">
+                <div>
+                    <h3>YEARLY unlimited access subscription</h3>
+                    <div class="d-flex align-tems-center cost">
+                        <h4><span>₱</span>123/ yr</h4>
+                        <h5>Save 30%</h5>
+                    </div>
+                    <p>Per month, billed each year (123)</p>
+                </div>
+                <div>
+                    <a href="/subscription">Get Started</a>
+                    <!-- <button type="button" class="btn">Get Started</button> -->
+                </div>
+            </div>
+        </div>   
+        <div class="monthly-subscription">
+            <div class="d-flex justify-content-between monthly">
+                <div>
+                    <h3>Monthly unlimited access subscription</h3>
+                    <div class="d-flex align-tems-center cost">
+                        <h4><span>₱</span>123/ m</h4>
+                    </div>
+                    <p>Per month, billed each year (123)</p>
+                </div>
+                <div>
+                    <a href="/subscription">Get Started</a>
 
+        
+
+                </div>
+            </div>
+        </div>
+        </div>
+        
+    </div> <!-- end of subscription-wrapper -->
+
+    </div> <!-- end of container -->
     </div>
   </section>
 
@@ -75,34 +127,18 @@
 <script>
 // import { reactive } from 'vue';
 // import { router } from '@inertiajs/vue3';
+
+import { mapGetters } from "vuex";
+
 export default {
 data() {
   return {
-      pricing: [
-          {
-              id: 1,
-              price: '0',
-              cost_text: 'Free',
-              description: 'Lorem ipsum dolor sit consectetur.',
-              inclusions: ['Create a Song with an Artist', 'Look For an Artist', 'Can view events']
-          },
-          {
-              id: 2,
-              price: '123',
-              cost_text: 'Monthly',
-              description: 'Lorem ipsum dolor sit consectetur.',
-              inclusions: ['Accept Bookings', 'Create a song for clients', 'Apply for Events', 'Look for Services']
-          },
-          {
-              id: 3,
-              price: '123',
-              cost_text: 'Yearly',
-              description: 'Lorem ipsum dolor sit consectetur.',
-              inclusions: ['Accept Bookings', 'Create a song for clients', 'Apply for Events', 'Look for Services']
-          }
-      ],
   }
 },
+computed: {
+    ...mapGetters(["isLoggedIn"]),
+    // ...mapGetters(["isLoggedIn", 'userInfo', 'info']),
+  },
 // props: {
 //         pricing: Object
 //     },

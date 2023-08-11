@@ -1338,195 +1338,146 @@ z-index: 1;
 
 /* HOME PAGE - Access Exclusive Benefits through Our Artist Subscription: */ 
 
-.artist-subscription .select {
-    position: relative;
-    width: 100%;
-    display: flex;
+.artist-subscription h2{
+  line-height: 60px;
 }
-.artist-subscription .select .monthly, .artist-subscription .select .yearly {
-  width: 33.3%;
-  background-color: var(--white);
-  border: 1px solid #DCDCDC;
+.artist-subscription .container-fluid{
+  margin: 0;
+  background: #F8FAFB;
+  /* padding: 5rem 13.75rem 7.1875rem 13.75rem; */
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.artist-subscription .container .subscription-wrapper{
+  width: 100%;
+  gap: 4%;
+  margin-top: 5rem;
+}
+.artist-subscription .subscription-wrapper .benefits {
+  width: 48%;
+  background: var(--white);
+  border: 1px solid #B8B5F7;
+  filter: drop-shadow(0px -8px 46px rgba(193, 193, 193, 0.25));
   border-radius: 20px;
-  filter: drop-shadow(0px -8px 41px rgba(193, 193, 193, 0.25));
-  /* padding: 2rem 1rem; */
+  padding: 2.5rem 2.5rem 2.6rem;
 }
-.artist-subscription .select .monthly {
-  margin: 0rem 1.3rem;
+.artist-subscription .subscription-wrapper .subscription {
+  width: 48%;
 }
-.artist-subscription .select .type {
-  color: #2F2F2F;
-  font-size: 1.25rem;
+.artist-subscription .subscription-wrapper .benefits .group-item-title{
+  border-bottom: 1px solid #B8B5F7;
+  margin-bottom: 1.76rem;
+}
+.artist-subscription .subscription-wrapper .benefits  .date-title{
+  opacity: 0;
+}
+.artist-subscription .subscription-wrapper .benefits .date h4 {
+  color: #8690A2;
+  font-size: 1rem;
   font-weight: 800;
   line-height: 110%;
   text-transform: uppercase;
-  text-align: left;
-  margin-bottom: 2rem;
-  padding: 2.5rem 1.5rem .1rem;
+  margin-bottom: 1.76rem;
+  /* margin-right: 1.1rem; */
 }
-.artist-subscription .select .type .yearly .save {
-  color: var(--white);
-  font-size: 1rem;
+.artist-subscription .benefits .group-item {
+  margin-bottom: 1.2rem;
+}
+.artist-subscription .benefits .group-item .list, .artist-subscription .benefits .group-item-title .date-hide {
+  width: 70%;
+}
+.artist-subscription .benefits .group-item .check, .artist-subscription .benefits .date{
+  width: 30%;
+  margin-right: 1.5%;
+}
+.artist-subscription .benefits .group-item h3{
+  color: #2F2F2F;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+.artist-subscription .benefits .group-item .check {
+  padding: 0 3%;
+}
+.artist-subscription .benefits .group-item .check span{
+  color: var(--orange);
+}
+.artist-subscription .subscription-wrapper .subscription .yearly-subscription, .artist-subscription .subscription-wrapper .subscription .monthly-subscription {
+  background: var(--white);
+  border: 1px solid #B8B5F7;
+  filter: drop-shadow(0px -8px 46px rgba(193, 193, 193, 0.25));
+  border-radius: 20px;
+  padding: 1.94rem 2.3rem;
+}
+.artist-subscription .subscription-wrapper .subscription .yearly-subscription {
+  border-top: 20px solid var(--orange);
+  margin-bottom: 1rem;
+}
+.artist-subscription .subscription .yearly-subscription .yearly h3,
+.artist-subscription .subscription .monthly-subscription .monthly h3{
+  color: #2F2F2F;
+  font-size: 1.25rem;
   font-weight: 800;
-  border-radius: 1.8rem;
-  background: #2F2F2F;
-  padding: 0.8rem 1.44rem;
-  margin: 1rem;
+  line-height: 110%; 
+  text-transform: uppercase;
+  margin-bottom: 1.1rem;
 }
-.artist-subscription .select .type .group-item {
-  border-top: 1px solid #DCDCDC;
-  border-left: 0;
-  border-bottom: 1px solid #DCDCDC;
-  border-right: .0;
-  padding: 1.5rem;
-  margin-bottom: 1.7rem;
-}
-.artist-subscription .select .type .group-item h4 {
+.artist-subscription .subscription .yearly-subscription .yearly h4,
+.artist-subscription .subscription .monthly-subscription .monthly h4{
   color: #2F2F2F;
   font-size: 1.75rem;
   font-weight: 800;
-  line-height: 110%;
+  line-height: 110%; 
+  margin-bottom: 0;
+  margin-top: 0.3rem;
+}
+.artist-subscription .subscription .yearly-subscription .yearly h4 span,
+.artist-subscription .subscription .monthly-subscription .monthly h4 span{
+  font-weight: 400;
+  padding-right: 0.3rem;
+}
+.artist-subscription .subscription .yearly-subscription .yearly .cost,
+.artist-subscription .subscription .monthly-subscription .monthly .cost{
+  margin-bottom: 1.1rem;
+}
+.artist-subscription .subscription .yearly-subscription .yearly h5,
+.artist-subscription .subscription .monthly-subscription .monthly h5{
+  color: var(--white);
+  font-size: 0.875rem;
+  font-weight: 800;
+  text-transform: capitalize;
+  padding: 0.875rem 1.4375rem;
+  border-radius: 1.875rem;
+  background: #2F2F2F;
+  margin-left: 1.5rem;
   margin-bottom: 0;
 }
-.artist-subscription .select .type .group-item .desc {
+.artist-subscription .subscription .yearly-subscription .yearly p,
+.artist-subscription .subscription .monthly-subscription .monthly p{
   color: #808080;
   font-size: 1rem;
-  font-weight: 400;
+  font-style: italic;
+  font-weight: 600;
   line-height: 150.5%;
   margin-bottom: 0;
 }
-.artist-subscription .select .type .group-item .peso {
-  color: #2F2F2F;
-  font-style: normal;
-  font-weight: 400;
-  padding-right: 0.2rem;
-}
-.artist-subscription .select .type .benefits {
-  color: #2F2F2F;
-  font-size: 1rem;
-  font-weight: 600;
-  display: flex;
+.artist-subscription .yearly-subscription .yearly, .artist-subscription .subscription .monthly-subscription .monthly{
   align-items: center;
-  width: 100%;
-  padding: 0 5%;
-  margin-bottom: 0.94rem;
-  text-align: left;
 }
-.artist-subscription .select span {
-  color: var(--orange);
-  padding-right: 0.5rem;
+.artist-subscription .yearly-subscription .yearly a, .artist-subscription .subscription .monthly-subscription .monthly a {
+  color: #FFF;
+  font-size: 1.25rem;
+  font-weight: 800;
+  border-radius: 0.5rem;
+  background: var(--orange);
+  padding: 1.3125rem 2.25rem 1.25rem 2.25rem;
+  margin-top: 2rem;
+  text-decoration: none;
 }
-.artist-subscription .select .yearly-plan, .artist-subscription .select .monthly-plan{
-    color: var(--orange);
-    font-size: 1.125rem;
-    font-weight: 700;
-    background: var(--white);
-    padding: 1rem 0;
-    width: 90%;
-    border-radius: 2.4375rem;
-    border: 1px solid var(--orange);
-    margin: 2rem 0 3rem;
+.artist-subscription .yearly-subscription .yearly a:hover,
+.artist-subscription .subscription .monthly-subscription .monthly a:hover{
+  background: var(--btn-hovered);
 }
-
-
-/* .plans-and-pricing .card-body{
-  padding: 56px 33px;
-}
-.plans-and-pricing .sub-heading{
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 24px;
-  text-align: center;
-  color: #181059;
-  opacity: 0.68;
-  margin-bottom: 90px;
-}
-.plans-and-pricing .card {
-  background: #FFFFFF;
-  box-shadow: 0px 4px 24px rgba(56, 29, 219, 0.08);
-  border-radius: 20px;
-  border: 0;
-  width: 100%;
-}
-.plans-and-pricing .card h3{
-  font-style: normal;
-  font-weight: 700;
-  font-size: 32px;
-  line-height: 32px;
-  color: var(--black);
-  margin-bottom: 10px;
-}
-.plans-and-pricing .card .description{
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 20px;
-  color: #8690A2;
-  margin-bottom: 30px;
-}
-.plans-and-pricing .card .price{
-  font-style: normal;
-  font-weight: 700;
-  font-size: 48px;
-  line-height: 58px;
-  color: #181059;
-  opacity: 0.96;
-  margin-bottom: 30px;
-}
-.plans-and-pricing .card .price .peso{
-  font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 24px;
-  color: #181059;
-  opacity: 0.96;
-}
-.plans-and-pricing .card .price .month{
-  font-style: normal;
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 24px;
-  color: #181059;
-  opacity: 0.68;
-}
-.plans-and-pricing .card a{
-  font-style: normal;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 20px;
-  background: #FF6B00;
-  text-align: center;
-  color: #FFFFFF;
-  border-radius: 10px;
-  border: 0px;
-  width: 100%;
-  padding: 12px 0px;
-  margin-bottom: 24px;
-}
-.plans-and-pricing .card a .bi-arrow-right{
-  color: var(--white);
-  margin-right: 12px;
-}
-.plans-and-pricing .card li{
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 20px;
-  color: #8690A2;
-  margin-bottom: 10px;
-  text-align: left;
-}
-.plans-and-pricing .card li:last-child{
-  margin-bottom: 70px;
-}
-.plans-and-pricing .card li::marker {
-  font-size: 0px;
-}
-.plans-and-pricing .card li .bi-check-circle-fill{
-  color: #FF6B00;
-  margin-right: 12px;
-} */
 
 /* HOME PAGE - Frequent Ask Questions section */ 
 .faq .container{
@@ -4470,8 +4421,55 @@ width: 100%;
   28px 1.75 rem
 */
 
-                                    /* Onboarding Message and Subscription Plan */
+ /* HOME PAGE - Access Exclusive Benefits through Our Artist Subscription: */ 
+.artist-subscription .container {
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+ .artist-subscription .yearly-subscription .yearly a, .artist-subscription .subscription .monthly-subscription .monthly a {
+  font-size: 1rem;
+  padding: 1.1rem 1.5rem;
+  white-space: nowrap;
+}
+.artist-subscription .subscription .yearly-subscription .yearly h3, .artist-subscription .subscription .monthly-subscription .monthly h3 {
+font-size: 1.1rem;
+white-space: pre-line;
+line-height: 130%;
+margin-bottom: 0.9rem;
+}
+.artist-subscription .subscription-wrapper .subscription .yearly-subscription, .artist-subscription .subscription-wrapper .subscription .monthly-subscription {
+padding: 1.4rem 1.8rem;
+}
+.artist-subscription .subscription .yearly-subscription .yearly h5, .artist-subscription .subscription .monthly-subscription .monthly h5 {
+padding: 0.675rem 1.1375rem;
+margin-left: 1rem;
+margin-bottom: 0;
+}
+.artist-subscription .subscription .yearly-subscription .yearly h4, .artist-subscription .subscription .monthly-subscription .monthly h4 {
+font-size: 1.25rem;
+margin-top: 0.3rem;
+}
+.artist-subscription .subscription .yearly-subscription .yearly p, .artist-subscription .subscription .monthly-subscription .monthly p {
+font-size: 0.9rem;
+}
+.artist-subscription .subscription-wrapper .benefits {
+padding: 2.2rem 2.2rem 2.3rem;
+}
+.artist-subscription .benefits .group-item h3 {
+font-size: 1rem;
+}
+.artist-subscription .benefits .group-item {
+margin-bottom: 1rem;
+}
+.artist-subscription .subscription-wrapper .benefits .date h4 {
+font-size: 0.9rem;
+margin-bottom: 1rem;
+}
+.artist-subscription .sub-heading {
+  margin-bottom: 2.5rem!important;
+}
 
+                                    /* Onboarding Message and Subscription Plan */
 
 #selectPlanModal .modal-content .modal-header {
     padding: 1.8rem 1.6rem 1rem;
@@ -6112,7 +6110,52 @@ header nav {
   #home-carousel .animate-right {
       right: 3.7%;
   }
+
+  /* HOME PAGE - Access Exclusive Benefits through Our Artist Subscription: */ 
+
+.artist-subscription .yearly-subscription .yearly a, .artist-subscription .subscription .monthly-subscription .monthly a {
+    font-size: 1rem;
+    padding: 1.1rem 1.5rem;
+    white-space: nowrap;
 }
+.artist-subscription .subscription .yearly-subscription .yearly h3, .artist-subscription .subscription .monthly-subscription .monthly h3 {
+  font-size: 1.1rem;
+  white-space: pre-line;
+  line-height: 130%;
+  margin-bottom: 0.9rem;
+}
+.artist-subscription .subscription-wrapper .subscription .yearly-subscription, .artist-subscription .subscription-wrapper .subscription .monthly-subscription {
+  padding: 1.6rem 2.1rem;
+}
+.artist-subscription .subscription .yearly-subscription .yearly h5, .artist-subscription .subscription .monthly-subscription .monthly h5 {
+  padding: 0.675rem 1.1375rem;
+  margin-left: 1rem;
+  margin-bottom: 0;
+}
+.artist-subscription .subscription .yearly-subscription .yearly h4, .artist-subscription .subscription .monthly-subscription .monthly h4 {
+  font-size: 1.25rem;
+  margin-top: 0.3rem;
+}
+.artist-subscription .subscription .yearly-subscription .yearly p, .artist-subscription .subscription .monthly-subscription .monthly p {
+  font-size: 0.9rem;
+}
+.artist-subscription .subscription-wrapper .benefits {
+  padding: 2.2rem 2.2rem 2.3rem;
+}
+.artist-subscription .benefits .group-item h3 {
+  font-size: 1rem;
+}
+.artist-subscription .benefits .group-item {
+  margin-bottom: 1rem;
+}
+.artist-subscription .subscription-wrapper .benefits .date h4 {
+  font-size: 1rem;
+  margin-bottom: 1.3rem;
+}
+
+} /* end of braces */
+
+
 @media (min-width: 1200px) and (max-width: 1799.98px){
   .home-slider .carousel-caption{
       width: 44%;
