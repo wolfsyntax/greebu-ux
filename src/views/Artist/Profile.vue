@@ -492,4 +492,5 @@ export default {
 
 <style>
 @import '@/assets/css/artist-ui.css';
+/* @import "@vueform/multiselect/themes/default.css" */
 </style>
