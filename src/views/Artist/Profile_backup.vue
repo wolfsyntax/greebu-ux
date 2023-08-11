@@ -424,6 +424,7 @@ export default {
     };
 
     console.log('Artist Type: ', this.artistTypes)
+    console.log('Genre Type: ', this.genres)
   },
   methods: {
     ...mapActions([
