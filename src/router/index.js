@@ -54,7 +54,7 @@ const router = createRouter({
         },
         {
           path: '/artists',
-          name: 'artists',
+          name: 'artists-list',
           component: () => import('/src/views/Homepage/Artist.vue'),
           meta: {
             requiresLogin: false,
@@ -68,7 +68,7 @@ const router = createRouter({
         },
         {
           path: '/artists/:id',
-          name: 'artists',
+          name: 'artists-profile',
           component: () => import('/src/views/Artist/Details.vue'),
           meta: {
             requiresLogin: false,
@@ -211,32 +211,32 @@ const router = createRouter({
           component: () => import('/src/components/Layouts/AccountLayout.vue'),
           meta: {
             requiresLogin: true,
-            // title: 'Profile',
-            // role: '',
-            // breadcrumb: [
-            //   {title: '', url: '',},
-            // ],
+            title: 'Profile',
+            role: '',
+            breadcrumb: [
+              {title: '', url: '',},
+            ],
           },
           children: [
             {
               path: 'setting',
               name: 'account-setting',
               component: () => import('/src/views/Auth/Account/Setting.vue'),
-              meta: {
-                // requiresLogin: false,            
-                title: 'Account Setting',
-                role: '',
-              }
+              // meta: {
+              //   // requiresLogin: false,            
+              //   title: 'Account Setting',
+              //   role: '',
+              // }
             },
             {
               path: 'profile',
               name: 'account-profile',
               component: () => import('/src/views/Auth/Account/Profile.vue'),
-              meta: {
-                // requiresLogin: false,            
-                title: 'Account Profile',
-                role: '',
-              }
+              // meta: {
+              //   // requiresLogin: false,            
+              //   title: 'Account Profile',
+              //   role: '',
+              // }
             },
           ]
         },

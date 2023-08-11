@@ -55,10 +55,6 @@
       <form @submit.prevent="submit" class="fill-details">
 
             <div class="form-group upload-img">
-              <!-- <label for="fileUpload"></label>
-              <input type="file" @input="form.avatar = $event.target.files[0]" accept="image/png, image/webp, image/svg, image/jpeg" />
-              <div v-if="errors?.avatar">{{ errors.avatar }}</div>
-              <progress v-if="form.progress" :value="form.progress.percentage" max="100">{{ form.progress.percentage }}%</progress> -->
 
               <label class="label-img">
                 <img src="/assets/artist-account/new.svg" class="img-fluid default-avatar" alt="default user avatar">
@@ -285,9 +281,8 @@
             </div>
           <div class="text-center">
             <button type="submit" class="btn btn-success submit-form">Submit</button>
-            <!-- <button type="submit" class="btn btn-success submit-form" data-bs-toggle="modal" data-bs-target="#successDetailsModal">Submit</button> -->
           </div>
-         </form>
+        </form>
 
                                     <!-- IF THE FORM IS SUCCESSFUL SHOW THIS MODAL -->
 
@@ -366,7 +361,7 @@ export default {
         city: null,
         province: null,
       },
-      errors: {},
+      //errors: {},
       active: false,
       formType: 'members',
       formHeader: 'Add Member',
@@ -392,20 +387,28 @@ export default {
       //   })
       });
 
-    this.form = {
-      artist_type: this.artistProfile?.artist_type?.title,
-      artist_name: this.artistProfile?.profile?.business_name,
-      genre: this.artistGenre,
-      bio: this.account?.bio,
-      avatar: this.account?.avatar,
-      street: this.account?.street_address,
-      city: this.account?.city,
-      province: this.account?.province,
-      youtube_channel: this.account?.youtube_channel,
-      twitter_username: this.account?.twitter_username,
-      spotify_profile: this.account?.spotify_profile,
-      instagram_username: this.account?.instagram_username,
-    };
+    // this.form = {
+    //   artist_type: this.artistProfile?.artist_type?.title,
+    //   artist_name: this.artistProfile?.profile?.business_name,
+    //   genre: this.artistGenre,
+    //   bio: this.account?.bio,
+    //   avatar: this.account?.avatar,
+    //   street: this.account?.street_address,
+    //   city: this.account?.city,
+    //   province: this.account?.province,
+    //   youtube_channel: this.account?.youtube_channel,
+    //   twitter_username: this.account?.twitter_username,
+    //   spotify_profile: this.account?.spotify_profile,
+    //   instagram_username: this.account?.instagram_username,
+    // };
+  },
+  props: {
+    error: {
+      type: Array,
+      default: [],
+      required: true
+    },
+
   },
   methods: {
     ...mapActions([
@@ -416,45 +419,33 @@ export default {
     ]),
     submit()
     {
+      this.$emit('form', this.form)
+      // this.updateArtistProfile(this.form).then((response) =>
+      // {
 
-      this.updateArtistProfile(this.form).then((response) =>
-      {
+      //   const { status, message } = response;
 
-        const { status, message } = response;
+      //   if (status === 422) { 
+      //     this.errors = response?.result?.errors || {}
 
-        if (status === 422) { 
-          this.errors = response?.result?.errors || {}
-          // this.$vs.notification({
-          //   color: 'danger',
-          //   position: 'top-right',
-          //   title: 'Artist Profile',
-          //   text: `Invalid data`
-          // })
-        } else {
+      //   } else {
 
-          // this.$vs.notification({
-          //   color: 'success',
-          //   position: 'top-right',
-          //   title: 'Artist Profile',
-          //   text: `${message}`
-          // })
+      //     this.$store.commit('SET_ARTIST', response.result?.artist_profile)
+      //     this.$store.commit('SET_PROFILE', response.result?.user_profile)
+      //     this.$store.commit('SET_MEMBERS', response.result?.members)
+      //     this.$store.commit('SET_ARTIST_GENRES', response.result.artist_genres)
 
-          this.$store.commit('SET_ARTIST', response.result?.artist_profile)
-          this.$store.commit('SET_PROFILE', response.result?.user_profile)
-          this.$store.commit('SET_MEMBERS', response.result?.members)
-          this.$store.commit('SET_ARTIST_GENRES', response.result.artist_genres)
+      //   }
 
-        }
-
-      }).catch(err =>
-      {
-        // this.$vs.notification({
-        //   color: 'danger',
-        //   position: 'top-right',
-        //   title: 'Server Status',
-        //   text: `${err.message}`
-        // })
-      });
+      // }).catch(err =>
+      // {
+      //   // this.$vs.notification({
+      //   //   color: 'danger',
+      //   //   position: 'top-right',
+      //   //   title: 'Server Status',
+      //   //   text: `${err.message}`
+      //   // })
+      // });
 
     },
     dismiss()

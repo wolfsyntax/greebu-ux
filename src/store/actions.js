@@ -604,6 +604,60 @@ var actions = {
         });
     });
   },
+  accountSetting({ commit, state }, payload)
+  {
+    return new Promise(async (resolve, reject) =>
+    {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
+
+      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/user/detail`, payload)
+        .then(response =>
+        {
+          const { status: statusCode, data: { status, message, result } } = response;
+
+          if (statusCode === 200) {
+
+            if (status === 200) {
+
+              const { user } = result;
+              if (state.user.phone !== user.phone)
+              {
+                commit('SET_PHONE_ISMODIFIED', state.user?.phone !== user?.phone || false);
+              }
+
+              commit('SET_AUTH', user);
+
+            }
+          }
+        })
+    })
+  },
+  accountProfile({ commit, state }, payload)
+  {
+    return new Promise(async (resolve, reject) =>
+    {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
+
+      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/user/profile?role=${state.role}`, payload)
+        .then(response =>
+        {
+          const { status: statusCode, data: { status, message, result } } = response;
+
+          if (statusCode === 200) {
+
+            if (status === 200) {
+              
+              const { account, user, profile } = result;
+
+              commit('SET_AUTH', user);
+              commit('SET_ACCOUNT', account);
+              commit('SET_PROFILE', profile);
+
+            }
+          }
+        })
+    })
+  },
   test2({ commit, state }, payload)
   {
     return new Promise(async (resolve, reject) =>

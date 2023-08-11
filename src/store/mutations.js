@@ -46,6 +46,10 @@ var mutations = {
     state.roles = [];
     state.phone = null;
     state.account = {};
+  },
+  SET_PHONE_ISMODIFIED(state)
+  {
+    state.isPhoneModify = state
   }
 }
 

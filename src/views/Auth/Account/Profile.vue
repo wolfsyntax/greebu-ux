@@ -1,9 +1,10 @@
 <template>
   <div>
-    <artist-profile v-if="userRole === 'artists'"/>    
-    <organizer-profile v-else-if="userRole === 'organizer'" />
-    <provider-profile v-else-if="userRole === 'service-provider'" />
-    <customer-profile v-else />
+    <artist-profile @form="submit" :error="errors" v-if="userRole === 'artists'"/>    
+    <organizer-profile @form="submit" :error="errors" v-else-if="userRole === 'organizer'" />
+    <provider-profile @form="submit" :error="errors" v-else-if="userRole === 'service-provider'" />
+    <customer-profile @form="submit" :error="errors" v-else-if="userRole === 'customers'" />
+    <p v-else>No Profile Exists</p>
   </div>
 </template>
 
@@ -27,6 +28,27 @@ export default {
     
 
     return {}
+  },
+  data: () => ({
+    form: {},
+    errors: []
+  }),
+  methods: {
+    ...mapActions([
+      'accountProfile',
+    ]),
+    submit(value)
+    {
+
+      console.log(`Account Profile [${this.userRole}]: `, value);
+
+      this.accountProfile(value)
+        .then(response =>
+        {
+          console.log('Account Profile: ', response);
+          this.errors = [];
+        });
+    }
   },
   computed: {
     ...mapGetters(["userInfo", "info", "token", "isLoggedIn", 'userRole']),
