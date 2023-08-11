@@ -364,7 +364,7 @@ const router = createRouter({
         {
           path: 'profile',
           name: 'profile',
-          component: () => import('/src/views/Artist/Profile.vue'),
+          component: () => import('/src/views/Artist/Profile_Backup.vue'),
         },
         {
           path: 'edit',
@@ -383,7 +383,7 @@ const router = createRouter({
         role: '',
         parent: 'event',
         breadcrumb: [
-          {title: '', url: '',},
+          {title: '', url: ''},
         ],
       },
     },    

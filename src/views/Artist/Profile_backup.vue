@@ -422,6 +422,8 @@ export default {
       spotify_profile: this.account?.spotify_profile,
       instagram_username: this.account?.instagram_username,
     };
+
+    console.log('Artist Type: ', this.artistTypes)
   },
   methods: {
     ...mapActions([
