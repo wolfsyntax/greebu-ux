@@ -2,7 +2,7 @@ var state = {
   profile: {},
   user: {},
   bearerToken: '',
-  role: '',
+  role: '', // artists, customers, organizer, service-provider
   roles: [],
   artist_types: null,
   genres: null,
@@ -13,6 +13,7 @@ var state = {
   phone: null,
   account_type: '',
   account: {},
+  isPhoneModify: false,
 }
 
 export default state

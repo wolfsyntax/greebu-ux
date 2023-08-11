@@ -547,10 +547,13 @@ var actions = {
       })
         .then(response =>
         {
-          console.log('validateCode: ', response);
+          console.log('::Validate Code::');
+
           const { status: statusCode, data } = response;
 
           if (statusCode === 201) {
+
+            console.log('Validation Success: ', response);
 
             const { result: { user, profile, roles, token, account } } = data;
             // commit('SET_AUTH', user || {});
@@ -600,6 +603,29 @@ var actions = {
           reject(err)
         });
     });
+  },
+  test2({ commit, state }, payload)
+  {
+    return new Promise(async (resolve, reject) =>
+    {
+
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
+      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/test-request` )
+        .then(response =>
+        {
+
+          const { data: { message, status, result }, status: statusCode } = response;
+          console.log('Test2 Response: ', response)
+          
+
+          resolve(response)
+
+        })
+        .catch(err =>
+        {
+          reject(err)
+        });
+    })
   },
 }
 

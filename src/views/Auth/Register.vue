@@ -263,7 +263,11 @@ export default {
           console.log('Register response: ', response)
           this.$nextTick(() =>
           {
-            this.isDisabled = false;
+            setTimeout(() =>
+            {
+              this.isDisabled = false;
+            }, 3000)
+            
           })
           
           const { status: statusCode, data: {status, result} } = response;
