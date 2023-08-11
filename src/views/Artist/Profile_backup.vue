@@ -74,6 +74,7 @@
               <div class="required-fields">
                 <div class="form-group typeArtist">
                   <label for="typeArtist">Type of the Artist</label>
+                  
                   <select v-model="form.artist_type" class="form-select">
                     <option>Select Artist Type</option>
                     <option v-for="artist_type in artistTypes" :key="artist_type.id" :value="artist_type.title">
@@ -341,12 +342,15 @@
             Lily
           </template>
         </vs-avatar>
-
-        <vs-avatar>
+  {{ artistTypes }} [+] {{ genres }}
+  <img width="100" height="100"
+              src="https://thumbs.dreamstime.com/b/businessman-icon-vector-male-avatar-profile-image-profile-businessman-icon-vector-male-avatar-profile-image-182095609.jpg"
+              alt="">
+        <!-- <vs-avatar>
           <img width="100" height="100"
             src="https://thumbs.dreamstime.com/b/businessman-icon-vector-male-avatar-profile-image-profile-businessman-icon-vector-male-avatar-profile-image-182095609.jpg"
             alt="">
-        </vs-avatar>
+        </vs-avatar> -->
         <p>{{ $filters.timeAgo('2019-12-19') }}</p>
         {{ artistProfile }}
       </div>
@@ -518,4 +522,7 @@ export default {
 }
 </script>
 
-<style>@import '@/assets/css/artist-ui.css';</style>
+<style>
+@import '@/assets/css/artist-ui.css';
+@import "@vueform/multiselect/themes/default.css";
+</style>
