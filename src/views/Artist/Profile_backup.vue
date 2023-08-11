@@ -401,17 +401,23 @@ export default {
   },
   mounted()
   {
-    this.fetchArtistOptions()
-      .catch(err =>
-      {
-        //   this.$vs.notification({
-        //     color: 'danger',
-        //     position: 'top-right',
-        //     title: 'Server Status',
-        //     text: `${err.message}`
-        //   })
-      });
+    // this.fetchArtistOptions()
+    //   .then(response =>
+    //   {
+    //     console.log('Artist Options: ', response);
+    //   })
+    //   .catch(err =>
+    //   {
+    //     //   this.$vs.notification({
+    //     //     color: 'danger',
+    //     //     position: 'top-right',
+    //     //     title: 'Server Status',
+    //     //     text: `${err.message}`
+    //     //   })
+    //   });
 
+    this.artistOptions();
+    console.log('Account: ', this.account)
     this.form = {
       artist_type: this.artistProfile?.artist_type?.title,
       artist_name: this.artistProfile?.profile?.business_name,
@@ -432,7 +438,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      'fetchArtistOptions', 'updateArtistProfile', 'removeMember', 'removeSocialMedia',
+      'fetchArtistOptions', 'updateArtistProfile', 'removeMember', 'removeSocialMedia', 'artistOptions',
     ]),
     ...mapMutations([
       'SET_PROFILE', 'SET_ARTIST', 'SET_MEMBERS',
