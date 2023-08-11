@@ -142,7 +142,7 @@ export default {
       {
         console.log('Login Response: ', response)
         const { status: statusCode, data: {result, status, message}} = response;
-        
+        console.log('Status Code: ', statusCode, '\nStatus: ', status);
         if (statusCode === 200) {
 
           // if (role === 'artists') {
@@ -157,8 +157,13 @@ export default {
             this.$router.push('/')
           }
 
-        } else if (statusCode === 203 && !result?.user?.phone_verified_at) {
+        } else if (statusCode === 203 && status === 203) {
 
+          this.errors = result?.errors;
+          this.message = message;
+
+        } else if (statusCode === 203 && status === 403) {
+          
           this.isVerified = false;
           this.isInitial = false;
 
