@@ -7,7 +7,7 @@ import VueAxios from 'vue-axios';
 
 // import Vuesax from 'vuesax'
 
-import Multiselect  from '@vueform/multiselect'
+// import Multiselect  from '@vueform/multiselect'
 import '@vueform/multiselect/themes/default.css';
 
 import router from './router';
@@ -59,7 +59,7 @@ const app = createApp(App)
     ],
   })
   // .use(BootstrapVueIcons)
-  .component('multiselect', Multiselect)
+  // .component('multiselect', Multiselect)
   .component('font-awesome-icon', FontAwesomeIcon)
 
 

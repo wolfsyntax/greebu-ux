@@ -86,17 +86,20 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="genre">Genre</label>
-                  <multiselect v-model="form.genre" :options="genres" mode="tags" class="genre" placeholder="Please select genres" />
+                  <label for="genre">Genre</label> {{ }}
+                  <multiselect v-model="form.genres" :options="genres" mode="tags" class="genre" placeholder="Please select genres" />
                   <!-- <div v-if="errors.genre" class="genre-error text-danger"></div> -->
+
                   <div v-for="err in error?.genre" :key="err" class="text-danger">{{ err }}</div>
+
+                  
                 </div>
 
                 <div class="row address">
                   <div class="col-4">
                     <div class="form-group">
                       <label for="address">Address</label>
-                      <input type="text" v-model="form.street" placeholder="Street" class="form-control street"/>
+                      <input type="text" v-model="form.street_address" placeholder="Street" class="form-control street"/>
                       <!-- <div v-if="errors.street" class="street-error text-danger"></div> -->
                       <div v-for="err in error?.street" :key="err" class="text-danger">{{ err }}</div>
                     </div>
@@ -358,9 +361,14 @@
     </section>
 
     <section class="artist-data">
-      {{  form }}
+      Account: {{ account }}
+      <br/>
+      Form: {{  form }}
 
-      <section>Genre: <p>{{  genres }}</p></section>
+      <section>
+        
+        <br/>Genre: <p>{{  genres }}</p>
+      </section>
       <div class="container">
           <!-- <vs-avatar>
             <template #text>
@@ -386,13 +394,15 @@ import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
 import MemberForm from '/src/views/Artist/Form/AddMember.vue';
 import SocialMediaForm from '/src/views/Artist/Form/SocialMedia.vue';
 import BlankHeader from "@/components/Home/BlankHeader.vue";
+import Multiselect from '@vueform/multiselect'
 
 export default {
   components: {
     // layout: Layout,
     'member-form': MemberForm,
     'social-media': SocialMediaForm,
-    BlankHeader
+    BlankHeader,
+    Multiselect
   },
   data()
   {
@@ -400,10 +410,10 @@ export default {
       form: {
         artist_type: null,
         artist_name: null,
-        genre: null,
+        genres: [],
         bio: null,
         avatar: null,
-        street: null,
+        street_address: null,
         city: null,
         province: null,
         youtube_channel: null,
@@ -434,6 +444,17 @@ export default {
   {
     this.fetchArtistOptions()
     this.artistOptions()
+    this.fetchProfile()
+    this.form = this.account
+    // this.form.genre = ''
+    // this.form.genre = this.account.genres.map(function (g) { return g['title']  });
+    console.log('Form: ', this.form)
+    console.log('Account: ', this.account)
+    // this.form.genre = this.account.genres.map(function (g)
+    // {
+    //   return g['title']
+    // })
+    
   },
   props: {
     error: {
@@ -445,7 +466,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      'fetchArtistOptions', 'updateArtistProfile', 'removeMember', /*'removeSocialMedia',*/ 'artistOptions'
+      'fetchArtistOptions', 'updateArtistProfile', 'removeMember', /*'removeSocialMedia',*/ 'artistOptions', 'fetchProfile',
     ]),
     ...mapMutations([
       'SET_PROFILE', 'SET_ARTIST', 'SET_MEMBERS',
@@ -525,19 +546,18 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["userInfo", "token", 'artistProfile', 'artistGenre']),
+    ...mapGetters(["userInfo", "token", 'artistProfile', 'artistGenre', ]),
     ...mapState({
       artistTypes: (state) => state.artist.artist_types,
-      genres: (state) => state.artist.genres,
+      genres: (state) => state.artist.genreList,
       members: (state) => state.artist.members,
       account: (state) => state.account,
     }),
   },
-  compatConfig: { MODE: 3 },
 }
 </script>
 
 <style>
-/* @import "@vueform/multiselect/themes/default.css"; */
+@import "@vueform/multiselect/themes/default.css";
 @import '@/assets/css/artist-ui.css';
 </style>

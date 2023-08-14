@@ -22,7 +22,7 @@ export default {
     ArtistProfile,
     CustomerProfile,
     OrganizerProfile,
-    ProviderProfile
+    ProviderProfile,
   },
   setup () {
     
@@ -42,12 +42,12 @@ export default {
 
       console.log(`Account Profile [${this.userRole}]: `, value);
       
-      // this.accountProfile(value)
-      //   .then(response =>
-      //   {
-      //     console.log('Account Profile: ', response);
-      //     this.errors = [];
-      //   });
+      this.accountProfile(value)
+        .then(response =>
+        {
+          console.log('Account Profile: ', response);
+          this.errors = [];
+        });
     }
   },
   computed: {

@@ -12,7 +12,7 @@ var state = {
   countries: null,
   phone: null,
   account_type: '',
-  account: {},
+  account: null,
   isPhoneModify: false,
 }
 
