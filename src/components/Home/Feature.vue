@@ -1,6 +1,6 @@
 <template>
   <div>
-
+    <SubscriptionModal />
     <div v-if="!isLoggedIn"></div>
     <div  v-else>
 
@@ -31,83 +31,17 @@
               You can still browse the app and explore its interface, but your access to certain features will be limited until you 
               upgrade to the subscription.</p>
               <label for="modal-toggle" class="close-modal-button" 
+              @click="openSubscriptionModal"
               data-bs-toggle="modal" data-bs-target="#selectPlanModal"> 
               View Subscription</label>
           </div>
         </div>
       </div>
-
-      <!-- Modal -->
-      <div class="modal" id="selectPlanModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" 
-      data-bs-backdrop="static" data-bs-keyboard="false">
-        <div class="modal-dialog modal-xl">
-          <div class="modal-content">
-            <div class="modal-header">
-              <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" @click="createProfile()"></button> -->
-              <button type="button" class="btn-close" @click="createProfile()"></button>
-            </div>
-            <div class="modal-body text-center">
-              <h2 class="title">Upgrade to Subscription</h2>
-              <p class="description">With the upgraded artist subscription, you'll gain access to a wide range 
-                of exclusive features designed to support your career and expand your reach.</p>
-                <div class="select">
-                  <div class="free">
-                    <h3 class="type">FREE</h3>
-                    <div class="d-flex justify-content-between group-item">
-                    <h4><span class="peso">₱</span>0</h4> <p class="desc">15 days free trial</p>
-                   </div>
-                   <p class="benefits"><span class="material-symbols-rounded">done</span>Accept Bookings</p>
-                   <p class="benefits"><span class="material-symbols-rounded">done</span>Create a custom Songs</p>
-                   <p class="benefits"><span class="material-symbols-rounded">done</span>Apply for Events</p>
-                   <p class="benefits"><span class="material-symbols-rounded">done</span>Accept Bookings</p>
-                   <p class="benefits"><span class="material-symbols-rounded">done</span>Create a custom Songs</p>
-                   <p class="benefits last"><span class="material-symbols-rounded">done</span>Apply for Events</p>
-                   <div class="flex-item">
-                    <button type="button" class="current-plan btn" data-bs-dismiss="modal" disabled>Current Plan</button>
-                   </div>
-                  </div>
-                  <div class="monthly">
-                    <h3 class="type">Monthly</h3>
-                    <div class="d-flex justify-content-between group-item">
-                    <h4><span class="peso">₱</span>123/m</h4> <p class="desc">Limited Access</p>
-                   </div>
-                   <p class="benefits"><span class="material-symbols-rounded">done</span>Accept Bookings</p>
-                   <p class="benefits"><span class="material-symbols-rounded">done</span>Create a custom Songs</p>
-                   <p class="benefits"><span class="material-symbols-rounded">done</span>Apply for Events</p>
-                   <p class="benefits"><span class="material-symbols-rounded">done</span>Accept Bookings</p>
-                   <p class="benefits"><span class="material-symbols-rounded">done</span>Create a custom Songs</p>
-                   <p class="benefits last"><span class="material-symbols-rounded">done</span>Apply for Events</p>
-                   <div class="flex-item">
-                    <button type="button" class="monthly-plan btn" @click="selectedPlan()">Get Started</button>
-                   </div>
-                  </div>
-                  <div class="yearly">
-                    <div class="d-flex justify-content-between">
-                    <h3 class="type">YEARLY</h3> <button type="button" class="save">Save 30%</button>
-                   </div>
-                    <div class="d-flex justify-content-between group-item">
-                    <h4><span class="peso">₱</span>123/m</h4> <p class="desc">Limited Access</p>
-                   </div>
-                   <p class="benefits"><span class="material-symbols-rounded">done</span>Accept Bookings</p>
-                   <p class="benefits"><span class="material-symbols-rounded">done</span>Create a custom Songs</p>
-                   <p class="benefits"><span class="material-symbols-rounded">done</span>Apply for Events</p>
-                   <p class="benefits"><span class="material-symbols-rounded">done</span>Accept Bookings</p>
-                   <p class="benefits"><span class="material-symbols-rounded">done</span>Create a custom Songs</p>
-                   <p class="benefits last"><span class="material-symbols-rounded">done</span>Apply for Events</p>
-                   <div class="flex-item">
-                    <button type="button" class="yearly-plan btn" @click="selectedPlan()">Get Started</button>
-                   </div>
-                  </div>
-                </div> <!-- end of select -->
-
-                <button type="button" class="btn create-profile" @click="createProfile()">Create your Profile</button>
-
-            </div>
-          </div>
-        </div>
-      </div>
+     
     </div>
-    </div> <!-- end of v-else -->
+    </div>  <!-- end of v-else -->
+
+
   
     <section class="home-slider">
       <div class="container">
@@ -120,7 +54,15 @@
 
                 <h1>Book your Events/Artist, Create your song now let's make magic in music!</h1>
                 <p>Custom tunes for any mood, and booking the best artists just got easier with our website!</p>
-                <a href="/create-song" class="btn btn-primary btn-lg">Create your song</a>
+
+                <div v-if="isLoggedIn"><a href="/create-song" class="btn btn-primary btn-lg">Create your song</a></div>
+                <div v-else>
+                  <a href="#" class="btn btn-primary btn-lg" @click="openSignupModal"
+                  data-bs-toggle="modal" data-bs-target="#mustSignUp">
+                    Create your song
+                  </a>
+                </div>
+
               </div>
             </div>
             <div class="carousel-item">
@@ -129,7 +71,15 @@
               <div class="carousel-caption d-none d-md-block">
                 <h3>Find a perfect artists to make a custom song and create amazing memories to your event</h3>
                 <p>Custom tunes for any mood, and booking the best artists just got easier with our website!</p>
-                <a href="/artist" class="btn btn-primary btn-lg">Find your artist</a>
+
+                <div v-if="isLoggedIn"><a href="/artist" class="btn btn-primary btn-lg">Find your artist</a></div>
+                <div v-else>
+                  <a href="#" class="btn btn-primary btn-lg"
+                  @click="openSignupModal"
+                  data-bs-toggle="modal" data-bs-target="#mustSignUp">
+                  Find your artist</a>
+                </div>
+
               </div>
               <div class="animate-section">
                 <div class="animate-left">
@@ -157,7 +107,15 @@
                 <h3>Need a Professional Equipment for your Event?</h3>
                 <p>We offer a wide range of equipment rental options, including sound systems, lighting, staging, and
                   more.</p>
-                <a href="/services" class="btn btn-primary btn-lg">Our Services</a>
+
+                <div v-if="isLoggedIn"><a href="/services" class="btn btn-primary btn-lg">Our Services</a></div>
+                <div v-else>
+                  <a href="#" class="btn btn-primary btn-lg"
+                  @click="openSignupModal"
+                  data-bs-toggle="modal" data-bs-target="#mustSignUp">
+                  Our Services</a>
+                </div>
+
               </div>
             </div>
             <div class="carousel-item">
@@ -168,7 +126,15 @@
                   your own event with us today.</h3>
                 <p>We offer a wide range of equipment rental options, including sound systems, lighting, staging, and
                   more.</p>
-                <a href="/partners" class="btn btn-primary btn-lg">Get Started</a>
+
+                <div v-if="isLoggedIn"><a href="/partners" class="btn btn-primary btn-lg">Get Started</a></div>
+                <div v-else>
+                  <a href="#" class="btn btn-primary btn-lg"
+                  @click="openSignupModal"
+                  data-bs-toggle="modal" data-bs-target="#mustSignUp">
+                  Get Started</a>
+                </div>
+
               </div>
             </div>
           </div>
@@ -439,9 +405,13 @@
 
 <script>
 import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
+import SubscriptionModal from '/src/components/Artist/SubscriptionModal.vue';
+import MustSignupModal from '/src/components/Artist/MustSignupModal.vue';
 
 export default {
   components: {
+    SubscriptionModal,
+    MustSignupModal
   },
       data() {
           return {
@@ -511,6 +481,12 @@ export default {
     // closeModal() {
     //   this.showModal = false;
     // },
+    openSubscriptionModal(data){
+        this.$root.$emit("bv::show::modal", "#selectPlanModal");
+      },
+    openSignupModal(data){
+        this.$root.$emit("bv::show::modal", "#mustSignUp");
+      },
     checkAndShowModal() {
        // // show modal very 15 days
       // const lastShown = localStorage.getItem('modalLastShown');
@@ -530,12 +506,6 @@ export default {
         localStorage.setItem('modalLastShown', currentTime);
       }
 
-    },
-    selectedPlan(){
-      window.location.href = '/subscription';
-    },
-    createProfile(){
-      window.location.href = '/artist/profile';
     },
     toggleTestimonialVideo(index)
     {
