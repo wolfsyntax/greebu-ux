@@ -8,6 +8,7 @@ import {
   FacebookAuthProvider
 } from 'firebase/auth'
 
+// import { GoogleAuthProvider, FacebookAuthProvider } from "@firebase/auth";
 import { useCurrentUser, useFirebaseAuth } from 'vuefire';
 
 

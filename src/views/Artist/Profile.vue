@@ -55,7 +55,8 @@
                     <img src="/assets/artist-account/new.svg" class="img-fluid default-avatar" alt="default user avatar">
                     <div class="camera">
                       <input type="file" @input="form.avatar = $event.target.files[0]" accept="image/png, image/webp, image/svg, image/jpeg" />
-                      <div v-if="errors?.avatar" class="text-danger">{{ errors.avatar }}</div>
+                      <!-- <div v-if="error?.avatar" class="text-danger">{{ error.avatar }}</div> -->
+                      <div v-for="err in error?.avatar" :key="err" class="text-danger">{{ err }}</div>
                       <progress v-if="form.progress" :value="form.progress.percentage" max="100">{{ form.progress.percentage }}%</progress>
                     </div>
                     <span class="material-symbols-outlined camera-outer" >&#xE412;</span>
@@ -74,19 +75,21 @@
                     </option>
                   </select>
 
-                  <div v-if="errors?.artist_type" class="artist-type-error text-danger"></div>
+                  <!-- <div v-if="error?.artist_type" class="artist-type-error text-danger"></div> -->
+                  <div v-for="err in error?.artist_type" :key="err" class="text-danger">{{ err }}</div>
                 </div>
 
                 <div class="form-group">
                   <label for="artistName">Name of the Artist/Band</label>
                   <input type="text" v-model="form.artist_name" placeholder="Name of the Artist/Band" class="form-control artist-name"/>
-                  <div v-if="errors?.artist_name" class="artist-name-error text-danger"></div>
+                  <div v-if="error?.artist_name" class="artist-name-error text-danger"></div>
                 </div>
 
                 <div class="form-group">
                   <label for="genre">Genre</label>
                   <multiselect v-model="form.genre" :options="genres" mode="tags" class="genre" placeholder="Please select genres" />
-                  <div v-if="errors?.genre" class="genre-error text-danger"></div>
+                  <!-- <div v-if="errors.genre" class="genre-error text-danger"></div> -->
+                  <div v-for="err in error?.genre" :key="err" class="text-danger">{{ err }}</div>
                 </div>
 
                 <div class="row address">
@@ -94,7 +97,8 @@
                     <div class="form-group">
                       <label for="address">Address</label>
                       <input type="text" v-model="form.street" placeholder="Street" class="form-control street"/>
-                      <div v-if="errors?.street" class="street-error text-danger"></div>
+                      <!-- <div v-if="errors.street" class="street-error text-danger"></div> -->
+                      <div v-for="err in error?.street" :key="err" class="text-danger">{{ err }}</div>
                     </div>
                   </div>
 
@@ -102,7 +106,8 @@
                     <div class="form-group">
                       <label for="address" class="hidden">City</label>
                       <input type="text" v-model="form.city" placeholder="City" class="form-control city"/>
-                      <div v-if="errors?.city" class="city-error text-danger"></div>
+                      <!-- <div v-if="errors.city" class="city-error text-danger"></div> -->
+                      <div v-for="err in error?.city" :key="err" class="text-danger">{{ err }}</div>
                     </div>
                   </div>
 
@@ -110,7 +115,8 @@
                     <div class="form-group">
                       <label for="address" class="hidden">Province</label>
                       <input type="text" v-model="form.province" placeholder="Province" class="form-control province"/>
-                      <div v-if="errors?.province" class="province-error text-danger"></div>
+                      <!-- <div v-if="error?.province" class="province-error text-danger"></div> -->
+                      <div v-for="err in error?.province" :key="err" class="text-danger">{{ err }}</div>
                     </div>
                   </div>
                 </div> <!-- end of row -->
@@ -129,7 +135,7 @@
                       <ul class="list-group band-members" v-if="members">
                         <li class="list-group-item" v-for="mem in members" :key="mem.id">
                           <div class="items">
-                            <vs-avatar v-if="!mem.avatar" circle>
+                            <!-- <vs-avatar v-if="!mem.avatar" circle>
                               <template  #text>
                                 {{ mem.avatar_text }}
                               </template>
@@ -137,7 +143,7 @@
 
                             <vs-avatar v-else circle>
                               <img @error="replaceByDefault" :src="mem.avatar" alt="" />            
-                            </vs-avatar>
+                            </vs-avatar> -->
 
                             <div class="member-info">
                               <h6 class="band-name">{{ mem.fullname }}</h6>
@@ -150,7 +156,7 @@
                               <button type="button" @click="removeMember(mem.id)" class="btn btn-danger">
                                 <span class="material-symbols-rounded">delete</span>
                               </button>
-                              <Link href="">Edit</Link>
+                              <button type="">Edit</button>
                             </div>
                           </div>
                         </li>
@@ -187,95 +193,118 @@
                     </div>
                   </div>
                 </div>
+
+                <div class="card mb-3" v-if="form?.instagram_username">
+                  <div class="row g-0">
+                    <div class="col-md-1">
+                      <img src="/assets/social icons/_Instagram.svg" class="img-fluid rounded-start mx-2" alt="Instagram">
+                    </div>
+                  
+                    <div class="col-md-10">
+                      <div class="card-body">
+                        <h5 class="card-title">Instagram</h5>
+                        <p class="card-text"><small class="text-body-secondary">{{ form?.instagram_username }}</small></p>
+                      </div>
+                    </div>
+
+                    <div class="col-md-1">
+                      <div class="text-end">
+                        <a href="#" @click="removeSocialMedia('instagram')">
+                          <span class="material-symbols-rounded">delete</span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card mb-3" v-if="form.spotify_profile" style="height: 90px;">
+                  <div class="row g-0">
+                    <div class="col-md-1">
+                      <img src="/assets/social icons/_Spotify.svg" class="img-fluid rounded-start mx-2" alt="Spotify">
+                    </div>
+
+                    <div class="col-md-10">
+                      <div class="card-body">
+                        <h5 class="card-title">Spotify</h5>
+                        <p class="card-text"><small class="text-body-secondary">{{ form.spotify_profile }}</small></p>
+                      </div>
+                    </div>
+
+                    <div class="col-md-1">
+                      <div class="text-end">
+                        <a href="#" @click="removeSocialMedia('spotify')">
+                          <span class="material-symbols-rounded">delete</span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card mb-3" v-if="form.twitter_username" style="height: 90px;">
+                  <div class="row g-0">
+                    <div class="col-md-1">
+                      <img src="/assets/social icons/_Twitter.svg" class="img-fluid rounded-start mx-2" alt="Twitter">
+                    </div>
+
+                    <div class="col-md-10">
+                      <div class="card-body">
+                        <h5 class="card-title">Twitter</h5>
+                        <p class="card-text"><small class="text-body-secondary">{{ form.twitter_username }}</small></p>
+                      </div>
+                    </div>
+
+                    <div class="col-md-1">
+                      <div class="text-end">
+                        <a href="#" @click="removeSocialMedia('twitter')">
+                          <span class="material-symbols-rounded">delete</span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card mb-3" v-if="form.youtube_channel" style="height: 90px;">
+                  <div class="row g-0">
+                    <div class="col-md-1">
+                      <img src="/assets/social icons/_YouTube.svg" class="img-fluid rounded-start mx-2" alt="YouTube">
+                    </div>
+
+                    <div class="col-md-10">
+                      <div class="card-body">
+                        <h5 class="card-title">YouTube</h5>
+                        <p class="card-text"><small class="text-body-secondary">{{ form.youtube_channel }}</small></p>
+                      </div>
+                    </div>
+
+                    <div class="col-md-1">
+                      <div class="text-end">
+                        <a href="#" @click="removeSocialMedia('youtube')">
+                          <span class="material-symbols-rounded">delete</span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>   <!-- end of band-and-social--> 
 
               <div class="d-flex justify-content-between group-item">
                 <label class="form-check-label" for="flexSwitchCheckDefault">Do you want to accept events?</label>
                 <div class="form-check form-switch">
-                  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                  <input class="form-check-input" type="checkbox" role="switch" v-model="form.accept_booking" id="flexSwitchCheckDefault">
                 </div>
               </div>
 
               <div class="d-flex justify-content-between group-item">
                 <label class="form-check-label" for="flexSwitchCheckDefault">Do you want to accept custom song?</label>
                 <div class="form-check form-switch">
-                  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                  <input class="form-check-input" type="checkbox" role="switch" v-model="form.accept_request" id="flexSwitchCheckDefault">
                 </div>
               </div>
 
               <div class="d-flex justify-content-between group-item">
                 <label class="form-check-label" for="flexSwitchCheckDefault">Do you want to accept booking for special occassions?</label>
                 <div class="form-check form-switch">
-                  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                </div>
-              </div>
-
-              <div class="card mb-3" v-if="artistProfile?.instagram_username">
-                <div class="row g-0">
-                  <div class="col-md-1">
-                    <img src="/assets/social icons/_Instagram.svg" class="img-fluid rounded-start mx-2" alt="Instagram">
-                  </div>
-                  
-                  <div class="col-md-10">
-                    <div class="card-body">
-                      <h5 class="card-title">Instagram</h5>
-                      <p class="card-text"><small class="text-body-secondary">{{ artistProfile?.instagram_username }}</small></p>
-                    </div>
-                  </div>
-
-                  <div class="col-md-1">
-                    <div class="text-end">
-                      <a href="#" @click="removeSocialMedia('instagram')">
-                        <span class="material-symbols-rounded">delete</span>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="card mb-3" v-if="userInfo?.spotify_profile" style="height: 90px;">
-                <div class="row g-0">
-                  <div class="col-md-1">
-                    <img src="/assets/social icons/_Spotify.svg" class="img-fluid rounded-start mx-2" alt="Spotify">
-                  </div>
-
-                  <div class="col-md-10">
-                    <div class="card-body">
-                      <h5 class="card-title">Spotify</h5>
-                      <p class="card-text"><small class="text-body-secondary">{{ userInfo?.spotify_profile }}</small></p>
-                    </div>
-                  </div>
-
-                  <div class="col-md-1">
-                    <div class="text-end">
-                      <a href="#" @click="removeSocialMedia('spotify')">
-                        <span class="material-symbols-rounded">delete</span>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="card mb-3" v-if="artistProfile?.twitter_username" style="height: 90px;">
-                <div class="row g-0">
-                  <div class="col-md-1">
-                    <img src="/assets/social icons/_Twitter.svg" class="img-fluid rounded-start mx-2" alt="Twitter">
-                  </div>
-
-                  <div class="col-md-10">
-                    <div class="card-body">
-                      <h5 class="card-title">Twitter</h5>
-                      <p class="card-text"><small class="text-body-secondary">{{ artistProfile?.twitter_username }}</small></p>
-                    </div>
-                  </div>
-
-                  <div class="col-md-1">
-                    <div class="text-end">
-                      <a href="#" @click="removeSocialMedia('twitter')">
-                        <span class="material-symbols-rounded">delete</span>
-                      </a>
-                    </div>
-                  </div>
+                  <input class="form-check-input" type="checkbox" role="switch" v-model="form.accept_proposal" id="flexSwitchCheckDefault">
                 </div>
               </div>
 
@@ -286,7 +315,8 @@
                   placeholder="My name is [Your Name], and I am a [genre/ style] music artist based in [city, country]. I am writing to propose a music collaboration opportunity that I believe would be mutually beneficial and creatively inspiring......">
                 </textarea>
 
-                <div v-if="errors?.bio">{{ errors.bio }}</div>
+                <!-- <div v-if="errors.bio">{{ error.bio }}</div> -->
+                <div v-for="err in error?.bio" :key="err" class="text-danger">{{ err }}</div>
               </div>
 
               <div class="text-center">
@@ -328,8 +358,11 @@
     </section>
 
     <section class="artist-data">
+      {{  form }}
+
+      <section>Genre: <p>{{  genres }}</p></section>
       <div class="container">
-          <vs-avatar>
+          <!-- <vs-avatar>
             <template #text>
               Lily
             </template>
@@ -337,7 +370,7 @@
 
           <vs-avatar>
             <img width="100" height="100" src="https://thumbs.dreamstime.com/b/businessman-icon-vector-male-avatar-profile-image-profile-businessman-icon-vector-male-avatar-profile-image-182095609.jpg" alt="">
-          </vs-avatar>
+          </vs-avatar> -->
 
         <p>{{ $filters.timeAgo('2019-12-19') }}</p>
         {{  artistProfile  }}
@@ -350,8 +383,8 @@
 <script>
 // import Layout from '/src/components/Layouts/ArtistLayout.vue';
 import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
-import MemberForm from '/src/views/Artist/AddMember.vue';
-import SocialMediaForm from '/src/views/Artist/SocialMedia.vue';
+import MemberForm from '/src/views/Artist/Form/AddMember.vue';
+import SocialMediaForm from '/src/views/Artist/Form/SocialMedia.vue';
 import BlankHeader from "@/components/Home/BlankHeader.vue";
 
 export default {
@@ -373,7 +406,16 @@ export default {
         street: null,
         city: null,
         province: null,
+        youtube_channel: null,
+        twitter_username: null,
+        instagram_username: null,
+        spotify_profile: null,
+        accept_request: false,
+        accept_booking: false,
+        accept_proposal: false,
       },
+      options: ['list', 'of', 'options'],
+      // members: [],
       //errors: {},
       active: false,
       formType: 'members',
@@ -390,6 +432,7 @@ export default {
   },
   mounted()
   {
+    this.fetchArtistOptions()
     this.artistOptions()
   },
   props: {
@@ -402,7 +445,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      'fetchArtistOptions', 'updateArtistProfile', 'removeMember', 'removeSocialMedia', 'artistOptions'
+      'fetchArtistOptions', 'updateArtistProfile', 'removeMember', /*'removeSocialMedia',*/ 'artistOptions'
     ]),
     ...mapMutations([
       'SET_PROFILE', 'SET_ARTIST', 'SET_MEMBERS',
@@ -410,6 +453,27 @@ export default {
     submit()
     {
       this.$emit('form', this.form)
+      console.log('Artist Profile [form]: ', this.form)
+    },
+    removeSocialMedia(key)
+    {
+
+      switch (key) {
+        case 'youtube':
+          this.form.youtube_channel = '';
+          break;
+        case 'instagram':
+          this.form.instagram_username = '';
+          break;
+        case 'twitter':
+          this.form.twitter_username = '';
+          break;
+        case 'spotify':
+          this.form.spotify_profile = '';
+          break;
+        default:
+
+      }
     },
     dismiss()
     {
@@ -432,13 +496,32 @@ export default {
     {
       e.target.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm3RFDZM21teuCMFYx_AROjt-AzUwDBROFww&usqp=CAU';
     },
-    updateSocial(val)
+    updateSocial(key, val)
     {
+
+      switch (key) {
+        case 'youtube':
+          this.form.youtube_channel = val;
+          break;
+        case 'instagram':
+          this.form.instagram_username = val;
+          break;
+        case 'twitter':
+          this.form.twitter_username = val;
+          break;
+        case 'spotify':
+          this.form.spotify_profile = val;
+          break;
+        default:
+            
+      }
+      
       console.log('Update Social: ', val)
     },
     updateMember(val)
     {
-      console.log('Update Member: ', val)
+      this.member.push(val);
+      this.dismiss()
     }
   },
   computed: {
@@ -449,11 +532,12 @@ export default {
       members: (state) => state.artist.members,
       account: (state) => state.account,
     }),
-  }
+  },
+  compatConfig: { MODE: 3 },
 }
 </script>
 
 <style>
+/* @import "@vueform/multiselect/themes/default.css"; */
 @import '@/assets/css/artist-ui.css';
-/* @import "@vueform/multiselect/themes/default.css" */
 </style>

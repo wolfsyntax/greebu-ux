@@ -41,13 +41,13 @@ export default {
     {
 
       console.log(`Account Profile [${this.userRole}]: `, value);
-
-      this.accountProfile(value)
-        .then(response =>
-        {
-          console.log('Account Profile: ', response);
-          this.errors = [];
-        });
+      
+      // this.accountProfile(value)
+      //   .then(response =>
+      //   {
+      //     console.log('Account Profile: ', response);
+      //     this.errors = [];
+      //   });
     }
   },
   computed: {
@@ -55,7 +55,7 @@ export default {
     ...mapState({
       users: (state) => state.user,
     }),
-  }
+  },
 }
 </script>
 
