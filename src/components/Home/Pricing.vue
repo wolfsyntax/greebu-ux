@@ -91,8 +91,16 @@
                     <p>Per month, billed each year (123)</p>
                 </div>
                 <div>
-                    <a href="/subscription">Get Started</a>
-                    <!-- <button type="button" class="btn">Get Started</button> -->
+                    <div v-if="isLoggedIn">
+                        <a href="/subscription">Get Started</a>
+                    </div>
+                    <div v-else>
+                        <a href="#"
+                    @click="openModal" 
+                    data-bs-toggle="modal" data-bs-target="#mustSignUp"> 
+                        Get Started</a>
+                    </div>
+
                 </div>
             </div>
         </div>   
@@ -106,22 +114,26 @@
                     <p>Per month, billed each year (123)</p>
                 </div>
                 <div>
-                    <a href="/subscription">Get Started</a>
+                    <div v-if="isLoggedIn">
+                        <a href="/subscription">Get Started</a>
+                    </div>
+                    <div v-else>
+                        <a href="#"
+                    @click="openModal" 
+                    data-bs-toggle="modal" data-bs-target="#mustSignUp"> 
+                        Get Started</a>
 
-        
-
+                    </div>
                 </div>
             </div>
         </div>
         </div>
-        
     </div> <!-- end of subscription-wrapper -->
-
     </div> <!-- end of container -->
     </div>
   </section>
 
-
+  <MustSignupModal />
 </template>
 
 <script>
@@ -129,19 +141,27 @@
 // import { router } from '@inertiajs/vue3';
 
 import { mapGetters } from "vuex";
+import MustSignupModal from '/src/components/Artist/MustSignupModal.vue';
 
 export default {
+  components: {
+    MustSignupModal
+  },
 data() {
   return {
   }
 },
 computed: {
     ...mapGetters(["isLoggedIn"]),
-    // ...mapGetters(["isLoggedIn", 'userInfo', 'info']),
   },
 // props: {
 //         pricing: Object
 //     },
+methods: {
+    openModal(data){
+        this.$root.$emit("bv::show::modal", "#mustSignUp");
+      },
+    }
 }
 </script>
 

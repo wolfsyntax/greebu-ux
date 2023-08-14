@@ -1,4 +1,5 @@
 <template>
+  <SubscriptionModal />
   <main>
     <header class="main-nav">
       <nav class="navbar navbar-expand-lg">
@@ -84,7 +85,9 @@
                                                  <!-- ARTISTS MENU AND DROPDOWN -->
 
            <div v-if="userRole === 'artists'" class="d-flex align-items-center artists">
-            <a href="#" class="btn btn-primary upgrade" data-bs-toggle="modal" data-bs-target="#selectPlanModal">Upgrade Plan</a>
+            <a href="#" class="btn btn-primary upgrade" 
+            @click="openModal"
+            data-bs-toggle="modal" data-bs-target="#selectPlanModal">Upgrade Plan</a>
               <a href="#"><span class="material-symbols-outlined bell-icon">&#xe7f4;</span></a>
 
                <div class="dropdown dropstart">
@@ -217,9 +220,11 @@
 </template>
 <script>
 import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
+import SubscriptionModal from '/src/components/Artist/SubscriptionModal.vue';
 
 export default {
   components: {
+    SubscriptionModal
   },
   setup() {
     
@@ -280,6 +285,9 @@ export default {
     }
   },
   methods: {
+    openModal(data){
+        this.$root.$emit("bv::show::modal", "#selectPlanModal");
+      },
     ...mapActions([
       'signout'
     ]),

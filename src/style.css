@@ -4019,6 +4019,9 @@ justify-content: space-between;
   align-items: center;
   margin-bottom: 2.81rem;
 }
+.subscription .back .show-subscription-modal{
+  padding: 0;
+}
 .subscription .back .arrow-back {
   font-size: 2rem;
   color: var(--orange);

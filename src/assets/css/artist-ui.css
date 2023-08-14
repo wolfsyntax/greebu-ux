@@ -1510,7 +1510,7 @@ background: var(--btn-hovered);
 }
 #artistPost .modal-body .manage-to-post{
   gap: 1.5rem;
-  margin-bottom: 5rem;
+  /* margin-bottom: 5rem; */
 }
 #artistPost .modal-body .manage-to-post .post-icon{
   color: #536471;
@@ -1519,6 +1519,9 @@ background: var(--btn-hovered);
   background-color: #EFEFFC;
   border-radius: 100px;
   margin-right: 0.62rem;
+}
+#artistPost .modal-body .button-wrapper {
+  margin-top: 5rem;
 }
 #artistPost .modal-body .manage-to-post button{
   color: #8690A2;
@@ -1530,9 +1533,12 @@ background: var(--btn-hovered);
   transition: background-color 0.3s ease-in-out;
 }
 #artistPost .modal-body .manage-to-post button:hover .post-icon{
-  background-color: var(--orange);
-  color: var(--white);
+  background-color: var(--orange)!important;
+  color: var(--white)!important;
   animation: bounceIcon 1s ease 1;
+}
+#artistPost .modal-body .manage-to-post button:hover .selected{
+  color: var(--orange)!important;
 }
 @keyframes bounceIcon {
   0%, 20%, 50%, 80%, 100% {
@@ -1579,6 +1585,9 @@ background: var(--btn-hovered);
   height: 1.5rem;
   cursor: pointer;
 }
+#artistPost .modal-content .modal-title .back-to-post:hover{
+  color: var(--orange);
+}
 #artistPost .modal-body .search-container{
   display: flex;
   align-items: center;
@@ -1613,17 +1622,46 @@ background: var(--btn-hovered);
   font-weight: 600;
   line-height: 2rem; 
 }
+#artistPost .modal-body .icons-list .left-icon:hover, #artistPost .modal-body .icons-list .right-icon:hover{
+  border: 1px solid var(--orange);
+}
 #artistPost .modal-body .left-icon img, #artistPost .modal-body .right-icon img{
   margin-right: 1rem;
 }
-/* #artistPost .modal-body .icons-list {
-  color: #23262F;
-  font-feature-settings: 'clig' off, 'liga' off;
-  font-size: 1.5rem;
+#artistPost .modal-body .upload-file-wrapper {
+  border-radius: 0.625rem;
+  border: 1px dashed var(--gray6);
+  padding: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+#artistPost .upload-file-wrapper .upload-file-content{
+  border-radius: 0.25rem;
+  background: #EFEFFC;
+  padding: 2rem 0;
+}
+#artistPost .upload-file-wrapper .upload-file-content svg{
+  margin-bottom: 1.5rem;
+}
+#artistPost .upload-file-wrapper .upload-file-content .title{
+  color: var(--black-color);
+  font-size: 0.875rem;
   font-weight: 600;
-  line-height: 2rem; 
-  margin-bottom: 0;
-} */
+  margin-bottom: 0.75rem;
+}
+#artistPost .upload-file-content .upload-wrapper label{
+  color: var(--orange);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  background-color: transparent;
+  padding: 0.75rem 1rem;
+  border-radius: 0.3125rem;
+  border: 1px solid var(--orange);
+}
+#artistPost .upload-file-content .upload-wrapper label:hover{
+  background-color: var(--orange);
+  color: var(--white);
+}
 
 
 

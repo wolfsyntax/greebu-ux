@@ -333,9 +333,20 @@
           <div class="col-3"></div>
         </div> <!-- end of row -->
       </div> <!-- end of container -->
+      
     </section>
 
     <section class="artist-data">
+      <div class="form-group">
+                  <label for="genre">Genre</label>
+                  <multiselect v-model="form.genre" :options="{
+    batman: 'Batman',
+    robin: 'Robin',
+    joker: 'Joker'
+  }" mode="tags" class="genre"
+                    placeholder="Please select genres" />
+                  <div v-if="errors?.genre" class="genre-error text-danger"></div>
+          </div>
       <div class="container">
         <vs-avatar>
           <template #text>
@@ -353,6 +364,16 @@
         </vs-avatar> -->
         <p>{{ $filters.timeAgo('2019-12-19') }}</p>
         {{ artistProfile }}
+
+          <div class="form-group">
+                  <label for="genre">Genre</label>
+                  <multiselect v-model="form.genre" :options="genres" 
+                  mode="mutiple" class="genre"
+                    placeholder="Please select genres" />
+                  <div v-if="errors?.genre" class="genre-error text-danger"></div>
+          </div>
+          {{ genres }}
+
       </div>
     </section>
 
