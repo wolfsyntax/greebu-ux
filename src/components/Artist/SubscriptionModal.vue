@@ -102,7 +102,7 @@
     },
     createProfile(){
       // window.location.href = '/artist/profile';
-      window.location.href = '/account/profile';
+      // window.location.href = '/account/profile';
       this.$router.push('/account/profile');
     },
       
