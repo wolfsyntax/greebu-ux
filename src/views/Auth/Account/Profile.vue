@@ -1,6 +1,6 @@
 <template>
   <div>
-    <artist-profile @form="submit" :error="errors" v-if="userRole === 'artists'"/>    
+    <artist-profile @form="submit" :error="errors" :message="message" v-if="userRole === 'artists'"/>    
     <organizer-profile @form="submit" :error="errors" v-else-if="userRole === 'organizer'" />
     <provider-profile @form="submit" :error="errors" v-else-if="userRole === 'service-provider'" />
     <customer-profile @form="submit" :error="errors" v-else-if="userRole === 'customers'" />
@@ -31,7 +31,8 @@ export default {
   },
   data: () => ({
     form: {},
-    errors: []
+    errors: [],
+    message: '',
   }),
   methods: {
     ...mapActions([
@@ -40,13 +41,20 @@ export default {
     submit(value)
     {
 
-      console.log(`Account Profile [${this.userRole}]: `, value);
+      console.log(`Account Profile [${this.userRole}]:: `, value);
       
       this.accountProfile(value)
         .then(response =>
         {
-          console.log('Account Profile: ', response);
+          console.log('Account Profile+: ', response);
           this.errors = [];
+
+          const { status: statusCode, data: {status, result}} = response;
+
+          if (response?.status === 200 && status === 200)
+          {
+            this.message = 'Updated successfully';
+          }
         });
     }
   },
