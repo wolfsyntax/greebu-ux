@@ -22,7 +22,7 @@ export default {
     ArtistProfile,
     CustomerProfile,
     OrganizerProfile,
-    ProviderProfile
+    ProviderProfile,
   },
   setup () {
     
@@ -41,7 +41,7 @@ export default {
     {
 
       console.log(`Account Profile [${this.userRole}]: `, value);
-
+      
       this.accountProfile(value)
         .then(response =>
         {
@@ -55,7 +55,7 @@ export default {
     ...mapState({
       users: (state) => state.user,
     }),
-  }
+  },
 }
 </script>
 

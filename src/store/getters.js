@@ -33,6 +33,7 @@ var getters = {
       phone: state?.user.phone,
     }
   },
+  agenre: state => state.account.genre.map(function (g) { return g['title']  })
 }
 
 export default getters

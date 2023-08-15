@@ -9,7 +9,8 @@ export const fetchArtistOptions = ({ commit, rootState, state}, payload) => {
     await axios.get(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/artists/create`, payload)
       .then(response => {        
         
-        const {data, status} = response
+        const { data, status } = response
+        console.log('Options [fetchArtistOptions]: ', response)
         if (status === 200 && data.status === 200)
         { 
           const { result } = data

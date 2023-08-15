@@ -8,6 +8,7 @@ import {
   FacebookAuthProvider
 } from 'firebase/auth'
 
+// import { GoogleAuthProvider, FacebookAuthProvider } from "@firebase/auth";
 import { useCurrentUser, useFirebaseAuth } from 'vuefire';
 
 
@@ -610,7 +611,7 @@ var actions = {
     {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
 
-      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/user/detail`, payload)
+      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/account/settings`, payload)
         .then(response =>
         {
           const { status: statusCode, data: { status, message, result } } = response;
@@ -632,23 +633,58 @@ var actions = {
         })
     })
   },
+  fetchProfile({ commit, state }, payload)
+  {
+    return new Promise(async (resolve, reject) =>
+    {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
+      
+      await axios.get(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/account?role=${state.role}`, payload, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      }
+    })
+        .then(response =>
+        {
+          const { status: statusCode, data: { status, message, result } } = response;
+          console.log('[vuex]  fetchProfile: ', response)
+          if (statusCode === 200) {
+            console.log('[vuex] fetchProfile (success): ', response);
+            if (status === 200) {
+              
+              const { account, user, profile } = result;
+              console.log('[vuex] fetchProfile updating state: ', account)
+              // commit('SET_AUTH', user);
+              commit('SET_ACCOUNT', account);
+              // commit('SET_PROFILE', profile);
+
+            }
+          }
+        })
+    })    
+  },
   accountProfile({ commit, state }, payload)
   {
     return new Promise(async (resolve, reject) =>
     {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
-
-      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/user/profile?role=${state.role}`, payload)
+      console.log('[vuex] accountProfile ', payload)
+      if (typeof (payload?.avatar) === 'string') delete payload?.avatar;
+      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/account/profile?role=${state.role}`, payload, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      }
+    })
         .then(response =>
         {
           const { status: statusCode, data: { status, message, result } } = response;
-
+          console.log('[vuex]  accountProfile: ', response)
           if (statusCode === 200) {
-
+            console.log('[vuex] accountProfile (success): ', response);
             if (status === 200) {
               
               const { account, user, profile } = result;
-
+              console.log('[vuex] accountProfile updating state: ', account)
               commit('SET_AUTH', user);
               commit('SET_ACCOUNT', account);
               commit('SET_PROFILE', profile);

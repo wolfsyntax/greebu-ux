@@ -157,7 +157,7 @@
                               <button type="button" @click="removeMember(mem.id)" class="btn btn-danger">
                                 <span class="material-symbols-rounded">delete</span>
                               </button>
-                              <Link href="">Edit</Link>
+                              <button href="">Edit</button>
                             </div>
                           </div>
                         </li>

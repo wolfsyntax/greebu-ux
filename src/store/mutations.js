@@ -15,7 +15,10 @@ var mutations = {
   },
   SET_ACCOUNT(state, payload)
   {
+    console.log('[vuex:mutation] account: ', payload)
+    //payload.genres = payload?.genres.map(function (g) { return g['title']  });
     state.account = payload;    
+    // state.account.genre = payload.genre.map(function (g) { return g['title']  });
   },
   SET_PLANS(state, payload)
   {

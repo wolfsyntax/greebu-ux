@@ -10,7 +10,11 @@ export default defineConfig({
           base: null,
           includeAbsolute: false,
         },
+        compilerOptions: {
+          compatConfig: { MODE: 3 }
+        }
       },
+
     }),
   ],
   resolve: {

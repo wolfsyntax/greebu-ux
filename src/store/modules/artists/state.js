@@ -3,6 +3,7 @@ var state = {
   artist_types: null,
   artist_genres: null,
   genres: null,
+  genreList: null,
   members: null,
   artist: {},
   pagination: {
