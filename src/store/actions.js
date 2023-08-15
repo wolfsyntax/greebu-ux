@@ -655,7 +655,7 @@ var actions = {
           const { status: statusCode, data: { status, message, result } } = response;
           console.log('[vuex]  fetchProfile: ', response)
           if (statusCode === 200) {
-            console.log('[vuex] fetchProfile (success): ', response);
+            
             if (status === 200) {
               
               const { account, user, profile } = result;

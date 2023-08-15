@@ -54,6 +54,8 @@ export default {
           if (response?.status === 200 && status === 200)
           {
             this.message = 'Updated successfully';
+            window.scrollBy(-10000, -10000);
+            this.$forceUpdate();
           }
         });
     }
