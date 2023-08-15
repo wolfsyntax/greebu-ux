@@ -1,7 +1,7 @@
 <template>
 
   <div>
-    <section class="profile-details">
+    <section class="profile-details" id="artist-profile">
       <div class="container">
         <div class="row profile-row">
           <div class="col-3"></div>
@@ -57,8 +57,12 @@
             <form @submit.prevent="submit" class="fill-details">
               <div class="form-group upload-img">
                 <label class="label-img">
-                    <img src="/assets/artist-account/new.svg" class="img-fluid default-avatar" alt="default user avatar">
+                    <img :src="`${myAccount?.avatar || '/assets/artist-account/new.svg'}`" class="img-fluid default-avatar" alt="default user avatar">
                     <div class="camera">
+                      
+                      <!-- <input type="file" ref="file" @change="uploadFile" accept="image/png, image/webp, image/svg, image/jpeg" /> -->
+                      
+                      
                       <input type="file" @input="form.avatar = $event.target.files[0]" accept="image/png, image/webp, image/svg, image/jpeg" />
                       <!-- <div v-if="error?.avatar" class="text-danger">{{ error.avatar }}</div> -->
                       <div v-for="err in error?.avatar" :key="err" class="text-danger">{{ err }}</div>
@@ -152,9 +156,11 @@
                             <vs-avatar v-else circle>
                               <img @error="replaceByDefault" :src="mem.avatar" alt="" />            
                             </vs-avatar> -->
-
+                            
+                            <img @error="replaceByDefault" class="avatar" :src="mem.avatar" alt="" />      
+                            
                             <div class="member-info">
-                              <h6 class="band-name">{{ mem.fullname }}</h6>
+                              <h6 class="band-name">{{ mem.member_name }}</h6>
                               <p class="band-role">{{ mem.role }}</p>
                             </div>
                           </div>
@@ -374,20 +380,7 @@
         
         <br/>Genre: <p>{{  genres }}</p>
       </section>
-      <div class="container">
-          <!-- <vs-avatar>
-            <template #text>
-              Lily
-            </template>
-          </vs-avatar>
-
-          <vs-avatar>
-            <img width="100" height="100" src="https://thumbs.dreamstime.com/b/businessman-icon-vector-male-avatar-profile-image-profile-businessman-icon-vector-male-avatar-profile-image-182095609.jpg" alt="">
-          </vs-avatar> -->
-
-        <p>{{ $filters.timeAgo('2019-12-19') }}</p>
-        {{  artistProfile  }}
-      </div>
+      
     </section>
 
   </div>
@@ -429,6 +422,7 @@ export default {
         accept_booking: false,
         accept_proposal: false,
       },
+      avatar: '/assets/artist-account/new.svg',
       options: ['list', 'of', 'options'],
       // members: [],
       //errors: {},
@@ -457,12 +451,8 @@ export default {
     this.form = this.myAccount
     // this.form.genre = ''
     // this.form.genre = this.account.genres.map(function (g) { return g['title']  });
-    console.log('Form: ', this.form)
-    console.log('Account: ', this.account)
-    // this.form.genre = this.account.genres.map(function (g)
-    // {
-    //   return g['title']
-    // })
+
+    this.avatar = this.myAccount?.avatar
     
   },
   props: {
@@ -484,9 +474,23 @@ export default {
     ...mapMutations([
       'SET_PROFILE', 'SET_ARTIST', 'SET_MEMBERS',
     ]),
+    // uploadFile()
+    // {
+    //   this.form.avatar = this.$refs.file.files[0];
+    //   this.avatar = this.form.avatar?.value;
+    //   console.log('Upload File: ', this.form.avatar)
+    // },
     submit()
     {
       this.$emit('form', this.form)
+      this.fetchProfile();
+      // this.$nextTick(() =>
+      // {
+      //   this.fetchProfile();
+      //   this.form = this.myAccount;
+      //   console.log('Artist form submitted: ', this.myAccount)
+      //   this.$forceUpdate();
+      // })
       console.log('Artist Profile [form]: ', this.form)
     },
     removeSocialMedia(key)
@@ -577,4 +581,11 @@ export default {
 <style>
 @import "@vueform/multiselect/themes/default.css";
 @import '@/assets/css/artist-ui.css';
+
+.avatar {
+  vertical-align: middle;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
 </style>
