@@ -1592,8 +1592,8 @@ background: var(--btn-hovered);
   display: flex;
   align-items: center;
   border-radius: 0.625rem;
-  border: 1px solid #EFEFFC;
-  box-shadow: 0px 4px 18px 0px rgba(56, 29, 219, 0.10);
+  /* border: 1px solid #EFEFFC;
+  box-shadow: 0px 4px 18px 0px rgba(56, 29, 219, 0.10); */
   background-color: white;
   margin: 1.5rem auto 2.5rem;
 }
@@ -1602,6 +1602,9 @@ background: var(--btn-hovered);
   padding: 1.0625rem 1.25rem 1.0625rem 2.9rem;
   width: 100%;
   font-size: 16px;
+  border-radius: 0.625rem;
+  border: 1px solid #EFEFFC;
+  /* box-shadow: 0px 4px 18px 0px rgba(56, 29, 219, 0.10); */
 }
 #artistPost .modal-body .search-container span {
   position: absolute;
@@ -1648,6 +1651,14 @@ background: var(--btn-hovered);
   font-weight: 600;
   margin-bottom: 0.75rem;
 }
+#artistPost .upload-file-wrapper .upload-file-content .limit{
+  color: rgba(0, 0, 0, 0.40);
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 1.25rem;
+}
 #artistPost .upload-file-content .upload-wrapper label{
   color: var(--orange);
   font-size: 0.7rem;
@@ -1683,7 +1694,7 @@ background: var(--btn-hovered);
                                                                              /* MEDIA QUERIES */
 
 /* Large (lg) and Extra large (xl) */
-@media (min-width: 1200px) and (max-width: 1399.98px){
+@media (min-width: 992px) and (max-width: 1399.98px){
   /* 
   STANDARD MARGIN:
   margin-top: 80px / 5rem
@@ -1698,6 +1709,9 @@ background: var(--btn-hovered);
 
                                                     /* ARTIST POST MODAL */
 
+#artistPost .modal-dialog {
+  max-width: 35rem!important;
+}
 #artistPost .modal-content {
     padding: 2.1rem 2.1rem 2.5rem;
 }
@@ -1706,9 +1720,6 @@ background: var(--btn-hovered);
   font-style: normal;
   font-weight: 600;
   line-height: 2rem; 
-}
-#artistPost .modal-content .modal-header, #artistPost .modal-body .artist-image, #artistPost .modal-body .form-group {
-  margin-bottom: 1.25rem;
 }
 #artistPost .modal-body .artist-image img {
   width: 3.5rem;
@@ -1723,24 +1734,83 @@ background: var(--btn-hovered);
 #artistPost .modal-body .add-post {
   font-size: 1rem;
   font-weight: 600;
-  margin-bottom: 1.25rem;
 }
-#artistPost .modal-body .manage-to-post button {
+#artistPost .modal-body .manage-to-post .post-icon {
+  font-size: 1.4rem;
+  padding: 0.71rem;
+  margin-right: 0.37rem;
+}
+#artistPost .modal-body .manage-to-post button .selected{
   font-size: 0.875rem;
-}
-#artistPost .modal-body .manage-to-post span {
-    font-size: 1.4rem;
-    padding: 0.71rem;
-    margin-right: 0.37rem;
-}
-#artistPost .modal-body .manage-to-post {
-  gap: 1.25rem;
-  margin-bottom: 4.5rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
 }
 #artistPost .modal-body .button-wrapper button {
   font-size: 1rem;
-  padding: 0.88rem 10rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.02rem;
+  padding: 0.94rem 10rem;
 }
+#artistPost .modal-body .icons-list .left-icon, #artistPost .modal-body .icons-list .right-icon {
+  padding: 0.78rem 1.25rem;
+  font-size: 1rem;
+}
+#artistPost .modal-body .left-icon img, #artistPost .modal-body .right-icon img {
+  margin-right: 0.62rem;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+#artistPost .modal-body .form-group textarea::placeholder{
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.5rem; 
+}
+#artistPost .modal-body .upload-file-wrapper {
+  padding: 0.5rem;
+}
+#artistPost .upload-file-wrapper .upload-file-content {
+  padding: 1.56rem 0;
+}
+#artistPost .upload-file-wrapper .upload-file-content svg {
+  margin-bottom: 0.62rem;
+  width: 1.8125rem;
+  height: 1.8125rem;
+}
+#artistPost .upload-file-wrapper .upload-file-content .title {
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+#artistPost .upload-file-wrapper .upload-file-content .limit {
+  font-size: 0.625rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+#artistPost .upload-file-content .upload-wrapper label {
+  font-size: 0.625rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  padding: 0.75rem 1rem;
+}
+#artistPost .modal-body .search-container {
+  margin: 0.25rem auto 1.25rem;
+}
+#artistPost .modal-body .search-container span {
+  left: 2.8%;
+}
+#artistPost .modal-body .search-container .search-input {
+  padding: 0.88rem 1.25rem 0.88rem 2.9rem;
+}
+
+
+
 
 
                                                     /* ARTIST PROFILE PAGE*/
