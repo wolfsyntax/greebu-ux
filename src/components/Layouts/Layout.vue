@@ -257,7 +257,7 @@ export default {
         { icon: 'help', name: 'Help Center', link: '/'},
       ],
       artistsDropdown: [
-        { icon: 'account_circle', name: 'Account Settings', link: '/artist'},
+        { icon: 'account_circle', name: 'Account Settings', link: '/account/setting'},
         // { icon: 'mail', name: 'Message', link: '/message'},
         { icon: 'library_music	', name: 'Customized Songs', link: '/create-song'},
         { icon: 'event_available', name: 'My Bookings', link: '/'},

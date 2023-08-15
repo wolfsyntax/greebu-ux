@@ -49,6 +49,11 @@
             </div>
 
             <div v-if="active" class="modal-backdrop fade show"></div>
+
+            <div class="alert alert-success" role="alert" v-if="message">
+              {{ message }}
+            </div>
+
             <form @submit.prevent="submit" class="fill-details">
               <div class="form-group upload-img">
                 <label class="label-img">
@@ -86,8 +91,8 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="genre">Genre</label> {{ }}
-                  <multiselect v-model="form.genres" :options="genres" mode="tags" class="genre" placeholder="Please select genres" />
+                  <label for="genre">Genre</label>
+                  <multiselect v-model="form.genres" :options="formGenres" mode="tags" class="genre" placeholder="Please select genres" />
                   <!-- <div v-if="errors.genre" class="genre-error text-danger"></div> -->
 
                   <div v-for="err in error?.genre" :key="err" class="text-danger">{{ err }}</div>
@@ -361,7 +366,7 @@
     </section>
 
     <section class="artist-data">
-      Account: {{ account }}
+      Account: {{ myAccount }}
       <br/>
       Form: {{  form }}
 
@@ -443,9 +448,13 @@ export default {
   mounted()
   {
     this.fetchArtistOptions()
+      .then(response =>
+      {
+        console.log('Fetch Artists Options: ', response)
+      })
     this.artistOptions()
     this.fetchProfile()
-    this.form = this.account
+    this.form = this.myAccount
     // this.form.genre = ''
     // this.form.genre = this.account.genres.map(function (g) { return g['title']  });
     console.log('Form: ', this.form)
@@ -462,7 +471,11 @@ export default {
       default: [],
       required: true
     },
-
+    message: {
+      type: String,
+      default: '',
+      required: false,
+    }
   },
   methods: {
     ...mapActions([
@@ -546,13 +559,17 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["userInfo", "token", 'artistProfile', 'artistGenre', ]),
+    ...mapGetters(["userInfo", "token", 'artistProfile', 'artistGenre', 'myAccount',]),
     ...mapState({
       artistTypes: (state) => state.artist.artist_types,
-      genres: (state) => state.artist.genreList,
+      genres: (state) => state.artist.genres,
       members: (state) => state.artist.members,
-      account: (state) => state.account,
+      // account: (state) => state.account,
     }),
+    formGenres()
+    {
+      return this.genres?.map(function (g) { return g['title'] })
+    }
   },
 }
 </script>

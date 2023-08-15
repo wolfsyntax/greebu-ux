@@ -630,7 +630,13 @@ var actions = {
 
             }
           }
+
+          resolve(response);
         })
+        .catch(err =>
+        {
+          reject(err)
+        });
     })
   },
   fetchProfile({ commit, state }, payload)
@@ -660,7 +666,13 @@ var actions = {
 
             }
           }
+
+          resolve(response);
         })
+        .catch(err =>
+        {
+          reject(err)
+        });
     })    
   },
   accountProfile({ commit, state }, payload)
@@ -691,7 +703,13 @@ var actions = {
 
             }
           }
+          
+          resolve(response);
         })
+        .catch(err =>
+        {
+          reject(err)
+        });
     })
   },
   test2({ commit, state }, payload)
