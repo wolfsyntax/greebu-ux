@@ -630,7 +630,13 @@ var actions = {
 
             }
           }
+
+          resolve(response);
         })
+        .catch(err =>
+        {
+          reject(err)
+        });
     })
   },
   fetchProfile({ commit, state }, payload)
@@ -649,7 +655,7 @@ var actions = {
           const { status: statusCode, data: { status, message, result } } = response;
           console.log('[vuex]  fetchProfile: ', response)
           if (statusCode === 200) {
-            console.log('[vuex] fetchProfile (success): ', response);
+            
             if (status === 200) {
               
               const { account, user, profile } = result;
@@ -660,7 +666,13 @@ var actions = {
 
             }
           }
+
+          resolve(response);
         })
+        .catch(err =>
+        {
+          reject(err)
+        });
     })    
   },
   accountProfile({ commit, state }, payload)
@@ -691,7 +703,13 @@ var actions = {
 
             }
           }
+          
+          resolve(response);
         })
+        .catch(err =>
+        {
+          reject(err)
+        });
     })
   },
   test2({ commit, state }, payload)

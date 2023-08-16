@@ -114,6 +114,13 @@ export default {
           this.errors = response?.result?.errors || {}
         } else {
           this.$store.commit('SET_MEMBERS', response.result?.members)
+
+          this.form = {
+            member_avatar: null,
+            member_name: '',
+            role: null,
+          };
+
           this.$emit('modalClose')
         }
 

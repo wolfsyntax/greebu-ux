@@ -5,7 +5,7 @@ var getters = {
   userRole: state => state.role,
   isLoggedIn: (state) => state.bearerToken && Object.keys(state.profile).length !== 0, //
   isFreeloader: (state) => state.profile?.is_freeloader ? true : false,
-  isPhoneVerified: (state) => !state.user?.phone_verified_at && state.isPhoneModify,
+  isPhoneVerified: (state) => (!state.user?.phone_verified_at && state.isPhoneModify),
   countryList: state => state.countries
     .map(function (country)
     {
@@ -33,7 +33,8 @@ var getters = {
       phone: state?.user.phone,
     }
   },
-  agenre: state => state.account.genre.map(function (g) { return g['title']  })
+  // agenre: state => state.account.genre.map(function (g) { return g['title']  })
+  myAccount: state => state?.account
 }
 
 export default getters

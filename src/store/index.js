@@ -56,5 +56,5 @@ export default new Vuex.Store({
     // services,
     songs,
   },
-  strict: true,
+  strict: false,
 });

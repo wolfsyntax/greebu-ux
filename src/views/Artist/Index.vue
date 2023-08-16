@@ -11,7 +11,7 @@
                       <div class="cover">
                           <div class="gray-shade"></div>
                           <figure>
-                              <img src="https://res.cloudinary.com/daorvtlls/image/upload/v1686465779/samples/cloudinary-group.jpg" class="img-fluid" alt="profile cover">
+                              <img :src="`${account.avatar || 'https://res.cloudinary.com/daorvtlls/image/upload/v1686465779/samples/cloudinary-group.jpg'}`" class="img-fluid" alt="profile cover">
                           </figure>
                             <div class="cover-photo-camera">
                               <button type="submit" class="btn btn-success">
@@ -22,7 +22,7 @@
                               <div class="col-9">
                                 <div class="profile-info">
                                   <div class="position-relative">
-                                  <img class="profile-pic" src="https://res.cloudinary.com/daorvtlls/image/upload/v1686465790/cld-sample.jpg" alt="profile">
+                                  <img class="profile-pic" :src="`${account?.avatar || 'https://res.cloudinary.com/daorvtlls/image/upload/v1686465790/cld-sample.jpg'}`" alt="profile">
                                   <!-- https://res.cloudinary.com/daorvtlls/image/upload/v1687927639/artist-profile-1_uhpekp.webp -->
                                     <div class="camera">
                                       <button type="submit" class="btn btn-success">
@@ -34,9 +34,9 @@
                                     <div class="name-artist">
                                       <h3 class="profile-name">
                                         <!-- {{ profile.business_name }} -->
-                                        Geebu
+                                        {{ account.artist_name || Geebu }}
                                       </h3>
-                                      <h5 class="type-of-artist">Full Band</h5>
+                                      <h5 class="type-of-artist">{{ account.artist_type || 'Full Band' }}</h5>
                                     </div>
                                     <!-- for future na muna ini -->
                                     <!-- <div class="folow">
@@ -45,8 +45,9 @@
                                       <p class="followers">385 <br> <span>Playlist</span></p>
                                     </div> -->
                                     <div class="music-genre">
-                                      <h5 class="title">Genres:</h5> 
-                                      <span class="badge">Country Rock</span> <span class="badge">Electronic</span> <span class="badge">Rock</span> <span class="badge">Reggae</span>
+                                      <h5 class="title">Genres:</h5>
+                                      <span class="badge" v-for="genre in account?.genres" :key="genre">{{ genre}}</span>
+                                      <!-- <span class="badge">Country Rock</span> <span class="badge">Electronic</span> <span class="badge">Rock</span> <span class="badge">Reggae</span> -->
                                     </div>
                                     </div>
                                   </div>
@@ -54,7 +55,7 @@
                               <div class="col-3">
                                                               <!-- <h3 class="profile-name">Amiah Burton</h3> -->
                               <div class="d-none d-md-block text-end edit">
-                                <a href="/events" class="btn btn-primary btn-lg">Edit Profile</a>
+                                <a href="/account/profile" class="btn btn-primary btn-lg">Edit Profile</a>
                               </div>
                               </div>
                           </div>
@@ -88,18 +89,18 @@
                           <h5 class="about">About</h5>
                           <p class="description">
                             <!-- {{ profile.bio }} -->
-                            Artist bio will show here
+                            {{  account.bio }}
                           </p>
                           <div class="mt-3 social-media">
-                            <i class="material-icons"><span class="material-symbols-outlined calendar">&#xebcc;</span></i><p class="band-name">IDLEPITCH</p>
+                            <i class="material-icons"><span class="material-symbols-outlined calendar">calendar_month</span></i><p class="band-name">{{ account?.artist_name}}</p>
                           </div>
                           <div class="mt-3 social-media">
                             <img src="/assets/social icons/_Spotify.svg" loading="lazy" alt="spotify icon">
-                            <p>Full Band Artist</p>
+                            <p>{{ account?.spotify_profile }}</p>
                           </div>
                             <div class="mt-3 social-media">
                               <img src="/assets/social icons/_YouTube.svg" loading="lazy" alt="spotify icon">
-                              <p>youtube.com/@idlepitch</p>
+                              <p>{{ account?.youtube_channel }}</p>
                           </div>
                       </div>
                   </div>
@@ -116,7 +117,22 @@
                           </div>
                         </div>
                                   <!-- Band Members list -->
-                         <div class="members-list">
+                          <div class="members-list" v-for="member in members" :key="member.id">
+                              <div class="member-profile">
+                                <img :src="member.avatar" 
+                                loading="lazy" alt="member profile">
+                                <div class="member-info">
+                                <a href="#">{{  member.fullname }}</a>
+                                <p>{{ member.role }}</p>
+                                </div>
+                              </div>
+                              <div class="more">
+                                <a href="#">
+                                  <i class="material-icons"><span class="material-symbols-outlined">more_vert</span></i>
+                                </a>
+                              </div>
+                          </div>    
+                        <!-- <div class="members-list">
                             <div class="member-profile">
                               <img src="https://res.cloudinary.com/daorvtlls/image/upload/v1686649329/trending-bicolano-artist-4_o6xjze.png" 
                               loading="lazy" alt="member profile">
@@ -145,7 +161,7 @@
                                 <i class="material-icons"><span class="material-symbols-outlined">&#xe5d4;</span></i>
                               </a>
                             </div>
-                         </div>    
+                         </div>     -->
                     </div>  <!-- end of card-body -->     
                   </div>      
               </div>
@@ -157,7 +173,7 @@
                     <div class="card">
                     <div class="card-body">
                       <div class="write-something">
-                          <img src="https://res.cloudinary.com/daorvtlls/image/upload/v1686649329/trending-bicolano-artist-4_o6xjze.png" 
+                          <img :src="`${account?.avatar || 'https://res.cloudinary.com/daorvtlls/image/upload/v1686649329/trending-bicolano-artist-4_o6xjze.png'}`" 
                           loading="lazy" alt="member profile">
                           
                           <!-- Button trigger modal -->
@@ -510,11 +526,13 @@ export default {
         //   title: 'Server Status',
         //   text: `${err.message}`
         // })
-      });
+    });
+
+    
   },
   methods: {
     ...mapActions([
-      'retrieveArtists', 'fetchArtistOptions',
+      'fetchArtistOptions',
     ]),
     submit()
     {
@@ -572,7 +590,8 @@ export default {
       profile: (state)  => state.profile,
       role: (state)     => state.role,
       artist: (state)   => state.artist.artist,
-      members: (state)  => state.artist.members,
+      members: (state) => state.artist.members,
+      account: (state) => state.account,
     }),
   }
 }
