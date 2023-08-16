@@ -1,4 +1,65 @@
 <template>
+
+<section class="account-settings">
+    <div class="container">
+      <div class="user-message">
+        <h2 class="title">Welcome back Arlene Mccoy,</h2>
+        <p class="sub-title">You are on the Free Plan.</p>
+      </div>
+
+      <!-- <div class="row">
+      <div class="col-md-3">
+        <div class="sidebar">
+          <li class="d-flex align-items-center" 
+          v-for="sidebar in sidebarOptions" 
+          :key="sidebar.name"
+          :class="{ 'active-option': selectedOption === sidebar.name }"
+          @click="showContent(sidebar)">
+            <span class="material-symbols-rounded">{{ sidebar.icon }}</span>
+            <h5>{{ sidebar.name }}</h5>
+          </li>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div class="content" v-show="selectedOption === 'My Account'">
+          <div class="user-description">
+            <h3 class="title">My Profile</h3>
+            <p class="msg">Rest assured that the songs will be delivered by the end of the day.</p>
+          </div>
+
+          <div class="personal-details">
+            <form>
+              
+            </form>
+          </div>
+
+        </div>
+
+        <div class="content"  v-show="selectedOption === 'Customized Songs'">
+          <h3>My Customized Songs</h3>
+        </div>
+        <div class="content"  v-show="selectedOption === 'My Bookings'">
+          <h3>My Bookings</h3>
+        </div>
+        <div class="content"  v-show="selectedOption === 'My Proposal'">
+          <h3>My Proposal</h3>
+        </div>
+        <div class="content"  v-show="selectedOption === 'Notifications'">
+          <h3>Notifications</h3>
+        </div>
+        <div class="content"  v-show="selectedOption === 'Manage Subscriptions'">
+          <h3>Manage Subscriptions</h3>
+        </div>
+        <div class="content"  v-show="selectedOption === 'Others'">
+          <h3>Others</h3>
+        </div>
+      </div>
+    </div> -->
+
+    </div>
+   </section>
+   
+
   <section class="container py-5">
     <h1>Welcome back Arlene Mccoy</h1>
     <div class="row align-items-start">
@@ -108,7 +169,18 @@ export default {
   setup () {
     
 
-    return {}
+    return {
+    //   sidebarOptions: [
+    //     { icon: 'account_circle', name: 'My Account'},
+    //     { icon: 'library_music	', name: 'Customized Songs'},
+    //     { icon: 'event_available', name: 'My Bookings'},
+    //     { icon: 'music_note', name: 'My Proposal'},
+    //     { icon: 'notifications', name: 'Notifications'},
+    //     { icon: 'subscriptions', name: 'Manage Subscriptions'},
+    //     { icon: 'page_info', name: 'Others'}
+    // ],
+    selectedOption: 'My Account', // Default selected option
+    }
   },
   data: () => ({
     form: {
@@ -130,7 +202,10 @@ export default {
     submit()
     {
       
-    }
+    },
+    // showContent(option) {
+    //   this.selectedOption = option.name;
+    // },
   },
   created() {
     

@@ -91,7 +91,7 @@
                             Artist bio will show here
                           </p>
                           <div class="mt-3 social-media">
-                            <i class="material-icons"><span class="material-symbols-outlined calendar">calendar_month</span></i><p class="band-name">IDLEPITCH</p>
+                            <i class="material-icons"><span class="material-symbols-outlined calendar">&#xebcc;</span></i><p class="band-name">IDLEPITCH</p>
                           </div>
                           <div class="mt-3 social-media">
                             <img src="/assets/social icons/_Spotify.svg" loading="lazy" alt="spotify icon">
@@ -127,7 +127,7 @@
                             </div>
                             <div class="more">
                               <a href="#">
-                                <i class="material-icons"><span class="material-symbols-outlined">more_vert</span></i>
+                                <i class="material-icons"><span class="material-symbols-outlined">&#xe5d4;</span></i>
                               </a>
                             </div>
                          </div>      
@@ -142,7 +142,7 @@
                             </div>
                             <div class="more">
                               <a href="#">
-                                <i class="material-icons"><span class="material-symbols-outlined">more_vert</span></i>
+                                <i class="material-icons"><span class="material-symbols-outlined">&#xe5d4;</span></i>
                               </a>
                             </div>
                          </div>    
@@ -170,19 +170,20 @@
                       <!-- <hr> -->
                       <div class="post-features">
                         <div class="post-icon">
-                          <i class="material-icons"><span class="material-symbols-outlined">sentiment_satisfied</span></i>
+                          <i class="material-icons"><span class="material-symbols-outlined">&#xe813;</span></i>
                              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#artistPost">
                               Feeling
                             </button>
                         </div>
                         <div class="post-icon">
-                          <i class="material-icons"><span class="material-symbols-outlined">image</span></i>
+                          <i class="material-icons"><span class="material-symbols-outlined">&#xe3f4;</span></i>
                           <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#artistPost">
                             Photo/Video
                             </button>
                         </div>
+                        <!-- @click="toggleContent('music')" -->
                         <div class="post-icon">
-                          <i class="material-icons"><span class="material-symbols-outlined">library_music</span></i>
+                          <i class="material-icons"><span class="material-symbols-outlined">&#xe030;</span></i>
                           <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#artistPost">
                            Music
                             </button>
@@ -483,6 +484,9 @@ export default {
         { img: 'https://res.cloudinary.com/daorvtlls/image/upload/v1686465790/cld-sample.jpg', name: 'Michelle Rose', role: 'Songwriter'},
       ],
       // isModalVisible: false,
+      modalVisible: false,
+      submissions: [], // Array to store all submissions
+      editingIndex: -1,
     
     }
   },

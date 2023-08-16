@@ -4404,6 +4404,69 @@ width: 100%;
   background-color: var(--btn-hovered);
 }
 
+                                    /* ACCOUNT SETTINGS for customer, artist, organizer */
+.account-settings .container{
+  margin: 5rem auto;
+}
+.account-settings .user-message{
+  margin-bottom: 3.88rem;
+}
+.account-settings .user-message .title{
+  color: var(--black-color);
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin-bottom: 0.63rem;
+}
+.account-settings .user-message .sub-title{
+  color: var(--gray6);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+.account-settings .sidebar li{
+  border-radius: 0.875rem;
+  margin-bottom: 0.37rem;
+  padding: 0.94rem 0.88rem;
+  cursor: pointer;
+  width: 80%;
+}
+.account-settings .sidebar .active-option{
+  background-color: #FFF6EB!important;
+}
+.account-settings .sidebar .active-option > *{
+  color: var(--orange);
+}
+.account-settings .sidebar li span{
+  color: var(--orange);
+  margin-right: 0.75rem;
+  font-variation-settings: 'FILL' 1,'wght' 800,'GRAD' 0,'opsz' 48;
+}
+.account-settings .sidebar li h5{
+  color: var(--black-color);
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.0125rem;
+  margin-bottom: 0;
+}
+.account-settings .content{
+  border-radius: 0.625rem;
+  border: 1px solid #DFE0EB;
+  background: #FDFDFF;
+  padding: 4rem;
+}
+.account-settings .content .user-description{
+  margin-bottom: 3rem;
+}  
+.account-settings .content .user-description .title{
+  color: var(--black-color);
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.62rem;
+}   
+.account-settings .content .user-description .msg{
+  color: var(--gray6);
+  font-size: 1.25rem;
+  font-weight: 600;
+}                                 
 
 
 

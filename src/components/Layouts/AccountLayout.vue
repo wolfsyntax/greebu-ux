@@ -13,6 +13,11 @@ export default {
   components: {
     BlankHeader,
   },
+  data()
+  {
+    return {
+    }
+  },
   watch: {
   },
   props: {
