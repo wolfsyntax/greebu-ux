@@ -441,14 +441,35 @@ export default {
   },
   mounted()
   {
+
+    this.form = {
+      artist_type: null,
+      artist_name: null,
+      genres: [],
+      bio: null,
+      avatar: null,
+      street_address: null,
+      city: null,
+      province: null,
+      youtube_channel: null,
+      twitter_username: null,
+      instagram_username: null,
+      spotify_profile: null,
+      accept_request: false,
+      accept_booking: false,
+      accept_proposal: false,
+    };
+    
     this.fetchArtistOptions()
       .then(response =>
       {
         console.log('Fetch Artists Options: ', response)
       })
     this.artistOptions()
-    this.fetchProfile()
+    this.fetchProfile() 
     this.form = this.myAccount
+    this.$forceUpdate();
+    console.log('My Account: ', this.myAccount)
     // this.form.genre = ''
     // this.form.genre = this.account.genres.map(function (g) { return g['title']  });
 

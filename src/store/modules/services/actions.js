@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const fetchArtistOptions = ({ commit, rootState, state}, payload) => {
+export const fetchServiceOptions = ({ commit, rootState, state}, payload) => {
   
   return new Promise(async(resolve, reject) => {
     
