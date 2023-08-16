@@ -1,6 +1,6 @@
 <template>
-  <section class="container py-5" v-if="isPhoneVerified">
-    <h1>Welcome back {{ info.fullname }}</h1>
+  <section class="container py-5">
+    <h1>Welcome back Arlene Mccoy</h1>
     <div class="row align-items-start">
       
       <div class="col-md-3">
@@ -171,7 +171,18 @@ export default {
   setup () {
     
 
-    return {}
+    return {
+    //   sidebarOptions: [
+    //     { icon: 'account_circle', name: 'My Account'},
+    //     { icon: 'library_music	', name: 'Customized Songs'},
+    //     { icon: 'event_available', name: 'My Bookings'},
+    //     { icon: 'music_note', name: 'My Proposal'},
+    //     { icon: 'notifications', name: 'Notifications'},
+    //     { icon: 'subscriptions', name: 'Manage Subscriptions'},
+    //     { icon: 'page_info', name: 'Others'}
+    // ],
+    selectedOption: 'My Account', // Default selected option
+    }
   },
   components: {
     'verify-card': Verify
@@ -243,11 +254,7 @@ export default {
     },
     submit()
     {
-      this.accountSetting(this.form)
-        .then(response =>
-        {
-          console.log('Updating account settings: ', response);
-        });
+      
     }
   },
   created() {

@@ -1532,13 +1532,19 @@ background: var(--btn-hovered);
   border: 0;
   transition: background-color 0.3s ease-in-out;
 }
-#artistPost .modal-body .manage-to-post button:hover .post-icon{
+
+#artistPost .modal-body .manage-to-post .selected {
+  color: var(--orange)!important;
+}
+#artistPost .modal-body .manage-to-post .post-icon.selected {
+  background-color: var(--orange)!important;
+  color: var(--white)!important; 
+}
+
+ /* #artistPost .modal-body .manage-to-post button:hover .post-icon{
   background-color: var(--orange)!important;
   color: var(--white)!important;
   animation: bounceIcon 1s ease 1;
-}
-#artistPost .modal-body .manage-to-post button:hover .selected{
-  color: var(--orange)!important;
 }
 @keyframes bounceIcon {
   0%, 20%, 50%, 80%, 100% {
@@ -1551,8 +1557,11 @@ background: var(--btn-hovered);
     transform: translateY(-5px);
   }
 }
+ #artistPost .modal-body .manage-to-post button:hover .selected{
+  color: var(--orange)!important;
+} 
 #artistPost .modal-body .manage-to-post button:hover .selected{
-  color: var(--orange);
+  color: var(--orange)!important;
   animation: bounceText 1.5s ease 1;
 }
 @keyframes bounceText {
@@ -1565,7 +1574,8 @@ background: var(--btn-hovered);
   60% {
     transform: translateY(-5px);
   }
-}
+} */
+
 #artistPost .modal-body .button-wrapper button{
   color: var(--white);
   font-size: 1.25rem;
