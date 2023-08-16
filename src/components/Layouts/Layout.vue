@@ -309,7 +309,10 @@ export default {
           console.log('Signout: ', response)
 
           if (status === 203) {
+
             this.$store.commit('CLEAR_STATE');
+            //this.$store.commit('CLEAR_ARTIST');
+            
             this.$router.push('/');
            // this.$router.push('/login');
           } else if (status === 200 || status === 401) {
