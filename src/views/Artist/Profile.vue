@@ -96,7 +96,7 @@
 
                 <div class="form-group">
                   <label for="genre">Genre</label>
-                  <multiselect v-model="form.genres" :options="formGenres" mode="tags" class="genre" placeholder="Please select genres" />
+                  <multiselect v-model="form.genres" :options="genres" mode="tags" class="genre" placeholder="Please select genres" />
                   <!-- <div v-if="errors.genre" class="genre-error text-danger"></div> -->
 
                   <div v-for="err in error?.genre" :key="err" class="text-danger">{{ err }}</div>
