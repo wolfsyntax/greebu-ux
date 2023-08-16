@@ -48,3 +48,30 @@ export const SET_ARTIST_PROFILE = (state, payload) =>
 {
   state.artist_profile = payload
 }
+
+export const CLEAR_ARTIST = (state) =>
+{
+  
+  state.artists = null;
+
+  state.artist_types = null;
+
+  state.artist_genres = null;
+
+  state.genres = null;
+
+  state.genreList = null;
+
+  state.members = null;
+
+  state.artist = {};
+  
+  state.pagination = {
+    current_page: 1,
+    last_page: 1,
+    per_page: 10,
+    total: 1,
+  };
+
+  state.artist_profile = { };
+}
