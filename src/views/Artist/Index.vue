@@ -122,7 +122,7 @@
                                 <img :src="member.avatar" 
                                 loading="lazy" alt="member profile">
                                 <div class="member-info">
-                                <a href="#">{{  member.fullname }}</a>
+                                <a href="#">{{  member.member_name }}</a>
                                 <p>{{ member.role }}</p>
                                 </div>
                               </div>
