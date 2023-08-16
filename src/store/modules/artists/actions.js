@@ -14,8 +14,20 @@ export const fetchArtistOptions = ({ commit, rootState, state}, payload) => {
         if (status === 200 && data.status === 200)
         { 
           const { result } = data
+
+          var genre = result?.genres
+
+          var exists = genre.filter(function (o) {
+            return o.hasOwnProperty('title');
+          }).length > 0;
+
+          if (exists) {
+            commit('SET_GENRES', genre.map(function (g) { return g['title'] }));
+          } else {
+            commit('SET_GENRES', genre);
+          }
           
-          commit('SET_GENRES', result?.genres)
+          
           commit('SET_ARTIST_TYPES', result?.artist_types)
           commit('SET_ARTIST_GENRES', result?.artist_genre);
           commit('SET_MEMBERS', result?.members)
@@ -212,7 +224,19 @@ export const artistOptions = ({ commit, rootState, state }, payload) =>
 
         const { status: statusCode, data: { status, message, result } } = response
         if (statusCode === 200) {
-          commit('SET_GENRES', result?.genres || []);
+
+          var genre = result?.genres
+
+          var exists = genre.filter(function (o) {
+            return o.hasOwnProperty('title');
+          }).length > 0;
+
+          if (exists) {
+            commit('SET_GENRES', genre.map(function (g) { return g['title'] }) || []);
+          } else {
+            commit('SET_GENRES', genre || []);
+          }
+
           commit('SET_ARTIST_TYPES', result?.artist_types || [])
 
         }
