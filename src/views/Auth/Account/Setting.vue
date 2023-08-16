@@ -174,7 +174,18 @@ export default {
   setup () {
     
 
-    return {}
+    return {
+    //   sidebarOptions: [
+    //     { icon: 'account_circle', name: 'My Account'},
+    //     { icon: 'library_music	', name: 'Customized Songs'},
+    //     { icon: 'event_available', name: 'My Bookings'},
+    //     { icon: 'music_note', name: 'My Proposal'},
+    //     { icon: 'notifications', name: 'Notifications'},
+    //     { icon: 'subscriptions', name: 'Manage Subscriptions'},
+    //     { icon: 'page_info', name: 'Others'}
+    // ],
+    selectedOption: 'My Account', // Default selected option
+    }
   },
   components: {
     'verify-card': Verify
@@ -246,11 +257,7 @@ export default {
     },
     submit()
     {
-      this.accountSetting(this.form)
-        .then(response =>
-        {
-          console.log('Updating account settings: ', response);
-        });
+      
     }
   },
   created() {
