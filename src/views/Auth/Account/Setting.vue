@@ -65,7 +65,7 @@
                 <div class="form-group">
                   <div class="d-flex align-items-center change-label">
                     <label for="email">Phone Number</label> 
-                    <button type="button" class="btn btn-primary">Change</button>
+                    <button type="button" class="btn btn-primary" @click="showPhoneNumberModal">Change</button>
                   </div>
                   <input type="text" class="form-control disabled-field" id="phone" aria-describedby="Phone"
                     v-model="formattedPhone" autocomplete="phone" placeholder="Phone" disabled>
@@ -88,9 +88,80 @@
           </div> <!-- end of password-wrapper -->
           </div> <!-- end of personal-details -->
 
+                                                 <!-- MODAL FOR CHANGE PHONE NUMBNER  -->
+
+          <div v-if="showPhoneNumber" class="update-my-account-modal">
+            <div class="modal-content">
+              <button @click="closePhoneNumberModal" class="close-button"><span class="material-symbols-rounded">&#xe5cd;</span></button>
+              <div class="text-center modal-body">
+                <svg class="phone-icon" xmlns="http://www.w3.org/2000/svg" width="77" height="76" viewBox="0 0 77 76" fill="none">
+                  <path d="M53.5266 2.92062C54.4917 2.92062 55.2767 3.70562 55.2767 4.67082V71.244C55.2767 72.2092 54.4917 72.9942 53.5266 72.9942H23.3896C22.4244 72.9942 21.6394 72.2092 21.6394 71.244V4.67082C21.6394 3.70562 22.4244 2.92062 23.3896 2.92062H53.5266ZM53.5266 0.417969H23.3896C21.0404 0.417969 19.1367 2.32249 19.1367 4.67082V71.244C19.1367 73.5931 21.0412 75.4968 23.3896 75.4968H53.5266C55.8757 75.4968 57.7794 73.5923 57.7794 71.244V4.67082C57.7794 2.32249 55.8757 0.417969 53.5266 0.417969Z" fill="#8690A2"/>
+                  <path d="M27.7598 2.08008C27.7598 4.43591 29.3089 6.36296 31.2018 6.36296H45.7138C47.6067 6.36296 49.1558 4.43591 49.1558 2.08008H27.7598ZM40.8453 4.1723H32.9486C32.7184 4.1723 32.5315 3.98543 32.5315 3.75519C32.5315 3.52494 32.7184 3.33808 32.9486 3.33808H40.8453C41.0756 3.33808 41.2624 3.52494 41.2624 3.75519C41.2624 3.98543 41.0764 4.1723 40.8453 4.1723ZM43.3864 4.33581C43.066 4.33581 42.8057 4.07553 42.8057 3.75519C42.8057 3.43485 43.066 3.17457 43.3864 3.17457C43.7067 3.17457 43.967 3.43485 43.967 3.75519C43.967 4.07553 43.7067 4.33581 43.3864 4.33581Z" fill="#8690A2"/>
+                </svg>
+                   <h3 class="enter-phone">Enter your New Phone number</h3>
+                    <p class="verification">Enter New Phone number for Verification</p>
+                    <form>
+                      <div class="form-group">
+                      <label for="phone">New phone number</label>
+                        <input 
+                          id="currentPassword" 
+                          type="text"                     
+                          class="form-control" 
+                          name="phone" 
+                          required 
+                          autocomplete="New Phone Number"
+                          placeholder="+63" 
+                          />
+                        <!-- <div v-for="error in errors?.current_password" :key="error" class="text-danger">{{ error }}</div> -->
+                     </div>
+                      <div class="button-verify-wrapper">
+                        <button type="button" class="btn btn-secondary submit" @click="showOTPCodeModal">Continue</button>
+                      </div>
+                    </form>
+                  </div> 
+              </div>
+            </div> <!-- end of update-my-account-modal -->
+
+            <div v-if="showOTPCode" class="update-my-account-modal">
+            <div class="modal-content">
+              <button @click="closeOTPCodeModal" class="close-button"><span class="material-symbols-rounded">&#xe5cd;</span></button>
+              <div class="text-center modal-body">
+                <svg class="phone-icon" xmlns="http://www.w3.org/2000/svg" width="77" height="76" viewBox="0 0 77 76" fill="none">
+                  <path d="M53.5266 2.92062C54.4917 2.92062 55.2767 3.70562 55.2767 4.67082V71.244C55.2767 72.2092 54.4917 72.9942 53.5266 72.9942H23.3896C22.4244 72.9942 21.6394 72.2092 21.6394 71.244V4.67082C21.6394 3.70562 22.4244 2.92062 23.3896 2.92062H53.5266ZM53.5266 0.417969H23.3896C21.0404 0.417969 19.1367 2.32249 19.1367 4.67082V71.244C19.1367 73.5931 21.0412 75.4968 23.3896 75.4968H53.5266C55.8757 75.4968 57.7794 73.5923 57.7794 71.244V4.67082C57.7794 2.32249 55.8757 0.417969 53.5266 0.417969Z" fill="#8690A2"/>
+                  <path d="M27.7598 2.08008C27.7598 4.43591 29.3089 6.36296 31.2018 6.36296H45.7138C47.6067 6.36296 49.1558 4.43591 49.1558 2.08008H27.7598ZM40.8453 4.1723H32.9486C32.7184 4.1723 32.5315 3.98543 32.5315 3.75519C32.5315 3.52494 32.7184 3.33808 32.9486 3.33808H40.8453C41.0756 3.33808 41.2624 3.52494 41.2624 3.75519C41.2624 3.98543 41.0764 4.1723 40.8453 4.1723ZM43.3864 4.33581C43.066 4.33581 42.8057 4.07553 42.8057 3.75519C42.8057 3.43485 43.066 3.17457 43.3864 3.17457C43.7067 3.17457 43.967 3.43485 43.967 3.75519C43.967 4.07553 43.7067 4.33581 43.3864 4.33581Z" fill="#8690A2"/>
+                </svg>
+                   <h3 class="enter-phone">Enter OTP code</h3>
+                    <p class="confirmation">We sent an SMS with your confirmation code to </p>
+                    <h5 class="hidden-phone">{{ info.phonemask }}</h5>
+
+                    <form>
+                      <p class="err-msg">{{ verifyMessage }}</p>
+                  <div class="phone-screen">
+                    <input v-for="(code, index) in verifyCode" :key="index" ref="inputField" type="text" 
+                      class="verification-box" maxlength="1" v-model="verifyCode[index]" 
+                      @input="handleInput(index)" 
+                      @keydown.delete="handleDelete(index)"
+                    >
+                  </div>
+
+                  <button class="resend-code" @click.prevent="resendMyCode">Resend Code {{ $filters.timer(countdown) }}</button>
+
+                      <div class="button-verify-wrapper">
+                        <button type="button" class="btn btn-secondary submit"
+                         :disabled="!isAllFieldsFilled"
+                         >Submit</button>
+                      </div>
+                    </form>
+                  </div> 
+              </div>
+            </div> <!-- end of update-my-account-modal -->
+
+
+
+
                                        <!-- MODAL FOR CHANGE PASSWORD -->
 
-          <div v-if="showCurrentPassword" class="change-password-modal">
+          <div v-if="showCurrentPassword" class="update-my-account-modal">
             <div class="modal-content">
               <button @click="closeCurrentPasswordModal" class="close-button"><span class="material-symbols-rounded">&#xe5cd;</span></button>
               <div class="text-center modal-body">
@@ -126,7 +197,7 @@
                   </div> 
             </div>
           </div>
-          <div v-if="showNewPassword" class="change-password-modal">
+          <div v-if="showNewPassword" class="update-my-account-modal">
                 <div class="modal-content">
               <button @click="closeNewPasswordModal" class="close-button"><span class="material-symbols-rounded">&#xe5cd;</span></button>
               <div class="text-center modal-body">
@@ -185,9 +256,8 @@
               </div> <!--end of modal-content -->
              </div> <!-- end of inner-modal -->
 
-             <div v-if="showResetPassSuccessMessage" class="change-password-modal reset-success-modal">
+             <div v-if="showResetPassSuccessMessage" class="update-my-account-modal reset-success-modal">
                 <div class="modal-content">
-                  <!-- <button @click="closeNewPasswordModal" class="close-button"><span class="material-symbols-rounded">&#xe5cd;</span></button> -->
                   <div class="text-center modal-body">
                     <svg class="check" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none"><g clip-path="url(#clip0_5610_68856)">
     <path d="M24 4C12.96 4 4 12.96 4 24C4 35.04 12.96 44 24 44C35.04 44 44 35.04 44 24C44 12.96 35.04 4 24 4ZM20 34L10 24L12.82 21.18L20 28.34L35.18 13.16L38 16L20 34Z" fill="#FF6B00"/>
@@ -195,7 +265,7 @@
                    <h3 class="create">Reset Password!</h3>
                     <p class="proceed">Your password has been changed successfully. You can now use your new password to log in to your account!</p>
                     <div class="button-verify-wrapper">
-                        <button type="button" class="btn btn-secondary submit update-password" @click="loginWithNewPass()">Log in</button>
+                        <button type="button" class="btn btn-secondary submit update-password">Log in</button>
                       </div>
                   </div>
                 </div>
@@ -265,7 +335,15 @@
    </section>
     
 
-  <!-- <section class="phone-verification" v-else>
+   <!-- <section class="container py-5" v-if="isPhoneVerified">
+    <h1>Welcome back {{ info.fullname }}</h1>
+    <div class="row align-items-start">
+          <form @submit.prevent="submit">
+           </form>
+    </div>
+  </section>
+
+  <section class="phone-verification" v-else>
     <div class="container">
       <div class="check-message">
         <div class="card"> -->
@@ -319,13 +397,14 @@
                     <button type="submit" :disabled="!isAllFieldsFilled">Confirm</button>
                   </div>
                 </form>
-              </div>
-            </div>
+
+              </div> 
+            </div> 
           </div>
         </div>
       </div>
-    </div>
   </section>  -->
+
 </template>
 
 <script>
@@ -381,17 +460,38 @@ export default {
         { name: 'For Revision'},
         { name: 'Completed'},
     ],
-    selectedCustomized: 'All', // Default selected option
+    selectedCustomized: 'All', // Default selected option 
+      //  Change Password
     showInputPassword: false,
     showInputNewPassword: false,
     showInputConfirmPassword: false,
-
     showCurrentPassword: false,
     showNewPassword: false,
-    showResetPassSuccessMessage: false
+    showResetPassSuccessMessage: false,
+      //  Change Phone Number
+    showPhoneNumber: false,
+    showOTPCode: false,
+
     }
   },
   methods: {
+      //  Change Phone Number
+    showPhoneNumberModal(){
+      this.showPhoneNumber = true;
+    },
+    closePhoneNumberModal(){
+      this.showPhoneNumber = false;
+    },
+    showOTPCodeModal(){
+      this.showOTPCode = true;
+      this.showPhoneNumber = false;
+    },
+    closeOTPCodeModal(){
+      this.showOTPCode = false;
+      this.showPhoneNumber = false;
+    },
+
+       //  Change Password
     showCurrentPasswordModal() {
       this.showCurrentPassword = true;
       document.body.style.overflow = 'hidden';
