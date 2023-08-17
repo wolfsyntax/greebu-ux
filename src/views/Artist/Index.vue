@@ -11,7 +11,7 @@
                       <div class="cover">
                           <div class="gray-shade"></div>
                           <figure>
-                              <img :src="`${account.avatar || 'https://res.cloudinary.com/daorvtlls/image/upload/v1686465779/samples/cloudinary-group.jpg'}`" class="img-fluid" alt="profile cover">
+                              <img :src="`${account.cover_photo || 'https://res.cloudinary.com/daorvtlls/image/upload/v1686465779/samples/cloudinary-group.jpg'}`" class="img-fluid" alt="profile cover">
                           </figure>
                             <div class="cover-photo-camera">
                               <button type="submit" class="btn btn-success">

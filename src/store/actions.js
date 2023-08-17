@@ -223,6 +223,47 @@ var actions = {
     return new Promise(async (resolve, reject) =>
     {
 
+      commit('SET_AUTH', {});
+            commit('SET_TOKEN', '');
+            commit('SET_PROFILE', {});
+            commit('SET_ROLE', '');
+            // Clearing for other modules
+            commit('SET_GENRES', null);
+            commit('SET_ARTIST_TYPES', null);
+            commit('SET_ARTIST_GENRES', null);
+            commit('SET_MEMBERS', null);
+            commit('SET_ARTIST', {});
+            commit('SET_ARTISTS', null);
+            commit('SET_ACCOUNT', {});
+            commit('SET_PAGINATION', { current_page: 1, last_page: 1, per_page: 10, total: 1, });
+
+            commit('SET_SONG_ARTIST_TYPE', null);
+            commit('SET_SONG_MOODS', null);
+            commit('SET_SONG_LANGUAGES', null);
+            commit('SET_SONG_DURATIONS', null);
+            commit('SET_SONG_PURPOSES', null);
+            commit('SET_SONG_MOOD', {});
+            commit('SET_SONG_LANGUAGE', {});
+            commit('SET_SONG_DURATION', {});
+            commit('SET_SONG_PURPOSE', {});
+            commit('SET_SONG_REQUEST', null);
+            commit('SET_SONG', {
+              first_name: null,
+              last_name: null,
+              email: null,
+              genre_id: null,
+              song_type_id: null,
+              language_id: null,
+              duration_id: null,
+              purpose_id: null,
+              sender: null,
+              receiver: null,
+              user_story: null,
+              page_status: null,
+            });
+      commit('SET_SONG_ARTIST', {});
+      commit('CLEAR_ARTIST');
+      
       await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/auth/${provider}/firebase`, formData)
         .then(response =>
         {
