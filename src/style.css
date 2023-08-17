@@ -4467,6 +4467,184 @@ width: 100%;
   font-size: 1.25rem;
   font-weight: 600;
 }                                 
+.account-settings .personal-details .title{
+  color: var(--black-color);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+}
+.account-settings .personal-details .form-group{
+  margin-bottom: 1.5rem;
+}
+.account-settings .personal-details .form-group label{
+  color: #2D3748;
+  font-size: 1.25rem;;
+  font-weight: 500;
+  line-height: 140%; 
+  letter-spacing: -0.025rem;
+  margin-bottom: 0.25rem;
+  white-space: pre;
+}
+.account-settings .personal-details .form-group input{
+  width: 40%;
+  padding: 0.63rem 1rem;
+  color:  #2D3748;
+  font-size: 1.1rem;
+  font-weight: 500;
+  line-height: 140%; 
+  letter-spacing: -0.025rem;
+  border-radius: 0.3125rem;
+}
+.account-settings .personal-details .form-group .disabled-field{
+  border-radius: 0.3125rem;
+  border: 1px solid #D1D1D1!important;
+  background-color: #FDFDFF!important;
+  color: rgba(45, 55, 72, 0.25);
+}
+.account-settings .personal-details .button-wrapper {
+  padding: 4rem 0;
+  border-bottom: 1px solid var(--gray6);
+}
+.account-settings .personal-details .change-label {
+  width: 40%;
+  justify-content: space-between;
+}
+.account-settings .personal-details .change-label button {
+  color: var(--orange);
+  font-size: 0.88rem;
+  font-weight: 600;
+  line-height: 1.5rem;
+  margin-bottom: 0;
+  border: 0;
+  background-color: transparent;
+  padding: 0;
+}
+.account-settings .personal-details .change-label button:hover{
+  text-decoration: underline;
+}
+.account-settings .personal-details .button-wrapper .save{
+  color: var(--white);
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.5rem;
+  padding: 0.75rem 2.75rem;
+  background-color: var(--orange);
+  border: 1px solid var(--orange);
+}
+.account-settings .personal-details .button-wrapper .save:hover{
+  background-color: var(--btn-hovered);
+  border: 1px solid var(--btn-hovered);
+}
+.account-settings .personal-details .password-wrapper{
+  margin: 3rem 0;
+}
+.account-settings .personal-details .password-wrapper .title{
+  color: var(--black-color);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+}
+.account-settings .personal-details .password-wrapper .sub-title{
+  color: #2D3748;
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 140%; 
+  letter-spacing: -0.025rem;
+  margin-bottom: 1.25rem;
+}
+.account-settings .personal-details .password-wrapper button{
+  color: var(--orange);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5rem;
+  padding: 0.63rem 2rem;
+  border: 1px solid var(--orange);
+  background-color: transparent;
+}
+.account-settings .content .customized-tabs{
+  gap: 2rem;
+}
+/* ACCOUNT SETTINGS -  CHANGE PASSWORD MODAL  */
+#changePasswordModal .modal-content, #confirmPasswordModal .modal-content  {
+  width: 43.125rem;
+  margin: 0 auto;
+}
+#changePasswordModal .modal-content .modal-header,  #confirmPasswordModal .modal-content .modal-header{
+  border-bottom: 0;
+}
+#changePasswordModal .modal-content  .modal-body .lock, #confirmPasswordModal .modal-content .lock {
+  margin-bottom: 1.5rem;
+  color: #8690A2;
+  font-size: 76px;
+}
+#changePasswordModal .modal-content  .modal-body .create,  #confirmPasswordModal .modal-content  .modal-body .create{
+  color: var(--black);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.52rem;
+}
+#changePasswordModal .modal-content  .modal-body .proceed, #confirmPasswordModal .modal-content  .modal-body .proceed{
+  color: #8690A2;
+  font-size: 1.25rem;
+  font-weight: 500;
+  width: 75%;
+  margin: 0 auto 3rem;
+}
+#changePasswordModal .modal-content .button-verify-wrapper, #confirmPasswordModal .modal-content .button-verify-wrapper {
+  margin-bottom: 2rem;
+}
+#changePasswordModal .modal-content  .button-verify-wrapper .submit, #confirmPasswordModal .modal-content  .button-verify-wrapper .submit{
+  padding: 0.9rem 8rem;
+  border-radius: 0.3125rem;
+  background: var(--orange);
+  border: 0;
+  margin-bottom: 0.5rem;
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.02rem;
+}
+#changePasswordModal .modal-content .modal-header .btn-close, #confirmPasswordModal .modal-content .modal-header .btn-close {
+  font-size: 0.6rem;
+  padding: 0.6rem;
+  border: 1px solid var(--gray6);
+  border-radius: 100px;
+  margin-top: 0.2rem;
+  margin-right: 0.1rem;
+}
+#changePasswordModal .modal-content  .button-verify-wrapper .submit:hover, #confirmPasswordModal .modal-content .button-verify-wrapper .submit:hover{
+  background: var(--btn-hovered);
+}
+#changePasswordModal .modal-content .modal-body .form-group, #confirmPasswordModal .modal-content .modal-body .form-group{
+  width: 60%;
+  margin: 0 auto 5rem;
+}
+#confirmPasswordModal .modal-content .modal-body .new-password{
+  margin-bottom: 1.5rem;
+}
+#changePasswordModal .modal-body .form-group label, #confirmPasswordModal .modal-body .form-group label {
+  color: #2D3748;
+  font-size: 1.1rem;
+  font-weight: 500;
+  line-height: 140%;
+  letter-spacing: -0.025rem;
+  margin-bottom: 0.25rem;
+  display: flex;
+}
+#changePasswordModal .modal-body .form-group input, #confirmPasswordModal .modal-body .form-group input {
+  height: 3rem;
+  color: #2D3748;
+  font-size: 1.1rem;
+  font-weight: 500;
+  line-height: 140%;
+  letter-spacing: -0.025rem;
+  border-radius: 0.3125rem;
+  border: 1px solid rgba(86, 103, 137, 0.26);
+}
+
+
+
+
 
 
 

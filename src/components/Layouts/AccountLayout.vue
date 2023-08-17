@@ -1,17 +1,17 @@
 <template>
   <div>
-    <blank-header />
+    <layout>
     <!-- <slot /> -->
-    <router-view />
+    <!-- <router-view /> -->
+  </layout>
   </div>
 </template>
 
 <script>
-import BlankHeader from "@/components/Home/BlankHeader.vue";
-
+import Layout from '/src/components/Layouts/Layout.vue';
 export default {
   components: {
-    BlankHeader,
+    layout: Layout
   },
   data()
   {
