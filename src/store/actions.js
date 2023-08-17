@@ -700,7 +700,8 @@ var actions = {
               commit('SET_AUTH', user);
               commit('SET_ACCOUNT', account);
               commit('SET_PROFILE', profile);
-
+              commit('SET_ARTIST', profile);
+              
             }
           }
           

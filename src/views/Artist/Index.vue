@@ -122,7 +122,7 @@
                                 <img :src="member.avatar" 
                                 loading="lazy" alt="member profile">
                                 <div class="member-info">
-                                <a href="#">{{  member.fullname }}</a>
+                                <a href="#">{{  member.member_name }}</a>
                                 <p>{{ member.role }}</p>
                                 </div>
                               </div>
@@ -517,7 +517,7 @@ export default {
   {
     this.fetchArtistOptions().then(response =>
     {
-
+      console.log('Fetch Artist Option [index]: ', response)
     })
     .catch(err => {
         // this.$vs.notification({
@@ -528,11 +528,12 @@ export default {
         // })
     });
 
+    this.fetchProfile();
     
   },
   methods: {
     ...mapActions([
-      'fetchArtistOptions',
+      'fetchArtistOptions', 'fetchProfile',
     ]),
     submit()
     {
@@ -584,7 +585,7 @@ export default {
 
   },
   computed: {
-    ...mapGetters(["userInfo", "token"]),
+    ...mapGetters(["userInfo", "token",]),
     ...mapState({
       users: (state)    => state.user,
       profile: (state)  => state.profile,

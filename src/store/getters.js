@@ -5,7 +5,7 @@ var getters = {
   userRole: state => state.role,
   isLoggedIn: (state) => state.bearerToken && Object.keys(state.profile).length !== 0, //
   isFreeloader: (state) => state.profile?.is_freeloader ? true : false,
-  isPhoneVerified: (state) => (!state.user?.phone_verified_at && state.isPhoneModify),
+  mustPhoneVerified: (state) => (state.user?.phone_verified_at === null && state.isPhoneModify),
   countryList: state => state.countries
     .map(function (country)
     {
