@@ -1,4 +1,5 @@
 <template>
+
   <section class="account-settings">
     <div class="container">
       <div class="user-message">
@@ -50,13 +51,6 @@
                     v-model="form.username" autocomplete="off" placeholder="Username">
                   <small v-if="errors.username" class="text-danger">{{ errors.username.shift() }}</small>
                 </div>
-
-                <div class="form-group">
-                  <label for="address">Address</label>
-                  <input type="text" class="form-control" id="address" aria-describedby="Address"
-                    autocomplete="Address" >
-                  <!-- <small v-if="errors.email" class="text-danger">{{ errors.email.shift() }}</small> -->
-                </div>
             
                 <div class="form-group">
                   <div class="d-flex align-items-center change-label">
@@ -87,111 +81,124 @@
             <h4 class="title">Password</h4>
             <p class="sub-title">Lorem ipsum dolor sit amet consectetur.</p>
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
+            <button type="button" class="btn btn-primary" @click="showCurrentPasswordModal">
               Change Password
             </button>
+
           </div> <!-- end of password-wrapper -->
-
-          <!-- <div class="row my-3">
-              <h6 class="fw-bold">Password</h6>
-              <div class="col-12 col-md-4">
-                <div class="form-group">
-                  <label for="currentPassword" class="my-2">Current Password</label>
-                  <input type="password" class="form-control" id="currentPassword" aria-describedby="Current Password"
-                    v-model="form.current_password" autocomplete="current-password"
-                    placeholder="Current Password">
-                  <div v-for="error in errors?.current_password" :key="error" class="text-danger">{{ error }}</div>
-                </div>
-              </div>
-              <div class="row my-3">
-                <div class="col-12 col-md-4">
-                  <div class="form-group">
-                    <label for="newPassword" class="my-2">New Password</label>
-                    <input type="password" class="form-control" id="newPassword" aria-describedby="New Password"
-                      v-model="form.password" autocomplete="new-password"
-                      placeholder="New Password">
-                    <div v-for="error in errors?.password" :key="error" class="text-danger">{{ error }}</div>
-                  </div>
-                </div>
-              </div>
-              <div class="row my-3"> 
-                <div class="col-12 col-md-4">
-                  <div class="form-group">
-                    <label for="currentPassword" class="my-2">Confirm Password</label>
-                    <input type="password" class="form-control" id="currentPassword" aria-describedby="Current Password"
-                      v-model="form.password_confirmation" autocomplete="current-password"
-                      placeholder="Current Password">
-                    <div v-for="error in errors?.password_confirmation" :key="error" class="text-danger">{{ error }}</div>
-                  </div>
-                </div>
-              </div>
-            </div> -->
-
           </div> <!-- end of personal-details -->
 
+                                       <!-- MODAL FOR CHANGE PASSWORD -->
 
-                                       <!-- Modal for CHANGE PASSWORD  -->
-
-          <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordLabel" aria-hidden="true">
-              <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="text-center modal-body">
+          <div v-if="showCurrentPassword" class="change-password-modal">
+            <div class="modal-content">
+              <button @click="closeCurrentPasswordModal" class="close-button"><span class="material-symbols-rounded">&#xe5cd;</span></button>
+              <div class="text-center modal-body">
                     <span class="material-symbols-rounded lock">&#xe897;</span>
                    <h3 class="create">Create new password</h3>
                     <p class="proceed">To proceed with changing your password, please enter your current password for verification.</p>
-
                     <form>
                       <div class="form-group">
                       <label for="password">Current password</label>
-                      <input type="password" class="form-control" id="password" aria-describedby="Password"
-                        autocomplete="Password">
+                        <input 
+                          ref="passwordInput"
+                          id="currentPassword" 
+                          type="password"                     
+                          class="form-control" 
+                          name="password" 
+                          required 
+                          autocomplete="Current Password" 
+                          />
+                          <!-- v-model="form.current_password" -->
+                        <span
+                          class="material-symbols-rounded toggle-password"
+                          :class="{ 'active': showInputPassword }"
+                          @click="toggleCurrentPasswordVisibility"
+                        >
+                          {{ showInputPassword ? "&#xe8f4" : "&#xe8f5" }}
+                        </span>
+                        <!-- <div v-for="error in errors?.current_password" :key="error" class="text-danger">{{ error }}</div> -->
                      </div>
-
                       <div class="button-verify-wrapper">
-                        <button type="button" class="btn btn-secondary submit" 
-                        data-bs-toggle="modal" data-bs-target="#confirmPasswordModal">Continue</button>
+                        <button type="button" class="btn btn-secondary submit" @click="showNewPasswordModal">Continue</button>
                       </div>
                     </form>
-
-                  </div> <!-- end of modal body -->
-                </div>
-              </div>
+                  </div> 
             </div>
-
-            <div class="modal fade" id="confirmPasswordModal" tabindex="-1" aria-labelledby="confirmPasswordLabel" aria-hidden="true">
-              <div class="modal-dialog modal-lg">
+          </div>
+          <div v-if="showNewPassword" class="change-password-modal">
                 <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="text-center modal-body">
+              <button @click="closeNewPasswordModal" class="close-button"><span class="material-symbols-rounded">&#xe5cd;</span></button>
+              <div class="text-center modal-body">
                     <span class="material-symbols-rounded lock">&#xe897;</span>
                    <h3 class="create">Create new password</h3>
                     <p class="proceed">Your new password must be different from previous used passwords</p>
-
                     <form>
                       <div class="form-group new-password">
-                      <label for="password">New password</label>
-                      <input type="password" class="form-control" id="password" aria-describedby="Password"
-                        autocomplete="Password">
+                      <label for="password">New Password</label>
+                        <input 
+                          ref="newPasswordInput"
+                          id="password" 
+                          type="password" 
+                          class="form-control" 
+                          name="password" 
+                          required 
+                          autocomplete="New Password" 
+                          />
+                          <!-- v-model="form.password" -->
+                        <span
+                          class="material-symbols-rounded toggle-password"
+                          :class="{ 'active': showInputNewPassword }"
+                          @click="toggleNewPasswordVisibility"
+                        >
+                          {{ showInputNewPassword ? "&#xe8f4" : "&#xe8f5" }}
+                        </span>
+                        <!-- <div v-for="error in errors?.password" :key="error" class="text-danger">{{ error }}</div> -->
                      </div>
                      <div class="form-group">
-                      <label for="password">Confirm password</label>
-                      <input type="password" class="form-control" id="password" aria-describedby="Password"
-                        autocomplete="Password">
+                      <label for="password">Confirm Password</label>
+                        <input 
+                          ref="passwordInput"
+                          id="password" 
+                          type="password" 
+                          class="form-control" 
+                          name="password" 
+                          required 
+                          autocomplete="Confirm password" 
+                          />
+                          <!-- v-model="form.password_confirmation" -->
+                        <span
+                          class="material-symbols-rounded toggle-password"
+                          :class="{ 'active': showInputConfirmPassword }"
+                          @click="toggleShowConfirmPasswordVisibility"
+                        >
+                          {{ showInputConfirmPassword ? "&#xe8f4" : "&#xe8f5" }}
+                        </span>
+                        <!-- <div v-for="error in errors?.password_confirmation" :key="error" class="text-danger">{{ error }}</div> -->
                      </div>
-
                       <div class="button-verify-wrapper">
-                        <button type="button" class="btn btn-secondary submit" data-bs-dismiss="modal">Submit</button>
+                        <button type="button" class="btn btn-secondary submit update-password" @click="showResetPassSuccessMessageModal">Update Password</button>
                       </div>
                     </form>
+                  </div>
 
-                  </div> <!-- end of modal body -->
+              </div> <!--end of modal-content -->
+             </div> <!-- end of inner-modal -->
+
+             <div v-if="showResetPassSuccessMessage" class="change-password-modal reset-success-modal">
+                <div class="modal-content">
+                  <!-- <button @click="closeNewPasswordModal" class="close-button"><span class="material-symbols-rounded">&#xe5cd;</span></button> -->
+                  <div class="text-center modal-body">
+                    <svg class="check" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none"><g clip-path="url(#clip0_5610_68856)">
+    <path d="M24 4C12.96 4 4 12.96 4 24C4 35.04 12.96 44 24 44C35.04 44 44 35.04 44 24C44 12.96 35.04 4 24 4ZM20 34L10 24L12.82 21.18L20 28.34L35.18 13.16L38 16L20 34Z" fill="#FF6B00"/>
+  </g><defs><clipPath id="clip0_5610_68856"><rect width="48" height="48" fill="white"/></clipPath></defs></svg>
+                   <h3 class="create">Reset Password!</h3>
+                    <p class="proceed">Your password has been changed successfully. You can now use your new password to log in to your account!</p>
+                    <div class="button-verify-wrapper">
+                        <button type="button" class="btn btn-secondary submit update-password" @click="loginWithNewPass()">Log in</button>
+                      </div>
+                  </div>
                 </div>
-              </div>
             </div>
 
 
@@ -375,9 +382,64 @@ export default {
         { name: 'Completed'},
     ],
     selectedCustomized: 'All', // Default selected option
+    showInputPassword: false,
+    showInputNewPassword: false,
+    showInputConfirmPassword: false,
+
+    showCurrentPassword: false,
+    showNewPassword: false,
+    showResetPassSuccessMessage: false
     }
   },
   methods: {
+    showCurrentPasswordModal() {
+      this.showCurrentPassword = true;
+      document.body.style.overflow = 'hidden';
+    },
+    closeCurrentPasswordModal() {
+      this.showCurrentPassword = false;
+      document.body.style.overflow = 'auto';
+    },
+    showNewPasswordModal() {
+      this.showNewPassword = true;
+    },
+    showResetPassSuccessMessageModal(){
+      this.showResetPassSuccessMessage = true;
+      this.showNewPassword = false;
+      this.showCurrentPassword = false;
+    },
+    closeNewPasswordModal() {
+      this.showNewPassword = false;
+      this.showCurrentPassword = false;
+      this.showResetPassSuccessMessage = false;
+      document.body.style.overflow = 'auto';
+    },
+    toggleCurrentPasswordVisibility(){
+      this.showInputPassword = !this.showInputPassword;
+      const passwordInput = this.$refs.passwordInput;
+      if(passwordInput){
+        passwordInput.type = this.showInputPassword ? "text" : "password";
+      }
+    },
+    toggleNewPasswordVisibility(){
+      this.showInputNewPassword = !this.showInputNewPassword;
+      const newPasswordInput = this.$refs.newPasswordInput;
+      if(newPasswordInput){
+        newPasswordInput.type = this.showInputNewPassword ? "text" : "password";
+      }
+    },
+    toggleShowConfirmPasswordVisibility(){
+      this.showInputConfirmPassword = !this.showInputConfirmPassword;
+      const passwordInput = this.$refs.passwordInput;
+      if(passwordInput){
+        passwordInput.type = this.showInputConfirmPassword ? "text" : "password";
+      }
+    },
+    loginWithNewPass(){
+      this.$router.push('/login');
+      document.body.style.overflow = 'auto';
+    },
+
     showSidebarContent(option) {
       this.selectedOption = option.name;
     },
