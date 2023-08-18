@@ -23,7 +23,7 @@
       <div class="col-md-9">
         <div class="content" v-show="selectedOption === 'My Account'">
           <div class="user-description">
-            <h3 class="title">My Profile</h3>
+            <h3 class="title d-flex align-items-center">My Profile <span class="badge text-primary">Artist Account</span></h3>
             <p class="msg">Rest assured that the songs will be delivered by the end of the day.</p>
           </div>
 
@@ -46,7 +46,7 @@
                 </div>
             
                 <div class="form-group">
-                  <label for="email">Username</label>
+                  <label for="username">Username</label>
                   <input type="text" class="form-control" id="username" aria-describedby="Username"
                     v-model="form.username" autocomplete="off" placeholder="Username">
                   <small v-if="errors.username" class="text-danger">{{ errors.username.shift() }}</small>
@@ -54,8 +54,8 @@
             
                 <div class="form-group">
                   <div class="d-flex align-items-center change-label">
-                    <label for="username">Email Address</label>
-                    <button type="button" class="btn btn-primary">Change</button>
+                    <label for="email">Email Address</label>
+                    <button type="button" class="btn btn-primary" @click="showCurrentEmailAddressModal">Change</button>
                   </div>
                   <input type="email" class="form-control disabled-field" id="email" aria-describedby="Email"
                     v-model="formattedEmail" autocomplete="email" placeholder="Email" disabled>
@@ -64,7 +64,7 @@
 
                 <div class="form-group">
                   <div class="d-flex align-items-center change-label">
-                    <label for="email">Phone Number</label> 
+                    <label for="phone">Phone Number</label> 
                     <button type="button" class="btn btn-primary" @click="showPhoneNumberModal">Change</button>
                   </div>
                   <input type="text" class="form-control disabled-field" id="phone" aria-describedby="Phone"
@@ -88,8 +88,108 @@
           </div> <!-- end of password-wrapper -->
           </div> <!-- end of personal-details -->
 
-                                                 <!-- MODAL FOR CHANGE PHONE NUMBNER  -->
 
+                                                  <!-- MODAL FOR CHANGE EMAIL ADDRESS  -->
+
+          <div v-if="showEmailAddress" class="update-my-account-modal">
+            <div class="modal-content">
+              <button @click="closeCurrentEmailAddressModal" class="close-button"><span class="material-symbols-rounded">&#xe5cd;</span></button>
+              <div class="text-center modal-body">
+                <svg class="email-icon" xmlns="http://www.w3.org/2000/svg" width="77" height="76" viewBox="0 0 77 76" fill="none"><g clip-path="url(#clip0_5628_93086)">
+                <path d="M68.8084 65.4316H8.10727C4.14306 65.4316 0.917969 62.2057 0.917969 58.2414V17.6717C0.917969 13.7075 4.14306 10.4824 8.10727 10.4824H68.8084C72.7726 10.4824 75.9977 13.7075 75.9977 17.6717V58.2423C75.9977 62.2057 72.7726 65.4316 68.8084 65.4316ZM8.10727 13.8185C5.98335 13.8185 4.25484 15.547 4.25484 17.6717V58.2423C4.25484 60.367 5.98335 62.0947 8.10727 62.0947H68.8084C70.9331 62.0947 72.6608 60.367 72.6608 58.2423V17.6717C72.6608 15.5478 70.9331 13.8193 68.8084 13.8193L8.10727 13.8185Z" fill="#8690A2"/>
+                <path d="M38.458 41.2697C37.5054 41.2697 36.5527 41.0645 35.6651 40.6549L1.88672 25.0525L3.28654 22.0234L37.0641 37.6258C37.95 38.0346 38.9652 38.0354 39.852 37.6258L73.5578 22.0568L74.9576 25.0859L41.2518 40.654C40.3634 41.0645 39.4115 41.2697 38.458 41.2697Z" fill="#8690A2"/></g><defs><clipPath id="clip0_5628_93086"><rect width="76" height="76" fill="white" transform="translate(0.5)"/></clipPath></defs></svg>
+                  <h3 class="enter-phone">Enter your Email Address</h3>
+                    <p class="verification">Enter your current email address for verification.</p>
+                    <form>
+                      <div class="form-group">
+                      <label for="email">Current Emaill Address</label>
+                        <input 
+                          id="currentEmail" 
+                          type="email"                     
+                          class="form-control" 
+                          name="email" 
+                          required 
+                          autocomplete="Current Emaill Address"
+                          />
+                        <!-- <div v-for="error in errors?.current_password" :key="error" class="text-danger">{{ error }}</div> -->
+                     </div>
+                      <div class="button-verify-wrapper">
+                        <button type="button" class="btn btn-secondary submit" @click="showNewEmailAddressModal">Continue</button>
+                      </div>
+                    </form>
+                  </div> 
+              </div>
+            </div> <!-- end of update-my-account-modal -->
+
+            <div v-if="showNewEmailAddress" class="update-my-account-modal">
+            <div class="modal-content">
+              <button @click="closeNewEmailAddressModal" class="close-button"><span class="material-symbols-rounded">&#xe5cd;</span></button>
+              <div class="text-center modal-body">
+                <svg class="email-icon" xmlns="http://www.w3.org/2000/svg" width="77" height="76" viewBox="0 0 77 76" fill="none"><g clip-path="url(#clip0_5628_93086)">
+                <path d="M68.8084 65.4316H8.10727C4.14306 65.4316 0.917969 62.2057 0.917969 58.2414V17.6717C0.917969 13.7075 4.14306 10.4824 8.10727 10.4824H68.8084C72.7726 10.4824 75.9977 13.7075 75.9977 17.6717V58.2423C75.9977 62.2057 72.7726 65.4316 68.8084 65.4316ZM8.10727 13.8185C5.98335 13.8185 4.25484 15.547 4.25484 17.6717V58.2423C4.25484 60.367 5.98335 62.0947 8.10727 62.0947H68.8084C70.9331 62.0947 72.6608 60.367 72.6608 58.2423V17.6717C72.6608 15.5478 70.9331 13.8193 68.8084 13.8193L8.10727 13.8185Z" fill="#8690A2"/>
+                <path d="M38.458 41.2697C37.5054 41.2697 36.5527 41.0645 35.6651 40.6549L1.88672 25.0525L3.28654 22.0234L37.0641 37.6258C37.95 38.0346 38.9652 38.0354 39.852 37.6258L73.5578 22.0568L74.9576 25.0859L41.2518 40.654C40.3634 41.0645 39.4115 41.2697 38.458 41.2697Z" fill="#8690A2"/></g><defs><clipPath id="clip0_5628_93086"><rect width="76" height="76" fill="white" transform="translate(0.5)"/></clipPath></defs></svg>
+                  <h3 class="enter-phone">Change your Email Address</h3>
+                    <p class="verification">Please provide your new email address.</p>
+                    <form>
+                      <div class="form-group">
+                      <label for="email">New Emaill Address</label>
+                        <input 
+                          id="currentEmail" 
+                          type="email"                     
+                          class="form-control" 
+                          name="email" 
+                          required 
+                          autocomplete="Current Emaill Address"
+                          />
+                        <!-- <div v-for="error in errors?.current_password" :key="error" class="text-danger">{{ error }}</div> -->
+                     </div>
+                      <div class="button-verify-wrapper">
+                        <button type="button" class="btn btn-secondary submit" @click="showVerifyEmailAddressModal">Submit</button>
+                      </div>
+                    </form>
+                  </div> 
+              </div>
+            </div> <!-- end of update-my-account-modal -->
+
+            <div v-if="showVerifyEmailAddress" class="update-my-account-modal">
+            <div class="modal-content">
+              <button @click="closeshowVerifyEmailAddressModal" class="close-button"><span class="material-symbols-rounded">&#xe5cd;</span></button>
+              <div class="text-center modal-body">
+                <svg class="email-icon" xmlns="http://www.w3.org/2000/svg" width="77" height="76" viewBox="0 0 77 76" fill="none"><g clip-path="url(#clip0_5628_93086)">
+                <path d="M68.8084 65.4316H8.10727C4.14306 65.4316 0.917969 62.2057 0.917969 58.2414V17.6717C0.917969 13.7075 4.14306 10.4824 8.10727 10.4824H68.8084C72.7726 10.4824 75.9977 13.7075 75.9977 17.6717V58.2423C75.9977 62.2057 72.7726 65.4316 68.8084 65.4316ZM8.10727 13.8185C5.98335 13.8185 4.25484 15.547 4.25484 17.6717V58.2423C4.25484 60.367 5.98335 62.0947 8.10727 62.0947H68.8084C70.9331 62.0947 72.6608 60.367 72.6608 58.2423V17.6717C72.6608 15.5478 70.9331 13.8193 68.8084 13.8193L8.10727 13.8185Z" fill="#8690A2"/>
+                <path d="M38.458 41.2697C37.5054 41.2697 36.5527 41.0645 35.6651 40.6549L1.88672 25.0525L3.28654 22.0234L37.0641 37.6258C37.95 38.0346 38.9652 38.0354 39.852 37.6258L73.5578 22.0568L74.9576 25.0859L41.2518 40.654C40.3634 41.0645 39.4115 41.2697 38.458 41.2697Z" fill="#8690A2"/></g><defs><clipPath id="clip0_5628_93086"><rect width="76" height="76" fill="white" transform="translate(0.5)"/></clipPath></defs></svg>
+                  <h3 class="enter-phone">Please verify your Email</h3>
+                    <p class="review">Please review your email inbox for the email verification message that has been sent to:</p>
+                    <h5 class="hidden-phone">kenzi.lawson@example.com</h5>
+                    <form>
+                      <div class="button-verify-wrapper">
+                        <button type="button" class="btn btn-secondary submit">Resend (180s)</button>
+                      </div>
+                    </form>
+                  </div> 
+              </div>
+            </div> <!-- end of update-my-account-modal -->
+
+                             <!-- SHOW THIS MODAL IF THE USER SUCCESSFULLY VERIFIED HIS EMAIL  -->
+
+            <div v-if="showSuccessEmaillAddressMessage" class="update-my-account-modal reset-success-modal">
+                <div class="modal-content">
+                  <div class="text-center modal-body">
+                    <svg class="check" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none"><g clip-path="url(#clip0_5610_68856)">
+                      <path d="M24 4C12.96 4 4 12.96 4 24C4 35.04 12.96 44 24 44C35.04 44 44 35.04 44 24C44 12.96 35.04 4 24 4ZM20 34L10 24L12.82 21.18L20 28.34L35.18 13.16L38 16L20 34Z" fill="#FF6B00"/>
+                    </g><defs><clipPath id="clip0_5610_68856"><rect width="48" height="48" fill="white"/></clipPath></defs></svg>
+                   <h3 class="create">Success!</h3>
+                    <p class="proceed">Your email address has been successfully updated.</p>
+                    <div class="button-verify-wrapper">
+                        <button type="button" class="btn btn-secondary submit update-password">Log in</button>
+                      </div>
+                  </div>
+                </div>
+            </div>
+
+
+                                                 <!-- MODAL FOR CHANGE PHONE NUMBNER  -->
+           
           <div v-if="showPhoneNumber" class="update-my-account-modal">
             <div class="modal-content">
               <button @click="closePhoneNumberModal" class="close-button"><span class="material-symbols-rounded">&#xe5cd;</span></button>
@@ -98,13 +198,45 @@
                   <path d="M53.5266 2.92062C54.4917 2.92062 55.2767 3.70562 55.2767 4.67082V71.244C55.2767 72.2092 54.4917 72.9942 53.5266 72.9942H23.3896C22.4244 72.9942 21.6394 72.2092 21.6394 71.244V4.67082C21.6394 3.70562 22.4244 2.92062 23.3896 2.92062H53.5266ZM53.5266 0.417969H23.3896C21.0404 0.417969 19.1367 2.32249 19.1367 4.67082V71.244C19.1367 73.5931 21.0412 75.4968 23.3896 75.4968H53.5266C55.8757 75.4968 57.7794 73.5923 57.7794 71.244V4.67082C57.7794 2.32249 55.8757 0.417969 53.5266 0.417969Z" fill="#8690A2"/>
                   <path d="M27.7598 2.08008C27.7598 4.43591 29.3089 6.36296 31.2018 6.36296H45.7138C47.6067 6.36296 49.1558 4.43591 49.1558 2.08008H27.7598ZM40.8453 4.1723H32.9486C32.7184 4.1723 32.5315 3.98543 32.5315 3.75519C32.5315 3.52494 32.7184 3.33808 32.9486 3.33808H40.8453C41.0756 3.33808 41.2624 3.52494 41.2624 3.75519C41.2624 3.98543 41.0764 4.1723 40.8453 4.1723ZM43.3864 4.33581C43.066 4.33581 42.8057 4.07553 42.8057 3.75519C42.8057 3.43485 43.066 3.17457 43.3864 3.17457C43.7067 3.17457 43.967 3.43485 43.967 3.75519C43.967 4.07553 43.7067 4.33581 43.3864 4.33581Z" fill="#8690A2"/>
                 </svg>
+                   <h3 class="enter-phone">Enter current Phone number</h3>
+                    <p class="verification">Enter your current phone number for Verification</p>
+                    <form>
+                      <div class="form-group">
+                      <label for="phone">Current phone number</label>
+                        <input 
+                          id="currentPhoneNumber" 
+                          type="text"                     
+                          class="form-control" 
+                          name="phone" 
+                          required 
+                          autocomplete="Current Phone Number"
+                          placeholder="+63" 
+                          />
+                        <!-- <div v-for="error in errors?.current_password" :key="error" class="text-danger">{{ error }}</div> -->
+                     </div>
+                      <div class="button-verify-wrapper">
+                        <button type="button" class="btn btn-secondary submit" @click="showNewPhoneNumberModal">Continue</button>
+                      </div>
+                    </form>
+                  </div> 
+              </div>
+            </div> <!-- end of update-my-account-modal -->                                       
+
+          <div v-if="showNewPhoneNumber" class="update-my-account-modal">
+            <div class="modal-content">
+              <button @click="closeNewPhoneNumberModal" class="close-button"><span class="material-symbols-rounded">&#xe5cd;</span></button>
+              <div class="text-center modal-body">
+                <svg class="phone-icon" xmlns="http://www.w3.org/2000/svg" width="77" height="76" viewBox="0 0 77 76" fill="none">
+                  <path d="M53.5266 2.92062C54.4917 2.92062 55.2767 3.70562 55.2767 4.67082V71.244C55.2767 72.2092 54.4917 72.9942 53.5266 72.9942H23.3896C22.4244 72.9942 21.6394 72.2092 21.6394 71.244V4.67082C21.6394 3.70562 22.4244 2.92062 23.3896 2.92062H53.5266ZM53.5266 0.417969H23.3896C21.0404 0.417969 19.1367 2.32249 19.1367 4.67082V71.244C19.1367 73.5931 21.0412 75.4968 23.3896 75.4968H53.5266C55.8757 75.4968 57.7794 73.5923 57.7794 71.244V4.67082C57.7794 2.32249 55.8757 0.417969 53.5266 0.417969Z" fill="#8690A2"/>
+                  <path d="M27.7598 2.08008C27.7598 4.43591 29.3089 6.36296 31.2018 6.36296H45.7138C47.6067 6.36296 49.1558 4.43591 49.1558 2.08008H27.7598ZM40.8453 4.1723H32.9486C32.7184 4.1723 32.5315 3.98543 32.5315 3.75519C32.5315 3.52494 32.7184 3.33808 32.9486 3.33808H40.8453C41.0756 3.33808 41.2624 3.52494 41.2624 3.75519C41.2624 3.98543 41.0764 4.1723 40.8453 4.1723ZM43.3864 4.33581C43.066 4.33581 42.8057 4.07553 42.8057 3.75519C42.8057 3.43485 43.066 3.17457 43.3864 3.17457C43.7067 3.17457 43.967 3.43485 43.967 3.75519C43.967 4.07553 43.7067 4.33581 43.3864 4.33581Z" fill="#8690A2"/>
+                </svg>
                    <h3 class="enter-phone">Enter your New Phone number</h3>
-                    <p class="verification">Enter New Phone number for Verification</p>
+                    <p class="verification">Enter New Phone Number for Verification</p>
                     <form>
                       <div class="form-group">
                       <label for="phone">New phone number</label>
                         <input 
-                          id="currentPassword" 
+                          id="newPhoneNumber" 
                           type="text"                     
                           class="form-control" 
                           name="phone" 
@@ -149,6 +281,7 @@
                       <div class="button-verify-wrapper">
                         <button type="button" class="btn btn-secondary submit"
                          :disabled="!isAllFieldsFilled"
+                        @click="showSuccessPhoneNumeberMessageModal"
                          >Submit</button>
                       </div>
                     </form>
@@ -156,7 +289,20 @@
               </div>
             </div> <!-- end of update-my-account-modal -->
 
-
+            <div v-if="showSuccessPhoneNumeberMessage" class="update-my-account-modal reset-success-modal">
+                <div class="modal-content">
+                  <div class="text-center modal-body">
+                    <svg class="check" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none"><g clip-path="url(#clip0_5610_68856)">
+                    <path d="M24 4C12.96 4 4 12.96 4 24C4 35.04 12.96 44 24 44C35.04 44 44 35.04 44 24C44 12.96 35.04 4 24 4ZM20 34L10 24L12.82 21.18L20 28.34L35.18 13.16L38 16L20 34Z" fill="#FF6B00"/>
+                  </g><defs><clipPath id="clip0_5610_68856"><rect width="48" height="48" fill="white"/></clipPath></defs></svg>
+                   <h3 class="create">Success!</h3>
+                    <p class="proceed">Your phone number has been changed successfully. </p>
+                    <div class="button-verify-wrapper">
+                        <button type="button" class="btn btn-secondary submit update-password" @click="loginWithNewPass">Log in</button>
+                      </div>
+                  </div>
+                </div>
+            </div>
 
 
                                        <!-- MODAL FOR CHANGE PASSWORD -->
@@ -248,7 +394,7 @@
                         <!-- <div v-for="error in errors?.password_confirmation" :key="error" class="text-danger">{{ error }}</div> -->
                      </div>
                       <div class="button-verify-wrapper">
-                        <button type="button" class="btn btn-secondary submit update-password" @click="showResetPassSuccessMessageModal">Update Password</button>
+                        <button type="button" class="btn btn-secondary submit update-password" @click="showSuccessMessageModal">Update Password</button>
                       </div>
                     </form>
                   </div>
@@ -256,59 +402,29 @@
               </div> <!--end of modal-content -->
              </div> <!-- end of inner-modal -->
 
-             <div v-if="showResetPassSuccessMessage" class="update-my-account-modal reset-success-modal">
+             <div v-if="showSuccessPasswordResetMessage" class="update-my-account-modal reset-success-modal">
                 <div class="modal-content">
                   <div class="text-center modal-body">
                     <svg class="check" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none"><g clip-path="url(#clip0_5610_68856)">
-    <path d="M24 4C12.96 4 4 12.96 4 24C4 35.04 12.96 44 24 44C35.04 44 44 35.04 44 24C44 12.96 35.04 4 24 4ZM20 34L10 24L12.82 21.18L20 28.34L35.18 13.16L38 16L20 34Z" fill="#FF6B00"/>
-  </g><defs><clipPath id="clip0_5610_68856"><rect width="48" height="48" fill="white"/></clipPath></defs></svg>
+                    <path d="M24 4C12.96 4 4 12.96 4 24C4 35.04 12.96 44 24 44C35.04 44 44 35.04 44 24C44 12.96 35.04 4 24 4ZM20 34L10 24L12.82 21.18L20 28.34L35.18 13.16L38 16L20 34Z" fill="#FF6B00"/>
+                  </g><defs><clipPath id="clip0_5610_68856"><rect width="48" height="48" fill="white"/></clipPath></defs></svg>
                    <h3 class="create">Reset Password!</h3>
                     <p class="proceed">Your password has been changed successfully. You can now use your new password to log in to your account!</p>
                     <div class="button-verify-wrapper">
-                        <button type="button" class="btn btn-secondary submit update-password">Log in</button>
+                        <button type="button" class="btn btn-secondary submit update-password" @click="loginWithNewPass">Log in</button>
                       </div>
                   </div>
                 </div>
             </div>
 
-
-
         </div> <!-- end of My Account tab -->
 
         <div class="content"  v-show="selectedOption === 'Customized Songs'">
-          <div class="user-description">
+          <!-- <div class="user-description">
             <h3 class="title">Customized Songs</h3>
-          </div>
+          </div> -->
+          <CustomizedSongs />
 
-          <div class="d-flex align-items-center customized-tabs">
-            <li class="d-flex align-items-center" 
-            v-for="customize in customizedSongs" 
-            :key="customize.name"
-            :class="{ 'active-option': selectedCustomized === customize.name }"
-            @click="showCustomizeContent(customize)">
-              <h5>{{ customize.name }}</h5>
-            </li>
-         </div>
-         
-         <div class="content"  v-show="selectedCustomized === 'All'">
-          <h3>All</h3>
-        </div>
-
-        <div class="content"  v-show="selectedCustomized === 'Requested'">
-          <h3>Requested</h3>
-        </div>
-
-        <div class="content"  v-show="selectedCustomized === 'For Submission'">
-          <h3>RFor Submission</h3>
-        </div>
-
-        <div class="content"  v-show="selectedCustomized === 'For Revision'">
-          <h3>For Revision</h3>
-        </div>
-
-        <div class="content"  v-show="selectedCustomized === 'Completed'">
-          <h3>Completed</h3>
-        </div>
 
         </div> <!-- end of Customized Songs -->
 
@@ -410,6 +526,7 @@
 <script>
 import { mapGetters, mapState, mapActions } from "vuex";
 import Verify from '@/components/Auth/Verify.vue';
+import CustomizedSongs from '@/components/Auth/Account/CustomizedSongs.vue';
 
 export default {
   components: {
@@ -419,7 +536,8 @@ export default {
     }
   },
   components: {
-    'verify-card': Verify
+    'verify-card': Verify,
+    CustomizedSongs,
   },
   data()
   {
@@ -452,29 +570,52 @@ export default {
         { icon: 'subscriptions', name: 'Manage Subscriptions'},
         { icon: 'page_info', name: 'Others'}
     ],
-    selectedOption: 'My Account', // Default selected option
-    customizedSongs: [
-        { name: 'All'},
-        { name: 'Requested'},
-        { name: 'For Submission'},
-        { name: 'For Revision'},
-        { name: 'Completed'},
-    ],
-    selectedCustomized: 'All', // Default selected option 
+    selectedOption: 'My Account', // Default selected option 
       //  Change Password
     showInputPassword: false,
     showInputNewPassword: false,
     showInputConfirmPassword: false,
     showCurrentPassword: false,
     showNewPassword: false,
-    showResetPassSuccessMessage: false,
+    showSuccessPasswordResetMessage: false,
       //  Change Phone Number
     showPhoneNumber: false,
+    showNewPhoneNumber: false,
     showOTPCode: false,
-
+    showSuccessPhoneNumeberMessage: false,
+      //  Change Email Address
+    showEmailAddress: false,  
+    showNewEmailAddress: false,
+    showVerifyEmailAddress: false,
+    showSuccessEmaillAddressMessage: false,
     }
   },
   methods: {
+       //  Change Email Address
+    showCurrentEmailAddressModal(){
+      this.showEmailAddress = true;
+    },
+    closeCurrentEmailAddressModal(){
+      this.showEmailAddress = false;
+    },
+    showNewEmailAddressModal(){
+      this.showEmailAddress = false;
+      this.showNewEmailAddress = true;
+    },
+    closeNewEmailAddressModal(){
+      this.showEmailAddress = false;
+      this.showNewEmailAddress = false;
+    },
+    showVerifyEmailAddressModal(){
+      this.showVerifyEmailAddress = true;
+      this.showEmailAddress = false;
+      this.showNewEmailAddress = false;
+    },
+    closeshowVerifyEmailAddressModal(){
+      this.showVerifyEmailAddress = false;
+      this.showEmailAddress = false;
+      this.showNewEmailAddress = false;
+    },
       //  Change Phone Number
     showPhoneNumberModal(){
       this.showPhoneNumber = true;
@@ -482,13 +623,29 @@ export default {
     closePhoneNumberModal(){
       this.showPhoneNumber = false;
     },
+    showNewPhoneNumberModal(){
+      this.showNewPhoneNumber = true;
+      this.showPhoneNumber = false;
+    },
+    closeNewPhoneNumberModal(){
+      this.showNewPhoneNumber = false;
+      this.showPhoneNumber = false;
+    },
     showOTPCodeModal(){
       this.showOTPCode = true;
+      this.showNewPhoneNumber = false;
       this.showPhoneNumber = false;
     },
     closeOTPCodeModal(){
       this.showOTPCode = false;
+      this.showNewPhoneNumber = false;
       this.showPhoneNumber = false;
+    },
+    showSuccessPhoneNumeberMessageModal(){
+      this.showSuccessPhoneNumeberMessage = true;
+      this.showPhoneNumber = false;
+      this.showOTPCode = false;
+      this.showNewPhoneNumber = false;
     },
 
        //  Change Password
@@ -503,15 +660,15 @@ export default {
     showNewPasswordModal() {
       this.showNewPassword = true;
     },
-    showResetPassSuccessMessageModal(){
-      this.showResetPassSuccessMessage = true;
+    showSuccessMessageModal(){
+      this.showSuccessPasswordResetMessage = true;
       this.showNewPassword = false;
       this.showCurrentPassword = false;
     },
     closeNewPasswordModal() {
       this.showNewPassword = false;
       this.showCurrentPassword = false;
-      this.showResetPassSuccessMessage = false;
+      this.showSuccessPasswordResetMessage = false;
       document.body.style.overflow = 'auto';
     },
     toggleCurrentPasswordVisibility(){
@@ -542,9 +699,6 @@ export default {
 
     showSidebarContent(option) {
       this.selectedOption = option.name;
-    },
-    showCustomizeContent(option) {
-      this.selectedCustomized = option.name;
     },
     ...mapActions([
       'accountSetting', 'resyncProfile', 'resendCode', 'validateCode',
