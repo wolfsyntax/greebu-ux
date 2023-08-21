@@ -94,6 +94,9 @@ var actions = {
             commit('SET_ROLE', profile?.role || '');
             commit('SET_ROLES', roles || []);
 
+           commit('SET_TOKEN', token || '');
+           commit('SET_PROFILE', profile || {});
+
             if (profile?.role === 'customers' && user?.phone_verified_at) {
               commit('SET_TOKEN', token || '');
               commit('SET_PROFILE', profile || {});
