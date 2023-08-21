@@ -473,9 +473,17 @@ export default {
     // this.showOnboardingMessage = true;
   },
   created() {
-    this.checkAndShowModal();
+   // this.checkAndShowModal();
+       // Show the modal after a delay if the flag is set
+       if (this.$store.state.showOnboardingMessage) {
+      setTimeout(() => {
+        this.showOnboardingMessage = true;
+      }, 1000);
+    }
   },
   mounted() {
+    // Show the modal after a delay of 1 second
+
   },
   methods: {
     // closeModal() {
@@ -497,14 +505,14 @@ export default {
       //   localStorage.setItem('modalLastShown', currentTime);
       // }
 
-      const lastShown = localStorage.getItem('modalLastShown');
-      const currentTime = new Date().getTime();
+      // const lastShown = localStorage.getItem('modalLastShown');
+      // const currentTime = new Date().getTime();
                             // 14400000 = 4 hrs
                             // 60000 milliseconds = 1 minute
-      if (!lastShown || currentTime - lastShown >= 0) { 
-        this.showOnboardingMessage = true;
-        localStorage.setItem('modalLastShown', currentTime);
-      }
+      // if (!lastShown || currentTime - lastShown >= 10000) { 
+      //   this.showOnboardingMessage = true;
+      //   localStorage.setItem('modalLastShown', currentTime);
+      // }
 
     },
     toggleTestimonialVideo(index)
