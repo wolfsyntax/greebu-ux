@@ -364,7 +364,7 @@ const router = createRouter({
         {
           path: 'profile',
           name: 'profile', // src\views\Artist\Profile_backup.vue
-          component: () => import('/src/views/Artist/Profile_backup.vue'),
+          component: () => import('/src/views/Artist/Profile.vue'),
         },
         {
           path: 'edit',
