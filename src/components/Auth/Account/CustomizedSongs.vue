@@ -28,7 +28,8 @@
             </div>
             <div class="details-wrapper">
                 <div class="button-wrapper">
-                    <button type="button" class="btn details">View Details</button>
+                    <button type="button" class="btn details" @click="showModal = true">View Details</button>
+                    <RequestedSongModal :show="showModal" @close-modal="closeModal"/>
                 </div>
             </div>
         </div>
@@ -51,8 +52,12 @@
   </template>
   
   <script>
+ import RequestedSongModal from '@/components/Auth/Account/RequestedSongModal.vue';
 
   export default {
+    components: {
+      RequestedSongModal
+    },
     props: {
       
     },
@@ -69,7 +74,8 @@
     { event: 'Birthday Song', profile_image: 'https://lh3.google.com/u/0/ogw/AGvuzYY2s_5Bchy7XSS8t-sa6xFlZuh_RVoKuOI8xg45=s32-c-mo', name: 'John Flores', time: 3, },
     { event: 'Wedding Song', profile_image: 'https://lh3.googleusercontent.com/ogw/AGvuzYaE0rvo3xwVU3H4f2K3wcaEYqe9ht06pHbd9Lxh=s32-c-mo', name: 'Dante Magno', time: 12, },
     { event: 'Wedding Song', profile_image: 'https://lh3.googleusercontent.com/ogw/AGvuzYaE0rvo3xwVU3H4f2K3wcaEYqe9ht06pHbd9Lxh=s32-c-mo', name: 'Dante Magno', time: 12, },
-    ]
+    ],
+    showModal: false,
          }
     },      
     computed: {
@@ -78,6 +84,9 @@
     showCustomizeContent(option) {
       this.selectedCustomized = option.name;
     },
+    closeModal(){
+      this.showModal = false;
+    }
     },
   };
   </script>
