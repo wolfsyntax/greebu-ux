@@ -283,7 +283,7 @@ export default {
             // setTimeout(() => this.countdown--, 100);
            // this.$router.push({ path: this.$route.path, query: { id: result?.user_id } });
            this.$router.push("/");
-
+           this.$store.commit('setShowOnboardingMessage', true);
             
             //this.$router.push("/login");
             // this.$vs.notification({
