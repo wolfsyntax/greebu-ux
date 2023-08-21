@@ -2,7 +2,7 @@
   <layout>
 
   <section class="register">
-    <div class="container-fluid" v-if="!$route.query.id">
+    <div class="container-fluid">
       <div id="registerCarouselBanner" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <div class="carousel-indicators">
           <button type="button" data-bs-target="#registerCarouselBanner" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -156,7 +156,9 @@
         </div>
       </div>
     </div>
-    <verify-card v-else/>
+
+    <!-- <verify-card v-else/> -->
+
     <!-- <div class="container-fluid" v-else>
       <form @submit.prevent="confirm">
         <div class="">
@@ -279,7 +281,8 @@ export default {
 
             this.step = '';
             // setTimeout(() => this.countdown--, 100);
-            this.$router.push({ path: this.$route.path, query: { id: result?.user_id } });
+           // this.$router.push({ path: this.$route.path, query: { id: result?.user_id } });
+           this.$router.push("/");
 
             
             //this.$router.push("/login");
@@ -333,7 +336,8 @@ export default {
         .then(response =>
         {
           const { status: statusCode, data: {status, message, result} } = response
-          if (statusCode === 200 && status === 200) this.$router.push("/login");
+          // if (statusCode === 200 && status === 200) this.$router.push("/login");
+          if (statusCode === 200 && status === 200) this.$router.push("/");
           else if (statusCode === 203) {
             if (status === 422) {
               this.verifyMessage = 'The provided OTP code is invalid. Please try again with the correct code.';
