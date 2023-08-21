@@ -42,7 +42,7 @@ export default new Vuex.Store({
       }
     }),
     createCache({
-      timeout: 1 * 60 * 60 * 1000 
+      timeout: 10000// 1 * 60 * 60 * 1000 
     })
   ],
   state,
