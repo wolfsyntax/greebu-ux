@@ -702,10 +702,20 @@ var actions = {
             
             if (status === 200) {
               
-              const { account, user, profile } = result;
+              const { account, user, profile} = result;
               console.log('[vuex] fetchProfile updating state: ', account)
               // commit('SET_AUTH', user);
               commit('SET_ACCOUNT', account);
+
+              if (state.role === 'artists') {
+
+                const { custom_genre, genres } = result;
+
+                commit('SET_ACCOUNT_GENRE', genres);
+                commit('SET_ARTIST_GENRES', genres);
+                commit('SET_CUSTOM_GENRE', custom_genre);
+              }
+
               // commit('SET_PROFILE', profile);
 
             }
