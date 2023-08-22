@@ -53,7 +53,10 @@ var mutations = {
   SET_PHONE_ISMODIFIED(state)
   {
     state.isPhoneModify = state
-  }
+  },
+  // setShowOnboardingMessage(state, value) {
+  //   state.showOnboardingMessage = value;
+  // }
 }
 
 export default mutations
