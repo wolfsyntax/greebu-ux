@@ -24,11 +24,11 @@
                                   <div class="position-relative">
                                   <img class="profile-pic" :src="`${account?.avatar || 'https://res.cloudinary.com/daorvtlls/image/upload/v1686465790/cld-sample.jpg'}`" alt="profile">
                                   <!-- https://res.cloudinary.com/daorvtlls/image/upload/v1687927639/artist-profile-1_uhpekp.webp -->
-                                    <div class="camera">
+                                    <!-- <div class="camera">
                                       <button type="submit" class="btn btn-success">
                                         <i class="material-icons"><span class="material-symbols-outlined">&#xE412;</span></i>
                                       </button>
-                                    </div>
+                                    </div> -->
                                   </div>
                                   <div class="profile-wrapper">
                                     <div class="name-artist">
