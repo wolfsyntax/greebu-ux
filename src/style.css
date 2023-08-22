@@ -5032,6 +5032,9 @@ width: 100%;
   line-height: 1.3125rem;
   margin-bottom: 0;
 }
+.account-settings .request-song-modal .song-info-wrapper .right {
+  text-align: right;
+}
 .account-settings .request-song-modal .song-info-wrapper .hidden-song-info{
   opacity: 0;
 }
@@ -5078,6 +5081,74 @@ width: 100%;
   28px 1.75 rem
 */
 
+/* VIEW DETAILS - REQUEST SONG MODAL */
+
+.account-settings .request-song-modal .title-wrapper .title {
+  font-size: 1.5rem;
+}
+.account-settings .request-song-modal .title-wrapper .sub-title {
+  font-size: 0.9375rem;
+}
+.account-settings .request-song-modal .title-wrapper {
+  margin-bottom: 1.5rem;
+}
+.account-settings .request-song-modal .action-wrapper .customer-image {
+  width: 3.5rem;
+  height: 3.5rem;
+  margin-right: 1rem;
+}
+.account-settings .request-song-modal .action-wrapper .name {
+  font-size: 1.125rem;
+}
+.account-settings .request-song-modal .action-wrapper .username {
+  font-size: 0.9375rem;
+}
+.account-settings .request-song-modal .action-wrapper button {
+  font-size: 0.875rem;
+  line-height: 1.5rem; /* 171.429% */
+  padding: 0.38rem 2.34rem;
+}
+.account-settings .request-song-modal .note-wrapper .note {
+  font-size: 0.875rem;
+  letter-spacing: -0.035rem;
+}
+.account-settings .request-song-modal .note-wrapper {
+  margin-bottom: 1.25rem;
+  padding: 0.5rem;
+}
+.account-settings .request-song-modal .note-wrapper .info-icon {
+  font-size: 1.1rem;
+}
+.account-settings .request-song-modal .story-wrapper {
+  margin-bottom: 1.25rem
+}
+.account-settings .request-song-modal .story-wrapper .title {
+  font-size: 1.25rem;
+}
+.account-settings .request-song-modal .story-wrapper .message {
+  font-size: 1rem;
+  letter-spacing: -0.02rem;
+}
+.account-settings .request-song-modal .song-info-wrapper {
+  margin-bottom: 0.94rem;
+}
+.account-settings .request-song-modal .song-info-wrapper h5 {
+  font-size: 1rem;
+  letter-spacing: -0.02rem;
+  margin-bottom: 0.37rem;
+}
+.account-settings .request-song-modal .song-info-wrapper p {
+  font-size: 1rem;
+  line-height: 1.3125rem;
+}
+.account-settings .request-song-modal .song-info-wrapper .date {
+  font-size: 18px;
+  margin-right: 0.1rem;
+}
+.account-settings .request-song-modal .modal-content {
+  margin: 50px auto;
+  max-height: calc(100vh - 110px);
+}
 
                           /* CUSTOMIZED SONGS TAB */
 .account-settings .title-wrapper .title {

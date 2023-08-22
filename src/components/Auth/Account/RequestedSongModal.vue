@@ -48,7 +48,7 @@
                         <h5>What is the song for?</h5>
                         <p>Birthday</p>
                     </div>
-                    <div>
+                    <div class="right">
                         <h5>To whom is the song for?</h5>
                         <p>Jane Cooper</p>
                     </div>
@@ -58,7 +58,7 @@
                         <h5>Genre</h5>
                         <p>Rock</p>
                     </div>
-                    <div>
+                    <div class="right">
                         <h5>Type  of Song (Mood)</h5>
                         <p>Romance</p>
                     </div>
@@ -68,7 +68,7 @@
                         <h5>Language</h5>
                         <p>English</p>
                     </div>
-                    <div>
+                    <div class="right">
                         <h5>Duration of Song?</h5>
                         <p>5 minutes</p>
                     </div>
@@ -78,7 +78,7 @@
                         <h5>Delivery Date</h5>
                         <p class="d-flex align-items-center"><span class="material-symbols-rounded date">&#xebcc;</span>June 12,2023</p>
                     </div>
-                    <div class="hidden-song-info">
+                    <div class="right hidden-song-info">
                         <h5>Delivery Date</h5>
                         <p>June 12,2023</p>
                     </div>
