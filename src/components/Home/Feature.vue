@@ -475,11 +475,19 @@ export default {
   created() {
    // this.checkAndShowModal();
        // Show the modal after a delay if the flag is set
-       if (this.$store.state.showOnboardingMessage) {
+    //    if (this.$store.state.showOnboardingMessage) {
+    //   setTimeout(() => {
+    //     this.showOnboardingMessage = true;
+    //   }, 1000);
+    // }
+
+    if (this.$route.query.onboarding === 'true') {
       setTimeout(() => {
         this.showOnboardingMessage = true;
       }, 1000);
     }
+
+
   },
   mounted() {
     // Show the modal after a delay of 1 second

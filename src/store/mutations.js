@@ -54,9 +54,9 @@ var mutations = {
   {
     state.isPhoneModify = state
   },
-  setShowOnboardingMessage(state, value) {
-    state.showOnboardingMessage = value;
-  }
+  // setShowOnboardingMessage(state, value) {
+  //   state.showOnboardingMessage = value;
+  // }
 }
 
 export default mutations
