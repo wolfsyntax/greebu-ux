@@ -40,6 +40,14 @@ var mutations = {
   {
     state.phone = payload;
   },
+  SET_ACCOUNT_GENRE(state, payload)
+  {
+    state.account.genres = payload.map(function (g) { return g['title']  })
+  },
+  SET_CUSTOM_GENRE(state, payload)
+  {
+    state.custom_genre = payload
+  },
   CLEAR_STATE(state)
   {
     state.profile = {};
@@ -49,6 +57,9 @@ var mutations = {
     state.roles = [];
     state.phone = null;
     state.account = {};
+    state.custom_genre = '';
+    state.artist_genre = [];
+
   },
   SET_PHONE_ISMODIFIED(state)
   {
