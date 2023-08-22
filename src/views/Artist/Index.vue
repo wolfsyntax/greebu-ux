@@ -430,15 +430,6 @@
     </div>
   </section>
 
-  <section class="artist-data">
-    <div class="container">
-      <p><strong>Artist:</strong> {{ artist }}</p> 
-      <div>
-        <p class="user"><strong>User:</strong> {{  profile }}</p>
-      </div>
-      <p><strong>Member:</strong> {{ members }}</p>
-    </div>
-  </section>
   <!-- <button @click="openModal">Open Modal</button>
     
   <div>

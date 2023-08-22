@@ -370,19 +370,6 @@
         </div> <!-- end of row -->
       </div> <!-- end of container -->
     </section>
-
-    <section class="artist-data">
-      Account: {{ myAccount }}
-      <br/>
-      Form: {{  form }}
-
-      <section>
-        
-        <br/>Genre: <p>{{  genres }}</p>
-      </section>
-      
-    </section>
-
   </div>
 
 </template>
