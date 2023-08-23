@@ -47,7 +47,7 @@
                 </div>
               </div>
             </div>
-
+            
             <div v-if="active" class="modal-backdrop fade show"></div>
 
             <div class="alert alert-success" role="alert" v-if="message">
@@ -97,7 +97,7 @@
 
                 <div class="form-group">
                   <label for="genre">Genre</label>
-                  <multiselect v-model="formGenres" :options="genres" mode="tags" class="genre" placeholder="Please select genres" />
+                  <multiselect v-model="formGenres"  :options="genres" mode="tags" class="genre" placeholder="Please select genres" />
                   <!-- <div v-if="errors.genre" class="genre-error text-danger"></div> -->
                   <br/>
                   <input type="text" v-model="others" placeholder="Genre" class="form-control province" v-if="hasOthers" required />
@@ -309,7 +309,7 @@
                   <input class="form-check-input" type="checkbox" role="switch" v-model="form.accept_booking" id="flexSwitchCheckDefault">
                 </div>
               </div>
-
+              
               <div class="d-flex justify-content-between group-item">
                 <label class="form-check-label" for="flexSwitchCheckDefault">Do you want to accept custom song?</label>
                 <div class="form-check form-switch">
@@ -434,7 +434,7 @@ export default {
   },
   mounted()
   {
-
+    console.log('Artist Profile: ')
     this.form = {
       artist_type: null,
       artist_name: null,
@@ -456,7 +456,7 @@ export default {
     this.fetchArtistOptions()
       .then(response =>
       {
-        // console.log('Fetch Artists Options: ', response)
+        console.log('Fetch Artists Options: ', response)
       })
     this.artistOptions()
     this.fetchProfile() 
@@ -492,6 +492,7 @@ export default {
     changeImage(event){
     
       this.avatar = URL.createObjectURL(event.target.files[0]);
+      this.form.avatar = event.target.files[0];
     },
     // uploadFile()
     // {
@@ -506,16 +507,17 @@ export default {
       }
 
       this.form.genres = this.formGenres;
-
+      console.log('Form Genre (submit): ', this.form.genres)
       this.$emit('form', this.form)
       this.formGenres = [];
       
       this.fetchProfile().then(res =>
       {
         const { status: statusCode, data: { result: { genres } } } = res
-        
+
+        console.log('--- Fetch Profile ---', res)
         this.others = this.custom_genre
-        // this.form.genres = genres
+        this.form.genres = genres
         this.form = this.myAccount
         this.formGenres = this.myAccount?.genres || [];
 
