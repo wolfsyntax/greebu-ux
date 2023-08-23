@@ -55,6 +55,7 @@
             </div>
 
             <form @submit.prevent="submit" class="fill-details">
+              <!-- {{ form }} -->
               <div class="form-group upload-img">
                 <label class="label-img">
                     <img :src="avatar" class="img-fluid default-avatar" alt="default user avatar">
@@ -466,7 +467,8 @@ export default {
     // this.form.genre = ''
     // this.form.genre = this.account.genres.map(function (g) { return g['title']  });
 
-    this.avatar = this.myAccount?.avatar
+    // this.avatar = this.myAccount?.avatar
+    this.avatar = this.myAccount?.avatar || '/assets/artist-account/new.svg'
     this.formGenres = this.myAccount?.genres || []
     this.others = this.custom_genre
   },
@@ -490,7 +492,6 @@ export default {
       'SET_PROFILE', 'SET_ARTIST', 'SET_MEMBERS',
     ]),
     changeImage(event){
-    
       this.avatar = URL.createObjectURL(event.target.files[0]);
       this.form.avatar = event.target.files[0];
     },
