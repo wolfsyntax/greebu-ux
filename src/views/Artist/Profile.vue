@@ -95,13 +95,17 @@
                   <input type="text" v-model="form.artist_name" placeholder="Name of the Artist/Band" class="form-control artist-name"/>
                   <div v-if="error?.artist_name" class="artist-name-error text-danger"></div>
                 </div>
-
+                <section>
+                  <p>Form Genres: {{ formGenres }}</p>
+                  <p>Custom Genre: {{ customGenre }}</p>
+                  <p>Genre: {{ genres }}</p>
+                </section>
                 <div class="form-group">
                   <label for="genre">Genre</label>
                   <multiselect v-model="formGenres"  :options="genres" mode="tags" class="genre" placeholder="Please select genres" />
                   <!-- <div v-if="errors.genre" class="genre-error text-danger"></div> -->
-                  <br/>
-                  <input type="text" v-model="others" placeholder="Genre" class="form-control province" v-if="hasOthers" required />
+                  <br/>{{ customGenre }}
+                  <input type="text" v-model="others" @blur="updateGenre" placeholder="Genre" class="form-control province" v-if="hasOthers" required />
                   <div v-for="err in error?.genre" :key="err" class="text-danger">{{ err }}</div>
 
                   
@@ -501,6 +505,12 @@ export default {
     //   this.avatar = this.form.avatar?.value;
     //   console.log('Upload File: ', this.form.avatar)
     // },
+    updateGenre()
+    {
+      console.log('Update Genre');
+      // this.customGenre();
+      this.formGenres.push(...this.customGenre);
+    },
     submit()
     {
       if (this.hasOthers) {
@@ -612,12 +622,23 @@ export default {
       custom_genre: (state) => state.custom_genre
       // account: (state) => state.account,
     }),
+    customGenre()
+    {
+      return this.others.split(';').map(function (item)
+      {
+        return item.trim();
+      });
+    }
     // formGenres()
     // {
     //   return this.genres?.map(function (g) { return g['title'] })
     // }
   },
   watch: {
+    others(newVal)
+    {
+      // if (newVal.includes(''))
+    },
     formGenres(newVal)
     {
       this.hasOthers = newVal.includes('Others');
