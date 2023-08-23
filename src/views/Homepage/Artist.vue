@@ -70,11 +70,11 @@
             </select>
           </div>
           <div class="col-3">
-            <h5>Music Genre</h5>
+            <h5>Music Genre </h5>
             <select class="form-select" v-model="genre" aria-label="Default select example">
               <option value="" selected></option>
-              <option v-for="{title, id} in genres" :key="id" :value="id">
-                {{ title }}
+              <option v-for="gen in genres" :key="gen.id" :value="gen.id">
+                {{ gen.title }}
                 </option> 
             </select>
           </div>
@@ -324,6 +324,7 @@ export default {
   },
   mounted()
   {
+    //this.$store.commit('CLEAR_ARTIST')
     this.artistOptions()
 
     var payload = {}
@@ -334,7 +335,7 @@ export default {
     this.fetchArtists(payload)
       .then(response =>
       {
-        // console.log('Artist.vue: ', response);
+        console.log('Artist.vue: ', response);
       })
     this.audioPlayer = this.$refs.audioPlayer;
     this.audioPlayer.addEventListener('play', () =>
@@ -351,7 +352,7 @@ export default {
     ...mapState({
       artists: (state) => state.artist.artists,
       artist_types: (state) => state.artist.artist_types,
-      genres: (state) => state.artist.genres,
+      genres: (state) => state.artist.genreList,
     }),
     playIconClass()
     {

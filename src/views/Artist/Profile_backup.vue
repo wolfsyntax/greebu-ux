@@ -336,7 +336,7 @@
       
     </section>
 
-    <section class="artist-data">
+    <!-- <section class="artist-data">
       <div class="form-group">
                   <label for="genre">Genre</label>
                   <multiselect v-model="form.genre" :options="{
@@ -357,11 +357,6 @@
   <img width="100" height="100"
               src="https://thumbs.dreamstime.com/b/businessman-icon-vector-male-avatar-profile-image-profile-businessman-icon-vector-male-avatar-profile-image-182095609.jpg"
               alt="">
-        <!-- <vs-avatar>
-          <img width="100" height="100"
-            src="https://thumbs.dreamstime.com/b/businessman-icon-vector-male-avatar-profile-image-profile-businessman-icon-vector-male-avatar-profile-image-182095609.jpg"
-            alt="">
-        </vs-avatar> -->
         <p>{{ $filters.timeAgo('2019-12-19') }}</p>
         {{ artistProfile }}
 
@@ -375,7 +370,7 @@
           {{ genres }}
 
       </div>
-    </section>
+    </section> -->
 
   </div>
 </template>

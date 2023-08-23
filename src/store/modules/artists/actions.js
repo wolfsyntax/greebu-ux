@@ -16,13 +16,14 @@ export const fetchArtistOptions = ({ commit, rootState, state}, payload) => {
           const { result } = data
 
           var genre = result?.genres
+          console.log(genre);
 
           var exists = genre.filter(function (o) {
             return o.hasOwnProperty('title');
           }).length > 0;
 
           if (exists) {
-            commit('SET_GENRES', genre.map(function (g) { return g['title'] }));
+            commit('SET_GENRES', genre);
           } else {
             commit('SET_GENRES', genre);
           }
@@ -204,7 +205,7 @@ export const fetchArtists = ({ commit, rootState, state }, payload) => {
         //commit('SET_MEMBERS', data)
         commit('SET_ARTISTS', artistList)
         commit('SET_PAGINATION', { current_page, last_page, per_page, total })
-        
+        console.log("ARTIST LIST", state.artistList);
         resolve(response.data)
     })
     .catch(err => {
@@ -232,7 +233,8 @@ export const artistOptions = ({ commit, rootState, state }, payload) =>
           }).length > 0;
 
           if (exists) {
-            commit('SET_GENRES', genre.map(function (g) { return g['title'] }) || []);
+            commit('SET_GENRES', genre);
+            console.log("New genre", genre);
           } else {
             commit('SET_GENRES', genre || []);
           }
