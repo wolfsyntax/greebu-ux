@@ -46,7 +46,7 @@
                                     </div> -->
                                     <div class="music-genre">
                                       <h5 class="title">Genres:</h5>
-                                      <span class="badge" v-for="genre in account?.genres.filter(val => val !== 'Others')" :key="genre">{{ genre}}</span>
+                                      <span class="badge" v-for="genre in account?.genres?.filter(val => val !== 'Others')" :key="genre">{{ genre}}</span>
                                       <span class="badge" v-if="custom_genre">{{ custom_genre }}</span>
                                       <!-- <span class="badge">Country Rock</span> <span class="badge">Electronic</span> <span class="badge">Rock</span> <span class="badge">Reggae</span> -->
                                     </div>
@@ -425,8 +425,6 @@
           <div class="row profile-body" v-if="activeItem === 'Reviews'">
             <h2>Reviews</h2>
           </div>
-          
-          
       </div>
     </div>
   </section>
@@ -507,6 +505,7 @@ export default {
   },
   mounted()
   {
+    console.log('Artist Option: ')
     this.fetchArtistOptions().then(response =>
     {
       console.log('Fetch Artist Option [index]: ', response)
@@ -585,7 +584,8 @@ export default {
       artist: (state)   => state.artist.artist,
       members: (state) => state.artist.members,
       account: (state) => state.account,
-      custom_genre: (state) => state.custom_genre
+      custom_genre: (state) => state.custom_genre,
+      genres: (state) => state.artist.genres,
     }),
   }
 }

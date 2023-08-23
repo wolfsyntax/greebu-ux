@@ -9,6 +9,8 @@
 
 <script>
 import Layout from '/src/components/Layouts/Layout.vue';
+import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
+
 export default {
   components: {
     layout: Layout
@@ -23,6 +25,15 @@ export default {
   props: {
   },
   methods: {
+    ...mapActions([
+      'fetchArtistOptions', 'artistOptions', 'fetchProfile',
+    ]),
+  },
+  mounted()
+  {
+    // this.fetchArtistOptions();
+    // this.artistOptions();
+    this.fetchProfile();
   },
   created () {
   },
