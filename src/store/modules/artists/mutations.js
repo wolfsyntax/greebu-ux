@@ -1,6 +1,10 @@
 export const SET_GENRES = (state, payload) =>
 {
+  // state.genres = payload.map(function (g) { return g['title'] })
   state.genres = payload
+  state.genreList = payload
+  console.log("STATE GENRES", state.genres)
+  console.log("Payload", payload)
 }
 
 export const SET_ARTIST_TYPES = (state, payload) =>
@@ -54,6 +58,7 @@ export const CLEAR_ARTIST = (state) =>
   state.artist_types = null;
 
   state.artist_genres = null;
+  console.log("ALL genre", state.genres);
 
   state.genres = null;
 

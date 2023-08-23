@@ -56,6 +56,7 @@ export default {
             this.message = 'Updated successfully';
             window.scrollBy(-10000, -10000);
             this.$forceUpdate();
+            //this.$router.push('/artist');
           }
         });
     }

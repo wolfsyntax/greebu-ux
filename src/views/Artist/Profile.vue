@@ -57,13 +57,14 @@
             <form @submit.prevent="submit" class="fill-details">
               <div class="form-group upload-img">
                 <label class="label-img">
-                    <img :src="`${myAccount?.avatar || '/assets/artist-account/new.svg'}`" class="img-fluid default-avatar" alt="default user avatar">
+                    <img :src="avatar" class="img-fluid default-avatar" alt="default user avatar">
                     <div class="camera">
                       
                       <!-- <input type="file" ref="file" @change="uploadFile" accept="image/png, image/webp, image/svg, image/jpeg" /> -->
                       
                       
-                      <input type="file" @input="form.avatar = $event.target.files[0]" accept="image/png, image/webp, image/svg, image/jpeg" />
+                      <!-- <input type="file" @input="form.avatar = $event.target.files[0]" accept="image/png, image/webp, image/svg, image/jpeg" /> -->
+                      <input type="file" @input="changeImage" accept="image/png, image/webp, image/svg, image/jpeg" />
                       <!-- <div v-if="error?.avatar" class="text-danger">{{ error.avatar }}</div> -->
                       <div v-for="err in error?.avatar" :key="err" class="text-danger">{{ err }}</div>
                       <progress v-if="form.progress" :value="form.progress.percentage" max="100">{{ form.progress.percentage }}%</progress>
@@ -421,6 +422,7 @@ export default {
       formType: 'members',
       formHeader: 'Add Member',
       formSubHeading: 'Lorem ipsum dolor sit amet consectetur. Nam lacus viverra nec orci arcu id fringilla ultrices.',
+
     }
   },
   setup()
@@ -467,7 +469,6 @@ export default {
     this.avatar = this.myAccount?.avatar
     this.formGenres = this.myAccount?.genres || []
     this.others = this.custom_genre
-
   },
   props: {
     error: {
@@ -488,6 +489,10 @@ export default {
     ...mapMutations([
       'SET_PROFILE', 'SET_ARTIST', 'SET_MEMBERS',
     ]),
+    changeImage(event){
+    
+      this.avatar = URL.createObjectURL(event.target.files[0]);
+    },
     // uploadFile()
     // {
     //   this.form.avatar = this.$refs.file.files[0];
@@ -524,6 +529,7 @@ export default {
       //   this.$forceUpdate();
       // })
       console.log('Artist Profile [form]: ', this.form)
+      //this.$router.push('/artist');
     },
     removeSocialMedia(key)
     {

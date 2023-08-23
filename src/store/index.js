@@ -11,6 +11,7 @@ import getters from './getters';
 import state from './state';
 
 import artist from './modules/artists';
+import userProfile from './modules/profiles';
 import customer from './modules/customers';
 import organizer from './modules/organizers';
 import services from './modules/services';
@@ -51,6 +52,7 @@ export default new Vuex.Store({
   getters,
   modules: {
     artist,
+    userProfile,
     customer,
     // organizer,
     // services,
