@@ -14,6 +14,8 @@ var state = {
   account_type: '',
   account: null,
   isPhoneModify: false,
+  custom_genre: '',
+  artist_genre: [],
 }
 
 export default state

@@ -97,9 +97,10 @@
 
                 <div class="form-group">
                   <label for="genre">Genre</label>
-                  <multiselect v-model="form.genres" :options="genres" mode="tags" class="genre" placeholder="Please select genres" />
+                  <multiselect v-model="formGenres" :options="genres" mode="tags" class="genre" placeholder="Please select genres" />
                   <!-- <div v-if="errors.genre" class="genre-error text-danger"></div> -->
-
+                  <br/>
+                  <input type="text" v-model="others" placeholder="Genre" class="form-control province" v-if="hasOthers" required />
                   <div v-for="err in error?.genre" :key="err" class="text-danger">{{ err }}</div>
 
                   
@@ -371,19 +372,6 @@
         </div> <!-- end of row -->
       </div> <!-- end of container -->
     </section>
-
-    <!-- <section class="artist-data">
-      Account: {{ myAccount }}
-      <br/>
-      Form: {{  form }}
-
-      <section>
-        
-        <br/>Genre: <p>{{  genres }}</p>
-      </section>
-      
-    </section> -->
-
   </div>
 
 </template>
@@ -423,6 +411,9 @@ export default {
         accept_booking: false,
         accept_proposal: false,
       },
+      hasOthers: false,
+      others: '',
+      formGenres: [],
       avatar: '/assets/artist-account/new.svg',
       options: ['list', 'of', 'options'],
       // members: [],
@@ -465,18 +456,19 @@ export default {
     this.fetchArtistOptions()
       .then(response =>
       {
-        console.log('Fetch Artists Options: ', response)
+        // console.log('Fetch Artists Options: ', response)
       })
     this.artistOptions()
     this.fetchProfile() 
     this.form = this.myAccount
     this.$forceUpdate();
-    console.log('My Account: ', this.myAccount)
+    
     // this.form.genre = ''
     // this.form.genre = this.account.genres.map(function (g) { return g['title']  });
 
-    this.avatar = this.myAccount?.avatar || '/assets/artist-account/new.svg'
-    
+    this.avatar = this.myAccount?.avatar
+    this.formGenres = this.myAccount?.genres || []
+    this.others = this.custom_genre
   },
   props: {
     error: {
@@ -509,8 +501,26 @@ export default {
     // },
     submit()
     {
+      if (this.hasOthers) {
+        this.formGenres.push(this.others);
+      }
+
+      this.form.genres = this.formGenres;
+
       this.$emit('form', this.form)
-      this.fetchProfile();
+      this.formGenres = [];
+
+      this.fetchProfile().then(res =>
+      {
+        const { status: statusCode, data: { result: { genres } } } = res
+        
+        this.others = this.custom_genre
+        // this.form.genres = genres
+        this.form = this.myAccount
+        this.formGenres = this.myAccount?.genres || [];
+
+        this.hasOthers = this.custom_genre ? true : false
+      });
       // this.$nextTick(() =>
       // {
       //   this.fetchProfile();
@@ -596,13 +606,30 @@ export default {
       artistTypes: (state) => state.artist.artist_types,
       genres: (state) => state.artist.genres,
       members: (state) => state.artist.members,
+      custom_genre: (state) => state.custom_genre
       // account: (state) => state.account,
     }),
-    formGenres()
-    {
-      return this.genres?.map(function (g) { return g['title'] })
-    }
+    // formGenres()
+    // {
+    //   return this.genres?.map(function (g) { return g['title'] })
+    // }
   },
+  watch: {
+    formGenres(newVal)
+    {
+      this.hasOthers = newVal.includes('Others');
+      if (this.hasOthers) {
+        if (!this.others) this.others = '';
+      } else {
+        var idx = this.formGenres.indexOf(this.others);
+
+        if (idx > -1) {
+          this.formGenres.splice(idx, 1);
+        }
+
+      }
+    }
+  }
 }
 </script>
 

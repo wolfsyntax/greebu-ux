@@ -24,11 +24,11 @@
                                   <div class="position-relative">
                                   <img class="profile-pic" :src="`${account?.avatar || 'https://res.cloudinary.com/daorvtlls/image/upload/v1686465790/cld-sample.jpg'}`" alt="profile">
                                   <!-- https://res.cloudinary.com/daorvtlls/image/upload/v1687927639/artist-profile-1_uhpekp.webp -->
-                                    <div class="camera">
+                                    <!-- <div class="camera">
                                       <button type="submit" class="btn btn-success">
                                         <i class="material-icons"><span class="material-symbols-outlined">&#xE412;</span></i>
                                       </button>
-                                    </div>
+                                    </div> -->
                                   </div>
                                   <div class="profile-wrapper">
                                     <div class="name-artist">
@@ -46,7 +46,8 @@
                                     </div> -->
                                     <div class="music-genre">
                                       <h5 class="title">Genres:</h5>
-                                      <span class="badge" v-for="genre in account?.genres" :key="genre">{{ genre}}</span>
+                                      <span class="badge" v-for="genre in account?.genres.filter(val => val !== 'Others')" :key="genre">{{ genre}}</span>
+                                      <span class="badge" v-if="custom_genre">{{ custom_genre }}</span>
                                       <!-- <span class="badge">Country Rock</span> <span class="badge">Electronic</span> <span class="badge">Rock</span> <span class="badge">Reggae</span> -->
                                     </div>
                                     </div>
@@ -430,15 +431,6 @@
     </div>
   </section>
 
-  <section class="artist-data">
-    <div class="container">
-      <p><strong>Artist:</strong> {{ artist }}</p> 
-      <div>
-        <p class="user"><strong>User:</strong> {{  profile }}</p>
-      </div>
-      <p><strong>Member:</strong> {{ members }}</p>
-    </div>
-  </section>
   <!-- <button @click="openModal">Open Modal</button>
     
   <div>
@@ -593,6 +585,7 @@ export default {
       artist: (state)   => state.artist.artist,
       members: (state) => state.artist.members,
       account: (state) => state.account,
+      custom_genre: (state) => state.custom_genre
     }),
   }
 }
