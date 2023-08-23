@@ -392,10 +392,11 @@
         </div> <!-- end of row -->
       </div> <!-- end of container -->
     </section>
-    <pre><b>Custom Genre:</b>{{ custom_genre }}</pre>
+
+    <!-- <pre><b>Custom Genre:</b>{{ custom_genre }}</pre>
     <pre><b>Message:</b>{{  $store.state.message }}</pre>
     <pre><b>Form</b>{{ form }}</pre>
-    <pre><b>Account</b>{{ $store.state.account }}</pre>
+    <pre><b>Account</b>{{ $store.state.account }}</pre> -->
 
 
   </div>

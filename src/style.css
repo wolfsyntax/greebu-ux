@@ -26,6 +26,37 @@ body{
 font-family: 'Urbanist', sans-serif;
 background-color: var(--white);
 } 
+
+
+/* Material Symbols */
+
+@font-face {
+  font-family: 'Material Symbols Outlined';
+  font-style: normal;
+  src: url(./assets/css/variablefont/MaterialSymbolsOutlined[FILL\,GRAD\,opsz\,wght].ttf) format('truetype'), /* Corrected format value */
+  url(./assets/css/variablefont/MaterialSymbolsOutlined[FILL,GRAD,opsz,wght].woff2) format('truetype'),
+  url(./assets/css/variablefont/MaterialSymbolsRounded[FILL,GRAD,opsz,wght].ttf) format('truetype'),
+  url(./assets/css/variablefont/MaterialSymbolsRounded[FILL,GRAD,opsz,wght].woff2) format('truetype'),
+  url(./assets/css/variablefont/MaterialSymbolsSharp[FILL,GRAD,opsz,wght].ttf) format('truetype'),
+  url(./assets/css/variablefont/MaterialSymbolsSharp[FILL,GRAD,opsz,wght].woff2) format('truetype');
+  
+}
+
+.material-symbols-outlined, .material-symbols-rounded, .material-symbols-sharp {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+}
+
+
 .form-check-input:focus {
   border-color: var(--orange);
   outline: 0;
@@ -801,6 +832,7 @@ filter: brightness(70%);
   border: 10px solid var(--white);
   outline: 10px solid #ffffff5c;
   transition: 0.7s all ease-in;
+  background-color: var(--white);
 }
 .testimonials .video-container .play-button span.material-symbols-outlined:hover {
    outline: 10px solid rgb(168 168 168 / 30%); 
@@ -2431,14 +2463,15 @@ height: 100%;
 }
 .events-showing .container .card .location, .events-showing .container .card .date, .events-showing .container .card .time{
   display: flex;
+  align-items: center;
   margin-bottom: 5px;
 }
 .events-showing .container .card .time{
   margin-bottom: 33px;
 }
-.events-showing .container .card .location i .material-symbols-outlined, 
-.events-showing .container .card .date i .material-symbols-outlined, 
-.events-showing .container .card .time i .material-symbols-outlined{
+.events-showing .container .card .location .material-symbols-outlined, 
+.events-showing .container .card .date .material-symbols-outlined, 
+.events-showing .container .card .time .material-symbols-outlined{
   margin-right: 8px;
   color: var(--gray2);
   font-size: 16px;
