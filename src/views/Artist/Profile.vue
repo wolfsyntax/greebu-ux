@@ -55,7 +55,7 @@
             </div>
 
             <form @submit.prevent="submit" class="fill-details">
-              {{ form }}
+              <!-- {{ form }} -->
               <div class="form-group upload-img">
                 <label class="label-img">
                     <img :src="avatar" class="img-fluid default-avatar" alt="default user avatar">
