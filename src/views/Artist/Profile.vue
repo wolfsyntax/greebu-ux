@@ -509,7 +509,7 @@ export default {
 
       this.$emit('form', this.form)
       this.formGenres = [];
-
+      
       this.fetchProfile().then(res =>
       {
         const { status: statusCode, data: { result: { genres } } } = res

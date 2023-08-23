@@ -1,7 +1,7 @@
 export const SET_GENRES = (state, payload) =>
 {
   // state.genres = payload.map(function (g) { return g['title'] })
-  state.genres = payload
+  state.genres = payload?.map(function (g) { return g['title'] })
   state.genreList = payload
   console.log("STATE GENRES", state.genres)
   console.log("Payload", payload)

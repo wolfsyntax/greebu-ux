@@ -222,21 +222,21 @@ const router = createRouter({
               path: 'setting',
               name: 'account-setting',
               component: () => import('/src/views/Auth/Account/Setting.vue'),
-              // meta: {
-              //   // requiresLogin: false,            
-              //   title: 'Account Setting',
-              //   role: '',
-              // }
+              meta: {
+                requiresLogin: true,            
+                title: 'Account Setting',
+                role: '',
+              }
             },
             {
               path: 'profile',
               name: 'account-profile',
               component: () => import('/src/views/Auth/Account/Profile.vue'),
-              // meta: {
-              //   // requiresLogin: false,            
-              //   title: 'Account Profile',
-              //   role: '',
-              // }
+              meta: {
+                requiresLogin: true,            
+                title: 'Account Profile',
+                role: '',
+              }
             },
           ]
         },
