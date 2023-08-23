@@ -46,7 +46,7 @@
                                     </div> -->
                                     <div class="music-genre">
                                       <h5 class="title">Genres:</h5>
-                                      <span class="badge" v-for="genre in account?.genres.filter(val => val !== 'Others')" :key="genre">{{ genre}}</span>
+                                      <span class="badge" v-for="genre in account?.genres?.filter(val => val !== 'Others')" :key="genre">{{ genre}}</span>
                                       <span class="badge" v-if="custom_genre">{{ custom_genre }}</span>
                                       <!-- <span class="badge">Country Rock</span> <span class="badge">Electronic</span> <span class="badge">Rock</span> <span class="badge">Reggae</span> -->
                                     </div>
@@ -430,6 +430,8 @@
       </div>
     </div>
   </section>
+  <pre> <b>Profile</b> {{  $store.state.profile  }} <br></pre>
+  <pre> <b>Account</b> {{ $store.state.account }}</pre>
 
   <!-- <button @click="openModal">Open Modal</button>
     

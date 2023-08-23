@@ -4901,7 +4901,7 @@ width: 100%;
   margin: 100px auto;
   position: relative;
   border-radius: 1rem;
-  box-shadow: 0px 25px 50px -12px rgba(0, 0, 0, 0.25);
+  /* box-shadow: 0px 25px 50px -12px rgba(0, 0, 0, 0.25); */
   max-height: calc(100vh - 210px);
   overflow-y: auto;
   /* max-height: 100%;
@@ -4932,6 +4932,45 @@ width: 100%;
   color: var(--gray6);
   font-size: 1.25rem;
   font-weight: 500;
+}
+.account-settings .toast-accepted-request{
+  border-radius: 0.75rem;
+  background: #FFF;
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.15);
+  padding: 1rem;
+  width: 33rem;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: break-word;
+  word-break: break-word;
+  gap: 2%;
+}
+.account-settings .toast-accepted-request .accepted{
+  color: var(--orange);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.25rem; 
+  margin-bottom: 0.5rem;
+}
+.account-settings .toast-accepted-request .description{
+  color: #536471;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1rem; 
+  margin-bottom: 0;
+}
+.account-settings .toast-accepted-request .accepted-wrapper .check-circle{
+  margin-right: 0.5rem;
+  color: var(--orange);
+  font-size: 24px;
+}
+.account-settings .toast-accepted-request .close-toast .close-icon{
+  color: #ABADC6;
+  font-size: 24px;
+  cursor: pointer;
+}
+.account-settings .toast-accepted-request .close-toast .close-icon:hover{
+  color: var(--orange);
 }
 .account-settings .request-song-modal .action-wrapper{
   margin-bottom: 1.5rem;

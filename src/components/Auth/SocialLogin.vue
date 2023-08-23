@@ -102,7 +102,7 @@ export default {
           if (Object.keys(formData))
           {
             formData.auth_type = this.$route.name;
-            formData.account_type = this.account_type;
+            formData.account_type = this.account_type; 
 
             // Works with signInWithPopup
             this.socialAuth({
@@ -119,7 +119,8 @@ export default {
                   // console.log('Social Auth: ', response)
                   if (!result?.user?.phone_verified_at)
                   {
-                    this.$router.push({ name: 'verify' })
+                    // this.$router.push({ name: 'verify' })
+                    this.$router.push({ name: 'home' })
                   } else {
                     this.$router.push({ name: 'home' });
                   }
