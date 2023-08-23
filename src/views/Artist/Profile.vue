@@ -50,7 +50,7 @@
             
             <div v-if="active" class="modal-backdrop fade show"></div>
 
-            <div class="alert alert-success" role="alert" v-if="message">
+            <div class="alert alert-success updated-successfully" role="alert" v-if="message">
               {{ message }}
             </div>
 
@@ -337,7 +337,10 @@
               </div>
 
               <div class="text-center">
-                <button type="submit" class="btn btn-success submit-form">Submit</button>
+                <!-- <button type="submit" class="btn btn-success submit-form" 
+                data-bs-toggle="modal" data-bs-target="#successDetailsModal">Submit</button> -->
+                <button type="submit" class="btn btn-success submit-form" 
+                >Submit</button>
               </div>
             </form>
 
@@ -366,13 +369,19 @@
                   </div>
                 </div>
               </div>
-            </div>                      
+            </div> 
+
           </div>
 
           <div class="col-3"></div>
         </div> <!-- end of row -->
       </div> <!-- end of container -->
     </section>
+
+    <pre><b>Form</b>{{ form }}</pre>
+    <pre><b>Account</b>{{ $store.state.account }}</pre>
+
+
   </div>
 
 </template>
