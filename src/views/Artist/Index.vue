@@ -428,8 +428,8 @@
       </div>
     </div>
   </section>
-  <pre> <b>Profile</b> {{  $store.state.profile  }} <br></pre>
-  <pre> <b>Account</b> {{ $store.state.account }}</pre>
+  <!-- <pre> <b>Profile</b> {{  $store.state.profile  }} <br></pre>
+  <pre> <b>Account</b> {{ $store.state.account }}</pre> -->
 
   <!-- <button @click="openModal">Open Modal</button>
     

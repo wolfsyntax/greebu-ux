@@ -5094,6 +5094,47 @@ width: 100%;
   /* display: none; */
 }
 
+.profile-details .toast-artist-details {
+  border-radius: 0.75rem;
+  background: #FFF;
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.15);
+  padding: 1rem;
+  width: 33rem;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: break-word;
+  word-break: break-word;
+  gap: 2%;
+  margin: 2rem auto;
+}
+.profile-details .toast-artist-details .accepted{
+  color: var(--orange);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.25rem; 
+  margin-bottom: 0rem;
+}
+.profile-details .toast-artist-details .description{
+  color: #536471;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1rem; 
+  margin-bottom: 0;
+}
+.profile-details .toast-artist-details .accepted-wrapper .check-circle{
+  margin-right: 0.5rem;
+  color: var(--orange);
+  font-size: 24px;
+}
+.profile-details .toast-artist-details .close-toast .close-icon{
+  color: #ABADC6;
+  font-size: 24px;
+  cursor: pointer;
+}
+.profile-details .toast-artist-details .close-toast .close-icon:hover{
+  color: var(--orange);
+}
+
 
 
 

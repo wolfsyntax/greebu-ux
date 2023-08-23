@@ -1273,9 +1273,9 @@ body{
 background: var(--btn-hovered);
 }
 /* modal */
-.profile-details .container .modal-content .modal-header{
+.profile-details .container .modal-content .modal-header {
   border-bottom: 0;
-  align-items: baseline;
+  align-items: flex-start;
 }
 .profile-details .container .modal-content .modal-header .container{
   margin: 0;
@@ -2089,7 +2089,52 @@ margin-right: 6px;
   font-weight: 700;
   line-height: 140%;
   letter-spacing: -0.03rem
-}    
+}  
+
+
+ /* .toast-artist-details{
+  border-radius: 0.75rem;
+  background: #FFF;
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.15);
+  padding: 1rem;
+  width: 33rem;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: break-word;
+  word-break: break-word;
+  gap: 2%;
+}
+.toast-artist-details .accepted{
+  color: var(--orange);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.25rem; 
+  margin-bottom: 0.5rem;
+}
+.toast-artist-details .description{
+  color: #536471;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1rem; 
+  margin-bottom: 0;
+}
+.toast-artist-details .accepted-wrapper .check-circle{
+  margin-right: 0.5rem;
+  color: var(--orange);
+  font-size: 24px;
+}
+.toast-artist-details .close-toast .close-icon{
+  color: #ABADC6;
+  font-size: 24px;
+  cursor: pointer;
+}
+.toast-artist-details .close-toast .close-icon:hover{
+  color: var(--orange);
+} */
+
+
+
+
 .profile-details .upload-img .label-img .default-avatar {
   width: 9.125rem;
   height: 9.125rem;
