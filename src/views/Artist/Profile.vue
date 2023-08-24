@@ -110,22 +110,18 @@
                   <input type="text" v-model="form.artist_name" placeholder="Name of the Artist/Band" class="form-control artist-name"/>
                   <div v-if="error?.artist_name" class="artist-name-error text-danger"></div>
                 </div>
-                <section>
-                  <p>Form Genres: {{ formGenres }}</p>
-                  <p>Custom Genre: {{ customGenre }}</p>
-                  <p>Genre: {{ genres }}</p>
-                </section>
+
                 <div class="form-group">
                   <label for="genre">Genre</label>
 
                   <multiselect v-model="formGenres" mode="tags"
                   :close-on-select="false" :searchable="true"
-                  :create-option="true" :options="genres" 
+                  :create-option="true" :options="genres.concat(mGenre)" 
                   :delay="0"
                   class="genre" placeholder="Please select genres" />
                   <!-- <div v-if="errors.genre" class="genre-error text-danger"></div> -->
                   <br/>
-                  <input type="text" v-model="others" @blur="updateGenre" placeholder="Genre" class="form-control province" v-if="hasOthers" required />
+                  <!-- <input type="text" v-model="others" @blur="updateGenre" placeholder="Genre" class="form-control province" v-if="hasOthers" required /> -->
                   <div v-for="err in error?.genre" :key="err" class="text-danger">{{ err }}</div>
 
                   
@@ -401,13 +397,6 @@
         </div> <!-- end of row -->
       </div> <!-- end of container -->
     </section>
-
-    <!-- <pre><b>Custom Genre:</b>{{ custom_genre }}</pre>
-    <pre><b>Message:</b>{{  $store.state.message }}</pre>
-    <pre><b>Form</b>{{ form }}</pre>
-    <pre><b>Account</b>{{ $store.state.account }}</pre> -->
-
-
   </div>
 
 </template>
@@ -505,11 +494,10 @@ export default {
   mounted()
   {
     console.log('Artist Profile: ')
-    this.$forceUpdate();
-    // this.avatar = this.myAccount?.avatar
+
     this.avatar = this.myAccount?.avatar || '/assets/artist-account/new.svg'
     this.formGenres = this.myAccount?.genres || []
-    // this.others = this.custom_genre
+
     this.$forceUpdate();
   },
   props: {
@@ -535,42 +523,24 @@ export default {
       this.avatar = URL.createObjectURL(event.target.files[0]);
       this.form.avatar = event.target.files[0];
     },
-    // uploadFile()
-    // {
-    //   this.form.avatar = this.$refs.file.files[0];
-    //   this.avatar = this.form.avatar?.value;
-    //   console.log('Upload File: ', this.form.avatar)
-    // },
     submit()
     {
-      // if (this.hasOthers) {
-      //   this.formGenres.push(this.others);
-      // }
 
       this.form.genres = this.formGenres;
       console.log('Form Genre (submit): ', this.form.genres)
       this.$emit('form', this.form)
-      this.formGenres = [];
+
       
       this.fetchProfile().then(res =>
       {
         const { status: statusCode, data: { result: { genres } } } = res
 
         console.log('--- Fetch Profile ---', res)
-        // this.others = this.custom_genre
-        // this.form.genres = genres
-        // this.form = this.myAccount
-        // this.formGenres = this.myAccount?.genres || [];
 
-        // this.hasOthers = this.custom_genre ? true : false
+        this.form.genres = genres
+
       });
-      // this.$nextTick(() =>
-      // {
-      //   this.fetchProfile();
-      //   this.form = this.myAccount;
-      //   console.log('Artist form submitted: ', this.myAccount)
-      //   this.$forceUpdate();
-      // })
+
       console.log('Artist Profile [form]: ', this.form)
       //this.$router.push('/artist');
     },
@@ -655,6 +625,19 @@ export default {
       // custom_genre: (state) => state.custom_genre,
       account: (state) => state.account,
     }),
+    mGenre()
+    {
+
+      const self = this;
+
+      var gen = this.formGenres.filter(function (el)
+      {
+        console.log(`Form Genres[${el}]: `, self.genres.includes(el));
+        return !self.genres.includes(el);
+      })
+
+      return gen;
+    },
     customGenre()
     {
 
