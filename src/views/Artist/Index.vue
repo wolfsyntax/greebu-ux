@@ -93,7 +93,7 @@
                             {{  account.bio }}
                           </p>
                           <div class="mt-3 social-media">
-                            <i class="material-icons"><span class="material-symbols-outlined calendar">calendar_month</span></i><p class="band-name">{{ account?.artist_name}}</p>
+                            <span class="material-symbols-outlined calendar">calendar_month</span><p class="band-name">{{ account?.artist_name}}</p>
                           </div>
                           <div class="mt-3 social-media">
                             <img src="/assets/social icons/_Spotify.svg" loading="lazy" alt="spotify icon">
@@ -129,7 +129,7 @@
                               </div>
                               <div class="more">
                                 <a href="#">
-                                  <i class="material-icons"><span class="material-symbols-outlined">more_vert</span></i>
+                                  <span class="material-symbols-outlined">more_vert</span>
                                 </a>
                               </div>
                           </div>    
@@ -187,20 +187,20 @@
                       <!-- <hr> -->
                       <div class="post-features">
                         <div class="post-icon">
-                          <i class="material-icons"><span class="material-symbols-outlined">&#xe813;</span></i>
+                          <span class="material-symbols-outlined">&#xe813;</span>
                              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#artistPost">
                               Feeling
                             </button>
                         </div>
                         <div class="post-icon">
-                          <i class="material-icons"><span class="material-symbols-outlined">&#xe3f4;</span></i>
+                          <span class="material-symbols-outlined">&#xe3f4;</span>
                           <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#artistPost">
                             Photo/Video
                             </button>
                         </div>
                         <!-- @click="toggleContent('music')" -->
                         <div class="post-icon">
-                          <i class="material-icons"><span class="material-symbols-outlined">&#xe030;</span></i>
+                          <span class="material-symbols-outlined">&#xe030;</span>
                           <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#artistPost">
                            Music
                             </button>
@@ -226,7 +226,7 @@
                                           </div>
                                       </div>
                                       <div class="dropdown">
-                                        <i class="material-icons"><span class="material-symbols-outlined">more_vert</span></i>
+                                        <span class="material-symbols-outlined">more_vert</span>
                                       </div>
                                   </div>
                               </div>
@@ -241,11 +241,11 @@
                               <div class="card-footer d-flex align-items-center justify-content-between">
                                   <div class="d-flex post-actions">
                                     <div class="post-icon">
-                                    <i class="material-icons"><span class="material-symbols-outlined">favorite</span></i>
+                                    <span class="material-symbols-outlined">favorite</span>
                                       <p>Like</p>
                                     </div>
                                     <div class="post-icon">
-                                      <i class="material-icons"><span class="material-symbols-outlined">chat_bubble</span></i>
+                                      <span class="material-symbols-outlined">chat_bubble</span>
                                       <p>Comment</p>
                                     </div>
                                   </div>
@@ -266,7 +266,7 @@
                           <div class="card-body">
                             <div class="d-flex align-items-center justify-content-between header">
                               <div class="d-flex title">
-                                <i class="material-icons"> <span class="material-symbols-outlined">event_available</span></i>
+                                <span class="material-symbols-outlined">event_available</span>
                                 <h5 class="card-title mb-0">Past Events</h5>
                               </div>
                               <div class="see-all">
@@ -287,7 +287,7 @@
                                 </div>
                                 <div class="more">
                                   <a href="#">
-                                    <i class="material-icons"><span class="material-symbols-outlined">more_vert</span></i>
+                                    <span class="material-symbols-outlined">more_vert</span>
                                   </a>
                                 </div>
                             </div>    
@@ -304,7 +304,7 @@
                                 </div>
                                 <div class="more">
                                   <a href="#">
-                                    <i class="material-icons"><span class="material-symbols-outlined">more_vert</span></i>
+                                   <span class="material-symbols-outlined">more_vert</span>
                                   </a>
                                 </div>
                             </div>   
@@ -317,7 +317,7 @@
                           <div class="card-body">
                             <div class="d-flex align-items-center justify-content-between header">
                               <div class="d-flex title">
-                                <i class="material-icons"> <span class="material-symbols-outlined">album</span></i>
+                                <span class="material-symbols-outlined">album</span>
                                 <h5 class="card-title mb-0">Original Songs</h5>
                               </div>
                               <div class="see-all">
@@ -336,7 +336,7 @@
                                 </div>
                                 <div class="more">
                                   <a href="#">
-                                    <i class="material-icons"><span class="material-symbols-outlined">more_vert</span></i>
+                                    <span class="material-symbols-outlined">more_vert</span>
                                   </a>
                                 </div>
                             </div>   
@@ -351,7 +351,7 @@
                                 </div>
                                 <div class="more">
                                   <a href="#">
-                                    <i class="material-icons"><span class="material-symbols-outlined">more_vert</span></i>
+                                    <span class="material-symbols-outlined">more_vert</span>
                                   </a>
                                 </div>
                             </div>      
@@ -428,8 +428,8 @@
       </div>
     </div>
   </section>
-  <pre> <b>Profile</b> {{  $store.state.profile  }} <br></pre>
-  <pre> <b>Account</b> {{ $store.state.account }}</pre>
+  <!-- <pre> <b>Profile</b> {{  $store.state.profile  }} <br></pre>
+  <pre> <b>Account</b> {{ $store.state.account }}</pre> -->
 
   <!-- <button @click="openModal">Open Modal</button>
     

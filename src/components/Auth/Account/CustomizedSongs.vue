@@ -13,7 +13,7 @@
                 </div>
               </div>
               <div class="close-toast">
-                <span class="material-symbols-rounded close-icon" @click="closeAccptedToast">&#xe5cd;</span>
+                <span class="material-symbols-rounded close-icon" @click="closeAcceptedToast">&#xe5cd;</span>
               </div>
             </div>
           </div> <!-- end of title-wrapper -->
@@ -114,7 +114,7 @@
     }, 7000);
     this.showModal = false;
     },
-    closeAccptedToast(){
+    closeAcceptedToast(){
       this.showToast = false;
     },
     showToastDiv(){

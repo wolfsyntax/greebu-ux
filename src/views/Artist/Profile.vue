@@ -50,9 +50,24 @@
             
             <div v-if="active" class="modal-backdrop fade show"></div>
 
-            <div class="alert alert-success updated-successfully" role="alert" v-if="message">
+            <!-- <div class="alert alert-success updated-successfully" role="alert" v-if="message">
               {{ message }}
+            </div> -->
+
+
+            <div v-if="message" class="d-flex justify-content-between toast-artist-details">
+              <div class="d-flex accepted-wrapper">
+                  <span class="material-symbols-rounded check-circle">&#xe86c;</span>
+                <div>
+                  <h5 class="accepted">{{ message }}</h5>
+                  <p class="description">Lorem ipsum dolor set amet.</p>
+                </div>
+              </div>
+              <div class="close-toast">
+                <span class="material-symbols-rounded close-icon" @click="closeToastArtist">&#xe5cd;</span>
+              </div>
             </div>
+
 
             <form @submit.prevent="submit" class="fill-details">
               <!-- {{ form }} -->
@@ -378,8 +393,10 @@
       </div> <!-- end of container -->
     </section>
 
+    <!-- <pre><b>Custom Genre:</b>{{ custom_genre }}</pre>
+    <pre><b>Message:</b>{{  $store.state.message }}</pre>
     <pre><b>Form</b>{{ form }}</pre>
-    <pre><b>Account</b>{{ $store.state.account }}</pre>
+    <pre><b>Account</b>{{ $store.state.account }}</pre> -->
 
 
   </div>
@@ -610,6 +627,9 @@ export default {
     {
       this.member.push(val);
       this.dismiss()
+    },
+    closeToastArtist(){
+      this.message = false;
     }
   },
   computed: {
@@ -618,7 +638,7 @@ export default {
       artistTypes: (state) => state.artist.artist_types,
       genres: (state) => state.artist.genres,
       members: (state) => state.artist.members,
-      custom_genre: (state) => state.custom_genre
+      custom_genre: (state) => state.custom_genre,
       // account: (state) => state.account,
     }),
     // formGenres()
