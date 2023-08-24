@@ -24,14 +24,14 @@
         <p class="sub-heading">Collaborate with a professional independent artist to turn your story into one-of-a-kind custom song</p>
         <div class="row top-row">
           <div class="col-6">
-            <a href="#" class="btn btn-primary filter"><i class="material-icons"><span class="material-symbols-outlined next">sort</span></i>Filter</a>
+            <a href="#" class="btn btn-primary filter"><span class="material-symbols-outlined next">sort</span>Filter</a>
           </div>
           <div class="col-6">
             <div class="input-group">
               <input type="text" class="form-control" placeholder="Search for Events" aria-label="Search for Events" aria-describedby="button-addon2">
               <button class="btn btn-success border-rad" type="button" id="button-addon2">
-                <i class="material-icons"><span class="material-symbols-outlined next">search</span></i>
-              </button>
+                <span class="material-symbols-outlined next">search</span>
+                </button>
             </div>
           </div>
           <div class="col-4">
@@ -84,15 +84,15 @@
                 </h5>
                 <p class="card-text">{{ event.description }}</p>
                 <p class="location">
-                  <i class="material-icons"><span class="material-symbols-outlined">location_on</span></i>
+                  <span class="material-symbols-outlined">location_on</span>
                   <span class="text">{{ event.location }}</span>
                 </p>
                 <p class="date">
-                  <i class="material-icons"><span class="material-symbols-outlined">calendar_month</span></i>
+                  <span class="material-symbols-outlined">calendar_month</span>
                   <span class="orange-text">{{ event.date }}</span>
                 </p>
                 <p class="time">
-                  <i class="material-icons"><span class="material-symbols-outlined">schedule</span></i>
+                  <span class="material-symbols-outlined">schedule</span>
                   <span class="orange-text">{{ event.time }}</span>
                 </p>
                 <a href="#" class="btn btn-primary">View Details</a>

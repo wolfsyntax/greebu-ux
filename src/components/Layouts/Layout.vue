@@ -71,7 +71,7 @@
                   </li>
                   <li><hr class="dropdown-divider"></li>
                   <li class="logout-wrapper">
-                    <span class="material-icons">repeat</span>
+                    <span class="material-symbols-outlined">&#xe040;</span>
                     <a class="dropdown-item logout" href="#" @click.prevent="logout">Switch Account</a>
                   </li>
                   <li class="logout-wrapper">
@@ -113,7 +113,7 @@
                   </li>
                   <li><hr class="dropdown-divider"></li>
                   <li class="logout-wrapper">
-                    <span class="material-icons">repeat</span>
+                    <span class="material-symbols-outlined">&#xe040;</span>
                     <a class="dropdown-item logout" href="#" @click.prevent="logout">Switch Account</a>
                   </li>
                   <li class="logout-wrapper">

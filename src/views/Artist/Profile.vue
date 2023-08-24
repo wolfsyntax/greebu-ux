@@ -50,9 +50,24 @@
             
             <div v-if="active" class="modal-backdrop fade show"></div>
 
-            <div class="alert alert-success" role="alert" v-if="message">
+            <!-- <div class="alert alert-success updated-successfully" role="alert" v-if="message">
               {{ message }}
+            </div> -->
+
+
+            <div v-if="message" class="d-flex justify-content-between toast-artist-details">
+              <div class="d-flex accepted-wrapper">
+                  <span class="material-symbols-rounded check-circle">&#xe86c;</span>
+                <div>
+                  <h5 class="accepted">{{ message }}</h5>
+                  <p class="description">Lorem ipsum dolor set amet.</p>
+                </div>
+              </div>
+              <div class="close-toast">
+                <span class="material-symbols-rounded close-icon" @click="closeToastArtist">&#xe5cd;</span>
+              </div>
             </div>
+
 
             <form @submit.prevent="submit" class="fill-details">
               <!-- {{ form }} -->
@@ -346,7 +361,10 @@
               </div>
 
               <div class="text-center">
-                <button type="submit" class="btn btn-success submit-form">Submit</button>
+                <!-- <button type="submit" class="btn btn-success submit-form" 
+                data-bs-toggle="modal" data-bs-target="#successDetailsModal">Submit</button> -->
+                <button type="submit" class="btn btn-success submit-form" 
+                >Submit</button>
               </div>
             </form>
 
@@ -375,22 +393,21 @@
                   </div>
                 </div>
               </div>
-            </div>                      
-          </div> 
-          <p><b>Form</b>{{ form }}</p> 
-          <p><b>Form 2</b>{{ form2 }}</p> 
-          <p><b>My Account</b>{{ myAccount }}</p> 
-          
-          <!-- <vue-tags-input
-            v-model="form.genres"
-            :tags="genres"
-            @tags-changed="updateTags"
-          /> -->
+            </div> 
+
+          </div>
 
           <div class="col-3"></div>
         </div> <!-- end of row -->
       </div> <!-- end of container -->
     </section>
+
+    <!-- <pre><b>Custom Genre:</b>{{ custom_genre }}</pre>
+    <pre><b>Message:</b>{{  $store.state.message }}</pre>
+    <pre><b>Form</b>{{ form }}</pre>
+    <pre><b>Account</b>{{ $store.state.account }}</pre> -->
+
+
   </div>
 
 </template>
@@ -624,6 +641,9 @@ export default {
     {
       this.member.push(val);
       this.dismiss()
+    },
+    closeToastArtist(){
+      this.message = false;
     }
   },
   computed: {

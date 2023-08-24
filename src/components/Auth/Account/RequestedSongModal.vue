@@ -25,7 +25,8 @@
 
                     <div class="d-flex align-items-center">
                         <button class="btn decline">Decline</button>
-                        <button class="btn accept">Acccept</button>
+                        <button class="btn accept" @click="acceptRequest">Acccept</button>
+
                     </div>
                 </div> <!-- end of action-wrapper -->
                 <div class="d-flex align-items-center note-wrapper">
@@ -104,7 +105,11 @@
     computed: {
   },
     methods: {
-    
+        acceptRequest(){
+            // this.$emit('close-modal')
+            this.$emit('accept-request');
+            // this.hideModal();
+        }
     },
   };
   </script>
