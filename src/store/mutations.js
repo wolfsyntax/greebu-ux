@@ -42,7 +42,7 @@ var mutations = {
   },
   SET_ACCOUNT_GENRE(state, payload)
   {
-    state.account.genres = payload.map(function (g) { return g['title']  })
+    state.account.genres = payload//.map(function (g) { return g['title']  })
   },
   SET_CUSTOM_GENRE(state, payload)
   {

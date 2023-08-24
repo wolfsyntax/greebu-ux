@@ -110,13 +110,22 @@
                   <input type="text" v-model="form.artist_name" placeholder="Name of the Artist/Band" class="form-control artist-name"/>
                   <div v-if="error?.artist_name" class="artist-name-error text-danger"></div>
                 </div>
-
+                <section>
+                  <p>Form Genres: {{ formGenres }}</p>
+                  <p>Custom Genre: {{ customGenre }}</p>
+                  <p>Genre: {{ genres }}</p>
+                </section>
                 <div class="form-group">
                   <label for="genre">Genre</label>
-                  <multiselect v-model="formGenres"  :options="genres" mode="tags" class="genre" placeholder="Please select genres" />
+
+                  <multiselect v-model="formGenres" mode="tags"
+                  :close-on-select="false" :searchable="true"
+                  :create-option="true" :options="genres" 
+                  :delay="0"
+                  class="genre" placeholder="Please select genres" />
                   <!-- <div v-if="errors.genre" class="genre-error text-danger"></div> -->
                   <br/>
-                  <input type="text" v-model="others" placeholder="Genre" class="form-control province" v-if="hasOthers" required />
+                  <input type="text" v-model="others" @blur="updateGenre" placeholder="Genre" class="form-control province" v-if="hasOthers" required />
                   <div v-for="err in error?.genre" :key="err" class="text-danger">{{ err }}</div>
 
                   
@@ -416,7 +425,7 @@ export default {
     'member-form': MemberForm,
     'social-media': SocialMediaForm,
     BlankHeader,
-    Multiselect
+    Multiselect,
   },
   data()
   {
@@ -439,7 +448,7 @@ export default {
         accept_proposal: false,
       },
       hasOthers: false,
-      others: '',
+      // others: '',
       formGenres: [],
       avatar: '/assets/artist-account/new.svg',
       options: ['list', 'of', 'options'],
@@ -449,7 +458,6 @@ export default {
       formType: 'members',
       formHeader: 'Add Member',
       formSubHeading: 'Lorem ipsum dolor sit amet consectetur. Nam lacus viverra nec orci arcu id fringilla ultrices.',
-
     }
   },
   setup()
@@ -459,9 +467,7 @@ export default {
      * profile: Object, errors: Object, genres: Object, artist_types: Object, artist_genre: Object, img: String, members: Array
     */
   },
-  mounted()
-  {
-    console.log('Artist Profile: ')
+  beforeCreate() {
     this.form = {
       artist_type: null,
       artist_name: null,
@@ -479,24 +485,32 @@ export default {
       accept_booking: false,
       accept_proposal: false,
     };
-    
-    this.fetchArtistOptions()
-      .then(response =>
-      {
-        console.log('Fetch Artists Options: ', response)
-      })
-    this.artistOptions()
-    this.fetchProfile() 
-    this.form = this.myAccount
-    this.$forceUpdate();
-    
-    // this.form.genre = ''
-    // this.form.genre = this.account.genres.map(function (g) { return g['title']  });
+  },
+  created() {
 
+    this.artistOptions()
+    this.fetchProfile().then(res =>
+    {
+      const { status: statusCode, data: { status, result: { account }} } = res;
+
+      if (status === 200 && statusCode === 200) {
+        this.form = account;
+        this.avatar = account?.avatar || '/assets/artist-account/new.svg';
+        this.formGenres = account?.genres || []
+      }
+
+      console.log('Profile.vue created() ', res)
+    })
+  },
+  mounted()
+  {
+    console.log('Artist Profile: ')
+    this.$forceUpdate();
     // this.avatar = this.myAccount?.avatar
     this.avatar = this.myAccount?.avatar || '/assets/artist-account/new.svg'
     this.formGenres = this.myAccount?.genres || []
-    this.others = this.custom_genre
+    // this.others = this.custom_genre
+    this.$forceUpdate();
   },
   props: {
     error: {
@@ -529,9 +543,9 @@ export default {
     // },
     submit()
     {
-      if (this.hasOthers) {
-        this.formGenres.push(this.others);
-      }
+      // if (this.hasOthers) {
+      //   this.formGenres.push(this.others);
+      // }
 
       this.form.genres = this.formGenres;
       console.log('Form Genre (submit): ', this.form.genres)
@@ -543,12 +557,12 @@ export default {
         const { status: statusCode, data: { result: { genres } } } = res
 
         console.log('--- Fetch Profile ---', res)
-        this.others = this.custom_genre
-        this.form.genres = genres
-        this.form = this.myAccount
-        this.formGenres = this.myAccount?.genres || [];
+        // this.others = this.custom_genre
+        // this.form.genres = genres
+        // this.form = this.myAccount
+        // this.formGenres = this.myAccount?.genres || [];
 
-        this.hasOthers = this.custom_genre ? true : false
+        // this.hasOthers = this.custom_genre ? true : false
       });
       // this.$nextTick(() =>
       // {
@@ -638,29 +652,41 @@ export default {
       artistTypes: (state) => state.artist.artist_types,
       genres: (state) => state.artist.genres,
       members: (state) => state.artist.members,
-      custom_genre: (state) => state.custom_genre,
-      // account: (state) => state.account,
+      // custom_genre: (state) => state.custom_genre,
+      account: (state) => state.account,
     }),
+    customGenre()
+    {
+
+      // return this.others.split(';').map(function (item)
+      // {
+      //   return item.trim();
+      // });
+    }
     // formGenres()
     // {
     //   return this.genres?.map(function (g) { return g['title'] })
     // }
   },
   watch: {
-    formGenres(newVal)
-    {
-      this.hasOthers = newVal.includes('Others');
-      if (this.hasOthers) {
-        if (!this.others) this.others = '';
-      } else {
-        var idx = this.formGenres.indexOf(this.others);
+    // others(newVal)
+    // {
+    //   // if (newVal.includes(''))
+    // },
+    // formGenres(newVal)
+    // {
+    //   this.hasOthers = newVal.includes('Others');
+    //   if (this.hasOthers) {
+    //     if (!this.others) this.others = '';
+    //   } else {
+    //     var idx = this.formGenres.indexOf(this.others);
 
-        if (idx > -1) {
-          this.formGenres.splice(idx, 1);
-        }
+    //     if (idx > -1) {
+    //       this.formGenres.splice(idx, 1);
+    //     }
 
-      }
-    }
+    //   }
+    // }
   }
 }
 </script>
@@ -675,4 +701,5 @@ export default {
   height: 50px;
   border-radius: 50%;
 }
+
 </style>

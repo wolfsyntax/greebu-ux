@@ -144,35 +144,6 @@ export default {
         media_type: this.media_type,
       })
 
-      // this.addSocialMedia({
-      //   url: this.url,
-      //   media_type: this.media_type,
-      // }).then(response =>
-      // {
-        
-      // }).catch(err =>
-      // {
-      //   // this.$vs.notification({
-      //   //   color: 'danger',
-      //   //   position: 'top-right',
-      //   //   title: 'Server Status',
-      //   //   text: `${err.message}`
-      //   // })
-      // });
-      // this.signin(this.form).then((response) =>
-      // {
-
-      //   const { status } = response;
-
-      //   var user = this.$store.state.user;
-      //   var role = this.$store.state.role;
-
-      //   if (role === 'artists') {
-      //     this.$router.push("/artist");
-      //   }
-
-      // });
-
     }
   },
   computed: {
