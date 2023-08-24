@@ -106,6 +106,7 @@
                   <multiselect v-model="formGenres" mode="tags"
                   :close-on-select="false" :searchable="true"
                   :create-option="true" :options="genres" 
+                  :delay="0"
                   class="genre" placeholder="Please select genres" />
                   <!-- <div v-if="errors.genre" class="genre-error text-danger"></div> -->
                   <br/>
@@ -376,7 +377,10 @@
               </div>
             </div>                      
           </div> 
-          {{  myAccount }}
+          <p><b>Form</b>{{ form }}</p> 
+          <p><b>Form 2</b>{{ form2 }}</p> 
+          <p><b>My Account</b>{{ myAccount }}</p> 
+          
           <!-- <vue-tags-input
             v-model="form.genres"
             :tags="genres"
@@ -427,7 +431,7 @@ export default {
         accept_proposal: false,
       },
       hasOthers: false,
-      others: '',
+      // others: '',
       formGenres: [],
       avatar: '/assets/artist-account/new.svg',
       options: ['list', 'of', 'options'],
@@ -446,9 +450,7 @@ export default {
      * profile: Object, errors: Object, genres: Object, artist_types: Object, artist_genre: Object, img: String, members: Array
     */
   },
-  mounted()
-  {
-    console.log('Artist Profile: ')
+  beforeCreate() {
     this.form = {
       artist_type: null,
       artist_name: null,
@@ -466,24 +468,32 @@ export default {
       accept_booking: false,
       accept_proposal: false,
     };
-    
-    this.fetchArtistOptions()
-      .then(response =>
-      {
-        console.log('Fetch Artists Options: ', response)
-      })
-    this.artistOptions()
-    this.fetchProfile() 
-    this.form = this.myAccount
-    this.$forceUpdate();
-    
-    // this.form.genre = ''
-    // this.form.genre = this.account.genres.map(function (g) { return g['title']  });
+  },
+  created() {
 
+    this.artistOptions()
+    this.fetchProfile().then(res =>
+    {
+      const { status: statusCode, data: { status, result: { account }} } = res;
+
+      if (status === 200 && statusCode === 200) {
+        this.form = account;
+        this.avatar = account?.avatar || '/assets/artist-account/new.svg';
+        this.formGenres = account?.genres || []
+      }
+
+      console.log('Profile.vue created() ', res)
+    })
+  },
+  mounted()
+  {
+    console.log('Artist Profile: ')
+    this.$forceUpdate();
     // this.avatar = this.myAccount?.avatar
     this.avatar = this.myAccount?.avatar || '/assets/artist-account/new.svg'
     this.formGenres = this.myAccount?.genres || []
-    this.others = this.custom_genre
+    // this.others = this.custom_genre
+    this.$forceUpdate();
   },
   props: {
     error: {
@@ -516,9 +526,9 @@ export default {
     // },
     submit()
     {
-      if (this.hasOthers) {
-        this.formGenres.push(this.others);
-      }
+      // if (this.hasOthers) {
+      //   this.formGenres.push(this.others);
+      // }
 
       this.form.genres = this.formGenres;
       console.log('Form Genre (submit): ', this.form.genres)
@@ -530,12 +540,12 @@ export default {
         const { status: statusCode, data: { result: { genres } } } = res
 
         console.log('--- Fetch Profile ---', res)
-        this.others = this.custom_genre
-        this.form.genres = genres
-        this.form = this.myAccount
-        this.formGenres = this.myAccount?.genres || [];
+        // this.others = this.custom_genre
+        // this.form.genres = genres
+        // this.form = this.myAccount
+        // this.formGenres = this.myAccount?.genres || [];
 
-        this.hasOthers = this.custom_genre ? true : false
+        // this.hasOthers = this.custom_genre ? true : false
       });
       // this.$nextTick(() =>
       // {
@@ -622,8 +632,8 @@ export default {
       artistTypes: (state) => state.artist.artist_types,
       genres: (state) => state.artist.genres,
       members: (state) => state.artist.members,
-      custom_genre: (state) => state.custom_genre
-      // account: (state) => state.account,
+      // custom_genre: (state) => state.custom_genre,
+      account: (state) => state.account,
     }),
     customGenre()
     {
@@ -639,24 +649,24 @@ export default {
     // }
   },
   watch: {
-    others(newVal)
-    {
-      // if (newVal.includes(''))
-    },
-    formGenres(newVal)
-    {
-      this.hasOthers = newVal.includes('Others');
-      if (this.hasOthers) {
-        if (!this.others) this.others = '';
-      } else {
-        var idx = this.formGenres.indexOf(this.others);
+    // others(newVal)
+    // {
+    //   // if (newVal.includes(''))
+    // },
+    // formGenres(newVal)
+    // {
+    //   this.hasOthers = newVal.includes('Others');
+    //   if (this.hasOthers) {
+    //     if (!this.others) this.others = '';
+    //   } else {
+    //     var idx = this.formGenres.indexOf(this.others);
 
-        if (idx > -1) {
-          this.formGenres.splice(idx, 1);
-        }
+    //     if (idx > -1) {
+    //       this.formGenres.splice(idx, 1);
+    //     }
 
-      }
-    }
+    //   }
+    // }
   }
 }
 </script>

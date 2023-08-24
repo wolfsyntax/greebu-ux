@@ -11,7 +11,6 @@ import {
 // import { GoogleAuthProvider, FacebookAuthProvider } from "@firebase/auth";
 import { useCurrentUser, useFirebaseAuth } from 'vuefire';
 
-
 var actions = {
   signin({ commit }, payload)
   {
@@ -38,7 +37,9 @@ var actions = {
         {
 
           const { data: { message, status, result }, status: statusCode } = response;
-          console.log('Response: ', response)
+
+          console.log('Sign-In Response: ', response)
+
           if (statusCode === 200) {
 
             const { profile, user, token, roles, account } = result;
@@ -85,7 +86,9 @@ var actions = {
         .then(response =>
         {
           const { status: statusCode, data } = response;
-          
+
+          console.log('Sign-Up Response: ', response);
+
           if (statusCode === 201) {
             const { status, result: {user, profile, roles, token}} = data;
 
@@ -94,8 +97,8 @@ var actions = {
             commit('SET_ROLE', profile?.role || '');
             commit('SET_ROLES', roles || []);
 
-           commit('SET_TOKEN', token || '');
-           commit('SET_PROFILE', profile || {});
+            commit('SET_TOKEN', token || '');
+            commit('SET_PROFILE', profile || {});
 
             if (profile?.role === 'customers' && user?.phone_verified_at) {
               commit('SET_TOKEN', token || '');
@@ -121,6 +124,8 @@ var actions = {
       await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/logout`)
         .then(response =>
         {
+
+          console.log('Sign-Out Response: ', response);
 
           const { status, data } = response
           if (status === 200 && data.status === 200) {
@@ -191,6 +196,9 @@ var actions = {
       await axios.get(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/subscriptions/plan/${payload}`)
         .then(response =>
         {
+          
+          console.log('Plan Options Response: ', response)
+
           const { data, status } = response
           resolve(data)
         })
@@ -209,6 +217,9 @@ var actions = {
       await axios.get(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/country`)
         .then(response =>
         {
+          
+          console.log('Fetch Country Response: ', response)
+
           const { data, status } = response
           commit('SET_COUNTRIES', data.result?.countries || []);
 
@@ -271,7 +282,8 @@ var actions = {
         .then(response =>
         {
           const { status: statusCode, data: { message, status, result: { profile, user, token, account } } } = response;
-          console.log(`Firebase login via ${provider}: `, response);
+          console.log(`Social Auth [${provider}] Response: `, response);
+
           if (statusCode === 200) {
 
             commit('SET_AUTH', user)
@@ -306,6 +318,8 @@ var actions = {
         .then(response =>
         {
 
+          console.log('Switch User Profile Response: ', response)
+
           const { data, status} = response
           if (status === 200) {
 
@@ -333,6 +347,8 @@ var actions = {
       await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/user-details`, {role: state.role})
         .then(response =>
         {
+          
+          console.log('ReSync Profile Response: ', response)
 
           const { data, status} = response
           if (status === 200) {
@@ -367,6 +383,9 @@ var actions = {
 
       signInWithPopup(auth, provider).then(result =>
       { 
+        
+        console.log('Sign-In With PopUp Response: ', response)
+
         resolve(result);
       })
       .catch(reason =>
@@ -384,6 +403,8 @@ var actions = {
       await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/password/email`, payload)
         .then(response =>
         {
+
+          console.log('Forgot Password Response: ', response)
 
           const { data: { message, status, result } } = response;
 
@@ -410,6 +431,8 @@ var actions = {
         .then(response =>
         {
 
+          console.log('Reset Password Response: ', response)
+
           const { status: statusCode, data: { message, status, result } } = response;
 
           if (statusCode === 200) {
@@ -434,7 +457,9 @@ var actions = {
       await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/phone/send`, payload)
         .then(response =>
         {
-          console.log('OTP Response: ', response);
+
+          console.log('Send OTP Response: ', response);
+
           const { data: { message, status, result } } = response;
 
           if (status === 200) {
@@ -459,6 +484,9 @@ var actions = {
       await axios.get(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/phone/resend/${payload}`)
         .then(response =>
         {
+          
+          console.log('Resend OTP Response: ', response)
+
           resolve(response);
         })
         .catch(err =>
@@ -476,6 +504,9 @@ var actions = {
       })
         .then(response =>
         {
+          
+          console.log('Verify OTP Response: ', response)
+
           resolve(response);
         })
         .catch(err =>
@@ -495,6 +526,9 @@ var actions = {
       })
         .then(response =>
         {
+          
+          console.log('Verify OTP-F Response: ', response)
+
           resolve(response);
         })
         .catch(err =>
@@ -511,6 +545,8 @@ var actions = {
       await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/sms-otp/${payload}`)
         .then(response =>
         {
+
+          console.log('Phone OTP Response: ', response)
 
           const { status: statusCode, data: { message, status, result } } = response;
 
@@ -564,7 +600,7 @@ var actions = {
       await axios.get(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/user/${state.user?.id}/resend-otp`)
         .then(response =>
         {
-          // console.log('Resend Code response: ', response);
+          console.log('Resend Code response: ', response);
           const { data: { message, status, result } } = response;
 
           if (status === 200) {
@@ -593,7 +629,7 @@ var actions = {
       })
         .then(response =>
         {
-          console.log('::Validate Code::');
+          console.log('::Validate Code:: ', response);
 
           const { status: statusCode, data } = response;
 
@@ -634,7 +670,7 @@ var actions = {
       await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/email/resend/${state.user?.id}`)
         .then(response =>
         {
-          // console.log('Resend Code response: ', response);
+          console.log('Resend Code Response: ', response);
           const { data: { message, status, result } } = response;
           console.log('Email Resend: ', response)
           if (status === 200) {
@@ -659,6 +695,9 @@ var actions = {
       await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/account/settings`, payload)
         .then(response =>
         {
+          
+          console.log('Account Setting Response: ', response)
+
           const { status: statusCode, data: { status, message, result } } = response;
 
           if (statusCode === 200) {
@@ -698,23 +737,26 @@ var actions = {
         .then(response =>
         {
           const { status: statusCode, data: { status, message, result } } = response;
-          console.log('[vuex]  fetchProfile: ', response)
+
+          console.log('Fetch Profile Response: ', response)
+
           if (statusCode === 200) {
             
             if (status === 200) {
               
-              const { account, user, profile} = result;
+              const { account } = result;
               console.log('[vuex] fetchProfile updating state: ', account)
               // commit('SET_AUTH', user);
               commit('SET_ACCOUNT', account);
 
               if (state.role === 'artists') {
 
-                const { custom_genre, genres } = result;
-
-                commit('SET_ACCOUNT_GENRE', genres);
+                const { genres } = result;
+                console.log('Fetch profile.account.genres: ', account?.genres)
+                console.log('Fetch profile.account.genres [account_genre]: ', genres)
+                // commit('SET_ACCOUNT_GENRE', genres);
                 commit('SET_ARTIST_GENRES', genres);
-                commit('SET_CUSTOM_GENRE', custom_genre);
+                // commit('SET_CUSTOM_GENRE', custom_genre);
               }
 
               // commit('SET_PROFILE', profile);
@@ -735,7 +777,7 @@ var actions = {
     return new Promise(async (resolve, reject) =>
     {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
-      console.log('[vuex] accountProfile ', payload)
+
       if (typeof (payload?.avatar) === 'string') delete payload?.avatar;
       await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/account/profile?role=${state.role}`, payload, {
       headers: {
@@ -745,13 +787,15 @@ var actions = {
         .then(response =>
         {
           const { status: statusCode, data: { status, message, result } } = response;
-          console.log('[vuex]  accountProfile: ', response)
+          console.log('Account Profile Response: ', response)
           if (statusCode === 200) {
-            console.log('[vuex] accountProfile (success): ', response);
+            console.log('\n\nAccount Profile (success): ', response);
             if (status === 200) {
               
               const { account, user, profile } = result;
-              console.log('[vuex] accountProfile updating state: ', account)
+
+              console.log('\nAccount Profile [account]: ', account)
+
               commit('SET_AUTH', user);
               commit('SET_ACCOUNT', account);
               commit('SET_PROFILE', profile);

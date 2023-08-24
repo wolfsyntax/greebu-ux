@@ -21,17 +21,36 @@ export default {
   },
   mounted()
   {
-    this.fetchArtistOptions();
-    this.artistOptions();
-    this.fetchProfile();
+    // this.fetchArtistOptions();
+    // this.artistOptions();
+    // this.fetchProfile();
+    
+
   },
   created() {
-    this.fetchArtistOptions()
-      .then(response =>
+    // this.fetchArtistOptions()
+    //   .then(response =>
+    //   {
+    //     console.log('Fetching Artist Option: [artist layout]', response)
+    //   });
+
+    // this.artistOptions();
+    // this.fetchProfile();
+    this.fetchArtistOptions().then(response =>
+    {
+      console.log('Fetch Artist Option [index]: ', response)
+      this.artistOptions();
+      this.fetchProfile();
+    })
+      .catch(err =>
       {
-        console.log('Fetching Artist Option: [artist layout]', response)
+        // this.$vs.notification({
+        //   color: 'danger',
+        //   position: 'top-right',
+        //   title: 'Server Status',
+        //   text: `${err.message}`
+        // })
       });
-    this.artistOptions();
   },
 }
 </script>

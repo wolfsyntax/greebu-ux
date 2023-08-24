@@ -10,13 +10,15 @@ export const fetchArtistOptions = ({ commit, rootState, state}, payload) => {
       .then(response => {        
         
         const { data, status } = response
-        console.log('Options [fetchArtistOptions]: ', response)
+        
+        console.log('\n\nFetch Artist Options Response: ', response)
+
         if (status === 200 && data.status === 200)
         { 
           const { result } = data
 
           var genre = result?.genres
-          console.log(genre);
+          console.log('- Genre: ', genre);
 
           var exists = genre.filter(function (o) {
             return o.hasOwnProperty('title');
@@ -33,7 +35,7 @@ export const fetchArtistOptions = ({ commit, rootState, state}, payload) => {
           commit('SET_ARTIST_GENRES', result?.artist_genre);
           commit('SET_MEMBERS', result?.members)
           commit('SET_ARTIST', result?.profile)
-          commit('SET_ACCOUNT', result?.profile);
+          // commit('SET_ACCOUNT', result?.account);
         }
         
         resolve(response)
@@ -57,6 +59,8 @@ export const updateArtistProfile = ({ commit, rootState, state}, payload) => {
     })
       .then(response => {        
         
+        console.log('\n\nUpdate Artist Profile Response: ', response)
+
         const {data} = response
         // commit('setContracts', data)
         resolve(response.data)
@@ -79,7 +83,9 @@ export const addMember = ({ commit, rootState, state}, payload) => {
       }
     })
       .then(response => {        
-        
+
+        console.log('\n\nAdd Member Response: ', response)
+
         const { data } = response
         commit('SET_MEMBERS', data)
         resolve(response.data)
@@ -99,8 +105,11 @@ export const addSocialMedia = ({ commit, rootState, state}, payload) => {
     
     await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/artists/social-account`, payload)
       .then(response => {        
-        
+
+        console.log('\n\nAdd Social Media Response: ', response)
+
         const { data: { status, result } } = response
+
         if (status === 200)
         {
           commit('SET_ARTIST', result.artist_profile)  
@@ -123,6 +132,8 @@ export const removeSocialMedia = ({ commit, rootState, state}, payload) => {
     await axios.delete(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/artists/social-account/${payload}/destroy`)
       .then(response => {        
         
+        console.log('\n\nRemove Social Media Response: ', response)
+
         const { data: { status, result } } = response
         if (status === 200)
         {
@@ -146,6 +157,8 @@ export const removeMember = ({ commit, rootState, state}, payload) => {
     
     await axios.delete(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/artists/member/${payload}`)
       .then(response => {        
+
+        console.log('\n\nRemove Member Response: ', response)
         
         const { data: {result, status} } = response
 
@@ -176,6 +189,8 @@ export const updateMember = ({ commit, rootState, state}, payload) => {
       }
     })
       .then(response => {        
+
+        console.log('\n\nUpdate Member Response: ', response)
         
         const { data } = response
         commit('SET_MEMBERS', data)
@@ -200,12 +215,14 @@ export const fetchArtists = ({ commit, rootState, state }, payload) => {
 
     await axios.post(url, payload)
       .then(response => {        
-        
+
+        console.log('\n\nFetch Artists Response: ', response)
+
         const { data: { status, message, result: { data: artistList, current_page, last_page, per_page, total}} } = response
         //commit('SET_MEMBERS', data)
         commit('SET_ARTISTS', artistList)
         commit('SET_PAGINATION', { current_page, last_page, per_page, total })
-        console.log("ARTIST LIST", state.artistList);
+        
         resolve(response.data)
     })
     .catch(err => {
@@ -223,6 +240,8 @@ export const artistOptions = ({ commit, rootState, state }, payload) =>
       .then(response =>
       {
 
+        // console.log('\n\nArtist Options Response: ', response)
+
         const { status: statusCode, data: { status, message, result } } = response
         if (statusCode === 200) {
 
@@ -234,7 +253,6 @@ export const artistOptions = ({ commit, rootState, state }, payload) =>
 
           if (exists) {
             commit('SET_GENRES', genre);
-            console.log("New genre", genre);
           } else {
             commit('SET_GENRES', genre || []);
           }
@@ -253,7 +271,6 @@ export const artistOptions = ({ commit, rootState, state }, payload) =>
   })
 }
 
-
 export const fetchArtist = ({ commit, rootState, state }, payload) =>
 {
   return new Promise(async (resolve, reject) =>
@@ -262,6 +279,9 @@ export const fetchArtist = ({ commit, rootState, state }, payload) =>
     await axios.get(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/artist/${payload}`)
       .then(response =>
       {
+        
+        console.log('\n\nFetch Artist Response: ', response)
+
         const {data: {status, message, result: {artist}}} = response
         commit('SET_ARTIST_PROFILE', artist);
         resolve(response)

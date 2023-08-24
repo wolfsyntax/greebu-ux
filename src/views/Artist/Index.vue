@@ -506,20 +506,21 @@ export default {
   mounted()
   {
     console.log('Artist Option: ')
-    this.fetchArtistOptions().then(response =>
-    {
-      console.log('Fetch Artist Option [index]: ', response)
-    })
-    .catch(err => {
-        // this.$vs.notification({
-        //   color: 'danger',
-        //   position: 'top-right',
-        //   title: 'Server Status',
-        //   text: `${err.message}`
-        // })
-    });
+    // this.fetchArtistOptions().then(response =>
+    // {
+    //   console.log('Fetch Artist Option [index]: ', response)
+    //   this.fetchProfile();
+    // })
+    // .catch(err => {
+    //     // this.$vs.notification({
+    //     //   color: 'danger',
+    //     //   position: 'top-right',
+    //     //   title: 'Server Status',
+    //     //   text: `${err.message}`
+    //     // })
+    // });
 
-    this.fetchProfile();
+      
     
   },
   methods: {
