@@ -116,7 +116,7 @@
 
                   <multiselect v-model="formGenres" mode="tags"
                   :close-on-select="false" :searchable="true"
-                  :create-option="true" :options="genres.concat(mGenre)" 
+                  :create-option="true" :options="genres?.concat(mGenre)" 
                   :delay="0"
                   class="genre" placeholder="Please select genres" />
                   <!-- <div v-if="errors.genre" class="genre-error text-danger"></div> -->
