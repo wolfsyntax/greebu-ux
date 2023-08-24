@@ -102,9 +102,13 @@
                 </section>
                 <div class="form-group">
                   <label for="genre">Genre</label>
-                  <multiselect v-model="formGenres"  :options="genres" mode="tags" class="genre" placeholder="Please select genres" />
+
+                  <multiselect v-model="formGenres" mode="tags"
+                  :close-on-select="false" :searchable="true"
+                  :create-option="true" :options="genres" 
+                  class="genre" placeholder="Please select genres" />
                   <!-- <div v-if="errors.genre" class="genre-error text-danger"></div> -->
-                  <br/>{{ customGenre }}
+                  <br/>
                   <input type="text" v-model="others" @blur="updateGenre" placeholder="Genre" class="form-control province" v-if="hasOthers" required />
                   <div v-for="err in error?.genre" :key="err" class="text-danger">{{ err }}</div>
 
@@ -371,7 +375,13 @@
                 </div>
               </div>
             </div>                      
-          </div>
+          </div> 
+          {{  myAccount }}
+          <!-- <vue-tags-input
+            v-model="form.genres"
+            :tags="genres"
+            @tags-changed="updateTags"
+          /> -->
 
           <div class="col-3"></div>
         </div> <!-- end of row -->
@@ -394,7 +404,7 @@ export default {
     'member-form': MemberForm,
     'social-media': SocialMediaForm,
     BlankHeader,
-    Multiselect
+    Multiselect,
   },
   data()
   {
@@ -427,7 +437,6 @@ export default {
       formType: 'members',
       formHeader: 'Add Member',
       formSubHeading: 'Lorem ipsum dolor sit amet consectetur. Nam lacus viverra nec orci arcu id fringilla ultrices.',
-
     }
   },
   setup()
@@ -505,12 +514,6 @@ export default {
     //   this.avatar = this.form.avatar?.value;
     //   console.log('Upload File: ', this.form.avatar)
     // },
-    updateGenre()
-    {
-      console.log('Update Genre');
-      // this.customGenre();
-      this.formGenres.push(...this.customGenre);
-    },
     submit()
     {
       if (this.hasOthers) {
@@ -624,10 +627,11 @@ export default {
     }),
     customGenre()
     {
-      return this.others.split(';').map(function (item)
-      {
-        return item.trim();
-      });
+
+      // return this.others.split(';').map(function (item)
+      // {
+      //   return item.trim();
+      // });
     }
     // formGenres()
     // {
@@ -667,4 +671,5 @@ export default {
   height: 50px;
   border-radius: 50%;
 }
+
 </style>
