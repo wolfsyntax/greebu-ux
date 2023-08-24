@@ -9,9 +9,10 @@
 
             <div class="form-group text-center upload-img">
               <label class="label-img">
-                <span class="material-symbols-outlined camera-inner">&#xe412;</span>
+                <span class="material-symbols-outlined camera-inner" v-if="!avatar">&#xe412;</span>
+                <img :src="avatar" class="img-fluid default-avatar" alt="default user avatar" v-else>
                 <div class="camera">
-                  <input type="file" @input="form.member_avatar = $event.target.files[0]" class="member-avatar" accept="image/png, image/webp, image/svg, image/jpeg"/>
+                  <input type="file" @input="changeImage" class="member-avatar" accept="image/png, image/webp, image/svg, image/jpeg"/>
                   <!-- <span v-if="errors?.member_avatar" class="text-danger">{{ errors.member_avatar.shift() }}</span> -->
                   <div v-for="err in errors?.member_avatar" :key="err" class="text-danger">{{ err }}</div>
                 </div>
@@ -54,10 +55,6 @@
           </div>
         </div>
       </div>
-
-
-     
-
     </form>
   </div>
 </template>
@@ -77,6 +74,7 @@ export default {
         member_name: '',
         role: null,
       },
+      avatar: '',
       other: '',
       errors: {},
       roles: [
@@ -106,6 +104,11 @@ export default {
     ...mapActions([
       'addMember'
     ]),
+    changeImage(event)
+    {
+      this.avatar = URL.createObjectURL(event.target.files[0]);
+      this.form.member_avatar = event.target.files[0];
+    },
     submit()
     {
       console.log('Add member (submit)');
