@@ -384,7 +384,7 @@ var actions = {
       signInWithPopup(auth, provider).then(result =>
       { 
         
-        console.log('Sign-In With PopUp Response: ', response)
+        console.log('Sign-In With PopUp Response: ', result);
 
         resolve(result);
       })
