@@ -11,6 +11,8 @@
   --gray6: #B8BBCF;
   --white: #FFFFFF;
   --black: #121212;
+  --indigo: #4F46E5;
+  --indigo-light: #C7D2FE;
   --black-color: #000000;
   --black-heading: #231D4F;
   --bg-black1: #0C0D0F;
@@ -2465,6 +2467,7 @@ height: 100%;
   display: flex;
   align-items: center;
   margin-bottom: 5px;
+  margin-top: 5px;
 }
 .events-showing .container .card .time{
   margin-bottom: 33px;
@@ -2481,14 +2484,12 @@ height: 100%;
   font-size: 14px;
   font-weight: 500;
   letter-spacing: -0.28px;
-  margin-top: 6px;
 }
 .events-showing .container .card .card-body p .orange-text {
   color: var(--orange);
   font-size: 12px;
   font-weight: 500;
   letter-spacing: -0.24px;
-  margin-top: 6px;
 }
 .events-showing .container .card-body a{
   color: var(--white);
@@ -4843,10 +4844,10 @@ width: 100%;
   align-items: center;
 }
 .account-settings .customized-songs-wrapper .event-description{
-  width: 75%;
+  width: 60%;
 }
 .account-settings .customized-songs-wrapper .details-wrapper{
-  width: 25%;
+  width: 40%;
   position: relative;
 }
 .account-settings .customized-songs-wrapper .event{
@@ -4855,6 +4856,16 @@ width: 100%;
   font-weight: 700;
   letter-spacing: -0.025rem;
   margin-bottom: 0.62rem;
+}
+.account-settings .customized-songs-wrapper .event .in-progress{
+  color: var(--indigo);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.5rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 2rem;
+  background: var(--indigo-light);
+  margin-left: 0.75rem;
 }
 .account-settings .customized-songs-wrapper .requested-wrapper{
   margin-bottom: 1.5rem;
@@ -4899,7 +4910,8 @@ width: 100%;
 .account-settings .customized-songs-wrapper .button-wrapper {
   text-align: right;
 }
-.account-settings .customized-songs-wrapper .button-wrapper .details{
+.account-settings .customized-songs-wrapper .button-wrapper .details,
+.account-settings .customized-songs-wrapper .button-wrapper .upload{
   color: var(--orange);
   font-size: 1rem;
   font-weight: 700;
@@ -4908,6 +4920,22 @@ width: 100%;
   padding: 1rem 1.25rem;
   border-radius: 0.3125rem;
   background: #FFF6EB;
+  border: 0;
+}
+.account-settings .customized-songs-wrapper .button-wrapper .upload{
+  background: var(--orange);
+  color: var(--white);
+  margin-left: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+}
+.account-settings .customized-songs-wrapper .button-wrapper .upload svg{
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-right: 0.2rem;
+}
+.account-settings .customized-songs-wrapper .button-wrapper .upload:hover{
+  background: var(--btn-hovered);
 }
 .account-settings .customized-songs-wrapper .button-wrapper .details:hover{
   background: var(--orange);
@@ -5288,6 +5316,10 @@ width: 100%;
   line-height: normal;
   letter-spacing: -0.02rem;
 }
+.account-settings .customized-songs-wrapper .event .in-progress {
+  font-size: 0.75rem;
+  margin-left: 0.45rem;
+}
 .account-settings .customized-songs-wrapper .requested-wrapper {
   margin-bottom: 1.34rem;
 }
@@ -5308,12 +5340,16 @@ width: 100%;
   font-weight: 500;
   letter-spacing: -0.03rem;
 }
-.account-settings .customized-songs-wrapper .button-wrapper .details {
+.account-settings .customized-songs-wrapper .button-wrapper .details, .account-settings .customized-songs-wrapper .button-wrapper .upload {
   font-size: 0.875rem;
   letter-spacing: 0.04375rem;
   padding: 0.81rem 1.25rem;
 }
-
+.account-settings .customized-songs-wrapper .button-wrapper .upload svg {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.1rem;
+}
 
 
 
@@ -6414,6 +6450,14 @@ header nav {
 }
 .main-nav  .nav-button span {
   margin: 4px 10px;
+  font-size: 20px;
+}
+.main-nav .nav-button .dropdown .dropdown-menu .artist-info .artist-name .name {
+  font-size: 18px;
+  margin-bottom: 1.5px;
+}
+.main-nav .nav-button .dropdown .dropdown-menu li span {
+  margin: 0 12px;
   font-size: 20px;
 }
 .main-nav .nav-button .dropdown .dropdown-menu li {

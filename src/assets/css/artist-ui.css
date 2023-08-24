@@ -9,6 +9,8 @@
   --gray6: #B8BBCF;
   --white: #FFFFFF;
   --black: #121212;
+  --indigo: #4F46E5;
+  --indigo-light: #C7D2FE;
   --black-color: #000000;
   --black-heading: #231D4F;
   --bg-black1: #0C0D0F;
@@ -79,19 +81,18 @@ body{
   border: 0;
   background-color: transparent;
 }
-.profile-page .profile-header .cover .cover-photo-camera button span{
-  color: #fff;
+.profile-page .profile-header .cover .cover-photo-camera button span {
+  color: #FF6B00;
   font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 48;
   padding: 10px;
   border-radius: 5px;
   border: 1px solid rgba(255, 255, 255, 0.30);
-  background: rgba(255, 255, 255, 0.30);
+  background: white;
   transition: .7s;
 }
 .profile-page .profile-header .cover .cover-photo-camera button span:hover{
-  color: #fff;
-  background: #FF6B00;
-  border: 1px solid #FF6B00;
+  color: #FF6B00;
+  font-variation-settings: 'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 48;
 }
 .profile-page .profile-header .cover .cover-body {
   position: absolute;
@@ -254,6 +255,9 @@ body{
   top: 260px;
   left: 25%;
 } 
+.profile-page .profile-header .header-links ul li:hover{
+  cursor: pointer;
+}
 .profile-page .profile-header .header-links ul li a{
   color: #7C828F;
   font-size: 20px;
@@ -499,7 +503,7 @@ body{
   margin: 0 8px;
 }
 .profile-page .middle-wrapper .post .card-body .post-features .post-icon:hover *{
-  color: #EA580C;
+  color: var(--orange);
 }
 .profile-page .middle-wrapper .post .card-body .post-features .post-icon span{
   color: #536471;
@@ -593,6 +597,21 @@ body{
   margin-bottom: 0;
 }
 
+/* Artist post zero state screen */
+.profile-page .middle-wrapper  .artist-post .no-post {
+  padding: 4.81rem 0;
+}
+.profile-page .middle-wrapper  .artist-post .no-post .no-post-icon {
+  margin-bottom: 0.75rem;
+}
+.profile-page .middle-wrapper  .artist-post .no-post-title{
+  color: var(--gray2);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+
+
 /* Right Side Bar / Top & Bottom */
 .profile-page .right-wrapper .past-events .card-body .header, .profile-page .right-wrapper .original-songs .card-body .header {
   margin-bottom: 20px;
@@ -621,6 +640,24 @@ body{
   line-height: normal;
   text-decoration: none;
 }
+
+/* Past Events / Original Songs - zero state screen  */
+.profile-page .right-wrapper .past-events .card-body .no-events-posted,
+.profile-page .right-wrapper .original-songs .no-original-songs{
+  padding: 3.06rem 0 6.19rem;
+}
+.profile-page .right-wrapper .past-events .card-body .no-events-posted .no-events-posted-icon,
+.profile-page .right-wrapper .original-songs .no-original-songs, .no-original-songs-icon {
+  margin-bottom: 0.75rem;
+}
+.profile-page .right-wrapper .past-events .card-body .no-events-posted .no-events-posted-title,
+.profile-page .right-wrapper .original-songs .no-original-songs-title{
+  color: var(--gray2);
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
 .profile-page .right-wrapper .past-events .card-body .events-list, 
 .profile-page .right-wrapper .original-songs .songs-list {
     border-radius: 10px;
@@ -857,6 +894,56 @@ body{
   letter-spacing: -0.64px;
 }
 
+/* SONGS TAB */
+
+.profile-page .songs-tab, .profile-page .videos-tab, .profile-page .photos-tab {
+  border-radius: 0.3125rem;
+  background: var(--white);
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.12);
+  margin: 0 .1% 10rem;
+  position: relative;
+}
+/* zero state screen for SONGS TAB / VIDEOS TAB / PHOTOS TAB/   */
+.profile-page .songs-tab .no-songs, .profile-page .videos-tab .no-videos, .profile-page .photos-tab .no-photos{
+  padding: 7.19rem 0;
+  width: 60%;
+  margin: 0 auto 1.25rem;
+}
+.profile-page .songs-tab .description-wrapper, .profile-page .videos-tab .description-wrapper, .profile-page .photos-tab .description-wrapper  {
+  margin-bottom: 2.5rem;
+}
+.profile-page .songs-tab .description-wrapper .title, .profile-page .videos-tab .description-wrapper .title,
+.profile-page .photos-tab .description-wrapper .title{
+  color: var(--black);
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.1rem;
+  margin-bottom: 0.5rem;
+}
+.profile-page .songs-tab .description-wrapper .sub-title, .profile-page .videos-tab .description-wrapper .sub-title,
+.profile-page .photos-tab .description-wrapper .sub-title {
+  color: var(--gray2);
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: -0.075rem;
+}
+.profile-page .songs-tab .upload-songs, .profile-page .videos-tab .upload-video, 
+.profile-page .photos-tab .upload-photos {
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 100%;
+  letter-spacing: 0.05rem;
+  padding: 1rem 2.28rem;
+  background-color: var(--orange);
+}
+.profile-page .songs-tab .upload-songs:hover, .profile-page .videos-tab .upload-video:hover,
+.profile-page .photos-tab .upload-photos:hover{
+  background-color: var(--btn-hovered);
+}
+
+
+
 /* Artist profile form */
 .profile-details .container{
   margin: 5rem auto;
@@ -941,9 +1028,6 @@ body{
 .profile-details .container .fill-details .upload-img .label-img:hover .camera-inner{
   background: #FF6B00;
 } */
-.profile-details .container .fill-details .upload-img .label-img:hover .camera-outer{
-  border: 1px solid #fff;
-}
 .profile-details .container .fill-details .upload-img .label-img .camera {
   position: absolute;
   top: 0;
@@ -961,12 +1045,15 @@ body{
   padding: 0.7rem;
   border-radius: 33px;
   background: #FF6B00;
-  font-variation-settings: 'FILL' 0;
+  font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 48;
   font-size: 20px;
   position: absolute;
   top: 70%;
   left: 72%;
   border: 1px solid #FF6B00;
+}
+.profile-details .container .fill-details .upload-img .label-img:hover .camera-outer{
+  border: 1px solid #fff;
 }
 .profile-details .container .fill-details .form-group{
   margin-bottom: 1.75rem;
@@ -1851,7 +1938,7 @@ background: var(--btn-hovered);
   line-height: 1.25rem; 
 }
 .profile-page .profile-header .cover .cover-photo-camera {
-  top: 82%;
+  top: 80%;
 }
 .profile-page .profile-header .cover .cover-photo-camera button span {
   font-size: 1rem;
@@ -1881,6 +1968,64 @@ margin-top: 40px;
 .profile-page .about-tab .band-members .card img {
 height: 200px;
 }
+.profile-page .about-tab .overview {
+  font-size: 24px;
+}
+.profile-page .about-tab .content, .profile-page .about-tab .capacity, .profile-page .about-tab .capacity-list, .profile-page .about-tab .capacity-list li {
+  font-size: 16px;
+}
+.profile-page .about-tab .genres h4 {
+  font-size: 20px;
+}
+.profile-page .about-tab  .genres {
+  gap: 12px;
+}
+.profile-page .about-tab .genres .genres-list .badge {
+  border-radius: 8px;
+  border: 1px solid #ABADC6;
+  font-size: 12px;
+  margin-right: 6px;
+  margin-bottom: 4px;
+}
+.profile-page .about-tab .genres .genres-list .badge {
+  padding: 8px 12px;
+  margin-right: 4px;
+  margin-bottom: 6px;
+}
+.profile-page .about-tab .social-media {
+  padding: 8%;
+  margin-bottom: 40px;
+}
+.profile-page .about-tab .social-media h4 {
+  font-size: 20px;
+  margin-bottom: 14px;
+}
+.profile-page .about-tab .social-media ul li {
+  font-size: 12px;
+  line-height: 22px;
+  margin-bottom: 8px;
+}
+.profile-page .about-tab .ratings h4 {
+  font-size: 20px;
+}
+.profile-page .about-tab .ratings p {
+  font-size: 14px;
+  margin-top: 2px;
+}
+.profile-page .about-tab .ratings span {
+  font-size: 18px;
+  padding-right: 2px;
+}
+.profile-page .about-tab .band-members h4 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  margin-top: 24px;
+}
+.profile-page .about-tab .band-members .card {
+  margin-bottom: 16px;
+}
+
+
 .profile-page .right-wrapper .past-events .card-body .events-list .events-info img, .profile-page .right-wrapper .original-songs .songs-list .songs-info img{
 width: 48px;
 height: 48px;
@@ -2022,9 +2167,22 @@ margin-right: 6px;
 .profile-page .middle-wrapper  .artist-post .card-body p {
   font-size: 0.9rem;
 }
-.profile-page .middle-wrapper  .artist-post .card-body{
-  padding-bottom: 0.5rem;
+/* Artist page - zero state screen */
+.profile-page .middle-wrapper  .artist-post .no-post {
+  padding: 4rem 0;
 }
+.profile-page .middle-wrapper  .artist-post .no-post .no-post-icon {
+  margin-bottom: 0.70rem;
+  width: 48px;
+  height: 48px;
+}
+.profile-page .middle-wrapper  .artist-post .no-post-title {
+  font-size: 0.775rem;
+}
+
+/* .profile-page .middle-wrapper  .artist-post .card-body{
+  padding-bottom: 0.5rem;
+} */
 .profile-page .middle-wrapper  .artist-post .card-footer .post-actions .post-icon span {
   margin-right: 6px;
   font-size: 20px;
@@ -2050,8 +2208,46 @@ margin-right: 6px;
   line-height: normal;
   margin-bottom: 0.20rem;
 }
+/* Past Events / Original Songs - zero state screen  */
+.profile-page .right-wrapper .past-events .card-body .no-events-posted, .profile-page .right-wrapper .original-songs .no-original-songs {
+  padding: 2.06rem 0 4.2rem;
+}
+.profile-page .right-wrapper .past-events .card-body .no-events-posted .no-events-posted-icon,
+.profile-page .right-wrapper .original-songs .no-original-songs, .no-original-songs-icon {
+  margin-bottom: 0.70rem;
+}
+.profile-page .right-wrapper .past-events .card-body .no-events-posted .no-events-posted-title,
+.profile-page .right-wrapper .original-songs .no-original-songs-title{
+  font-size: 0.775rem;
+}
 
-
+/* Songs tab / Videos tab / Photos tab - zero state screen  */
+.profile-page .songs-tab, .profile-page .videos-tab, .profile-page .photos-tab {
+  margin: 0 .1% 8rem;
+}
+.profile-page .songs-tab .no-songs, .profile-page .videos-tab .no-videos, .profile-page .photos-tab .no-photos {
+  padding: 5.19rem 0;
+  margin: 0 auto 1rem;
+}
+.profile-page .songs-tab .description-wrapper, .profile-page .videos-tab .description-wrapper, .profile-page .photos-tab .description-wrapper {
+  margin-bottom: 2rem;
+}
+.profile-page .songs-tab .no-songs svg, .profile-page .videos-tab .no-videos svg, .profile-page .photos-tab .no-photos svg{
+  width: 80px;
+  height: 80px;
+  margin-bottom: 1rem;
+}
+.profile-page .songs-tab .description-wrapper .title, .profile-page .videos-tab .description-wrapper .title, .profile-page .photos-tab .description-wrapper .title {
+  font-size: 1.5rem;
+  margin-bottom: 0.4rem;
+}
+.profile-page .songs-tab .description-wrapper .sub-title, .profile-page .videos-tab .description-wrapper .sub-title, .profile-page .photos-tab .description-wrapper .sub-title {
+  font-size: 1.2rem;
+}
+.profile-page .songs-tab .upload-songs, .profile-page .videos-tab .upload-video, .profile-page .photos-tab .upload-photos {
+  font-size: 0.87rem;
+  padding: 0.9rem 2rem;
+}
 
 
                                                     /* ARTIST PROFILE DETAILS*/

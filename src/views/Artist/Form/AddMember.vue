@@ -143,7 +143,7 @@ export default {
         //   text: `${err.message}`
         // })
       });
-    }
+    },
   },
   computed: {
     ...mapState({

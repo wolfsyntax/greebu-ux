@@ -51,7 +51,7 @@
                <div class="dropdown dropstart">
                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
                   <img :src="myAccount.avatar" alt="artist profile">
-                  <i class="material-icons"><span class="material-symbols-rounded">&#xe313;</span></i>
+                  <span class="material-symbols-rounded">&#xe313;</span>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
                   <li>
@@ -66,7 +66,7 @@
                   </li>
                   <li><hr class="dropdown-divider"></li>
                   <li v-for="(customer, index) in customersDropdown" :key="index">
-                    <i class="material-icons"><span class="material-symbols-rounded">{{ customer.icon }}</span></i>
+                    <span class="material-symbols-rounded">{{ customer.icon }}</span>
                     <a class="dropdown-item" :href="customer.link">{{ customer.name }}</a>
                   </li>
                   <li><hr class="dropdown-divider"></li>
@@ -75,7 +75,7 @@
                     <a class="dropdown-item logout" href="#" @click.prevent="logout">Switch Account</a>
                   </li>
                   <li class="logout-wrapper">
-                    <i class="material-icons"><span class="material-symbols-rounded">logout</span></i>
+                    <span class="material-symbols-rounded">logout</span>
                     <a class="dropdown-item logout" href="#" @click.prevent="logout">Logout</a>
                   </li>
                 </ul>
@@ -93,7 +93,7 @@
                <div class="dropdown dropstart">
                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
                   <img :src="myAccount.avatar" alt="artist profile">
-                  <i class="material-icons"><span class="material-symbols-rounded">&#xe313;</span></i>
+                 <span class="material-symbols-rounded">&#xe313;</span>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
                   <li>
@@ -108,7 +108,7 @@
                   </li>
                   <li><hr class="dropdown-divider"></li>
                   <li v-for="(artist, index) in artistsDropdown" :key="index">
-                    <i class="material-icons"><span class="material-symbols-outlined">{{ artist.icon }}</span></i>
+                    <span class="material-symbols-outlined">{{ artist.icon }}</span>
                     <a class="dropdown-item" :href="artist.link">{{ artist.name }}</a>
                   </li>
                   <li><hr class="dropdown-divider"></li>
@@ -117,7 +117,7 @@
                     <a class="dropdown-item logout" href="#" @click.prevent="logout">Switch Account</a>
                   </li>
                   <li class="logout-wrapper">
-                    <i class="material-icons"><span class="material-symbols-rounded">logout</span></i>
+                    <span class="material-symbols-rounded">logout</span>
                     <a class="dropdown-item logout" href="#" @click.prevent="logout">Logout</a>
                   </li>
                 </ul>
