@@ -21,8 +21,8 @@
           </div>
 
           <div class="button-wrapper">
-            <button type="button" class="btn btn-primary back" @click="previous" :disabled="page === 0">Back</button>
-            <button type="submit" class="btn btn-primary next" :disabled="isButtonInfo">Next</button>
+            <!-- <button type="button" class="btn btn-primary back" @click="previous" :disabled="page === 0">Back</button> -->
+            <button type="submit" class="btn btn-primary next m-auto" :disabled="isButtonInfo">Next</button>
           </div>
         </form>
       </div>

@@ -3,9 +3,9 @@
     <div class="progress">
       <div class="progress-bar" :style="{ width: subProgressWidthSong }"></div>
     </div>
-{{ language }}<br/><br/>
+<!-- {{ language }}<br/><br/>
 {{ mood }}<br/><br/>
-{{ duration }}<br/><br/>
+{{ duration }}<br/><br/> -->
     <div class="d-flex justify-content-center content-sub">
       <div v-for="(subStep, subIndex) in subStepsSong" :key="subIndex" :class="['step-item', { 'active': subIndex === currentSubStepSong }]">
         <div class="substep-title">{{ subStep.title }}</div>

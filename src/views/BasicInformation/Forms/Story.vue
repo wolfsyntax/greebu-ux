@@ -1,13 +1,14 @@
 <template>
-  <div >
-    
+  <div>
+
     <div class="step-content active">
       <div class="progress">
         <div class="progress-bar" :style="{ width: subProgressWidthStory }"></div>
       </div>
 
       <div class="d-flex justify-content-center content-sub">
-        <div v-for="(subStep3, subIndex) in subStepsStory" :key="subIndex" :class="['step-item', { 'active': subIndex === currentSubStepStory }]">
+        <div v-for="(subStep3, subIndex) in subStepsStory" :key="subIndex"
+          :class="['step-item', { 'active': subIndex === currentSubStepStory }]">
           <div class="substep-title">{{ subStep3.title }}</div>
         </div>
       </div>
@@ -21,30 +22,36 @@
               <div class="form-group">
                 <label for="language">What is the song for?</label>
                 <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
                     <span :style="form.purpose ? { color: '#FF6B00' } : {}">{{ form.purpose ? form.purpose?.name : 'Select Occasion' }}</span>
                     <img :src="expandMore.img" :alt="expandMore.altText">
                   </button>
-                  
+
                   <ul class="dropdown-menu">
-                    <li v-for="occasion in purposes" :key="occasion.id" @click="selectOccasion(occasion)">{{ occasion.name }}</li>
+                    <li v-for="occasion in purposes" :key="occasion.id" @click="selectOccasion(occasion)">{{ occasion.name
+                    }}</li>
                   </ul>
                 </div>
-              </div> 
+              </div>
 
               <div class="form-group">
-                <label for="language">To whom is the  song for?</label>
-                <input id="name" type="text" class="form-control" name="name" v-model="form.receiver" required autocomplete="song-for"  placeholder="e.g Jacob Jones">
-              </div> 
+                <label for="language">To whom is the song for?</label>
+                <input id="name" type="text" class="form-control" name="name" v-model="form.receiver" required
+                  autocomplete="song-for" placeholder="e.g Jacob Jones">
+              </div>
 
               <div class="form-group">
                 <label for="language">Where did the song come from?</label>
-                <input id="name" type="text" class="form-control" name="name" v-model="form.sender" required autocomplete="come-from"  placeholder="e.g Jane Cooper">
-              </div> 
-              
+                <input id="name" type="text" class="form-control" name="name" v-model="form.sender" required
+                  autocomplete="come-from" placeholder="e.g Jane Cooper">
+              </div>
+
               <div class="button-wrapper">
-                <button type="button" class="btn btn-primary back" @click="previousStep" :disabled="page === 0">Back</button>
-                <button type="button" class="btn btn-primary next" @click="subNextStepStory" :disabled="!form.purpose || (isButtonOccasion)">Next</button>
+                <button type="button" class="btn btn-primary back" @click="previousStep"
+                  :disabled="page === 0">Back</button>
+                <button type="button" class="btn btn-primary next" @click="subNextStepStory"
+                  :disabled="!form.purpose || (isButtonOccasion)">Next</button>
                 <!-- <button type="button" class="btn btn-primary next" @click="subNextStepStory">Next</button> -->
               </div>
             </form>
@@ -57,15 +64,15 @@
           <div class="card-body">
             <h2 class="card-title your-story">Tell us your story</h2>
             <p class="card-text">In this section, you’ll provide your artist with all the inspiration they’ll need to craft your custom song.</p>
-
             <form @submit.prevent="submit">
               <div class="form-group">
                 <label for="story">Write your Story</label>
                 <textarea v-model="form.user_story" class="form-control"></textarea>
-              </div> 
-              {{ !form.user_story }}
+              </div>
+              <!-- {{ !form.user_story }} -->
               <div class="button-wrapper">
-                <button type="button" class="btn btn-primary back" @click="subPreviousStepStory" :disabled="currentStep === 0">Back</button>
+                <button type="button" class="btn btn-primary back" @click="subPreviousStepStory"
+                  :disabled="currentStep === 0">Back</button>
                 <button type="submit" class="btn btn-primary next" :disabled="!form.user_story">Next</button>
               </div>
             </form>
@@ -79,14 +86,11 @@
 <script>
 import { mapGetters, mapState, mapActions } from "vuex";
 export default {
-  setup()
-  {
-
+  setup() {
 
     return {}
   },
-  data()
-  {
+  data() {
     return {
       currentSubStepStory: 0,
       expandMore: {
@@ -121,44 +125,37 @@ export default {
     ...mapActions([
       'songStepThree',
     ]),
-    submit()
-    {
+    submit() {
 
       this.songStepThree(this.form)
-        .then(response =>
-        {
+        .then(response => {
           const { status: statusCode } = response
           console.log('Step Three response: ', response);
           if (statusCode === 200) {
             this.$emit('step', 3);
           }
-      })
+        })
     },
-    previousStep()
-    {
+    previousStep() {
       console.log('Story Previous Step')
-      this.$emit('step', 1) 
+      this.$emit('step', 1)
     },
-    subNextStepStory()
-    {
+    subNextStepStory() {
       if (this.currentSubStepStory < this.subStepsStory.length - 1) {
         this.currentSubStepStory++;
       }
     },
-    subPreviousStepStory()
-    {
+    subPreviousStepStory() {
       if (this.currentSubStepStory > 0) {
         this.currentSubStepStory--;
       }
     },
-    selectOccasion(occasion)
-    {
+    selectOccasion(occasion) {
       this.form.purpose = occasion;
       this.$store.commit('SET_SONG_PURPOSE', occasion)
     },
   },
-  mounted()
-  {
+  mounted() {
 
   },
   computed: {
@@ -166,17 +163,15 @@ export default {
     ...mapState({
       purposes: (state) => state.songs.purposes,
     }),
-    subProgressWidthStory()
-    {
+    subProgressWidthStory() {
       return ((this.currentSubStepStory + 1) / this.subStepsStory.length) * 100 + '%';
     },
-    isButtonOccasion()
-    {
+    isButtonOccasion() {
       return this.form.receiver === '' || this.form.sender === '';
     },
   },
   watch: {
-    
+
   }
 }
 </script>
