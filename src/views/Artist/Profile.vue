@@ -116,12 +116,7 @@
                   <multiselect v-model="formGenres" mode="tags"
                   :close-on-select="false" 
                   :create-option="true" :options="async function(query) {
-                    try {
-                      return await fetchGenre(query)
-                    } catch (err) {
-                      return genres;
-                    }
-
+                    return await fetchGenre(query)
                   }" 
                   :searchable="true" :delay="0"
                   class="genre" placeholder="Please select genres" />
@@ -650,15 +645,19 @@ export default {
     cGenre()
     {
         const self = this;
-        if (this.formGenres) {
+        if (this.formGenres && this.genres) {
           var gen = this.formGenres?.filter(function (el)
           {
             return !self.genres.includes(el);
           })
 
           return gen?.concat(this.genres);
+      }
+        
+        if (!this.genres) {
+          this.artistOptions();
         }
-
+        
         return this.genres;
     },
 
