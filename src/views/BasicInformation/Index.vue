@@ -1,115 +1,120 @@
 <template>
   <layout>
 
-  <section class="basic-information">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 offset-md-3">
-          <div class="progress">
-            <div class="progress-bar progress-bar-striped progress-bar-animated" :style="{ width: progressWidth }"></div>
-          </div>
-
-          <div class="d-flex justify-content-center mb-3">
-            <div v-for="(step, index) in steps" :key="index" :class="['step-item', { 'active': index === currentStep }]">
-              <div class="step-title">{{ step.title }}</div>
+    <section class="basic-information">
+      <div class="container">
+        <div class="row">
+          <!-- <div class="col-md-6 offset-md-3"> -->
+            <div class="col-6 m-auto">
+            <div class="progress">
+              <div class="progress-bar progress-bar-striped progress-bar-animated" :style="{ width: progressWidth }">
+              </div>
             </div>
+
+            <div class="d-flex justify-content-center mb-3">
+              <div v-for="(step, index) in steps" :key="index"
+                :class="['step-item', { 'active': index === currentStep }]">
+                <div class="step-title">{{ step.title }}</div>
+              </div>
+            </div>
+            <step-one class="step1" @step="stepper" :steps="steps" @stepData="updateForm" :page="currentStep"
+              v-if="currentStep === 0" />
+            <step-three class="step3" @step="stepper" :page="currentStep" @stepData="updateForm"
+              v-if="currentStep === 2" />
           </div>
-          <step-one class="step1" @step="stepper" :steps="steps" @stepData="updateForm" :page="currentStep" v-if="currentStep === 0" />
-          <step-three class="step3" @step="stepper" :page="currentStep" @stepData="updateForm" v-if="currentStep === 2" />
-          <step-four class="step4" @step="stepper" :page="currentStep" @stepData="updateForm" v-if="currentStep === 3" />
-        </div>
-        <!-- <div class="d-flex justify-content-center"  > -->
+          <step-four class="step4" @step="stepper" :page="currentStep" @stepData="updateForm"
+              v-if="currentStep === 3" />
+              
+          <!-- <div class="d-flex justify-content-center"  > -->
           <div class="step2 w-100" v-if="currentStep === 1">
             <div class="step-content active">
-              <step-two style="width: 100vh;" @step="stepper" @view="openModal" :page="currentStep" @stepData="updateForm" />
+              <step-two style="width: 100vh;" @step="stepper" @view="openModal" :page="currentStep"
+                @stepData="updateForm" />
             </div>
-            
-          </div>
-        <!-- </div> -->
-    </div> 
 
-    </div>  <!-- end of container -->
+          </div>
+          <!-- </div> -->
+        </div>
+
+      </div> <!-- end of container -->
 
       <!-- hidden audio controls -->
       <div class="audio-controls-fixed" v-show="showControls">
-          <div class="d-flex align-items-center audio-menu">
-            <div class="artist">
-              <div class="card">
-                <div class="row g-0">
-                  <div class="col-md-4">
-                    <img :src="showArtists[currentIndex].image" class="img-fluid artist-img" alt="Artist Image" />
+        <div class="d-flex align-items-center audio-menu">
+          <div class="artist">
+            <div class="card">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img :src="showArtists[currentIndex].image" class="img-fluid artist-img" alt="Artist Image" />
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ showArtists[currentIndex].name }}</h5>
+                    <p class="card-text">{{ showArtists[currentIndex].typeOfArtist }}</p>
                   </div>
-                  <div class="col-md-8">
-                    <div class="card-body">
-                      <h5 class="card-title">{{ showArtists[currentIndex].name }}</h5>
-                      <p class="card-text">{{ showArtists[currentIndex].typeOfArtist }}</p>
-                    </div>
-                  </div>
                 </div>
               </div>
-            </div>
-            <div class="audio-controls">
-              <audio ref="audioPlayer" controls style="display: none;"></audio>
-              <div class="main-controls">
-                <button @click="playPrevious" class="btn btn-primary prev">
-                  <!-- <i class="material-icons"><span class="material-symbols-outlined">skip_previous</span></i> -->
-                </button>
-                <button @click="togglePlayPause" class="btn btn-primary play">
-                  <!-- <i :class="playIconClass"></i> -->
-                  <img :src="playIconClass" alt="">
-                </button>
-                <button @click="playNext" class="btn btn-primary next"></button>
-              </div>
-              <div class="song-timeline">
-                <div class="current-time">
-                  {{ currentTime }}
-                </div>
-                <div class="timeline">
-                  <div class="progress-bar" :style="{ width: progressBarWidth }"></div>
-                </div>
-                <div class="duration">
-                  {{ duration }}
-                </div>
-              </div>
-            </div>
-
-            <div class="stop-song">
-              <!-- Volume -->
-              <div class="volume-wrapper">
-                <button @click="toggleMute" class="btn btn-primary volume">
-                  <i :class="`bi ${volumeIcon}`"></i>
-                </button>
-                <div class="" style="display: none;">
-                  <button @click="showVolumeSlider = !showVolumeSlider" class="btn btn-primary">
-                    <i class="bi bi-volume-up"></i>
-                  </button>
-                </div>
-                <div v-if="showVolumeSlider" class="volume-slider">
-                  <input type="range" min="0" max="100" v-model="currentVolume" class="form-range" @input="updateVolume">
-                </div>
-              </div>
-              <!-- x icon - stop the song and close the audio controls modal -->
-              <i class="bi bi-x" @click="stopAudio"></i>
             </div>
           </div>
-        </div> <!-- end of audio-controls -->
-        <artistdetails
-        :selectedArtist="selectedArtist"
-        >
-        </artistdetails>
+          <div class="audio-controls">
+            <audio ref="audioPlayer" controls style="display: none;"></audio>
+            <div class="main-controls">
+              <button @click="playPrevious" class="btn btn-primary prev">
+                <!-- <i class="material-icons"><span class="material-symbols-outlined">skip_previous</span></i> -->
+              </button>
+              <button @click="togglePlayPause" class="btn btn-primary play">
+                <!-- <i :class="playIconClass"></i> -->
+                <img :src="playIconClass" alt="">
+              </button>
+              <button @click="playNext" class="btn btn-primary next"></button>
+            </div>
+            <div class="song-timeline">
+              <div class="current-time">
+                {{ currentTime }}
+              </div>
+              <div class="timeline">
+                <div class="progress-bar" :style="{ width: progressBarWidth }"></div>
+              </div>
+              <div class="duration">
+                {{ duration }}
+              </div>
+            </div>
+          </div>
 
-        <!-- <user-modal :selectedArtist="selectedArtist" :showUserModal="showUserModal" @closeModal="closeModal" /> -->
+          <div class="stop-song">
+            <!-- Volume -->
+            <div class="volume-wrapper">
+              <button @click="toggleMute" class="btn btn-primary volume">
+                <i :class="`bi ${volumeIcon}`"></i>
+              </button>
+              <div class="" style="display: none;">
+                <button @click="showVolumeSlider = !showVolumeSlider" class="btn btn-primary">
+                  <i class="bi bi-volume-up"></i>
+                </button>
+              </div>
+              <div v-if="showVolumeSlider" class="volume-slider">
+                <input type="range" min="0" max="100" v-model="currentVolume" class="form-range" @input="updateVolume">
+              </div>
+            </div>
+            <!-- x icon - stop the song and close the audio controls modal -->
+            <i class="bi bi-x" @click="stopAudio"></i>
+          </div>
+        </div>
+      </div> <!-- end of audio-controls -->
+      <artistdetails :selectedArtist="selectedArtist">
+      </artistdetails>
 
-  </section>
-      
-   
+      <!-- <user-modal :selectedArtist="selectedArtist" :showUserModal="showUserModal" @closeModal="closeModal" /> -->
+
+    </section>
+
+
   </layout>
-
-  </template>
- <script>
- import Layout from '/src/components/Layouts/Layout.vue';
- import ArtistDetails from '/src/components/Artist/ArtistDetails.vue';
- import { mapGetters, mapState, mapActions } from "vuex";
+</template>
+<script>
+import Layout from '/src/components/Layouts/Layout.vue';
+import ArtistDetails from '/src/components/Artist/ArtistDetails.vue';
+import { mapGetters, mapState, mapActions } from "vuex";
 import StepOne from './Forms/Info.vue';
 import StepTwo from './Forms/Song.vue';
 import StepThree from './Forms/Story.vue';
@@ -124,15 +129,13 @@ export default {
     Layout,
     artistdetails: ArtistDetails,
   },
-  setup()
-  {
+  setup() {
     // window.addEventListener('beforeunload', function (e) {
     //   e.preventDefault();
     //   e.returnValue = '';
     // });
   },
-  data()
-  {
+  data() {
     return {
       steps: [
         { title: 'INFO', content: 'INFO' },
@@ -141,12 +144,12 @@ export default {
         { title: 'REVIEW', content: 'REVIEW' }
       ],
       subStepsSong: [
-        { title: 'Select your artist'},
+        { title: 'Select your artist' },
         { title: 'Select mood' },
         { title: 'Select language' }
       ],
       subStepsStory: [
-        { title: 'Occasion details'},
+        { title: 'Occasion details' },
         { title: 'Your story' },
       ],
       currentStep: 0,
@@ -179,14 +182,14 @@ export default {
 
 
       selectedLanguage: null,
-      
-      selectedSongDuration: null, 
+
+      selectedSongDuration: null,
 
       // STEP 3 - STORY
       song_for: '',
       come_from: '',
       your_story: '',
-      selectedOccasion: null, 
+      selectedOccasion: null,
       songOccasionOptions: [
         { id: 1, name: 'Birthday' },
         { id: 2, name: 'Graduation' },
@@ -230,8 +233,7 @@ export default {
       showUserModal: false,
     };
   },
-  mounted()
-  {
+  mounted() {
     var payload = {}
 
     if (this.artist_type) payload.artist_type = this.artist_type
@@ -239,21 +241,18 @@ export default {
     if (this.search) payload.search = this.search
 
     this.fetchArtists(payload)
-      .then(response =>
-        {
-          console.log('Song Request Artists: ', response);
-        })
+      .then(response => {
+        console.log('Song Request Artists: ', response);
+      })
 
     this.audioPlayer = this.$refs.audioPlayer;
-    this.audioPlayer.addEventListener('play', () =>
-      {
-        this.isPlaying = true;
-      });
-      
-    this.audioPlayer.addEventListener('pause', () =>
-      {
-        this.isPlaying = false;
-      });
+    this.audioPlayer.addEventListener('play', () => {
+      this.isPlaying = true;
+    });
+
+    this.audioPlayer.addEventListener('pause', () => {
+      this.isPlaying = false;
+    });
   },
   computed: {
     ...mapGetters(["userInfo", "token"]),
@@ -267,7 +266,7 @@ export default {
       song_duration: state => state.songs.song_duration,
       song_purpose: state => state.songs.song_purpose,
       song_mood: state => state.songs.song_mood,
-    }),        
+    }),
     progressWidth() {
       return ((this.currentStep + 1) / this.steps.length) * 100 + '%';
     },
@@ -278,15 +277,13 @@ export default {
       return ((this.currentSubStepStory + 1) / this.subStepsStory.length) * 100 + '%';
     },
 
-    isButtonOccasion(){
-      return this.song_for === '' || this.come_from === ''; 
+    isButtonOccasion() {
+      return this.song_for === '' || this.come_from === '';
     },
-    playIconClass()
-    {
+    playIconClass() {
       return this.isPlaying ? 'https://res.cloudinary.com/daorvtlls/image/upload/v1687321874/play-pause_ofcx4e.svg' : 'https://res.cloudinary.com/daorvtlls/image/upload/v1687321874/play-black_ftgyx3.svg';
     },
-    volumeIcon()
-    {
+    volumeIcon() {
       if (this.currentVolume === 0) {
         return 'bi-volume-mute';
       } else if (this.currentVolume < 1) {
@@ -302,34 +299,31 @@ export default {
     ...mapActions([
       'fetchArtists', 'artistOptions', 'storeSong', 'clearSongForm',
     ]),
-    stepper(step)
-    {
+    stepper(step) {
       console.log('Stepper: ', step)
       this.currentStep = step;
     },
-    updateForm(form)
-    {
+    updateForm(form) {
       console.log('\n\nForm Data: ', form)
       console.log('UpdateForm (current): ', this.form)
       Object.assign(this.form, form);
 
-      console.log('UpdateForm (new): ', this.form,'\n\n')
+      console.log('UpdateForm (new): ', this.form, '\n\n')
       // this.storeSong(this.form);
       // console.log('New (form): ', this.form)
     },
-    selectArtist(artist){
+    selectArtist(artist) {
       this.selectedArtist = artist;
-    }, 
+    },
     changeSelectArtist(artist) {
       return this.selectedArtist === artist ? 'Selected' : 'Select';
     },
-    openModal(artist){
+    openModal(artist) {
       this.$root.$emit("bv::show::modal", "#artistModal");
       // this.showUserModal = true;
       this.selectedArtist = artist;
     },
-    toggleControls(index)
-    {
+    toggleControls(index) {
       if (this.audioPlayer) {
         if (this.showControls && this.currentIndex === index) {
           if (this.audioPlayer.paused) {
@@ -350,8 +344,7 @@ export default {
 
       }
     },
-    togglePlayPause()
-    {
+    togglePlayPause() {
       if (this.audioPlayer) {
         if (this.audioPlayer.paused) {
           this.audioPlayer.play();
@@ -359,9 +352,8 @@ export default {
           this.audioPlayer.pause();
         }
       }
-    },  
-    playPrevious()
-    {
+    },
+    playPrevious() {
       if (this.currentIndex > 0) {
         this.currentIndex--;
       } else {
@@ -371,8 +363,7 @@ export default {
       // this.activeSlide = Math.floor(this.currentIndex / 6);
       this.playSong(this.currentIndex);
     },
-    playSong(index)
-    {
+    playSong(index) {
       if (this.audioPlayer) {
         this.audioPlayer.src = this.showArtists[index].song;
         this.audioPlayer.load();
@@ -380,52 +371,44 @@ export default {
       }
 
       // Update current time and duration when the metadata is loaded
-      this.audioPlayer.addEventListener('loadedmetadata', () =>
-        {
-          this.duration = this.formatTime(this.audioPlayer.duration);
-        });
+      this.audioPlayer.addEventListener('loadedmetadata', () => {
+        this.duration = this.formatTime(this.audioPlayer.duration);
+      });
 
       // Update current time during playback
-      this.audioPlayer.addEventListener('timeupdate', () =>
-        {
-          this.currentTime = this.formatTime(this.audioPlayer.currentTime);
-          this.updateProgressBar();
-        });
+      this.audioPlayer.addEventListener('timeupdate', () => {
+        this.currentTime = this.formatTime(this.audioPlayer.currentTime);
+        this.updateProgressBar();
+      });
     },
 
-    stopAudio()
-    {
+    stopAudio() {
       if (this.audioPlayer) {
         this.audioPlayer.pause();
         this.showControls = false;
       }
     },
-    toggleMute()
-    {
+    toggleMute() {
       if (this.audioPlayer) {
         this.audioPlayer.muted = !this.audioPlayer.muted;
         this.isMuted = this.audioPlayer.muted;
       }
     },
-    formatTime(time)
-    {
+    formatTime(time) {
       const minutes = Math.floor(time / 60);
       const seconds = Math.floor(time % 60).toString().padStart(2, '0');
       return `${minutes}:${seconds}`;
     },
-    updateProgressBar()
-    {
+    updateProgressBar() {
       const progress = (this.audioPlayer.currentTime / this.audioPlayer.duration) * 100;
       this.progressBarWidth = `${progress}%`;
     },
-    updateVolume()
-    {
+    updateVolume() {
       if (this.audioPlayer) {
         this.audioPlayer.volume = this.currentVolume / 100;
       }
     },
-    toggleMute()
-    {
+    toggleMute() {
       if (this.currentVolume === 0) {
         this.currentVolume = this.previousVolume;
       } else {
@@ -434,13 +417,11 @@ export default {
       }
     },
     watch: {
-      currentVolume()
-      {
+      currentVolume() {
         this.updateVolume();
       },
     },
-    playNext()
-    {
+    playNext() {
       if (this.currentIndex < this.showArtists.length - 1) {
         this.currentIndex++;
       } else {
@@ -457,15 +438,15 @@ export default {
 
     //   this.submitted = true;
     // },
-    subNextStepSong(){
+    subNextStepSong() {
       if (this.currentSubStepSong < this.subStepsSong.length - 1) {
         this.currentSubStepSong++;
       }
     },
-    subNextStepStory(){
+    subNextStepStory() {
       if (this.currentSubStepStory < this.subStepsStory.length - 1) {
         this.currentSubStepStory++;
-      } 
+      }
     },
     previousStep() {
       if (this.currentStep > 0) {
@@ -474,17 +455,17 @@ export default {
         this.$router.push('/subscription');
       }
     },
-    subPreviousStepSong(){
+    subPreviousStepSong() {
       if (this.currentSubStepSong > 0) {
         this.currentSubStepSong--;
       }
     },
-    subPreviousStepStory(){
+    subPreviousStepStory() {
       if (this.currentSubStepStory > 0) {
         this.currentSubStepStory--;
-      } 
+      }
     },
-    previousStep(){
+    previousStep() {
       if (this.currentStep === 0) {
         window.location.href = '/create-song';
       }
@@ -492,21 +473,20 @@ export default {
     submitSelectedArtist() {
       window.location.href = '/deliveryform';
     },
-    editBasicInfo(){
+    editBasicInfo() {
       // if(this.currentStep === 0){
-       //   this.currentStep === 0;
+      //   this.currentStep === 0;
       // }
 
       if (this.currentStep > 0) {
         this.currentStep = this.currentStep -= 3;
       }
     },
-    editSong()
-    {
+    editSong() {
       this.currentStep = 1;  // SONG STEPS
       this.currentSubStepSong = 0;  // SONG SUBSTEPS 
     },
-    editStory(){
+    editStory() {
       if (this.currentStep > 0) {
         this.currentStep--;
       }
@@ -517,10 +497,10 @@ export default {
     selectLanguage(language) {
       this.selectedLanguage = language;
     },
-    selectSongDuration(duration){
+    selectSongDuration(duration) {
       this.selectedSongDuration = duration;
     },
-    selectOccasion(occasion){
+    selectOccasion(occasion) {
       this.selectedOccasion = occasion;
     },
   },

@@ -24,11 +24,6 @@
   --btn-hovered: #ED6300;
   --btn-focus: #FFE4C5;
 }
-body{   
-font-family: 'Urbanist', sans-serif;
-background-color: var(--white);
-} 
-
 
 /* Material Symbols */
 
@@ -57,6 +52,167 @@ background-color: var(--white);
   white-space: nowrap;
   direction: ltr;
 }
+
+/* Define the Urbanist font in different weights and styles */
+
+/* 
+BEGIN
+ */
+
+/* @font-face {
+  font-family: 'Urbanist';
+  src: url('urbanist/Urbanist-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Urbanist';
+  src: url('urbanist/Urbanist-ThinItalic.ttf') format('truetype');
+  font-weight: 100;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Urbanist';
+  src: url('urbanist/Urbanist-ExtraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Urbanist';
+  src: url('urbanist/Urbanist-ExtraLightItalic.ttf') format('truetype');
+  font-weight: 200;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Urbanist';
+  src: url('urbanist/Urbanist-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Urbanist';
+  src: url('urbanist/Urbanist-LightItalic.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Urbanist';
+  src: url('urbanist/Urbanist-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Urbanist';
+  src: url('urbanist/Urbanist-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Urbanist';
+  src: url('urbanist/Urbanist-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Urbanist';
+  src: url('urbanist/Urbanist-MediumItalic.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Urbanist';
+  src: url('urbanist/Urbanist-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Urbanist';
+  src: url('urbanist/Urbanist-SemiBoldItalic.ttf') format('truetype');
+  font-weight: 600;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Urbanist';
+  src: url('urbanist/Urbanist-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: bold;
+}
+@font-face {
+  font-family: 'Urbanist';
+  src: url('urbanist/Urbanist-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Urbanist';
+  src: url('urbanist/Urbanist-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: bolder;
+}
+@font-face {
+  font-family: 'Urbanist';
+  src: url('urbanist/Urbanist-ExtraBoldItalic.ttf') format('truetype');
+  font-weight: 800;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Urbanist';
+  src: url('urbanist/Urbanist-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: bolder;
+}
+@font-face {
+  font-family: 'Urbanist';
+  src: url('urbanist/Urbanist-BlackItalic.ttf') format('truetype');
+  font-weight: 900;
+  font-style: italic;
+} */
+
+/* Add more @font-face rules for other font weights and styles... */
+
+/* Use the Urbanist font in your styles */
+/* .urbanist-black {
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 900;
+  font-style: normal;
+  font-size: 24px;
+}
+
+.urbanist-black-italic {
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 900;
+  font-style: italic;
+  font-size: 24px;
+}
+
+.urbanist-bold {
+  font-family: 'Urbanist', sans-serif;
+  font-weight: bold;
+  font-style: normal;
+  font-size: 24px;
+}
+
+.urbanist-bold-italic {
+  font-family: 'Urbanist', sans-serif;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 24px;
+}
+
+.urbanist-extra-bold {
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 800;
+  font-style: normal;
+  font-size: 24px;
+} */
+
+/* Add more CSS classes for other font weights and styles... */
+
+body{   
+  font-family: 'Urbanist', sans-serif;
+  background-color: var(--white);
+  } 
 
 
 .form-check-input:focus {
@@ -2803,9 +2959,9 @@ justify-content: space-between;
   border: 0;
   padding: 3.12rem 4rem 4.12rem;
 }
-.basic-information .container .card .card-body, .delivery-date .container .card .card-body{
+/* .basic-information .container .card .card-body, .delivery-date .container .card .card-body{
   padding: 0;
-}
+} */
 .basic-information .container .card-title, .basic-information .container .step2 .select-artist .title,
 .delivery-date .container .card-title{
   color: #000;
@@ -2989,7 +3145,7 @@ justify-content: space-between;
 }
 .basic-information .container .step2 .select-artist .button-wrapper {
   margin:0 auto;
-  width: 60%;
+  width: 45%;
   gap: 2%;
 }
 .basic-information .container .step2 .top-row {
@@ -3079,10 +3235,12 @@ justify-content: space-between;
   line-height: 1.5rem;
 }
 .basic-information .container .step4 .review-content{
-  margin-top: 4rem;
+  width: 70%;
+  margin: 4rem auto 0rem;
 }
 .basic-information .container .step4 .button-wrapper{
-  margin-bottom: 7.5rem;
+  width: 60%;
+  margin: 0 auto 7.5rem;
 }
 .basic-information .container h4{
   color: #121212;
@@ -5196,8 +5354,81 @@ width: 100%;
   color: var(--orange);
 }
 
+                                        /* 404- not found / 500 - under maintenance   */
+.error404 .container-fluid {
+    background-image: url("/assets/error-page/switch.svg");
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: 100%;
+}
+.error404 .container, .error500 .container{
+  /* margin: 6.25rem auto; */
+  height: 90vh;
+  position: relative;
+  text-align: center;
+}  
+.error500 .container {
+  background-image: url("/assets/error-page/error500-bg.svg");
+  background-repeat: no-repeat;
+  background-position: unset;
+  background-size: 100%;
+  background-position-y: 63%;
+  background-position-x: 50%;
+}
+.error404 .not-found-bg{
+  margin: 0;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 855px;
+  height: 323px;
+  background-image: url("/assets/error-page/404.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.error404 .not-found-wrapper, .error500 .maintainance-wrapper{
+  padding: 4.28rem 0 3.09rem;
+}   
+.error500 .maintainance-wrapper{
+  margin: 0;
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}                                   
+.error404 .not-found-wrapper .title, .error500 .maintainance-wrapper .title{
+  color: var(--black-color);
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 120%;
+  letter-spacing: 0.01563rem;
+  margin-bottom: 0.5rem;
+  white-space: nowrap;
+}                                   
+.error404 .not-found-wrapper .sub-title, .error500 .maintainance-wrapper .sub-title{
+  color:  rgba(60, 60, 67, 0.85);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 140%;
+  margin-bottom: 1.25rem;
+} 
+.error404 .not-found-wrapper .go-to-homepage, .error500 .maintainance-wrapper .go-to-homepage{
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 120%; 
+  padding: 1.16rem 2rem;
+  background-color: var(--orange);
+} 
+.error404 .not-found-wrapper .go-to-homepage:hover, .error500 .maintainance-wrapper .go-to-homepage:hover{
+  background-color: var(--btn-hovered);
+}
 
 
+                                       
 
 
 
@@ -5221,6 +5452,48 @@ width: 100%;
   24 px	1.5 rem
   28px 1.75 rem
 */
+
+
+                                       /* 404- not found  / 500 - under maintenance */
+.error404 .container-fluid{
+  background-image: url("/assets/error-page/switch.svg");
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: 100%;
+} 
+.error404 .container{
+  height: 90vh;
+}  
+.error500 .container {
+  background-size: 90%;
+  background-position-y: 70%;
+  background-position-x: 50%;
+}
+.error404 .not-found-bg {
+  top: 40%;
+  width: 755px;
+  height: 293px;
+  background-image: url("/assets/error-page/404.svg");
+  background-repeat: no-repeat;
+  background-size: 80%;
+  background-position: center;
+}
+.error404 .not-found-wrapper, .error500 .maintainance-wrapper{
+  padding: 4rem 0 2.9rem;
+}                                      
+.error404 .not-found-wrapper .title, .error500 .maintainance-wrapper .title{
+  font-size: 3rem;
+  margin-bottom: 0.2rem;
+}                                   
+.error404 .not-found-wrapper .sub-title, .error500 .maintainance-wrapper .sub-title{
+  font-size: 0.87rem;
+  margin-bottom: 1rem;
+} 
+.error404 .not-found-wrapper .go-to-homepage, .error500 .maintainance-wrapper .go-to-homepage{
+  font-size: 0.87rem;
+  padding: 1rem 1.8rem;
+} 
+
 
 /* VIEW DETAILS - REQUEST SONG MODAL */
 
