@@ -360,7 +360,11 @@
                 <!-- <button type="submit" class="btn btn-success submit-form" 
                 data-bs-toggle="modal" data-bs-target="#successDetailsModal">Submit</button> -->
                 <button type="submit" class="btn btn-success submit-form" 
-                >Submit</button>
+                >
+                <span v-if="isLoading">
+                <i class="busy-submitting"></i>Submit</span>
+                <span v-else>Submit</span>
+              </button>
               </div>
             </form>
 
@@ -447,6 +451,7 @@ export default {
       formType: 'members',
       formHeader: 'Add Member',
       formSubHeading: 'Lorem ipsum dolor sit amet consectetur. Nam lacus viverra nec orci arcu id fringilla ultrices.',
+      isLoading: false,
     }
   },
   setup()
@@ -529,7 +534,7 @@ export default {
       this.form.genres = this.formGenres;
       console.log('Form Genre (submit): ', this.form.genres)
       this.$emit('form', this.form)
-
+      this.isLoading = true;
       
       this.fetchProfile().then(res =>
       {
@@ -538,6 +543,7 @@ export default {
         console.log('--- Fetch Profile ---', res)
 
         this.form.genres = genres
+        this.isLoading = false;
 
       });
 

@@ -1306,6 +1306,28 @@ body{
   border: 0;
   margin: 3.5rem auto;
 }
+.profile-details .busy-submitting, .profile-details .busy-add-member{
+  animation: spin 1s infinite linear;
+  display: inline-block;
+  font-weight: bold;
+  font-size: 20px;
+  font-style: normal;
+  color: white!important;
+  margin-right: 0.3rem;
+}
+.profile-details .busy-submitting::before, .profile-details .busy-add-member::before {
+  content: "\25E0";
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(359deg);
+  }
+}
+
 .profile-details .container #successDetailsModal .modal-body{
   padding-top: 0;
 }
@@ -1429,14 +1451,21 @@ background: var(--btn-hovered);
   /* padding: .2em .4em; */
   transition: .5s;
   border-radius: 11.5rem;
-  background-color: #EAEBF1;
-  width: 8.5rem;
-  height: 8.5rem;
+  background-color: #0c0c0c;
+  width: 9.5rem;
+  height: 9.5rem;
   border: 0;
 }
 .modal-add-member input[type=file]::file-selector-button:hover{
   background-color: #FF6B00;
   color: #fff;
+}
+.modal-add-member .upload-img .add-member-default-avatar{
+  transition: .5s;
+  border-radius: 11.5rem;
+  width: 9rem;
+  height: 9rem;
+  border: 0;
 }
 /* .modal-add-member .form-group, .modal-add-social-media .form-group {
   margin-bottom: .3rem!important;
