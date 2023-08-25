@@ -37,9 +37,18 @@ import { firebaseApp } from './firebase/init';
 
 import Pusher from './plugins/pusher';
 
+// import VueCookies from 'vue3-cookies'
+
 const app = createApp(App)
   .use(i18n)
   .use(VueAxios, axios)
+  // .use(VueCookies, {
+  //   expireTimes: "1h",
+  //   path: "/",
+  //   domain: "",
+  //   secure: true,
+  //   sameSite: "None"
+  // })
   .use(store)
   .use(router)
   // .use(Vuesax, {})
@@ -49,7 +58,6 @@ const app = createApp(App)
     secret: import.meta.env.VITE_PUSHER_APP_SECRET,
     cluster: import.meta.env.VITE_PUSHER_CLUSTER,
   })
-
   .use(VueFire, {
     // imported above but could also just be created here
     firebaseApp,
@@ -61,7 +69,6 @@ const app = createApp(App)
   // .use(BootstrapVueIcons)
   // .component('multiselect', Multiselect)
   .component('font-awesome-icon', FontAwesomeIcon)
-
 
 app.config.globalProperties.$moment = moment();
 app.config.globalProperties.$filters = {

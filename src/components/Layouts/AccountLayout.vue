@@ -31,11 +31,29 @@ export default {
   },
   mounted()
   {
-    // this.fetchArtistOptions();
-    // this.artistOptions();
-    this.fetchProfile();
+
+    this.fetchProfile()
+      .then(res =>
+      {
+        console.log('Fetch Profile [AccountLayout]: ', res)
+      }).catch(err =>
+      {
+        console.log('Fetch Profile Error [AccountLayout]: ', err)
+      })
+
+    if (this.userRole === 'artists') {
+      this.artistOptions()
+        .then(res =>
+        {
+          console.log('Artist Options [AccountLayout] ', res)
+        });
+    }
+    
   },
   created () {
+  },
+  computed: {
+    ...mapGetters(["userInfo", "token", 'userRole', 'myAccount',])
   },
   setup () {
     

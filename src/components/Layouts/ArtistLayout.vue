@@ -25,7 +25,20 @@ export default {
     // this.artistOptions();
     // this.fetchProfile();
     
+    this.fetchProfile()
+      .then(res =>
+      { 
+        console.log('Fetch Profile [ArtistLayout]: ', res)
+      }).catch(err =>
+      {
+        console.log('Fetch Profile Error [ArtistLayout]: ', err)
+      })
 
+    this.artistOptions()
+      .then(res =>
+      {
+        console.log('Artist Options [ArtistLayout] ', res)
+      });
   },
   created() {
     // this.fetchArtistOptions()
@@ -36,21 +49,21 @@ export default {
 
     // this.artistOptions();
     // this.fetchProfile();
-    this.fetchArtistOptions().then(response =>
-    {
-      console.log('Fetch Artist Option [index]: ', response)
-      this.artistOptions();
-      this.fetchProfile();
-    })
-      .catch(err =>
-      {
-        // this.$vs.notification({
-        //   color: 'danger',
-        //   position: 'top-right',
-        //   title: 'Server Status',
-        //   text: `${err.message}`
-        // })
-      });
+    // this.fetchArtistOptions().then(response =>
+    // {
+    //   console.log('Fetch Artist Option [index]: ', response)
+    //   this.artistOptions();
+    //   this.fetchProfile();
+    // })
+    //   .catch(err =>
+    //   {
+    //     // this.$vs.notification({
+    //     //   color: 'danger',
+    //     //   position: 'top-right',
+    //     //   title: 'Server Status',
+    //     //   text: `${err.message}`
+    //     // })
+    //   });
   },
 }
 </script>
