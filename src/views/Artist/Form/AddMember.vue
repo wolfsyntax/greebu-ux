@@ -10,13 +10,14 @@
             <div class="form-group text-center upload-img">
               <label class="label-img">
                 <span class="material-symbols-outlined camera-inner" v-if="!avatar">&#xe412;</span>
-                <img :src="avatar" class="img-fluid default-avatar" alt="default user avatar" v-else>
+                <img :src="avatar" class="img-fluid add-member-default-avatar" alt="default user avatar" v-else>
                 <div class="camera">
-                  <input type="file" @input="changeImage" class="member-avatar" accept="image/png, image/webp, image/svg, image/jpeg"/>
+                  <input type="file" @input="changeImage" class="member-avatar"
+                    accept="image/png, image/webp, image/svg, image/jpeg" />
                   <!-- <span v-if="errors?.member_avatar" class="text-danger">{{ errors.member_avatar.shift() }}</span> -->
                   <div v-for="err in errors?.member_avatar" :key="err" class="text-danger">{{ err }}</div>
                 </div>
-                <span class="material-symbols-outlined camera-outer" >&#xE412;</span>
+                <span class="material-symbols-outlined camera-outer">&#xE412;</span>
               </label>
               <!-- see https://stackoverflow.com/questions/2855589/replace-input-type-file-by-an-image#answer-18803568 -->
             </div>
@@ -27,8 +28,9 @@
           <div class="col">
             <div class="form-group">
               <label for="fileUpload">Name of the Member</label>
-              <input type="text" v-model="form.member_name" placeholder="Name of the member" class="form-control member-name" required/>
-            <!-- <span v-if="errors?.member_name" class="member-name text-danger">errors.member_name.shift()</span> -->
+              <input type="text" v-model="form.member_name" placeholder="Name of the member"
+                class="form-control member-name" required />
+              <!-- <span v-if="errors?.member_name" class="member-name text-danger">errors.member_name.shift()</span> -->
               <div v-for="err in errors?.member_name" :key="err" class="text-danger">{{ err }}</div>
             </div>
           </div>
@@ -39,11 +41,13 @@
               <label for="fileUpload">Role of Member</label>
               <select v-model="form.role" class="form-select" required>
                 <option value="" selected> - Please Select Role - </option>
-                <option v-for="member_role in roles" :key="member_role.id" :value="member_role.value">{{ member_role.label }}</option>
+                <option v-for="member_role in roles" :key="member_role.id" :value="member_role.value">{{ member_role.label
+                }}</option>
               </select>
-              <br/>
+              <br />
 
-              <input type="text" v-model="other" placeholder="Role of Member" class="form-control member-name" v-if="form.role === 'others'" required/>
+              <input type="text" v-model="other" placeholder="Role of Member" class="form-control member-name"
+                v-if="form.role === 'others'" required />
               <!-- <span v-if="errors?.role" class="role-error text-danger">{{ errors.role.shift() }}</span> -->
               <div v-for="err in errors?.role" :key="err" class="text-danger">{{ err }}</div>
             </div>
@@ -51,7 +55,14 @@
         </div>
         <div class="row py-2">
           <div class="col text-center">
-            <button type="submit" class="btn btn-warning add-member">Add Member</button>
+            <button type="submit" class="btn btn-warning add-member">
+              <span v-if="isLoading">
+                <i class="busy-add-member"></i>Add Member
+              </span>
+              <span v-else>
+                Add Member
+              </span>
+            </button>
           </div>
         </div>
       </div>
@@ -66,8 +77,7 @@ export default {
   components: {
     layout: Layout,
   },
-  data()
-  {
+  data() {
     return {
       form: {
         member_avatar: null,
@@ -86,11 +96,11 @@ export default {
         { id: '6', value: 'keyboardist', label: 'Keyboardist', },
         { id: '7', value: 'others', label: 'Others' },
       ],
+      isLoading: false,
     }
   },
-  setup()
-  {
-    
+  setup() {
+
   },
   props: {
     error: {
@@ -104,21 +114,19 @@ export default {
     ...mapActions([
       'addMember'
     ]),
-    changeImage(event)
-    {
+    changeImage(event) {
       this.avatar = URL.createObjectURL(event.target.files[0]);
       this.form.member_avatar = event.target.files[0];
     },
-    submit()
-    {
+    submit() {
+      this.isLoading = true;
       console.log('Add member (submit)');
-      
+
       if (this.form.role === 'others') {
         this.form.role = this.other
       }
 
-      this.addMember(this.form).then((response) =>
-      {
+      this.addMember(this.form).then((response) => {
         console.log('Add Member response: ', response);
 
         const { status } = response;
@@ -134,18 +142,19 @@ export default {
           };
 
           this.$emit('modalClose')
+          this.isLoading = false;
         }
 
       })
-      .catch(err => {
-        console.log('Err: ', err)
-        // this.$vs.notification({
-        //   color: 'danger',
-        //   position: 'top-right',
-        //   title: 'Server Status',
-        //   text: `${err.message}`
-        // })
-      });
+        .catch(err => {
+          console.log('Err: ', err)
+          // this.$vs.notification({
+          //   color: 'danger',
+          //   position: 'top-right',
+          //   title: 'Server Status',
+          //   text: `${err.message}`
+          // })
+        });
     },
   },
   computed: {
@@ -159,4 +168,5 @@ export default {
 </script>
 <style>
 @import '@/assets/css/artist-ui.css';
+
 </style>
