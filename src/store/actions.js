@@ -169,6 +169,7 @@ var actions = {
               page_status: null,
             });
             commit('SET_SONG_ARTIST', {});
+
           }
           resolve(response)
         })

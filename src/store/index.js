@@ -16,16 +16,20 @@ import customer from './modules/customers';
 import organizer from './modules/organizers';
 import services from './modules/services';
 import songs from './modules/songs';
-
 const ls = new SecureLS({ isCompression: false });
 
 export default new Vuex.Store({
     plugins: [
     createPersistedState({
+      // storage: window.sessionStorage,
       storage: {
-        getItem: (key) => ls.get(key),
-        setItem: (key, value) => ls.set(key, value),
-        removeItem: (key) => ls.remove(key)
+        getItem: (key) => window.sessionStorage.getItem(key) || ls.get(key),
+        setItem: (key, value) => window.sessionStorage.setItem(key, value) || ls.set(key, value),
+        removeItem: (key) => window.sessionStorage.removeItem(key) || ls.remove(key)
+
+        // getItem: key => cookies.get(key),
+        // setItem: (key, value) => cookies.set(key, value),
+        // removeItem: key => cookies.remove(key)
       }
     }),
     createMutationsSharer({

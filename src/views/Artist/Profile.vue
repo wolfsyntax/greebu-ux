@@ -111,13 +111,14 @@
                   <div v-if="error?.artist_name" class="artist-name-error text-danger"></div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" >
                   <label for="genre">Genre</label>
-
                   <multiselect v-model="formGenres" mode="tags"
-                  :close-on-select="false" :searchable="true"
-                  :create-option="true" :options="genres?.concat(mGenre)" 
-                  :delay="0"
+                  :close-on-select="false" 
+                  :create-option="true" :options="async function(query) {
+                    return await fetchGenre(query)
+                  }" 
+                  :searchable="true" :delay="0"
                   class="genre" placeholder="Please select genres" />
                   <!-- <div v-if="errors.genre" class="genre-error text-danger"></div> -->
                   <br/>
@@ -479,31 +480,40 @@ export default {
       accept_booking: false,
       accept_proposal: false,
     };
+
+    console.log('-Before Create-')
   },
   created() {
 
-    this.artistOptions()
-    this.fetchProfile().then(res =>
-    {
-      const { status: statusCode, data: { status, result: { account }} } = res;
-
-      if (status === 200 && statusCode === 200) {
-        this.form = account;
-        this.avatar = account?.avatar || '/assets/artist-account/new.svg';
-        this.formGenres = account?.genres || []
-      }
-
-      console.log('Profile.vue created() ', res)
-    })
   },
   mounted()
   {
-    console.log('Artist Profile: ')
+    console.log('--- Mounted ---')
 
-    this.avatar = this.myAccount?.avatar || '/assets/artist-account/new.svg'
-    this.formGenres = this.myAccount?.genres || []
+    this.fetchArtistOptions().then(response =>
+    {
 
-    this.$forceUpdate();
+      /*
+        1. artistOptions:
+        - artist types (artist_types)
+        - genres (genre list)
+
+        2. fetchProfile
+        - account
+        - genre
+        - members
+        - profile
+      */
+
+      this.form = this.myAccount;
+      this.avatar = this.myAccount?.avatar || '/assets/artist-account/new.svg'
+      this.formGenres = this.myAccount?.genres || [];
+
+
+    })
+
+    console.log('--- End Mounted ---')
+
   },
   props: {
     error: {
@@ -532,16 +542,15 @@ export default {
     {
 
       this.form.genres = this.formGenres;
-      console.log('Form Genre (submit): ', this.form.genres)
+
+      if (typeof this.form.avatar === 'string') this.form.avatar = '';
+
       this.$emit('form', this.form)
       this.isLoading = true;
       
       this.fetchProfile().then(res =>
       {
         const { status: statusCode, data: { result: { genres } } } = res
-
-        console.log('--- Fetch Profile ---', res)
-
         this.form.genres = genres
         this.isLoading = false;
 
@@ -620,7 +629,15 @@ export default {
     },
     closeToastArtist(){
       this.message = false;
-    }
+    },
+    fetchGenre(query)
+    {
+      if (!query) {
+        this.artistOptions()
+      }
+      return query ? this.genres : this.cGenre
+
+    },
   },
   computed: {
     ...mapGetters(["userInfo", "token", 'artistProfile', 'artistGenre', 'myAccount',]),
@@ -631,51 +648,28 @@ export default {
       // custom_genre: (state) => state.custom_genre,
       account: (state) => state.account,
     }),
-    mGenre()
+    cGenre()
     {
+        const self = this;
+        if (this.formGenres && this.genres) {
+          var gen = this.formGenres?.filter(function (el)
+          {
+            return !self.genres.includes(el);
+          })
 
-      const self = this;
-
-      var gen = this.formGenres.filter(function (el)
-      {
-        console.log(`Form Genres[${el}]: `, self.genres.includes(el));
-        return !self.genres.includes(el);
-      })
-
-      return gen;
+          return gen?.concat(this.genres);
+      }
+        
+        if (!this.genres) {
+          this.artistOptions();
+        }
+        
+        return this.genres;
     },
-    customGenre()
-    {
 
-      // return this.others.split(';').map(function (item)
-      // {
-      //   return item.trim();
-      // });
-    }
-    // formGenres()
-    // {
-    //   return this.genres?.map(function (g) { return g['title'] })
-    // }
   },
   watch: {
-    // others(newVal)
-    // {
-    //   // if (newVal.includes(''))
-    // },
-    // formGenres(newVal)
-    // {
-    //   this.hasOthers = newVal.includes('Others');
-    //   if (this.hasOthers) {
-    //     if (!this.others) this.others = '';
-    //   } else {
-    //     var idx = this.formGenres.indexOf(this.others);
 
-    //     if (idx > -1) {
-    //       this.formGenres.splice(idx, 1);
-    //     }
-
-    //   }
-    // }
   }
 }
 </script>

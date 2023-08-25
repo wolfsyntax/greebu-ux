@@ -35,7 +35,7 @@ export const fetchArtistOptions = ({ commit, rootState, state}, payload) => {
           commit('SET_ARTIST_GENRES', result?.artist_genre);
           commit('SET_MEMBERS', result?.members)
           commit('SET_ARTIST', result?.profile)
-          // commit('SET_ACCOUNT', result?.account);
+          commit('SET_ACCOUNT', result?.account);
         }
         
         resolve(response)
