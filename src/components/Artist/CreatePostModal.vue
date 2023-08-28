@@ -23,17 +23,38 @@
                                                             <!-- PHOTO/VIDEO SELECTED -->
                                                          
                              <div v-if="selectedItem === 'photo'" class="upload-file-wrapper">
-                                <div class="text-center upload-file-content">
+                                <div v-if="selectFile" class="text-center upload-file-content">
+                                 
                                     <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 45 45" fill="none">
                                     <path d="M14.915 14.959C14.915 16.1895 14.502 17.2529 13.6055 18.1582C12.7002 19.0635 11.6367 19.4678 10.4062 19.4678C9.17578 19.4678 8.1123 19.0547 7.20703 18.1582C6.30176 17.2617 5.89746 16.1895 5.89746 14.959C5.89746 13.7285 6.31055 12.665 7.20703 11.7598C8.10352 10.8545 9.17578 10.4502 10.4062 10.4502C11.6367 10.4502 12.7002 10.8633 13.6055 11.7598C14.5107 12.665 14.915 13.7285 14.915 14.959ZM39.0146 23.9766V34.4707H5.89746V29.9619L13.4385 22.5L17.209 26.2705L29.2588 14.2207L39.0146 23.9766ZM41.2295 7.49707H3.69141C3.52441 7.49707 3.27832 7.57617 3.19922 7.74316C3.03223 7.91016 2.95312 8.06836 2.95312 8.23535V36.7559C2.95312 36.9229 3.03223 37.1689 3.19922 37.2481C3.36621 37.415 3.52441 37.4941 3.69141 37.4941H41.2295C41.3965 37.4941 41.6426 37.415 41.7217 37.2481C41.8887 37.0811 41.9678 36.9229 41.9678 36.7559V8.23535C41.9678 8.06836 41.8887 7.82227 41.7217 7.74316C41.6426 7.58496 41.4756 7.49707 41.2295 7.49707ZM45 8.23535V36.7559C45 37.8193 44.6748 38.6367 43.9365 39.375C43.1982 40.1133 42.293 40.4385 41.3174 40.4385H3.69141C2.62793 40.4385 1.81055 40.1133 1.07227 39.375C0.325195 38.6455 0 37.749 0 36.7647V8.23535C0 7.17188 0.325195 6.35449 1.06348 5.61621C1.80176 4.87793 2.70703 4.55273 3.68262 4.55273H41.2207C42.2842 4.55273 43.1016 4.87793 43.8398 5.61621C44.6748 6.2666 45 7.17188 45 8.23535Z" fill="#ABADC6"/>
                                     </svg>
                                     <h3 class="title">Select a file or drag and drop here</h3>
                                     <p class="limit">JPG, PNG file size no more than 10MB</p>
                                     <div class="upload-wrapper">
-                                        <label for="inputField" class="btn btn-info">SELECT FILE</label>
-                                        <input type="file" id="inputField" style="display:none">
+                                        <label for="inputField" class="btn btn-info" @click="uploadImage">SELECT FILE</label>
+                                        <!-- <input type="file" id="inputField" style="display:none"> -->
+                                        <input type="file" ref="imageInput" @change="handleImageUpload" style="display: none" accept="image/*" multiple>
                                     </div>
                                 </div>
+                                <div v-else class="uploaded-wrapper">
+                                                                            <!-- Uploaded images -->
+
+                                        <div class="row">
+                                          <div class="col-6 uploaded-images" v-for="(image, index) in uploadedImages" :key="index">
+                                            <img :src="image" alt="Uploaded Image">
+                                            <span class="material-symbols-outlined remove-img" @click="removeImage(index)">&#xe5cd;</span>            
+                                          </div>
+                                          <div class="col-6 text-center uploaded-images">
+                                            <div class="upload-more" @click="uploadImage">
+                                              <span class="material-symbols-outlined add-photo-icon">&#xe43e;</span>
+                                              <h3 class="add-more">Add more photos/videos</h3> 
+                                              <input type="file" ref="imageInput" @change="handleImageUpload" style="display: none" accept="image/*" multiple>
+                                            </div>
+                                          </div>
+
+                                        </div>
+                                        <!-- <button @click="removeAllImages">Remove All Images</button> -->
+                                  </div>
                              </div>
 
                                                              <!-- MUSIC SELECTED -->
@@ -46,11 +67,39 @@
                                     <h3 class="title">Select a file or drag and drop here</h3>
                                     <p class="limit">MP3 file size no more than 10MB</p>
                                     <div class="upload-wrapper">
-                                        <label for="inputField" class="btn btn-info">SELECT FILE</label>
-                                        <input type="file" id="inputField" style="display:none">
+                                      <label for="files" class="btn btn-info">SELECT FILE</label>
+                                        <input type="file" 
+                                        class="upload-music"
+                                        id="files" 
+                                        style="display:none;"
+                                        ref="musicInput" 
+                                        @change="handleMusicUpload" 
+                                        accept="audio/*" />
                                     </div>
                                 </div>
                              </div>
+                                                        <!-- Uploaded music -->
+                             <div v-if="uploadedMusic" class="uploaded-song-wrapper">
+                                    
+                                      <audio controls class="audio-controls-wrapper">
+                                        <source :src="uploadedMusic" type="audio/mpeg">
+                                        Your browser does not support the audio element.
+                                      </audio>
+                                      <div class="d-flex align-items-center song-wrapper">
+                                        <div>
+                                          <img src="/assets/artist-account/mp3-icon.svg" alt="Music icon">
+                                        </div>
+                                        <div>
+                                          <h5 class="song-title">{{ songTitle }}</h5>
+                                          <p class="preview">Preview</p>
+                                        </div>
+                                      </div>
+                                      <div class="d-flex align-items-center remove-music-wrapper">
+                                        <span class="badge file-size">{{ fileSize }} KB</span>
+                                        <span class="material-symbols-outlined remove-music" @click="removeMusic">&#xe5cd;</span>
+                                      </div>  
+                                   
+                                </div>
 
                             <h3 class="add-post">Add to your post</h3>
                             <div class="d-flex align-items-center manage-to-post">
@@ -183,6 +232,11 @@
     data() {
           return {
             selectedItem: null,
+            selectFile: true,
+            uploadedImages: [],
+            uploadedMusic: null,
+            songTitle: 'Song title. mp3',
+            fileSize: '',
          }
     },      
     computed: {
@@ -199,10 +253,68 @@
     closeModal() {
       this.selectedItem = false;
     },
-
+    uploadImage() {
+      // Trigger the hidden file input
+      this.$refs.imageInput.click();
     },
+    handleImageUpload(event) {
+      const files = event.target.files;
+      this.selectFile = false;
+      for (const file of files) {
+        if (this.uploadedImages.length >= 10) {
+          console.log('Maximum limit reached.');
+          return;
+        }
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          this.uploadedImages.push(e.target.result);
+          // Save the images URLs in localStorage
+          localStorage.setItem('uploadedImages', JSON.stringify(this.uploadedImages));
+        };
+        reader.readAsDataURL(file);
+      }
+    },
+    removeImage(index) {
+      this.uploadedImages.splice(index, 1);
+      // Update localStorage after removing image
+      localStorage.setItem('uploadedImages', JSON.stringify(this.uploadedImages));
+      if(this.uploadedImages == 0){
+        this.selectFile = true;
+      }
+    },
+    handleMusicUpload(event) {
+      const file = event.target.files[0];
+      if (file) {
+        this.uploadedMusic = URL.createObjectURL(file);
+        this.songTitle = file.name.replace(/\.[^/.]+$/, '');
 
-  };
+                // Calculate and format file size
+        const sizeInBytes = file.size;
+        const sizeInKilobytes = Math.floor(sizeInBytes / 1024);
+        this.fileSize = sizeInKilobytes;
+      }
+    },
+    // uploadMusic() {
+    //   if (this.uploadedMusic) {
+    //     localStorage.setItem('uploadedMusic', this.uploadedMusic);
+    //     alert('Music uploaded successfully.');
+    //   }
+    // },
+    removeMusic() {
+      this.uploadedMusic = null;
+      localStorage.removeItem('uploadedMusic');
+      this.songTitle = '';
+      this.fileSize = ''; 
+    },
+  },
+  created() {
+    const storedImages = localStorage.getItem('uploadedImages');
+    if (storedImages) {
+      this.uploadedImages = JSON.parse(storedImages);
+    }
+  }
+
+  }
   </script>
   
   <style>

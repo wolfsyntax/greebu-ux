@@ -63,10 +63,9 @@
                     <button class="btn btn-primary" type="submit" 
                     :disabled="form.processing"
                     >
-                    Login
-                    <span class="material-symbols-rounded forward-icon">
-                      &#xe941;
-                    </span>
+                    <span v-if="isLoading">
+                    <i class="busy-submitting"></i>Login</span>
+                    <span v-else>Login</span>
                   </button>
               
                   </div>
@@ -123,6 +122,7 @@ export default {
       isVerified: true,
       errors: null,
       message: null,
+      isLoading: false,
     }
   },
   setup()
@@ -143,6 +143,7 @@ export default {
         console.log('Login Response: ', response)
         const { status: statusCode, data: {result, status, message}} = response;
         console.log('Status Code: ', statusCode, '\nStatus: ', status);
+        this.isLoading = true;
         if (statusCode === 200) {
 
           // if (role === 'artists') {
@@ -161,16 +162,18 @@ export default {
 
           this.errors = result?.errors;
           this.message = message;
+          this.isLoading = false
 
         } else if (statusCode === 203 && status === 403) {
           
           this.isVerified = false;
           this.isInitial = false;
-
+          this.isLoading = false
         } else {
           
           this.errors = result?.errors;
           this.message = message;
+          this.isLoading = false
 
           // if (status === 403) {
           //   this.$router.push({ path: this.$route.path, query: { id: result?.user?.id } });
