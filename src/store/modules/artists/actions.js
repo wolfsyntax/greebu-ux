@@ -36,6 +36,7 @@ export const fetchArtistOptions = ({ commit, rootState, state}, payload) => {
           commit('SET_MEMBERS', result?.members)
           commit('SET_ARTIST', result?.profile)
           commit('SET_ACCOUNT', result?.account);
+
         }
         
         resolve(response)
@@ -240,11 +241,11 @@ export const artistOptions = ({ commit, rootState, state }, payload) =>
       .then(response =>
       {
 
-        // console.log('\n\nArtist Options Response: ', response)
+        console.log('\n\nArtist Options Response: ', response)
 
         const { status: statusCode, data: { status, message, result } } = response
         if (statusCode === 200) {
-
+          
           var genre = result?.genres
 
           var exists = genre.filter(function (o) {

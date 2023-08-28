@@ -509,6 +509,7 @@ export default {
       this.avatar = this.myAccount?.avatar || '/assets/artist-account/new.svg'
       this.formGenres = this.myAccount?.genres || [];
 
+      console.log('Genre: ', this.formGenres);
 
     })
 
@@ -551,6 +552,7 @@ export default {
       this.fetchProfile().then(res =>
       {
         const { status: statusCode, data: { result: { genres } } } = res
+
         this.form.genres = genres
         this.isLoading = false;
 
@@ -632,40 +634,40 @@ export default {
     },
     fetchGenre(query)
     {
-      if (!query) {
-        this.artistOptions()
-      }
-      return query ? this.genres : this.cGenre
+      // if (!query) {
+      //   this.artistOptions()
+      // }
+      // return query ? this.genres : this.cGenre
+      return this.formArtistGenres
 
     },
   },
   computed: {
-    ...mapGetters(["userInfo", "token", 'artistProfile', 'artistGenre', 'myAccount',]),
+    ...mapGetters(["userInfo", "token", 'artistProfile', 'artistGenre', 'myAccount', 'formArtistGenres',]),
     ...mapState({
       artistTypes: (state) => state.artist.artist_types,
       genres: (state) => state.artist.genres,
       members: (state) => state.artist.members,
-      // custom_genre: (state) => state.custom_genre,
       account: (state) => state.account,
     }),
-    cGenre()
-    {
-        const self = this;
-        if (this.formGenres && this.genres) {
-          var gen = this.formGenres?.filter(function (el)
-          {
-            return !self.genres.includes(el);
-          })
+    // cGenre()
+    // {
+    //     const self = this;
+    //     if (this.formGenres && this.genres) {
+    //       var gen = this.formGenres?.filter(function (el)
+    //         {
+    //           return !self.genres.includes(el);
+    //         })
 
-          return gen?.concat(this.genres);
-      }
+    //       return gen?.concat(this.genres);
+    //     }
         
-        if (!this.genres) {
-          this.artistOptions();
-        }
+    //     if (!this.genres) {
+    //       this.artistOptions();
+    //     }
         
-        return this.genres;
-    },
+    //     return this.genres;
+    // },
 
   },
   watch: {
