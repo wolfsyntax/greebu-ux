@@ -32,25 +32,42 @@ export default {
   mounted()
   {
 
-    this.fetchProfile()
-      .then(res =>
-      {
-        console.log('Fetch Profile [AccountLayout]: ', res)
-      }).catch(err =>
-      {
-        console.log('Fetch Profile Error [AccountLayout]: ', err)
-      })
+    // this.fetchProfile()
+    //   .then(res =>
+    //   {
+    //     console.log('Fetch Profile [AccountLayout]: ', res)
+    //   }).catch(err =>
+    //   {
+    //     console.log('Fetch Profile Error [AccountLayout]: ', err)
+    //   })
 
-    if (this.userRole === 'artists') {
-      this.artistOptions()
-        .then(res =>
-        {
-          console.log('Artist Options [AccountLayout] ', res)
-        });
-    }
+    // if (this.userRole === 'artists') {
+    //   this.artistOptions()
+    //     .then(res =>
+    //     {
+    //       console.log('Artist Options [AccountLayout] ', res)
+    //     });
+    // }
     
   },
-  created () {
+  created()
+  {
+    // this.fetchProfile()
+    //   .then(res =>
+    //   {
+    //     console.log('Fetch Profile [AccountLayout]: ', res)
+    //   }).catch(err =>
+    //   {
+    //     console.log('Fetch Profile Error [AccountLayout]: ', err)
+    //   })
+
+    // if (this.userRole === 'artists') {
+    //   this.artistOptions()
+    //     .then(res =>
+    //     {
+    //       console.log('Artist Options [AccountLayout] ', res)
+    //     });
+    // }
   },
   computed: {
     ...mapGetters(["userInfo", "token", 'userRole', 'myAccount',])

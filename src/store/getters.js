@@ -34,7 +34,8 @@ var getters = {
     }
   },
   // agenre: state => state.account.genre.map(function (g) { return g['title']  })
-  myAccount: state => state.account
+  myAccount: state => state.account,
+  myAvatar: state => state.account?.avatar || state.profile?.avatar || '',
 }
 
 export default getters

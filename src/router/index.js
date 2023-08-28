@@ -451,11 +451,12 @@ router.afterEach(() => {
 router.beforeEach((to, from, next) => {
   
   const {role} = to.meta
-  const {path} = to.fullPath
+  const {path: toPath} = to.fullPath
+  const {path: fromPath} = from.fullPath
   
   const reqSession = to.matched.some(route => route.meta.requiresLogin)
   const isAuth = store.getters.isLoggedIn;
-  
+
   if (!reqSession) {
     next()
   } else if (isAuth) {
