@@ -141,10 +141,9 @@
               <div class="d-grid gap-2 btn-sign-up">
                 <button class="btn btn-primary" type="submit"
                 :disabled="!agree_term && !isDisabled">
-                  Create Account
-                  <span class="material-symbols-rounded forward-icon">
-                      &#xe941;
-                    </span>
+                    <span v-if="isLoading">
+                    <i class="busy-submitting"></i>Create Account</span>
+                    <span v-else>Create Account</span>
                 </button>
               </div>
 
@@ -220,6 +219,7 @@ export default {
       agree_term: false,
       isDisabled: false,
       showRadioButtons: true,
+      isLoading: false,
     }
   },
   props: {
@@ -260,6 +260,7 @@ export default {
     {
       
       this.isDisabled = true;
+      this.isLoading = true;
       await this.signup(this.form)
         .then((response) => { 
           console.log('Register response: ', response)
@@ -298,6 +299,7 @@ export default {
           } else if (statusCode === 203) {
             this.errors = result?.errors || {};
             console.log('Status with Error: ', response, '\nErrors: ', this.errors);
+            this.isLoading = false;
           }
         })
         .catch(err =>

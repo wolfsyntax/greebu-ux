@@ -30,12 +30,12 @@
 @font-face {
   font-family: 'Material Symbols Outlined';
   font-style: normal;
-  src: url(./assets/css/variablefont/MaterialSymbolsOutlined[FILL\,GRAD\,opsz\,wght].ttf) format('truetype'), /* Corrected format value */
-  url(./assets/css/variablefont/MaterialSymbolsOutlined[FILL,GRAD,opsz,wght].woff2) format('truetype'),
-  url(./assets/css/variablefont/MaterialSymbolsRounded[FILL,GRAD,opsz,wght].ttf) format('truetype'),
-  url(./assets/css/variablefont/MaterialSymbolsRounded[FILL,GRAD,opsz,wght].woff2) format('truetype'),
-  url(./assets/css/variablefont/MaterialSymbolsSharp[FILL,GRAD,opsz,wght].ttf) format('truetype'),
-  url(./assets/css/variablefont/MaterialSymbolsSharp[FILL,GRAD,opsz,wght].woff2) format('truetype');
+  src: url(/assets/variablefont/MaterialSymbolsOutlined[FILL\,GRAD\,opsz\,wght].ttf) format('truetype'), 
+  url(/assets/variablefont/MaterialSymbolsOutlined[FILL,GRAD,opsz,wght].woff2) format('truetype'),
+  url(/assets/variablefont/MaterialSymbolsRounded[FILL,GRAD,opsz,wght].ttf) format('truetype'),
+  url(/assets/variablefont/MaterialSymbolsRounded[FILL,GRAD,opsz,wght].woff2) format('truetype'),
+  url(/assets/variablefont/MaterialSymbolsSharp[FILL,GRAD,opsz,wght].ttf) format('truetype'),
+  url(/assets/variablefont/MaterialSymbolsSharp[FILL,GRAD,opsz,wght].woff2) format('truetype');
   
 }
 
@@ -59,115 +59,115 @@
 BEGIN
  */
 
-/* @font-face {
+@font-face {
   font-family: 'Urbanist';
-  src: url('urbanist/Urbanist-Thin.ttf') format('truetype');
+  src: url('/assets/urbanist/Urbanist-Thin.ttf') format('truetype');
   font-weight: 100;
   font-style: italic;
 }
 
 @font-face {
   font-family: 'Urbanist';
-  src: url('urbanist/Urbanist-ThinItalic.ttf') format('truetype');
+  src: url('/assets/urbanist/Urbanist-ThinItalic.ttf') format('truetype');
   font-weight: 100;
   font-style: italic;
 }
 @font-face {
   font-family: 'Urbanist';
-  src: url('urbanist/Urbanist-ExtraLight.ttf') format('truetype');
+  src: url('/assets/urbanist/Urbanist-ExtraLight.ttf') format('truetype');
   font-weight: 200;
   font-style: italic;
 }
 @font-face {
   font-family: 'Urbanist';
-  src: url('urbanist/Urbanist-ExtraLightItalic.ttf') format('truetype');
+  src: url('/assets/urbanist/Urbanist-ExtraLightItalic.ttf') format('truetype');
   font-weight: 200;
   font-style: italic;
 }
 @font-face {
   font-family: 'Urbanist';
-  src: url('urbanist/Urbanist-Light.ttf') format('truetype');
+  src: url('/assets/urbanist/Urbanist-Light.ttf') format('truetype');
   font-weight: 300;
   font-style: italic;
 }
 @font-face {
   font-family: 'Urbanist';
-  src: url('urbanist/Urbanist-LightItalic.ttf') format('truetype');
+  src: url('/assets/urbanist/Urbanist-LightItalic.ttf') format('truetype');
   font-weight: 300;
   font-style: italic;
 }
 @font-face {
   font-family: 'Urbanist';
-  src: url('urbanist/Urbanist-Regular.ttf') format('truetype');
+  src: url('/assets/urbanist/Urbanist-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
   font-family: 'Urbanist';
-  src: url('urbanist/Urbanist-Italic.ttf') format('truetype');
+  src: url('/assets/urbanist/Urbanist-Italic.ttf') format('truetype');
   font-weight: 400;
   font-style: italic;
 }
 @font-face {
   font-family: 'Urbanist';
-  src: url('urbanist/Urbanist-Medium.ttf') format('truetype');
+  src: url('/assets/urbanist/Urbanist-Medium.ttf') format('truetype');
   font-weight: 500;
   font-style: normal;
 }
 @font-face {
   font-family: 'Urbanist';
-  src: url('urbanist/Urbanist-MediumItalic.ttf') format('truetype');
+  src: url('/assets/urbanist/Urbanist-MediumItalic.ttf') format('truetype');
   font-weight: 500;
   font-style: italic;
 }
 @font-face {
   font-family: 'Urbanist';
-  src: url('urbanist/Urbanist-SemiBold.ttf') format('truetype');
+  src: url('/assets/urbanist/Urbanist-SemiBold.ttf') format('truetype');
   font-weight: 600;
   font-style: normal;
 }
 @font-face {
   font-family: 'Urbanist';
-  src: url('urbanist/Urbanist-SemiBoldItalic.ttf') format('truetype');
+  src: url('/assets/urbanist/Urbanist-SemiBoldItalic.ttf') format('truetype');
   font-weight: 600;
   font-style: italic;
 }
 @font-face {
   font-family: 'Urbanist';
-  src: url('urbanist/Urbanist-Bold.ttf') format('truetype');
+  src: url('/assets/urbanist/Urbanist-Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: bold;
 }
 @font-face {
   font-family: 'Urbanist';
-  src: url('urbanist/Urbanist-BoldItalic.ttf') format('truetype');
+  src: url('/assets/urbanist/Urbanist-BoldItalic.ttf') format('truetype');
   font-weight: 700;
   font-style: italic;
 }
 @font-face {
   font-family: 'Urbanist';
-  src: url('urbanist/Urbanist-ExtraBold.ttf') format('truetype');
+  src: url('/assets/urbanist/Urbanist-ExtraBold.ttf') format('truetype');
   font-weight: 800;
   font-style: bolder;
 }
 @font-face {
   font-family: 'Urbanist';
-  src: url('urbanist/Urbanist-ExtraBoldItalic.ttf') format('truetype');
+  src: url('/assets/urbanist/Urbanist-ExtraBoldItalic.ttf') format('truetype');
   font-weight: 800;
   font-style: italic;
 }
 @font-face {
   font-family: 'Urbanist';
-  src: url('urbanist/Urbanist-Black.ttf') format('truetype');
+  src: url('/assets/urbanist/Urbanist-Black.ttf') format('truetype');
   font-weight: 900;
   font-style: bolder;
 }
 @font-face {
   font-family: 'Urbanist';
-  src: url('urbanist/Urbanist-BlackItalic.ttf') format('truetype');
+  src: url('/assets/urbanist/Urbanist-BlackItalic.ttf') format('truetype');
   font-weight: 900;
   font-style: italic;
-} */
+}
 
 /* Add more @font-face rules for other font weights and styles... */
 
@@ -1976,17 +1976,29 @@ z-index: 1;
   background-color: var(--btn-hovered);
   border: 1px solid var(--btn-hovered);
 }
-.login form .btn-login button:hover .forward-icon, .register form .btn-sign-up button:hover .forward-icon, 
-.register form .row-checkbox .btn-account-type button:hover .forward-icon{
-  font-size: 1.4rem;
-  margin-left: 2px;
-  color: var(--white);
-  display: block;
+
+.login form .busy-submitting, .register form .busy-submitting{
+  animation: spin 1s infinite linear;
+  display: inline-block;
+  font-weight: bold;
+  font-size: 20px;
+  font-style: normal;
+  color: white!important;
+  margin-right: 0.3rem;
 }
-.login form .btn-login .forward-icon, .register form .btn-sign-up .forward-icon, 
-.register form .row-checkbox .btn-account-type .forward-icon{
- display: none;
+.login form .busy-submitting::before, .register form .busy-submitting::before{
+  content: "\25E0";
 }
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(359deg);
+  }
+}
+
 .register .btn-account-type{
   margin: 2.5rem 0 4rem 0;
 }
