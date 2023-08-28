@@ -116,9 +116,10 @@
                   <multiselect v-model="formGenres" mode="tags"
                   :close-on-select="false" 
                   :create-option="true" :options="async function(query) {
-                    return await fetchGenre(query)
+                    return await fetchGenre(query) || genres
                   }" 
-                  :searchable="true" :delay="0"
+                  :searchable="true" :delay="0" 
+                  noOptionsText="Please input genre(s)"
                   class="genre" placeholder="Please select genres" />
                   <!-- <div v-if="errors.genre" class="genre-error text-danger"></div> -->
                   <br/>
@@ -490,28 +491,47 @@ export default {
   {
     console.log('--- Mounted ---')
 
-    this.fetchArtistOptions().then(response =>
-    {
+    // this.fetchProfile()
+    //   .then(res =>
+    //   {
+    //     console.log('Fetch Profile [AccountLayout]: ', res)
+    //   }).catch(err =>
+    //   {
+    //     console.log('Fetch Profile Error [AccountLayout]: ', err)
+    //   })
 
-      /*
-        1. artistOptions:
-        - artist types (artist_types)
-        - genres (genre list)
+    // this.artistOptions()
+    //   .then(res =>
+    //   {
+    //     console.log('Artist Options [AccountLayout] ', res)
+    //   });
 
-        2. fetchProfile
-        - account
-        - genre
-        - members
-        - profile
-      */
+    // this.fetchArtistOptions().then(response =>
+    // {
 
-      this.form = this.myAccount;
-      this.avatar = this.myAccount?.avatar || '/assets/artist-account/new.svg'
-      this.formGenres = this.myAccount?.genres || [];
+    //   /*
+    //     1. artistOptions:
+    //     - artist types (artist_types)
+    //     - genres (genre list)
 
-      console.log('Genre: ', this.formGenres);
+    //     2. fetchProfile
+    //     - account
+    //     - genre
+    //     - members
+    //     - profile
+    //   */
 
-    })
+    //   this.form = this.myAccount;
+    //   this.avatar = this.myAccount?.avatar || '/assets/artist-account/new.svg'
+    //   this.formGenres = this.myAccount?.genres || [];
+    //   var temp = this.fetchGenre
+    //   console.log('Genre: ', this.formGenres);
+
+    // })
+
+    this.form = this.myAccount;
+    this.avatar = this.myAccount?.avatar || '/assets/artist-account/new.svg'
+    this.formGenres = this.myAccount?.genres || [];
 
     console.log('--- End Mounted ---')
 
@@ -634,9 +654,10 @@ export default {
     },
     fetchGenre(query)
     {
-      // if (!query) {
-      //   this.artistOptions()
-      // }
+      if (!query) {
+        console.log('Empty Query fetchGenre')
+        this.artistOptions()
+      }
       // return query ? this.genres : this.cGenre
       return this.formArtistGenres
 

@@ -74,7 +74,7 @@ var actions = {
         });
     })
   },
-  signup({ commit }, payload)
+  signup({ commit, dispatch }, payload)
   {
     commit('CLEAR_STATE');
     return new Promise(async (resolve, reject) =>
@@ -105,6 +105,7 @@ var actions = {
               commit('SET_PROFILE', profile || {});
             }
 
+            dispatch('fetchProfile')
           }
           resolve(response)
         })
@@ -724,13 +725,13 @@ var actions = {
         });
     })
   },
-  fetchProfile({ commit, state }, payload)
+  fetchProfile({ commit, state, dispatch }, payload)
   {
-    return new Promise(async (resolve, reject) =>
+    return new Promise((resolve, reject) =>
     {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
       
-      await axios.get(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/account?role=${state.role}`, payload, {
+      axios.get(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/account?role=${state.role}`, payload, {
       headers: {
         "Content-Type": "multipart/form-data",
       }
@@ -753,11 +754,12 @@ var actions = {
               if (state.role === 'artists') {
 
                 const { genres } = result;
-                console.log('Fetch profile.account.genres: ', account?.genres)
-                console.log('Fetch profile.account.genres [account_genre]: ', genres)
+
                 // commit('SET_ACCOUNT_GENRE', genres);
                 commit('SET_ARTIST_GENRES', genres);
                 // commit('SET_CUSTOM_GENRE', custom_genre);
+
+                dispatch('artistOptions');
               }
 
               // commit('SET_PROFILE', profile);

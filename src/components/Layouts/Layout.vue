@@ -50,13 +50,13 @@
 
                <div class="dropdown dropstart">
                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                  <img :src="myAccount.avatar" alt="artist profile">
+                  <img :src="myAvatar" alt="artist profile">
                   <span class="material-symbols-rounded">&#xe313;</span>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
                   <li>
                     <div class="artist-info">
-                      <img :src="myAccount.avatar" alt="artist profile">
+                      <img :src="myAvatar" alt="artist profile">
                       <div class="artist-name">
                         <p class="name">{{  userInfo.business_name }}</p>
                         <p class="email">{{ userInfo.business_email }}</p>
@@ -92,13 +92,13 @@
 
                <div class="dropdown dropstart">
                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                  <img :src="myAccount.avatar" alt="artist profile">
+                  <img :src="myAvatar" alt="artist profile">
                  <span class="material-symbols-rounded">&#xe313;</span>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
                   <li>
                     <div class="artist-info">
-                      <img :src="myAccount.avatar" alt="artist profile">
+                      <img :src="myAvatar" alt="artist profile">
                       <div class="artist-name">
                         <p class="name">{{ userInfo.business_name }}</p>
                         <p class="email">{{ userInfo.role }}</p>
@@ -327,7 +327,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["isLoggedIn", 'userInfo', 'info', 'userRole', 'myAccount',]),
+    ...mapGetters(["isLoggedIn", 'userInfo', 'info', 'userRole', 'myAccount', 'myAvatar',]),
     ...mapState({}),
   },
   created() {

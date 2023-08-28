@@ -234,10 +234,10 @@ export const fetchArtists = ({ commit, rootState, state }, payload) => {
 }
 export const artistOptions = ({ commit, rootState, state }, payload) =>
 {
-  return new Promise(async (resolve, reject) =>
+  return new Promise((resolve, reject) =>
   {
 
-    await axios.get(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/artist/forms`, payload)
+    axios.get(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/artist/forms`, payload)
       .then(response =>
       {
 
