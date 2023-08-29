@@ -357,21 +357,21 @@
                 <p class="description">When you upload a song, it will be showcased on the platform as a your voice sample allowing listeners to have a preview listen.</p>
 
                 <div class="form-group">
-                  <label for="artistName">Title of the song</label>
-                  <input type="text" class="form-control" required/>
-                  <div v-if="error?.artist_name" class="artist-name-error text-danger"></div>
+                  <label for="songTitle">Title of the song</label>
+                  <input type="text" v-model="form.song_title" name="songTitle" class="form-control" required/>
+                  <div v-if="error?.song_title" class="artist-name-error text-danger"></div>
                 </div>
 
                 <div class="form-group" >
-                  <label for="genre">Genre</label>
-                  <multiselect v-model="formGenres" mode="tags"
+                  <label for="songGenre">Song Genre</label>
+                  <multiselect v-model="songGenres" mode="tags"
                   :close-on-select="false" 
                   :create-option="true" :options="async function(query) {
                     return await fetchGenre(query) || genres
                   }" 
                   :searchable="true" :delay="0" 
-                  noOptionsText="Please input genre(s)"
-                  class="genre" placeholder="Please select genres" />
+                  noOptionsText="Please input song genre(s)"
+                  class="genre" placeholder="Please select song genres" />
                   <br/>
                   <!-- <div v-for="err in error?.genre" :key="err" class="text-danger">{{ err }}</div> -->
                 </div>
@@ -392,7 +392,7 @@
                         style="display:none;"
                         ref="musicInput" 
                         @change="handleMusicUpload" 
-                        accept="audio/*" />
+                        accept="audio/mp3" />
                     </div>
                   </div>
                 </div>
@@ -507,10 +507,14 @@ export default {
         accept_request: false,
         accept_booking: false,
         accept_proposal: false,
+        audio: null,
+        song_title: null,
+        song_genre: null,
       },
       hasOthers: false,
       // others: '',
       formGenres: [],
+      songGenres: [],
       avatar: '/assets/artist-account/new.svg',
       options: ['list', 'of', 'options'],
       // members: [],
@@ -549,6 +553,9 @@ export default {
       accept_request: false,
       accept_booking: false,
       accept_proposal: false,
+      song: null,
+      song_title: null,
+      song_genre: null,
     };
 
     console.log('-Before Create-')
@@ -600,10 +607,14 @@ export default {
 
     this.form = this.myAccount;
     this.form.avatar = '';
+    this.uploadedMusic = this.myAccount.song || '';
+    this.songTitle = this.myAccount?.song_title || '';
 
     this.avatar = this.myAvatar || '/assets/artist-account/new.svg'
     this.formGenres = this.myAccount?.genres || [];
     console.log('My Avatar: ', this.avatar)
+    console.log('Song: ', this.songTitle, this.song)
+
     console.log('--- End Mounted ---')
 
   },
@@ -636,7 +647,8 @@ export default {
       this.form.genres = this.formGenres;
 
       if (typeof this.form.avatar === 'string') this.form.avatar = '';
-
+      if (typeof this.form.song === 'string') this.form.song = '';
+      
       this.$emit('form', this.form)
       this.isLoading = true;
       
@@ -738,7 +750,7 @@ export default {
       if (file) {
         this.uploadedMusic = URL.createObjectURL(file);
         this.songTitle = file.name.replace(/\.[^/.]+$/, '');
-
+        this.form.song = file;
                 // Calculate and format file size
         const sizeInBytes = file.size;
         const sizeInKilobytes = Math.floor(sizeInBytes / 1024);
@@ -750,6 +762,7 @@ export default {
       localStorage.removeItem('uploadedMusic');
       this.songTitle = '';
       this.fileSize = ''; 
+      this.form.song = null;
     },
   },
   computed: {
