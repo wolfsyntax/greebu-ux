@@ -172,15 +172,6 @@
                       <ul class="list-group band-members" v-if="members">
                         <li class="list-group-item" v-for="mem in members" :key="mem.id">
                           <div class="items">
-                            <!-- <vs-avatar v-if="!mem.avatar" circle>
-                              <template  #text>
-                                {{ mem.avatar_text }}
-                              </template>
-                            </vs-avatar>
-
-                            <vs-avatar v-else circle>
-                              <img @error="replaceByDefault" :src="mem.avatar" alt="" />            
-                            </vs-avatar> -->
                             
                             <img @error="replaceByDefault" class="avatar" :src="mem.avatar" alt="" />      
                             
