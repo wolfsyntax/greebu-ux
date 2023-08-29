@@ -454,6 +454,7 @@ export default {
       if (this.genre) payload.genre = this.genre
       if (this.sort) payload.sortBy = this.sort;
       if (newValue) payload.search = newValue
+      payload.list_type = 'customers';
 
       this.fetchArtists(payload)
     },
@@ -465,6 +466,8 @@ export default {
       if (newValue) payload.sortBy = this.sort;
       if (this.search) payload.search = newValue;
 
+      payload.list_type = 'customers';
+
       this.fetchArtists(payload)
     },
     artist_type(newValue)
@@ -474,6 +477,9 @@ export default {
       if (this.genre) payload.genre = this.genre
       if (this.search) payload.search = this.search
       if (this.sort) payload.sortBy = this.sort;
+      
+      payload.list_type = 'customers';
+
       this.fetchArtists(payload)
     },
     genre(newValue)
