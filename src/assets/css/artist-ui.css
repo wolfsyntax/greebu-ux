@@ -1222,12 +1222,18 @@ body{
   width: 10%;
 }
 .profile-details .container .fill-details .band-members .list-group-item button {
-  background-color: #fff;
+  background-color: var(--white);
   border: 0;
   padding-right: 0;
 }
-.profile-details .container .fill-details .band-members .list-group-item button span{
-  color: #FF6B00;
+.profile-details .container .fill-details .band-members .list-group-item:hover img{
+  opacity: 1;
+}
+.profile-details .fill-details .band-members .edit-band-member-wrapper .edit-band-member,
+.profile-details .fill-details .band-members .delete-band-member-wrapper .delete-band-member {
+  width: 1.5rem;
+  height: 1.5rem;
+  opacity: 0;
 }
 .profile-details .container .fill-details .card{
   border-radius: 0.3125rem;
@@ -1459,6 +1465,9 @@ background: var(--btn-hovered);
 .modal-add-member input[type=file]::file-selector-button:hover{
   background-color: #FF6B00;
   color: #fff;
+}
+.modal-add-member .form-group .text-danger{
+  white-space: pre;
 }
 .modal-add-member .upload-img .add-member-default-avatar{
   transition: .5s;

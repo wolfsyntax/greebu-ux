@@ -133,7 +133,7 @@
                   <div class="col-4">
                     <div class="form-group">
                       <label for="address">Address</label>
-                      <input type="text" v-model="form.street_address" placeholder="Street" class="form-control street"/>
+                      <input type="text" v-model="form.street_address" placeholder="Street" class="form-control street" required />
                       <!-- <div v-if="errors.street" class="street-error text-danger"></div> -->
                       <div v-for="err in error?.street" :key="err" class="text-danger">{{ err }}</div>
                     </div>
@@ -142,7 +142,7 @@
                   <div class="col-4">
                     <div class="form-group">
                       <label for="address" class="hidden">City</label>
-                      <input type="text" v-model="form.city" placeholder="City" class="form-control city"/>
+                      <input type="text" v-model="form.city" placeholder="City" class="form-control city" required />
                       <!-- <div v-if="errors.city" class="city-error text-danger"></div> -->
                       <div v-for="err in error?.city" :key="err" class="text-danger">{{ err }}</div>
                     </div>
@@ -151,7 +151,7 @@
                   <div class="col-4">
                     <div class="form-group">
                       <label for="address" class="hidden">Province</label>
-                      <input type="text" v-model="form.province" placeholder="Province" class="form-control province"/>
+                      <input type="text" v-model="form.province" placeholder="Province" class="form-control province" required/>
                       <!-- <div v-if="error?.province" class="province-error text-danger"></div> -->
                       <div v-for="err in error?.province" :key="err" class="text-danger">{{ err }}</div>
                     </div>
@@ -182,11 +182,13 @@
                           </div>
 
                           <div class="options">
-                            <div class="text-end">
-                              <button type="button" @click="removeMember(mem.id)" class="btn btn-danger">
-                                <span class="material-symbols-rounded">delete</span>
+                            <div class="d-flex align-items-center text-end">
+                              <button type="button" class="edit-band-member-wrapper">
+                                <img src="/assets/artist-account/edit-band-member.svg" class="edit-band-member" alt="edit band member">
                               </button>
-                              <button type="">Edit</button>
+                              <button type="button" @click="removeMember(mem.id)" class="delete-band-member-wrapper">
+                                <img src="/assets/artist-account/delete-band-member.svg" class="delete-band-member" alt="delete band member">
+                              </button>
                             </div>
                           </div>
                         </li>
