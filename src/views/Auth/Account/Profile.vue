@@ -58,9 +58,13 @@ export default {
             this.$forceUpdate();
            // this.$router.push('/artist');
 
-           setTimeout(() => {
-            this.message = false;
-          }, 5000);
+            setTimeout(() => {
+              this.message = false;
+            }, 5000);
+
+          } else {
+            const { errors } = result;
+            if (errors) this.errors = errors;
           }
           
         });

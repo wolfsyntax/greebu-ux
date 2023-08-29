@@ -13,6 +13,7 @@
             </div>
 
             <h2 class="title">Welcome! Let's create your profile as an artist</h2>
+
             <p class="sub-heading">Let customers and other co-artists know you better!</p>
             <h3 class="profile-details">Profile Details</h3>
               
@@ -71,6 +72,7 @@
 
             <form @submit.prevent="submit" class="fill-details">
               <!-- {{ form }} -->
+
               <div class="form-group upload-img">
                 <label class="label-img">
                     <img :src="avatar" class="img-fluid default-avatar" alt="default user avatar">
@@ -107,14 +109,14 @@
 
                 <div class="form-group">
                   <label for="artistName">Name of the Artist/Band</label>
-                  <input type="text" v-model="form.artist_name" placeholder="Name of the Artist/Band" class="form-control artist-name"/>
+                  <input type="text" v-model="form.artist_name" placeholder="Name of the Artist/Band" class="form-control artist-name" required/>
                   <div v-if="error?.artist_name" class="artist-name-error text-danger"></div>
                 </div>
 
                 <div class="form-group" >
                   <label for="genre">Genre</label>
                   <multiselect v-model="formGenres" mode="tags"
-                  :close-on-select="false" 
+                  :close-on-select="false"
                   :create-option="true" :options="async function(query) {
                     return await fetchGenre(query) || genres
                   }" 
@@ -135,7 +137,7 @@
                       <label for="address">Address</label>
                       <input type="text" v-model="form.street_address" placeholder="Street" class="form-control street"/>
                       <!-- <div v-if="errors.street" class="street-error text-danger"></div> -->
-                      <div v-for="err in error?.street" :key="err" class="text-danger">{{ err }}</div>
+                      <div v-for="err in error?.street_address" :key="err" class="text-danger">{{ err }}</div>
                     </div>
                   </div>
 
