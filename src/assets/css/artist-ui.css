@@ -1222,12 +1222,18 @@ body{
   width: 10%;
 }
 .profile-details .container .fill-details .band-members .list-group-item button {
-  background-color: #fff;
+  background-color: var(--white);
   border: 0;
   padding-right: 0;
 }
-.profile-details .container .fill-details .band-members .list-group-item button span{
-  color: #FF6B00;
+.profile-details .container .fill-details .band-members .list-group-item:hover img{
+  opacity: 1;
+}
+.profile-details .fill-details .band-members .edit-band-member-wrapper .edit-band-member,
+.profile-details .fill-details .band-members .delete-band-member-wrapper .delete-band-member {
+  width: 1.5rem;
+  height: 1.5rem;
+  opacity: 0;
 }
 .profile-details .container .fill-details .card{
   border-radius: 0.3125rem;
@@ -1459,6 +1465,9 @@ background: var(--btn-hovered);
 .modal-add-member input[type=file]::file-selector-button:hover{
   background-color: #FF6B00;
   color: #fff;
+}
+.modal-add-member .form-group .text-danger{
+  white-space: pre;
 }
 .modal-add-member .upload-img .add-member-default-avatar{
   transition: .5s;
@@ -1874,6 +1883,7 @@ background: var(--btn-hovered);
   background: transparent;
   border: 0;
   white-space: nowrap;
+  margin-bottom: 0;
 }
 
 /* Create post - Uploaded music */
@@ -1898,6 +1908,7 @@ background: var(--btn-hovered);
 }
 #artistPost .uploaded-song-wrapper .song-wrapper{
   gap: 0.87rem;
+  width: 75%;
 }
 #artistPost .uploaded-song-wrapper .song-wrapper img{
   width: 3.625rem;
@@ -1906,11 +1917,17 @@ background: var(--btn-hovered);
 #artistPost .uploaded-song-wrapper .audio-controls-wrapper{
   display: none;
 }
-#artistPost .uploaded-song-wrapper .song-wrapper .song-title{
+#artistPost .uploaded-song-wrapper .song-wrapper .song-title {
   color: var(--black);
-  font-size: 1rem;;
+  font-size: 1rem;
   font-weight: 600;
   margin-bottom: 0.44rem;
+  line-height: 1.4rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  max-height: 3.2rem;
 }
 #artistPost .uploaded-song-wrapper .song-wrapper .preview{
   color: var(--orange);
@@ -1972,6 +1989,70 @@ background: var(--btn-hovered);
   24 px	1.5 rem
   28px 1.75 rem
 */
+
+                                            /* Create post - Uploaded music */
+
+#artistPost .uploaded-song-wrapper .song-wrapper img {
+  width: 2.125rem;
+  height: 2.8125rem;
+}                                            
+#artistPost .uploaded-song-wrapper .song-wrapper {
+  gap: 0.63rem;
+}
+#artistPost .uploaded-song-wrapper .song-wrapper .song-title {
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+  line-height: 1rem;
+  max-height: 3rem;
+}
+#artistPost .uploaded-song-wrapper .song-wrapper .preview {
+  font-size: 0.75rem;
+}
+#artistPost .uploaded-song-wrapper {
+  margin: 1.25rem 0;
+  padding: 0.87rem;
+  border: 1.25px solid #CDD3D8;
+}
+#artistPost .uploaded-song-wrapper .remove-music-wrapper {
+  top: 10%;
+  left: 80%;
+}
+#artistPost .uploaded-song-wrapper .remove-music-wrapper .file-size {
+  font-size: 0.625rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 0.75rem;
+  margin-right: 0.63rem;
+}
+#artistPost .uploaded-song-wrapper .remove-music-wrapper .remove-music {
+  font-size: 16px;
+  padding: 1.8px;
+}
+
+
+
+                                          /* Create post - Uploaded images/ videos */
+
+#artistPost .uploaded-wrapper .uploaded-images {
+  height: 10.4375rem;
+  margin-bottom: 0.37rem;
+}         
+#artistPost .uploaded-wrapper .uploaded-images img {
+  height: 10.4375rem;
+}    
+#artistPost .uploaded-wrapper .uploaded-images .upload-more .add-photo-icon {
+  font-size: 24px;
+}
+#artistPost .uploaded-wrapper .uploaded-images .upload-more .add-more {
+  font-size: 0.875rem;
+}
+#artistPost .uploaded-wrapper {
+  padding: 0 1%;
+}
+#artistPost .uploaded-wrapper .uploaded-images .remove-img {
+  left: 88%;
+  font-size: 14px;
+}
 
                                                     /* ARTIST POST MODAL */
 
