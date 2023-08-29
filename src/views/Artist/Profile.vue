@@ -603,7 +603,7 @@ export default {
 
     this.avatar = this.myAvatar || '/assets/artist-account/new.svg'
     this.formGenres = this.myAccount?.genres || [];
-    console.log('My Avatar: ', this.avatarx)
+    console.log('My Avatar: ', this.avatar)
     console.log('--- End Mounted ---')
 
   },
