@@ -178,13 +178,13 @@ export const removeMember = ({ commit, rootState, state}, payload) => {
 }
 
 // Update 
-export const updateMember = ({ commit, rootState, state}, payload) => {
+export const updateMember = ({ commit, rootState, state}, {mem_id, form}) => {
   
-  return new Promise(async(resolve, reject) => {
+  return new Promise((resolve, reject) => {
     
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
-    
-    await axios.put(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/artists/member`, payload, {
+
+    axios.put(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/artists/member/${mem_id}`, form, {
       headers: {
         "Content-Type": "multipart/form-data",
       }
@@ -193,8 +193,12 @@ export const updateMember = ({ commit, rootState, state}, payload) => {
 
         console.log('\n\nUpdate Member Response: ', response)
         
-        const { data } = response
-        commit('SET_MEMBERS', data)
+        const { status: statusCode, data: { status, result } } = response
+        if (statusCode === 200 && status === 200) {
+          const {members} = result
+          commit('SET_MEMBERS', members)
+        }
+        
         resolve(response.data)
     })
     .catch(err => {
