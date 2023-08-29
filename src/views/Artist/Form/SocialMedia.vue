@@ -90,7 +90,7 @@ export default {
           } else if (/^http(s)?:\/\/(www|m)\.youtube\.com\/((channel|c)\/)?(?!feed|user\/|watch\?)([a-zA-Z0-9-_.])*.*$/.test(this.url) && nv === 'youtube') {
             // console.log('Valid YouTube URL: ', this.url)
             this.validUrl = true;
-          } else if (/^(https:\/\/twitter.com\/(?![a-zA-Z0-9_]+\/)([a-zA-Z0-9_]+))$/.test(this.url) && nv === 'twitter') {
+          } else if (/^(?:(?:http|https):\/\/)?(?:www.)?(twitter.com\/(?![a-zA-Z0-9_]+\/)([a-zA-Z0-9_]+))$/.test(this.url) && nv === 'twitter') {
             // console.log('Valid Twitter Profile: ', this.url)
             this.validUrl = true;
           } else {
@@ -125,7 +125,7 @@ export default {
         // console.log('Valid YouTube URL: ', this.url)
         this.validUrl = true;
         this.validType = this.media_type ? true : false;
-      } else if (/^(https:\/\/twitter.com\/(?![a-zA-Z0-9_]+\/)([a-zA-Z0-9_]+))$/.test(nv) && this.media_type === 'twitter') {
+      } else if (/^(?:(?:http|https):\/\/)?(?:www.)?(twitter.com\/(?![a-zA-Z0-9_]+\/)([a-zA-Z0-9_]+))$/.test(nv) && this.media_type === 'twitter') {
         // console.log('Valid Twitter Profile: ', this.url)
         this.validUrl = true;
         this.validType = this.media_type ? true : false;
