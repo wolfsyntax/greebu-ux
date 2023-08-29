@@ -152,11 +152,11 @@ export const removeSocialMedia = ({ commit, rootState, state}, payload) => {
 
 export const removeMember = ({ commit, rootState, state}, payload) => {
   
-  return new Promise(async(resolve, reject) => {
+  return new Promise((resolve, reject) => {
     
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
     
-    await axios.delete(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/artists/member/${payload}`)
+    axios.delete(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/artists/member/${payload}`)
       .then(response => {        
 
         console.log('\n\nRemove Member Response: ', response)
