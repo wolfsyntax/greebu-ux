@@ -599,9 +599,11 @@ export default {
     // })
 
     this.form = this.myAccount;
-    this.avatar = this.myAccount?.avatar || '/assets/artist-account/new.svg'
-    this.formGenres = this.myAccount?.genres || [];
+    this.form.avatar = '';
 
+    this.avatar = this.myAvatar || '/assets/artist-account/new.svg'
+    this.formGenres = this.myAccount?.genres || [];
+    console.log('My Avatar: ', this.avatarx)
     console.log('--- End Mounted ---')
 
   },
@@ -751,7 +753,7 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(["userInfo", "token", 'artistProfile', 'artistGenre', 'myAccount', 'formArtistGenres',]),
+    ...mapGetters(["userInfo", "token", 'artistProfile', 'artistGenre', 'myAccount', 'formArtistGenres','myAvatar', ]),
     ...mapState({
       artistTypes: (state) => state.artist.artist_types,
       genres: (state) => state.artist.genres,
