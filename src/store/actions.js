@@ -130,7 +130,7 @@ var actions = {
 
           const { status, data } = response
           if (status === 200 && data.status === 200) {
-
+            commit('CLEAR_ARTIST')
             commit('SET_AUTH', {});
             commit('SET_TOKEN', '');
             commit('SET_PROFILE', {});
@@ -183,6 +183,7 @@ var actions = {
             commit('SET_AUTH', {});
             commit('SET_TOKEN', '');
             commit('SET_PROFILE', {});
+            commit('CLEAR_ARTIST')
 
             resolve(response);
           }
@@ -753,10 +754,11 @@ var actions = {
 
               if (state.role === 'artists') {
 
-                const { genres } = result;
+                const { genres, members } = result;
 
                 // commit('SET_ACCOUNT_GENRE', genres);
                 commit('SET_ARTIST_GENRES', genres);
+                commit('SET_MEMBERS', members || [])
                 // commit('SET_CUSTOM_GENRE', custom_genre);
 
                 dispatch('artistOptions');

@@ -22,7 +22,7 @@
                               <div class="col-9">
                                 <div class="profile-info">
                                   <div class="position-relative">
-                                  <img class="profile-pic" :src="`${account?.avatar || 'https://res.cloudinary.com/daorvtlls/image/upload/v1686465790/cld-sample.jpg'}`" alt="profile">
+                                  <img class="profile-pic" :src="`${myAvatar || 'https://res.cloudinary.com/daorvtlls/image/upload/v1686465790/cld-sample.jpg'}`" alt="profile">
                                   <!-- https://res.cloudinary.com/daorvtlls/image/upload/v1687927639/artist-profile-1_uhpekp.webp -->
                                     <!-- <div class="camera">
                                       <button type="submit" class="btn btn-success">
@@ -613,7 +613,7 @@ export default {
 
   },
   computed: {
-    ...mapGetters(["userInfo", "token",]),
+    ...mapGetters(["userInfo", "token", 'token', 'myAvatar',]),
     ...mapState({
       users: (state)    => state.user,
       profile: (state)  => state.profile,

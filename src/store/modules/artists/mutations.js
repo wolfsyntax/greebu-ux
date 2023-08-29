@@ -51,13 +51,10 @@ export const SET_ARTIST_PROFILE = (state, payload) =>
 
 export const CLEAR_ARTIST = (state) =>
 {
-  
-  state.artists = null;
 
   state.artist_types = null;
 
   state.artist_genres = null;
-  console.log("ALL genre", state.genres);
 
   state.genres = null;
 
