@@ -27,7 +27,7 @@
             <div class="form-group">
               <label for="fileUpload">Name of the Member</label>
             <input type="text" v-model="form.member_name" placeholder="Name of the member" class="form-control member-name" />
-            <span v-if="errors?.member_name" class="member-name text-danger">errors.member_name.shift()</span>
+            <span v-if="errors?.member_name" class="member-name text-danger">{{ errors.member_name.shift() }}</span>
               </div>
           </div>
         </div>

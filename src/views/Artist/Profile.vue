@@ -205,30 +205,7 @@
                   <button type="button" class="btn btn-primary add-social-media" @click="toggle('links')"><span class="material-symbols-rounded">add_link</span>Add Links</button>
                 </div>                         
 
-                <div class="card mb-3" v-if="artistProfile?.youtube_channel">
-                  <div class="row g-0">
-                    <div class="col-md-1">
-                      <img src="/assets/social icons/_YouTube.svg" class="img-fluid rounded-start mx-2" alt="YouTube">
-                    </div>
-
-                    <div class="col-md-10">
-                      <div class="card-body">
-                        <h5 class="card-title">YouTube</h5>
-                        <p class="card-text"><small class="text-body-secondary">{{ artistProfile?.youtube_channel }}</small></p>
-                      </div>
-                    </div>
-
-                    <div class="col-md-1">
-                      <div class="text-end">
-                        <a href="#" @click="removeSocialMedia('youtube')">
-                          <span class="material-symbols-rounded">delete</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="card mb-3" v-if="form?.instagram_username">
+                <div class="card mb-3 social-media-account-row" v-if="form?.instagram_username">
                   <div class="row g-0">
                     <div class="col-md-1">
                       <img src="/assets/social icons/_Instagram.svg" class="img-fluid rounded-start mx-2" alt="Instagram">
@@ -242,16 +219,21 @@
                     </div>
 
                     <div class="col-md-1">
-                      <div class="text-end">
-                        <a href="#" @click="removeSocialMedia('instagram')">
-                          <span class="material-symbols-rounded">delete</span>
-                        </a>
+                      <div class="d-flex align-items-center text-end">
+
+                        <button type="button" class="social-media-account-wrapper">
+                            <img src="/assets/artist-account/edit-band-member.svg" class="social-media-account" alt="edit social media account">
+                          </button>
+                          <button type="button" @click="removeSocialMedia('instagram')" class="social-media-account-wrapper">
+                            <img src="/assets/artist-account/delete-band-member.svg" class="social-media-account" alt="delete social media account">
+                        </button>
+
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div class="card mb-3" v-if="form.spotify_profile" style="height: 90px;">
+                <div class="card mb-3 social-media-account-row" v-if="form.spotify_profile" style="height: 90px;">
                   <div class="row g-0">
                     <div class="col-md-1">
                       <img src="/assets/social icons/_Spotify.svg" class="img-fluid rounded-start mx-2" alt="Spotify">
@@ -265,16 +247,21 @@
                     </div>
 
                     <div class="col-md-1">
-                      <div class="text-end">
-                        <a href="#" @click="removeSocialMedia('spotify')">
-                          <span class="material-symbols-rounded">delete</span>
-                        </a>
+                      <div class="d-flex align-items-center text-end">
+
+                           <button type="button" class="social-media-account-wrapper">
+                                <img src="/assets/artist-account/edit-band-member.svg" class="social-media-account" alt="edit social media account">
+                              </button>
+                              <button type="button" @click="removeSocialMedia('spotify')" class="social-media-account-wrapper">
+                                <img src="/assets/artist-account/delete-band-member.svg" class="social-media-account" alt="delete social media account">
+                            </button>
+
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div class="card mb-3" v-if="form.twitter_username" style="height: 90px;">
+                <div class="card mb-3 social-media-account-row" v-if="form.twitter_username" style="height: 90px;">
                   <div class="row g-0">
                     <div class="col-md-1">
                       <img src="/assets/social icons/_Twitter.svg" class="img-fluid rounded-start mx-2" alt="Twitter">
@@ -288,16 +275,21 @@
                     </div>
 
                     <div class="col-md-1">
-                      <div class="text-end">
-                        <a href="#" @click="removeSocialMedia('twitter')">
-                          <span class="material-symbols-rounded">delete</span>
-                        </a>
+                      <div class="d-flex align-items-center text-end">
+
+                        <button type="button" class="social-media-account-wrapper">
+                                <img src="/assets/artist-account/edit-band-member.svg" class="social-media-account" alt="edit social media account">
+                              </button>
+                              <button type="button" @click="removeSocialMedia('twitter')" class="social-media-account-wrapper">
+                                <img src="/assets/artist-account/delete-band-member.svg" class="social-media-account" alt="delete social media account">
+                            </button>
+
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div class="card mb-3" v-if="form.youtube_channel" style="height: 90px;">
+                <div class="card mb-3 social-media-account-row " v-if="form.youtube_channel" style="height: 90px;">
                   <div class="row g-0">
                     <div class="col-md-1">
                       <img src="/assets/social icons/_YouTube.svg" class="img-fluid rounded-start mx-2" alt="YouTube">
@@ -311,17 +303,22 @@
                     </div>
 
                     <div class="col-md-1">
-                      <div class="text-end">
-                        <a href="#" @click="removeSocialMedia('youtube')">
-                          <span class="material-symbols-rounded">delete</span>
-                        </a>
+                      <div class="d-flex align-items-center text-end">
+ 
+                        <button type="button" class="social-media-account-wrapper">
+                            <img src="/assets/artist-account/edit-band-member.svg" class="social-media-account" alt="edit social media account">
+                          </button>
+                          <button type="button" @click="removeSocialMedia('youtube')" class="social-media-account-wrapper">
+                            <img src="/assets/artist-account/delete-band-member.svg" class="social-media-account" alt="delete social media account">
+                        </button>
+
                       </div>
                     </div>
                   </div>
                 </div>
               </div>   <!-- end of band-and-social--> 
 
-              <div class="d-flex justify-content-between group-item">
+              <div class="d-flex justify-content-between group-item accept-events">
                 <label class="form-check-label" for="flexSwitchCheckDefault">Do you want to accept events?</label>
                 <div class="form-check form-switch">
                   <input class="form-check-input" type="checkbox" role="switch" v-model="form.accept_booking" id="flexSwitchCheckDefault">
@@ -352,6 +349,7 @@
                 <div v-for="err in error?.bio" :key="err" class="text-danger">{{ err }}</div>
               </div>
 
+
               <div class="song-preview">
                 <h5 class="title">Upload a Song for Preview</h5>
                 <p class="description">When you upload a song, it will be showcased on the platform as a your voice sample allowing listeners to have a preview listen.</p>
@@ -362,7 +360,7 @@
                   <div v-if="error?.song_title" class="artist-name-error text-danger"></div>
                 </div>
 
-                <div class="form-group" >
+                <!-- <div class="form-group" >
                   <label for="songGenre">Song Genre</label>
                   <multiselect v-model="songGenres" mode="tags"
                   :close-on-select="false" 
@@ -373,8 +371,8 @@
                   noOptionsText="Please input song genre(s)"
                   class="genre" placeholder="Please select song genres" />
                   <br/>
-                  <!-- <div v-for="err in error?.genre" :key="err" class="text-danger">{{ err }}</div> -->
-                </div>
+                  <div v-for="err in error?.genre" :key="err" class="text-danger">{{ err }}</div>
+                </div> -->
 
                 <div class="upload-audio">
                   <div class="text-center upload-file-content">
@@ -423,6 +421,8 @@
                     </div>
 
               </div> <!-- end of song-preview -->
+              
+              
 
               <div class="text-center">
                 <!-- <button type="submit" class="btn btn-success submit-form" 
