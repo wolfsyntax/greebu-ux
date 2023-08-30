@@ -357,22 +357,10 @@
                 <div class="form-group">
                   <label for="songTitle">Title of the song</label>
                   <input type="text" v-model="form.song_title" name="songTitle" class="form-control" required/>
-                  <div v-if="error?.song_title" class="artist-name-error text-danger"></div>
-                </div>
 
-                <!-- <div class="form-group" >
-                  <label for="songGenre">Song Genre</label>
-                  <multiselect v-model="songGenres" mode="tags"
-                  :close-on-select="false" 
-                  :create-option="true" :options="async function(query) {
-                    return await fetchGenre(query) || genres
-                  }" 
-                  :searchable="true" :delay="0" 
-                  noOptionsText="Please input song genre(s)"
-                  class="genre" placeholder="Please select song genres" />
-                  <br/>
-                  <div v-for="err in error?.genre" :key="err" class="text-danger">{{ err }}</div>
-                </div> -->
+                  <!-- <div v-if="error?.song_title" class="artist-name-error text-danger"></div> -->
+                  <div v-for="err in error?.song_title" :key="err" class="text-danger">{{ err }}</div>
+                </div>
 
                 <div class="upload-audio">
                   <div class="text-center upload-file-content">
@@ -397,7 +385,7 @@
 
                 <div class="d-flex align-items-center audio-file-format">
                   <span class="material-symbols-outlined info">&#xe88e;</span>
-                  <p class="max-file-size">Please upload an audio file in .wav or .mp3 format, with a maximum file size of 200 megabytes.</p>
+                  <p class="max-file-size">Please upload an audio file in .mp3 format, with a maximum file size of 64 megabytes.</p>
                 </div>
 
                                                             <!-- Uploaded music -->
@@ -418,8 +406,9 @@
                             <img src="/assets/artist-account/remove-song-icon.svg" @click="removeMusic" alt="Music icon">
                           </div>
                         </div>  
+                        
                     </div>
-
+                    <div v-for="err in error?.song" :key="err" class="text-danger">{{ err }}</div>
               </div> <!-- end of song-preview -->
               
               
