@@ -92,6 +92,7 @@
 
                 <label for="fileUpload" class="description">Upload profile picture</label>
               </div>
+              <div v-for="err in error?.avatar" :key="err" class="text-danger">{{ err }}</div>
 
               <div class="required-fields">
                 <div class="form-group typeArtist">
