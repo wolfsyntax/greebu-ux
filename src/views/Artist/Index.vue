@@ -95,14 +95,23 @@
                           <div class="mt-3 social-media">
                             <span class="material-symbols-outlined calendar">calendar_month</span><p class="band-name">{{ account?.artist_name}}</p>
                           </div>
-                          <div class="mt-3 social-media">
-                            <img src="/assets/social icons/_Spotify.svg" loading="lazy" alt="spotify icon">
-                            <p>{{ account?.spotify_profile }}</p>
+                          <div v-if="hasSpotifyProfile" class="mt-3 social-media">
+                            <img src="/assets/artist-account/spotify-icon-gray.svg" loading="lazy" alt="spotify icon">
+                            <p>{{ modifiedSpotifyUrl }}</p>
                           </div>
-                            <div class="mt-3 social-media">
-                              <img src="/assets/social icons/_YouTube.svg" loading="lazy" alt="spotify icon">
-                              <p>{{ account?.youtube_channel }}</p>
+                            <div v-if="hasYoutubeChannel" class="mt-3 social-media">
+                              <img src="/assets/artist-account/youtube-icon-gray.svg" loading="lazy" alt="youtube icon">
+                              <p>{{ modifiedYoutubeUrl }} </p>
                           </div>
+                          <div v-if="hasTwitterAccount" class="mt-3 social-media">
+                              <img src="/assets/artist-account/twitter-icon-gray.svg" loading="lazy" alt="twitter icon">
+                              <p>{{ modifiedTwitterUrl }}</p>
+                          </div>
+                          <div v-if="hasInstaGramAccount" class="mt-3 social-media">
+                              <img src="/assets/artist-account/instagram-icon-gray.svg" loading="lazy" alt="instagram icon">
+                              <p>{{ modifiedInstaGramUrl }}</p>
+                          </div>
+
                       </div>
                   </div>
 
@@ -370,7 +379,7 @@
           <div class="row about-tab" v-if="activeItem === 'About'">
             <div class="col-7">
               <h3 class="overview">Overview</h3>
-              <p class="content">{{ aboutArtist }}</p>
+              <p class="content">{{  account.bio }} </p>
               <h5 class="capacity">Our capacity:</h5>  
               <ol type="1" class="capacity-list">
                 <li v-for="capacity in artistCapacity">
@@ -380,7 +389,8 @@
               <div class="genres">
                 <h4>Genres</h4>
                 <div class="genres-list">
-                  <span class="badge" v-for="genre in artistGenres">{{ genre }}</span>
+                  <span class="badge" v-for="genre in account?.genres?.filter(val => val !== 'Others')" :key="genre">{{ genre}}</span>
+                  <span class="badge" v-if="custom_genre">{{ custom_genre }}</span>
                 </div>
               </div>
             </div>
@@ -388,9 +398,22 @@
               <div class="social-media">
                 <h4>Social Media</h4>
                 <ul>
-                  <li v-for="socialMedia in artistSocialMedia">
-                    <img :src="socialMedia.img">{{ socialMedia.name }}
+                  <li>
+                    <img src="/assets/artist-account/spotify-icon-gray.svg">{{ account?.artist_name}}
                   </li>
+                  <li v-if="hasSpotifyProfile">
+                    <img src="/assets/artist-account/spotify-icon-gray.svg">{{ modifiedSpotifyUrl }}
+                  </li>
+                  <li v-if="hasYoutubeChannel">
+                    <img src="/assets/artist-account/youtube-icon-gray.svg">{{ modifiedYoutubeUrl }}
+                  </li>
+                  <li v-if="hasTwitterAccount">
+                    <img src="/assets/artist-account/twitter-icon-gray.svg">{{ modifiedTwitterUrl }}
+                  </li>
+                  <li v-if="hasInstaGramAccount">
+                    <img src="/assets/artist-account/instagram-icon-gray.svg">{{ modifiedInstaGramUrl }}
+                  </li>
+
                 </ul>
               </div>
               <div class="ratings">
@@ -404,13 +427,15 @@
             <div class="col-12">
               <div class="band-members">
                 <h4>Band Members</h4>
-                <div class="card" v-for="bandMember in bandMembers">
-                <img :src="bandMember.img" class="card-img-top" alt="band member">
+                <div class="card" v-for="member in members" :key="member.id">
+                <img :src="member.avatar" class="card-img-top" loading="lazy" alt="band member">
                 <div class="card-body">
-                  <h5 class="card-title">{{ bandMember.name }}</h5>
-                  <p class="card-text">{{ bandMember.role }}</p>
+                  <h5 class="card-title">{{ member.member_name  }}</h5>
+                  <p class="card-text">{{ member.role }}</p>
                 </div>
               </div>
+
+
               </div>
             </div>
           </div>
@@ -478,6 +503,8 @@
       </div>
     </div>
   </section>
+
+
   <!-- <pre> <b>Profile</b> {{  $store.state.profile  }} <br></pre>
   <pre> <b>Account</b> {{ $store.state.account }}</pre> -->
 
@@ -624,7 +651,60 @@ export default {
       custom_genre: (state) => state.custom_genre,
       genres: (state) => state.artist.genres,
     }),
-  }
+
+    hasYoutubeChannel() {
+      return this.$store.state.account.youtube_channel !== null && this.$store.state.account.youtube_channel !== undefined;
+    },
+    modifiedYoutubeUrl() {
+      if (this.hasYoutubeChannel) {
+        return this.$store.state.account.youtube_channel.replace(/^https?:\/\/(www\.)?/, "");
+      } else {
+        return "";
+      }
+    },
+
+    hasInstaGramAccount() {
+      return this.$store.state.account.instagram_username !== null && this.$store.state.account.instagram_username !== undefined;
+    },
+    modifiedInstaGramUrl() {
+      if (this.hasInstaGramAccount) {
+        return this.$store.state.account.instagram_username.replace(/^https?:\/\/(www\.)?/, "");
+      } else {
+        return "";
+      }
+    },
+
+    hasTwitterAccount() {
+      return this.$store.state.account.twitter_username !== null && this.$store.state.account.twitter_username !== undefined;
+    },
+    modifiedTwitterUrl() {
+      if (this.hasTwitterAccount) {
+        return this.$store.state.account.twitter_username.replace(/^https?:\/\/(www\.)?/, "");
+      } else {
+        return "";
+      }
+    },
+
+    hasSpotifyProfile() {
+      return this.$store.state.account.spotify_profile !== null && this.$store.state.account.spotify_profile !== undefined;
+    },
+    modifiedSpotifyUrl() {
+      if (this.hasSpotifyProfile) {
+        const regex = /\/artist\/[^/]+$/;
+        const match = this.$store.state.account.spotify_profile.match(regex);
+        if (match) {
+          const artistSlug = match[0].split('/').pop();
+          return artistSlug;
+        } else {
+          return "Artist not found";
+        }
+      } else {
+        return ""; 
+      }
+    }
+
+  },
+
 }
 </script>
 

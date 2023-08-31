@@ -1235,6 +1235,32 @@ body{
   height: 1.5rem;
   opacity: 0;
 }
+
+
+.profile-details .fill-details .social-media-account-row:hover .social-media-account-wrapper img{
+  opacity: 1;
+}
+.profile-details .fill-details .social-media-account-wrapper, .profile-details .fill-details .social-media-account-wrapper {
+  border: 0;
+  background-color: transparent;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.profile-details .fill-details .social-media-account-wrapper .social-media-account,
+.profile-details .fill-details .social-media-account-wrapper .social-media-account {
+  width: 1.5rem;
+  height: 1.5rem;
+  opacity: 0;
+}
+.profile-details .fill-details .accept-events{
+  margin-top: 2rem;
+}
+
+.profile-details .fill-details .social-media-options{
+  text-align: right!important;
+}
+
 .profile-details .container .fill-details .card{
   border-radius: 0.3125rem;
   border: 1px solid #B8BBCF;
@@ -2477,10 +2503,11 @@ margin-right: 6px;
   line-height: normal;
 }
 .profile-page .left-wrapper .artist-info .social-media .band-name, .profile-page .left-wrapper .artist-info .social-media p {
-  font-size: 0.875rem;
+  font-size: 0.79rem;
   font-style: normal;
   font-weight: 600;
   line-height: 136.523%; 
+  margin-left: 6px;
 }
 .profile-page .left-wrapper .artist-info .social-media .calendar {
   font-size: 24px;
@@ -2724,7 +2751,18 @@ margin-right: 6px;
 } */
 
 
-
+.profile-details .container .fill-details .card {
+  padding: 1.2rem;
+}
+.profile-details .fill-details .social-media-account-wrapper .social-media-account,
+.profile-details .fill-details .social-media-account-wrapper .social-media-account {
+  width: 1.2rem;
+  height: 1.2rem;
+  opacity: 0;
+}
+.profile-details .fill-details .social-media-account-wrapper, .profile-details .fill-details .social-media-account-wrapper {
+  padding: 0 0.2rem;
+}
 
 .profile-details .upload-img .label-img .default-avatar {
   width: 9.125rem;
