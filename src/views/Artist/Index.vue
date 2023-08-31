@@ -1,6 +1,6 @@
 <template>
   <layout>
-    <CreatePostModal />
+    <CreatePostModal @submitData="handleSubmittedData" />
 
   <section class="artist-profile">
     <div class="container">
@@ -220,8 +220,60 @@
                   </div>    
                   </div> <!-- end of row post -->
 
+                                                                                        <!-- Test -->
+
+                    <div class="row artist-post">
+                      <div class="col-md-12 grid-margin">
+                          <div class="card" v-for="(submission, index) in submissions" :key="index">
+                              <div class="card-header">
+                                  <div class="d-flex align-items-center justify-content-between">
+                                      <div class="d-flex align-items-center user-posted-info">
+                                        <img :src="`${account?.avatar || 'https://res.cloudinary.com/daorvtlls/image/upload/v1686649329/trending-bicolano-artist-4_o6xjze.png'}`" 
+                                         loading="lazy" alt="member profile">
+                                          <div class="group-posted">
+                                              <a href="#" class="name">{{ account.artist_name || Geebu }}</a>
+                                              <p class="ago">{{ formattedTime(times[index]) }} </p>
+                                       
+                                          </div>
+                                      </div>
+                                      <div class="dropdown">
+                                        <span class="material-symbols-outlined">more_vert</span>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="card-body">
+                                  <p class="mb-3">{{ submission.message }}</p>
+                                  <div class="posted-img" v-for="(image, imgIndex) in submission.images" :key="imgIndex" >
+                                    <img class="img-fluid" :src="image" loading="lazy" alt="posted image">
+                                  </div>
+                              </div>
+                              <div class="card-footer d-flex align-items-center justify-content-between">
+                                  <div class="d-flex post-actions">
+                                    <div class="post-icon">
+                                    <span class="material-symbols-outlined">favorite</span>
+                                      <p>Like</p>
+                                    </div>
+                                    <div class="post-icon">
+                                      <span class="material-symbols-outlined">chat_bubble</span>
+                                      <p>Comment</p>
+                                    </div>
+                                  </div>
+                                  <div class="comments">
+                                    <p>No comments yet</p>
+                                  </div>
+                              </div>
+                              <audio v-if="submission.music" controls>
+                                  <source :src="submission.music" type="audio/mpeg">
+                                  Your browser does not support the audio element.
+                                </audio>
+                          </div>
+                      </div>
+                  </div>
+
+
+
                                                     <!-- Zero state screen -->
-                  <div class="row artist-post">
+                  <div class="row artist-post" v-if="submissions.length == 0">
                       <div class="col-md-12 grid-margin">
                           <div class="card">
                               <div class="card-body text-center no-post">
@@ -234,8 +286,11 @@
                       </div>
                   </div> <!-- end of Zero state screen -->
 
+
+
                                        <!-- Artist Posts -->
-                  <div class="row artist-post">
+
+                  <!-- <div class="row artist-post">
                       <div class="col-md-12 grid-margin">
                           <div class="card">
                               <div class="card-header">
@@ -277,7 +332,7 @@
                               </div>
                           </div>
                       </div>
-                  </div>
+                  </div> -->
 
               </div>              <!-- middle wrapper end -->
 
@@ -546,7 +601,7 @@ export default {
       navItems: ['Post', 'About', 'Songs', 'Videos', 'Photos'],
      // navItems: ['Post', 'About', 'Songs', 'Videos', 'Photos', 'Events', 'Reviews'],
       activeItem: 'Post',
-      post: ['Post 1', 'Post 2','Post 1', 'Post 2','Post 1', 'Post 2'],
+      
       songs: ['https://res.cloudinary.com/daorvtlls/video/upload/v1686647605/Nirvana_-_Smells_like_teen_spirit_zs8yo4.mp3',
       'https://res.cloudinary.com/daorvtlls/video/upload/v1686647605/Nirvana_-_Smells_like_teen_spirit_zs8yo4.mp3',
     ],
@@ -570,8 +625,11 @@ export default {
       ],
       // isModalVisible: false,
       modalVisible: false,
-      submissions: [], // Array to store all submissions
       editingIndex: -1,
+
+      submissions: [], // Array to store create post submissions
+      times: []
+
     
     }
   },
@@ -616,7 +674,7 @@ export default {
     this.activeItem = item;
   },
   shouldShowBadge(item) {
-    return item === 'Post' && this.post.length > 0 ||
+    return item === 'Post' && this.submissions.length > 0 ||
            item === 'Songs' && this.songs.length > 0 ||
            item === 'Videos' && this.videos.length > 0 ||
            item === 'Photos' && this.photos.length > 0;
@@ -624,7 +682,7 @@ export default {
     getCount(item) {
       switch (item) {
         case 'Post':
-          return this.post.length;
+          return this.submissions.length;
         case 'Songs':
           return this.songs.length;
         case 'Videos':
@@ -635,10 +693,47 @@ export default {
           return 0;
       }
     },
+    handleSubmittedData(data){
+      const submittedTime = new Date();
+      this.submissions.unshift(data);
+      this.times.unshift(submittedTime);
 
-    
+    },
+
+    formattedTime(submittedTime) {
+      if (!submittedTime) {
+        return "";
+      }
+
+      const currentTime = new Date();
+      const timeDifference = Math.floor((currentTime - submittedTime) / 1000);
+
+      if (timeDifference < 5) {
+        return "Just now";
+      } else if (timeDifference < 60) {
+        return `${timeDifference}s ago`;
+      } else if (timeDifference < 3600) {
+        return `${Math.floor(timeDifference / 60)} min ago`;
+      } else if (timeDifference < 86400) {
+        return `${Math.floor(timeDifference / 3600)} hr ago`;
+      } else {
+        return `${Math.floor(timeDifference / 86400)} days ago`;
+      }
+    }
+
 
   },
+  watch: {
+    submissions: {
+      handler(submissions) {
+        submissions.forEach(submission => {
+          submission.formattedTime = this.formattedTime(submission.submittedTime);
+        });
+      },
+      deep: true
+    }
+  },
+  
   computed: {
     ...mapGetters(["userInfo", "token", 'token', 'myAvatar',]),
     ...mapState({
@@ -651,6 +746,7 @@ export default {
       custom_genre: (state) => state.custom_genre,
       genres: (state) => state.artist.genres,
     }),
+
 
     hasYoutubeChannel() {
       return this.$store.state.account.youtube_channel !== null && this.$store.state.account.youtube_channel !== undefined;

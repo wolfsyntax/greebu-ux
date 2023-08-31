@@ -1490,7 +1490,8 @@ body{
   border: 0;
   margin: 3.5rem auto;
 }
-.profile-details .busy-submitting, .profile-details .busy-add-member{
+.profile-details .busy-submitting, .profile-details .busy-add-member,
+#artistPost .modal-body .button-wrapper .busy-submitting-post {
   animation: spin 1s infinite linear;
   display: inline-block;
   font-weight: bold;
@@ -1499,7 +1500,8 @@ body{
   color: white!important;
   margin-right: 0.3rem;
 }
-.profile-details .busy-submitting::before, .profile-details .busy-add-member::before {
+.profile-details .busy-submitting::before, .profile-details .busy-add-member::before,
+#artistPost .modal-body .button-wrapper .busy-submitting-post::before {
   content: "\25E0";
 }
 @keyframes spin {
