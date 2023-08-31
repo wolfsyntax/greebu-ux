@@ -97,7 +97,7 @@
                       <img :src="myAccount?.avatar || myAvatar" alt="artist profile">
                       <div class="artist-name">
                         <p class="name">{{ userInfo.business_name }}</p>
-                        <p class="email">{{ userInfo.role }}</p>
+                        <p class="email" style="text-transform: capitalize;">{{ userInfo.role }}</p>
                         <a class="dropdown-item view-profile" href="/artist">View Profile</a>
                       </div>
                     </div>
@@ -136,7 +136,7 @@
                       <img :src="myAccount?.avatar || myAvatar" alt="artist profile">
                       <div class="artist-name">
                         <p class="name">{{ userInfo.business_name }}</p>
-                        <p class="email">{{ userInfo.role }}</p>
+                        <p class="email" style="text-transform: capitalize;">{{ userInfo.role }}</p>
                         <a class="dropdown-item view-profile" href="/artist">View Profile</a>
                       </div>
                     </div>
