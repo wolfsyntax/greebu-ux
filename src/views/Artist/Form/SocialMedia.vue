@@ -82,7 +82,7 @@ export default {
     {
       this.media_type = n.key ?? '';
       this.url = n.text ?? '';
-
+      this.errors = {};
     },
     media_type(nv, ov)
     {
@@ -116,13 +116,13 @@ export default {
         this.media_flag = true;
       }
 
-      if (!this.validUrl && this.validUrl !== '') {
+      if (!this.validUrl && this.validUrl !== '' && this.media_type !== '') {
         this.errors['url'] = (`${this.media_type.charAt(0).toUpperCase()}${this.media_type.slice(1)}`) + ' url is invalid format.';
       } else this.errors['url'] = '';
     },
-    url(nv)
+    url(nv, ov)
     {
-
+      this.errors['url'] = '';
       this.validUrl = false;
 
       if (/^(?:(?:http|https):\/\/)?(?:www.)?(?:instagram.com|instagr.am|instagr.com)\/(\w+)/.test(nv) && this.media_type === 'instagram') {
@@ -143,17 +143,24 @@ export default {
         this.validType = this.media_type ? true : false;
       }
 
-      if (!this.validUrl && nv !== '') {
-        this.errors['url'] = (`${this.media_type.charAt(0).toUpperCase()}${this.media_type.slice(1)}`) + ' url is invalid format.';
-      } else this.errors['url'] = '';
+      if (!this.validUrl && this.media_type === '' && this.url === '') {
+        this.errors.url = '';
+      } else if (ov !== '' && nv === '') {
+        this.errors.url = (`${this.media_type.charAt(0).toUpperCase()}${this.media_type.slice(1)}`) + ' url is required.';
+      } else if (!this.validUrl && this.url !== '' && this.media_type !== '') { 
+        this.errors.url = (`${this.media_type.charAt(0).toUpperCase()}${this.media_type.slice(1)}`) + ' url is invalid format.';
+      } else {
+        this.errors.url = '';
+      }
+
     }
   },
   created()
   {
-    console.log('On mounted media', this.media)
 
     this.media_type = this.media.key;
     this.url = this.media.text;
+    this.errors = {};
 
   },
   methods: {

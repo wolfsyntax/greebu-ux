@@ -203,7 +203,7 @@
                 <!-- Social Media Links -->
                 <div class="form-group">
                   <label for="social-media">Social Media Accounts</label><br>  
-                  <button type="button" class="btn btn-primary add-social-media" @click="toggle('links')"><span class="material-symbols-rounded">add_link</span>Add Links</button>
+                  <button type="button" class="btn btn-primary add-social-media" @click="toggle('links', false, {key: '', text: ''})"><span class="material-symbols-rounded">add_link</span>Add Links</button>
                 </div>                         
 
                 <div class="card mb-3 social-media-account-row" v-if="form?.instagram_username">
@@ -696,6 +696,8 @@ export default {
       if (isEdit && option === 'links') {
         this.social = params;
       } else if (isEdit) {
+        this.social = { key: '', text: '' };
+      } else if (option === 'links' && !isEdit) {
         this.social = { key: '', text: '' };
       }
 
