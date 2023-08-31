@@ -153,7 +153,9 @@ export const removeSocialMedia = ({ commit, rootState, state}, payload) => {
 export const removeMember = ({ commit, rootState, state}, payload) => {
   
   return new Promise((resolve, reject) => {
-    
+
+    state.members = state.members.filter((item) => item.id !== payload); 
+    // .filter((item) => item !== index)
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
     
     axios.delete(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/artists/member/${payload}`)
