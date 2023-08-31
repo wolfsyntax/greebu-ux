@@ -116,7 +116,7 @@ export default {
         this.media_flag = true;
       }
 
-      if (!this.validUrl && this.validUrl !== '' && this.media_type !== '') {
+      if (!this.validUrl && this.url !== '' && this.media_type !== '') {
         this.errors['url'] = (`${this.media_type.charAt(0).toUpperCase()}${this.media_type.slice(1)}`) + ' url is invalid format.';
       } else this.errors['url'] = '';
     },
