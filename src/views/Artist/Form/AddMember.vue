@@ -15,13 +15,12 @@
                   <input type="file" @input="changeImage" class="member-avatar"
                     accept="image/png, image/webp, image/svg, image/jpeg" />
                   <!-- <span v-if="errors?.member_avatar" class="text-danger">{{ errors.member_avatar.shift() }}</span> -->
-                  <div v-for="err in errors?.member_avatar" :key="err" class="text-danger">{{ err }}</div>
                 </div>
                 <span class="material-symbols-outlined camera-outer">&#xE412;</span>
               </label>
               <!-- see https://stackoverflow.com/questions/2855589/replace-input-type-file-by-an-image#answer-18803568 -->
             </div>
-
+            <div v-for="err in errors?.member_avatar" :key="err" class="text-danger">{{ err }}</div>
           </div>
         </div>
         <div class="row py-2">
@@ -31,7 +30,8 @@
               <input type="text" v-model="form.member_name" placeholder="Name of the member"
                 class="form-control member-name" required />
               <!-- <span v-if="errors?.member_name" class="member-name text-danger">errors.member_name.shift()</span> -->
-              <div v-for="err in errors?.member_name" :key="err" class="text-danger">{{ err }}</div>
+              <!-- <div v-for="err in errors?.member_name" :key="err" class="text-danger">{{ err }}</div> -->
+              <div v-for="err in error?.member_name" :key="err" class="member-name text-danger">{{ err }}</div>
             </div>
           </div>
         </div>
