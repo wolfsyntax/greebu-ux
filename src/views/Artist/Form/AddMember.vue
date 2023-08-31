@@ -31,7 +31,8 @@
               <input type="text" v-model="form.member_name" placeholder="Name of the member"
                 class="form-control member-name" required />
               <!-- <span v-if="errors?.member_name" class="member-name text-danger">errors.member_name.shift()</span> -->
-              <div v-for="err in errors?.member_name" :key="err" class="text-danger">{{ err }}</div>
+              <!-- <div v-for="err in errors?.member_name" :key="err" class="text-danger">{{ err }}</div> -->
+              <div v-for="err in error?.member_name" :key="err" class="member-name text-danger">{{ err }}</div>
             </div>
           </div>
         </div>

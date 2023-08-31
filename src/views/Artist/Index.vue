@@ -34,7 +34,7 @@
                                     <div class="name-artist">
                                       <h3 class="profile-name">
                                         <!-- {{ profile.business_name }} -->
-                                        {{ account.artist_name || Geebu }}
+                                        {{ account.artist_name || 'Geebu' }}
                                       </h3>
                                       <h5 class="type-of-artist">{{ account.artist_type || 'Full Band' }}</h5>
                                     </div>
@@ -95,21 +95,21 @@
                           <div class="mt-3 social-media">
                             <span class="material-symbols-outlined calendar">calendar_month</span><p class="band-name">{{ account?.artist_name}}</p>
                           </div>
-                          <div v-if="hasSpotifyProfile" class="mt-3 social-media">
+                          <div v-if="spotify" class="mt-3 social-media" >
                             <img src="/assets/artist-account/spotify-icon-gray.svg" loading="lazy" alt="spotify icon">
-                            <p>{{ modifiedSpotifyUrl }}</p>
+                            <p style="text-transform: lowercase;">{{ spotify }}</p>
                           </div>
-                            <div v-if="hasYoutubeChannel" class="mt-3 social-media">
-                              <img src="/assets/artist-account/youtube-icon-gray.svg" loading="lazy" alt="youtube icon">
-                              <p>{{ modifiedYoutubeUrl }} </p>
+                          <div v-if="youtube" class="mt-3 social-media" >
+                            <img src="/assets/artist-account/youtube-icon-gray.svg" loading="lazy" alt="youtube icon">
+                            <p style="text-transform: lowercase;">{{ youtube }} </p>
                           </div>
-                          <div v-if="hasTwitterAccount" class="mt-3 social-media">
-                              <img src="/assets/artist-account/twitter-icon-gray.svg" loading="lazy" alt="twitter icon">
-                              <p>{{ modifiedTwitterUrl }}</p>
+                          <div v-if="twitter" class="mt-3 social-media" >
+                            <img src="/assets/artist-account/twitter-icon-gray.svg" loading="lazy" alt="twitter icon">
+                            <p style="text-transform: lowercase;">{{ twitter }}</p>
                           </div>
-                          <div v-if="hasInstaGramAccount" class="mt-3 social-media">
+                          <div v-if="instagram" class="mt-3 social-media" >
                               <img src="/assets/artist-account/instagram-icon-gray.svg" loading="lazy" alt="instagram icon">
-                              <p>{{ modifiedInstaGramUrl }}</p>
+                              <p style="text-transform: lowercase;">{{ instagram }}</p>
                           </div>
 
                       </div>
@@ -640,7 +640,7 @@ export default {
 
   },
   computed: {
-    ...mapGetters(["userInfo", "token", 'token', 'myAvatar',]),
+    ...mapGetters(["userInfo", "token", 'token', 'myAvatar', 'instagram', 'youtube', 'twitter', 'spotify', ]),
     ...mapState({
       users: (state)    => state.user,
       profile: (state)  => state.profile,
