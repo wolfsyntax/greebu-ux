@@ -12,9 +12,9 @@
             </select>
             <span v-if="errors?.media_type" class="text-danger">{{ errors.media_type }}</span>
             </div>
-
           </div>
         </div>
+
         <div class="row py-2">
           <div class="col">
             <div class="form-group">
@@ -69,9 +69,21 @@ export default {
       default: [],
       required: true
     },
-
+    media: {
+      type: Object,
+      default: {
+        key: '', text: '',
+      },
+      required: true
+    },
   },
   watch: {
+    media(n, o)
+    {
+      this.media_type = n.key ?? '';
+      this.url = n.text ?? '';
+
+    },
     media_type(nv, ov)
     {
 
@@ -135,6 +147,14 @@ export default {
         this.errors['url'] = (`${this.media_type.charAt(0).toUpperCase()}${this.media_type.slice(1)}`) + ' url is invalid format.';
       } else this.errors['url'] = '';
     }
+  },
+  created()
+  {
+    console.log('On mounted media', this.media)
+
+    this.media_type = this.media.key;
+    this.url = this.media.text;
+
   },
   methods: {
     ...mapActions([
