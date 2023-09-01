@@ -36,28 +36,28 @@
                 </div>
 
                 <div class="col-md-12">
-                  <div class="form-check">
+                  <div class="form-check"  @click="form.account_type = 'customers'">
                     <input class="form-check-input" type="radio" name="accountType" id="accountType" v-model="form.account_type" value="customers" >
                     <label :class="{ 'selected': form.account_type === 'customers' }" class="form-check-label" for="accountType">
                     I'm a Customer
                     </label>
                   </div>
 
-                  <div class="form-check">
+                  <div class="form-check" @click="form.account_type = 'artists'">
                     <input class="form-check-input" type="radio" name="accountType" id="accountType" v-model="form.account_type" value="artists" >
                     <label :class="{ 'selected': form.account_type === 'artists' }" class="form-check-label" for="accountType">
                     I'm an Artist
                     </label>
                   </div>
 
-                  <div class="form-check">
+                  <div class="form-check" @click="form.account_type = 'organizer'">
                     <input class="form-check-input" type="radio" name="accountType" id="accountType" v-model="form.account_type" value="organizer">
                     <label :class="{ 'selected': form.account_type === 'organizer' }" class="form-check-label" for="accountType">
                     I'm an Organizer
                     </label>
                   </div>
 
-                  <div class="form-check">
+                  <div class="form-check" @click="form.account_type = 'service-provider'">
                     <input class="form-check-input" type="radio" name="accountType" id="accountType" v-model="form.account_type" value="service-provider" >
                     <label :class="{ 'selected': form.account_type === 'service-provider' }" class="form-check-label" for="accountType">
                     Offers Services
