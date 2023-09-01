@@ -343,12 +343,7 @@ export default {
     ...mapMutations([]),
     async logout()
     {
-      // this.$vs.loading({
-      //   // text: 'Loading...',
-      //   scale: 0.45,
-      //   type: 'radius'
-      // })
-
+      
       const self = this;
 
       await this.signout()

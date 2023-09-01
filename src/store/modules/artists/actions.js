@@ -214,7 +214,7 @@ export const updateMember = ({ commit, rootState, state}, payload) => {
 
 // Update 
 export const fetchArtists = ({ commit, rootState, state }, payload) => {
-  console.log('Fetch Artists payload: ', payload)
+
   return new Promise(async(resolve, reject) => {
     var url = `${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/artist-filter`
     if (rootState.bearerToken) {
@@ -316,6 +316,7 @@ export const fetchMember = ({ commit, rootState, state }, payload) =>
     })
       .then(response =>
       {    
+        console.log('\n\nFetch Member detail response: ', response)
         const { status: statusCode, data: { result, status } } = response;
 
         if (statusCode === 200 && status === 200) {

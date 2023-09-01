@@ -4,8 +4,6 @@
       <div class="container">
         <div class="row py-2">
           <div class="col">
-            <!-- <input type="file" @input="form.member_avatar = $event.target.files[0]" class="member-avatar" accept="image/png, image/webp, image/svg, image/jpeg"/>
-            <span v-if="errors?.member_avatar" class="text-danger">{{ errors.member_avatar }}</span> -->
 
             <div class="form-group text-center upload-img">
               <label class="label-img">
@@ -30,8 +28,6 @@
               <label for="fileUpload">Name of the Member</label>
               <input type="text" v-model="form.member_name" placeholder="Name of the member"
                 class="form-control member-name" required />
-              <!-- <span v-if="errors?.member_name" class="member-name text-danger">errors.member_name.shift()</span> -->
-              <!-- <div v-for="err in errors?.member_name" :key="err" class="text-danger">{{ err }}</div> -->
               <div v-for="err in error?.member_name" :key="err" class="member-name text-danger">{{ err }}</div>
             </div>
           </div>
@@ -49,7 +45,6 @@
 
               <input type="text" v-model="other" placeholder="Role of Member" class="form-control member-name"
                 v-if="form.role === 'others'" required />
-              <!-- <span v-if="errors?.role" class="role-error text-danger">{{ errors.role.shift() }}</span> -->
               <div v-for="err in errors?.role" :key="err" class="text-danger">{{ err }}</div>
             </div>
           </div>
@@ -119,7 +114,6 @@ export default {
         this.other = '';
       }
 
-      //  role: this.roles.filter(el => el.value.toLocaleLowerCase() === this.member.role.toLocaleLowerCase()).length > 0 ? (this.member?.role.toLowerCase() || '') : 'others',
       this.form = {
         member_avatar: this.members[val]?.avatar || '',
         member_name: this.members[val]?.member_name || '' ,

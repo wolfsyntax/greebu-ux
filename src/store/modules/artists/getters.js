@@ -10,7 +10,5 @@ export const formArtistGenres = state => state.genres?.concat(state.artist_genre
 
 export const memberInfo = state =>
 {
-  console.log('\n\nMember Index: ', state.memIndex)
-  console.log('Member Detail: ', state.memIndex > -1 ? state.members[state.memIndex] : {}, '\n\n');
   return state.memIndex > -1 ? state.members[state.memIndex] : {};
 };
