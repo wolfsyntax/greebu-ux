@@ -93,7 +93,8 @@
                             {{  account.bio }}
                           </p>
                           <div class="mt-3 social-media">
-                            <span class="material-symbols-outlined calendar">calendar_month</span><p class="band-name">{{ account?.artist_name}}</p>
+                            <img src="/assets/artist-account/type-of-artist-icon-gray.svg" loading="lazy" alt="artist type icon">
+                            <p>{{ account?.artist_name}}</p>
                           </div>
                           <div v-if="spotify" class="mt-3 social-media" >
                             <img src="/assets/artist-account/spotify-icon-gray.svg" loading="lazy" alt="spotify icon">
@@ -404,7 +405,7 @@
                             <svg class="no-original-songs-icon" xmlns="http://www.w3.org/2000/svg" width="35" height="34" viewBox="0 0 35 34" fill="none">
                             <path d="M26.4501 4.5H15.3307C13.9249 4.5 12.7808 5.60806 12.7808 6.96996V21.7916C12.0864 21.3371 11.2505 21.0718 10.3516 21.0718C7.95193 21.0718 6 22.9622 6 25.2855C6 27.6096 7.95193 29.5 10.3516 29.5C12.7505 29.5 14.7024 27.6096 14.7024 25.2855V12.3126H27.0784V18.508C26.384 18.0535 25.5477 17.7878 24.6484 17.7878C22.2495 17.7878 20.2976 19.6782 20.2976 22.0023C20.2976 24.3256 22.2495 26.216 24.6484 26.216C27.0481 26.216 29 24.3256 29 22.0023V6.96996C29.0004 5.60806 27.8563 4.5 26.4501 4.5ZM10.3516 27.6393C9.01186 27.6393 7.92157 26.5834 7.92157 25.2859C7.92157 23.9887 9.01186 22.9332 10.3516 22.9332C11.6909 22.9332 12.7808 23.9887 12.7808 25.2859C12.7812 26.5834 11.6913 27.6393 10.3516 27.6393ZM14.7028 10.4516V6.96996C14.7028 6.63423 14.9845 6.36103 15.3311 6.36103H26.4505C26.7971 6.36103 27.0792 6.63386 27.0792 6.96996V10.4516H14.7028ZM24.6488 24.3554C23.3095 24.3554 22.2196 23.2998 22.2196 22.0026C22.2196 20.7051 23.3095 19.6492 24.6488 19.6492C25.9885 19.6492 27.0788 20.7051 27.0788 22.0026C27.0788 23.2998 25.9885 24.3554 24.6488 24.3554Z" fill="#B8BBCF"/>
                           </svg>
-                              <h5 class="no-original-songs-title">No events posted</h5>
+                              <h5 class="no-original-songs-title">No songs posted</h5>
                             </div>
 
                                       <!-- Song list -->
@@ -454,19 +455,19 @@
                 <h4>Social Media</h4>
                 <ul>
                   <li>
-                    <img src="/assets/artist-account/spotify-icon-gray.svg">{{ account?.artist_name}}
+                    <img src="/assets/artist-account/type-of-artist-icon-gray.svg" alt="artist type icon">{{ account?.artist_name}}
                   </li>
                   <li v-if="hasSpotifyProfile">
-                    <img src="/assets/artist-account/spotify-icon-gray.svg">{{ modifiedSpotifyUrl }}
+                    <img src="/assets/artist-account/spotify-icon-gray.svg" alt="spotify icon">{{ modifiedSpotifyUrl }}
                   </li>
                   <li v-if="hasYoutubeChannel">
-                    <img src="/assets/artist-account/youtube-icon-gray.svg">{{ modifiedYoutubeUrl }}
+                    <img src="/assets/artist-account/youtube-icon-gray.svg" alt="youtube icon">{{ modifiedYoutubeUrl }}
                   </li>
                   <li v-if="hasTwitterAccount">
-                    <img src="/assets/artist-account/twitter-icon-gray.svg">{{ modifiedTwitterUrl }}
+                    <img src="/assets/artist-account/twitter-icon-gray.svg" alt="twitter icon">{{ modifiedTwitterUrl }}
                   </li>
                   <li v-if="hasInstaGramAccount">
-                    <img src="/assets/artist-account/instagram-icon-gray.svg">{{ modifiedInstaGramUrl }}
+                    <img src="/assets/artist-account/instagram-icon-gray.svg" alt="instagram icon">{{ modifiedInstaGramUrl }}
                   </li>
 
                 </ul>

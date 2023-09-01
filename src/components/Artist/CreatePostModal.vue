@@ -41,9 +41,18 @@
                                                                             <!-- Uploaded images -->
 
                                         <div class="row">
-                                          <div class="col-6 uploaded-images" v-for="(image, index) in uploadedImages" :key="index">
-                                            <img :src="image" alt="Uploaded Image">
-                                            <span class="material-symbols-outlined remove-img" @click="removeImage(index)">&#xe5cd;</span>            
+                                          <div class="col-6 uploaded-images" v-for="(image, index) in displayedImages" :key="index">
+                                            <div v-if="index !== 2">
+                                              <img :src="image" alt="Uploaded Image">
+                                            <span class="material-symbols-outlined remove-img" @click="removeImage(index)">&#xe5cd;</span> 
+                                            </div>
+                                               
+                                            <div v-else class="image-container">
+                                              <img :src="image" alt="total number of images">
+                                              <span class="material-symbols-outlined remove-img" @click="removeImage(index)">&#xe5cd;</span> 
+                                              <span class="image-count">+{{ countNumberOfImages }}</span>
+                                            </div>
+
                                           </div>
                                           <div class="col-6 text-center uploaded-images">
                                             <div class="upload-more" @click="uploadImage">
@@ -252,6 +261,12 @@
     },      
     computed: {
         ...mapGetters(["isLoggedIn"]),
+        countNumberOfImages(){
+          return this.uploadedImages.length;
+        },
+        displayedImages() {
+      return this.uploadedImages.slice(0, 3);
+    }
   },
   watch: {
     submittedTime() {

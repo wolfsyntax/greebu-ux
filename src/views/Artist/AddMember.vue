@@ -98,27 +98,27 @@ export default {
     submit()
     { 
       this.$emit('form', this.form)
-      // this.addMember(this.form).then((response) =>
-      // {
+      this.addMember(this.form).then((response) =>
+      {
 
-      //   const { status } = response;
-      //   if (status === 422) {
-      //     this.errors = response?.result?.errors || {}
-      //   } else {
-      //     this.$store.commit('SET_MEMBERS', response.result?.members)
-      //     this.$emit('modalClose')
-      //   }
+        const { status } = response;
+        if (status === 422) {
+          this.errors = response?.result?.errors || {}
+        } else {
+          this.$store.commit('SET_MEMBERS', response.result?.members)
+          this.$emit('modalClose')
+        }
 
-      // })
-      // .catch(err => {
-      //   console.log('Err: ', err)
-      //   // this.$vs.notification({
-      //   //   color: 'danger',
-      //   //   position: 'top-right',
-      //   //   title: 'Server Status',
-      //   //   text: `${err.message}`
-      //   // })
-      // });
+      })
+      .catch(err => {
+        console.log('Err: ', err)
+        this.$vs.notification({
+          color: 'danger',
+          position: 'top-right',
+          title: 'Server Status',
+          text: `${err.message}`
+        })
+      });
     }
   },
   computed: {
