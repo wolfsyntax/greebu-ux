@@ -42,8 +42,8 @@
                   </div>
 
                   <div class="modal-body">
-                    <member-form @modalClose="dismiss" @form="updateMember" v-if="formType === 'members'"/>
-                    <social-media @modalClose="dismiss" @form="updateSocial" :media="social" v-else />
+                    <member-form @modalClose="dismiss" @form="updateMember" :memberIndex="memberIndex" v-if="formType === 'members'"/>
+                    <social-media @modalClose="dismiss" @form="updateSocial" :media="social" v-if="formType === 'links'" />
                   </div>
                 </div>
               </div>
@@ -166,16 +166,15 @@
               <div class="band-and-social">                           
                 <div class="form-group">
                   <label for="members">Band Members</label><br>
-                  <button type="button" class="btn btn-primary add-member" @click="toggle()"><span class="material-symbols-rounded">add_box</span>Add Member</button>
+                  <button type="button" class="btn btn-primary add-member" @click="toggle('members', false, -1)"><span class="material-symbols-rounded">add_box</span>Add Member</button>
                 </div>    
 
                 <div class="col">
                   <div class="row">
                     <div class="col-12">
                       <ul class="list-group band-members" v-if="members">
-                        <li class="list-group-item" v-for="mem in members" :key="mem.id">
+                        <li class="list-group-item" v-for="(mem, index) in members" :key="mem.id">
                           <div class="items">
-                            
                             <img @error="replaceByDefault" class="avatar" :src="mem.avatar" alt="" />      
                             
                             <div class="member-info">
@@ -184,10 +183,10 @@
                             </div>
                           </div>
 
-                          <div class="options">
+                          <div class="options"> 
                             <div class="d-flex align-items-center text-end">
-                              <button type="button" class="edit-band-member-wrapper">
-                                <img src="/assets/artist-account/edit-band-member.svg" class="edit-band-member" alt="edit band member" @click="toggle()">
+                              <button type="button" class="edit-band-member-wrapper" @click="toggle('members', true, index)">
+                                <img src="/assets/artist-account/edit-band-member.svg" class="edit-band-member" alt="edit band member" >
                               </button>
                               <button type="button" @click="removeMember(mem.id)" class="delete-band-member-wrapper">
                                 <img src="/assets/artist-account/delete-band-member.svg" class="delete-band-member" alt="delete band member">
@@ -509,7 +508,7 @@ export default {
       // members: [],
       //errors: {},
       active: false,
-      formType: 'members',
+      formType: '',
       formHeader: 'Add Member',
       formSubHeading: 'Lorem ipsum dolor sit amet consectetur. Nam lacus viverra nec orci arcu id fringilla ultrices.',
       isLoading: false,
@@ -518,9 +517,11 @@ export default {
       fileSize: '', // Store file size here
       // For update social media link
       social: {
-        text: '',
-        key: '',
-      }
+        text: null,
+        key: null,
+      },
+
+      memberIndex: -1,
     }
   },
   setup()
@@ -555,6 +556,8 @@ export default {
     this.social = {
       text: '', key: '',
     }
+
+    this.memberIndex = -1;
 
     console.log('-Before Create-')
   },
@@ -630,7 +633,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      'fetchArtistOptions', 'updateArtistProfile', 'removeMember', /*'removeSocialMedia',*/ 'artistOptions', 'fetchProfile',
+      'fetchArtistOptions', 'updateArtistProfile', 'removeMember', /*'removeSocialMedia',*/ 'artistOptions', 'fetchProfile', 'fetchMember',
     ]),
     ...mapMutations([
       'SET_PROFILE', 'SET_ARTIST', 'SET_MEMBERS',
@@ -689,25 +692,31 @@ export default {
       this.active ? body.classList.add("modal-open") : body.classList.remove("modal-open")
       this.social.key = '';
       this.social.text = '';
+      this.memberIndex = -1;
+
     },
     toggle(option = 'members', isEdit = false, params)
     {
 
+      this.social = { key: '', text: '' };
+      this.$store.commit('SET_MEMBER', {})
+
+
       if (isEdit && option === 'links') {
         this.social = params;
-      } else if (isEdit) {
-        this.social = { key: '', text: '' };
-      } else if (option === 'links' && !isEdit) {
-        this.social = { key: '', text: '' };
-      }
+      } else if (option === 'members' && isEdit && params > -1) {
+        this.memberIndex = params;
+        // console.log('Edit Member: ', this.members[params]);
+        // this.fetchMember(params);  
+      } 
 
       const body = document.querySelector("body")
       this.active = !this.active
       this.active ? body.classList.add("modal-open") : body.classList.remove("modal-open")
 
       this.formType = option
-
-      this.formHeader = option === 'members' ? 'Add Member' : 'Add Social Media Account';
+      if (!isEdit) this.formHeader = option === 'members' ? 'Add Member' : 'Add Social Media Account';
+      else this.formHeader = option === 'members' ? 'Edit Member' : 'Edit Social Media Account';
       
     },
     replaceByDefault(e) 
@@ -758,6 +767,7 @@ export default {
     updateMember(val)
     {
       this.member.push(val);
+
       this.dismiss()
     },
     closeToastArtist(){
@@ -800,6 +810,7 @@ export default {
       genres: (state) => state.artist.genres,
       members: (state) => state.artist.members,
       account: (state) => state.account,
+      member: state => state.artist.member
     }),
     // cGenre()
     // {

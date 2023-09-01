@@ -23,6 +23,7 @@
             <div v-for="err in errors?.member_avatar" :key="err" class="text-danger">{{ err }}</div>
           </div>
         </div>
+
         <div class="row py-2">
           <div class="col">
             <div class="form-group">
@@ -108,11 +109,74 @@ export default {
       default: [],
       required: true
     },
+    memberIndex: {
+      type: Number,
+      default: -1,
+      required: false,
+    }
+  },
+  watch: {
+
+  },
+  mounted()
+  {
+    // this.form = {
+    //   member_avatar: '',
+    //   member_name: '',
+    //   role: '',
+    // };
+
+    if (this.memberIndex > -1) {
+
+      this.form = {
+        member_avatar: this.members[this.memberIndex]?.avatar || '',
+        member_name: this.members[this.memberIndex]?.member_name || '',
+        role: this.members[this.memberIndex]?.role.toLowerCase() || '',
+      };
+
+      this.avatar = this.members[this.memberIndex]?.avatar || '';
+
+      console.log('Member Info (mounted): ', this.form)
+    } else {
+
+      this.form = {
+        member_avatar: '',
+        member_name: '',
+        role: '',
+      };
+
+      this.avatar = '';
+    }
+
+  },
+  created() {
+    
+    if (this.memberIndex > -1) {
+
+      this.form = {
+        member_avatar: this.members[this.memberIndex]?.avatar || '',
+        member_name: this.members[this.memberIndex]?.member_name || '',
+        role: this.members[this.memberIndex]?.role.toLowerCase() || '',
+      };
+
+      this.avatar = this.members[this.memberIndex]?.avatar || '';
+
+      console.log('Member Info (before update): ', this.form)
+    } else {
+
+      this.form = {
+        member_avatar: '',
+        member_name: '',
+        role: '',
+      };
+
+      this.avatar = '';
+    }
 
   },
   methods: {
     ...mapActions([
-      'addMember'
+      'addMember', 'fetchMember', 'updateMember',
     ]),
     changeImage(event) {
       this.avatar = URL.createObjectURL(event.target.files[0]);
@@ -120,41 +184,74 @@ export default {
     },
     submit() {
       this.isLoading = true;
-      console.log('Add member (submit)');
-
+      
       if (this.form.role === 'others') {
         this.form.role = this.other
       }
 
-      this.addMember(this.form).then((response) => {
-        console.log('Add Member response: ', response);
+      if (typeof this.form.member_avatar === 'string') {
+        this.form.member_avatar = '';
+      } 
 
-        const { status } = response;
-        if (status === 422) {
-          this.errors = response?.result?.errors || {}
-        } else {
-          this.$store.commit('SET_MEMBERS', response.result?.members)
+      if (this.memberIndex > -1) {
 
-          this.form = {
-            member_avatar: null,
-            member_name: '',
-            role: null,
-          };
+        this.updateMember({ memId: this.members[this.memberIndex].id, form: this.form }).then((response) =>
+        {
+          console.log('Update Member: ', response);
+          const { status } = response;
+          if (status === 422) {
+            this.errors = response?.result?.errors || {}
+          } else {
+            this.$store.commit('SET_MEMBERS', response.result?.members)
 
-          this.$emit('modalClose')
-          this.isLoading = false;
-        }
+            // this.form = {
+            //   member_avatar: null,
+            //   member_name: '',
+            //   role: null,
+            // };
 
-      })
-        .catch(err => {
+            // this.avatar = '';
+            
+            this.$emit('modalClose')
+            this.isLoading = false;
+          }
+
+        })
+        .catch(err =>
+        {
           console.log('Err: ', err)
-          // this.$vs.notification({
-          //   color: 'danger',
-          //   position: 'top-right',
-          //   title: 'Server Status',
-          //   text: `${err.message}`
-          // })
         });
+          console.log('Update Member here')
+        
+      } else {
+        this.addMember(this.form).then((response) =>
+        {
+          console.log('Add member response: ', response)
+          const { status } = response;
+          if (status === 422) {
+            this.errors = response?.result?.errors || {}
+          } else {
+            this.$store.commit('SET_MEMBERS', response.result?.members)
+
+            this.form = {
+              member_avatar: null,
+              member_name: '',
+              role: null,
+            };
+
+            this.$emit('modalClose')
+            this.isLoading = false;
+          }
+
+        })
+          .catch(err =>
+          {
+            console.log('Err: ', err)
+          });
+
+      }
+
+      this.$emit('form', this.form);
     },
   },
   computed: {
@@ -162,6 +259,7 @@ export default {
       artistTypes: (state) => state.artist.artist_types,
       genres: (state) => state.artist.genres,
       members: (state) => state.artist.members,
+      member: state => state.artist.member
     }),
   }
 }

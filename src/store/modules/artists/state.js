@@ -13,6 +13,7 @@ var state = {
     total: 1,
   },
   artist_profile: {},
+  member: {},
 }
 
 export default state
