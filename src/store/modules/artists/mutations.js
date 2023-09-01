@@ -87,3 +87,13 @@ export const CLEAR_ARTIST = (state) =>
 
   state.artist_profile = { };
 }
+
+export const SET_MEMBER_INDEX = (state, payload = -1) =>
+{
+  state.memIndex = payload;
+  state.member = {};
+  
+  if (payload > -1) {
+    state.member = state.members[payload];
+  }
+}

@@ -109,34 +109,46 @@ export default {
       default: [],
       required: true
     },
-    memberIndex: {
-      type: Number,
-      default: -1,
-      required: false,
-    }
   },
   watch: {
+    idx(val)
+    {
+      if (!(this.roles.filter(el => el.value.toLocaleLowerCase() === this.members[val].role.toLocaleLowerCase()).length > 0)) {
+        this.other = this.members[val]?.role || '';
+      } else {
+        this.other = '';
+      }
 
+      //  role: this.roles.filter(el => el.value.toLocaleLowerCase() === this.member.role.toLocaleLowerCase()).length > 0 ? (this.member?.role.toLowerCase() || '') : 'others',
+      this.form = {
+        member_avatar: this.members[val]?.avatar || '',
+        member_name: this.members[val]?.member_name || '' ,
+        role: this.roles.filter(el => el.value.toLocaleLowerCase() === this.members[val].role.toLocaleLowerCase()).length > 0 ? (this.members[val]?.role.toLowerCase() || '') : 'others',
+      }
+
+      this.avatar = this.members[val]?.avatar;
+    }
   },
+
   mounted()
   {
-    // this.form = {
-    //   member_avatar: '',
-    //   member_name: '',
-    //   role: '',
-    // };
 
-    if (this.memberIndex > -1) {
+    if (Object.keys(this.member).length > 0) {
+
+      if (!(this.roles.filter(el => el.value.toLocaleLowerCase() === this.member.role.toLocaleLowerCase()).length > 0)) {
+        this.other = this.member?.role || '';
+      } else {
+        this.other = '';
+      }
 
       this.form = {
-        member_avatar: this.members[this.memberIndex]?.avatar || '',
-        member_name: this.members[this.memberIndex]?.member_name || '',
-        role: this.members[this.memberIndex]?.role.toLowerCase() || '',
+        member_avatar: this.member?.avatar || '',
+        member_name: this.member?.member_name || '',
+        role: this.roles.filter(el => el.value.toLocaleLowerCase() === this.member.role.toLocaleLowerCase()).length > 0 ? (this.member?.role.toLowerCase() || '') : 'others',
       };
 
-      this.avatar = this.members[this.memberIndex]?.avatar || '';
+      this.avatar = this.member?.avatar || '';
 
-      console.log('Member Info (mounted): ', this.form)
     } else {
 
       this.form = {
@@ -146,22 +158,28 @@ export default {
       };
 
       this.avatar = '';
+      this.other = '';
     }
 
   },
   created() {
     
-    if (this.memberIndex > -1) {
+    if (Object.keys(this.member).length > 0) {
+
+      if (!(this.roles.filter(el => el.value.toLocaleLowerCase() === this.member.role.toLocaleLowerCase()).length > 0)) {
+        this.other = this.member?.role || '';
+      } else {
+        this.other = '';
+      }
 
       this.form = {
-        member_avatar: this.members[this.memberIndex]?.avatar || '',
-        member_name: this.members[this.memberIndex]?.member_name || '',
-        role: this.members[this.memberIndex]?.role.toLowerCase() || '',
+        member_avatar: this.member?.avatar || '',
+        member_name: this.member?.member_name || '',
+        role: this.roles.filter(el => el.value.toLocaleLowerCase() === this.member.role.toLocaleLowerCase()).length > 0 ? (this.member?.role.toLowerCase() || '') : 'others',
       };
 
-      this.avatar = this.members[this.memberIndex]?.avatar || '';
+      this.avatar = this.member?.avatar || '';
 
-      console.log('Member Info (before update): ', this.form)
     } else {
 
       this.form = {
@@ -170,6 +188,7 @@ export default {
         role: '',
       };
 
+      this.other = '';
       this.avatar = '';
     }
 
@@ -184,32 +203,39 @@ export default {
     },
     submit() {
       this.isLoading = true;
-      
-      if (this.form.role === 'others') {
-        this.form.role = this.other
-      }
 
       if (typeof this.form.member_avatar === 'string') {
         this.form.member_avatar = '';
       } 
 
-      if (this.memberIndex > -1) {
+      if (Object.keys(this.member).length > 0) {
 
-        this.updateMember({ memId: this.members[this.memberIndex].id, form: this.form }).then((response) =>
+        var id = this.member.id;
+
+        this.$store.commit('SET_MEMBER_INDEX', -1);
+
+        this.updateMember({
+          memId: id, form: {
+            avatar: this.form.member_avatar,
+            member_name: this.form.member_name,
+            role: this.form.role === 'others' ? this.other : this.form.role,
+        } }).then((response) =>
         {
           console.log('Update Member: ', response);
           const { status } = response;
           if (status === 422) {
             this.errors = response?.result?.errors || {}
           } else {
-            this.$store.commit('SET_MEMBERS', response.result?.members)
+            
+            // this.$store.commit('SET_MEMBERS', response.result?.members)
 
             // this.form = {
             //   member_avatar: null,
             //   member_name: '',
             //   role: null,
-            // };
+            // }
 
+            // this.other = '';
             // this.avatar = '';
             
             this.$emit('modalClose')
@@ -221,9 +247,13 @@ export default {
         {
           console.log('Err: ', err)
         });
-          console.log('Update Member here')
-        
+
       } else {
+
+        if (this.form.role === 'others') {
+          this.form.role = this.other
+        }
+        // this.$emit('form', this.form);     
         this.addMember(this.form).then((response) =>
         {
           console.log('Add member response: ', response)
@@ -237,7 +267,12 @@ export default {
               member_avatar: null,
               member_name: '',
               role: null,
-            };
+            }
+
+            this.other = '';
+            this.avatar = '';
+                    
+            this.$store.commit('SET_MEMBER_INDEX', -1);
 
             this.$emit('modalClose')
             this.isLoading = false;
@@ -251,15 +286,16 @@ export default {
 
       }
 
-      this.$emit('form', this.form);
     },
   },
   computed: {
+    ...mapGetters(["memberInfo", ]),
     ...mapState({
       artistTypes: (state) => state.artist.artist_types,
       genres: (state) => state.artist.genres,
       members: (state) => state.artist.members,
-      member: state => state.artist.member
+      member: state => state.artist.member,
+      idx: state => state.artist.memIndex
     }),
   }
 }

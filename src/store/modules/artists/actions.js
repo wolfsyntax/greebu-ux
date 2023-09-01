@@ -87,8 +87,10 @@ export const addMember = ({ commit, rootState, state}, payload) => {
 
         console.log('\n\nAdd Member Response: ', response)
 
-        const { data } = response
-        commit('SET_MEMBERS', data)
+        const { status: statusCode, data } = response
+        if (statusCode === 200) {
+          commit('SET_MEMBERS', data)
+        }
         resolve(response.data)
     })
     .catch(err => {
@@ -196,7 +198,7 @@ export const updateMember = ({ commit, rootState, state}, payload) => {
         console.log('\n\nUpdate Member Response: ', response)
         
         const { status: statusCode, data: { status, result } } = response
-        if (statusCode === 200 && status === 200) {
+        if ((statusCode === 200 && status === 200) || statusCode === 203 && status === 403) {
           const {members} = result
           commit('SET_MEMBERS', members)
         }

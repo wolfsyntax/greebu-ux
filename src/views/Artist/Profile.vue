@@ -42,7 +42,7 @@
                   </div>
 
                   <div class="modal-body">
-                    <member-form @modalClose="dismiss" @form="updateMember" :memberIndex="memberIndex" v-if="formType === 'members'"/>
+                    <member-form @modalClose="dismiss" @form="updateMember" v-if="formType === 'members'"/>
                     <social-media @modalClose="dismiss" @form="updateSocial" :media="social" v-if="formType === 'links'" />
                   </div>
                 </div>
@@ -557,17 +557,17 @@ export default {
       text: '', key: '',
     }
 
-    this.memberIndex = -1;
-
+    // this.memberIndex = -1;
+    this.$store.commit('SET_MEMBER_INDEX');
     console.log('-Before Create-')
   },
   created() {
-
+    this.$store.commit('SET_MEMBER_INDEX');
   },
   mounted()
   {
     console.log('--- Mounted ---')
-
+    this.$store.commit('SET_MEMBER_INDEX');
     // this.fetchProfile()
     //   .then(res =>
     //   {
@@ -692,22 +692,21 @@ export default {
       this.active ? body.classList.add("modal-open") : body.classList.remove("modal-open")
       this.social.key = '';
       this.social.text = '';
-      this.memberIndex = -1;
-
+      // this.memberIndex = -1;
+      this.$store.commit('SET_MEMBER_INDEX', -1);
     },
     toggle(option = 'members', isEdit = false, params)
     {
 
       this.social = { key: '', text: '' };
       this.$store.commit('SET_MEMBER', {})
-
-
+      this.$store.commit('SET_MEMBER_INDEX');
+      // this.memberIndex = -1;
+      
       if (isEdit && option === 'links') {
         this.social = params;
       } else if (option === 'members' && isEdit && params > -1) {
-        this.memberIndex = params;
-        // console.log('Edit Member: ', this.members[params]);
-        // this.fetchMember(params);  
+        this.$store.commit('SET_MEMBER_INDEX', params);
       } 
 
       const body = document.querySelector("body")
@@ -766,8 +765,10 @@ export default {
     },
     updateMember(val)
     {
-      this.member.push(val);
-
+      if (val) {
+        this.members.push(val);
+      }
+      this.$stor.commit('SET_MEMBER_INDEX');
       this.dismiss()
     },
     closeToastArtist(){
@@ -810,7 +811,8 @@ export default {
       genres: (state) => state.artist.genres,
       members: (state) => state.artist.members,
       account: (state) => state.account,
-      member: state => state.artist.member
+      member: state => state.artist.member,
+      mx: state => state.artist.memberIndex,
     }),
     // cGenre()
     // {
@@ -833,7 +835,14 @@ export default {
 
   },
   watch: {
-
+    // mx(val)
+    // {
+    //   this.memberIndex = val;
+    // },
+    // memberIndex(n, o)
+    // {
+    //   if (n != o) this.$store.commit('SET_MEMBER_INDEX', n);
+    // }
   }
 }
 </script>
