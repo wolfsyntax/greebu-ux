@@ -87,8 +87,10 @@ export const addMember = ({ commit, rootState, state}, payload) => {
 
         console.log('\n\nAdd Member Response: ', response)
 
-        const { data } = response
-        commit('SET_MEMBERS', data)
+        const { status: statusCode, data } = response
+        if (statusCode === 200) {
+          commit('SET_MEMBERS', data)
+        }
         resolve(response.data)
     })
     .catch(err => {
@@ -180,13 +182,13 @@ export const removeMember = ({ commit, rootState, state}, payload) => {
 }
 
 // Update 
-export const updateMember = ({ commit, rootState, state}, {mem_id, form}) => {
+export const updateMember = ({ commit, rootState, state}, payload) => {
   
   return new Promise((resolve, reject) => {
-    
-    axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
 
-    axios.put(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/artists/member/${mem_id}`, form, {
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
+    
+    axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/artists-member/${payload.memId}`, payload.form, {
       headers: {
         "Content-Type": "multipart/form-data",
       }
@@ -196,7 +198,7 @@ export const updateMember = ({ commit, rootState, state}, {mem_id, form}) => {
         console.log('\n\nUpdate Member Response: ', response)
         
         const { status: statusCode, data: { status, result } } = response
-        if (statusCode === 200 && status === 200) {
+        if ((statusCode === 200 && status === 200) || statusCode === 203 && status === 403) {
           const {members} = result
           commit('SET_MEMBERS', members)
         }
@@ -212,7 +214,7 @@ export const updateMember = ({ commit, rootState, state}, {mem_id, form}) => {
 
 // Update 
 export const fetchArtists = ({ commit, rootState, state }, payload) => {
-  console.log('Fetch Artists payload: ', payload)
+
   return new Promise(async(resolve, reject) => {
     var url = `${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/artist-filter`
     if (rootState.bearerToken) {
@@ -299,4 +301,35 @@ export const fetchArtist = ({ commit, rootState, state }, payload) =>
       });
 
   })
+}
+
+export const fetchMember = ({ commit, rootState, state }, payload) =>
+{
+  return new Promise(async(resolve, reject) => {
+    
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
+    
+    await axios.get(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/artists/${rootState.account.id}/member/${payload}`, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      }
+    })
+      .then(response =>
+      {    
+        console.log('\n\nFetch Member detail response: ', response)
+        const { status: statusCode, data: { result, status } } = response;
+
+        if (statusCode === 200 && status === 200) {
+          const { member } = result;
+          commit('SET_MEMBER', member || {});
+
+        }
+
+        resolve(response)
+    })
+    .catch(err => {
+      reject(err)
+    });
+  })
+
 }

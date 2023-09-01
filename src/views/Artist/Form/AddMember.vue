@@ -4,8 +4,6 @@
       <div class="container">
         <div class="row py-2">
           <div class="col">
-            <!-- <input type="file" @input="form.member_avatar = $event.target.files[0]" class="member-avatar" accept="image/png, image/webp, image/svg, image/jpeg"/>
-            <span v-if="errors?.member_avatar" class="text-danger">{{ errors.member_avatar }}</span> -->
 
             <div class="form-group text-center upload-img">
               <label class="label-img">
@@ -23,14 +21,13 @@
             <div v-for="err in errors?.member_avatar" :key="err" class="text-danger">{{ err }}</div>
           </div>
         </div>
+
         <div class="row py-2">
           <div class="col">
             <div class="form-group">
               <label for="fileUpload">Name of the Member</label>
               <input type="text" v-model="form.member_name" placeholder="Name of the member"
                 class="form-control member-name" required />
-              <!-- <span v-if="errors?.member_name" class="member-name text-danger">errors.member_name.shift()</span> -->
-              <!-- <div v-for="err in errors?.member_name" :key="err" class="text-danger">{{ err }}</div> -->
               <div v-for="err in error?.member_name" :key="err" class="member-name text-danger">{{ err }}</div>
             </div>
           </div>
@@ -48,7 +45,6 @@
 
               <input type="text" v-model="other" placeholder="Role of Member" class="form-control member-name"
                 v-if="form.role === 'others'" required />
-              <!-- <span v-if="errors?.role" class="role-error text-danger">{{ errors.role.shift() }}</span> -->
               <div v-for="err in errors?.role" :key="err" class="text-danger">{{ err }}</div>
             </div>
           </div>
@@ -108,11 +104,92 @@ export default {
       default: [],
       required: true
     },
+  },
+  watch: {
+    idx(val)
+    {
+      if (!(this.roles.filter(el => el.value.toLocaleLowerCase() === this.members[val].role.toLocaleLowerCase()).length > 0)) {
+        this.other = this.members[val]?.role || '';
+      } else {
+        this.other = '';
+      }
+
+      this.form = {
+        member_avatar: this.members[val]?.avatar || '',
+        member_name: this.members[val]?.member_name || '' ,
+        role: this.roles.filter(el => el.value.toLocaleLowerCase() === this.members[val].role.toLocaleLowerCase()).length > 0 ? (this.members[val]?.role.toLowerCase() || '') : 'others',
+      }
+
+      this.avatar = this.members[val]?.avatar;
+    }
+  },
+
+  mounted()
+  {
+
+    if (Object.keys(this.member).length > 0) {
+
+      if (!(this.roles.filter(el => el.value.toLocaleLowerCase() === this.member.role.toLocaleLowerCase()).length > 0)) {
+        this.other = this.member?.role || '';
+      } else {
+        this.other = '';
+      }
+
+      this.form = {
+        member_avatar: this.member?.avatar || '',
+        member_name: this.member?.member_name || '',
+        role: this.roles.filter(el => el.value.toLocaleLowerCase() === this.member.role.toLocaleLowerCase()).length > 0 ? (this.member?.role.toLowerCase() || '') : 'others',
+      };
+
+      this.avatar = this.member?.avatar || '';
+
+    } else {
+
+      this.form = {
+        member_avatar: '',
+        member_name: '',
+        role: '',
+      };
+
+      this.avatar = '';
+      this.other = '';
+    }
+
+  },
+  created() {
+    
+    if (Object.keys(this.member).length > 0) {
+
+      if (!(this.roles.filter(el => el.value.toLocaleLowerCase() === this.member.role.toLocaleLowerCase()).length > 0)) {
+        this.other = this.member?.role || '';
+      } else {
+        this.other = '';
+      }
+
+      this.form = {
+        member_avatar: this.member?.avatar || '',
+        member_name: this.member?.member_name || '',
+        role: this.roles.filter(el => el.value.toLocaleLowerCase() === this.member.role.toLocaleLowerCase()).length > 0 ? (this.member?.role.toLowerCase() || '') : 'others',
+      };
+
+      this.avatar = this.member?.avatar || '';
+
+    } else {
+
+      this.form = {
+        member_avatar: '',
+        member_name: '',
+        role: '',
+      };
+
+      this.other = '';
+      this.avatar = '';
+    }
 
   },
   methods: {
     ...mapActions([
-      'addMember'
+      'addMember', 'fetchMember', 'updateMember',
     ]),
     changeImage(event) {
       this.avatar = URL.createObjectURL(event.target.files[0]);
@@ -120,48 +197,99 @@ export default {
     },
     submit() {
       this.isLoading = true;
-      console.log('Add member (submit)');
 
-      if (this.form.role === 'others') {
-        this.form.role = this.other
+      if (typeof this.form.member_avatar === 'string') {
+        this.form.member_avatar = '';
+      } 
+
+      if (Object.keys(this.member).length > 0) {
+
+        var id = this.member.id;
+
+        this.$store.commit('SET_MEMBER_INDEX', -1);
+
+        this.updateMember({
+          memId: id, form: {
+            avatar: this.form.member_avatar,
+            member_name: this.form.member_name,
+            role: this.form.role === 'others' ? this.other : this.form.role,
+        } }).then((response) =>
+        {
+          console.log('Update Member: ', response);
+          const { status } = response;
+          if (status === 422) {
+            this.errors = response?.result?.errors || {}
+          } else {
+            
+            // this.$store.commit('SET_MEMBERS', response.result?.members)
+
+            // this.form = {
+            //   member_avatar: null,
+            //   member_name: '',
+            //   role: null,
+            // }
+
+            // this.other = '';
+            // this.avatar = '';
+            
+            this.$emit('modalClose')
+            this.isLoading = false;
+          }
+
+        })
+        .catch(err =>
+        {
+          console.log('Err: ', err)
+        });
+
+      } else {
+
+        if (this.form.role === 'others') {
+          this.form.role = this.other
+        }
+        // this.$emit('form', this.form);     
+        this.addMember(this.form).then((response) =>
+        {
+          console.log('Add member response: ', response)
+          const { status } = response;
+          if (status === 422) {
+            this.errors = response?.result?.errors || {}
+          } else {
+            this.$store.commit('SET_MEMBERS', response.result?.members)
+
+            this.form = {
+              member_avatar: null,
+              member_name: '',
+              role: null,
+            }
+
+            this.other = '';
+            this.avatar = '';
+                    
+            this.$store.commit('SET_MEMBER_INDEX', -1);
+
+            this.$emit('modalClose')
+            this.isLoading = false;
+          }
+
+        })
+          .catch(err =>
+          {
+            console.log('Err: ', err)
+          });
+
       }
 
-      this.addMember(this.form).then((response) => {
-        console.log('Add Member response: ', response);
-
-        const { status } = response;
-        if (status === 422) {
-          this.errors = response?.result?.errors || {}
-        } else {
-          this.$store.commit('SET_MEMBERS', response.result?.members)
-
-          this.form = {
-            member_avatar: null,
-            member_name: '',
-            role: null,
-          };
-
-          this.$emit('modalClose')
-          this.isLoading = false;
-        }
-
-      })
-        .catch(err => {
-          console.log('Err: ', err)
-          // this.$vs.notification({
-          //   color: 'danger',
-          //   position: 'top-right',
-          //   title: 'Server Status',
-          //   text: `${err.message}`
-          // })
-        });
     },
   },
   computed: {
+    ...mapGetters(["memberInfo", ]),
     ...mapState({
       artistTypes: (state) => state.artist.artist_types,
       genres: (state) => state.artist.genres,
       members: (state) => state.artist.members,
+      member: state => state.artist.member,
+      idx: state => state.artist.memIndex
     }),
   }
 }

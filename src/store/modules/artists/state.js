@@ -13,6 +13,8 @@ var state = {
     total: 1,
   },
   artist_profile: {},
+  member: {},
+  memIndex: -1,
 }
 
 export default state

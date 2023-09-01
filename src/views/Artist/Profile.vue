@@ -43,7 +43,7 @@
 
                   <div class="modal-body">
                     <member-form @modalClose="dismiss" @form="updateMember" v-if="formType === 'members'"/>
-                    <social-media @modalClose="dismiss" @form="updateSocial" :media="social" v-else />
+                    <social-media @modalClose="dismiss" @form="updateSocial" :media="social" v-if="formType === 'links'" />
                   </div>
                 </div>
               </div>
@@ -104,7 +104,6 @@
                     </option>
                   </select>
 
-                  <!-- <div v-if="error?.artist_type" class="artist-type-error text-danger"></div> -->
                   <div v-for="err in error?.artist_type" :key="err" class="text-danger">{{ err }}</div>
                 </div>
 
@@ -124,7 +123,6 @@
                   :searchable="true" :delay="0" 
                   noOptionsText="Please input genre(s)"
                   class="genre" placeholder="Please select genres" />
-                  <!-- <div v-if="errors.genre" class="genre-error text-danger"></div> -->
                   <br/>
                   <!-- <input type="text" v-model="others" @blur="updateGenre" placeholder="Genre" class="form-control province" v-if="hasOthers" required /> -->
                   <div v-for="err in error?.genre" :key="err" class="text-danger">{{ err }}</div>
@@ -146,7 +144,6 @@
                     <div class="form-group">
                       <label for="address" class="hidden">City</label>
                       <input type="text" v-model="form.city" placeholder="City" class="form-control city" required />
-                      <!-- <div v-if="errors.city" class="city-error text-danger"></div> -->
                       <div v-for="err in error?.city" :key="err" class="text-danger">{{ err }}</div>
                     </div>
                   </div>
@@ -155,7 +152,6 @@
                     <div class="form-group">
                       <label for="address" class="hidden">Province</label>
                       <input type="text" v-model="form.province" placeholder="Province" class="form-control province" required/>
-                      <!-- <div v-if="error?.province" class="province-error text-danger"></div> -->
                       <div v-for="err in error?.province" :key="err" class="text-danger">{{ err }}</div>
                     </div>
                   </div>
@@ -166,16 +162,15 @@
               <div class="band-and-social">                           
                 <div class="form-group">
                   <label for="members">Band Members</label><br>
-                  <button type="button" class="btn btn-primary add-member" @click="toggle()"><span class="material-symbols-rounded">add_box</span>Add Member</button>
+                  <button type="button" class="btn btn-primary add-member" @click="toggle('members', false, -1)"><span class="material-symbols-rounded">add_box</span>Add Member</button>
                 </div>    
 
                 <div class="col">
                   <div class="row">
                     <div class="col-12">
                       <ul class="list-group band-members" v-if="members">
-                        <li class="list-group-item" v-for="mem in members" :key="mem.id">
+                        <li class="list-group-item" v-for="(mem, index) in members" :key="mem.id">
                           <div class="items">
-                            
                             <img @error="replaceByDefault" class="avatar" :src="mem.avatar" alt="" />      
                             
                             <div class="member-info">
@@ -184,10 +179,10 @@
                             </div>
                           </div>
 
-                          <div class="options">
+                          <div class="options"> 
                             <div class="d-flex align-items-center text-end">
-                              <button type="button" class="edit-band-member-wrapper">
-                                <img src="/assets/artist-account/edit-band-member.svg" class="edit-band-member" alt="edit band member" @click="toggle()">
+                              <button type="button" class="edit-band-member-wrapper" @click="toggle('members', true, index)">
+                                <img src="/assets/artist-account/edit-band-member.svg" class="edit-band-member" alt="edit band member" >
                               </button>
                               <button type="button" @click="removeMember(mem.id)" class="delete-band-member-wrapper">
                                 <img src="/assets/artist-account/delete-band-member.svg" class="delete-band-member" alt="delete band member">
@@ -345,7 +340,6 @@
                 <textarea v-model="form.bio" class="form-control about-artist" 
                   placeholder="My name is [Your Name], and I am a [genre/ style] music artist based in [city, country]. I am writing to propose a music collaboration opportunity that I believe would be mutually beneficial and creatively inspiring......">
                 </textarea>
-                <!-- <div v-if="errors.bio">{{ error.bio }}</div> -->
                 <div v-for="err in error?.bio" :key="err" class="text-danger">{{ err }}</div>
               </div>
 
@@ -358,7 +352,6 @@
                   <label for="songTitle">Title of the song</label>
                   <input type="text" v-model="form.song_title" name="songTitle" class="form-control" required/>
 
-                  <!-- <div v-if="error?.song_title" class="artist-name-error text-danger"></div> -->
                   <div v-for="err in error?.song_title" :key="err" class="text-danger">{{ err }}</div>
                 </div>
 
@@ -388,27 +381,27 @@
                   <p class="max-file-size">Please upload an audio file in .mp3 format, with a maximum file size of 64 megabytes.</p>
                 </div>
 
-                                                            <!-- Uploaded music -->
-                  <div v-if="uploadedMusic" class="uploaded-song-wrapper">
-                        <audio controls class="audio-controls-wrapper">
-                          <source :src="uploadedMusic" type="audio/mpeg">
-                          Your browser does not support the audio element.
-                        </audio>
-                        <div class="d-flex align-items-center justify-content-between song-wrapper">
-                          <div class="d-flex align-items-center song-title-wrapper">
-                            <img src="/assets/artist-account/mp3-icon.svg" alt="Music icon">
-                          <div>
-                            <h5 class="song-title">{{ songTitle }}</h5>
-                            <p class="preview"><span class="badge file-size">{{ fileSize }}KB</span></p>
-                          </div>
-                          </div>
-                          <div class="d-flex align-items-center remove-music-wrapper">
-                            <img src="/assets/artist-account/remove-song-icon.svg" @click="removeMusic" alt="Music icon">
-                          </div>
-                        </div>  
-                        
+                <!-- Uploaded music -->
+                <div v-if="uploadedMusic" class="uploaded-song-wrapper">
+                  <audio controls class="audio-controls-wrapper">
+                    <source :src="uploadedMusic" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <div class="d-flex align-items-center justify-content-between song-wrapper">
+                    <div class="d-flex align-items-center song-title-wrapper">
+                      <img src="/assets/artist-account/mp3-icon.svg" alt="Music icon">
+                    <div>
+                      <h5 class="song-title">{{ songTitle }}</h5>
+                      <p class="preview"><span class="badge file-size">{{ fileSize }}KB</span></p>
                     </div>
-                    <div v-for="err in error?.song" :key="err" class="text-danger">{{ err }}</div>
+                    </div>
+                    <div class="d-flex align-items-center remove-music-wrapper">
+                      <img src="/assets/artist-account/remove-song-icon.svg" @click="removeMusic" alt="Music icon">
+                    </div>
+                  </div>  
+                      
+                  </div>
+                  <div v-for="err in error?.song" :key="err" class="text-danger">{{ err }}</div>
               </div> <!-- end of song-preview -->
               
               
@@ -509,7 +502,7 @@ export default {
       // members: [],
       //errors: {},
       active: false,
-      formType: 'members',
+      formType: '',
       formHeader: 'Add Member',
       formSubHeading: 'Lorem ipsum dolor sit amet consectetur. Nam lacus viverra nec orci arcu id fringilla ultrices.',
       isLoading: false,
@@ -518,9 +511,11 @@ export default {
       fileSize: '', // Store file size here
       // For update social media link
       social: {
-        text: '',
-        key: '',
-      }
+        text: null,
+        key: null,
+      },
+
+      memberIndex: -1,
     }
   },
   setup()
@@ -556,15 +551,17 @@ export default {
       text: '', key: '',
     }
 
+    // this.memberIndex = -1;
+    this.$store.commit('SET_MEMBER_INDEX');
     console.log('-Before Create-')
   },
   created() {
-
+    this.$store.commit('SET_MEMBER_INDEX');
   },
   mounted()
   {
     console.log('--- Mounted ---')
-
+    this.$store.commit('SET_MEMBER_INDEX');
     // this.fetchProfile()
     //   .then(res =>
     //   {
@@ -595,14 +592,6 @@ export default {
     //     - profile
     //   */
 
-    //   this.form = this.myAccount;
-    //   this.avatar = this.myAccount?.avatar || '/assets/artist-account/new.svg'
-    //   this.formGenres = this.myAccount?.genres || [];
-    //   var temp = this.fetchGenre
-    //   console.log('Genre: ', this.formGenres);
-
-    // })
-
     this.form = this.myAccount;
     this.form.avatar = '';
     this.uploadedMusic = this.myAccount.song || '';
@@ -610,9 +599,13 @@ export default {
 
     this.avatar = this.myAvatar || '/assets/artist-account/new.svg'
     this.formGenres = this.myAccount?.genres || [];
-    console.log('My Avatar: ', this.avatar)
-    console.log('Song: ', this.songTitle, this.song)
 
+    console.log('\n\n-----------------------------------\n1. Form: ', this.form,
+      `\n2. Uploaded Music [${this.songTitle}]: `, this.uploadedMusic,
+      '\n3. Avatar: ', this.avatar,
+      '\n4. Song: ', this.song,
+      '\n5. Band Genre: ', this.formGenres
+    )
     console.log('--- End Mounted ---')
 
   },
@@ -630,7 +623,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      'fetchArtistOptions', 'updateArtistProfile', 'removeMember', /*'removeSocialMedia',*/ 'artistOptions', 'fetchProfile',
+      'fetchArtistOptions', 'updateArtistProfile', 'removeMember', /*'removeSocialMedia',*/ 'artistOptions', 'fetchProfile', 'fetchMember',
     ]),
     ...mapMutations([
       'SET_PROFILE', 'SET_ARTIST', 'SET_MEMBERS',
@@ -659,7 +652,6 @@ export default {
 
       });
 
-      console.log('Artist Profile [form]: ', this.form)
       //this.$router.push('/artist');
     },
     removeSocialMedia(key)
@@ -689,25 +681,29 @@ export default {
       this.active ? body.classList.add("modal-open") : body.classList.remove("modal-open")
       this.social.key = '';
       this.social.text = '';
+
+      this.$store.commit('SET_MEMBER_INDEX', -1);
     },
     toggle(option = 'members', isEdit = false, params)
     {
 
+      this.social = { key: '', text: '' };
+
+      this.$store.commit('SET_MEMBER_INDEX');
+      
       if (isEdit && option === 'links') {
         this.social = params;
-      } else if (isEdit) {
-        this.social = { key: '', text: '' };
-      } else if (option === 'links' && !isEdit) {
-        this.social = { key: '', text: '' };
-      }
+      } else if (option === 'members' && isEdit && params > -1) {
+        this.$store.commit('SET_MEMBER_INDEX', params);
+      } 
 
       const body = document.querySelector("body")
       this.active = !this.active
       this.active ? body.classList.add("modal-open") : body.classList.remove("modal-open")
 
       this.formType = option
-
-      this.formHeader = option === 'members' ? 'Add Member' : 'Add Social Media Account';
+      if (!isEdit) this.formHeader = option === 'members' ? 'Add Member' : 'Add Social Media Account';
+      else this.formHeader = option === 'members' ? 'Edit Member' : 'Edit Social Media Account';
       
     },
     replaceByDefault(e) 
@@ -753,11 +749,15 @@ export default {
 
       }
       
-      console.log('Update Social: ', val)
     },
     updateMember(val)
     {
-      this.member.push(val);
+      if (val) {
+        this.members.push(val);
+      }
+
+      this.$stor.commit('SET_MEMBER_INDEX');
+
       this.dismiss()
     },
     closeToastArtist(){
@@ -769,7 +769,7 @@ export default {
         console.log('Empty Query fetchGenre')
         this.artistOptions()
       }
-      // return query ? this.genres : this.cGenre
+
       return this.formArtistGenres
 
     },
@@ -800,29 +800,12 @@ export default {
       genres: (state) => state.artist.genres,
       members: (state) => state.artist.members,
       account: (state) => state.account,
+      member: state => state.artist.member,
+      mx: state => state.artist.memberIndex,
     }),
-    // cGenre()
-    // {
-    //     const self = this;
-    //     if (this.formGenres && this.genres) {
-    //       var gen = this.formGenres?.filter(function (el)
-    //         {
-    //           return !self.genres.includes(el);
-    //         })
-
-    //       return gen?.concat(this.genres);
-    //     }
-        
-    //     if (!this.genres) {
-    //       this.artistOptions();
-    //     }
-        
-    //     return this.genres;
-    // },
-
   },
   watch: {
-
+    
   }
 }
 </script>

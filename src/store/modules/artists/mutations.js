@@ -19,6 +19,19 @@ export const SET_MEMBERS = (state, payload) => {
   state.members = payload || [];
 }
 
+export const SET_MEMBER = (state, payload) =>
+{
+  
+  if (Object.keys(payload).length === 5) {
+    state.member = payload;
+    state.member.role = payload.role?.toLowerCase();
+    state.member.member_avatar = payload.avatar;
+  } else {
+    state.member = {};
+  }
+
+}
+
 export const SET_ARTIST = (state, payload) =>
 {
   state.artist = payload
@@ -61,7 +74,9 @@ export const CLEAR_ARTIST = (state) =>
   state.genreList = null;
 
   state.members = null;
-
+  state.member = {};
+  state.memIndex = -1;
+  
   state.artist = {};
   
   state.pagination = {
@@ -72,4 +87,14 @@ export const CLEAR_ARTIST = (state) =>
   };
 
   state.artist_profile = { };
+}
+
+export const SET_MEMBER_INDEX = (state, payload = -1) =>
+{
+  state.memIndex = payload;
+  state.member = {};
+
+  if (payload > -1) {
+    state.member = state.members[payload];
+  }
 }

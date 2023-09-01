@@ -7,3 +7,8 @@ export const formArtistGenres = state => state.genres?.concat(state.artist_genre
 {
   return !state.genres.includes(el);
 })) || state.genres
+
+export const memberInfo = state =>
+{
+  return state.memIndex > -1 ? state.members[state.memIndex] : {};
+};

@@ -80,9 +80,13 @@ export default {
   watch: {
     media(n, o)
     {
+
       this.media_type = n.key ?? '';
       this.url = n.text ?? '';
       this.errors = {};
+
+      console.log('Watch [media]: ', n);
+
     },
     media_type(nv, ov)
     {
@@ -161,7 +165,7 @@ export default {
     this.media_type = this.media.key;
     this.url = this.media.text;
     this.errors = {};
-
+    console.log('Created [media]: ', this.media);
   },
   methods: {
     ...mapActions([
@@ -169,10 +173,10 @@ export default {
     ]),
     submit()
     {
+
+      this.$emit('form', this.media_type, this.url)
       this.$emit('modalClose');
       
-      this.$emit('form', this.media_type, this.url)
-
       // this.addSocialMedia({
       //   url: this.url,
       //   media_type: this.media_type,

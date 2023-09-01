@@ -38,7 +38,7 @@ var actions = {
 
           const { data: { message, status, result }, status: statusCode } = response;
 
-          console.log('Sign-In Response: ', response)
+          console.log('\n\nSign-In Response: ', response)
 
           if (statusCode === 200) {
 
@@ -87,7 +87,7 @@ var actions = {
         {
           const { status: statusCode, data } = response;
 
-          console.log('Sign-Up Response: ', response);
+          console.log('\n\nSign-Up Response: ', response);
 
           if (statusCode === 201) {
             const { status, result: {user, profile, roles, token}} = data;
@@ -126,7 +126,7 @@ var actions = {
         .then(response =>
         {
 
-          console.log('Sign-Out Response: ', response);
+          console.log('\n\nSign-Out Response: ', response);
 
           const { status, data } = response
           if (status === 200 && data.status === 200) {
@@ -200,7 +200,7 @@ var actions = {
         .then(response =>
         {
           
-          console.log('Plan Options Response: ', response)
+          console.log('\n\nPlan Options Response: ', response)
 
           const { data, status } = response
           resolve(data)
@@ -221,7 +221,7 @@ var actions = {
         .then(response =>
         {
           
-          console.log('Fetch Country Response: ', response)
+          console.log('\n\nFetch Country Response: ', response)
 
           const { data, status } = response
           commit('SET_COUNTRIES', data.result?.countries || []);
@@ -285,7 +285,7 @@ var actions = {
         .then(response =>
         {
           const { status: statusCode, data: { message, status, result: { profile, user, token, account } } } = response;
-          console.log(`Social Auth [${provider}] Response: `, response);
+          console.log(`n\nSocial Auth [${provider}] Response: `, response);
 
           if (statusCode === 200) {
 
@@ -321,7 +321,7 @@ var actions = {
         .then(response =>
         {
 
-          console.log('Switch User Profile Response: ', response)
+          console.log('\n\nSwitch User Profile Response: ', response)
 
           const { data, status} = response
           if (status === 200) {
@@ -351,7 +351,7 @@ var actions = {
         .then(response =>
         {
           
-          console.log('ReSync Profile Response: ', response)
+          console.log('\n\nReSync Profile Response: ', response)
 
           const { data, status} = response
           if (status === 200) {
@@ -461,7 +461,7 @@ var actions = {
         .then(response =>
         {
 
-          console.log('Send OTP Response: ', response);
+          console.log('\n\nSend OTP Response: ', response);
 
           const { data: { message, status, result } } = response;
 
@@ -488,7 +488,7 @@ var actions = {
         .then(response =>
         {
           
-          console.log('Resend OTP Response: ', response)
+          console.log('\n\nResend OTP Response: ', response)
 
           resolve(response);
         })
@@ -508,7 +508,7 @@ var actions = {
         .then(response =>
         {
           
-          console.log('Verify OTP Response: ', response)
+          console.log('\n\nVerify OTP Response: ', response)
 
           resolve(response);
         })
@@ -575,7 +575,7 @@ var actions = {
       await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/user/${state.user?.id}/send-otp`, payload)
         .then(response =>
         {
-          console.log('Request Code Response: ', response);
+          console.log('\n\nRequest Code Response: ', response);
           const { status: statusCode, data: { message, status, result } } = response;
 
           if (statusCode === 200) {
@@ -603,7 +603,7 @@ var actions = {
       await axios.get(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/user/${state.user?.id}/resend-otp`)
         .then(response =>
         {
-          console.log('Resend Code response: ', response);
+          console.log('\n\nResend Code response: ', response);
           const { data: { message, status, result } } = response;
 
           if (status === 200) {
@@ -632,18 +632,13 @@ var actions = {
       })
         .then(response =>
         {
-          console.log('::Validate Code:: ', response);
+          console.log('\n\n::Validate Code:: ', response);
 
           const { status: statusCode, data } = response;
 
           if (statusCode === 201) {
 
-            console.log('Validation Success: ', response);
-
             const { result: { user, profile, roles, token, account } } = data;
-            // commit('SET_AUTH', user || {});
-
-            console.log('Data: ', data?.result);
 
             commit('SET_AUTH', user || {})
             commit('SET_TOKEN', token || '')
@@ -673,7 +668,7 @@ var actions = {
       await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/email/resend/${state.user?.id}`)
         .then(response =>
         {
-          console.log('Resend Code Response: ', response);
+          console.log('\n\nResend Code Response: ', response);
           const { data: { message, status, result } } = response;
           console.log('Email Resend: ', response)
           if (status === 200) {
@@ -699,7 +694,7 @@ var actions = {
         .then(response =>
         {
           
-          console.log('Account Setting Response: ', response)
+          console.log('\n\nAccount Setting Response: ', response)
 
           const { status: statusCode, data: { status, message, result } } = response;
 
@@ -741,7 +736,7 @@ var actions = {
         {
           const { status: statusCode, data: { status, message, result } } = response;
 
-          console.log('Fetch Profile Response: ', response)
+          console.log('\n\nFetch Profile Response: ', response)
 
           if (statusCode === 200) {
             
@@ -792,14 +787,11 @@ var actions = {
         .then(response =>
         {
           const { status: statusCode, data: { status, message, result } } = response;
-          console.log('Account Profile Response: ', response)
+          console.log('\n\nAccount Profile Response: ', response)
           if (statusCode === 200) {
-            console.log('\n\nAccount Profile (success): ', response);
             if (status === 200) {
               
               const { account, user, profile } = result;
-
-              console.log('\nAccount Profile [account]: ', account)
 
               commit('SET_AUTH', user);
               commit('SET_ACCOUNT', account);
@@ -828,7 +820,7 @@ var actions = {
         {
 
           const { data: { message, status, result }, status: statusCode } = response;
-          console.log('Test2 Response: ', response)
+          console.log('\n\nTest2 Response: ', response)
           
 
           resolve(response)
