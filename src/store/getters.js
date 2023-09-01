@@ -36,6 +36,43 @@ var getters = {
   // agenre: state => state.account.genre.map(function (g) { return g['title']  })
   myAccount: state => state.account,
   myAvatar: state => state.account?.avatar || state.profile?.avatar || '',
+  spotify: state =>
+  {
+    if (state.account.spotify_profile !== null && state.account.spotify_profile !== undefined) {
+
+        const regex = /\/artist\/[^/]+$/;
+        const match = state.account.spotify_profile.match(regex);
+        if (match) {
+          const artistSlug = match[0].split('/').pop();
+          return artistSlug;
+        } else {
+          return "";
+        }
+      } else {
+        return ""; 
+      }
+  },
+  instagram: state =>
+  {
+    if (state.account?.instagram_username !== null && state.account?.instagram_username !== undefined) {
+      return state.account.instagram_username.replace(/^https?:\/\/(www\.)?/, "");
+    }
+    return '';
+  },
+  youtube: state =>
+  {
+    if (state.account?.youtube_channel !== null && state.account?.youtube_channel !== undefined) {
+      return state.account.youtube_channel.replace(/^https?:\/\/(www\.)?/, "");
+    }
+    return '';
+  },
+  twitter: state =>
+  {
+    if (state.account?.twitter_username !== null && state.account?.twitter_username !== undefined) {
+      return state.account.twitter_username.replace(/^https?:\/\/(www\.)?/, "");
+    }
+    return '';
+  }
 }
 
 export default getters

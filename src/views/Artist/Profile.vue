@@ -43,7 +43,7 @@
 
                   <div class="modal-body">
                     <member-form @modalClose="dismiss" @form="updateMember" v-if="formType === 'members'"/>
-                    <social-media @modalClose="dismiss" @form="updateSocial" v-else />
+                    <social-media @modalClose="dismiss" @form="updateSocial" :media="social" v-else />
                   </div>
                 </div>
               </div>
@@ -187,7 +187,7 @@
                           <div class="options">
                             <div class="d-flex align-items-center text-end">
                               <button type="button" class="edit-band-member-wrapper">
-                                <img src="/assets/artist-account/edit-band-member.svg" class="edit-band-member" alt="edit band member">
+                                <img src="/assets/artist-account/edit-band-member.svg" class="edit-band-member" alt="edit band member" @click="toggle()">
                               </button>
                               <button type="button" @click="removeMember(mem.id)" class="delete-band-member-wrapper">
                                 <img src="/assets/artist-account/delete-band-member.svg" class="delete-band-member" alt="delete band member">
@@ -203,7 +203,7 @@
                 <!-- Social Media Links -->
                 <div class="form-group">
                   <label for="social-media">Social Media Accounts</label><br>  
-                  <button type="button" class="btn btn-primary add-social-media" @click="toggle('links')"><span class="material-symbols-rounded">add_link</span>Add Links</button>
+                  <button type="button" class="btn btn-primary add-social-media" @click="toggle('links', false, {key: '', text: ''})"><span class="material-symbols-rounded">add_link</span>Add Links</button>
                 </div>                         
 
                 <div class="card mb-3 social-media-account-row" v-if="form?.instagram_username">
@@ -222,11 +222,11 @@
                     <div class="col-md-1">
                       <div class="d-flex align-items-center text-end">
 
-                        <button type="button" class="social-media-account-wrapper">
-                            <img src="/assets/artist-account/edit-band-member.svg" class="social-media-account" alt="edit social media account">
-                          </button>
-                          <button type="button" @click="removeSocialMedia('instagram')" class="social-media-account-wrapper">
-                            <img src="/assets/artist-account/delete-band-member.svg" class="social-media-account" alt="delete social media account">
+                        <button type="button" class="social-media-account-wrapper" @click="toggle('links', true, { key: 'instagram', text: form.instagram_username })">
+                          <img src="/assets/artist-account/edit-band-member.svg" class="social-media-account" alt="edit social media account" >
+                        </button>
+                        <button type="button" @click="removeSocialMedia('instagram')" class="social-media-account-wrapper">
+                          <img src="/assets/artist-account/delete-band-member.svg" class="social-media-account" alt="delete social media account">
                         </button>
 
                       </div>
@@ -250,12 +250,12 @@
                     <div class="col-md-1">
                       <div class="d-flex align-items-center text-end">
 
-                           <button type="button" class="social-media-account-wrapper">
-                                <img src="/assets/artist-account/edit-band-member.svg" class="social-media-account" alt="edit social media account">
-                              </button>
-                              <button type="button" @click="removeSocialMedia('spotify')" class="social-media-account-wrapper">
-                                <img src="/assets/artist-account/delete-band-member.svg" class="social-media-account" alt="delete social media account">
-                            </button>
+                        <button type="button" class="social-media-account-wrapper" @click="toggle('links', true, { key: 'spotify', text: form.spotify_profile })">
+                          <img src="/assets/artist-account/edit-band-member.svg" class="social-media-account" alt="edit social media account" />
+                        </button>
+                        <button type="button" @click="removeSocialMedia('spotify')" class="social-media-account-wrapper">
+                          <img src="/assets/artist-account/delete-band-member.svg" class="social-media-account" alt="delete social media account">
+                        </button>
 
                       </div>
                     </div>
@@ -278,12 +278,12 @@
                     <div class="col-md-1">
                       <div class="d-flex align-items-center text-end">
 
-                        <button type="button" class="social-media-account-wrapper">
-                                <img src="/assets/artist-account/edit-band-member.svg" class="social-media-account" alt="edit social media account">
-                              </button>
-                              <button type="button" @click="removeSocialMedia('twitter')" class="social-media-account-wrapper">
-                                <img src="/assets/artist-account/delete-band-member.svg" class="social-media-account" alt="delete social media account">
-                            </button>
+                        <button type="button" class="social-media-account-wrapper" @click="toggle('links', true, { key: 'twitter', text: form.twitter_username })">
+                          <img src="/assets/artist-account/edit-band-member.svg" class="social-media-account" alt="edit social media account" >
+                        </button>
+                        <button type="button" @click="removeSocialMedia('twitter')" class="social-media-account-wrapper">
+                            <img src="/assets/artist-account/delete-band-member.svg" class="social-media-account" alt="delete social media account">
+                        </button>
 
                       </div>
                     </div>
@@ -305,11 +305,10 @@
 
                     <div class="col-md-1">
                       <div class="d-flex align-items-center text-end">
- 
-                        <button type="button" class="social-media-account-wrapper">
-                            <img src="/assets/artist-account/edit-band-member.svg" class="social-media-account" alt="edit social media account">
-                          </button>
-                          <button type="button" @click="removeSocialMedia('youtube')" class="social-media-account-wrapper">
+                        <button type="button" class="social-media-account-wrapper" @click="toggle('links', true, { key: 'youtube', text: form.youtube_channel })">
+                          <img src="/assets/artist-account/edit-band-member.svg" class="social-media-account" alt="edit social media account">
+                        </button>
+                        <button type="button" @click="removeSocialMedia('youtube')" class="social-media-account-wrapper">
                             <img src="/assets/artist-account/delete-band-member.svg" class="social-media-account" alt="delete social media account">
                         </button>
 
@@ -517,6 +516,11 @@ export default {
       uploadedMusic: null,
       songTitle: 'My Awesome Song',
       fileSize: '', // Store file size here
+      // For update social media link
+      social: {
+        text: '',
+        key: '',
+      }
     }
   },
   setup()
@@ -547,6 +551,10 @@ export default {
       song_title: null,
       song_genre: null,
     };
+
+    this.social = {
+      text: '', key: '',
+    }
 
     console.log('-Before Create-')
   },
@@ -679,9 +687,20 @@ export default {
       const body = document.querySelector("body")
       this.active = false
       this.active ? body.classList.add("modal-open") : body.classList.remove("modal-open")
+      this.social.key = '';
+      this.social.text = '';
     },
-    toggle(option = 'members')
+    toggle(option = 'members', isEdit = false, params)
     {
+
+      if (isEdit && option === 'links') {
+        this.social = params;
+      } else if (isEdit) {
+        this.social = { key: '', text: '' };
+      } else if (option === 'links' && !isEdit) {
+        this.social = { key: '', text: '' };
+      }
+
       const body = document.querySelector("body")
       this.active = !this.active
       this.active ? body.classList.add("modal-open") : body.classList.remove("modal-open")
@@ -701,18 +720,37 @@ export default {
       switch (key) {
         case 'youtube':
           this.form.youtube_channel = val;
+
+          this.social.key = key;
+          this.social.text = val;
+
           break;
         case 'instagram':
           this.form.instagram_username = val;
+
+          this.social.key = key;
+          this.social.text = val;
+
           break;
         case 'twitter':
           this.form.twitter_username = val;
+
+          this.social.key = key;
+          this.social.text = val;
+
           break;
         case 'spotify':
           this.form.spotify_profile = val;
+
+          this.social.key = key;
+          this.social.text = val;
+
           break;
         default:
             
+          this.social.key = '';
+          this.social.text = '';
+
       }
       
       console.log('Update Social: ', val)
