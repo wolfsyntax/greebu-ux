@@ -699,7 +699,7 @@ export default {
     {
 
       this.social = { key: '', text: '' };
-      this.$store.commit('SET_MEMBER', {})
+      // this.$store.commit('SET_MEMBER', {})
       this.$store.commit('SET_MEMBER_INDEX');
       // this.memberIndex = -1;
       

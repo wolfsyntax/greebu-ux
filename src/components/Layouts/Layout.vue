@@ -46,13 +46,13 @@
 
                <div class="dropdown dropstart">
                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                  <img :src="myAvatar" alt="artist profile">
+                  <img :src="myAvatar" alt="artist profile" @error="replaceByDefault" >
                   <span class="material-symbols-rounded">&#xe313;</span>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
                   <li>
                     <div class="artist-info">
-                      <img :src="myAccount?.avatar || myAvatar" alt="artist profile">
+                      <img :src="myAccount?.avatar || myAvatar" alt="artist profile" @error="replaceByDefault" >
                       <div class="artist-name">
                         <p class="name">{{  userInfo.business_name }}</p>
                         <p class="email">{{ userInfo.business_email }}</p>
@@ -88,13 +88,13 @@
 
                <div class="dropdown dropstart">
                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                  <img :src="myAccount?.avatar || myAvatar" alt="artist profile">
+                  <img :src="myAccount?.avatar || myAvatar" alt="artist profile" @error="replaceByDefault" >
                  <span class="material-symbols-rounded">&#xe313;</span>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
                   <li>
                     <div class="artist-info">
-                      <img :src="myAccount?.avatar || myAvatar" alt="artist profile">
+                      <img :src="myAccount?.avatar || myAvatar" alt="artist profile" @error="replaceByDefault" >
                       <div class="artist-name">
                         <p class="name">{{ userInfo.business_name }}</p>
                         <p class="email" style="text-transform: capitalize;">{{ userInfo.role }}</p>
@@ -127,13 +127,13 @@
 
                <div class="dropdown dropstart">
                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                  <img :src="myAccount?.avatar || myAvatar" alt="artist profile">
+                  <img :src="myAccount?.avatar || myAvatar" alt="artist profile" @error="replaceByDefault" >
                  <span class="material-symbols-rounded">&#xe313;</span>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
                   <li>
                     <div class="artist-info">
-                      <img :src="myAccount?.avatar || myAvatar" alt="artist profile">
+                      <img :src="myAccount?.avatar || myAvatar" alt="artist profile" @error="replaceByDefault" >
                       <div class="artist-name">
                         <p class="name">{{ userInfo.business_name }}</p>
                         <p class="email" style="text-transform: capitalize;">{{ userInfo.role }}</p>
@@ -373,7 +373,11 @@ export default {
         {
           
         })
-    }
+    },
+    replaceByDefault(e) 
+    {
+      e.target.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm3RFDZM21teuCMFYx_AROjt-AzUwDBROFww&usqp=CAU';
+    },    
   },
   computed: {
     ...mapGetters(["isLoggedIn", 'userInfo', 'info', 'userRole', 'myAccount', 'myAvatar',]),
