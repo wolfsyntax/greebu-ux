@@ -16,9 +16,10 @@
                             <h3 class="band-name">Idlepitch</h3>
                           </div>
 
-                          <form>
+                          <form @submit.prevent="submitForm">
                             <div class="form-group"> 
-                              <textarea class="form-control" placeholder="Write something..."></textarea>
+                            
+                              <textarea class="form-control" v-model="formData.message" placeholder="Write something..."></textarea>
                             </div>
                                                             <!-- PHOTO/VIDEO SELECTED -->
                                                          
@@ -40,9 +41,18 @@
                                                                             <!-- Uploaded images -->
 
                                         <div class="row">
-                                          <div class="col-6 uploaded-images" v-for="(image, index) in uploadedImages" :key="index">
-                                            <img :src="image" alt="Uploaded Image">
-                                            <span class="material-symbols-outlined remove-img" @click="removeImage(index)">&#xe5cd;</span>            
+                                          <div class="col-6 uploaded-images" v-for="(image, index) in displayedImages" :key="index">
+                                            <div v-if="index !== 2">
+                                              <img :src="image" alt="Uploaded Image">
+                                            <span class="material-symbols-outlined remove-img" @click="removeImage(index)">&#xe5cd;</span> 
+                                            </div>
+                                               
+                                            <div v-else class="image-container">
+                                              <img :src="image" alt="total number of images">
+                                              <span class="material-symbols-outlined remove-img" @click="removeImage(index)">&#xe5cd;</span> 
+                                              <span class="image-count">+{{ countNumberOfImages }}</span>
+                                            </div>
+
                                           </div>
                                           <div class="col-6 text-center uploaded-images">
                                             <div class="upload-more" @click="uploadImage">
@@ -127,7 +137,11 @@
                             </div>
 
                             <div class="text-center button-wrapper">
-                              <button type="submit" class="btn">Post</button>
+                              <button type="submit" class="btn" data-bs-dismiss="modal">
+                                <span v-if="isLoading">
+                              <i class="busy-submitting-post"></i>Post</span>
+                              <span v-else>Post</span>
+                              </button>
                             </div>
 
                           </form>
@@ -207,7 +221,7 @@
                           </div>
                         </div>
                         <div class="text-center button-wrapper">
-                              <button type="submit" class="btn" @click="showCreatePost = true">Done</button>
+                              <button type="submit" class="btn"  @click="showCreatePost = true">Done</button>
                             </div>
 
                         </div> <!-- end of modal-body-->
@@ -227,22 +241,53 @@
 
   export default {
     props: {
-      
+      //timestamp: Number
     },
     data() {
           return {
+            formData: {
+            message: '',
+            },
+
             selectedItem: null,
             selectFile: true,
             uploadedImages: [],
             uploadedMusic: null,
             songTitle: 'Song title. mp3',
             fileSize: '',
+            isLoading: false,
+        
          }
     },      
     computed: {
         ...mapGetters(["isLoggedIn"]),
+        countNumberOfImages(){
+          return this.uploadedImages.length;
+        },
+        displayedImages() {
+      return this.uploadedImages.slice(0, 3);
+    }
+  },
+  watch: {
+    submittedTime() {
+      this.timeDifference = Math.floor((new Date() - this.submittedTime) / 1000);
+    }
   },
     methods: {
+      submitForm(){
+        console.log('Message mo:', this.formData.message, this.uploadedMusic);
+        this.isLoading = true;
+        this.$emit('submitData', {
+          message: this.formData.message,
+          images: this.uploadedImages,
+          music: this.uploadedMusic,
+          loading: this.isLoading = false
+        });
+        this.formData.message = '';
+        this.uploadedImages = [];
+        this.uploadedMusic = null;
+        this.selectedItem = null;
+      },
       toggleContent(item) {
       if (this.selectedItem === item) {
         this.selectedItem = null;
@@ -261,7 +306,7 @@
       const files = event.target.files;
       this.selectFile = false;
       for (const file of files) {
-        if (this.uploadedImages.length >= 10) {
+        if (this.uploadedImages.length >= 50) {
           console.log('Maximum limit reached.');
           return;
         }
@@ -306,6 +351,7 @@
       this.songTitle = '';
       this.fileSize = ''; 
     },
+    
   },
   created() {
     const storedImages = localStorage.getItem('uploadedImages');

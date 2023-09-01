@@ -1,6 +1,6 @@
 <template>
   <layout>
-    <CreatePostModal />
+    <CreatePostModal @submitData="handleSubmittedData" />
 
   <section class="artist-profile">
     <div class="container">
@@ -93,7 +93,8 @@
                             {{  account.bio }}
                           </p>
                           <div class="mt-3 social-media">
-                            <span class="material-symbols-outlined calendar">calendar_month</span><p class="band-name">{{ account?.artist_name}}</p>
+                            <img src="/assets/artist-account/type-of-artist-icon-gray.svg" loading="lazy" alt="artist type icon">
+                            <p>{{ account?.artist_name}}</p>
                           </div>
                           <div v-if="spotify" class="mt-3 social-media" >
                             <img src="/assets/artist-account/spotify-icon-gray.svg" loading="lazy" alt="spotify icon">
@@ -220,8 +221,60 @@
                   </div>    
                   </div> <!-- end of row post -->
 
+                                                                                        <!-- Test -->
+
+                    <div class="row artist-post">
+                      <div class="col-md-12 grid-margin">
+                          <div class="card" v-for="(submission, index) in submissions" :key="index">
+                              <div class="card-header">
+                                  <div class="d-flex align-items-center justify-content-between">
+                                      <div class="d-flex align-items-center user-posted-info">
+                                        <img :src="`${account?.avatar || 'https://res.cloudinary.com/daorvtlls/image/upload/v1686649329/trending-bicolano-artist-4_o6xjze.png'}`" 
+                                         loading="lazy" alt="member profile">
+                                          <div class="group-posted">
+                                              <a href="#" class="name">{{ account.artist_name || Geebu }}</a>
+                                              <p class="ago">{{ formattedTime(times[index]) }} </p>
+                                       
+                                          </div>
+                                      </div>
+                                      <div class="dropdown">
+                                        <span class="material-symbols-outlined">more_vert</span>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="card-body">
+                                  <p class="mb-3">{{ submission.message }}</p>
+                                  <div class="posted-img" v-for="(image, imgIndex) in submission.images" :key="imgIndex" >
+                                    <img class="img-fluid" :src="image" loading="lazy" alt="posted image">
+                                  </div>
+                              </div>
+                              <div class="card-footer d-flex align-items-center justify-content-between">
+                                  <div class="d-flex post-actions">
+                                    <div class="post-icon">
+                                    <span class="material-symbols-outlined">favorite</span>
+                                      <p>Like</p>
+                                    </div>
+                                    <div class="post-icon">
+                                      <span class="material-symbols-outlined">chat_bubble</span>
+                                      <p>Comment</p>
+                                    </div>
+                                  </div>
+                                  <div class="comments">
+                                    <p>No comments yet</p>
+                                  </div>
+                              </div>
+                              <audio v-if="submission.music" controls>
+                                  <source :src="submission.music" type="audio/mpeg">
+                                  Your browser does not support the audio element.
+                                </audio>
+                          </div>
+                      </div>
+                  </div>
+
+
+
                                                     <!-- Zero state screen -->
-                  <div class="row artist-post">
+                  <div class="row artist-post" v-if="submissions.length == 0">
                       <div class="col-md-12 grid-margin">
                           <div class="card">
                               <div class="card-body text-center no-post">
@@ -234,8 +287,11 @@
                       </div>
                   </div> <!-- end of Zero state screen -->
 
+
+
                                        <!-- Artist Posts -->
-                  <div class="row artist-post">
+
+                  <!-- <div class="row artist-post">
                       <div class="col-md-12 grid-margin">
                           <div class="card">
                               <div class="card-header">
@@ -277,7 +333,7 @@
                               </div>
                           </div>
                       </div>
-                  </div>
+                  </div> -->
 
               </div>              <!-- middle wrapper end -->
 
@@ -349,7 +405,7 @@
                             <svg class="no-original-songs-icon" xmlns="http://www.w3.org/2000/svg" width="35" height="34" viewBox="0 0 35 34" fill="none">
                             <path d="M26.4501 4.5H15.3307C13.9249 4.5 12.7808 5.60806 12.7808 6.96996V21.7916C12.0864 21.3371 11.2505 21.0718 10.3516 21.0718C7.95193 21.0718 6 22.9622 6 25.2855C6 27.6096 7.95193 29.5 10.3516 29.5C12.7505 29.5 14.7024 27.6096 14.7024 25.2855V12.3126H27.0784V18.508C26.384 18.0535 25.5477 17.7878 24.6484 17.7878C22.2495 17.7878 20.2976 19.6782 20.2976 22.0023C20.2976 24.3256 22.2495 26.216 24.6484 26.216C27.0481 26.216 29 24.3256 29 22.0023V6.96996C29.0004 5.60806 27.8563 4.5 26.4501 4.5ZM10.3516 27.6393C9.01186 27.6393 7.92157 26.5834 7.92157 25.2859C7.92157 23.9887 9.01186 22.9332 10.3516 22.9332C11.6909 22.9332 12.7808 23.9887 12.7808 25.2859C12.7812 26.5834 11.6913 27.6393 10.3516 27.6393ZM14.7028 10.4516V6.96996C14.7028 6.63423 14.9845 6.36103 15.3311 6.36103H26.4505C26.7971 6.36103 27.0792 6.63386 27.0792 6.96996V10.4516H14.7028ZM24.6488 24.3554C23.3095 24.3554 22.2196 23.2998 22.2196 22.0026C22.2196 20.7051 23.3095 19.6492 24.6488 19.6492C25.9885 19.6492 27.0788 20.7051 27.0788 22.0026C27.0788 23.2998 25.9885 24.3554 24.6488 24.3554Z" fill="#B8BBCF"/>
                           </svg>
-                              <h5 class="no-original-songs-title">No events posted</h5>
+                              <h5 class="no-original-songs-title">No songs posted</h5>
                             </div>
 
                                       <!-- Song list -->
@@ -399,19 +455,19 @@
                 <h4>Social Media</h4>
                 <ul>
                   <li>
-                    <img src="/assets/artist-account/spotify-icon-gray.svg">{{ account?.artist_name}}
+                    <img src="/assets/artist-account/type-of-artist-icon-gray.svg" alt="artist type icon">{{ account?.artist_name}}
                   </li>
                   <li v-if="hasSpotifyProfile">
-                    <img src="/assets/artist-account/spotify-icon-gray.svg">{{ modifiedSpotifyUrl }}
+                    <img src="/assets/artist-account/spotify-icon-gray.svg" alt="spotify icon">{{ modifiedSpotifyUrl }}
                   </li>
                   <li v-if="hasYoutubeChannel">
-                    <img src="/assets/artist-account/youtube-icon-gray.svg">{{ modifiedYoutubeUrl }}
+                    <img src="/assets/artist-account/youtube-icon-gray.svg" alt="youtube icon">{{ modifiedYoutubeUrl }}
                   </li>
                   <li v-if="hasTwitterAccount">
-                    <img src="/assets/artist-account/twitter-icon-gray.svg">{{ modifiedTwitterUrl }}
+                    <img src="/assets/artist-account/twitter-icon-gray.svg" alt="twitter icon">{{ modifiedTwitterUrl }}
                   </li>
                   <li v-if="hasInstaGramAccount">
-                    <img src="/assets/artist-account/instagram-icon-gray.svg">{{ modifiedInstaGramUrl }}
+                    <img src="/assets/artist-account/instagram-icon-gray.svg" alt="instagram icon">{{ modifiedInstaGramUrl }}
                   </li>
 
                 </ul>
@@ -546,7 +602,7 @@ export default {
       navItems: ['Post', 'About', 'Songs', 'Videos', 'Photos'],
      // navItems: ['Post', 'About', 'Songs', 'Videos', 'Photos', 'Events', 'Reviews'],
       activeItem: 'Post',
-      post: ['Post 1', 'Post 2','Post 1', 'Post 2','Post 1', 'Post 2'],
+      
       songs: ['https://res.cloudinary.com/daorvtlls/video/upload/v1686647605/Nirvana_-_Smells_like_teen_spirit_zs8yo4.mp3',
       'https://res.cloudinary.com/daorvtlls/video/upload/v1686647605/Nirvana_-_Smells_like_teen_spirit_zs8yo4.mp3',
     ],
@@ -570,8 +626,11 @@ export default {
       ],
       // isModalVisible: false,
       modalVisible: false,
-      submissions: [], // Array to store all submissions
       editingIndex: -1,
+
+      submissions: [], // Array to store create post submissions
+      times: []
+
     
     }
   },
@@ -616,7 +675,7 @@ export default {
     this.activeItem = item;
   },
   shouldShowBadge(item) {
-    return item === 'Post' && this.post.length > 0 ||
+    return item === 'Post' && this.submissions.length > 0 ||
            item === 'Songs' && this.songs.length > 0 ||
            item === 'Videos' && this.videos.length > 0 ||
            item === 'Photos' && this.photos.length > 0;
@@ -624,7 +683,7 @@ export default {
     getCount(item) {
       switch (item) {
         case 'Post':
-          return this.post.length;
+          return this.submissions.length;
         case 'Songs':
           return this.songs.length;
         case 'Videos':
@@ -635,10 +694,47 @@ export default {
           return 0;
       }
     },
+    handleSubmittedData(data){
+      const submittedTime = new Date();
+      this.submissions.unshift(data);
+      this.times.unshift(submittedTime);
 
-    
+    },
+
+    formattedTime(submittedTime) {
+      if (!submittedTime) {
+        return "";
+      }
+
+      const currentTime = new Date();
+      const timeDifference = Math.floor((currentTime - submittedTime) / 1000);
+
+      if (timeDifference < 5) {
+        return "Just now";
+      } else if (timeDifference < 60) {
+        return `${timeDifference}s ago`;
+      } else if (timeDifference < 3600) {
+        return `${Math.floor(timeDifference / 60)} min ago`;
+      } else if (timeDifference < 86400) {
+        return `${Math.floor(timeDifference / 3600)} hr ago`;
+      } else {
+        return `${Math.floor(timeDifference / 86400)} days ago`;
+      }
+    }
+
 
   },
+  watch: {
+    submissions: {
+      handler(submissions) {
+        submissions.forEach(submission => {
+          submission.formattedTime = this.formattedTime(submission.submittedTime);
+        });
+      },
+      deep: true
+    }
+  },
+  
   computed: {
     ...mapGetters(["userInfo", "token", 'token', 'myAvatar', 'instagram', 'youtube', 'twitter', 'spotify', ]),
     ...mapState({
@@ -651,6 +747,7 @@ export default {
       custom_genre: (state) => state.custom_genre,
       genres: (state) => state.artist.genres,
     }),
+
 
     hasYoutubeChannel() {
       return this.$store.state.account.youtube_channel !== null && this.$store.state.account.youtube_channel !== undefined;
