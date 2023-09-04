@@ -4,7 +4,7 @@
                                                          <!-- Modal -->
     <div class="modal fade " id="artistPost"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" 
       data-bs-backdrop="static" data-bs-keyboard="false">
-                    <div class="modal-dialog modal-lg">                   
+                    <div class="modal-dialog modal-lg" >                   
                         <div class="modal-content" v-if="selectedItem === null || selectedItem === 'photo' || selectedItem === 'music'">
                         <div class="modal-header">
                           <h2 class="modal-title" id="artistPostLabel">Create Post</h2>

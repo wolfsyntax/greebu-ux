@@ -832,6 +832,206 @@ var actions = {
         });
     })
   },
+  updatePhone({ commit, state }, payload)
+  {
+    return new Promise(async (resolve, reject) =>
+    {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
+
+      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/test-request` )
+        .then(response =>
+        {
+
+          const { data: { message, status, result }, status: statusCode } = response;
+          
+          console.log('', response);
+
+          resolve(response)
+
+        })
+        .catch(err =>
+        {
+          reject(err)
+        });
+    });
+  },
+  updateEmail({ commit, state }, payload)
+  {
+    return new Promise(async (resolve, reject) =>
+    {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
+
+      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/account/update-email`, payload)
+        .then(response =>
+        {
+
+          const { data: { message, status, result }, status: statusCode } = response;
+          
+          console.log('\n\nUpdate Email: ', response);
+
+          if (status == 200 && statusCode === 200)
+          {
+            commit('SET_AUTH', result?.user);
+            resolve(response);
+          } else {
+            reject({ msg: message, status: statusCode });
+          }
+
+        })
+        .catch(err =>
+        {
+          reject(err)
+        });
+    });
+  },
+  updatePhone({ commit, state }, payload)
+  {
+    return new Promise(async (resolve, reject) =>
+    {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
+
+      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/account/change-phone` )
+        .then(response =>
+        {
+
+          const { data: { message, status, result }, status: statusCode } = response;
+          
+          console.log('\n\nUpdate phone: ', response);
+          
+          if (status == 200 && statusCode === 200)
+          {
+            commit('SET_AUTH', result?.user);
+            resolve(response);
+          } else {
+            reject({ msg: message, status: statusCode });
+          }
+
+        })
+        .catch(err =>
+        {
+          reject(err)
+        });
+    });
+  },
+  updatePassword({ commit, state }, payload)
+  {
+    return new Promise(async (resolve, reject) =>
+    {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
+
+      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/account/change-password` )
+        .then(response =>
+        {
+
+          const { data: { message, status, result }, status: statusCode } = response;
+          
+          console.log('\n\nUpdate password: ', response);
+          
+          if (status == 200 && statusCode === 200)
+          {
+            commit('SET_AUTH', result?.user);
+            resolve(response);
+          } else {
+            reject({ msg: message, status: statusCode });
+          }
+
+        })
+        .catch(err =>
+        {
+          reject(err)
+        });
+    });
+  },
+  updatePhone({ commit, state }, payload)
+  {
+    return new Promise(async (resolve, reject) =>
+    {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
+
+      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/account/update-phone` , payload)
+        .then(response =>
+        {
+
+          console.log('\n\nUpdate phone: ', response);
+
+          const { data: { message, status, result }, status: statusCode } = response;
+
+          if (status == 200 && statusCode === 200)
+          {
+            commit('SET_AUTH', result?.user);
+            resolve(response);
+          } else {
+            reject({ msg: message, status: statusCode });
+          }
+
+        })
+        .catch(err =>
+        {
+          reject(err)
+        });
+    });
+  },
+  updateAvatar({ commit, state }, payload)
+  {
+    return new Promise(async (resolve, reject) =>
+    {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
+
+      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/account/update/${state.profile?.id}/avatar` )
+        .then(response =>
+        {
+
+          const { data: { message, status, result }, status: statusCode } = response;
+          
+          console.log('\n\nUpdate Avatar: ', response);
+          
+          if (statusCode === 200 && status == 200) {
+            commit('SET_PROFILE', result?.profile);
+            resolve(response);
+          } else {
+            reject({ msg: message, status: statusCode });
+          }
+        })
+        .catch(err =>
+        {
+          reject(err)
+        });
+    });
+  },
+  updateBanner({ commit, state }, payload)
+  {
+    return new Promise(async (resolve, reject) =>
+    {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
+      console.log('Banner Form: ', payload)
+      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/account/update/${state.profile?.id}/banner`, payload, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        }
+      })
+        .then(response =>
+        {
+
+          const { data: { message, status, result }, status: statusCode } = response;
+          
+          console.log('\n\nUpdate Banner Image: ', response);
+
+          if (statusCode === 200 && status === 200)
+          {
+            commit('SET_PROFILE', result?.profile)
+            resolve(response)
+          } else {
+            reject({ msg: message, status: statusCode });
+          } 
+          
+
+        })
+        .catch(err =>
+        {
+          reject(err)
+        });
+    });
+  }      
 }
 
 export default actions
