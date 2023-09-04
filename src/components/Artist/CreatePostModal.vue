@@ -32,33 +32,94 @@
                                     <h3 class="title">Select a file or drag and drop here</h3>
                                     <p class="limit">JPG, PNG file size no more than 10MB</p>
                                     <div class="upload-wrapper">
-                                        <label for="inputField" class="btn btn-info" @click="uploadImage">SELECT FILE</label>
+                                        <label for="fileInput" class="btn btn-info" @click="uploadFiles">SELECT FILE</label>
                                         <!-- <input type="file" id="inputField" style="display:none"> -->
-                                        <input type="file" ref="imageInput" @change="handleImageUpload" style="display: none" accept="image/*" multiple>
+                                        <input type="file" id="fileInput" ref="fileInput" @change="handleFileUpload" 
+                                        style="display: none" accept="image/*,video/*" class="file-input" multiple>
                                     </div>
                                 </div>
                                 <div v-else class="uploaded-wrapper">
                                                                             <!-- Uploaded images -->
 
                                         <div class="row">
-                                          <div class="col-6 uploaded-images" v-for="(image, index) in displayedImages" :key="index">
-                                            <div v-if="index !== 2">
-                                              <img :src="image" alt="Uploaded Image">
+                                          <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
+
+                                          <div class="col-6 uploaded-images" v-for="(file, index) in displayedFiles" :key="index">
+
+                                            <!-- <div v-if="index !== 2">
+                                               <img :src="file.name" alt="Uploaded Image">  
+                                                <div>
+                                                <video v-if="image.uploadedVideo" controls width="400">
+                                                <source :src="image.uploadedVideoUrl" type="video/mp4">
+                                                Your browser does not support the video tag.
+                                              </video>
+                                              </div> 
+                                            
                                             <span class="material-symbols-outlined remove-img" @click="removeImage(index)">&#xe5cd;</span> 
+                                            </div> -->
+                                            <div v-if="index !== 2">
+                                              <template v-if="file.type.startsWith('video/')">
+                                                <video controls width="400">
+                                                  <source :src="file.url" type="video/mp4">
+                                                  Your browser does not support the video tag.
+                                                </video>
+                                                <span class="material-symbols-outlined remove-img" @click="removeFile(index)">&#xe5cd;</span>
+                                            </template>
+                                            <template v-else-if="file.type.startsWith('image/')">
+                                              <img :src="file.url" alt="Uploaded Image">
+                                              <span class="material-symbols-outlined remove-img" @click="removeFile(index)">&#xe5cd;</span> 
+                                            </template>
                                             </div>
                                                
                                             <div v-else class="image-container">
-                                              <img :src="image" alt="total number of images">
+                                               <!-- <img :src="image" alt="total number of images"> 
+                                              
                                               <span class="material-symbols-outlined remove-img" @click="removeImage(index)">&#xe5cd;</span> 
-                                              <span class="image-count">+{{ countNumberOfImages }}</span>
+                                              <span v-if="additionalFilesCount > 0"  class="image-count">+{{ additionalFilesCount }}</span> -->
+                                              <template v-if="file.type.startsWith('video/')">
+                                                <video controls width="400">
+                                                  <source :src="file.url" type="video/mp4">
+                                                  Your browser does not support the video tag.
+                                                </video>
+                                                <span class="material-symbols-outlined remove-img" @click="removeFile(index)">&#xe5cd;</span>
+                                                <span v-if="additionalFilesCount > 0"  class="image-count">+{{ additionalFilesCount }}</span> 
+                                            </template>
+                                            <template v-else-if="file.type.startsWith('image/')">
+                                              <img :src="file.url" alt="Uploaded Image">
+                                              <span class="material-symbols-outlined remove-img" @click="removeFile(index)">&#xe5cd;</span> 
+                                              <span v-if="additionalFilesCount > 0"  class="image-count">+{{ additionalFilesCount }}</span> 
+                                            </template>
+
                                             </div>
 
                                           </div>
+
+                         
+
+                                            <!-- Display the uploaded videos and images -->
+                                            <!-- <div class="col-6 uploaded-images" v-if="uploadedFiles.length > 0">
+                                              <div v-for="(file, index) in displayedFiles" :key="index">
+                                                <template v-if="file.type.startsWith('video/')">
+                                                  <video controls width="400">
+                                                    <source :src="file.url" type="video/mp4">
+                                                    Your browser does not support the video tag.
+                                                  </video>
+                                                </template>
+                                                <template v-else-if="file.type.startsWith('image/')">
+                                                  <img :src="file.url" alt="Uploaded Image">
+                                                </template>
+                                              </div>
+                                            </div> -->
+
+                                          
+
+
+
                                           <div class="col-6 text-center uploaded-images">
                                             <div class="upload-more" @click="uploadImage">
                                               <span class="material-symbols-outlined add-photo-icon">&#xe43e;</span>
                                               <h3 class="add-more">Add more photos/videos</h3> 
-                                              <input type="file" ref="imageInput" @change="handleImageUpload" style="display: none" accept="image/*" multiple>
+                                              <input type="file" ref="fileInput" @change="handleFileUpload" style="display: none" accept="image/*,video/*" multiple>
                                             </div>
                                           </div>
 
@@ -251,21 +312,24 @@
 
             selectedItem: null,
             selectFile: true,
-            uploadedImages: [],
-            uploadedMusic: null,
+
             songTitle: 'Song title. mp3',
             fileSize: '',
+  
             isLoading: false,
+
+            uploadedFiles: [],
+            errorMessage: null,
         
          }
     },      
     computed: {
         ...mapGetters(["isLoggedIn"]),
-        countNumberOfImages(){
-          return this.uploadedImages.length;
-        },
-        displayedImages() {
-      return this.uploadedImages.slice(0, 3);
+      displayedFiles() {
+        return this.uploadedFiles.slice(0, 3);
+    },
+    additionalFilesCount() {
+      return Math.max(this.uploadedFiles.length - 3, 0);
     }
   },
   watch: {
@@ -275,18 +339,19 @@
   },
     methods: {
       submitForm(){
-        console.log('Message mo:', this.formData.message, this.uploadedMusic);
+        console.log('Message mo:', this.formData.message, this.uploadedFiles);
         this.isLoading = true;
         this.$emit('submitData', {
           message: this.formData.message,
-          images: this.uploadedImages,
+          files: this.uploadedFiles,
           music: this.uploadedMusic,
           loading: this.isLoading = false
         });
         this.formData.message = '';
-        this.uploadedImages = [];
-        this.uploadedMusic = null;
-        this.selectedItem = null;
+        this.uploadedFiles = '';
+        this.uploadedMusic = '';
+        // this.selectedItem = null;
+        this.selectFile = true;
       },
       toggleContent(item) {
       if (this.selectedItem === item) {
@@ -300,32 +365,82 @@
     },
     uploadImage() {
       // Trigger the hidden file input
-      this.$refs.imageInput.click();
+      this.$refs.fileInput.click();
     },
-    handleImageUpload(event) {
+    // handleImageUpload(event) {
+
+    //   const files = event.target.files;
+    //   this.selectFile = false;
+
+    //   // video
+    //   this.errorMessage = null;
+    //   this.uploadedVideo = null;
+    //   this.selectedVideo = event.target.files[0];
+
+    //   for (const file of files) {
+    //     if (this.uploadedImages.length >= 50) {
+    //       console.log('Maximum limit reached.');
+    //       return;
+    //     }
+    //     const reader = new FileReader();
+    //     reader.onload = (e) => {
+    //       this.uploadedImages.push(e.target.result);
+    //       // Save the images URLs in localStorage
+    //       localStorage.setItem('uploadedImages', JSON.stringify(this.uploadedImages));
+    //     };
+    //     reader.readAsDataURL(file);
+    //   }
+
+    //   if (this.selectedVideo) {
+    //     // Simulate a successful upload (no actual upload to the server in this example)
+    //     this.uploadedVideo = this.selectedVideo.name;
+    //     this.uploadedVideoUrl = URL.createObjectURL(this.selectedVideo);
+    //     this.selectedVideo = null;
+    //   } else {
+    //     // Handle no file selected error
+    //     this.errorMessage = 'Please select a video to upload.';
+    //   }
+
+    // },
+
+    handleFileUpload(event) {
+      this.selectFile = null;
+      this.errorMessage = null;
+      this.uploadedFiles = [];
       const files = event.target.files;
-      this.selectFile = false;
-      for (const file of files) {
-        if (this.uploadedImages.length >= 50) {
-          console.log('Maximum limit reached.');
-          return;
-        }
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          this.uploadedImages.push(e.target.result);
-          // Save the images URLs in localStorage
-          localStorage.setItem('uploadedImages', JSON.stringify(this.uploadedImages));
-        };
-        reader.readAsDataURL(file);
+      for (let i = 0; i < files.length; i++) {
+        this.uploadedFiles.push({
+          name: files[i].name,
+          type: files[i].type,
+          url: URL.createObjectURL(files[i]),
+        });
       }
     },
-    removeImage(index) {
-      this.uploadedImages.splice(index, 1);
-      // Update localStorage after removing image
-      localStorage.setItem('uploadedImages', JSON.stringify(this.uploadedImages));
-      if(this.uploadedImages == 0){
+    uploadFiles() {
+      if (this.uploadedFiles.length > 0) {
+        // Simulate a successful upload (no actual upload to the server in this example)
+        this.uploadedFiles = [];
+        this.selectFile = null;
+      } else {
+        // Handle no files selected error
+        this.errorMessage = 'Please select files to upload.';
+      }
+    },
+
+
+
+
+
+    removeFile(index) {
+      this.uploadedFiles.splice(index, 1);
+            if(this.uploadedFiles == 0){
         this.selectFile = true;
       }
+      // Update localStorage after removing image
+      // localStorage.setItem('uploadedImages', JSON.stringify(this.uploadedFiles));
+      // if(this.uploadedFiles == 0){
+      //   this.selectFile = true;
+      // }
     },
     handleMusicUpload(event) {
       const file = event.target.files[0];
@@ -353,12 +468,12 @@
     },
     
   },
-  created() {
-    const storedImages = localStorage.getItem('uploadedImages');
-    if (storedImages) {
-      this.uploadedImages = JSON.parse(storedImages);
-    }
-  }
+  // created() {
+  //   const storedImages = localStorage.getItem('uploadedImages');
+  //   if (storedImages) {
+  //     this.uploadedImages = JSON.parse(storedImages);
+  //   }
+  // }
 
   }
   </script>
