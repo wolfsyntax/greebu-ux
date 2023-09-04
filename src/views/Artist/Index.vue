@@ -8,13 +8,16 @@
         <div class="row">
           <div class="col-12 grid-margin">
             <div class="profile-header">
-              <div class="cover">
-                <div class="gray-shade"></div>
-                <figure>
-                  <img :src="`${account.cover_photo || '/assets/artist-account/default-cover-photo.webp'}`" class="img-fluid" alt="profile cover">
+
+              <input type="file" ref="bannerInput" @input="changeBanner" style="display: none;" accept=".png, .webp, .svg, .jpeg" />
+              
+              <div class="cover" >
+                <div class="gray-shade" ></div>
+                <figure >
+                  <img :src="bannerImage" class="img-fluid" alt="profile cover" >
                 </figure>
 
-                <div class="cover-photo-camera">
+                <div class="cover-photo-camera" @click="$refs.bannerInput.click()">
                   <button type="submit" class="btn btn-success">
                     <span class="material-symbols-outlined">&#xE412;</span>
                   </button>
@@ -586,6 +589,7 @@ export default {
   data()
   {
     return {
+      bannerImage: '/assets/artist-account/default-cover-photo.webp',
       form: {
         
       },
@@ -637,12 +641,17 @@ export default {
   },
   mounted()
   {
-
+    this.bannerImage = this.account.cover_photo || '/assets/artist-account/default-cover-photo.webp';
   },
   methods: {
     ...mapActions([
       'fetchArtistOptions', 'fetchProfile',
     ]),
+    changeBanner(e)
+    {
+      this.bannerImage = URL.createObjectURL(e.target.files[0]);
+      this.form.avatar = e.target.files[0];
+    },
     submit()
     {
 
@@ -730,7 +739,7 @@ export default {
   },
   
   computed: {
-    ...mapGetters(["userInfo", "token", 'token', 'myAvatar', 'instagram', 'youtube', 'twitter', 'spotify', ]),
+    ...mapGetters(["userInfo", "token", 'token', 'myAvatar', 'instagram', 'youtube', 'twitter', 'spotify', 'isComplete', ]),
     ...mapState({
       users: (state)    => state.user,
       profile: (state)  => state.profile,

@@ -7,7 +7,7 @@
           <div class="col-3"></div>
           <div class="col-6">
             <div class="back-wrapper">
-              <a href="/artist" class="back">
+              <a href="/dashboard" class="back">
                 <span class="material-symbols-outlined">&#xef7d;</span>Back
               </a>
             </div>
@@ -68,7 +68,6 @@
                 <span class="material-symbols-rounded close-icon" @click="closeToastArtist">&#xe5cd;</span>
               </div>
             </div>
-
 
             <form @submit.prevent="submit" class="fill-details">
               <!-- {{ form }} -->
