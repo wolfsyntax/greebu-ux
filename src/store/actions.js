@@ -832,29 +832,6 @@ var actions = {
         });
     })
   },
-  updatePhone({ commit, state }, payload)
-  {
-    return new Promise(async (resolve, reject) =>
-    {
-      axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
-
-      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/test-request` )
-        .then(response =>
-        {
-
-          const { data: { message, status, result }, status: statusCode } = response;
-          
-          console.log('', response);
-
-          resolve(response)
-
-        })
-        .catch(err =>
-        {
-          reject(err)
-        });
-    });
-  },
   updateEmail({ commit, state }, payload)
   {
     return new Promise(async (resolve, reject) =>
@@ -890,7 +867,7 @@ var actions = {
     {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
 
-      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/account/change-phone` )
+      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/account/update-phone` )
         .then(response =>
         {
 
@@ -927,35 +904,6 @@ var actions = {
           
           console.log('\n\nUpdate password: ', response);
           
-          if (status == 200 && statusCode === 200)
-          {
-            commit('SET_AUTH', result?.user);
-            resolve(response);
-          } else {
-            reject({ msg: message, status: statusCode });
-          }
-
-        })
-        .catch(err =>
-        {
-          reject(err)
-        });
-    });
-  },
-  updatePhone({ commit, state }, payload)
-  {
-    return new Promise(async (resolve, reject) =>
-    {
-      axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
-
-      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/account/update-phone` , payload)
-        .then(response =>
-        {
-
-          console.log('\n\nUpdate phone: ', response);
-
-          const { data: { message, status, result }, status: statusCode } = response;
-
           if (status == 200 && statusCode === 200)
           {
             commit('SET_AUTH', result?.user);
