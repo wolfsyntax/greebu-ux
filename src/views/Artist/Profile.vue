@@ -121,6 +121,8 @@
                     return await fetchGenre(query) || genres
                   }" 
                   :searchable="true" :delay="0" 
+                  autocomplete="off" 
+                  ref="multiselect" 
                   noOptionsText="Please input genre(s)"
                   class="genre" placeholder="Please select genres" />
                   <br/>
@@ -562,6 +564,7 @@ export default {
   {
     console.log('--- Mounted ---')
     this.$store.commit('SET_MEMBER_INDEX');
+    this.$refs.multiselect.$el.focus();
     // this.fetchProfile()
     //   .then(res =>
     //   {
