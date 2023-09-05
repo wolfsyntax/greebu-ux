@@ -797,6 +797,11 @@ var actions = {
               commit('SET_ACCOUNT', account);
               commit('SET_PROFILE', profile);
               commit('SET_ARTIST', profile);
+              if (state.role === 'artists') {
+                const { members, genres } = result;
+                commit('SET_ARTIST_GENRES', genres || []);
+                commit('SET_MEMBERS', members || [])
+              }
               
             }
           }
