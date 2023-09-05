@@ -501,7 +501,6 @@ export default {
   }),
   mounted()
   {
-    this.flag = false;
 
     this.fetchProfile()
       .then(res =>
