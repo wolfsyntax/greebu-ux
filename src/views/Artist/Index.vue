@@ -338,52 +338,6 @@
               </div>
             </div> <!-- end of Zero state screen -->
 
-            <!-- Artist Posts -->
-
-                  <!-- <div class="row artist-post">
-                      <div class="col-md-12 grid-margin">
-                          <div class="card">
-                              <div class="card-header">
-                                  <div class="d-flex align-items-center justify-content-between">
-                                      <div class="d-flex align-items-center user-posted-info">
-                                          <img class="img-xs rounded-circle" src="https://res.cloudinary.com/daorvtlls/image/upload/v1687927639/artist-profile-1_uhpekp.webp" alt="">
-                                          <div class="group-posted">
-                                              <a href="#" class="name">Mike Popescu</a>
-                                              <p class="ago">1 min ago</p>
-                                          </div>
-                                      </div>
-                                      <div class="dropdown">
-                                        <span class="material-symbols-outlined">more_vert</span>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="card-body">
-                                  <p class="mb-3">Travel and you will born for a second time️️ Travel and you will born for a second time️️ Travel and you will born for a second time️️ Travel and you will born for a second time️️
-                                    Travel and you will born for a second time️️ Travel and you will born for a second time️️ Travel and you will born for a second time️️ Travel and you will born for a second time️️
-                                  </p>
-                                  <div class="posted-img">
-                                    <img class="img-fluid" src="https://res.cloudinary.com/daorvtlls/image/upload/v1686465778/samples/imagecon-group.jpg" loading="lazy" alt="posted image">
-                                  </div>
-                              </div>
-                              <div class="card-footer d-flex align-items-center justify-content-between">
-                                  <div class="d-flex post-actions">
-                                    <div class="post-icon">
-                                    <span class="material-symbols-outlined">favorite</span>
-                                      <p>Like</p>
-                                    </div>
-                                    <div class="post-icon">
-                                      <span class="material-symbols-outlined">chat_bubble</span>
-                                      <p>Comment</p>
-                                    </div>
-                                  </div>
-                                  <div class="comments">
-                                    <p>243 comments</p>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div> -->
-
           </div>              <!-- middle wrapper end -->
           
           <!-- right wrapper start -->
@@ -763,8 +717,11 @@ export default {
       const submittedTime = new Date();
       this.submissions.unshift(data);
       this.times.unshift(submittedTime);
+      
     },
-
+    // checkLog(){
+    //   console.log("Posted", this.submissions);
+    // },
     formattedTime(submittedTime) {
       if (!submittedTime) {
         return "";

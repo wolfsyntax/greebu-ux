@@ -21,7 +21,7 @@
                     </button>
                   </div> -->
                   <div class="cover-photo-camera" >
-                    <button type="submit" class="btn btn-success" @click="toggle" data-bs-toggle="modal" data-bs-target="#bannerModal">
+                    <button type="submit" class="btn btn-success" @click="toggle" data-bs-toggle="modal" data-bs-target="#uploadArtistCoverPhoto">
                       <span class="material-symbols-outlined">&#xE412;</span>
                     </button>
                   </div>
@@ -192,61 +192,118 @@
                 </div>    
               </div> <!-- end of row post -->
 
-              <!-- Test -->
+              <!-- Test upload front-end -->
+
               <div class="row artist-post">
-                <div class="col-md-12 grid-margin">
-                  <div class="card" v-for="(submission, index) in submissions" :key="index">
-                    <div class="card-header">
-                      <div class="d-flex align-items-center justify-content-between">
-                        <div class="d-flex align-items-center user-posted-info">
-                          <img :src="`${account?.avatar || 'https://res.cloudinary.com/daorvtlls/image/upload/v1686649329/trending-bicolano-artist-4_o6xjze.png'}`" 
-                            loading="lazy" alt="member profile"
-                          />
+                      <div class="col-md-12 grid-margin">
+                          <div class="card" v-for="(submission, index) in submissions" :key="index">
+                              <div class="card-header">
+                                  <div class="d-flex align-items-center justify-content-between">
+                                      <div class="d-flex align-items-center user-posted-info">
+                                        <img :src="`${account?.avatar || 'https://res.cloudinary.com/daorvtlls/image/upload/v1686649329/trending-bicolano-artist-4_o6xjze.png'}`" 
+                                         loading="lazy" alt="member profile">
+                                          <div class="group-posted">
+                                              <a href="#" class="name">{{ account.artist_name || Geebu }}</a>
+                                              <p class="ago">{{ formattedTime(times[index]) }} </p>
+                                       
+                                          </div>
+                                      </div>
+                                      <div class="dropdown">
+                                        <span class="material-symbols-outlined">more_vert</span>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="card-body">
+                                  <p class="mb-3">{{ submission.message }}</p> 
+                              
+                                  <div class="row posted-file" >
+                                    <!-- v-if="submission.files.length > 0"
+                                    submission.files.slice(0, 4) -->
+                                  <!-- <div
+                                  :class="{
+                                    'four-more-uploaded': true,
+                                    'uploaded-one': submission.files.length === 1,
+                                    'uploaded-two': submission.files.length === 2,
+                                    'uploaded-three': submission.files.length === 3,
+                                  }"
+                                  v-for="(file, fileIndex) in submission.files.slice(0, 4)" :key="fileIndex">
+                                      <template v-if="file.type.startsWith('video/')"> -->
 
-                          <div class="group-posted">
-                            <a href="#" class="name">{{ account.artist_name || Geebu }}</a>
-                            <p class="ago">{{ formattedTime(times[index]) }} </p>
-                          </div>
-                        </div>
+                                        <!-- :class="getFileClass(fileIndex)" -->
+                                        
 
-                        <div class="dropdown">
-                          <span class="material-symbols-outlined">more_vert</span>
-                        </div>
+                                  <div v-for="(file, fileIndex) in submission.files.slice(0, 4)" :key="fileIndex"
+                                  :class="{
+                                        'uploaded-one': submission.files.length === 1,
+                                        'uploaded-two': submission.files.length === 2,
+                                        'uploaded-three-top': submission.files.length === 3 && fileIndex === 0,
+                                        'uploaded-three-left': submission.files.length === 3 && fileIndex === 1,
+                                        'uploaded-three-right': submission.files.length === 3 && fileIndex === 2,
+                                        'uploaded-four': submission.files.length >= 4,
+                                      }">
+                                      <template v-if="file.type.startsWith('video/')">
+
+                                     <video controls class="video-landscape-medium">
+                                       <source :src="file.url"  type="video/mp4">
+                                       Your browser does not support the video tag.
+                                     </video>
+                                   </template>
+
+                                   <template v-else-if="file.type.startsWith('image/')">
+                                     <img :src="file.url" class="image-landscape-medium" alt="Uploaded Image">     
+                                   </template>
+                                   </div>
+
+                                   <!-- <span v-if="fileIndex === 3" class="file-count">
+                                    {{ submission.files.length > 4 ? '+' + (submission.files.length - 4) : '' }}
+                                  </span> -->
+
+                                  </div> <!-- end of row -->
+
+                                  <!-- <div class="four-more-uploaded" v-for="file in submission">
+                                      <template v-if="file.type.startsWith('video/')">
+                                     <video controls class="video-landscape-medium">
+                                       <source :src="file.url"  type="video/mp4">
+                                       Your browser does not support the video tag.
+                                     </video>
+                                   </template>
+
+                                   <template v-else-if="file.type.startsWith('image/')">
+                                     <img :src="file.url" class="image-landscape-medium" alt="Uploaded Image">     
+                                   </template>
+                                   </div>
+
+                                   <span v-if="file === 3" class="file-count">
+                                    {{ submission.files.length > 4 ? '+' + (submission.files.length - 4) : '' }}
+                                  </span>
+                                  </div> -->
+
+                                  
+
+                              </div> <!-- end of card-body -->
+                              
+                              <div class="card-footer d-flex align-items-center justify-content-between">
+                                  <div class="d-flex post-actions">
+                                    <div class="post-icon">
+                                    <span class="material-symbols-outlined">favorite</span>
+                                      <p>Like</p>
+                                    </div>
+                                    <div class="post-icon">
+                                      <span class="material-symbols-outlined">chat_bubble</span>
+                                      <p>Comment</p>
+                                    </div>
+                                  </div>
+                                  <div class="comments">
+                                    <p>No comments yet</p>
+                                  </div>
+                              </div>
+                              <audio v-if="submission.music" controls>
+                                  <source :src="submission.music" type="audio/mpeg">
+                                  Your browser does not support the audio element.
+                                </audio>
+                          </div> <!-- end of card-->
                       </div>
-                    </div>
-
-                    <div class="card-body">
-                      <p class="mb-3">{{ submission.message }}</p>
-                      <div class="posted-img" v-for="(image, imgIndex) in submission.images" :key="imgIndex" >
-                        <img class="img-fluid" :src="image" loading="lazy" alt="posted image">
-                      </div>
-                    </div>
-
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                      <div class="d-flex post-actions">
-                        <div class="post-icon">
-                          <span class="material-symbols-outlined">favorite</span>
-                          <p>Like</p>
-                        </div>
-
-                        <div class="post-icon">
-                          <span class="material-symbols-outlined">chat_bubble</span>
-                          <p>Comment</p>
-                        </div>
-                      </div>
-
-                      <div class="comments">
-                        <p>No comments yet</p>
-                      </div>
-                    </div>
-
-                    <audio v-if="submission.music" controls>
-                      <source :src="submission.music" type="audio/mpeg">
-                      Your browser does not support the audio element.
-                    </audio>
-                  </div>
-                </div>
-              </div>
+                    </div> <!-- end of row -->
 
               <!-- Zero state screen -->
               <div class="row artist-post" v-if="submissions.length == 0">
@@ -444,7 +501,12 @@
     </section>
     <banner-modal @close="toggle" />
   </div>
+<!-- 
+    <pre> <b>Profile</b> {{  $store.state.profile  }} <br></pre>
+  <pre> <b>Account</b> {{ $store.state.account }}</pre> -->
+
 </template>
+
 
 <script>
 import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
@@ -525,7 +587,7 @@ export default {
     ]),
     toggle()
     {
-      this.$root.$emit("bv::show::modal", "#bannerModal");
+      this.$root.$emit("bv::show::modal", "#uploadArtistCoverPhoto");
     },
     openCreatePostModal(data)
     {
@@ -631,4 +693,3 @@ export default {
 <style>
 @import '@/assets/css/artist-ui.css';
 </style>
-

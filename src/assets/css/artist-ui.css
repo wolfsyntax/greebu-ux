@@ -565,37 +565,11 @@ body{
 .profile-page .middle-wrapper  .artist-post .card-body .posted-file{
   /* display: contents; */
 }
-/* .profile-page .middle-wrapper  .artist-post .card-body .posted-file .image-landscape-large,
-.profile-page .middle-wrapper  .artist-post .card-body .posted-file .video-landscape-large{
-  width: 100%;
-  height: 345px;
-  position: relative;
-  object-fit: cover;
-  backface-visibility: hidden;
-} */
-
-
-/* files div */
-/* .profile-page .middle-wrapper  .artist-post .card-body .posted-file .uploaded-one,
-.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-two,
-.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-three-top,
-.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-three-left,
-.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-three-right,
-.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-four
- {
-  position: relative;
-  padding: 0% .5%;
-  margin-bottom: 0.62rem;
-  display: inline-flex;
-  width: 50%;
-  margin: 0;
-} */
 
 /* one file uploaded */
 .profile-page .middle-wrapper  .artist-post .card-body .uploaded-one{
   position: relative;
   padding: 0% .5%;
-  margin-bottom: 0.62rem;
   display: inline-flex;
   margin: 0;
   width: 100%!important;
@@ -700,26 +674,6 @@ body{
   color: white;
 }
 
-/* 3 or more uploaded file */
-/* .profile-page .middle-wrapper  .artist-post .card-body .posted-file .three-files-uploaded {
-  position: relative;
-  padding: 0 1%;
-  margin-bottom: 0.62rem;
-  display: inline-flex;
-  width: 50%;
-}
-.profile-page .middle-wrapper  .artist-post .card-body .posted-file .three-files-uploaded img,
-.profile-page .middle-wrapper  .artist-post .card-body .posted-file .three-files-uploaded video{
-  width: 100%;
-  max-height: 13.3125rem;
-  position: relative;
-  object-fit: cover;
-  backface-visibility: hidden;
-}
-.profile-page .middle-wrapper  .artist-post .card-body .posted-file .three-files-uploaded video, 
-.profile-page .middle-wrapper  .artist-post .card-body .posted-file .three-files-uploaded img{
-  width: 100%!important;
-} */
 
 .profile-page .middle-wrapper  .artist-post .card-footer {
   border: 0;
@@ -1623,8 +1577,6 @@ body{
   cursor: pointer;
 }
 
-
-
 .profile-details .container .fill-details .submit-form {
   color: var(white);
   font-size: 1rem;
@@ -1637,7 +1589,8 @@ body{
   margin: 3.5rem auto;
 }
 .profile-details .busy-submitting, .profile-details .busy-add-member,
-#artistPost .modal-body .button-wrapper .busy-submitting-post {
+#artistPost .modal-body .button-wrapper .busy-submitting-post,
+#uploadArtistCoverPhoto .modal-footer .upload-cover-photo .busy-cover-photo {
   animation: spin 1s infinite linear;
   display: inline-block;
   font-weight: bold;
@@ -1647,7 +1600,8 @@ body{
   margin-right: 0.3rem;
 }
 .profile-details .busy-submitting::before, .profile-details .busy-add-member::before,
-#artistPost .modal-body .button-wrapper .busy-submitting-post::before {
+#artistPost .modal-body .button-wrapper .busy-submitting-post::before,
+#uploadArtistCoverPhoto .modal-footer .upload-cover-photo .busy-cover-photo::before {
   content: "\25E0";
 }
 @keyframes spin {
@@ -2319,6 +2273,123 @@ background: var(--btn-hovered);
   border-radius: 100%;
 }
 
+/* Upload Cover photo */
+
+#uploadArtistCoverPhoto .modal-content{
+    padding: 2.38rem 2.5rem 3rem;
+}
+#uploadArtistCoverPhoto .modal-content .modal-header, #uploadArtistCoverPhoto .modal-body {
+  border: 0;
+  padding: 0;
+}
+#uploadArtistCoverPhoto .modal-content .modal-header {
+  margin-bottom: 2.5rem;
+}
+#uploadArtistCoverPhoto .modal-content .modal-header .btn-close {
+  font-size: 0.6rem;
+  padding: 0.4rem;
+  border: 1px solid #23262F;
+  border-radius: 100px;
+  color: #23262F;
+}
+#uploadArtistCoverPhoto .modal-title{
+  color: #23262F;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 2rem; 
+}
+#uploadArtistCoverPhoto .modal-body .upload-file-wrapper{
+    border-radius: 0.625rem;
+    border: 1px dashed var(--gray6);
+    padding: 0.75rem;
+    margin-bottom: 4.5rem;
+}
+#uploadArtistCoverPhoto .upload-file-wrapper .upload-file-content{
+    border-radius: 0.25rem;
+    background: #EFEFFC;
+    padding: 2rem 0;
+}
+#uploadArtistCoverPhoto .upload-file-wrapper .upload-file-content svg {
+  margin-bottom: 1.5rem;
+}
+#uploadArtistCoverPhoto .upload-file-wrapper .upload-file-content .drag-files {
+  color: var(--black-color);
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+#uploadArtistCoverPhoto .upload-file-wrapper .upload-file-content .image-type{
+  color: rgba(0, 0, 0, 0.40);
+  font-size: 0.75rem;
+  font-weight: 400;
+  margin-bottom: 1.25rem;
+}
+#uploadArtistCoverPhoto .upload-file-content  .select-files-wrapper label {
+  color: var(--orange);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  background-color: transparent;
+  padding: 0.75rem 1rem;
+  border-radius: 0.3125rem;
+  border: 1px solid var(--orange);
+}
+#uploadArtistCoverPhoto .upload-file-content  .select-files-wrapper label:hover{
+    background-color: var(--orange);
+    color: var(--white);
+}
+#uploadArtistCoverPhoto .upload-file-wrapper .uploaded-image-wrapper{
+
+}
+#uploadArtistCoverPhoto .upload-file-wrapper .uploaded-image-wrapper .uploaded-image{
+  height: 21.313rem;
+  width: 100%;
+  border-radius: 0.25rem;
+  position: relative;
+  -o-object-fit: cover;
+  object-fit: cover;
+  backface-visibility: hidden;
+}
+#uploadArtistCoverPhoto .upload-file-wrapper .uploaded-image-wrapper .remove-image{
+  margin: 0;
+  position: absolute;
+  top: 7%;
+  left: 91%;
+  border: 0;
+  background-color: transparent;
+}
+#uploadArtistCoverPhoto .upload-file-wrapper .uploaded-image-wrapper .remove-image span{
+  cursor: pointer;
+  color: var(--white);
+  margin: 0;
+  position: absolute;
+  top: 3%;
+  left: 89.5%;
+  background: #00000075;
+  border-radius: 100px;
+  padding: 2px;
+  font-size: 16px;
+  border: 0.1px solid #ffffff91;
+}
+#uploadArtistCoverPhoto .upload-file-wrapper .uploaded-image-wrapper .remove-image:hover span{
+  border: 0.1px solid var(--white);
+}
+#uploadArtistCoverPhoto .modal-footer{
+  border: 0;
+}
+#uploadArtistCoverPhoto .modal-footer .upload-cover-photo{
+  color: var(--white);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.025rem;
+  padding: 0.75rem 8.63rem;
+  background-color: var(--orange);
+}
+#uploadArtistCoverPhoto .modal-footer .upload-cover-photo:hover{
+  background-color: var(--btn-hovered);
+}
+
 
 
 /* Data from backend - array of objects at the bottom */
@@ -2347,6 +2418,61 @@ background: var(--btn-hovered);
   24 px	1.5 rem
   28px 1.75 rem
 */
+
+
+/* Upload Cover photo */
+
+#uploadArtistCoverPhoto .modal-content {
+  padding: 2.06rem 2.38rem 2.63rem;
+  width: 35rem;
+  margin: 0 auto;
+}
+#uploadArtistCoverPhoto .modal-content .modal-header {
+  margin-bottom: 1.25rem;
+}
+#uploadArtistCoverPhoto .modal-title{
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 2rem; 
+}
+#uploadArtistCoverPhoto .modal-body .upload-file-wrapper{
+  padding: 0.56rem;
+  margin-bottom: 3.63rem;
+}
+#uploadArtistCoverPhoto .upload-file-wrapper .upload-file-content{
+  padding: 1.56rem 0;
+}
+#uploadArtistCoverPhoto .upload-file-wrapper .upload-file-content svg {
+  margin-bottom: 0.62rem;
+  width: 1.8125rem;
+  height: 1.8125rem;
+}
+#uploadArtistCoverPhoto .upload-file-wrapper .upload-file-content .drag-files {
+  font-size: 0.75rem;
+}
+#uploadArtistCoverPhoto .upload-file-wrapper .upload-file-content .image-type{
+  font-size: 0.625rem;
+}
+#uploadArtistCoverPhoto .upload-file-content  .select-files-wrapper label {
+  font-size: 0.625rem;
+}
+#uploadArtistCoverPhoto .upload-file-wrapper .uploaded-image-wrapper .uploaded-image{
+  height: 18.813rem;
+}
+#uploadArtistCoverPhoto .upload-file-wrapper .uploaded-image-wrapper .remove-image {
+  top: 7%;
+  left: 89%;
+}
+#uploadArtistCoverPhoto .modal-footer{
+  padding: 0;
+}
+#uploadArtistCoverPhoto .modal-footer .upload-cover-photo{
+  font-size: 1rem;
+  letter-spacing: -0.02rem;
+  padding: 0.88rem 7rem;
+}
+
+
 
 
                                             /* Create post - Uploaded music */
@@ -2412,6 +2538,42 @@ background: var(--btn-hovered);
   left: 88%;
   font-size: 14px;
 }
+
+/* one file uploaded */
+.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-one video,
+.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-one img{
+  height: 16.0625rem!important;
+}
+/* two files uploaded */
+.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-two video, 
+.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-two img {
+  padding: 0 0.3%;
+}
+/* three files uploaded */
+.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-three-left,
+.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-three-right{
+  padding: 0 0.2%;
+}
+.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-three-top video, 
+.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-three-top img {
+  padding: 0 0.2% 0.5%;
+}
+.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-three-left video,
+.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-three-left img,
+.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-three-right video,
+.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-three-right img{
+  padding: 0 0.2%;
+}
+/* 4 or more files uploaded */
+.profile-page .middle-wrapper  .artist-post .card-body .posted-file .uploaded-four img,
+.profile-page .middle-wrapper  .artist-post .card-body .posted-file .uploaded-four video{
+  height: 12.32638rem;
+  padding: 0 0.2% 0.5%;
+}
+.profile-page .middle-wrapper  .artist-post .card-body .posted-file .file-count {
+  font-size: 2rem;
+}
+
 
                                                     /* ARTIST POST MODAL */
 
