@@ -210,21 +210,7 @@
               </div>    
             </div> <!-- end of row post -->
 
-            <!-- Test -->
-            <div class="row artist-post">
-              <div class="col-md-12 grid-margin">
-                <div class="card" v-for="(submission, index) in submissions" :key="index">
-                  <div class="card-header">
-                    <div class="d-flex align-items-center justify-content-between">
-                      <div class="d-flex align-items-center user-posted-info">
-                        <img :src="`${account?.avatar || 'https://res.cloudinary.com/daorvtlls/image/upload/v1686649329/trending-bicolano-artist-4_o6xjze.png'}`" 
-                          loading="lazy" alt="member profile">
-                        <div class="group-posted">
-                          <a href="#" class="name">{{ account.artist_name || Geebu }}</a>
-                          <p class="ago">{{ formattedTime(times[index]) }} </p>
-                        </div>
-                      </div>
-
+            <!-- Test upload front-end -->
 
                     <div class="row artist-post">
                       <div class="col-md-12 grid-margin">
@@ -290,7 +276,7 @@
                                     {{ submission.files.length > 4 ? '+' + (submission.files.length - 4) : '' }}
                                   </span> -->
 
-                                  </div>
+                                  </div> <!-- end of row -->
 
                                   <!-- <div class="four-more-uploaded" v-for="file in submission">
                                       <template v-if="file.type.startsWith('video/')">
@@ -310,26 +296,10 @@
                                   </span>
                                   </div> -->
 
-                                 
-
-                                 
-
-                                   
-
-                                 
-
-
-
-
                                   
 
-                                
-
-                            
-
-                                  
-
-                              </div>
+                              </div> <!-- end of card-body -->
+                              
                               <div class="card-footer d-flex align-items-center justify-content-between">
                                   <div class="d-flex post-actions">
                                     <div class="post-icon">
@@ -349,41 +319,10 @@
                                   <source :src="submission.music" type="audio/mpeg">
                                   Your browser does not support the audio element.
                                 </audio>
-                          </div>
+                          </div> <!-- end of card-->
                       </div>
-                    </div>
-                  </div>
+                    </div> <!-- end of row -->
 
-                  <div class="card-body">
-                    <p class="mb-3">{{ submission.message }}</p>
-                    <div class="posted-img" v-for="(image, imgIndex) in submission.images" :key="imgIndex" >
-                      <img class="img-fluid" :src="image" loading="lazy" alt="posted image">
-                    </div>
-                  </div>
-
-                  <div class="card-footer d-flex align-items-center justify-content-between">
-                    <div class="d-flex post-actions">
-                      <div class="post-icon">
-                      <span class="material-symbols-outlined">favorite</span>
-                        <p>Like</p>
-                      </div>
-                      <div class="post-icon">
-                        <span class="material-symbols-outlined">chat_bubble</span>
-                        <p>Comment</p>
-                      </div>
-                    </div>
-                    <div class="comments">
-                      <p>No comments yet</p>
-                    </div>
-                  </div>
-
-                  <audio v-if="submission.music" controls>
-                    <source :src="submission.music" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                  </audio>
-                </div>
-              </div>
-            </div>
 
             <!-- Zero state screen -->
             <div class="row artist-post" v-if="submissions.length == 0">
@@ -846,24 +785,24 @@ export default {
         return `${Math.floor(timeDifference / 86400)} days ago`;
       }
     },
-    getFileClass(fileIndex) {
-    const numFiles = this.submissions.length;
-    if (numFiles === 1) {
-      return 'uploaded-one';
-    }else if (numFiles === 2) {
-      return 'uploaded-two';
-    }else if (numFiles === 3) {
-      if (fileIndex === 0) {
-        return 'uploaded-three-top';
-      } else if (fileIndex === 1) {
-        return 'uploaded-three-left';
-      }else if (fileIndex === 2) {
-        return 'uploaded-three-right';
-      }
-    }else if (numFiles >= 4) {
-      return 'uploaded-four';
-    }
-  },
+  //   getFileClass(fileIndex) {
+  //   const numFiles = this.submissions.length;
+  //   if (numFiles === 1) {
+  //     return 'uploaded-one';
+  //   }else if (numFiles === 2) {
+  //     return 'uploaded-two';
+  //   }else if (numFiles === 3) {
+  //     if (fileIndex === 0) {
+  //       return 'uploaded-three-top';
+  //     } else if (fileIndex === 1) {
+  //       return 'uploaded-three-left';
+  //     }else if (fileIndex === 2) {
+  //       return 'uploaded-three-right';
+  //     }
+  //   }else if (numFiles >= 4) {
+  //     return 'uploaded-four';
+  //   }
+  // },
 
 
   },
