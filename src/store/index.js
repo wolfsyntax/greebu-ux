@@ -13,6 +13,7 @@ import state from './state';
 import artist from './modules/artists';
 import userProfile from './modules/profiles';
 import customer from './modules/customers';
+import posts from './modules/posts';
 import organizer from './modules/organizers';
 import services from './modules/services';
 import songs from './modules/songs';
@@ -61,6 +62,7 @@ export default new Vuex.Store({
     // organizer,
     // services,
     songs,
+    posts,
   },
   strict: false,
 });
