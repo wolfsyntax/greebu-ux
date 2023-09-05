@@ -1,14 +1,49 @@
 <template>
-  
+  <layout>
+    <artist-dashboard v-if="userRole === 'artists'"/>
+    <organizer-dashboard v-else-if="userRole === 'organizer'"/>
+    <provider-dashboard v-else-if="userRole === 'service-provider'"/>
+    <customer-dashboard v-else-if="userRole === 'customers'"/>
+    
+    <div v-else>
+      No Profile Exists
+    </div>
+
+  </layout>
 </template>
 <script>
-import ArtistLayout from '@/components/Layouts/ArtistLayout.vue';
-import OrganizerLayout from '@/components/Layouts/OrganizerLayout.vue';
-import ServicesLayout from '@/components/Layouts/ServicesLayout.vue';
+import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
 
+import ArtistDashboard from '@/components/Dashboard/Artist.vue';
+import OrganizerDashboard from '@/components/Dashboard/Organizer.vue';
+import ProviderDashboard from '@/components/Dashboard/ServiceProvider.vue';
+import CustomerDashboard from '@/components/Dashboard/Customer.vue';
+
+import Layout from '/src/components/Layouts/Layout.vue';
 export default {
-  setup() {
-    
+  components: {
+    ArtistDashboard,
+    OrganizerDashboard,
+    ProviderDashboard,
+    CustomerDashboard,
+    Layout,
+  },
+  setup()
+  {
+
+  },
+  data: () => ({}),
+  computed: {
+    ...mapGetters(["userInfo", 'info', 'isLoggedIn', 'userRole',]),
+    ...mapState({
+      users: (state) => state.user,
+    }),
+  },
+  watch: {
+
+  },
+  methods: {
+
   },
 
 }

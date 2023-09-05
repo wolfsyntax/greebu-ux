@@ -72,6 +72,14 @@ var getters = {
       return state.account.twitter_username.replace(/^https?:\/\/(www\.)?/, "");
     }
     return '';
+  },
+  isComplete: state =>
+  {
+    const { artist_name, artist_type_id, artist_type, bio, genres, song, song_title } = state.account
+    const { street_address, city, province } = state.profile
+
+    return ((artist_name && artist_type_id && artist_type && bio && genres && song && song_title) && (street_address && city && province)) ? true : false;
+
   }
 }
 
