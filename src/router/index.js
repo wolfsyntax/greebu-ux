@@ -358,8 +358,9 @@ const router = createRouter({
       children: [
         {
           path: '',
-          name: 'index',
-          component: () => import('/src/views/Artist/Index.vue'),
+          redirect: '/dashboard',
+          // name: 'index',
+          // component: () => import('/src/views/Artist/Index.vue'),
         },
         // {
         //   path: 'profile',
