@@ -953,11 +953,11 @@ var actions = {
   },
   updateBanner({ commit, state }, payload)
   {
-    return new Promise(async (resolve, reject) =>
+    return new Promise((resolve, reject) =>
     {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
       console.log('Banner Form: ', payload)
-      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/account/update/${state.profile?.id}/banner`, payload, {
+      axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/account/update/${state.profile?.id}/banner`, payload, {
         headers: {
           "Content-Type": "multipart/form-data",
         }
