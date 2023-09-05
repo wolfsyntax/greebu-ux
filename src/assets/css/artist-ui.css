@@ -562,13 +562,165 @@ body{
   line-height: normal;
   margin-top: 0;
 }
-.profile-page .middle-wrapper  .artist-post .card-body .posted-img img{
+.profile-page .middle-wrapper  .artist-post .card-body .posted-file{
+  /* display: contents; */
+}
+/* .profile-page .middle-wrapper  .artist-post .card-body .posted-file .image-landscape-large,
+.profile-page .middle-wrapper  .artist-post .card-body .posted-file .video-landscape-large{
   width: 100%;
-  max-height: 345px;
+  height: 345px;
+  position: relative;
+  object-fit: cover;
+  backface-visibility: hidden;
+} */
+
+
+/* files div */
+/* .profile-page .middle-wrapper  .artist-post .card-body .posted-file .uploaded-one,
+.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-two,
+.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-three-top,
+.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-three-left,
+.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-three-right,
+.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-four
+ {
+  position: relative;
+  padding: 0% .5%;
+  margin-bottom: 0.62rem;
+  display: inline-flex;
+  width: 50%;
+  margin: 0;
+} */
+
+/* one file uploaded */
+.profile-page .middle-wrapper  .artist-post .card-body .uploaded-one{
+  position: relative;
+  padding: 0% .5%;
+  margin-bottom: 0.62rem;
+  display: inline-flex;
+  margin: 0;
+  width: 100%!important;
+}
+.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-one video,
+.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-one img{
+  height: 21.563rem!important;
+  width: 100%!important;
   position: relative;
   object-fit: cover;
   backface-visibility: hidden;
 }
+
+/* two files uploaded */
+.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-two{
+  position: relative;
+  padding: 0% .5%;
+  margin-bottom: 0.62rem;
+  display: contents;
+  width: 99%;
+  margin: 0;
+}
+.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-two video, .profile-page .middle-wrapper  .artist-post .card-body  .uploaded-two img {
+  height: 24.9375rem!important;
+  width: 49%!important;
+  position: relative;
+  -o-object-fit: cover;
+  object-fit: cover;
+  backface-visibility: hidden;
+  padding: 0 0.5%;
+}
+
+/* three files uploaded */
+.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-three-top{
+  position: relative;
+  padding: 0% .5%;
+  margin-bottom: 0.62rem;
+  display: contents;
+  width: 99%;
+  margin: 0;
+}
+.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-three-left,
+.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-three-right{
+  position: relative;
+  padding: 0% .5%;
+  margin-bottom: 0.62rem;
+  display: contents;
+  width: 50%;
+  margin: 0;
+}
+.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-three-top video, 
+.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-three-top img {
+  height: 15.75rem!important;
+  width: 100%!important;
+  position: relative;
+  -o-object-fit: cover;
+  object-fit: cover;
+  backface-visibility: hidden;
+  padding: 0 0.5% 1%;
+}
+.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-three-left video,
+.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-three-left img,
+.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-three-right video,
+.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-three-right img{
+  height: 12.75rem!important;
+  width: 50%!important;
+  position: relative;
+  -o-object-fit: cover;
+  object-fit: cover;
+  backface-visibility: hidden;
+  padding: 0 0.5%;
+}
+/* 4 or more files uploaded */
+.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-four{
+  width: 100%!important;
+  position: relative;
+  padding: 0% .5%;
+  margin-bottom: 0.62rem;
+  display: contents;
+  margin: 0;
+}
+.profile-page .middle-wrapper  .artist-post .card-body .posted-file .uploaded-four img,
+.profile-page .middle-wrapper  .artist-post .card-body .posted-file .uploaded-four video{
+  height: 13.3125rem;
+  width: 50%!important;
+  position: relative;
+  -o-object-fit: cover;
+  object-fit: cover;
+  backface-visibility: hidden;
+  padding: 0 0.5% 1%;
+}
+.profile-page .middle-wrapper  .artist-post .card-body .posted-file .file-count {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2.25rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  color: white;
+}
+
+/* 3 or more uploaded file */
+/* .profile-page .middle-wrapper  .artist-post .card-body .posted-file .three-files-uploaded {
+  position: relative;
+  padding: 0 1%;
+  margin-bottom: 0.62rem;
+  display: inline-flex;
+  width: 50%;
+}
+.profile-page .middle-wrapper  .artist-post .card-body .posted-file .three-files-uploaded img,
+.profile-page .middle-wrapper  .artist-post .card-body .posted-file .three-files-uploaded video{
+  width: 100%;
+  max-height: 13.3125rem;
+  position: relative;
+  object-fit: cover;
+  backface-visibility: hidden;
+}
+.profile-page .middle-wrapper  .artist-post .card-body .posted-file .three-files-uploaded video, 
+.profile-page .middle-wrapper  .artist-post .card-body .posted-file .three-files-uploaded img{
+  width: 100%!important;
+} */
+
 .profile-page .middle-wrapper  .artist-post .card-footer {
   border: 0;
   padding: 5px 17px 17px 17px;
@@ -2004,7 +2156,7 @@ background: var(--btn-hovered);
   height: 14.5625rem;
   margin-bottom: 0.62rem;
 }
-#artistPost .uploaded-wrapper .uploaded-images img{
+#artistPost .uploaded-wrapper .uploaded-images img, #artistPost .uploaded-wrapper .uploaded-images video{
   width: 100%;
   height: 14.5625rem;
   flex-shrink: 0;

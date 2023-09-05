@@ -225,8 +225,131 @@
                         </div>
                       </div>
 
-                      <div class="dropdown">
-                        <span class="material-symbols-outlined">more_vert</span>
+
+                    <div class="row artist-post">
+                      <div class="col-md-12 grid-margin">
+                          <div class="card" v-for="(submission, index) in submissions" :key="index">
+                              <div class="card-header">
+                                  <div class="d-flex align-items-center justify-content-between">
+                                      <div class="d-flex align-items-center user-posted-info">
+                                        <img :src="`${account?.avatar || 'https://res.cloudinary.com/daorvtlls/image/upload/v1686649329/trending-bicolano-artist-4_o6xjze.png'}`" 
+                                         loading="lazy" alt="member profile">
+                                          <div class="group-posted">
+                                              <a href="#" class="name">{{ account.artist_name || Geebu }}</a>
+                                              <p class="ago">{{ formattedTime(times[index]) }} </p>
+                                       
+                                          </div>
+                                      </div>
+                                      <div class="dropdown">
+                                        <span class="material-symbols-outlined">more_vert</span>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="card-body">
+                                  <p class="mb-3">{{ submission.message }}</p> 
+                              
+                                  <div class="row posted-file" >
+                                    <!-- v-if="submission.files.length > 0"
+                                    submission.files.slice(0, 4) -->
+                                  <!-- <div
+                                  :class="{
+                                    'four-more-uploaded': true,
+                                    'uploaded-one': submission.files.length === 1,
+                                    'uploaded-two': submission.files.length === 2,
+                                    'uploaded-three': submission.files.length === 3,
+                                  }"
+                                  v-for="(file, fileIndex) in submission.files.slice(0, 4)" :key="fileIndex">
+                                      <template v-if="file.type.startsWith('video/')"> -->
+
+                                        <!-- :class="getFileClass(fileIndex)" -->
+                                        
+
+                                  <div v-for="(file, fileIndex) in submission.files.slice(0, 4)" :key="fileIndex"
+                                  :class="{
+                                        'uploaded-one': submission.files.length === 1,
+                                        'uploaded-two': submission.files.length === 2,
+                                        'uploaded-three-top': submission.files.length === 3 && fileIndex === 0,
+                                        'uploaded-three-left': submission.files.length === 3 && fileIndex === 1,
+                                        'uploaded-three-right': submission.files.length === 3 && fileIndex === 2,
+                                        'uploaded-four': submission.files.length >= 4,
+                                      }">
+                                      <template v-if="file.type.startsWith('video/')">
+
+                                     <video controls class="video-landscape-medium">
+                                       <source :src="file.url"  type="video/mp4">
+                                       Your browser does not support the video tag.
+                                     </video>
+                                   </template>
+
+                                   <template v-else-if="file.type.startsWith('image/')">
+                                     <img :src="file.url" class="image-landscape-medium" alt="Uploaded Image">     
+                                   </template>
+                                   </div>
+
+                                   <!-- <span v-if="fileIndex === 3" class="file-count">
+                                    {{ submission.files.length > 4 ? '+' + (submission.files.length - 4) : '' }}
+                                  </span> -->
+
+                                  </div>
+
+                                  <!-- <div class="four-more-uploaded" v-for="file in submission">
+                                      <template v-if="file.type.startsWith('video/')">
+                                     <video controls class="video-landscape-medium">
+                                       <source :src="file.url"  type="video/mp4">
+                                       Your browser does not support the video tag.
+                                     </video>
+                                   </template>
+
+                                   <template v-else-if="file.type.startsWith('image/')">
+                                     <img :src="file.url" class="image-landscape-medium" alt="Uploaded Image">     
+                                   </template>
+                                   </div>
+
+                                   <span v-if="file === 3" class="file-count">
+                                    {{ submission.files.length > 4 ? '+' + (submission.files.length - 4) : '' }}
+                                  </span>
+                                  </div> -->
+
+                                 
+
+                                 
+
+                                   
+
+                                 
+
+
+
+
+                                  
+
+                                
+
+                            
+
+                                  
+
+                              </div>
+                              <div class="card-footer d-flex align-items-center justify-content-between">
+                                  <div class="d-flex post-actions">
+                                    <div class="post-icon">
+                                    <span class="material-symbols-outlined">favorite</span>
+                                      <p>Like</p>
+                                    </div>
+                                    <div class="post-icon">
+                                      <span class="material-symbols-outlined">chat_bubble</span>
+                                      <p>Comment</p>
+                                    </div>
+                                  </div>
+                                  <div class="comments">
+                                    <p>No comments yet</p>
+                                  </div>
+                              </div>
+                              <audio v-if="submission.music" controls>
+                                  <source :src="submission.music" type="audio/mpeg">
+                                  Your browser does not support the audio element.
+                                </audio>
+                          </div>
                       </div>
                     </div>
                   </div>
@@ -701,7 +824,6 @@ export default {
       const submittedTime = new Date();
       this.submissions.unshift(data);
       this.times.unshift(submittedTime);
-
     },
 
     formattedTime(submittedTime) {
@@ -723,7 +845,25 @@ export default {
       } else {
         return `${Math.floor(timeDifference / 86400)} days ago`;
       }
+    },
+    getFileClass(fileIndex) {
+    const numFiles = this.submissions.length;
+    if (numFiles === 1) {
+      return 'uploaded-one';
+    }else if (numFiles === 2) {
+      return 'uploaded-two';
+    }else if (numFiles === 3) {
+      if (fileIndex === 0) {
+        return 'uploaded-three-top';
+      } else if (fileIndex === 1) {
+        return 'uploaded-three-left';
+      }else if (fileIndex === 2) {
+        return 'uploaded-three-right';
+      }
+    }else if (numFiles >= 4) {
+      return 'uploaded-four';
     }
+  },
 
 
   },
@@ -751,6 +891,12 @@ export default {
       genres: (state) => state.artist.genres,
     }),
 
+    displayedImages() {
+        return this.submissions.slice(0, 3);
+    },
+    additionalImagesCount() {
+      return this.submissions.files.length;
+    },
 
     hasYoutubeChannel() {
       return this.$store.state.account.youtube_channel !== null && this.$store.state.account.youtube_channel !== undefined;
