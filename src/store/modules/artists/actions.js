@@ -87,9 +87,10 @@ export const addMember = ({ commit, rootState, state}, payload) => {
 
         console.log('\n\nAdd Member Response: ', response)
 
-        const { status: statusCode, data } = response
-        if (statusCode === 200) {
-          commit('SET_MEMBERS', data)
+        const { status: statusCode, data: {result, status} } = response
+        if (statusCode === 200 && status === 200) {
+          const { members } = result;
+          commit('SET_MEMBERS', members)
         }
         resolve(response.data)
     })

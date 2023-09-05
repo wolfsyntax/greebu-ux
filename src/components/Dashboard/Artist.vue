@@ -501,6 +501,7 @@ export default {
   }),
   mounted()
   {
+
     this.fetchProfile()
       .then(res =>
       {
@@ -595,7 +596,7 @@ export default {
     profile: {
       handler(res)
       {
-
+        console.log('Profile object updated: ', res)
         this.bannerImage = res?.cover_photo || this.account.cover_photo || '/assets/artist-account/default-cover-photo.webp';
         this.myAvatar = res?.avatar || this.account.avatar || 'https://res.cloudinary.com/daorvtlls/image/upload/v1686465790/cld-sample.jpg';
 

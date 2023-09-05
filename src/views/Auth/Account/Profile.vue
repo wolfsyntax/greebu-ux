@@ -65,6 +65,11 @@ export default {
           } else {
             const { errors } = result;
             if (errors) this.errors = errors;
+
+            this.message = '';
+            window.scrollBy(-10000, -10000);
+            this.$forceUpdate();
+            
           }
           
         });
