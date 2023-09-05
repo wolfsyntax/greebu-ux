@@ -1,6 +1,6 @@
 <template>
-  <div ref="modal" class="modal fade" id="bannerModal" :class="{ show: active, 'd-block': active }" tabindex="-1" role="dialog" >
-    <div class="modal-dialog" role="document">
+  <div ref="modal" class="modal fade" id="uploadArtistCoverPhoto" :class="{ show: active, 'd-block': active }" tabindex="-1" role="dialog" >
+    <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Upload Cover Photo</h5>
@@ -8,38 +8,62 @@
         </div>
 
         <div class="modal-body">
-          <input type="file" ref="bannerInput" 
-            style="display: none;" accept=".png,.webp,.svg,.jpeg" 
-            @change="handleClick"
-          />
+<!-- 
+          <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 45 45" fill="none">
+            <path d="M14.915 14.959C14.915 16.1895 14.502 17.2529 13.6055 18.1582C12.7002 19.0635 11.6367 19.4678 10.4062 19.4678C9.17578 19.4678 8.1123 19.0547 7.20703 18.1582C6.30176 17.2617 5.89746 16.1895 5.89746 14.959C5.89746 13.7285 6.31055 12.665 7.20703 11.7598C8.10352 10.8545 9.17578 10.4502 10.4062 10.4502C11.6367 10.4502 12.7002 10.8633 13.6055 11.7598C14.5107 12.665 14.915 13.7285 14.915 14.959ZM39.0146 23.9766V34.4707H5.89746V29.9619L13.4385 22.5L17.209 26.2705L29.2588 14.2207L39.0146 23.9766ZM41.2295 7.49707H3.69141C3.52441 7.49707 3.27832 7.57617 3.19922 7.74316C3.03223 7.91016 2.95312 8.06836 2.95312 8.23535V36.7559C2.95312 36.9229 3.03223 37.1689 3.19922 37.2481C3.36621 37.415 3.52441 37.4941 3.69141 37.4941H41.2295C41.3965 37.4941 41.6426 37.415 41.7217 37.2481C41.8887 37.0811 41.9678 36.9229 41.9678 36.7559V8.23535C41.9678 8.06836 41.8887 7.82227 41.7217 7.74316C41.6426 7.58496 41.4756 7.49707 41.2295 7.49707ZM45 8.23535V36.7559C45 37.8193 44.6748 38.6367 43.9365 39.375C43.1982 40.1133 42.293 40.4385 41.3174 40.4385H3.69141C2.62793 40.4385 1.81055 40.1133 1.07227 39.375C0.325195 38.6455 0 37.749 0 36.7647V8.23535C0 7.17188 0.325195 6.35449 1.06348 5.61621C1.80176 4.87793 2.70703 4.55273 3.68262 4.55273H41.2207C42.2842 4.55273 43.1016 4.87793 43.8398 5.61621C44.6748 6.2666 45 7.17188 45 8.23535Z" fill="#ABADC6"/>
+            </svg>
+            <h3 class="title">Select a file or drag and drop here</h3>
+            <p class="limit">JPG, PNG file size no more than 10MB</p>
+            <div class="upload-wrapper">
+                <label for="fileInput" class="btn btn-info" @click="uploadFiles">SELECT FILE</label>
+                <input type="file" id="fileInput" ref="fileInput" @change="handleFileUpload" 
+                style="display: none" accept="image/*,video/*" class="file-input" multiple>
+            </div> -->
+
+
+      <div class="upload-file-wrapper">
+        
+          <input type="file" ref="bannerInput" style="display: none;" accept=".png,.webp,.svg,.jpeg" @change="handleClick"/>
           <!-- <div 
             @click="$refs.bannerInput.click()"
           >
             <img :src="banner" style="width: 320px;" alt="banner-preview" />
           </div> -->
 
-          <div class="upload-audio">
-            <div v-if="form.cover_photo">
-              <img :src="banner" alt="banner-modal" style="width: 320px; "/>
-              <button @click="removeBanner">Delete</button>
+          
+            <div class="uploaded-image-wrapper" v-if="form.cover_photo">
+              <img class="uploaded-image" :src="banner" alt="banner-modal" />
+              <button class="remove-image" @click="removeBanner">
+                <span class="material-symbols-outlined">&#xe5cd;</span> 
+              </button>
             </div>
             <div class="text-center upload-file-content" v-else >
               
-              <svg xmlns="http://www.w3.org/2000/svg" width="73" height="74" viewBox="0 0 73 74" fill="none">
-                <path d="M26.6035 22.1539V50.8632C25.2924 50.2319 23.8357 49.9563 22.382 50.0645C20.7481 50.1703 19.1812 50.7473 17.8741 51.7243C16.5669 52.7013 15.5767 54.0358 15.0254 55.5633C14.474 57.0909 14.3856 58.7449 14.771 60.3216C15.1564 61.8983 15.9987 63.329 17.1943 64.4374C18.3899 65.5458 19.8866 66.2835 21.5001 66.5598C23.1135 66.836 24.7732 66.6387 26.2749 65.9922C27.7766 65.3456 29.0547 64.278 29.9518 62.9209C30.8488 61.5637 31.3257 59.9762 31.3238 58.3539V32.1162C31.3316 31.8203 31.4266 31.533 31.597 31.2898C31.7674 31.0466 32.0058 30.8581 32.2829 30.7473L53.0844 22.8381C53.2265 22.7782 53.3815 22.755 53.535 22.7708C53.6885 22.7865 53.8355 22.8407 53.9621 22.9281C54.0887 23.0156 54.1908 23.1335 54.2589 23.2707C54.3269 23.408 54.3586 23.5601 54.351 23.7129V40.6724C53.041 40.0377 51.5834 39.762 50.1295 39.8738C47.9619 40.0226 45.937 40.9982 44.4803 42.5955C43.0236 44.1928 42.2486 46.2874 42.3182 48.4392C42.3877 50.5909 43.2965 52.632 44.8534 54.1337C46.4103 55.6353 48.4941 56.4805 50.6668 56.4915C52.926 56.4697 55.084 55.5603 56.667 53.9631C58.2499 52.3659 59.1284 50.2115 59.1094 47.9731V11.0122C59.1103 10.5109 58.9889 10.0168 58.7556 9.57192C58.5223 9.12705 58.184 8.7446 57.7695 8.45711C57.355 8.16963 56.8765 7.98561 56.3748 7.92072C55.8731 7.85582 55.3629 7.91198 54.8878 8.0844L29.6354 17.7811C28.7448 18.1233 27.9791 18.7237 27.4382 19.5038C26.8974 20.2839 26.6065 21.2075 26.6035 22.1539Z" fill="#ABADC6"/>
-              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 45 45" fill="none">
+            <path d="M14.915 14.959C14.915 16.1895 14.502 17.2529 13.6055 18.1582C12.7002 19.0635 11.6367 19.4678 10.4062 19.4678C9.17578 19.4678 8.1123 19.0547 7.20703 18.1582C6.30176 17.2617 5.89746 16.1895 5.89746 14.959C5.89746 13.7285 6.31055 12.665 7.20703 11.7598C8.10352 10.8545 9.17578 10.4502 10.4062 10.4502C11.6367 10.4502 12.7002 10.8633 13.6055 11.7598C14.5107 12.665 14.915 13.7285 14.915 14.959ZM39.0146 23.9766V34.4707H5.89746V29.9619L13.4385 22.5L17.209 26.2705L29.2588 14.2207L39.0146 23.9766ZM41.2295 7.49707H3.69141C3.52441 7.49707 3.27832 7.57617 3.19922 7.74316C3.03223 7.91016 2.95312 8.06836 2.95312 8.23535V36.7559C2.95312 36.9229 3.03223 37.1689 3.19922 37.2481C3.36621 37.415 3.52441 37.4941 3.69141 37.4941H41.2295C41.3965 37.4941 41.6426 37.415 41.7217 37.2481C41.8887 37.0811 41.9678 36.9229 41.9678 36.7559V8.23535C41.9678 8.06836 41.8887 7.82227 41.7217 7.74316C41.6426 7.58496 41.4756 7.49707 41.2295 7.49707ZM45 8.23535V36.7559C45 37.8193 44.6748 38.6367 43.9365 39.375C43.1982 40.1133 42.293 40.4385 41.3174 40.4385H3.69141C2.62793 40.4385 1.81055 40.1133 1.07227 39.375C0.325195 38.6455 0 37.749 0 36.7647V8.23535C0 7.17188 0.325195 6.35449 1.06348 5.61621C1.80176 4.87793 2.70703 4.55273 3.68262 4.55273H41.2207C42.2842 4.55273 43.1016 4.87793 43.8398 5.61621C44.6748 6.2666 45 7.17188 45 8.23535Z" fill="#ABADC6"/>
+            </svg>
               
-              <h5 class="drag-files">Drag files here</h5>
-              <p class="or">or</p>
+              <h5 class="drag-files">Select a file or drag and drop here</h5>
+              <p class="image-type">JPG, PNG file size no more than 10MB</p>
 
               <div class="select-files-wrapper">
-                <label for="files" class="btn btn-info" @click="$refs.bannerInput.click()">Select files</label>      
+                <label for="files" class="btn btn-info" @click="$refs.bannerInput.click()">Select file</label>      
               </div>
             </div>
-          </div>
-        </div>
+          
+       
+      </div>
+
+        </div> <!-- end of modal-body -->
+
         <div class="modal-footer justify-content-center">
-          <button class="btn btn-lg edit" @click="uploadCover">Upload Photo</button>
+          <button class="btn btn-lg upload-cover-photo" @click="uploadCover">
+            <span v-if="isLoading">
+                <i class="busy-cover-photo"></i>
+                Set as Cover Photo
+              </span>
+            <span v-else>Set as Cover Photo</span>
+          </button>
         </div>
       </div>
     </div>
@@ -58,6 +82,7 @@ export default {
     banner: '/assets/artist-account/default-cover-photo.webp',
     form: {
       cover_photo: '',
+      isLoading: false,
     }
   }),
   methods: {
@@ -109,6 +134,7 @@ export default {
       {
         this.removeBanner();
         this.$refs.bannerClose.click();
+       // this.isLoading = true;
       });
     },
     handleClick(e)
@@ -121,7 +147,6 @@ export default {
 
       this.form.cover_photo = rawFile;
       this.banner = URL.createObjectURL(rawFile);
-
     },
   },
 }
