@@ -98,7 +98,7 @@
                       <div class="artist-name">
                         <p class="name">{{ userInfo.business_name }}</p>
                         <p class="email" style="text-transform: capitalize;">{{ userInfo.role }}</p>
-                        <a class="dropdown-item view-profile" href="/artist">View Profile</a>
+                        <a class="dropdown-item view-profile" href="/dashboard">View Profile</a>
                       </div>
                     </div>
                   </li>
@@ -137,7 +137,7 @@
                       <div class="artist-name">
                         <p class="name">{{ userInfo.business_name }}</p>
                         <p class="email" style="text-transform: capitalize;">{{ userInfo.role }}</p>
-                        <a class="dropdown-item view-profile" href="/artist">View Profile</a>
+                        <a class="dropdown-item view-profile" href="/dashboard">View Profile</a>
                       </div>
                     </div>
                   </li>
