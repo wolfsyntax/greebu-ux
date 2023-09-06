@@ -1476,11 +1476,11 @@ body{
   margin-bottom: 0.94rem;
 }
 .profile-details .fill-details .song-preview .upload-file-content{
-  padding: 4.8rem;
+  padding: 1.3rem;
 }
 .profile-details .fill-details .song-preview .upload-file-content svg{
-  width: 4.52206rem;
-  height: 4.52206rem;
+  width: 2.5rem;
+  height: 2.5rem;
   margin-bottom: 0.5rem;
 }
 .profile-details .fill-details .song-preview .upload-file-content .drag-files,
@@ -2051,6 +2051,8 @@ background: var(--btn-hovered);
   border: 1px dashed var(--gray6);
   padding: 0.75rem;
   margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 9999;
 }
 #artistPost .upload-file-wrapper .upload-file-content{
   border-radius: 0.25rem;
@@ -2106,9 +2108,9 @@ background: var(--btn-hovered);
 }
 #artistPost .uploaded-wrapper .uploaded-images {
   position: relative;
-  padding: 0 1%;
+  padding: 0 0.5%;
   height: 14.5625rem;
-  margin-bottom: 0.62rem;
+  margin-bottom: 0.5%;
 }
 #artistPost .uploaded-wrapper .uploaded-images img, #artistPost .uploaded-wrapper .uploaded-images video{
   width: 100%;
@@ -2392,6 +2394,13 @@ background: var(--btn-hovered);
 
 
 
+  /* Styles for when the user is dragging over the drop area */
+.profile-details .fill-details .song-preview .drag-over,
+#uploadArtistCoverPhoto .modal-body .drag-over,
+#artistPost .modal-body .drag-over {
+  border: 2px dashed var(--orange)!important;
+}
+
 /* Data from backend - array of objects at the bottom */
 .artist-data .container .user{
   white-space: normal;
@@ -2400,6 +2409,9 @@ background: var(--btn-hovered);
   white-space: pre-wrap;
   word-break: break-word;
 }
+
+
+
 
 
 
@@ -2520,8 +2532,10 @@ background: var(--btn-hovered);
 
 #artistPost .uploaded-wrapper .uploaded-images {
   height: 10.4375rem;
-  margin-bottom: 0.37rem;
 }         
+#artistPost .uploaded-wrapper .uploaded-images img, #artistPost .uploaded-wrapper .uploaded-images video {
+  height: 10.4375rem;
+}
 #artistPost .uploaded-wrapper .uploaded-images img {
   height: 10.4375rem;
 }    
@@ -3247,7 +3261,7 @@ margin-right: 6px;
   margin-bottom: 2rem;
 }
 .profile-details .fill-details .song-preview .upload-file-content {
-  padding: 1.56rem 0;
+  padding: 0.9rem 0;
 }
 .profile-details .fill-details .song-preview .upload-file-content svg {
     margin-bottom: 0.62rem;
