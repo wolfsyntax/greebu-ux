@@ -72,8 +72,8 @@
     <verify-email @closeModal="closeShowVerifyEmailAddressModal"/>
 
     <current-phone id="currentPhoneModal" @closeModal="closePhoneNumberModal" />
-    <update-phone />
-
+    <update-phone @closeModal="closeNewPhoneNumberModal" />
+    <phone-verify />
     
 
   </div>
@@ -88,6 +88,7 @@ import VerifyEmail from './My Account/VerifyEmail.vue';
 
 import UpdateEmail from './My Account/UpdateEmail.vue';
 import UpdatePhone from './My Account/UpdatePhone.vue';
+import PhoneVerify from './My Account/OTPVerification.vue';
 
 import { Modal } from "bootstrap"
 
@@ -98,6 +99,7 @@ export default {
     UpdateEmail,
     UpdatePhone,
     VerifyEmail,
+    PhoneVerify,
   },
   data () {
     return {
@@ -210,11 +212,17 @@ export default {
     },
     closeNewEmailAddressModal()
     {
+      // Uncomment if Email verification is required L214-216
+      // new Modal(document.getElementById('accountVerifyEmail'), {
+      //   keyboard: false
+      // }).show();
+
       this.showEmailAddress = false;
       this.showNewEmailAddress = false;
     },
     showVerifyEmailAddressModal()
     {
+
       this.showVerifyEmailAddress = true;
       this.showEmailAddress = false;
       this.showNewEmailAddress = false;
@@ -246,6 +254,12 @@ export default {
     },
     closeNewPhoneNumberModal()
     {
+      
+      // uncomment line 259-261 if phone verification is required
+      // new Modal(document.getElementById('accountOTPhoneVerify'), {
+      //   keyboard: false
+      // }).show();
+
       this.showNewPhoneNumber = false;
       this.showPhoneNumber = false;
     },
