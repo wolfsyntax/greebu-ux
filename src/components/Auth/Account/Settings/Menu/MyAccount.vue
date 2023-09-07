@@ -68,10 +68,13 @@
     </div>
 
     <current-email @closeModal="closeCurrentEmailAddressModal" />
-    <update-email />
-  
+    <update-email @closeModal="closeNewEmailAddressModal" />
+    <verify-email @closeModal="closeShowVerifyEmailAddressModal"/>
+
     <current-phone id="currentPhoneModal" @closeModal="closePhoneNumberModal" />
-    <update-phone />
+    <update-phone @closeModal="closeNewPhoneNumberModal" />
+    <phone-verify />
+    
 
   </div>
 </template>
@@ -81,9 +84,11 @@ import { mapGetters, mapState, mapActions } from "vuex";
 
 import CurrentEmail from './My Account/CurrentEmail.vue';
 import CurrentPhone from './My Account/CurrentPhone.vue';
+import VerifyEmail from './My Account/VerifyEmail.vue';
 
 import UpdateEmail from './My Account/UpdateEmail.vue';
 import UpdatePhone from './My Account/UpdatePhone.vue';
+import PhoneVerify from './My Account/OTPVerification.vue';
 
 import { Modal } from "bootstrap"
 
@@ -93,6 +98,8 @@ export default {
     CurrentPhone,
     UpdateEmail,
     UpdatePhone,
+    VerifyEmail,
+    PhoneVerify,
   },
   data () {
     return {
@@ -135,6 +142,17 @@ export default {
     }
   },
   watch: {
+    user(val)
+    {
+      this.form = {
+        first_name: val?.first_name ?? '',
+        last_name: val?.last_name ?? '',
+        username: val?.username ?? '',
+      };
+
+      this.formattedEmail = val?.emailmask;
+      this.formattedPhone = val?.phonemask;
+    }
   },
   setup()
   {
@@ -159,8 +177,8 @@ export default {
       username: this.user?.username ?? '', 
     };
 
-    this.formattedEmail = this.user?.phonemask;
-    this.formattedPhone = this.user?.emailmask;
+    this.formattedEmail = this.user?.emailmask;
+    this.formattedPhone = this.user?.phonemask;
     console.log('My Profile')
   },
   computed: {
@@ -194,16 +212,22 @@ export default {
     },
     closeNewEmailAddressModal()
     {
+      // Uncomment if Email verification is required L214-216
+      // new Modal(document.getElementById('accountVerifyEmail'), {
+      //   keyboard: false
+      // }).show();
+
       this.showEmailAddress = false;
       this.showNewEmailAddress = false;
     },
     showVerifyEmailAddressModal()
     {
+
       this.showVerifyEmailAddress = true;
       this.showEmailAddress = false;
       this.showNewEmailAddress = false;
     },
-    closeshowVerifyEmailAddressModal()
+    closeShowVerifyEmailAddressModal()
     {
       this.showVerifyEmailAddress = false;
       this.showEmailAddress = false;
@@ -217,8 +241,11 @@ export default {
     },
     closePhoneNumberModal()
     {
-      this.mcCurrentPhone.hide();
-      this.showPhoneNumber = false;
+      new Modal(document.getElementById('updatePhone'), {
+        keyboard: false
+      }).show();
+
+      // this.showPhoneNumber = false;
     },
     showNewPhoneNumberModal()
     {
@@ -227,6 +254,12 @@ export default {
     },
     closeNewPhoneNumberModal()
     {
+      
+      // uncomment line 259-261 if phone verification is required
+      // new Modal(document.getElementById('accountOTPhoneVerify'), {
+      //   keyboard: false
+      // }).show();
+
       this.showNewPhoneNumber = false;
       this.showPhoneNumber = false;
     },
