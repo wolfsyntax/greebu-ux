@@ -563,6 +563,16 @@ export default {
   },
   created() {
     this.$store.commit('SET_MEMBER_INDEX');
+    // this.isLoading = true;
+    console.log('Fetch Profile (created)')
+    this.fetchProfile().then(res =>
+    {
+      const { status: statusCode, data: { result: { genres } } } = res
+
+      this.form.genres = genres
+      // this.isLoading = false;
+
+    });
   },
   mounted()
   {

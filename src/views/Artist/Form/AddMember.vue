@@ -210,7 +210,7 @@ export default {
         var id = this.member.id;
 
         console.log('Edit Form: ', this.form);
-
+        
         this.updateMember({
           memId: id, form: {
             member_avatar: this.form.member_avatar,
@@ -223,7 +223,7 @@ export default {
           if (status === 422) {
             this.errors = response?.result?.errors || {}
           } else {
-            // this.$store.commit('SET_MEMBER_INDEX', -1);
+            
             // this.$store.commit('SET_MEMBERS', response.result?.members)
 
             // this.form = {
@@ -234,7 +234,7 @@ export default {
 
             // this.other = '';
             // this.avatar = '';
-            
+            this.$store.commit('SET_MEMBER_INDEX', -1);
             this.$emit('modalClose')
             this.isLoading = false;
           }

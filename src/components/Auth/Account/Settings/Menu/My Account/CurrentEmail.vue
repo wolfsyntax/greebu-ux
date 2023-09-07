@@ -60,7 +60,7 @@ export default {
 
         this.$refs.modalClose.click();
         this.$emit('closeModal');
-        document.querySelector("body").classList.remove("modal-open");
+        // document.querySelector("body").classList.remove("modal-open");
       })
     },
 
