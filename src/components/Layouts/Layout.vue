@@ -55,7 +55,8 @@
                       <img :src="myAccount?.avatar || myAvatar" alt="artist profile" @error="replaceByDefault" >
                       <div class="artist-name">
                         <p class="name">{{  userInfo.business_name }}</p>
-                        <p class="email">{{ userInfo.business_email }}</p>
+                        <!-- <p class="email">{{ userInfo.business_email }}</p> -->
+                        <p class="name">{{  userInfo.role }}</p>
                         <a class="dropdown-item view-profile" href="">View Profile</a>
                       </div>
                     </div>
