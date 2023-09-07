@@ -88,7 +88,7 @@ export const fetchProfile = ({ commit, state, rootState, dispatch }, payload) =>
       });
   })    
 };
-export const accountProfile = ({ commit, state, rootState }, payload)=>
+export const accountProfile = ({ commit, state, rootState }, payload) =>
 {
   return new Promise(async (resolve, reject) =>
   {
@@ -96,17 +96,17 @@ export const accountProfile = ({ commit, state, rootState }, payload)=>
 
     if (typeof (payload?.avatar) === 'string') delete payload?.avatar;
     await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/account/profile?role=${rootState.role}`, payload, {
-    headers: {
-      "Content-Type": "multipart/form-data",
-    }
-  })
+      headers: {
+        "Content-Type": "multipart/form-data",
+      }
+    })
       .then(response =>
       {
         const { status: statusCode, data: { status, message, result } } = response;
         console.log('\n\nAccount Profile Response: ', response)
         if (statusCode === 200) {
           if (status === 200) {
-            
+
             const { account, user, profile } = result;
 
             commit('SET_AUTH', user);
@@ -118,10 +118,10 @@ export const accountProfile = ({ commit, state, rootState }, payload)=>
               commit('SET_ARTIST_GENRES', genres || []);
               commit('SET_MEMBERS', members || [])
             }
-            
+
           }
         }
-        
+
         resolve(response);
       })
       .catch(err =>
@@ -129,4 +129,221 @@ export const accountProfile = ({ commit, state, rootState }, payload)=>
         reject(err)
       });
   })
-}
+};
+
+export const verifyCurrentEmail = ({ rootState }, payload) =>
+{
+  console.log('Verify Current Email');
+  return new Promise(async (resolve, reject) =>
+  {
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
+
+    await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/account/check-email`, payload)
+      .then(response =>
+      {
+
+        const { data: { message, status, result }, status: statusCode } = response;
+
+        console.log('\n\nCheck current email: ', response);
+
+        if (statusCode === 200 && status === 200) {
+          resolve(response)
+        } else {
+          reject({ msg: 'Current Email is incorrect', status: statusCode });
+        }
+
+      })
+      .catch(err =>
+      {
+        reject(err)
+      });
+  });
+};
+export const verifyCurrentPhone = ({ rootState }, payload) =>
+{
+  return new Promise(async (resolve, reject) =>
+  {
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
+
+    await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/account/check-phone`, payload)
+      .then(response =>
+      {
+
+        const { data: { message, status, result }, status: statusCode } = response;
+
+        console.log('\n\nCheck current phone: ', response);
+
+        if (statusCode === 200 && status === 200) {
+          resolve(response)
+        } else {
+          reject({ msg: 'Current Phone is incorrect', status: statusCode });
+        }
+
+      })
+      .catch(err =>
+      {
+        reject(err)
+      });
+  });
+};
+
+export const updateEmail = ({ commit, rootState }, payload) =>
+{
+  return new Promise(async (resolve, reject) =>
+  {
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
+
+    await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/account/update-email`, payload)
+      .then(response =>
+      {
+
+        const { data: { message, status, result }, status: statusCode } = response;
+
+        console.log('\n\nUpdate Email: ', response);
+
+        if (status == 200 && statusCode === 200) {
+          commit('SET_AUTH', result?.user);
+          resolve(response);
+        } else {
+          var msg = message;
+
+          if (statusCode === 203 && status === 422)
+          {
+            const { errors: { email } } = result;
+            msg = email.shift();
+          }
+
+          reject({ msg: msg, status: statusCode });
+        }
+
+      })
+      .catch(err =>
+      {
+        reject(err)
+      });
+  });
+};
+
+export const updatePhone = ({ commit, rootState }, payload) =>
+{
+  return new Promise(async (resolve, reject) =>
+  {
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
+
+    await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/account/update-phone`, payload)
+      .then(response =>
+      {
+
+        const { data: { message, status, result }, status: statusCode } = response;
+
+        console.log('\n\nUpdate phone: ', response);
+
+        if (status == 200 && statusCode === 200) {
+          commit('SET_AUTH', result?.user);
+          resolve(response);
+        } else {
+          reject({ msg: message, status: statusCode });
+        }
+
+      })
+      .catch(err =>
+      {
+        reject(err)
+      });
+  });
+};
+
+export const updatePassword = ({ commit, rootState }, payload) =>
+{
+  return new Promise(async (resolve, reject) =>
+  {
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
+
+    await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/account/change-password`, payload)
+      .then(response =>
+      {
+
+        const { data: { message, status, result }, status: statusCode } = response;
+
+        console.log('\n\nUpdate password: ', response);
+
+        if (status == 200 && statusCode === 200) {
+          commit('SET_AUTH', result?.user);
+          resolve(response);
+        } else {
+          reject({ msg: message, status: statusCode });
+        }
+
+      })
+      .catch(err =>
+      {
+        reject(err)
+      });
+  });
+};
+
+export const updateAvatar = ({ commit, rootState }, payload) =>
+{
+  return new Promise(async (resolve, reject) =>
+  {
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
+
+    await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/account/update/${rootState.profile?.id}/avatar`, payload, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      }
+    })
+      .then(response =>
+      {
+
+        const { data: { message, status, result }, status: statusCode } = response;
+
+        console.log('\n\nUpdate Avatar: ', response);
+
+        if (statusCode === 200 && status == 200) {
+          commit('SET_PROFILE', result?.profile);
+          resolve(response);
+        } else {
+          reject({ msg: message, status: statusCode });
+        }
+      })
+      .catch(err =>
+      {
+        reject(err)
+      });
+  });
+};
+
+export const updateBanner = ({ commit, rootState }, payload) =>
+{
+  return new Promise(async (resolve, reject) =>
+  {
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
+    console.log('Banner Form: ', payload)
+    await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/account/update/${rootState.profile?.id}/banner`, payload, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      }
+    })
+      .then(response =>
+      {
+
+        const { data: { message, status, result }, status: statusCode } = response;
+
+        console.log('\n\nUpdate Banner Image: ', response);
+
+        if (statusCode === 200 && status === 200) {
+          commit('SET_PROFILE', result?.profile)
+          resolve(response)
+        } else {
+          reject({ msg: message, status: statusCode });
+        }
+
+
+      })
+      .catch(err =>
+      {
+        reject(err)
+      });
+  });
+};  

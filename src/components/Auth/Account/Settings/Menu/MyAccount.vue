@@ -73,6 +73,8 @@
     <current-phone id="currentPhoneModal" @closeModal="closePhoneNumberModal" />
     <update-phone />
 
+    <verify-email @closeModal="closeShowVerifyEmailAddressModal"/>
+
   </div>
 </template>
 
@@ -81,6 +83,7 @@ import { mapGetters, mapState, mapActions } from "vuex";
 
 import CurrentEmail from './My Account/CurrentEmail.vue';
 import CurrentPhone from './My Account/CurrentPhone.vue';
+import VerifyEmail from './My Account/VerifyEmail.vue';
 
 import UpdateEmail from './My Account/UpdateEmail.vue';
 import UpdatePhone from './My Account/UpdatePhone.vue';
@@ -93,6 +96,7 @@ export default {
     CurrentPhone,
     UpdateEmail,
     UpdatePhone,
+    VerifyEmail,
   },
   data () {
     return {
@@ -135,6 +139,17 @@ export default {
     }
   },
   watch: {
+    user(val)
+    {
+      this.form = {
+        first_name: val?.first_name ?? '',
+        last_name: val?.last_name ?? '',
+        username: val?.username ?? '',
+      };
+
+      this.formattedEmail = val?.emailmask;
+      this.formattedPhone = val?.phonemask;
+    }
   },
   setup()
   {
@@ -159,8 +174,8 @@ export default {
       username: this.user?.username ?? '', 
     };
 
-    this.formattedEmail = this.user?.phonemask;
-    this.formattedPhone = this.user?.emailmask;
+    this.formattedEmail = this.user?.emailmask;
+    this.formattedPhone = this.user?.phonemask;
     console.log('My Profile')
   },
   computed: {
@@ -203,7 +218,7 @@ export default {
       this.showEmailAddress = false;
       this.showNewEmailAddress = false;
     },
-    closeshowVerifyEmailAddressModal()
+    closeShowVerifyEmailAddressModal()
     {
       this.showVerifyEmailAddress = false;
       this.showEmailAddress = false;
