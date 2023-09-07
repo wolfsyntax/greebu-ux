@@ -4,7 +4,6 @@
       <div class="container">
         <div class="row py-2">
           <div class="col">
-
             <div class="form-group text-center upload-img">
               <label class="label-img">
                 <span class="material-symbols-outlined camera-inner" v-if="!avatar">&#xe412;</span>
@@ -108,19 +107,23 @@ export default {
   watch: {
     idx(val)
     {
-      if (!(this.roles.filter(el => el.value.toLocaleLowerCase() === this.members[val].role.toLocaleLowerCase()).length > 0)) {
-        this.other = this.members[val]?.role || '';
-      } else {
-        this.other = '';
-      }
+      if (val > -1) {
 
-      this.form = {
-        member_avatar: this.members[val]?.avatar || '',
-        member_name: this.members[val]?.member_name || '' ,
-        role: this.roles.filter(el => el.value.toLocaleLowerCase() === this.members[val].role.toLocaleLowerCase()).length > 0 ? (this.members[val]?.role.toLowerCase() || '') : 'others',
-      }
+        if (!(this.roles.filter(el => el.value.toLocaleLowerCase() === this.members[val].role?.toLocaleLowerCase()).length > 0)) {
+          this.other = this.members[val]?.role || '';
+        } else {
+          this.other = '';
+        }
 
-      this.avatar = this.members[val]?.avatar;
+        this.form = {
+          member_avatar: this.members[val]?.avatar || '',
+          member_name: this.members[val]?.member_name || '',
+          role: this.roles.filter(el => el.value.toLocaleLowerCase() === this.members[val].role.toLocaleLowerCase()).length > 0 ? (this.members[val]?.role.toLowerCase() || '') : 'others',
+        }
+
+        this.avatar = this.members[val]?.avatar;
+
+      }
     }
   },
 
@@ -206,11 +209,11 @@ export default {
 
         var id = this.member.id;
 
-        this.$store.commit('SET_MEMBER_INDEX', -1);
+        console.log('Edit Form: ', this.form);
 
         this.updateMember({
           memId: id, form: {
-            avatar: this.form.member_avatar,
+            member_avatar: this.form.member_avatar,
             member_name: this.form.member_name,
             role: this.form.role === 'others' ? this.other : this.form.role,
         } }).then((response) =>
@@ -220,7 +223,7 @@ export default {
           if (status === 422) {
             this.errors = response?.result?.errors || {}
           } else {
-            
+            // this.$store.commit('SET_MEMBER_INDEX', -1);
             // this.$store.commit('SET_MEMBERS', response.result?.members)
 
             // this.form = {

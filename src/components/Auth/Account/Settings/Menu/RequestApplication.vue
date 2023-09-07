@@ -1,0 +1,25 @@
+<template>
+  <div>
+    <div class="content">
+      <h3>Request Application</h3>
+    </div>
+  </div>
+</template>
+
+<script>
+import { mapGetters, mapState, mapActions } from "vuex";
+import CustomizedSong from './Customized Song/Index.vue';
+export default {
+  components: {
+    CustomizedSong
+  },
+  setup()
+  {
+
+
+    return {}
+  }
+}
+</script>
+
+<style lang="scss" scoped></style>

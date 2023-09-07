@@ -1,5 +1,5 @@
 <template>
-  <SubscriptionModal />
+  <!-- <SubscriptionModal /> -->
   <main>
     <header class="main-nav">
       <nav class="navbar navbar-expand-lg">
