@@ -68,12 +68,13 @@
     </div>
 
     <current-email @closeModal="closeCurrentEmailAddressModal" />
-    <update-email />
-  
+    <update-email @closeModal="closeNewEmailAddressModal" />
+    <verify-email @closeModal="closeShowVerifyEmailAddressModal"/>
+
     <current-phone id="currentPhoneModal" @closeModal="closePhoneNumberModal" />
     <update-phone />
 
-    <verify-email @closeModal="closeShowVerifyEmailAddressModal"/>
+    
 
   </div>
 </template>
@@ -232,8 +233,11 @@ export default {
     },
     closePhoneNumberModal()
     {
-      this.mcCurrentPhone.hide();
-      this.showPhoneNumber = false;
+      new Modal(document.getElementById('updatePhone'), {
+        keyboard: false
+      }).show();
+
+      // this.showPhoneNumber = false;
     },
     showNewPhoneNumberModal()
     {
