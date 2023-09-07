@@ -837,6 +837,64 @@ var actions = {
         });
     })
   },
+  
+  verifyCurrentEmail({ commit, state }, payload)
+  {
+    console.log('Verify Current Email');
+    return new Promise(async(resolve, reject) =>
+    {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
+
+      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/account/check-email`, payload)
+        .then(response =>
+        {
+
+          const { data: { message, status, result }, status: statusCode } = response;
+          
+          console.log('\n\nCheck current email: ', response);
+
+          if (statusCode === 200 && status === 200)
+          {
+            resolve(response)
+          } else {
+            reject({ msg: 'Current Email is incorrect', status: statusCode });
+          } 
+          
+        })
+        .catch(err =>
+        {
+          reject(err)
+        });
+    });
+  },   
+  verifyCurrentPhone({ commit, state }, payload)
+  {
+    return new Promise(async(resolve, reject) =>
+    {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
+
+      await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/account/check-phone`, payload)
+        .then(response =>
+        {
+
+          const { data: { message, status, result }, status: statusCode } = response;
+          
+          console.log('\n\nCheck current phone: ', response);
+
+          if (statusCode === 200 && status === 200)
+          {
+            resolve(response)
+          } else {
+            reject({ msg: 'Current Phone is incorrect', status: statusCode });
+          } 
+          
+        })
+        .catch(err =>
+        {
+          reject(err)
+        });
+    });
+  },
   updateEmail({ commit, state }, payload)
   {
     return new Promise(async (resolve, reject) =>

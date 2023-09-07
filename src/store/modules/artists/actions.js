@@ -188,7 +188,7 @@ export const updateMember = ({ commit, rootState, state}, payload) => {
   return new Promise((resolve, reject) => {
 
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
-    
+    console.log('\n\n\nupdateMember payload: ', payload)
     axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/artists-member/${payload.memId}`, payload.form, {
       headers: {
         "Content-Type": "multipart/form-data",
