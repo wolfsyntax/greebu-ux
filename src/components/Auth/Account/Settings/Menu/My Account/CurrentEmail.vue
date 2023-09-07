@@ -66,13 +66,14 @@ export default {
   {
     this.email = '';
     this.error = '';
+
     const myModal = document.getElementById('currentEmailModal');
 
     myModal.addEventListener('hide.bs.modal', () =>
     {
       this.email = '';
       this.error = '';
-    })
+    });
 
   },
   methods: {

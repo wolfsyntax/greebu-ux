@@ -391,7 +391,7 @@
 
                 <!-- Uploaded music -->
                 <div v-if="uploadedMusic" class="uploaded-song-wrapper">
-                  <audio controls class="audio-controls-wrapper">
+                  <audio controls class="audio-controls-wrapper" ref="audioPlayer">
                     <source :src="uploadedMusic" type="audio/mpeg">
                     Your browser does not support the audio element.
                   </audio>
@@ -404,6 +404,7 @@
                     </div>
                     </div>
                     <div class="d-flex align-items-center remove-music-wrapper">
+                      <img :src="playIcon" @click="togglePlay()" alt="Music icon">
                       <img src="/assets/artist-account/remove-song-icon.svg" @click="removeMusic" alt="Music icon">
                     </div>
                   </div>  
@@ -524,7 +525,7 @@ export default {
         text: null,
         key: null,
       },
-
+      playIcon: '/assets/play-black.svg',
       memberIndex: -1,
     }
   },
@@ -653,6 +654,17 @@ export default {
     changeImage(event){
       this.avatar = URL.createObjectURL(event.target.files[0]);
       this.form.avatar = event.target.files[0];
+    },
+    togglePlay()
+    {
+      if (this.$refs.audioPlayer.paused) {
+        this.playIcon = '/assets/play-pause.svg';
+        this.$refs.audioPlayer.play();
+      } else {
+        this.$refs.audioPlayer.pause();
+        this.playIcon = '/assets/play-black.svg'
+      }
+
     },
     submit()
     {
