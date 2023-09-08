@@ -193,9 +193,14 @@
               </div> <!-- end of row post -->
 
               <!-- Test upload front-end -->
+              <div v-if="isPinnedPost" class="d-flex align-items-center pinned-post">
+  <img src="/assets/pin-post.svg" alt="Pinned post">
+  <h5>Pinned post</h5>
+</div>
 
               <div class="row artist-post">
                       <div class="col-md-12 grid-margin">
+                        <transition-group name="fade" tag="div">
                           <div class="card" v-for="(submission, index) in submissions" :key="index">
                               <div class="card-header">
                                   <div class="d-flex align-items-center justify-content-between">
@@ -208,9 +213,19 @@
                                        
                                           </div>
                                       </div>
-                                      <div class="dropdown">
+                                      <div class="more-options" @click="toggleMoreOptions(index)">
                                         <span class="material-symbols-outlined">more_vert</span>
                                       </div>
+                                  </div>
+                                  <div v-if="activeSubmission === index" class="show-more-options">
+                                    <div class="more-options-list-wrapper">
+                                      <div v-for="(option, indexOption) in postMoreoptions" :key="indexOption" class="d-flex align-items-center more-options-list" @click="handleOptionClick(option, index)">
+                                        <img :src="option.icon" :alt="option.label">
+                                        <h5>
+              {{ index === 0 && option.label === "Pin Post" && pinnedPost ? "Unpin Post" : option.label }}
+            </h5> 
+                                      </div>
+                                    </div>
                                   </div>
                               </div>
                               <div class="card-body">
@@ -240,7 +255,7 @@
                                         'uploaded-three-left': submission.files.length === 3 && fileIndex === 1,
                                         'uploaded-three-right': submission.files.length === 3 && fileIndex === 2,
                                         'uploaded-four': submission.files.length >= 4,
-                                      }">
+                                      }" @click="">
                                       <template v-if="file.type.startsWith('video/')">
 
                                      <video controls class="video-landscape-medium">
@@ -302,10 +317,13 @@
                                   Your browser does not support the audio element.
                                 </audio>
                           </div> <!-- end of card-->
+                        </transition-group>
                       </div>
                     </div> <!-- end of row -->
+                 
 
               <!-- Zero state screen -->
+              <transition-group name="fade" tag="div">
               <div class="row artist-post" v-if="submissions.length == 0">
                 <div class="col-md-12 grid-margin">
                   <div class="card">
@@ -318,6 +336,7 @@
                   </div>
                 </div>
               </div> <!-- end of Zero state screen -->
+            </transition-group>
 
               <!-- Artist Posts -->
             </div><!-- middle wrapper end -->
@@ -560,6 +579,15 @@ export default {
     submissions: [], // Array to store create post submissions
     times: [],
     activeModal: false,
+    activeSubmission: null, // Index of the currently active submission
+    postMoreoptions: [
+        { label: "Pin Post", icon: "/assets/pin-post.svg" },
+        { label: "Edit", icon: "/assets/edit-post.svg" },
+        { label: "Delete", icon: "/assets/delete-post.svg" },
+      ],
+    isPinnedPost: false,
+    pinnedPost: false, // Pinned status
+      
   }),
   mounted()
   {
@@ -652,7 +680,59 @@ export default {
       } else {
         return `${Math.floor(timeDifference / 86400)} days ago`;
       }
-    }    
+    },
+    toggleMoreOptions(index) {
+      // Toggle the active submission index
+      if (this.activeSubmission === index) {
+        this.activeSubmission = null; // Close the menu if it's already open for this submission
+      } else {
+        this.activeSubmission = index; // Open the menu for the clicked submission
+      }
+    },
+    handleOptionClick(option, index){
+      // add your logic here to perform actions based on the selected option
+   
+        if (option.label === "Pin Post" || option.label === "Unpin Post") {
+        this.togglePinned(index); // Toggle the pinned status
+        const pinnedPost = this.submissions.splice(index, 1)[0]; // Remove the post from its current position
+        this.submissions.unshift(pinnedPost); // Add it back to the top
+
+        //this.isPinnedPost = true;
+        this.activeSubmission = null;
+      }else if(option.label === "Edit"){
+        console.log("Edit: ");
+      }else if(option.label === "Delete") {
+        this.moreOptions = false;
+        console.log("Deleted: ");
+        this.deletePost(index);
+      }
+    },
+    togglePinned(index) {
+      // Toggle the pinned status
+      this.pinnedPost = !this.pinnedPost;
+      this.isPinnedPost = !this.isPinnedPost;
+    },
+    deletePost(index){
+      this.submissions.splice(index, 1);
+      this.activeSubmission = null;
+    },
+  
+    // togglePinned(index) {
+    //   if (this.isPinnedPost(index)) {
+    //     const pinnedIndex = this.pinnedPosts.indexOf(index);
+    //     if (pinnedIndex !== -1) {
+    //       this.pinnedPosts.splice(pinnedIndex, 1);
+    //     }
+    //   } else {
+    //     this.pinnedPosts.push(index);
+    //     const pinnedPost = this.submissions.splice(index, 1)[0];
+    //     this.submissions.unshift(pinnedPost);
+    //   }
+    // },
+    // isPinnedPost(index) {
+    //   // Check if the post at the given index is pinned
+    //   return this.pinnedPosts.includes(index);
+    // },
   },
   watch: {
     profile: {
@@ -688,9 +768,12 @@ export default {
       custom_genre: (state) => state.custom_genre,
       genres: (state) => state.artist.genres,
     }),
+  
   }
 }
 </script>
 <style>
 @import '@/assets/css/artist-ui.css';
+
+
 </style>

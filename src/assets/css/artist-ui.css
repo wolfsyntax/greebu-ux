@@ -447,6 +447,21 @@ body{
   padding-bottom: 16px;
   border-bottom: 1px solid #F3F3F3;
 }
+.profile-page .middle-wrapper .post .card-body .write-something:hover button{
+  color: var(--orange);
+  animation: bounceText 1s ease 1;
+ }
+ @keyframes bounceText {
+   0%, 20%, 50%, 80%, 100% {
+     transform: translateY(0);
+   }
+   40% {
+     transform: translateY(-4px);
+   }
+   60% {
+     transform: translateY(-2px);
+   }
+ }
 .profile-page .middle-wrapper .post .card-body .write-something img{
   width: 48px;
   height: 48px;
@@ -495,6 +510,7 @@ body{
   display: flex;
   align-items: center;
   margin: 0 8px;
+  cursor: pointer;
 }
 .profile-page .middle-wrapper .post .card-body .post-features .post-icon:hover *{
   color: var(--orange);
@@ -548,8 +564,45 @@ body{
 .profile-page .middle-wrapper  .artist-post .card-header .group-posted p{
   margin: 0;
 }
-.profile-page .middle-wrapper  .artist-post .card-header .dropdown span{
+.profile-page .middle-wrapper  .artist-post .card-header .more-options{
+  position: relative;
+  cursor: pointer;
+}
+.profile-page .middle-wrapper  .artist-post .card-header .more-options span{
   color: #536471;
+}
+.profile-page .middle-wrapper  .artist-post .card-header .show-more-options {
+  position: absolute;
+  left: 75%;
+  width: 9.875rem;
+  border-radius: 0.25rem;
+  background: var(--white);
+  box-shadow: 0px 0px 17px 0px rgba(18, 18, 18, 0.15);
+  padding: 1.13rem 0.94rem;
+  z-index: 1;
+}
+.profile-page .middle-wrapper  .pinned-post{
+  margin-bottom: 0.5rem;
+}
+.profile-page .middle-wrapper  .artist-post .card-header .show-more-options .more-options-list-wrapper img,
+.profile-page .middle-wrapper  .pinned-post img{
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 0.5rem;
+}
+.profile-page .middle-wrapper  .artist-post .card-header .show-more-options .more-options-list-wrapper h5,
+.profile-page .middle-wrapper .pinned-post h5{
+  color: #425466;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+.profile-page .middle-wrapper  .artist-post .card-header .show-more-options .more-options-list{
+  cursor: pointer;
+  margin-bottom: 0.88rem;
+}
+.profile-page .middle-wrapper  .artist-post .card-header .show-more-options .more-options-list:last-child{
+  margin-bottom: 0!important;
 }
 .profile-page .middle-wrapper  .artist-post .card-header{
   border: 0;
@@ -1392,6 +1445,14 @@ body{
   border: 1px solid var(--low-sky-gray, rgba(86, 103, 137, 0.26));
   font-weight: 600;
 }
+.profile-details .container .fill-details .form-group .char-count{
+  color: var(--gray2);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: -0.04375rem;
+  text-align: right;
+  margin-top: 0.69rem;
+}
 .profile-details .group-item{
   margin-bottom: 2rem;
 }
@@ -1530,6 +1591,7 @@ body{
   margin: 1.5rem 0;
   padding: 1.47rem 1.66rem;
   border: 1px solid #CDD3D8;
+  /* transition: all 1.5s ease-in-out; */
 }
 .profile-details .song-preview .uploaded-song-wrapper audio{
   display: none;
@@ -1575,6 +1637,7 @@ body{
   width: 1.5rem;
   height: 1.5rem;
   cursor: pointer;
+  /* transition: all 0.5s ease; */
 }
 
 .profile-details .container .fill-details .submit-form {
@@ -2401,6 +2464,14 @@ background: var(--btn-hovered);
   border: 2px dashed var(--orange)!important;
 }
 
+.profile-details .fade-enter-active, .profile-details .fade-leave-active,
+.profile-page .fade-enter-active, .profile-page .fade-leave-active{
+  transition: opacity 1s;
+}
+.profile-details .fade-enter, .profile-details .fade-leave-to,
+.profile-page .fade-enter, .profile-page .fade-leave-to {
+  opacity: 0;
+}
 /* Data from backend - array of objects at the bottom */
 .artist-data .container .user{
   white-space: normal;
@@ -2552,7 +2623,11 @@ background: var(--btn-hovered);
   left: 88%;
   font-size: 14px;
 }
-
+.profile-page .middle-wrapper  .artist-post .card-header .show-more-options {
+  left: 72%;
+  /* width: 9.875rem;
+  padding: 1.13rem 0.94rem; */
+}
 /* one file uploaded */
 .profile-page .middle-wrapper  .artist-post .card-body  .uploaded-one video,
 .profile-page .middle-wrapper  .artist-post .card-body  .uploaded-one img{
@@ -2901,14 +2976,14 @@ margin-right: 6px;
 .profile-page .right-wrapper .original-songs .songs-list .more span {
   font-size: 20px;
 }
+.profile-page .middle-wrapper .post .card-body .write-something {
+  margin-bottom: 14px;
+  padding-bottom: 14px;
+}
 .profile-page .middle-wrapper .post .card-body .write-something img,
 .profile-page .middle-wrapper .artist-post .card-header .user-posted-info img {
   width: 2.625rem;
   height: 2.625rem;
-}
-.profile-page .middle-wrapper .post .card-body .write-something {
-  margin-bottom: 14px;
-  padding-bottom: 14px;
 }
 .profile-page .middle-wrapper .post .card-body .write-something button {
   font-size: 0.9rem;
@@ -3254,6 +3329,11 @@ margin-right: 6px;
 .profile-details .fill-details .song-preview .title {
   font-size: 1rem;
   letter-spacing: -0.05rem;
+}
+.profile-details .container .fill-details .form-group .char-count {
+  font-size: 0.875rem;
+  letter-spacing: -0.04375rem;
+  margin-top: 0.49rem;
 }
 .profile-details .fill-details .song-preview .description {
   font-size: 0.875rem;

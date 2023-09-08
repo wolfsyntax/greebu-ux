@@ -5261,6 +5261,7 @@ width: 100%;
   font-size: 1.125rem;
   font-weight: 400;
   letter-spacing: -0.045rem;
+  margin-bottom: 0;
 }
 .account-settings .request-song-modal .note-wrapper .info-icon{
   color: var(--orange);
