@@ -69,7 +69,7 @@
               </div>
             </div>
 
-            <form @submit.prevent="submit" class="fill-details">
+            <form @submit.prevent="submit" class="fill-details" autocomplete="off">
               <!-- {{ form }} -->
 
               <div class="form-group upload-img">
@@ -123,7 +123,7 @@
                   autocomplete="off" 
                   ref="multiselect" 
                   :filter-results="false"
-                  
+
                   noOptionsText="Please input genre(s)"
                   class="genre" placeholder="Please select genres" />
                   <br/>
