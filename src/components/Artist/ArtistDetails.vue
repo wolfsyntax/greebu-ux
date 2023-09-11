@@ -2,7 +2,6 @@
     <div>
       <section class="artist-details-modal">
         <div class="container">
-
         </div>
 
                          <!-- MODAL / VIEW ARTIST -->
@@ -15,10 +14,11 @@
           </div>
           <div class="modal-body" v-if="selectedArtist">
             <div class="row top-row">
-              <div class="col-md-5" >
+              <div class="d-flex align-items center artist-wrap">
+              <div class="artist-image-wrap">
                 <img :src="selectedArtist['avatar']" class="artist-image" alt="artist image">
               </div>
-              <div class="col-md-7">
+              <div class="about-artist-wrap">
                 <div class="artist-bio">
                   <h2 >{{ selectedArtist['artist_name'] }}</h2>
                   <h5>{{ selectedArtist['artist_type'] }}</h5>
@@ -55,6 +55,7 @@
                   <a :href="`/artists/${selectedArtist['id']}`" class="view-profile">View Profile</a>
                 </div> <!-- end of artist-bio -->
               </div>
+            </div>
             </div> <!-- end of row -->
             <h3 class="sample-songs">Sample Songs</h3>
             <div class="d-flex justify-content-between sample-songs-list">
@@ -106,212 +107,5 @@
   </script>
   
   <style scoped>
-
-  /* artist modal */
-.artist-details-modal .artist-modal .modal-content{
-  border-radius: 0.625rem;
-  background: #FFF;
-  box-shadow: 0px 25px 50px -12px rgba(0, 0, 0, 0.25);
-}
-.artist-details-modal .artist-modal .btn-close{
-  background-image: url("/assets/create-song/close-modal.svg");
-  background-size: cover;
-}
-.artist-details-modal .artist-modal .btn-close:hover{
-  background-image: url("/assets/create-song/close-modal-hover.svg");
-  background-size: cover;
-}
-.artist-details-modal .artist-modal .modal-body{
-  padding: 1rem 4rem 4rem;
-}
-.artist-details-modal .artist-modal .modal-header{
-  border-bottom: none;
-  padding-right: 2rem;
-  padding-top: 2rem;
-}
-.artist-details-modal .artist-modal .modal-body .artist-image{
-  width: 24.875rem;
-  height: 25.0625rem;
-  border-radius: 0.625rem;
-  position: relative;
-  -o-object-fit: cover;
-  object-fit: cover;
-  backface-visibility: hidden;
-}
-.artist-details-modal .artist-modal .modal-body .top-row{
-  margin-bottom: 2.5rem;
-}
-.artist-details-modal .artist-modal .modal-body .artist-bio h2{
-  color: var(--color-dark-dark, #23262F);
-  font-size: 3rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  margin-bottom: 0.5rem;
-}
-.artist-details-modal .artist-modal .modal-body .artist-bio h5{
-  color: var(--color-dark-dark, #23262F);
-  font-size: 1.25rem;
-  font-weight: 500;
-  line-height: normal;
-  margin-bottom: 1.25rem;
-}
-.artist-details-modal .artist-modal .follow{
-  display: flex;
-  position: relative;
-  margin-bottom: 1.25rem;
-}
-.artist-details-modal .artist-modal .follow h6{
-  color: var(--tail-grids-black-color, #212B36);
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 1.5rem;
-  margin-bottom: 0;
-}
-.artist-details-modal .artist-modal .follow .followers {
-  padding-right: 1.12rem;
-}
-.artist-details-modal .artist-modal .follow .following {
-  border-right: 1px solid #E7E7E7;
-  border-left: 1px solid #E7E7E7;
-  padding: 0 1.12rem;
-  height: 2.26rem
-}
-.artist-details-modal .artist-modal .follow .playlist {
-  padding-left: 1.12rem;
-}
-.artist-details-modal .artist-modal .follow p{
-  color: #637381;
-  font-size: 0.875rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.25rem;
-  margin-bottom: 0;
-}
-.artist-details-modal .artist-modal .genres{
-  display: flex;
-  align-items: center;
-  margin-bottom: 1.38rem;
-}
-.artist-details-modal .artist-modal .genres p{
-  color: #637381;
-  font-size: 1rem;
-  font-weight: 600;
-  line-height: 1.25rem;
-  margin-bottom: 0;
-  margin-right: 0.75rem;
-}
-.artist-details-modal .artist-modal .genres .badge{
-  color: var(--orange);
-  font-size: 0.75rem;
-  font-weight: 600;
-  line-height: 1rem;
-  padding: 0.25rem 0.5rem;
-  border-radius: 2rem;
-  background-color: var(--light-orange);
-  margin-right: 0.5rem;
-}
-.artist-details-modal .artist-modal .rating-reviews{
-  display: flex;
-  align-items: center;
-  margin-bottom: 1.25rem;
-}
-.artist-details-modal .artist-modal .rating-reviews p{
-  color: var(--p-color3);
-  font-size: 1.25rem;
-  font-weight: 800;
-  line-height: 0.69381rem;
-  margin-bottom: 0;
-  margin-left: 0.25rem;
-}
-.artist-details-modal .artist-modal .rating-reviews p .reviews{
-  color: #8C8C8C;
-  font-weight: 400;
-  line-height: 0.84375rem;
-}
-.artist-details-modal .artist-modal .modal-body .artist-bio .content{
-  color: #B8BBCF;
-  font-size: 1.25rem;
-  font-weight: 500;
-  line-height: 1.625rem;
-  margin-bottom: 2.5rem;
-}
-.artist-details-modal .artist-modal .modal-body .artist-bio .view-profile{
-  color: var(--white);
-  font-size: 1.25rem;
-  font-weight: 600;
-  line-height: 1.5rem;
-  padding: 1rem 3rem;
-  background-color: var(--orange);
-  border: 0;
-  text-decoration: none;
-  border-radius: .5rem;
-}
-.artist-details-modal .artist-modal .modal-body .sample-songs{
-  color: var(--black);
-  font-size: 1.5rem;
-  font-weight: 600;
-  line-height: 120%;
-  margin-bottom: 1.25rem;
-}
-.artist-details-modal .artist-modal .modal-body .sample-songs-list {
-  padding: 0.87rem 1rem;
-  border-radius: 0.625rem;
-  background: var(--white);
-  box-shadow: 0px 0px 24px 0px rgba(56, 29, 219, 0.07);
-  margin-bottom: 0.94rem;
-}
-.artist-details-modal .artist-modal .modal-body .sample-songs-list .right,
-.artist-details-modal .artist-modal .modal-body .sample-songs-list .left{
-  display: flex;
-  align-items: center;
-}
-.artist-details-modal .artist-modal .modal-body .sample-songs-list .artist-cover{
-  width: 3.9375rem;
-  height: 3.9375rem;
-  border-radius: 0.625rem;
-  position: relative;
-  -o-object-fit: cover;
-  object-fit: cover;
-  backface-visibility: hidden;
-  margin-bottom: 0rem;
-  margin-right: 0.87rem;
-}
-.artist-details-modal .artist-modal .modal-body .sample-songs-list .right .artist-song{
-  color: var(--black);
-  font-size: 1rem;
-  font-weight: 700;
-  line-height: normal;
-  letter-spacing: -0.02rem;
-  margin-bottom: 0.31rem;
-}
-.artist-details-modal .artist-modal .modal-body .sample-songs-list .right .artist-band{
-  color: var(--black);
-  font-size: 0.875rem;
-  font-weight: 500;
-  line-height: normal;
-  letter-spacing: -0.0175rem;
-  margin-bottom: 0;
-}
-.artist-details-modal .artist-modal .modal-body .sample-songs-list .left p{
-  color: var(--black);
-  font-size: 0.875rem;
-  font-weight: 400;
-  line-height: normal;
-  letter-spacing: -0.0175rem;
-  margin-bottom: 0;
-}
-.artist-details-modal .artist-modal .modal-body .sample-songs-list .left .song-duration{
-  margin-right: 1.5rem;
-}
-.artist-details-modal .artist-modal .modal-body .sample-songs-list .left svg{
-  margin-right: 0.25rem;
-}
-.artist-details-modal .artist-modal .modal-body .sample-songs-list .left .like{
-  display: flex;
-  align-items: center;
-  margin-right: 1rem;
-}
 
 </style>

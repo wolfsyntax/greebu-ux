@@ -24,7 +24,7 @@
                 <div class="dropdown">
                   <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
                     aria-expanded="false">
-                    <span :style="form.purpose ? { color: '#FF6B00' } : {}">{{ form.purpose ? form.purpose?.name : 'Select Occasion' }}</span>
+                    <span :style="form.purpose ? { color: '#121212' } : {}">{{ form.purpose ? form.purpose?.name : 'Select Occasion' }}</span>
                     <img :src="expandMore.img" :alt="expandMore.altText">
                   </button>
 

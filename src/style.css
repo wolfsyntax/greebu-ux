@@ -956,6 +956,219 @@ filter: brightness(70%);
   text-transform: uppercase;
 }
 
+ /* ARTIST DETAILS modal */
+ .artist-details-modal .artist-modal .modal-content{
+  border-radius: 0.625rem;
+  background: #FFF;
+  box-shadow: 0px 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+.artist-details-modal .artist-modal .btn-close{
+  background-image: url("/assets/create-song/close-modal.svg");
+  background-size: cover;
+}
+.artist-details-modal .artist-modal .btn-close:hover{
+  background-image: url("/assets/create-song/close-modal-hover.svg");
+  background-size: cover;
+}
+.artist-details-modal .artist-modal .modal-body{
+  padding: 1rem 4rem 4rem;
+}
+.artist-details-modal .artist-modal .modal-header{
+  border-bottom: none;
+  padding-right: 2rem;
+  padding-top: 2rem;
+}
+.artist-details-modal .artist-modal .modal-body .artist-image{
+  width: 100%;
+  height: 25.0625rem;
+  border-radius: 0.625rem;
+  position: relative;
+  -o-object-fit: cover;
+  object-fit: cover;
+  backface-visibility: hidden;
+}
+.artist-details-modal .artist-modal .modal-body .top-row{
+  margin-bottom: 2.5rem;
+}
+.artist-details-modal .artist-modal .modal-body .top-row .artist-wrap{
+  gap: 2.5rem;
+}
+.artist-details-modal .artist-modal .modal-body .artist-bio h2{
+  color: var(--color-dark-dark, #23262F);
+  font-size: 3rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-bottom: 0.5rem;
+}
+.artist-details-modal .artist-modal .modal-body .artist-bio h5{
+  color: var(--color-dark-dark, #23262F);
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: normal;
+  margin-bottom: 1.25rem;
+}
+.artist-details-modal .artist-modal .follow{
+  display: flex;
+  position: relative;
+  margin-bottom: 1.25rem;
+}
+.artist-details-modal .artist-modal .follow h6{
+  color: var(--tail-grids-black-color, #212B36);
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.5rem;
+  margin-bottom: 0;
+}
+.artist-details-modal .artist-modal .follow .followers {
+  padding-right: 1.12rem;
+}
+.artist-details-modal .artist-modal .follow .following {
+  border-right: 1px solid #E7E7E7;
+  border-left: 1px solid #E7E7E7;
+  padding: 0 1.12rem;
+  height: 2.26rem
+}
+.artist-details-modal .artist-modal .follow .playlist {
+  padding-left: 1.12rem;
+}
+.artist-details-modal .artist-modal .follow p{
+  color: #637381;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.25rem;
+  margin-bottom: 0;
+}
+.artist-details-modal .artist-modal .genres{
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.38rem;
+}
+.artist-details-modal .artist-modal .genres p{
+  color: #637381;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.25rem;
+  margin-bottom: 0;
+  margin-right: 0.75rem;
+}
+.artist-details-modal .artist-modal .genres .badge{
+  color: var(--orange);
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 2rem;
+  background-color: var(--light-orange);
+  margin-right: 0.5rem;
+}
+.artist-details-modal .artist-modal .rating-reviews{
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+.artist-details-modal .artist-modal .rating-reviews p{
+  color: var(--p-color3);
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 0.69381rem;
+  margin-bottom: 0;
+  margin-left: 0.25rem;
+}
+.artist-details-modal .artist-modal .rating-reviews p .reviews{
+  color: #8C8C8C;
+  font-weight: 400;
+  line-height: 0.84375rem;
+}
+.artist-details-modal .artist-modal .modal-body .artist-bio .content{
+  color: #B8BBCF;
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.625rem;
+  margin-bottom: 2.5rem;
+}
+.artist-details-modal .artist-modal .modal-body .artist-bio .view-profile{
+  color: var(--white);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.5rem;
+  padding: 1rem 3rem;
+  background-color: var(--orange);
+  border: 0;
+  text-decoration: none;
+  border-radius: .5rem;
+}
+.artist-details-modal .artist-modal .modal-body .artist-bio .view-profile:hover{
+  background-color: var(--btn-hovered);
+}
+.artist-details-modal .artist-modal .modal-body .sample-songs{
+  color: var(--black);
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 120%;
+  margin-bottom: 1.25rem;
+}
+.artist-details-modal .artist-modal .modal-body .sample-songs-list {
+  padding: 0.87rem 1rem;
+  border-radius: 0.625rem;
+  background: var(--white);
+  box-shadow: 0px 0px 24px 0px rgba(56, 29, 219, 0.07);
+  margin-bottom: 0.94rem;
+}
+.artist-details-modal .artist-modal .modal-body .sample-songs-list .right,
+.artist-details-modal .artist-modal .modal-body .sample-songs-list .left{
+  display: flex;
+  align-items: center;
+}
+.artist-details-modal .artist-modal .modal-body .sample-songs-list .artist-cover{
+  width: 3.9375rem;
+  height: 3.9375rem;
+  border-radius: 0.625rem;
+  position: relative;
+  -o-object-fit: cover;
+  object-fit: cover;
+  backface-visibility: hidden;
+  margin-bottom: 0rem;
+  margin-right: 0.87rem;
+}
+.artist-details-modal .artist-modal .modal-body .sample-songs-list .right .artist-song{
+  color: var(--black);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.02rem;
+  margin-bottom: 0.31rem;
+}
+.artist-details-modal .artist-modal .modal-body .sample-songs-list .right .artist-band{
+  color: var(--black);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.0175rem;
+  margin-bottom: 0;
+}
+.artist-details-modal .artist-modal .modal-body .sample-songs-list .left p{
+  color: var(--black);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.0175rem;
+  margin-bottom: 0;
+}
+.artist-details-modal .artist-modal .modal-body .sample-songs-list .left .song-duration{
+  margin-right: 1.5rem;
+}
+.artist-details-modal .artist-modal .modal-body .sample-songs-list .left svg{
+  margin-right: 0.25rem;
+}
+.artist-details-modal .artist-modal .modal-body .sample-songs-list .left .like{
+  display: flex;
+  align-items: center;
+  margin-right: 1rem;
+}
+
 /* HOME PAGE - Testimonials section */ 
 .testimonials #testimonialsSlider {
   background: #FFFFFF;
@@ -1125,6 +1338,9 @@ z-index: 1;
   padding: 25px;
   max-width: 100%;
   margin-bottom: 60px;
+}
+.artists .container .row div:first-child{
+  margin-bottom: 2rem;
 }
 .artists .container .card{
   margin-bottom: 0px;
@@ -2920,8 +3136,9 @@ background-color: #EFF3FD;
 border-radius: 10px;
 }
 .basic-information .container .progress-bar {
-background-color: #FF6B00;
-border-radius: 10px;
+  background-color: #FF6B00;
+  border-radius: 10px;
+  height: 0.75rem;
 }
 .basic-information .container .step-item {
 flex: 1;
@@ -2967,13 +3184,10 @@ justify-content: space-between;
   margin: 5rem auto;
   border-radius: 1rem;
   background: #FFF;
-  box-shadow: 0px 8px 36px 0px rgba(56, 29, 219, 0.10);
+  box-shadow: 0px 0px 12.75px 0px rgba(18, 18, 18, 0.15);
   border: 0;
   padding: 3.12rem 4rem 4.12rem;
 }
-/* .basic-information .container .card .card-body, .delivery-date .container .card .card-body{
-  padding: 0;
-} */
 .basic-information .container .card-title, .basic-information .container .step2 .select-artist .title,
 .delivery-date .container .card-title{
   color: #000;
@@ -2987,14 +3201,52 @@ justify-content: space-between;
 .delivery-date .container .card-title{
   margin-bottom: 0.5rem;
 }
+.basic-information .container .step2 .select-artist .back-to-info,
+.basic-information .container .step4 .review-content .back-to-info,
+.order-summary .container .back-to-info{
+  margin-bottom: 2.5rem;
+  gap: 0.88rem;
+}
+.basic-information .container .step2 .select-artist .back-to-info span,
+.basic-information .container .step4 .review-content .back-to-info span,
+.order-summary .container .back-to-info span{
+  font-size: 1.25rem;
+  color: var(--orange);
+  padding: 0.62rem;
+  border: 2px solid #DFDFE6;
+  border-radius: 100%;
+  cursor: pointer;
+}
+.basic-information .container .step2 .select-artist .back-to-info .back,
+.basic-information .container .step4 .review-content .back-to-info .back,
+.order-summary .container .back-to-info .back{
+  color: var(--black-color);
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.5rem; 
+  margin-bottom: 0;
+  cursor: pointer;
+}
+.basic-information .container .step2 .select-artist .back-to-info span:hover,
+.basic-information .container .step4 .review-content .back-to-info span:hover,
+.order-summary .container .back-to-info span:hover {
+  background-color: var(--orange);
+  border-color: var(--orange);
+  color: var(--white);
+}
 .basic-information .container .card-text, .basic-information .container .step2 .select-artist .sub-title,
 .delivery-date .container .card-text{
-  color: #B8BBCF;
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 700;
+  color: var(--gray6);
+  font-size: 1.25rem;
+  font-weight: 600;
   line-height: 1.5rem;
   margin-bottom: 2.5rem;
+}
+.basic-information .container .step2 .select-artist .title-wrapper{
+  margin-bottom: 5rem;
+}
+.basic-information .container .step2 .select-artist .sub-title{
+  margin-bottom: 0rem;
 }
 .basic-information .container form label{
   color: #121212;
@@ -3025,10 +3277,9 @@ justify-content: space-between;
   margin-top: 4.12rem;
 }
 .basic-information .container form .button-wrapper .back, .basic-information .container form .button-wrapper .next,
-.basic-information .container .step2 .button-wrapper .back, .basic-information .container .step2 .button-wrapper .next,
-.basic-information .container .step4 .button-wrapper .back, .basic-information .container .step4 .button-wrapper .next,
+.basic-information .container .step2 .button-wrapper .back, .basic-information .container .step4 .button-wrapper .next,
 .delivery-date .container .button-wrapper .back, .delivery-date .container .button-wrapper .next, 
-.order-summary .container .button-wrapper .back, .order-summary .container .button-wrapper .next {
+.order-summary .container .button-wrapper .next {
   color: #FF6B00;
   text-align: center;
   font-size: 1.25rem;
@@ -3042,9 +3293,8 @@ justify-content: space-between;
   width: 48%;
   float: left;
 }
-.basic-information .container form  .button-wrapper .back:hover, .basic-information .container .step2 .button-wrapper .back:hover,
-.basic-information .container .step4 .button-wrapper .back:hover, .delivery-date .container .button-wrapper .back:hover,
-.order-summary .container .button-wrapper .back:hover {
+.basic-information .container form  .button-wrapper .back:hover, .basic-information .container .step2 .button-wrapper .back:hover, 
+.delivery-date .container .button-wrapper .back:hover{
   color: #FFF;
   background: #FF6B00;
 }
@@ -3055,11 +3305,15 @@ justify-content: space-between;
   float: right;
   color: #FFF;
   background: #FF6B00;
+  border: 0;
 }
 .basic-information .container form  .button-wrapper .next:hover, .basic-information .container .step2 .button-wrapper .next:hover, 
 .basic-information .container .step4 .button-wrapper .next:hover, .delivery-date .container .button-wrapper .next:hover, 
 .order-summary .container .button-wrapper .next:hover {
   background: var(--btn-hovered);
+}
+.order-summary .container .button-wrapper .next{
+  margin: 0 auto;
 }
 .basic-information .container .step2 .progress, .basic-information .container .step3 .progress{
   width: 80%;
@@ -3151,9 +3405,10 @@ justify-content: space-between;
 .basic-information .container .step2 .select-artist, .basic-information .container .step4 .review-content{
   border-radius: 0.625rem;
   background: #FFF;
-  box-shadow: 0px 8px 36px 0px rgba(56, 29, 219, 0.05);
+  box-shadow: 0px 0px 17px 0px rgba(18, 18, 18, 0.15);
   margin-bottom: 2.5rem;
   padding: 5rem;
+  margin-top: 3rem;
 }
 .basic-information .container .step2 .select-artist .button-wrapper {
   margin:0 auto;
@@ -3220,6 +3475,15 @@ justify-content: space-between;
   height: 12.3rem!important;
   resize: none;
 }
+.basic-information .container .step4 .review-content .review-order-wrapper{
+  margin-bottom: 4.38rem;
+}
+.basic-information .container .step4 .review-content .review-order-wrapper .review-order{
+  color: var(--black);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.5rem;
+}
 .basic-information .container .step4 .review-content .title {
   justify-content: space-between;
   display: flex;
@@ -3249,10 +3513,25 @@ justify-content: space-between;
 .basic-information .container .step4 .review-content{
   width: 70%;
   margin: 4rem auto 0rem;
+  border: 1px solid #B8BBCF;
+  box-shadow: 0px 8px 36px 0px rgba(56, 29, 219, 0.10);
 }
 .basic-information .container .step4 .button-wrapper{
-  width: 60%;
-  margin: 0 auto 7.5rem;
+  text-align: center;
+  margin: 0 auto;
+}
+.basic-information .container .step4 .button-wrapper .submit {
+  color: var(--white);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.5rem;
+  border-radius: 0.5rem;
+  background: var(--orange);
+  padding: 1rem 9.09rem;
+  border: 0;
+}
+.basic-information .container .step4 .button-wrapper .submit:hover{
+  background-color: var(--btn-hovered);
 }
 .basic-information .container h4{
   color: #121212;
@@ -3403,7 +3682,7 @@ justify-content: space-between;
   margin: 5rem auto;
   border-radius: 1rem;
   background: var(--white);
-  box-shadow: 0px 8px 36px 0px rgba(56, 29, 219, 0.10);
+  box-shadow: 0px 0px 12.75px 0px rgba(18, 18, 18, 0.15);
   border: 0;
   padding: 2.8rem 2.6rem;
 }
@@ -3424,23 +3703,6 @@ justify-content: space-between;
   line-height: normal;
   margin-bottom: 2.5rem;
 } 
-.order-summary .card-body .back-to-delivery{
-  margin-bottom: 2.5rem;
-}
-.order-summary .card-body .back-to-delivery a{
-  display: flex;
-  align-items: center;
-  color: #454F59;
-  font-size: 1.25rem;
-  font-weight: 600;
-  line-height: normal;
-  margin-bottom: 0;
-  text-decoration: none;
-  gap: 0.25rem;
-}     
-.order-summary .card-body .back-to-delivery a:hover{
-  color: var(--orange);
-}
 .order-summary .card-body .order-details .title{
   color: var(--black);
   font-size: 1.25rem;
@@ -3632,8 +3894,9 @@ justify-content: space-between;
 .successfully-sent .message .content{
   color: #8690A2;
   font-size: 1.5rem;
-  font-weight: 600;
+  font-weight: 500;
   line-height: normal;
+  margin-bottom: 2.88rem;
 }
 
                                           /* PHONE VERIFICATION  / FORGOT PASSWORD / RESET PASSWORD*/      
@@ -3853,9 +4116,9 @@ justify-content: space-between;
   animation: bounce 1.5s 3; /* Animation will play 3 times */
 }
 .social-phone-verification .successfully-signup  .card-body .success-badge{
-  width: 8.3125rem;
-  height: 8.3125rem;
-  margin-bottom: 1.75rem;
+  width: 6.04688rem;
+  height: 6.04688rem;
+  margin-bottom: 1.41rem;
 }
 @keyframes bounce {
   0%, 20%, 50%, 80%, 100% {
@@ -5428,7 +5691,8 @@ width: 100%;
   line-height: 140%;
   margin-bottom: 1.25rem;
 } 
-.error404 .not-found-wrapper .go-to-homepage, .error500 .maintainance-wrapper .go-to-homepage{
+.error404 .not-found-wrapper .go-to-homepage, .error500 .maintainance-wrapper .go-to-homepage,
+.successfully-sent .message .go-to-dashboard {
   color: var(--white);
   font-size: 1rem;
   font-weight: 700;
@@ -5436,17 +5700,13 @@ width: 100%;
   padding: 1.16rem 2rem;
   background-color: var(--orange);
 } 
-.error404 .not-found-wrapper .go-to-homepage:hover, .error500 .maintainance-wrapper .go-to-homepage:hover{
+.error404 .not-found-wrapper .go-to-homepage:hover, .error500 .maintainance-wrapper .go-to-homepage:hover,
+.successfully-sent .message .go-to-dashboard:hover{
   background-color: var(--btn-hovered);
 }
 
 
-                                       
-
-
-
-
-
+                                    
 
 
 
@@ -5502,7 +5762,8 @@ width: 100%;
   font-size: 0.87rem;
   margin-bottom: 1rem;
 } 
-.error404 .not-found-wrapper .go-to-homepage, .error500 .maintainance-wrapper .go-to-homepage{
+.error404 .not-found-wrapper .go-to-homepage, .error500 .maintainance-wrapper .go-to-homepage,
+.successfully-sent .message .go-to-dashboard{
   font-size: 0.87rem;
   padding: 1rem 1.8rem;
 } 
@@ -6302,29 +6563,25 @@ margin-bottom: 1rem;
 }
 .successfully-sent .message .title{
   font-size: 2.25rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 2.375rem; /* 105.556% */
-  margin-bottom: 0.75rem;
+  line-height: 1.78125rem;
+  margin-bottom: 0.56rem;
 }
 .successfully-sent .message .content{
-  font-size: 1.25rem;
+  font-size: 1.125rem;
+  margin-bottom: 1.88rem;
 }
 
                                 /* Basic Information - Stepper / Delivery Form / Order Summary */   
      /* Order Summary */
 .order-summary .card-body .card-title {
-  font-size: 1.25rem;
+  font-size: 1.3125rem;
   font-weight: 700;
   margin-bottom: 0.25rem;
 }             
 .order-summary .card-body .card-text {
-  font-size: 1rem;
+  font-size: 0.93rem;
   font-weight: 600;
-  margin-bottom: 2.5rem;
-}   
-.order-summary .card-body .back-to-delivery {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.88rem;
 }    
 .order-summary .card-body .order-details .last-item{
   margin-bottom: 2rem!important;
@@ -6335,23 +6592,38 @@ margin-bottom: 1rem;
 .order-summary .card-body  form .sum{
   margin: .8rem 0;
 }
-.order-summary .card-body .back-to-delivery a, .order-summary .card-body .order-details .title,
+.order-summary .card-body .order-details .title,
 .order-summary .card-body .order-details .group-item p, .order-summary .card-body .personalized-song .right h4, 
 .order-summary .card-body .form-group label, .order-summary .card-body  form .sum h4, .order-summary .card-body  form .sum p, 
 .order-summary .card-body form .total h4, .order-summary .card-body form .total p {
-  font-size: 1rem;
+  font-size: 0.9375rem;
+  letter-spacing: -0.01875rem;
 }
 .order-summary .card-body .order-details .group-item h4 {
-  font-size: 1rem;
-  margin-bottom: 0.20rem;
+  font-size: 0.9375rem;
+  letter-spacing: -0.01875rem;
+  margin-bottom: 0.28rem;
 }
 .order-summary .card-body .order-details .group-item {
-  margin-top: 1.25rem;
-  margin-bottom: 1.25rem;
+  margin-top: 0.66rem;
+  margin-bottom: 1.12rem;
 }
 .order-summary .card-body .personalized-song {
-  padding: 1.75rem 0;
-  margin-bottom: 1.756rem;
+  padding: 1.5rem 0;
+  margin-bottom: 1.55rem;
+  border-top: 1.5px solid #E4E7EC;
+  border-bottom: 1.5px solid #E4E7EC;
+}
+.order-summary .personalized-song .disk-icon {
+  width: 4.125rem;
+  height: 4.125rem;
+  margin-right: 0.89rem;
+}
+.order-summary .personalized-song .disk-icon svg {
+  top: 11%;
+  left: 13%;
+  width: 3.125rem;
+  height: 3.125rem;
 }
 .order-summary .card-body .personalized-song .song-wrapper img {
   margin-right: 1rem;
@@ -6359,57 +6631,87 @@ margin-bottom: 1rem;
   height: 72px;
 }
 .order-summary .card-body .personalized-song .song-wrapper h4 {
-  font-size: 1.12rem;
-  margin-bottom: 0.24rem;
+  font-size: 0.9375rem;
+  letter-spacing: -0.01875rem;
+  margin-bottom: 0.28rem;
 }
 .order-summary .card-body .personalized-song .song-wrapper p {
-  font-size: .9rem;
+  font-size: 0.75rem;
+  letter-spacing: -0.015rem;
 }
 .order-summary .card-body .form-group{
   margin-bottom: 1.75rem;
 }
 .order-summary .card-body .form-group input, .order-summary .card-body .form-group .apply {
-  height: 2.5rem;
+  height: 2.25rem;
+  font-size: 0.65625rem;
+  font-style: normal;
+  line-height: normal
 }
 .order-summary .card-body  form .last {
   margin-bottom: 1.75rem;
 }
 .order-summary .card-body form .total {
   margin-bottom: 0;
+  padding: 1.55rem 0;
+  border-top: 1.5px solid #E4E7EC;
 }
 .order-summary .container .button-wrapper{
   margin-top: 1.75rem;
 }
 /* Stepper*/
 .basic-information .container .card, .delivery-date .container .card {
-  margin: 3rem auto;
-  padding: 3.12rem;
+  margin: 3.75rem auto;
+  padding: 2.48rem 3.52rem;
 }
 .basic-information .container .step2 .select-artist .card img{
-  height: 250px;
+  height: 15.51563rem;
+  margin-bottom: 1.12rem;
 }
 .basic-information .container .step2 .select-artist .card {
   padding: 1.5rem!important;
+  margin: 1.87rem auto 0;
 }
 .basic-information .container .step2 .select-artist .card .select {
-  font-size: 1.16rem;
-  padding: 0.4rem 0;
+  font-size: 0.84375rem;
+  line-height: 1.125rem;
+  padding: 0.56rem 0;
 }
+.featured-artists .card .middle a, .artists .card .middle button, .basic-information .container .step2 .select-artist .middle button {
+  font-size: 1.1rem;
+  line-height: 1rem;
+}
+
 .basic-information .container form .button-wrapper .back, .basic-information .container form .button-wrapper .next, 
-.basic-information .container .step2 .button-wrapper .back, .basic-information .container .step2 .button-wrapper .next, 
-.basic-information .container .step4 .button-wrapper .back, .basic-information .container .step4 .button-wrapper .next, 
-.delivery-date .container .button-wrapper .back, .delivery-date .container .button-wrapper .next,
-.order-summary .container .button-wrapper .back, .order-summary .container .button-wrapper .next {
-  padding: .7rem 0rem;
-  font-size: 1rem;
+.basic-information .container .step2 .button-wrapper .back, .basic-information .container .step2 .button-wrapper .next,
+ .basic-information .container .step4 .button-wrapper .next, 
+.delivery-date .container .button-wrapper .back, .delivery-date .container .button-wrapper .next, 
+.order-summary .container .button-wrapper .next {
+  padding: .75rem 0rem;
+  font-size: 0.9375rem;
+  line-height: 1.125rem;
 }
 .basic-information .container .step2 .content-sub, .basic-information .container .step3 .content-sub {
   width: 45%;
 }
 .basic-information .container .card-title{
-  font-size: 1.8rem;
+  font-size: 1.3125rem;
   margin-bottom: 1.2rem!important;
 }
+.basic-information .container form .dropdown ul li {
+  font-size: 0.9375rem;
+  line-height: 0.98438rem; 
+  /* min-height: 1.2em;
+  padding: .66rem 1rem; */
+}
+.basic-information .container form .dropdown button span{
+  font-size: 0.9375rem;
+  line-height: 0.98438rem; 
+}
+.basic-information .container form .form-group {
+  margin-bottom: 1.88rem;
+}
+
 .basic-information .container .step2 .select-artist .title{
   font-size: 1.8rem;
   margin-bottom: .2rem!important;
@@ -6420,89 +6722,219 @@ margin-bottom: 1rem;
 .basic-information .container .step3 .your-story {
   margin-bottom: 0.3rem!important;
 }
-.basic-information .container .card-text, .basic-information .container .step2 .select-artist .sub-title, .delivery-date .container .card-text {
-  font-size: 1rem;
-  margin-bottom: 1.7rem;
+.basic-information .container .card-text, .delivery-date .container .card-text {
+  font-size: 0.9375rem;
+  margin-bottom: 1.5rem;
 }
+.basic-information .container form label {
+  font-size: 0.9375rem;
+  letter-spacing: -0.01875rem;
+  margin-bottom: 0.56rem;
+}
+.basic-information .container form .form-group .form-control {
+  height: 2.625rem;
+  margin-bottom: 1.5rem;
+}
+.basic-information .container form .dropdown button {
+  padding: 0.84rem 0.75rem 0.78rem;
+  font-size: 0.9375rem;
+  font-style: normal;
+  line-height: normal;
+}
+.basic-information .container form .dropdown img {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.basic-information .container form .form-group .form-control::placeholder {
+  font-size: 0.9375rem;
+  line-height: 0.98438rem; 
+}
+
 .basic-information .container .step2 .select-artist, .basic-information .container .step4 .review-content {
   margin-bottom: 2rem;
-  padding: 4.5rem;
+  padding: 3.03rem 4.8rem 6.5rem;
+  margin-top: 1.5rem;
 }
 .artists .container .row .filter, .events-showing .container .row .filter, .event-organizers .container .top-row .filter, 
 .basic-information .container .step2 .top-row .filter {
-  font-size: 20px;
-  padding: 14px 38px;
+  font-size: 0.9375rem;
+  line-height: 100%;
+  letter-spacing: 0.04688rem;
+  padding: 0.84rem 1.25rem;
+  align-items: center;
+  margin-bottom: 2rem;
 }
-.artists .container .row .input-group .form-control, .events-showing .container .row .input-group .form-control, 
+.events-showing .container .row .filter span{
+ padding-top: -0.3rem;
+}
+.artists .container .row .filter span, .events-showing .container .row .filter span, .event-organizers .container .top-row .filter span, .basic-information .container .step2 .top-row .filter span {
+  margin-right: 0.47rem;
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+/* .artists .container .row .input-group .form-control, .events-showing .container .row .input-group .form-control, 
 .event-organizers .container .top-row .input-group .form-control, .basic-information .container .step2 .top-row .input-group .form-control {
   height: 55px;
   font-size: 20px;
-}
+} */
 .artists .container .row .input-group .form-control, .events-showing .container .row .input-group .form-control, 
 .event-organizers .container .top-row .input-group .form-control, .basic-information .container .step2 .top-row .input-group .form-control {
-  height: 55px;
-  font-size: 20px;
+  height: 2.625rem;
+  font-size: 0.9375rem;
+  padding-right: 0 0 0 1rem;
 }
+.artists .container .row .input-group button, .events-showing .container .row .input-group button, .event-organizers .container .top-row .input-group button, .basic-information .container .step2 .top-row .input-group button {
+  margin-top: 0.19rem;
+}
+
 .artists .container .row .input-group button span, .events-showing .container .row .input-group button span, .event-organizers .container .top-row .input-group button span, .basic-information .container .step2 .top-row .input-group button span {
-  font-size: 24px;
-  padding: 8px;
+  font-size: 20px;
+  padding: 0.38rem;
 }
 .artists .container .row .input-group, .events-showing .container .row .input-group, .event-organizers .container .top-row .input-group, .basic-information .container .step2 .top-row .input-group {
-  width: 380px;
+  width: 19.3125rem;
+  /* height: 2.625rem; */
 }
 .artists .container .row .input-group .form-control::placeholder, .events-showing .container .row .input-group .form-control::placeholder,
 .event-organizers .container .top-row .input-group .form-control::placeholder, .basic-information .container .step2 .top-row .input-group .form-control::placeholder{
-  font-size: 20px;
+  font-size: 0.9375rem;
 }
 .artists .container .top-row h5, .events-showing .container .top-row h5, .basic-information .container .step2 .top-row h5 {
-  font-size: 18px;
-  margin-bottom: 10px;
+  font-size: 0.93rem;
+  line-height: 0.98438rem; 
+  margin-bottom: 0.37rem;
 }
 .artists .container .row .form-select, .events-showing .container .row .form-select, .basic-information .container .step2 .form-select {
-  height: 50px;
-  font-size: 16px;
+  height: 2.625rem;
+  font-size: 0.93rem;
+  line-height: 0.98438rem;
+  border-radius: 0.375rem;
+  border: 0.75px solid #E4EBFF;
 }
+.basic-information .container .step2 .select-artist .back-to-info,
+ .basic-information .container .step4 .review-content .back-to-info,
+ .order-summary .container .back-to-info
+  {
+  margin-bottom: 2.37rem;
+  gap: 0.62rem;
+}
+.basic-information .container .step2 .select-artist .back-to-info span, 
+.basic-information .container .step4 .review-content .back-to-info span,
+.order-summary .container .back-to-info .back-to-info span {
+  font-size: 0.9375rem;
+  padding: 0.47rem;
+  border: 1.875px solid #DFDFE6;
+}
+.basic-information .container .step2 .select-artist .back-to-info .back, 
+.basic-information .container .step4 .review-content .back-to-info .back,
+.order-summary .container .back-to-info .back-to-info .back {
+  font-size: 0.9375rem;
+  line-height: 1.125rem;
+}
+.basic-information .container .step2 .select-artist .title-wrapper {
+  margin-bottom: 3.16rem;
+}
+.basic-information .container .step2 .select-artist .sub-title {
+  color: #B8BBCF;
+  font-size: 0.9375rem;
+  line-height: 1.125rem; 
+}
+
 .basic-information .container .step2 .top-row {
   margin-bottom: 10px;
 }
 .basic-information .container  .understand .form-check-input {
   margin-right: 1rem;
 }
+.basic-information .container .step4 .review-content .review-order-wrapper {
+  margin-bottom: 3.28rem;
+}
+.basic-information .container .step4 .review-content .review-order-wrapper .review-order {
+  font-size: 1.125rem;
+  line-height: 1.125rem;
+}
 .basic-information .container .step4 .review-content .title h3 {
-  font-size: 1.3rem;
-  margin-bottom: 1.3rem;
+  font-size: 0.9375rem;
+  line-height: 1.125rem; 
+  margin-bottom: 0.94rem;
+}
+.basic-information .container .step4 .review-content .title  button {
+  gap: .37rem;
+  font-size: 0.75rem;
+  line-height: 1.125rem;
+}
+.basic-information .container .step4 .review-content .title  button svg{
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.basic-information .container .group-item {
+  margin-top: 1.31rem;
+  margin-bottom: 1.31rem;
 }
 .basic-information .container h4, .basic-information .container p {
-  font-size: 1.18rem;
+  font-size: 0.9375rem;
 }
+.basic-information .container .step4 .button-wrapper .submit {
+  font-size: 0.9375rem;
+  line-height: 1.125rem;
+  padding: 0.75rem 6.84rem;
+}
+.basic-information .container  .understand p {
+  font-size: 0.75rem;
+  line-height: 0.98438rem;
+}
+.basic-information .container  .understand {
+  margin-bottom: 3.28rem;
+}
+
 .basic-information .container .double-check h5 {
-  font-size: 1.18rem;
+  font-size: 0.75rem;
 }
 .basic-information .container .your-story-content, .basic-information .container .double-check {
-  margin-bottom: 3rem;
+  margin-bottom: 1.87rem;
+}
+.basic-information .container  .understand .form-check-input[type=checkbox] {
+  width: 1.125rem;
+  height: 1.125rem;
+  margin-right: 0.94rem;
 }
 .basic-information .container .step-title {
-  margin-top: .8rem;
-  font-size: 1.18rem;
+  margin-top: .75rem;
+  font-size: 0.9375rem;
+  line-height: 1.125rem; 
 }
 .delivery-date form .form-check {
-  padding: 1.5rem 1.2rem;
-  margin-bottom: 0.75rem!important;
+  padding: 1.12rem 1.41rem;
+  margin-bottom: 0.84rem!important;
+  border: 1.5px solid #E4E7EC;
 }     
+.basic-information .container .progress {
+  height: 0.5rem;
+}
 .delivery-date form .form-check label h4, .delivery-date form .form-check label .price {
-  font-size: 1.1rem;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 1.25rem;
+  font-size: 0.9375rem;
+  line-height: 0.9375rem;
+  margin-bottom: 0.23rem;
 }    
+.basic-information .container .card .card-body, .delivery-date .container .card .card-body{
+  padding: 0;
+}
 .delivery-date form .form-check label  .sub-content {
-  font-size: 0.8rem;
-  font-style: normal;
+  font-size: 0.5625rem;
   font-weight: 400;
-  line-height: 1rem; 
-  width: 95%;
-  margin: 0.31rem 0 0;
+  line-height: 0.75rem;
+  /* width: 95%;
+  margin: 0.31rem 0 0; */
 } 
+.delivery-date form .form-check .form-check-input {
+  margin-right: 0.8rem;
+  width: 1.14em;
+  height: 1.1em;
+}
+
 .delivery-date .container .card-title{
   font-size: 1.25rem;
   font-style: normal;
@@ -6517,6 +6949,100 @@ margin-bottom: 1rem;
   line-height: normal;
   margin-bottom: 2.5rem!important;
 }
+
+/* ARTIST DETAILS modal */
+.artist-details-modal .artist-modal .modal-content {
+  width: 60.28125rem;
+  margin: 0 auto;
+}
+.artist-details-modal .artist-modal .modal-body{
+  padding: 1rem 4rem 3.6rem;
+}
+.artist-details-modal .artist-modal .modal-header{
+  padding-right: 1.5rem;
+  padding-top: 1.5rem;
+}
+.artist-details-modal .artist-modal .modal-body .artist-image{
+  height: 17.95313rem;
+  border-radius: 0.625rem;
+}
+.artist-details-modal .artist-modal .modal-body .top-row .artist-wrap{
+  gap: 1.87rem;
+}
+.artist-details-modal .artist-modal .modal-body .artist-bio h2{
+  font-size: 1.875rem;
+  margin-bottom: 0.38rem;
+}
+.artist-details-modal .artist-modal .modal-body .artist-bio h5{
+  font-size: 0.9375rem;
+  margin-bottom: 0.94rem;
+}
+.artist-details-modal .artist-modal .follow h6{
+  font-size: 0.75rem;
+  line-height: 1.125rem; 
+}
+.artist-details-modal .artist-modal .follow p {
+  font-size: 0.65625rem;
+  line-height: 0.9375rem;
+}
+.artist-details-modal .artist-modal .follow {
+  margin-bottom: 0.94rem;
+}
+.artist-details-modal .artist-modal .genres {
+  margin-bottom: 1.03rem;
+}
+.artist-details-modal .artist-modal .genres p {
+  font-size: 0.75rem;
+  line-height: 0.9375rem; 
+  margin-right: 0.55rem;
+}
+.artist-details-modal .artist-modal .rating-reviews p .reviews {
+  font-size: 0.9375rem;
+  line-height: 0.63281rem;
+}
+.artist-details-modal .artist-modal .rating-reviews svg{
+  width: 1.125rem;
+  height: 1.125rem;
+}
+.artist-details-modal .artist-modal .modal-body .artist-bio .view-profile{
+  font-size: 0.65625rem;
+  padding: 0.75rem 1.59rem;
+}
+.artist-details-modal .artist-modal .modal-body .sample-songs{
+  font-size: 0.9375rem;
+  line-height: 120%; 
+  margin-bottom: 0.94rem;
+}
+.artist-details-modal .artist-modal .modal-body .sample-songs-list {
+  padding: 0.66rem 0.88rem;
+  border-radius: 0.46875rem;
+  margin-bottom: 0.7rem;
+}
+.artist-details-modal .artist-modal .modal-body .sample-songs-list .artist-cover {
+  width: 2.95313rem;
+  height: 2.95313rem;
+  border-radius: 0.46875rem;
+  margin-right: 0.66rem;
+}
+.artist-details-modal .artist-modal .modal-body .sample-songs-list .left p {
+  font-size: 0.65625rem;
+  letter-spacing: -0.01313rem;
+}
+.artist-details-modal .artist-modal .modal-body .sample-songs-list .left svg {
+  margin-right: 0.19rem;
+  width: 1.125rem;
+  height: 1.125rem;
+}
+.artist-details-modal .artist-modal .modal-body .sample-songs-list .right .artist-song {
+  font-size: 0.75rem;
+  letter-spacing: -0.015rem;
+  margin-bottom: 0.23rem;
+}
+.artist-details-modal .artist-modal .modal-body .sample-songs-list .right .artist-band {
+  font-size: 0.65625rem;
+  letter-spacing: -0.01313rem;
+}
+
 
                                                        /* SERVICES PAGE */
  /* BANNER SECTION */
@@ -6657,9 +7183,9 @@ margin-bottom: 1rem;
   font-size: 20px;
   padding: 20px 54px;
 }
-.artists .container .row .input-group .form-control::placeholder, .events-showing .container .row .input-group .form-control::placeholder{
+/* .artists .container .row .input-group .form-control::placeholder, .events-showing .container .row .input-group .form-control::placeholder{
   font-size: 20px;
-}
+} */
 
 /* CREATE SONG PAGE */
 .create-song .container{
@@ -6987,6 +7513,22 @@ header nav {
   margin-bottom: 5rem;
 }
 
+/* ARTIST DETAILS modal */
+.artist-details-modal .artist-modal .btn-close{
+  width: 1.25rem;
+  height: 1.25rem;
+}
+.artist-details-modal .artist-modal .modal-body{
+  padding: 0.8rem 4rem 3.6rem;
+}
+.artist-details-modal .artist-modal .modal-header {
+  border-bottom: none;
+  padding-right: 1.5rem;
+  padding-top: 1.5rem;
+}
+
+
+
 /* HOME PAGE - Testimonails section */ 
 .testimonials .container{
   margin-top: 5rem;
@@ -7044,6 +7586,12 @@ header nav {
   height: 20.625rem;
   margin-bottom: 10px;
 }
+.artists .container .row div:first-child {
+  margin-bottom: 0.75rem;
+}
+.featured-artists .card, .artists .container .card, .basic-information .container .step2 .select-artist .card {
+  margin-bottom: 0px;
+}
 .featured-artists .trending h4, .featured-artists .popular h4 {
   font-size: 1.75rem;
   font-style: normal;
@@ -7058,7 +7606,7 @@ header nav {
   line-height: normal;
   letter-spacing: 0.0625rem;
 }
-.featured-artists .card-body .card-title, .artists .card-body .card-title, .basic-information .container .step2 .select-artist .card-body .card-title {
+.featured-artists .card-body .card-title, .artists .card-body .card-title{
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -7070,11 +7618,17 @@ header nav {
   letter-spacing: 0.0625rem;
   width: 95%;
 }
+ .basic-information .container .step2 .select-artist .card-body .card-title {
+  font-size: 0.9375rem;
+  line-height: 100%;
+  letter-spacing: 0.04688rem;
+  margin-bottom: 0.23rem!important;
+}
 .featured-artists .card:hover .card-title, .artists .card:hover .card-title  {
   white-space: normal;
   overflow: visible;
 }
-.featured-artists .card-body .card-text, .artists .card-body .card-text, .basic-information .container .step2 .select-artist .card-body .card-text {
+.featured-artists .card-body .card-text, .artists .card-body .card-text {
   font-size: 0.6875rem!important;
   font-style: normal!important;
   font-weight: 400!important;
@@ -7082,14 +7636,30 @@ header nav {
   letter-spacing: -0.00688rem;
   margin-bottom: 0.63rem;
 }
-.featured-artists .card-body p, .artists .card-body p, .basic-information .container .step2 .select-artist .card-body p{
+.basic-information .container .step2 .select-artist .card-body .card-text{
+  font-size: 0.75rem;
+  line-height: 100%;
+  letter-spacing: 0.0375rem;
+}
+.featured-artists .card-body p, .artists .card-body p{
   font-size: 0.875rem!important;
   font-style: normal;
   font-weight: 800;
   line-height: 0.69381rem; /* 79.295% */
 }
-.featured-artists .card-body p span, .artists .card-body p span, .basic-information .container .step2 .select-artist .card-body p span{
+.basic-information .container .step2 .select-artist .card-body p{
+  font-size: 0.75rem;
+  line-height: 0.52038rem;
+}
+.featured-artists .card-body p span, .artists .card-body p span{
   font-size: 14px;
+}
+.basic-information .container .step2 .select-artist .card .card-body {
+  padding-bottom: 1.31rem;
+}
+.basic-information .container .step2 .select-artist .card-body p span{
+  font-size: 0.75rem;
+  line-height: 0.63281rem;
 }
 .featured-artists .card-body p img, .artists .card-body p img{
   width: 20px;
