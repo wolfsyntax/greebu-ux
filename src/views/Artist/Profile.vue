@@ -70,7 +70,7 @@
             </div>
 
             <form @submit.prevent="submit" class="fill-details" autocomplete="off">
-              <!-- {{ form }} -->
+              <!-- {{ form }} --> 
 
               <div class="form-group upload-img">
                 <label class="label-img">
@@ -123,7 +123,8 @@
                   autocomplete="off" 
                   ref="multiselect" 
                   :filter-results="false"
-
+                  @open="onOpenOption"
+                  
                   noOptionsText="Please input genre(s)"
                   class="genre" placeholder="Please select genres" />
                   <br/>
@@ -137,7 +138,7 @@
                   <div class="col-4">
                     <div class="form-group">
                       <label for="address">Address</label>
-                      <input type="text" v-model="form.street_address" placeholder="Street" class="form-control street" required autocomplete="off"/>
+                      <input type="text" v-model="form.street_address" placeholder="Street" class="form-control street" required @focus="onInputAddress" autocomplete="off"/>
                       <!-- <div v-if="errors.street" class="street-error text-danger"></div> -->
                       <div v-for="err in error?.street_address" :key="err" class="text-danger">{{ err }}</div>
                     </div>
@@ -146,7 +147,7 @@
                   <div class="col-4">
                     <div class="form-group">
                       <label for="address" class="hidden">City</label>
-                      <input type="text" v-model="form.city" placeholder="City" class="form-control city" required autocomplete="off"/>
+                      <input type="text" v-model="form.city" placeholder="City" class="form-control city" @focus="onInputAddress" required autocomplete="off"/>
                       <div v-for="err in error?.city" :key="err" class="text-danger">{{ err }}</div>
                     </div>
                   </div>
@@ -154,7 +155,7 @@
                   <div class="col-4">
                     <div class="form-group">
                       <label for="address" class="hidden">Province</label>
-                      <input type="text" v-model="form.province" placeholder="Province" class="form-control province" required autocomplete="off"/>
+                      <input type="text" v-model="form.province" placeholder="Province" class="form-control province" @focus="onInputAddress" required autocomplete="off"/>
                       <div v-for="err in error?.province" :key="err" class="text-danger">{{ err }}</div>
                     </div>
                   </div>
@@ -600,6 +601,7 @@ export default {
     this.$store.commit('SET_MEMBER_INDEX');
     this.$refs.multiselect.$el.focus();
     console.log('Ref[multiselect]: ', this.$refs.multiselect)
+
     // this.fetchProfile()
     //   .then(res =>
     //   {
@@ -669,6 +671,15 @@ export default {
     changeImage(event){
       this.avatar = URL.createObjectURL(event.target.files[0]);
       this.form.avatar = event.target.files[0];
+    },
+    onOpenOption(event)
+    {
+      this.isSearchable = true;
+      console.log('Event')
+    },
+    onInputAddress(event)
+    {
+      this.isSearchable = false;
     },
     togglePlay()
     {
