@@ -9,6 +9,7 @@
                 </svg>
                 <h2 class="title">Success!</h2>
                 <p class="content">Your request has been sent and is awaiting approval of your choosen Artist. The site administrator will notify you once your request has been approved.</p>
+                <button class="btn go-to-dashboard">Go to Dashboard</button>
             </div>
         </div>
         </section>

@@ -1,3 +1,4 @@
+
 <template>
   <div class="w-100">
     <div class="progress">
@@ -17,8 +18,14 @@
       <div class="row" >
         <div class="col-12" v-if="currentSubStepSong === 0">
           <div class="select-artist ">
-            <h2 class="title">Select your artist</h2>
-            <p class="sub-title">These artists are available now! Tap an artist to hear a sample song that showcases their style and voice.</p>
+            <div class="d-flex align-items-center back-to-info">
+              <span class="material-symbols-outlined">&#xe5c4;</span>
+              <h5 class="back">Back</h5>
+            </div>
+            <div class="text-center title-wrapper"  @click="subPreviousStepSong">
+              <h2 class="title">Select your artist</h2>
+              <p class="sub-title">These artists are available now! Tap an artist to hear a sample song that showcases their style and voice.</p>
+            </div>
             <div class="row top-row">
               <div class="col-6">
                 <a href="#" class="btn btn-primary filter"><i class="material-icons"><span class="material-symbols-outlined next">sort</span></i>Filter</a>
@@ -123,7 +130,7 @@
                     <label for="mood">Select mood</label>
                     <div class="dropdown">
                       <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span :style="selectedMood ? { color: '#FF6B00' } : {}">{{ mood ? mood.name : 'Select mood' }}</span>
+                        <span :style="selectedMood ? { color: '#121212' } : {}">{{ mood ? mood.name : 'Select Mood' }}</span>
                         <img :src="expandMore.img" :alt="expandMore.altText">
                       </button>
 
@@ -152,7 +159,7 @@
                   <label for="language">Select Language</label>
                   <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      <span :style="language ? { color: '#FF6B00' } : {}">{{ language ? language.name : 'Select Language' }}</span>
+                      <span :style="language ? { color: '#121212' } : {}">{{ language ? language.name : 'Select Language' }}</span>
                       <img :src="expandMore.img" :alt="expandMore.altText">
                     </button>
 
@@ -166,7 +173,7 @@
                   <label for="language">Duration of Song</label>
                   <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      <span :style="duration ? { color: '#FF6B00' } : {}">{{ duration ? duration.title : 'Select Duration of Song' }}</span>
+                      <span :style="duration ? { color: '#121212' } : {}">{{ duration ? duration.title : 'Select Duration of Song' }}</span>
                       <img :src="expandMore.img" :alt="expandMore.altText">
                     </button>
 

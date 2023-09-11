@@ -2,6 +2,13 @@
   <div>
     <div class="row">
         <div class="review-content">
+          <div class="d-flex align-items-center back-to-info" @click="previousStep">
+              <span class="material-symbols-outlined">&#xe5c4;</span>
+              <h5 class="back">Back</h5>
+            </div>
+            <div class="text-center review-order-wrapper">
+              <h2 class="review-order">Review Your Order</h2>
+            </div>
           <div class="title">
             <h3>Basic Information</h3>
             <button type="button" @click="editBasicInfo">
@@ -117,8 +124,8 @@
             <p>I understand changes cannot be made after checkout – all of my information is good to go!</p>
           </div>
           <div class="button-wrapper">
-            <button type="button" class="btn btn-primary back" @click="previousStep">Back</button>
-            <button type="button" class="btn btn-primary next" @click="submitSelectedArtist"
+            <!-- <button type="button" class="btn btn-primary back" @click="previousStep">Back</button> -->
+            <button type="button" class="btn btn-primary submit" @click="submitSelectedArtist"
               :disabled="!understand">Submit</button>
           </div>
         </div>
