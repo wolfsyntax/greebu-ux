@@ -170,6 +170,7 @@
                   <div class="row">
                     <div class="col-12">
                       <ul class="list-group band-members" v-if="members">
+                        <transition-group name="fade" tag="div">
                         <li class="list-group-item" v-for="(mem, index) in members" :key="mem.id">
                           <div class="items">
                             <img @error="replaceByDefault" class="avatar" :src="mem.avatar" alt="" />      
@@ -191,6 +192,7 @@
                             </div>
                           </div>
                         </li>
+                      </transition-group>
                       </ul>
                     </div>
                   </div>
@@ -200,7 +202,9 @@
                 <div class="form-group">
                   <label for="social-media">Social Media Accounts</label><br>  
                   <button type="button" class="btn btn-primary add-social-media" @click="toggle('links', false, {key: '', text: ''})"><span class="material-symbols-rounded">add_link</span>Add Links</button>
-                </div>                         
+                </div>    
+                
+                <transition name="fade" mode="out-in">                
 
                 <div class="card mb-3 social-media-account-row" v-if="form?.instagram_username">
                   <div class="row g-0">
@@ -229,7 +233,8 @@
                     </div>
                   </div>
                 </div>
-
+                </transition>
+                <transition name="fade" mode="out-in"> 
                 <div class="card mb-3 social-media-account-row" v-if="form.spotify_profile" style="height: 90px;">
                   <div class="row g-0">
                     <div class="col-md-1">
@@ -257,7 +262,8 @@
                     </div>
                   </div>
                 </div>
-
+                </transition>
+                <transition name="fade" mode="out-in">
                 <div class="card mb-3 social-media-account-row" v-if="form.twitter_username" style="height: 90px;">
                   <div class="row g-0">
                     <div class="col-md-1">
@@ -285,7 +291,8 @@
                     </div>
                   </div>
                 </div>
-
+              </transition>
+              <transition name="fade" mode="out-in">
                 <div class="card mb-3 social-media-account-row " v-if="form.youtube_channel" style="height: 90px;">
                   <div class="row g-0">
                     <div class="col-md-1">
@@ -312,6 +319,8 @@
                     </div>
                   </div>
                 </div>
+                </transition>
+                
               </div>   <!-- end of band-and-social--> 
 
               <div class="d-flex justify-content-between group-item accept-events">
@@ -338,12 +347,12 @@
               <!-- About artist - Textarea -->
               <div class="form-group form-about-artist">
                 <label for="about-artist">About the Artist</label><br>  
-                <textarea v-model="form.bio" class="form-control about-artist" 
+                <textarea v-model="form.bio" maxlength="500" class="form-control about-artist" 
                   placeholder="My name is [Your Name], and I am a [genre/ style] music artist based in [city, country]. I am writing to propose a music collaboration opportunity that I believe would be mutually beneficial and creatively inspiring......">
                 </textarea>
+                <p v-show="form.bio" class="char-count">Maximum 500 characters ({{ remainingChars }} left)</p>
                 <div v-for="err in error?.bio" :key="err" class="text-danger">{{ err }}</div>
               </div>
-
 
               <div class="song-preview">
                 <h5 class="title">Upload a Song for Preview</h5>
@@ -390,6 +399,7 @@
                 </div>
 
                 <!-- Uploaded music -->
+                <transition name="fade" mode="out-in">
                 <div v-if="uploadedMusic" class="uploaded-song-wrapper">
                   <audio controls class="audio-controls-wrapper" ref="audioPlayer">
                     <source :src="uploadedMusic" type="audio/mpeg">
@@ -405,10 +415,11 @@
                     </div>
                     <div class="d-flex align-items-center remove-music-wrapper">
                       <img :src="playIcon" @click="togglePlay()" alt="Music icon">
-                      <img src="/assets/artist-account/remove-song-icon.svg" @click="removeMusic" alt="Music icon">
+                        <img src="/assets/artist-account/remove-song-icon.svg" @click="removeMusic" alt="Music icon">
                     </div>
                   </div>  
                   </div>
+                </transition>
 
                   <div v-for="err in error?.song" :key="err" class="text-danger">{{ err }}</div>
               </div> <!-- end of song-preview -->
@@ -525,7 +536,7 @@ export default {
         text: null,
         key: null,
       },
-      playIcon: '/assets/play-black.svg',
+      playIcon: '/assets/play-circle.svg',
       memberIndex: -1,
     }
   },
@@ -658,11 +669,11 @@ export default {
     togglePlay()
     {
       if (this.$refs.audioPlayer.paused) {
-        this.playIcon = '/assets/play-pause.svg';
+        this.playIcon = '/assets/stop-circle.svg';
         this.$refs.audioPlayer.play();
       } else {
         this.$refs.audioPlayer.pause();
-        this.playIcon = '/assets/play-black.svg'
+        this.playIcon = '/assets/play-circle.svg'
       }
 
     },
@@ -851,6 +862,7 @@ export default {
       this.uploadedMusic = null;
       this.songTitle = '';
       this.uploadDragSongBox = true;
+      this.togglePlay();
     },
     // openFileInput() {
     //   this.$refs.musicInput.click();
@@ -884,6 +896,9 @@ export default {
       member: state => state.artist.member,
       mx: state => state.artist.memberIndex,
     }),
+    remainingChars(){
+      return 500 - (this.form.bio ? this.form.bio.length : 0);
+    }
   },
   watch: {
     
@@ -901,6 +916,4 @@ export default {
   height: 50px;
   border-radius: 50%;
 }
-
-
 </style>
