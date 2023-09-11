@@ -75,7 +75,9 @@
     <update-phone @closeModal="closeNewPhoneNumberModal" />
     <phone-verify />
     
-
+    <current-password @closeModal="closeCurrentPasswordModal"/>
+    <update-password @closeModal="closeNewPasswordModal"/>
+    <success-password />
   </div>
 </template>
 
@@ -84,11 +86,15 @@ import { mapGetters, mapState, mapActions } from "vuex";
 
 import CurrentEmail from './My Account/CurrentEmail.vue';
 import CurrentPhone from './My Account/CurrentPhone.vue';
+import CurrentPassword from './My Account/CurrentPassword.vue';
 import VerifyEmail from './My Account/VerifyEmail.vue';
 
 import UpdateEmail from './My Account/UpdateEmail.vue';
 import UpdatePhone from './My Account/UpdatePhone.vue';
+import UpdatePassword from './My Account/UpdatePassword.vue';
 import PhoneVerify from './My Account/OTPVerification.vue';
+
+import SuccessPassword from './My Account/SuccessPasswordReset.vue';
 
 import { Modal } from "bootstrap"
 
@@ -96,10 +102,13 @@ export default {
   components: {
     CurrentEmail, 
     CurrentPhone,
+    CurrentPassword,
     UpdateEmail,
     UpdatePhone,
+    UpdatePassword,
     VerifyEmail,
     PhoneVerify,
+    SuccessPassword,
   },
   data () {
     return {
@@ -188,7 +197,16 @@ export default {
     }),
   },
   methods: {
-
+    ...mapActions([
+      'accountSetting',
+    ]),
+    submit()
+    {
+      this.accountSetting(this.form).then(response =>
+      {
+        
+      });
+    },
     //  Change Email Address
     showCurrentEmailAddressModal()
     {
@@ -198,7 +216,7 @@ export default {
     },
     closeCurrentEmailAddressModal()
     {
-      console.log('Close Email')
+      console.log('Close Email');
       new Modal(document.getElementById('updateEmail'), {
         keyboard: false
       }).show();
@@ -286,13 +304,22 @@ export default {
     //  Change Password
     showCurrentPasswordModal()
     {
+      console.log('Show Current Password: ')
+      new Modal(document.getElementById('currentPasswordModal'), {
+        keyboard: false
+      }).show();
+
       this.showCurrentPassword = true;
       document.body.style.overflow = 'hidden';
     },
     closeCurrentPasswordModal()
     {
-      this.showCurrentPassword = false;
-      document.body.style.overflow = 'auto';
+      console.log('\n\nClose Current Password modal');
+      new Modal(document.getElementById('updatePassword'), {
+        keyboard: false
+      }).show();
+      // this.showCurrentPassword = false;
+      // document.body.style.overflow = 'auto';
     },
     showNewPasswordModal()
     {
@@ -306,10 +333,13 @@ export default {
     },
     closeNewPasswordModal()
     {
-      this.showNewPassword = false;
-      this.showCurrentPassword = false;
-      this.showSuccessPasswordResetMessage = false;
-      document.body.style.overflow = 'auto';
+      new Modal(document.getElementById('accountSuccessUpdatePassword'), {
+        keyboard: false
+      }).show();
+      // this.showNewPassword = false;
+      // this.showCurrentPassword = false;
+      // this.showSuccessPasswordResetMessage = false;
+      // document.body.style.overflow = 'auto';
     },
     toggleCurrentPasswordVisibility()
     {

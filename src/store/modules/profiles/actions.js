@@ -187,6 +187,33 @@ export const verifyCurrentPhone = ({ rootState }, payload) =>
   });
 };
 
+export const verifyCurrentPassword = ({ rootState }, payload) =>
+{
+  return new Promise(async (resolve, reject) =>
+  {
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
+
+    await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/account/check-password`, payload)
+      .then(response =>
+      {
+
+        const { data: { message, status, result }, status: statusCode } = response;
+
+        console.log('\n\nCheck current password: ', response);
+
+        if (statusCode === 200 && status === 200) {
+          resolve(response)
+        } else {
+          reject({ msg: 'Current Password is incorrect', status: statusCode });
+        }
+
+      })
+      .catch(err =>
+      {
+        reject(err)
+      });
+  });
+};
 export const updateEmail = ({ commit, rootState }, payload) =>
 {
   return new Promise(async (resolve, reject) =>
@@ -270,6 +297,8 @@ export const updatePassword = ({ commit, rootState }, payload) =>
         if (status == 200 && statusCode === 200) {
           commit('SET_AUTH', result?.user);
           resolve(response);
+        } else if (statusCode === 203 && status === 422){
+          reject({ msg: message, status: statusCode, data: result?.errors || [] });
         } else {
           reject({ msg: message, status: statusCode });
         }
