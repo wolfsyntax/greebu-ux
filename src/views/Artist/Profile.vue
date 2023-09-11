@@ -69,7 +69,7 @@
               </div>
             </div>
 
-            <form @submit.prevent="submit" class="fill-details">
+            <form @submit.prevent="submit" class="fill-details" autocomplete="off">
               <!-- {{ form }} -->
 
               <div class="form-group upload-img">
@@ -96,7 +96,7 @@
               <div class="required-fields">
                 <div class="form-group typeArtist">
                   <label for="typeArtist">Type of the Artist</label>
-                  <select v-model="form.artist_type" class="form-select">
+                  <select v-model="form.artist_type" class="form-select" >
                     <option>Select Artist Type</option>
                     <option v-for="artist_type in artistTypes" :key="artist_type.id" :value="artist_type.title">
                       {{ artist_type.title }}
@@ -108,7 +108,7 @@
 
                 <div class="form-group">
                   <label for="artistName">Name of the Artist/Band</label>
-                  <input type="text" v-model="form.artist_name" placeholder="Name of the Artist/Band" class="form-control artist-name" required/>
+                  <input type="text" v-model="form.artist_name" placeholder="Name of the Artist/Band" class="form-control artist-name" required autocomplete="off"/>
                   <div v-if="error?.artist_name" class="artist-name-error text-danger"></div>
                 </div>
 
@@ -119,9 +119,11 @@
                   :create-option="true" :options="async function(query) {
                     return await fetchGenre(query) || genres
                   }" 
-                  :searchable="true" :delay="0" 
+                  :searchable="isSearchable" :delay="0" 
                   autocomplete="off" 
                   ref="multiselect" 
+                  :filter-results="false"
+
                   noOptionsText="Please input genre(s)"
                   class="genre" placeholder="Please select genres" />
                   <br/>
@@ -135,7 +137,7 @@
                   <div class="col-4">
                     <div class="form-group">
                       <label for="address">Address</label>
-                      <input type="text" v-model="form.street_address" placeholder="Street" class="form-control street" required />
+                      <input type="text" v-model="form.street_address" placeholder="Street" class="form-control street" required autocomplete="off"/>
                       <!-- <div v-if="errors.street" class="street-error text-danger"></div> -->
                       <div v-for="err in error?.street_address" :key="err" class="text-danger">{{ err }}</div>
                     </div>
@@ -144,7 +146,7 @@
                   <div class="col-4">
                     <div class="form-group">
                       <label for="address" class="hidden">City</label>
-                      <input type="text" v-model="form.city" placeholder="City" class="form-control city" required />
+                      <input type="text" v-model="form.city" placeholder="City" class="form-control city" required autocomplete="off"/>
                       <div v-for="err in error?.city" :key="err" class="text-danger">{{ err }}</div>
                     </div>
                   </div>
@@ -152,7 +154,7 @@
                   <div class="col-4">
                     <div class="form-group">
                       <label for="address" class="hidden">Province</label>
-                      <input type="text" v-model="form.province" placeholder="Province" class="form-control province" required/>
+                      <input type="text" v-model="form.province" placeholder="Province" class="form-control province" required autocomplete="off"/>
                       <div v-for="err in error?.province" :key="err" class="text-danger">{{ err }}</div>
                     </div>
                   </div>
@@ -538,6 +540,7 @@ export default {
       },
       playIcon: '/assets/play-circle.svg',
       memberIndex: -1,
+      isSearchable: true,
     }
   },
   setup()
@@ -596,6 +599,7 @@ export default {
     console.log('--- Mounted ---')
     this.$store.commit('SET_MEMBER_INDEX');
     this.$refs.multiselect.$el.focus();
+    console.log('Ref[multiselect]: ', this.$refs.multiselect)
     // this.fetchProfile()
     //   .then(res =>
     //   {
