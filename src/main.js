@@ -83,6 +83,7 @@ app.config.globalProperties.$filters = {
 
 app.config.globalProperties.$assets = import.meta.env.VITE_ASSET_URL;
 
+
 app.mount('#app');
 
 import "bootstrap/dist/js/bootstrap.js"
