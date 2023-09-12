@@ -216,14 +216,14 @@ export const updateMember = ({ commit, rootState, state}, payload) => {
 // Update 
 export const fetchArtists = ({ commit, rootState, state }, payload) => {
 
-  return new Promise(async(resolve, reject) => {
+  return new Promise((resolve, reject) => {
     var url = `${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/artist-filter`
     if (rootState.bearerToken) {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
       url = `${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/artists-filter`
     }
 
-    await axios.post(url, payload)
+    axios.post(url, payload)
       .then(response => {        
 
         console.log('\n\nFetch Artists Response: ', response)
