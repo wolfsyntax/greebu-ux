@@ -597,6 +597,7 @@ export default {
   },
   mounted()
   {
+
     console.log('--- Mounted ---')
     this.$store.commit('SET_MEMBER_INDEX');
     this.$refs.multiselect.$el.focus();
@@ -908,6 +909,7 @@ export default {
       genres: (state) => state.artist.genres,
       members: (state) => state.artist.members,
       account: (state) => state.account,
+      profile: (state) => state.profile,
       member: state => state.artist.member,
       mx: state => state.artist.memberIndex,
     }),
@@ -916,7 +918,16 @@ export default {
     }
   },
   watch: {
-    
+    account(val)
+    {
+      this.form = val;
+      this.form.avatar = '';
+      this.uploadedMusic = val?.song || '';
+      this.songTitle = val?.song_title || '';
+
+      this.avatar = this.account?.avatar || this.profile?.avatar || '/assets/artist-account/new.svg'
+      this.formGenres = val?.genres || [];
+    }
   }
 }
 </script>
