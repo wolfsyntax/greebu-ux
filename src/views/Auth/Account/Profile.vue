@@ -38,10 +38,10 @@ export default {
     ...mapActions([
       'accountProfile',
     ]),
-    // ...mapMutations([
-    //   'SET_ACCOUNT', 'SET_PROFILE', 'SET_AUTH',
-    //   'SET_ARTIST_GENRES', 'SET_MEMBERS',
-    // ]),
+    ...mapMutations([
+      'SET_ACCOUNT', 'SET_PROFILE', 'SET_AUTH',
+      'SET_ARTIST_GENRES', 'SET_MEMBERS',
+    ]),
     submit(value)
     {
 
@@ -82,27 +82,27 @@ export default {
   mounted()
   { 
 
-    // this.$echo.private(`profile.${this.userInfo.id}`)
-    //   .listen(`.update-profile`, (e) =>
-    //   {
-    //     console.log('Profile updated via Pusher: ', e);
-    //     const { response } = e;
-    //     const { account, profile, user } = response;
-    //     if(account)this.SET_ACCOUNT(account);
-    //     if (profile) this.SET_PROFILE(profile);
-    //     if (user) this.SET_AUTH(user);
+      // this.$echo.private(`profile.${this.userInfo.id}`)
+      //   .listen(`.update-profile`, (e) =>
+      //   {
+      //     console.log('Profile updated via Pusher: ', e);
+      //     const { response } = e;
+      //     const { account, profile, user } = response;
+      //     if(account)this.SET_ACCOUNT(account);
+      //     if (profile) this.SET_PROFILE(profile);
+      //     if (user) this.SET_AUTH(user);
 
-    //     if (this.userRole === 'artists') {
+      //     if (this.userRole === 'artists') {
 
-    //       const { genres, members } = response;
+      //       const { genres, members } = response;
 
-    //       // console.log('Band Members: ', members);
-    //       if (genres) this.SET_ARTIST_GENRES(genres);
-    //       if (members) this.SET_MEMBERS(members);
+      //       // console.log('Band Members: ', members);
+      //       if (genres) this.SET_ARTIST_GENRES(genres);
+      //       if (members) this.SET_MEMBERS(members);
 
-    //       this.$store.dispatch('artistOptions');
-    //     }
-    //   })
+      //       this.$store.dispatch('artistOptions');
+      //     }
+      //   })
 
     if (!this.isLoggedIn) this.$router.push('/');
   },

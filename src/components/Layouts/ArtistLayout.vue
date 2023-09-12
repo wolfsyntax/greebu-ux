@@ -39,31 +39,10 @@ export default {
       {
         console.log('Artist Options [ArtistLayout] ', res)
       });
+    console.log('Artist layout mounted');
   },
   created() {
-    // this.fetchArtistOptions()
-    //   .then(response =>
-    //   {
-    //     console.log('Fetching Artist Option: [artist layout]', response)
-    //   });
-
-    // this.artistOptions();
-    // this.fetchProfile();
-    // this.fetchArtistOptions().then(response =>
-    // {
-    //   console.log('Fetch Artist Option [index]: ', response)
-    //   this.artistOptions();
-    //   this.fetchProfile();
-    // })
-    //   .catch(err =>
-    //   {
-    //     // this.$vs.notification({
-    //     //   color: 'danger',
-    //     //   position: 'top-right',
-    //     //   title: 'Server Status',
-    //     //   text: `${err.message}`
-    //     // })
-    //   });
+    
   },
 }
 </script>

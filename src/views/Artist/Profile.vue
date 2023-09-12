@@ -601,26 +601,19 @@ export default {
     console.log('--- Mounted ---')
     this.$store.commit('SET_MEMBER_INDEX');
     this.$refs.multiselect.$el.focus();
+
     console.log('Ref[multiselect]: ', this.$refs.multiselect)
 
-    // this.fetchProfile()
-    //   .then(res =>
+    // this.$echo.private(`profile.${this.userInfo?.id}`)
+    //   .listen(`.update-member`, (e) =>
     //   {
-    //     console.log('Fetch Profile [AccountLayout]: ', res)
-    //   }).catch(err =>
-    //   {
-    //     console.log('Fetch Profile Error [AccountLayout]: ', err)
+    //     console.log('Member via Pusher [Artist/Profile]: ', e);
+    //     const { response: { members } } = e;
+    //     if (members) this.SET_MEMBERS(members);
+
     //   })
 
-    // this.artistOptions()
-    //   .then(res =>
-    //   {
-    //     console.log('Artist Options [AccountLayout] ', res)
-    //   });
-
-    // this.fetchArtistOptions().then(response =>
-    // {
-
+      
     //   /*
     //     1. artistOptions:
     //     - artist types (artist_types)
