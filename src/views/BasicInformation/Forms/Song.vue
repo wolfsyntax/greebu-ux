@@ -489,6 +489,8 @@ export default {
       if (newValue) payload.genre = newValue
       if (this.search) payload.search = this.search
 
+      payload.list_type = 'customers';
+      
       this.fetchArtists(payload)
     }
   }
