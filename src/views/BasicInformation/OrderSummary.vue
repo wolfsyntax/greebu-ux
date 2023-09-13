@@ -7,12 +7,10 @@
               <div class="col-md-6 offset-md-3">
                 <div class="card">  
                 <div class="card-body">
-
-                    <div class="d-flex align-items-center back-to-info">
+                    <div class="d-flex align-items-center back-to-info" @click="backToDeliveryDate">
                         <span class="material-symbols-outlined">&#xe5c4;</span>
                         <h5 class="back">Back</h5>
                     </div>
-
                     <h2 class="card-title">Order Summary</h2>
                     <p class="card-text">Lorem ipsum dolor sit amet consectetur.</p>
                     <div class="order-details">
@@ -148,8 +146,11 @@
     }
   },
   methods: {
+    backToDeliveryDate(){
+        this.$router.push('deliveryform');
+    },
     submitRequest(){
-        window.location.href = '/successfully-sent';
+        this.$router.push('successfully-sent');
     },
     startRotation(){
         this.isRotating = true;

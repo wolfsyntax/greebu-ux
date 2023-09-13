@@ -14,10 +14,10 @@
 
         <div id="trendingArtists" class="carousel slide">
           <div class="carousel-inner">
-            <div class="carousel-item" v-for="(slide, index) in Math.ceil(trendingArtists.length / 3)" :key="index"
+            <div class="carousel-item" v-for="(slide, index) in Math.ceil(trendingArtists.length / 4)" :key="index"
               :class="{ active: index === activeSlide }">
               <div class="row">
-                <div class="col-4" v-for="(artist, itemIndex) in getSlideItems(index)" :key="itemIndex">
+                <div class="col-3" v-for="(artist, itemIndex) in getSlideItems(index)" :key="itemIndex">
                   <div class="card">
                     <img :src="artist.image" class="card-img-top img-fluid" alt="Trending Artist" />
                     <div class="middle">
@@ -70,7 +70,7 @@
             <div class="carousel-item" v-for="(slide, index) in Math.ceil(trendingArtists.length / 3)" :key="index"
               :class="{ active: index === activeSlide }">
               <div class="row">
-                <div class="col-4" v-for="(artist, itemIndex) in getSlideItems(index)" :key="itemIndex">
+                <div class="col-3" v-for="(artist, itemIndex) in getSlideItems(index)" :key="itemIndex">
                   <div class="card">
                     <img :src="artist.image" class="card-img-top img-fluid" alt="Trending Artist" />
                     <div class="middle">
@@ -350,8 +350,8 @@ export default {
 
     getSlideItems(index)
     {
-      const slideStartIndex = index * 3;
-      const slideEndIndex = slideStartIndex + 3;
+      const slideStartIndex = index * 4;
+      const slideEndIndex = slideStartIndex + 4;
       const slideItems = this.trendingArtists.slice(slideStartIndex, slideEndIndex);
 
       return slideItems;
@@ -364,7 +364,7 @@ export default {
       } else {
         this.currentIndex = 0;
       }
-      this.activeSlide = Math.floor(this.currentIndex / 3);
+      this.activeSlide = Math.floor(this.currentIndex / 4);
       this.playSong(this.currentIndex);
     },
 
@@ -375,7 +375,7 @@ export default {
       } else {
         this.currentIndex = this.trendingArtists.length - 1;
       }
-      this.activeSlide = Math.floor(this.currentIndex / 3);
+      this.activeSlide = Math.floor(this.currentIndex / 4);
       this.playSong(this.currentIndex);
     },
 

@@ -10,7 +10,8 @@
         <div class="modal-body"
         >
 
-      <div class="upload-file-wrapper" 
+      <div
+       class="upload-file-wrapper" 
       @dragover="handleDragOverCover"
       @dragleave="handleDragLeaveCover"
       @drop="handleDropCover"
@@ -18,37 +19,40 @@
       >                   
     
           <input type="file" ref="bannerInput" style="display: none;" accept=".png,.webp,.svg,.jpeg" @change="handleClick"/>
-          <!-- <div 
-            @click="$refs.bannerInput.click()"
-          >
-            <img :src="banner" style="width: 320px;" alt="banner-preview" />
-          </div> -->
-
-          
-            <div class="uploaded-image-wrapper" v-if="form.cover_photo">
-              <img class="uploaded-image" :src="banner" alt="banner-modal" />
+            <div class="uploaded-image-wrapper" v-if="banner">
+              <img ref="uploadedImage" class="uploaded-image" :src="banner" alt="banner-modal" />
               <button class="remove-image" @click="removeBanner">
                 <span class="material-symbols-outlined">&#xe5cd;</span> 
               </button>
             </div>
             <div class="text-center upload-file-content" v-else >
-              
               <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 45 45" fill="none">
             <path d="M14.915 14.959C14.915 16.1895 14.502 17.2529 13.6055 18.1582C12.7002 19.0635 11.6367 19.4678 10.4062 19.4678C9.17578 19.4678 8.1123 19.0547 7.20703 18.1582C6.30176 17.2617 5.89746 16.1895 5.89746 14.959C5.89746 13.7285 6.31055 12.665 7.20703 11.7598C8.10352 10.8545 9.17578 10.4502 10.4062 10.4502C11.6367 10.4502 12.7002 10.8633 13.6055 11.7598C14.5107 12.665 14.915 13.7285 14.915 14.959ZM39.0146 23.9766V34.4707H5.89746V29.9619L13.4385 22.5L17.209 26.2705L29.2588 14.2207L39.0146 23.9766ZM41.2295 7.49707H3.69141C3.52441 7.49707 3.27832 7.57617 3.19922 7.74316C3.03223 7.91016 2.95312 8.06836 2.95312 8.23535V36.7559C2.95312 36.9229 3.03223 37.1689 3.19922 37.2481C3.36621 37.415 3.52441 37.4941 3.69141 37.4941H41.2295C41.3965 37.4941 41.6426 37.415 41.7217 37.2481C41.8887 37.0811 41.9678 36.9229 41.9678 36.7559V8.23535C41.9678 8.06836 41.8887 7.82227 41.7217 7.74316C41.6426 7.58496 41.4756 7.49707 41.2295 7.49707ZM45 8.23535V36.7559C45 37.8193 44.6748 38.6367 43.9365 39.375C43.1982 40.1133 42.293 40.4385 41.3174 40.4385H3.69141C2.62793 40.4385 1.81055 40.1133 1.07227 39.375C0.325195 38.6455 0 37.749 0 36.7647V8.23535C0 7.17188 0.325195 6.35449 1.06348 5.61621C1.80176 4.87793 2.70703 4.55273 3.68262 4.55273H41.2207C42.2842 4.55273 43.1016 4.87793 43.8398 5.61621C44.6748 6.2666 45 7.17188 45 8.23535Z" fill="#ABADC6"/>
             </svg>
-              
               <h5 class="drag-files">Select a file or drag and drop here</h5>
               <p class="image-type">JPG, PNG file size no more than 10MB</p>
-
               <div class="select-files-wrapper">
                 <label for="files" class="btn btn-info" @click="$refs.bannerInput.click()">Select file</label>      
               </div>
             </div>
-       
-       
+      </div> 
+      <div class="d-flex align-items-center img-dimensions">
+        <span class="material-symbols-rounded info">&#xe88e;</span> 
+        <p class="description">Cover photo must be a square .jpg, .jpeg, .png, or .webp file, at least 3000x3000 pixels, not blurry or pixelated and no more than 10mb in size.</p>
       </div>
-
+      <div>
+        <p>Image Width: {{ imageWidth }} pixels</p>
+        <p>Image Height: {{ imageHeight }} pixels</p>
+      </div>
+  
         </div> <!-- end of modal-body -->
+        <croppa v-model="myCroppa" canvas-color="transparent">
+      <input type="file" ref="bannerInput" accept="image/*" @change="handleFileChange" style="display: none;" />
+    </croppa>
+          <button @click="generateImage">Generate</button>
+          <!-- <input type="file" @change="generateImage"> -->
+  <br>
+  <img ref="uploadedImage" class="uploaded-image" :src="banner" alt="banner-modal" />
 
         <div class="modal-footer justify-content-center">
           <button class="btn btn-lg upload-cover-photo" @click="uploadCover">
@@ -66,30 +70,31 @@
 
 <script>
 import { mapGetters, mapState, mapActions } from "vuex";
+
 export default {
+
   setup () {
-    
 
     return {}
   },
   data: () => ({
-    banner: '/assets/artist-account/default-cover-photo.webp',
+    banner: null,
     form: {
       cover_photo: '',
-      isLoading: false,
-      isDragOver: false,
-    }
+    },
+    isLoading: false,
+    isDragOver: false,
+    imageWidth: null,
+    imageHeight: null,
+    imageUrl: null,
+
+    myCroppa: null,
+    //imgUrl: ''
   }),
   methods: {
     ...mapActions([
       'updateBanner',
     ]),
-    removeBanner()
-    {
-      this.form.cover_photo = '';
-      this.banner = '/assets/artist-account/default-cover-photo.webp';
-      this.$refs['bannerInput'].value = null;
-    },
     handleDragOverCover(e)
     {
       console.log('Handle DragOver: ', e)
@@ -139,14 +144,23 @@ export default {
   //   this.handleFiles(file);
   // },
 
-    uploadCover()
-    {
-      this.updateBanner(this.form).then(response =>
-      {
-        this.removeBanner();
-        this.$refs.bannerClose.click();
-      });
+  uploadCover() {
+      // if (!this.form.cover_photo) {
+      //   alert('No image selected');
+      //   return;
+      // }
+
+      this.updateBanner(this.form, this.generateImage)
+        .then(response => {
+          this.removeBanner();
+          this.$refs.bannerClose.click();
+          console.log(`Generated image `, this.generateImage);
+        })
+        .catch(error => {
+          console.error('Error uploading cover:', error);
+        });
     },
+
     handleClick(e)
     {
 
@@ -160,9 +174,93 @@ export default {
 
         this.form.cover_photo = rawFile;
         this.banner = URL.createObjectURL(rawFile);
+        console.log(`top banner image`, this.banner)
+        //this.generateImage = URL.createObjectURL(rawFile);
+
+        // check the image width and height
+        const img = new Image();
+        img.src = this.banner;
+
+        img.onload = () => {
+          this.imageWidth = img.width;
+          this.imageHeight = img.height;
+          console.log(`Image Width: ${this.imageWidth} pixels`);
+          console.log(`Image Height: ${this.imageHeight} pixels`);
+        };
+
       }
+    },
+    removeBanner()
+    {
+      this.form.cover_photo = null;
+      this.banner = null;
+      this.$refs['bannerInput'].value = null;
+    },
+    generateImage(){
+    	let url = this.myCroppa.generateDataUrl()
+      if (!url) {
+      	alert('no image')
+        return
+      }
+      this.banner = url
+      console.log(`Generated image`, this.banner);
     }
-  },
+//     generateImage(){
+//   let dataUrl = this.myCroppa.generateDataUrl();
+//   if (!dataUrl) {
+//     alert('No image');
+//     return;
+//   }
+  
+//   let blob = this.dataURLToBlob(dataUrl);
+  
+//   this.banner = URL.createObjectURL(blob);
+//   this.form.cover_photo = URL.createObjectURL(blob);
+//   console.log(`Generated banner`, this.banner);
+//   console.log(`Generated cover photo`, this.form.cover_photo);
+// },
+// dataURLToBlob(dataURL) {
+//   let arr = dataURL.split(',');
+//   let mime = arr[0].match(/:(.*?);/)[1];
+//   let bstr = atob(arr[1]);
+//   let n = bstr.length;
+//   let u8arr = new Uint8Array(n);
+//   while (n--) {
+//     u8arr[n] = bstr.charCodeAt(n);
+//   }
+//   return new Blob([u8arr], { type: mime });
+// }
+
+// generateImage(event) {
+//   const files = event.target.files;
+//   const rawFile = files[0];
+
+//   if (!rawFile) {
+//     alert('No image selected');
+//     return;
+//   }
+
+//   // Generate a data URL using this.myCroppa.generateDataUrl()
+//   let url = this.myCroppa.generateDataUrl();
+//   if (!url) {
+//     alert('No image');
+//     return;
+//   }
+
+//   this.form.cover_photo = rawFile;
+
+//   this.banner = URL.createObjectURL(rawFile);
+
+//   // Log the banner image URL
+//   console.log('Top banner image:', this.banner);
+// },
+
+
+
+
+	},
+  watch: {
+}
 }
 </script>
 

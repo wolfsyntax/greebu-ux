@@ -2364,16 +2364,55 @@ background: var(--btn-hovered);
   font-weight: 600;
   line-height: 2rem; 
 }
+#uploadArtistCoverPhoto .modal-body .img-dimensions{
+  border-radius: 0.40375rem;
+  background: #EFEFFC;
+  padding: 0.38rem 1.21rem;
+}
+#uploadArtistCoverPhoto .modal-body .img-dimensions .info{
+ font-size: 24px;
+ margin-right: 0.32rem;
+ color: rgba(184, 187, 207, 1);
+ font-variation-settings: 'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 48;
+}
+#uploadArtistCoverPhoto .modal-body .img-dimensions .description{
+  color: var(--gray2);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: -0.04375rem;
+  width: 90%;
+  margin-bottom: 0;
+}
 #uploadArtistCoverPhoto .modal-body .upload-file-wrapper{
     border-radius: 0.625rem;
     border: 1px dashed var(--gray6);
     padding: 0.75rem;
-    margin-bottom: 4.5rem;
+    margin-bottom: 1.25rem;
 }
+#uploadArtistCoverPhoto  .croppa-container {
+  display: block;
+  opacity: 1;
+  position: relative;
+  /* padding: 4rem 0;
+  width: 100%; */
+}
+/* #uploadArtistCoverPhoto .croppa-container canvas {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%!important;
+  height: 21rem!important;
+} */
+/* .croppa-container canvas{
+  width: 700px!important;
+  height: 700px!important;
+} */
 #uploadArtistCoverPhoto .upload-file-wrapper .upload-file-content{
     border-radius: 0.25rem;
     background: #EFEFFC;
-    padding: 2rem 0;
+    /* padding: 2rem 0; */
 }
 #uploadArtistCoverPhoto .upload-file-wrapper .upload-file-content svg {
   margin-bottom: 1.5rem;
@@ -2520,7 +2559,7 @@ background: var(--btn-hovered);
 }
 #uploadArtistCoverPhoto .modal-body .upload-file-wrapper{
   padding: 0.56rem;
-  margin-bottom: 3.63rem;
+  margin-bottom: 0.93rem;
 }
 #uploadArtistCoverPhoto .upload-file-wrapper .upload-file-content{
   padding: 1.56rem 0;

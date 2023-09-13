@@ -1331,16 +1331,17 @@ z-index: 1;
 }
 .featured-artists .card, .artists .container .card, .basic-information .container .step2 .select-artist .card {
   position: relative;
-  border-radius: 28px;
-  filter: drop-shadow(0px 4px 14px rgba(56, 29, 219, 0.1));
+  border-radius: 0.69969rem;
+  background: #FFF;
+  box-shadow: 0px 0px 19px 0px rgba(18, 18, 18, 0.10);
   border: none;
   display: inline-flex;
-  padding: 25px;
+  padding: 1.25rem;
   max-width: 100%;
   margin-bottom: 60px;
 }
 .artists .container .row div:first-child{
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 .artists .container .card{
   margin-bottom: 0px;
@@ -1348,14 +1349,18 @@ z-index: 1;
 .featured-artists .card img, .artists .card img, .basic-information .container .step2 .select-artist .card img {
   position: relative;
   /* border-radius: 10px; */
-  width: 424px;
-  height: 424px;
+  width: 19.375rem;
+  height: 18.08744rem;
   object-fit: cover;
   margin-bottom: 23px;
   left: 0;
   transition: .5s ease;
   backface-visibility: hidden;
 }
+/* .basic-information .container .step2 .select-artist .card img {
+  width: 19.375rem;
+  height: 18.08744rem;
+} */
 .featured-artists .card:hover .card-img-top, .artists .card:hover .card-img-top, .basic-information .container .step2 .select-artist .card:hover .card-img-top {
   filter: brightness(70%);
 }
@@ -1387,7 +1392,7 @@ z-index: 1;
 }
 .featured-artists .container .card .card-body, .artists .container .card .card-body, .basic-information .container .step2 .select-artist .card .card-body {
   width: 100%;
-  padding: 0px 10px 12px;
+  padding: 0px 10px 0px;
 }
 .featured-artists .card-body .card-title, .artists .card-body .card-title, .basic-information .container .step2 .select-artist .card-body .card-title {
   font-style: normal;
@@ -3425,7 +3430,7 @@ justify-content: space-between;
   border-radius: 0.625rem;
   border: 1px solid var(--gray6);
   background: var(--white);
-  padding: 2.5rem!important;
+  padding: 1.5rem!important;
 } 
 .basic-information .container .step2 .select-artist .card .middle {
   top: 35%;
@@ -3436,11 +3441,11 @@ justify-content: space-between;
 .basic-information .container .step2 .select-artist .card-body .card-text{
   margin-bottom: 0.87rem;
 }
-.basic-information .container .step2 .select-artist .card img{
+/* .basic-information .container .step2 .select-artist .card img{
   border-radius: 0.625rem;
   width: 20.5rem;
   height: 20.6rem;
-}
+} */
 .basic-information .container .step2 .select-artist .card .card-body{
   padding-bottom: 1.75rem;
 }
@@ -6660,16 +6665,22 @@ margin-bottom: 1rem;
   margin-top: 1.75rem;
 }
 /* Stepper*/
-.basic-information .container .card, .delivery-date .container .card {
+.basic-information .container .card, .delivery-date .container .card{
   margin: 3.75rem auto;
   padding: 2.48rem 3.52rem;
 }
 .basic-information .container .step2 .select-artist .card img{
-  height: 15.51563rem;
+  height: 12.51563rem;
   margin-bottom: 1.12rem;
 }
+.featured-artists .card-body p img, .artists #ShowArtists .card-body p img, .basic-information .container .step2 .select-artist .card-body p img {
+  width: 16px;
+  height: 16px;
+  margin-bottom: 0px;
+  padding-bottom: 2px;
+}
 .basic-information .container .step2 .select-artist .card {
-  padding: 1.5rem!important;
+  padding: 1rem!important;
   margin: 1.87rem auto 0;
 }
 .basic-information .container .step2 .select-artist .card .select {
@@ -6681,7 +6692,10 @@ margin-bottom: 1rem;
   font-size: 1.1rem;
   line-height: 1rem;
 }
-
+.basic-information .container .step2 .select-artist .middle button {
+  font-size: 0.93rem;
+  padding: .6rem 2rem;
+}
 .basic-information .container form .button-wrapper .back, .basic-information .container form .button-wrapper .next, 
 .basic-information .container .step2 .button-wrapper .back, .basic-information .container .step2 .button-wrapper .next,
  .basic-information .container .step4 .button-wrapper .next, 
@@ -6693,6 +6707,11 @@ margin-bottom: 1rem;
 }
 .basic-information .container .step2 .content-sub, .basic-information .container .step3 .content-sub {
   width: 45%;
+  margin: 0 auto 1.25rem
+}
+.basic-information .container .substep-title {
+  margin-top: 0.25rem;
+  font-size: 0.8375rem;
 }
 .basic-information .container .card-title{
   font-size: 1.3125rem;
@@ -6701,8 +6720,6 @@ margin-bottom: 1rem;
 .basic-information .container form .dropdown ul li {
   font-size: 0.9375rem;
   line-height: 0.98438rem; 
-  /* min-height: 1.2em;
-  padding: .66rem 1rem; */
 }
 .basic-information .container form .dropdown button span{
   font-size: 0.9375rem;
@@ -6711,7 +6728,6 @@ margin-bottom: 1rem;
 .basic-information .container form .form-group {
   margin-bottom: 1.88rem;
 }
-
 .basic-information .container .step2 .select-artist .title{
   font-size: 1.8rem;
   margin-bottom: .2rem!important;
@@ -6745,12 +6761,10 @@ margin-bottom: 1rem;
   width: 1.125rem;
   height: 1.125rem;
 }
-
 .basic-information .container form .form-group .form-control::placeholder {
   font-size: 0.9375rem;
   line-height: 0.98438rem; 
 }
-
 .basic-information .container .step2 .select-artist, .basic-information .container .step4 .review-content {
   margin-bottom: 2rem;
   padding: 3.03rem 4.8rem 6.5rem;
@@ -6773,12 +6787,6 @@ margin-bottom: 1rem;
   width: 1.125rem;
   height: 1.125rem;
 }
-
-/* .artists .container .row .input-group .form-control, .events-showing .container .row .input-group .form-control, 
-.event-organizers .container .top-row .input-group .form-control, .basic-information .container .step2 .top-row .input-group .form-control {
-  height: 55px;
-  font-size: 20px;
-} */
 .artists .container .row .input-group .form-control, .events-showing .container .row .input-group .form-control, 
 .event-organizers .container .top-row .input-group .form-control, .basic-information .container .step2 .top-row .input-group .form-control {
   height: 2.625rem;
@@ -6795,7 +6803,6 @@ margin-bottom: 1rem;
 }
 .artists .container .row .input-group, .events-showing .container .row .input-group, .event-organizers .container .top-row .input-group, .basic-information .container .step2 .top-row .input-group {
   width: 19.3125rem;
-  /* height: 2.625rem; */
 }
 .artists .container .row .input-group .form-control::placeholder, .events-showing .container .row .input-group .form-control::placeholder,
 .event-organizers .container .top-row .input-group .form-control::placeholder, .basic-information .container .step2 .top-row .input-group .form-control::placeholder{
@@ -6822,14 +6829,14 @@ margin-bottom: 1rem;
 }
 .basic-information .container .step2 .select-artist .back-to-info span, 
 .basic-information .container .step4 .review-content .back-to-info span,
-.order-summary .container .back-to-info .back-to-info span {
+.order-summary .container .back-to-info span {
   font-size: 0.9375rem;
   padding: 0.47rem;
   border: 1.875px solid #DFDFE6;
 }
 .basic-information .container .step2 .select-artist .back-to-info .back, 
 .basic-information .container .step4 .review-content .back-to-info .back,
-.order-summary .container .back-to-info .back-to-info .back {
+.order-summary .container .back-to-info .back {
   font-size: 0.9375rem;
   line-height: 1.125rem;
 }
@@ -6869,7 +6876,6 @@ margin-bottom: 1rem;
   width: 1.125rem;
   height: 1.125rem;
 }
-
 .basic-information .container .group-item {
   margin-top: 1.31rem;
   margin-bottom: 1.31rem;
@@ -6889,7 +6895,6 @@ margin-bottom: 1rem;
 .basic-information .container  .understand {
   margin-bottom: 3.28rem;
 }
-
 .basic-information .container .double-check h5 {
   font-size: 0.75rem;
 }
@@ -6926,15 +6931,12 @@ margin-bottom: 1rem;
   font-size: 0.5625rem;
   font-weight: 400;
   line-height: 0.75rem;
-  /* width: 95%;
-  margin: 0.31rem 0 0; */
 } 
 .delivery-date form .form-check .form-check-input {
   margin-right: 0.8rem;
   width: 1.14em;
   height: 1.1em;
 }
-
 .delivery-date .container .card-title{
   font-size: 1.25rem;
   font-style: normal;
@@ -7580,14 +7582,20 @@ header nav {
 /* HOME / ARTIST PAGE - Company Featured Artists section */ 
 .featured-artists .container{
   margin-top: 9rem;
-  margin-bottom: 9rem;
+  margin-bottom: 6rem;
+}
+.featured-artists .trending, .featured-artists .popular {
+  margin-top: 40px;
 }
 .featured-artists .card img, .artists #ShowArtists .card img {
-  height: 20.625rem;
+  height: 13.625rem;
   margin-bottom: 10px;
 }
 .artists .container .row div:first-child {
   margin-bottom: 0.75rem;
+}
+.featured-artists .card, .artists .container .card, .basic-information .container .step2 .select-artist .card {
+  padding: 1.25rem 1.25rem .5rem;
 }
 .featured-artists .card, .artists .container .card, .basic-information .container .step2 .select-artist .card {
   margin-bottom: 0px;
@@ -7623,6 +7631,7 @@ header nav {
   line-height: 100%;
   letter-spacing: 0.04688rem;
   margin-bottom: 0.23rem!important;
+  width: 95%;
 }
 .featured-artists .card:hover .card-title, .artists .card:hover .card-title  {
   white-space: normal;
@@ -7642,20 +7651,29 @@ header nav {
   letter-spacing: 0.0375rem;
 }
 .featured-artists .card-body p, .artists .card-body p{
-  font-size: 0.875rem!important;
+  font-size: 0.775rem!important;
   font-style: normal;
   font-weight: 800;
   line-height: 0.69381rem; /* 79.295% */
+}
+.featured-artists .button-wrapper{
+ margin-top: 3rem;
+}
+.featured-artists .card-body p span, .artists #ShowArtists .card-body p span, .basic-information .container .step2 .select-artist .card-body p span {
+  font-size: 12px;
+  line-height: 12px;
 }
 .basic-information .container .step2 .select-artist .card-body p{
   font-size: 0.75rem;
   line-height: 0.52038rem;
 }
-.featured-artists .card-body p span, .artists .card-body p span{
+/* .featured-artists .card-body p span, .artists .card-body p span{
   font-size: 14px;
-}
+} */
+
 .basic-information .container .step2 .select-artist .card .card-body {
   padding-bottom: 1.31rem;
+  padding-right: 0;
 }
 .basic-information .container .step2 .select-artist .card-body p span{
   font-size: 0.75rem;
@@ -7666,7 +7684,7 @@ header nav {
   height: 20px;
 }
 .featured-artists .audio-btn .play-btn  i, .artists  .audio-btn .play-btn  i, .basic-information .audio-btn .play-btn i {
-  font-size: 3rem;
+  font-size: 2.3rem;
 }
 .featured-artists .container .card .card-body, .artists .container .card .card-body {
   padding: 8px 6px 8px;
