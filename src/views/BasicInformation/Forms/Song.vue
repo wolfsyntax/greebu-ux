@@ -18,11 +18,11 @@
       <div class="row" >
         <div class="col-12" v-if="currentSubStepSong === 0">
           <div class="select-artist ">
-            <div class="d-flex align-items-center back-to-info">
+            <div class="d-flex align-items-center back-to-info" @click="previousStep">
               <span class="material-symbols-outlined">&#xe5c4;</span>
               <h5 class="back">Back</h5>
             </div>
-            <div class="text-center title-wrapper"  @click="subPreviousStepSong">
+            <div class="text-center title-wrapper">
               <h2 class="title">Select your artist</h2>
               <p class="sub-title">These artists are available now! Tap an artist to hear a sample song that showcases their style and voice.</p>
             </div>
@@ -78,7 +78,7 @@
             <!-- Show Artists -->
             <div class="">
               <div class="row select-aritst-row">
-                <div class="col-4" v-for="(artist, itemIndex) in artists" :key="itemIndex">
+                <div class="col-3" v-for="(artist, itemIndex) in artists" :key="itemIndex">
                   <div class="card">
                     <img :src="artist.avatar" class="card-img-top img-fluid" loading="lazy" alt="Trending Artist" />
                     <div class="middle">

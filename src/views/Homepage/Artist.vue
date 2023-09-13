@@ -107,7 +107,7 @@
               :class="{ active: index === activeSlide }">
               <!-- <div class="carousel-item"> -->
               <div class="row">
-                <div class="col-4" v-for="(artist, itemIndex) in artists" :key="itemIndex">
+                <div class="col-3" v-for="(artist, itemIndex) in artists" :key="itemIndex">
                   <card :artist="artist" @play="playButton" :cardIndex="itemIndex"/>
                 </div>
               </div> 

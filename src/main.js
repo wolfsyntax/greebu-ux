@@ -1,5 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+import 'vue-croppa/dist/vue-croppa.css';
+
 import { createApp } from 'vue';
 
 import axios from 'axios';
@@ -37,6 +39,8 @@ import { firebaseApp } from './firebase/init';
 
 import Pusher from './plugins/pusher';
 
+import Croppa from 'vue-croppa';
+
 // import VueCookies from 'vue3-cookies'
 
 const app = createApp(App)
@@ -69,6 +73,7 @@ const app = createApp(App)
   // .use(BootstrapVueIcons)
   // .component('multiselect', Multiselect)
   .component('font-awesome-icon', FontAwesomeIcon)
+  .use(Croppa);
 
 app.config.globalProperties.$moment = moment();
 app.config.globalProperties.$filters = {
