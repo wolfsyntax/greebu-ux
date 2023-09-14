@@ -87,10 +87,16 @@ export default {
     imageWidth: null,
     imageHeight: null,
     imageUrl: null,
-
     myCroppa: null,
     //imgUrl: ''
   }),
+  props: {
+    active: { 
+      type: Boolean,
+      default: false,
+      required: true
+    },
+  },
   methods: {
     ...mapActions([
       'updateBanner',

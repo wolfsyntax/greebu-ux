@@ -1,6 +1,12 @@
 var state = {
   post: {},
   posts: [],
+  postMoreOptions: [
+    { label: "Pin Post", icon: "/assets/pin-post.svg" },
+    { label: "Edit", icon: "/assets/edit-post.svg" },
+    { label: "Delete", icon: "/assets/delete-post.svg" },
+  ],
+  submissions: [],
   emoticons: [
     {path: '/assets/artist-account/emojis/happy.svg', text: 'happy', },
     {path: '/assets/artist-account/emojis/sad.svg', text: 'sad', },

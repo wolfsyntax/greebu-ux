@@ -75,8 +75,18 @@ const app = createApp(App)
   .component('font-awesome-icon', FontAwesomeIcon)
   .use(Croppa);
 
-app.config.globalProperties.$moment = moment();
+app.config.globalProperties.$moment = moment;
 app.config.globalProperties.$filters = {
+  diffForHumans(date)
+  {
+    if (!date) date = moment();
+
+    var text = moment.duration(moment().diff(moment(date))).humanize();
+
+    if (!text.includes('ago')) text = `${text} ago`;
+
+    return text;
+  },
   timeAgo(date) {
   return moment(date).fromNow()
   },

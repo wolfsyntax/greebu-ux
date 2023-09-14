@@ -96,7 +96,7 @@ import PhoneVerify from './My Account/OTPVerification.vue';
 
 import SuccessPassword from './My Account/SuccessPasswordReset.vue';
 
-import { Modal } from "bootstrap"
+import { Modal } from "bootstrap";
 
 export default {
   components: {
