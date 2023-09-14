@@ -315,7 +315,7 @@
 </template>
   
 <script>
-import { mapGetters, mapState } from "vuex";
+import { mapGetters, mapState, mapActions } from "vuex";
 
 export default {
   props: {
@@ -373,17 +373,20 @@ export default {
     },
     displayedFiles() {
       return this.uploadedFiles.slice(0, 3);
+    },
+    additionalFilesCount() {
+      return Math.max(this.uploadedFiles.length - 3, 0);
+    }
   },
-  additionalFilesCount() {
-    return Math.max(this.uploadedFiles.length - 3, 0);
-  }
-},
-watch: {
-  submittedTime() {
-    this.timeDifference = Math.floor((new Date() - this.submittedTime) / 1000);
-  }
-},
+  watch: {
+    submittedTime() {
+      this.timeDifference = Math.floor((new Date() - this.submittedTime) / 1000);
+    }
+  },
   methods: {
+    ...mapActions([
+      'createPost',
+    ]),
     filterEmoticon(list)
     {
       const chunk = (array) =>
@@ -399,31 +402,34 @@ watch: {
     submitForm(){
       //console.log('Message mo:', this.formData.message, this.uploadedFiles);
       this.isLoading = true;
-      this.$emit('submitData', {
+
+          this.$emit('submitData', {
         message: this.formData.message,
         files: this.uploadedFiles,
         music: this.uploadedMusic,
         loading: this.isLoading = false
       });
+
       this.formData.message = '';
       this.uploadedFiles = []; // Clear the uploadedFiles array
       this.uploadedMusic = '';
       this.selectFile = true;
+
     },
     toggleContent(item) {
-    if (this.selectedItem === item) {
-      this.selectedItem = null;
-    } else {
-      this.selectedItem = item;
-    }
-  },
-  closeModal() {
-    this.selectedItem = false;
-  },
-  uploadImage() {
-    // Trigger the hidden file input
-    this.$refs.fileInput.click();
-  },
+      if (this.selectedItem === item) {
+        this.selectedItem = null;
+      } else {
+        this.selectedItem = item;
+      }
+    },
+    closeModal() {
+      this.selectedItem = false;
+    },
+    uploadImage() {
+      // Trigger the hidden file input
+      this.$refs.fileInput.click();
+    },
   // handleImageUpload(event) {
 
   //   const files = event.target.files;
@@ -482,15 +488,15 @@ watch: {
       this.selectFile = null;
       this.errorMessage = null;
       // this.uploadedFiles = [];
-       if (file && file.length > 0) {
-      for (let i = 0; i < file.length; i++) {
-        this.uploadedFiles.push({
-          name: file[i].name,
-          type: file[i].type,
-          url: URL.createObjectURL(file[i]),
-        });
+      if (file && file.length > 0) {
+        for (let i = 0; i < file.length; i++) {
+          this.uploadedFiles.push({
+            name: file[i].name,
+            type: file[i].type,
+            url: URL.createObjectURL(file[i]),
+          });
+        }
       }
-    }
     },
     removeFile(index) {
       this.uploadedFiles.splice(index, 1);
@@ -498,15 +504,14 @@ watch: {
         this.selectFile = true;
       }
       
-    // Update localStorage after removing image
-    // localStorage.setItem('uploadedImages', JSON.stringify(this.uploadedFiles));
-    // if(this.uploadedFiles == 0){
-    //   this.selectFile = true;
-    // }
-  },
+      // Update localStorage after removing image
+      // localStorage.setItem('uploadedImages', JSON.stringify(this.uploadedFiles));
+      // if(this.uploadedFiles == 0){
+      //   this.selectFile = true;
+      // }
+    },
 
-
-  handleDragOverMusic(event) {
+    handleDragOverMusic(event) {
       event.preventDefault();
       this.isDragOverMusic = true;
     },
@@ -526,6 +531,7 @@ watch: {
       this.handleMusic(file);
       //this.isDragOverMusic = false;
     },
+
     handleMusic(file) {
       if (file) {
         this.uploadedMusic = URL.createObjectURL(file);
@@ -555,6 +561,7 @@ watch: {
 }
 </script>
   
-  <style>
-  </style>
+<style scoped>
+
+</style>
   

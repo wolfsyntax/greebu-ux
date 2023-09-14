@@ -1,6 +1,6 @@
 <template>
   <layout>
-    <CreatePostModal @submitData="handleSubmittedData" />
+    <!-- <CreatePostModal @submitData="handleSubmittedData" /> -->
 
   <section class="artist-profile">
     <div class="container">
@@ -595,12 +595,12 @@
 // import Layout from '/src/components/Layouts/ArtistLayout.vue';
 import { mapGetters, mapState, mapActions } from "vuex";
 import Layout from '/src/components/Layouts/Layout.vue';
-import CreatePostModal from '/src/components/Artist/CreatePostModal.vue';
+// import CreatePostModal from '/src/components/Artist/CreatePostModal.vue';
 
 export default {
   components: {
     layout: Layout,
-    CreatePostModal
+    // CreatePostModal
   },
   data()
   {

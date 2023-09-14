@@ -9,44 +9,69 @@ export const createPost = ({ commit, rootState, state}, payload) => {
     await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/posts`, payload)
       .then(response => {        
         
-        const { data, status } = response
+        const { data: { status, message, result }, status: statusCode } = response
 
-        console.log('\n\nCreate Post: ', data);
+        console.log('\n\nCreate Post: ', response);
 
-        if (status === 200 && data.status === 200)
+        if (statusCode === 200 && status === 200)
         { 
-          const { result } = data
-          
+          resolve({ status, message, data: result });
         }
         
-        resolve(response)
+        reject({ message, data: result, status });
+
     })
-    .catch(err => {
-      reject(err)
+      .catch(err =>
+      {
+        const { data: { status, message, result }, status: statusCode } = err
+
+        var data = result;
+
+        if (status === 422 || status === 500)
+        {
+          data = result?.errors || [];
+        }
+
+        reject({msg: message, data, status});
     });
   })
 }
 
-export const fetchPost = ({ commit, rootState, state}, payload) => {
+export const fetchPosts = ({ commit, rootState, state}, payload) => {
   
   return new Promise(async(resolve, reject) => {
     
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
     
-    await axios.get(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/song-requests/create`)
+    await axios.get(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/posts`)
       .then(response => {        
         
-        const {data, status} = response
-        if (status === 200 && data.status === 200)
-        { 
-          const { result } = data
-          
-        }
+        const { data: { status, result, message }, status: statusCode } = response;
         
-        resolve(response)
+        if (statusCode === 200 && status === 200) {
+          console.log('Fetch Posts response[200]: ', response);
+          
+          const { posts } = result;
+          
+          commit('SET_POSTS', posts);
+          resolve({ status, message, data: result });
+        }
+
+        var data = result;
+
+        if (status === 422 || status === 500)
+        {
+          data = result?.errors || [];
+          reject({message, data, status});
+        }
+
     })
-    .catch(err => {
-      reject(err)
+      .catch(err =>
+      {
+        console.log('Fetch post error: ', err);
+        reject(err);
+        // const { data: { status, message, result }, status: statusCode } = err
+        // reject({ message, data: result, status });
     });
   })
 }
