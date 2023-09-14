@@ -122,22 +122,24 @@ export default {
         console.log('Fetch response: ', response);       
         console.log('Post: ', this.posts) 
       });
-    // this.$echo.private(`profile.${this.userInfo?.id}`)
-    //   .listen(`.post-created`, (e) =>
-    //   {
-    //     console.log('Post component: ', e);
 
-    //     const { response } = e;
+    this.$echo.private('sync-data')
+      .listen('.post-created', function (data)
+      {
+        console.log('Sync Post [created]: ', data);
+        const { posts } = data;
+        this.posts = posts;
+      });
 
-    //   })
+    this.$echo.private(`profile.${this.userInfo?.id}`)
+      .listen(`.post-created`, (e) =>
+      {
+        console.log('Post component: ', e);
 
-    // this.$echo.private('sync-data')
-    //   .listen('post-created', function (data)
-    //   {
-    //     console.log('Sync Post [created]: ', data);
-    //   });
+        const { posts, post } = e;
+        this.posts.unshift(post);
 
-
+      })
   },
   methods: {
     ...mapActions([
