@@ -222,6 +222,8 @@ export const fetchArtists = ({ commit, rootState, state }, payload) => {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
       url = `${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/artists-filter`
     }
+    
+    url = `${url}?per_page=12`
 
     axios.post(url, payload)
       .then(response => {        

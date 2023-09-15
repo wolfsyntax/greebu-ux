@@ -1,6 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-import 'vue-croppa/dist/vue-croppa.css';
 
 import { createApp } from 'vue';
 
@@ -39,8 +38,6 @@ import { firebaseApp } from './firebase/init';
 
 import Pusher from './plugins/pusher';
 
-import Croppa from 'vue-croppa';
-
 import { Cropper } from 'vue-advanced-cropper'
 import 'vue-advanced-cropper/dist/style.css';
 
@@ -78,7 +75,6 @@ const app = createApp(App)
   // .component('multiselect', Multiselect)
   .component('cropper', Cropper)
   .component('font-awesome-icon', FontAwesomeIcon)
-  .use(Croppa);
 
 app.config.globalProperties.$moment = moment;
 app.config.globalProperties.$filters = {

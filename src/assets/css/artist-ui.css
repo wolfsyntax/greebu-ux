@@ -2368,6 +2368,7 @@ background: var(--btn-hovered);
   border-radius: 0.40375rem;
   background: #EFEFFC;
   padding: 0.38rem 1.21rem;
+  margin-bottom: 3rem;
 }
 #uploadArtistCoverPhoto .modal-body .img-dimensions .info{
  font-size: 24px;
@@ -2380,7 +2381,7 @@ background: var(--btn-hovered);
   font-size: 0.875rem;
   font-weight: 500;
   letter-spacing: -0.04375rem;
-  width: 90%;
+  width: 95%;
   margin-bottom: 0;
 }
 #uploadArtistCoverPhoto .modal-body .upload-file-wrapper{
@@ -2388,6 +2389,11 @@ background: var(--btn-hovered);
     border: 1px dashed var(--gray6);
     padding: 0.75rem;
     margin-bottom: 1.25rem;
+}
+#uploadArtistCoverPhoto .upload-file-wrapper .uploaded-image-wrapper {
+  overflow: hidden;
+  width: 100%; /* 92.5rem */
+  height: 14.3rem; 
 }
 #uploadArtistCoverPhoto  .croppa-container {
   display: block;
@@ -2412,7 +2418,7 @@ background: var(--btn-hovered);
 #uploadArtistCoverPhoto .upload-file-wrapper .upload-file-content{
     border-radius: 0.25rem;
     background: #EFEFFC;
-    /* padding: 2rem 0; */
+    padding: 2rem 0;
 }
 #uploadArtistCoverPhoto .upload-file-wrapper .upload-file-content svg {
   margin-bottom: 1.5rem;
@@ -2442,9 +2448,6 @@ background: var(--btn-hovered);
 #uploadArtistCoverPhoto .upload-file-content  .select-files-wrapper label:hover{
     background-color: var(--orange);
     color: var(--white);
-}
-#uploadArtistCoverPhoto .upload-file-wrapper .uploaded-image-wrapper{
-
 }
 #uploadArtistCoverPhoto .upload-file-wrapper .uploaded-image-wrapper .uploaded-image{
   height: 21.313rem;
@@ -2592,6 +2595,19 @@ background: var(--btn-hovered);
   font-size: 1rem;
   letter-spacing: -0.02rem;
   padding: 0.88rem 7rem;
+}
+#uploadArtistCoverPhoto .modal-body .img-dimensions {
+  padding: 0.81rem 1.21rem;
+  margin-bottom: 2.5rem;
+}
+#uploadArtistCoverPhoto .modal-body .img-dimensions .description {
+  font-size: 0.75rem;
+  letter-spacing: -0.04375rem;
+  line-height: normal;
+}
+#uploadArtistCoverPhoto .modal-body .img-dimensions .info {
+  font-size: 18px;
+  margin-right: 0.32rem;
 }
 
 
