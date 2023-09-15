@@ -53,7 +53,7 @@
       <cropper class="cropper" ref="cropper" 
         :src="preview"
         :stencil-props="{
-          maxAspectRatio: 185 / 51
+          maxAspectRatio: 3.63
         }"
         maxWidth="1480"
         maxHeight="408"
