@@ -431,9 +431,9 @@ export default {
     toggle()
     {
       // this.$root.$emit("bv::show::modal", "#uploadArtistCoverPhoto");
-      new Modal(document.getElementById('uploadArtistCoverPhoto'), {
-        keyboard: false
-      }).show();
+      // new Modal(document.getElementById('uploadArtistCoverPhoto'), {
+      //   keyboard: false
+      // }).show();
       this.isActive = !this.isActive;
     },
     openCreatePostModal(data)
@@ -558,7 +558,7 @@ export default {
       {
         console.log('Profile object updated: ', res)
         this.bannerImage = res?.cover_photo || this.account.cover_photo || '/assets/artist-account/default-cover-photo.webp';
-        this.myAvatar = res?.avatar || this.account.avatar || 'https://res.cloudinary.com/daorvtlls/image/upload/v1686465790/cld-sample.jpg';
+        // this.myAvatar = res?.avatar || this.account.avatar || 'https://res.cloudinary.com/daorvtlls/image/upload/v1686465790/cld-sample.jpg';
 
       },
       deep: true,

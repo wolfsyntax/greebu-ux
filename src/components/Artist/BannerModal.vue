@@ -1,10 +1,10 @@
 <template>
-  <div ref="modal" class="modal fade" id="uploadArtistCoverPhoto" :class="{ show: active, 'd-block': active }" tabindex="-1" role="dialog" >
+  <div class="modal fade" id="uploadArtistCoverPhoto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Upload Cover Photo</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"  @click="$emit('close')" ref="bannerClose" ></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ref="bannerClose" ></button>
         </div>
 
         <div class="modal-body"
@@ -40,22 +40,36 @@
         <span class="material-symbols-rounded info">&#xe88e;</span> 
         <p class="description">Cover photo must be a square .jpg, .jpeg, .png, or .webp file, at least 3000x3000 pixels, not blurry or pixelated and no more than 10mb in size.</p>
       </div>
-      <div>
+      <!-- <div>
         <p>Image Width: {{ imageWidth }} pixels</p>
         <p>Image Height: {{ imageHeight }} pixels</p>
-      </div>
+      </div> -->
   
         </div> <!-- end of modal-body -->
-        <croppa v-model="myCroppa" canvas-color="transparent">
+          <!-- <croppa v-model="myCroppa" canvas-color="transparent">
       <input type="file" ref="bannerInput" accept="image/*" @change="handleFileChange" style="display: none;" />
-    </croppa>
-          <button @click="generateImage">Generate</button>
-          <!-- <input type="file" @change="generateImage"> -->
-  <br>
-  <img ref="uploadedImage" class="uploaded-image" :src="banner" alt="banner-modal" />
+    </croppa> -->
+      <!-- <input type="file" @change="generateImage"> -->
+      <cropper class="cropper" ref="cropper" 
+        :src="preview"
+        :stencil-props="{
+          minAspectRatio: 149 / 39,
+          maxAspectRatio: 185 / 51
+        }"
+        minWidth="1192"
+        minHeight="312"
+        @change="change" 
+        v-if="banner"
+      />
 
-        <div class="modal-footer justify-content-center">
-          <button class="btn btn-lg upload-cover-photo" @click="uploadCover">
+  <!-- <br>
+  <img ref="uploadedImage" class="uploaded-image" :src="banner" alt="banner-modal" /> -->
+
+        <div class="modal-footer justify-content-center" >
+
+          <button class="btn btn-lg upload-cover-photo" @click="getCropImage" v-if="preview">Generate</button>
+
+          <button class="btn btn-lg upload-cover-photo" @click="uploadCover" v-else>
             <span v-if="isLoading">
                 <i class="busy-cover-photo"></i>
                 Set as Cover Photo
@@ -82,12 +96,14 @@ export default {
     form: {
       cover_photo: '',
     },
+    cropImage: null,
     isLoading: false,
     isDragOver: false,
     imageWidth: null,
     imageHeight: null,
     imageUrl: null,
     myCroppa: null,
+    preview: '',
     //imgUrl: ''
   }),
   props: {
@@ -97,10 +113,51 @@ export default {
       required: true
     },
   },
+  mounted()
+  {
+    const myModal = document.getElementById('uploadArtistCoverPhoto');
+
+    myModal.addEventListener('hide.bs.modal', () =>
+    {
+      this.form.cover_photo = '';
+      this.banner = null;
+
+      this.preview = null;
+      this.cropImage = null;
+
+      this.isLoading = false;
+      this.isDragOver = false;
+      this.imageWidth = null;
+      this.imageHeight = null;
+      this.imageUrl = null;
+
+    });
+  },
   methods: {
     ...mapActions([
       'updateBanner',
     ]),
+    change({ coordinates, canvas })
+    {
+      // console.log('Cropper: ', coordinates, canvas)
+      // this.cropImage = canvas;
+
+    },
+    getCropImage(e)
+    {
+      const { coordinates, canvas, image } = this.generateImage = this.$refs.cropper.getResult();
+
+      this.cropImage = canvas;
+      this.banner = canvas.toDataURL();
+      this.preview = null;
+
+      this.cropImage.toBlob(async blob =>
+      {
+
+        this.form.cover_photo = blob;
+      });
+
+    },
     handleDragOverCover(e)
     {
       console.log('Handle DragOver: ', e)
@@ -150,21 +207,27 @@ export default {
   //   this.handleFiles(file);
   // },
 
-  uploadCover() {
-      // if (!this.form.cover_photo) {
-      //   alert('No image selected');
-      //   return;
-      // }
+    uploadCover()
+    {
+    
+    if (!this.form.cover_photo) {
+      alert('No image selected');
+      return;
+      }
 
-      this.updateBanner(this.form, this.generateImage)
-        .then(response => {
-          this.removeBanner();
-          this.$refs.bannerClose.click();
-          console.log(`Generated image `, this.generateImage);
-        })
-        .catch(error => {
-          console.error('Error uploading cover:', error);
-        });
+    
+    this.updateBanner(this.form)
+    // this.updateBanner(this.form, this.generateImage)
+      .then(response =>
+      {
+        this.$refs.bannerClose.click();
+        this.removeBanner();
+       
+        console.log(`Closing Banner`);
+      })
+      .catch(error => {
+        console.error('Error uploading cover:', error);
+      });
     },
 
     handleClick(e)
@@ -179,7 +242,7 @@ export default {
         if (!rawFile) return;
 
         this.form.cover_photo = rawFile;
-        this.banner = URL.createObjectURL(rawFile);
+        this.banner = this.preview = URL.createObjectURL(rawFile);
         console.log(`top banner image`, this.banner)
         //this.generateImage = URL.createObjectURL(rawFile);
 
@@ -200,6 +263,7 @@ export default {
     {
       this.form.cover_photo = null;
       this.banner = null;
+      this.cropImage = null;
       this.$refs['bannerInput'].value = null;
     },
     generateImage(){
