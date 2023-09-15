@@ -52,8 +52,8 @@
       <!-- <input type="file" @change="generateImage"> -->
       <cropper class="cropper" ref="cropper" 
         :src="preview"
-        maxWidth="1480"
-        maxHeight="480"
+        minWidth="1192"
+        minHeight="312"
         @change="change" 
         v-if="banner"
       />
