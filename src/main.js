@@ -41,6 +41,10 @@ import Pusher from './plugins/pusher';
 
 import Croppa from 'vue-croppa';
 
+import { Cropper } from 'vue-advanced-cropper'
+import 'vue-advanced-cropper/dist/style.css';
+
+
 // import VueCookies from 'vue3-cookies'
 
 const app = createApp(App)
@@ -72,6 +76,7 @@ const app = createApp(App)
   })
   // .use(BootstrapVueIcons)
   // .component('multiselect', Multiselect)
+  .component('cropper', Cropper)
   .component('font-awesome-icon', FontAwesomeIcon)
   .use(Croppa);
 
