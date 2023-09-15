@@ -133,7 +133,7 @@ export default {
       this.imageHeight = null;
       this.imageUrl = null;
 
-      this.filename;
+      this.filename = null;
 
     });
   },
