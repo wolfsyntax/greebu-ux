@@ -53,13 +53,14 @@
       <cropper class="cropper" ref="cropper" 
         :src="preview"
         :stencil-props="{
-          minAspectRatio: 16 / 9,
           maxAspectRatio: 185 / 51
         }"
         maxWidth="1480"
-        maxHeight="480"
+        maxHeight="408"
+
         minWidth="400"
         minHeight="150"
+
         @change="change" 
         v-if="banner"
       />
