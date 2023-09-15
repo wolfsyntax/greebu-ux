@@ -53,9 +53,10 @@
       <cropper class="cropper" ref="cropper" 
         :src="preview"
         :stencil-props="{
-          minAspectRatio: 149 / 39,
           maxAspectRatio: 185 / 51
         }"
+        maxWidth="1480"
+        maxHeight="480"
         minWidth="1192"
         minHeight="312"
         @change="change" 
@@ -103,6 +104,7 @@ export default {
     imageHeight: null,
     imageUrl: null,
     myCroppa: null,
+    filename: null,
     preview: '',
     //imgUrl: ''
   }),
@@ -131,6 +133,8 @@ export default {
       this.imageHeight = null;
       this.imageUrl = null;
 
+      this.filename = null;
+
     });
   },
   methods: {
@@ -150,10 +154,9 @@ export default {
       this.cropImage = canvas;
       this.banner = canvas.toDataURL();
       this.preview = null;
-
+      
       this.cropImage.toBlob(async blob =>
       {
-
         this.form.cover_photo = blob;
       });
 
@@ -210,24 +213,25 @@ export default {
     uploadCover()
     {
     
-    if (!this.form.cover_photo) {
-      alert('No image selected');
-      return;
+      if (!this.form.cover_photo) {
+        alert('No image selected');
+        return;
       }
 
-    
-    this.updateBanner(this.form)
-    // this.updateBanner(this.form, this.generateImage)
-      .then(response =>
-      {
-        this.$refs.bannerClose.click();
-        this.removeBanner();
-       
-        console.log(`Closing Banner`);
-      })
-      .catch(error => {
-        console.error('Error uploading cover:', error);
-      });
+      var formData = new FormData();
+      formData.append('cover_photo', this.form.cover_photo, this.filename);
+      this.updateBanner(formData)
+      // this.updateBanner(this.form, this.generateImage)
+        .then(response =>
+        {
+          this.$refs.bannerClose.click();
+          this.removeBanner();
+          
+          console.log(`Closing Banner`);
+        })
+        .catch(error => {
+          console.error('Error uploading cover:', error);
+        });
     },
 
     handleClick(e)
@@ -241,9 +245,12 @@ export default {
         const rawFile = files[0];
         if (!rawFile) return;
 
+        const { name } = rawFile;
+        this.filename = name;
+        
         this.form.cover_photo = rawFile;
         this.banner = this.preview = URL.createObjectURL(rawFile);
-        console.log(`top banner image`, this.banner)
+        // console.log(`top banner image`, this.banner)
         //this.generateImage = URL.createObjectURL(rawFile);
 
         // check the image width and height
