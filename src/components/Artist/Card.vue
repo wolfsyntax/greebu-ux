@@ -58,7 +58,9 @@ export default {
     },
     toggleControls(index = null)
     {
-      this.$emit('play', index, this.cardIndex)
+      this.$store.commit('SET_FILTERED_ARTIST', this.artist);
+      console.log('Toggle Play: ', this.artist);
+      this.$emit('play', index, this.cardIndex);
     }
   },
 }

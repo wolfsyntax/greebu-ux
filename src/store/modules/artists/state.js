@@ -1,5 +1,6 @@
 var state = {
   artists: null,
+  filterArtist: {},
   artist_types: null,
   artist_genres: null,
   genres: null,

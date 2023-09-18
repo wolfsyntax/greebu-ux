@@ -98,3 +98,8 @@ export const SET_MEMBER_INDEX = (state, payload = -1) =>
     state.member = state.members[payload];
   }
 }
+
+export const SET_FILTERED_ARTIST = (state, payload = {}) =>
+{
+  state.filterArtist = payload;
+}

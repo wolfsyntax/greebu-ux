@@ -192,7 +192,7 @@ import Layout from '/src/components/Layouts/Layout.vue';
 import Reminder from '/src/components/Home/Reminder.vue';
 import Card from '/src/components/Artist/Card.vue';
 import Faq from '/src/components/Home/FAQ.vue';
-import { mapGetters, mapState, mapActions } from "vuex";
+import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
 
 export default {
   components: {
@@ -324,6 +324,7 @@ export default {
   },
   mounted()
   {
+
     //this.$store.commit('CLEAR_ARTIST')
     this.artistOptions()
 
@@ -375,6 +376,9 @@ export default {
   methods: {
     ...mapActions([
       'fetchArtists', 'artistOptions',
+    ]),
+    ...mapMutations([
+      'SET_FILTERED_ARTIST'
     ]),
     playButton(val, cardIndex)
     {
