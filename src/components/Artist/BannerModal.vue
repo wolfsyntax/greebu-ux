@@ -198,12 +198,8 @@ export default {
 
     uploadCover()
     {
-    
-      if (!this.form.cover_photo) {
-        alert('No image selected');
-        return;
-      }
-
+      this.isLoading = true;
+      
       var formData = new FormData();
       formData.append('cover_photo', this.form.cover_photo, this.filename);
       this.updateBanner(formData)

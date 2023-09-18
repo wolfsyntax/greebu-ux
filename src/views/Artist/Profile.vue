@@ -390,7 +390,7 @@
                         style="display:none;"
                         ref="musicInput" 
                         @change="handleMusicUpload" 
-                        accept="audio/mp3" />
+                        accept=".mp3" />
                     </div>
                  
                   </div>
@@ -403,7 +403,7 @@
 
                 <!-- Uploaded music -->
                 <transition name="fade" mode="out-in">
-                <div v-if="uploadedMusic" class="uploaded-song-wrapper">
+                <div v-if="uploadedSongWrapper" class="uploaded-song-wrapper">
                   <audio controls class="audio-controls-wrapper" ref="audioPlayer">
                     <source :src="uploadedMusic" type="audio/mpeg">
                     Your browser does not support the audio element.
@@ -530,6 +530,7 @@ export default {
       formSubHeading: 'Lorem ipsum dolor sit amet consectetur. Nam lacus viverra nec orci arcu id fringilla ultrices.',
       isLoading: false,
       uploadedMusic: null,
+      uploadedSongWrapper: false,
       songTitle: 'My Awesome Song',
       fileSize: '', // Store file size here
       isDragOver: false,
@@ -675,17 +676,6 @@ export default {
     {
       this.isSearchable = false;
     },
-    togglePlay()
-    {
-      if (this.$refs.audioPlayer.paused) {
-        this.playIcon = '/assets/stop-circle.svg';
-        this.$refs.audioPlayer.play();
-      } else {
-        this.$refs.audioPlayer.pause();
-        this.playIcon = '/assets/play-circle.svg'
-      }
-
-    },
     submit()
     {
 
@@ -827,30 +817,6 @@ export default {
       return this.formArtistGenres
 
     },
-    // handleMusicUpload(event) {
-    //   const file = event.target.files[0];
-    //   if (file) {
-    //     this.uploadedMusic = URL.createObjectURL(file);
-    //     this.songTitle = file.name.replace(/\.[^/.]+$/, '');
-    //     this.form.song = file;
-    //     const sizeInBytes = file.size;
-    //     const sizeInKilobytes = Math.floor(sizeInBytes / 1024);
-    //     this.fileSize = sizeInKilobytes;
-    //   }
-    // },
-    // removeMusic() {
-    //   this.uploadedMusic = null;
-    //   localStorage.removeItem('uploadedMusic');
-    //   this.songTitle = '';
-    //   this.fileSize = ''; 
-    //   this.form.song = null;
-    // },
-    // handleDragEnter() {
-    //   this.isDragOver = true;
-    // },
-    // handleDragLeave() {
-    //   this.isDragOver = false;
-    // },
     handleMusicUpload(event) {
       const file = event.target.files[0];
       this.handleFiles(file);
@@ -858,20 +824,40 @@ export default {
     },
     handleFiles(file) {
       if (file) {
-        this.uploadedMusic = URL.createObjectURL(file);
+         // Check if the file is an MP3 file
+        if (file.type === 'audio/mpeg') {
+          this.uploadedMusic = URL.createObjectURL(file);
         this.songTitle = file.name.replace(/\.[^/.]+$/, '');
         this.form.song = file;
         const sizeInBytes = file.size;
         const sizeInKilobytes = Math.floor(sizeInBytes / 1024);
         this.fileSize = sizeInKilobytes;
         this.uploadDragSongBox = false;
+        this.uploadedSongWrapper = true;
+        }else {
+          alert('Please upload an MP3 file.');
+          event.target.value = null;
+        }
       }
     },
     removeMusic() {
       this.uploadedMusic = null;
       this.songTitle = '';
       this.uploadDragSongBox = true;
-      this.togglePlay();
+      this.uploadedSongWrapper = false;
+     // this.togglePlay();
+     this.$refs.audioPlayer.pause();
+     this.playIcon = '/assets/play-circle.svg';
+    },
+    togglePlay()
+    {
+      if (this.$refs.audioPlayer.paused) {
+        this.playIcon = '/assets/stop-circle.svg';
+        this.$refs.audioPlayer.play();
+      } else {
+        this.$refs.audioPlayer.pause();
+        this.playIcon = '/assets/play-circle.svg'
+      }
     },
     // openFileInput() {
     //   this.$refs.musicInput.click();
@@ -891,8 +877,6 @@ export default {
       this.isDragOver = false;
     },
 
-    
-    
 
   },
   computed: {
