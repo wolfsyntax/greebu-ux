@@ -192,7 +192,7 @@ import Layout from '/src/components/Layouts/Layout.vue';
 import Reminder from '/src/components/Home/Reminder.vue';
 import Card from '/src/components/Artist/Card.vue';
 import Faq from '/src/components/Home/FAQ.vue';
-import { mapGetters, mapState, mapActions } from "vuex";
+import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
 
 export default {
   components: {
@@ -310,6 +310,7 @@ export default {
       isMuted: false,
       currentTime: '0:00',
       duration: '0:00',
+      progressBarWidth: '0%',
       showVolumeSlider: false,
       currentVolume: 100,
       showVolumeSlider: true,
@@ -324,6 +325,7 @@ export default {
   },
   mounted()
   {
+    this.SET_FILTERED_ARTIST({});
     //this.$store.commit('CLEAR_ARTIST')
     this.artistOptions()
 
@@ -353,6 +355,7 @@ export default {
       artists: (state) => state.artist.artists,
       artist_types: (state) => state.artist.artist_types,
       genres: (state) => state.artist.genreList,
+      filterArtist: state => state.artist.filterArtist,
     }),
     playIconClass()
     {
@@ -376,10 +379,14 @@ export default {
     ...mapActions([
       'fetchArtists', 'artistOptions',
     ]),
+    ...mapMutations([
+      'SET_FILTERED_ARTIST'
+    ]),
     playButton(val, cardIndex)
     {
-      console.log('Card Index value: ', cardIndex)
+
       this.artist = val;
+
       if (this.audioPlayer) {
         if (this.showControls) {
           if (this.audioPlayer.paused) {
@@ -391,7 +398,7 @@ export default {
           }
         } else {
           this.currentIndex = cardIndex;
-          this.playSong(val);
+          this.playSong();
           this.showControls = true;
           this.isPlaying = true;
         }
@@ -409,8 +416,11 @@ export default {
             this.isPlaying = false;
           }
         } else {
+
           this.currentIndex = index;
-          this.playSong(this.currentIndex);
+          this.SET_FILTERED_ARTIST(this.artists[index]);
+
+          this.playSong();
           this.showControls = true;
           this.isPlaying = true;
         }
@@ -427,17 +437,6 @@ export default {
         }
       }
     },
-
-
-    // getSlideItems(index)
-    // {
-    //   const slideStartIndex = index * 6;
-    //   const slideEndIndex = slideStartIndex + 6;
-    //   const slideItems = this.showArtists.slice(slideStartIndex, slideEndIndex);
-
-    //   return slideItems;
-    // },
-
     playNext()
     {
       if (this.currentIndex < this.artists.length - 1) {
@@ -446,7 +445,8 @@ export default {
         this.currentIndex = 0;
       }
       // this.activeSlide = Math.floor(this.currentIndex / 6);
-      this.playSong(this.artists[this.currentIndex]);
+      this.SET_FILTERED_ARTIST(this.artists[this.currentIndex]);
+      this.playSong();
     },
 
     playPrevious()
@@ -457,16 +457,27 @@ export default {
         this.currentIndex = this.artists.length - 1;
       }
       // this.activeSlide = Math.floor(this.currentIndex / 6);
-      this.playSong(this.artists[this.currentIndex]);
+      this.SET_FILTERED_ARTIST(this.artists[this.currentIndex]);
+
+      this.playSong();
     },
 
-    playSong(index)
+    playSong()
     {
-      console.log('playSong: ', index)
+      
       if (this.audioPlayer) {
-        this.audioPlayer.src = index.song;
+        console.log('Current Playing song: ', this.filterArtist?.song);
+        this.audioPlayer.src = this.filterArtist?.song;
         this.audioPlayer.load();
-        this.audioPlayer.play();
+        var audioPlay = this.audioPlayer.play()
+          .then(res =>
+          {
+            
+          })
+          .catch(err =>
+          {
+            audioPlay;
+          })
       }
       // Update current time and duration when the metadata is loaded
       this.audioPlayer.addEventListener('loadedmetadata', () =>
@@ -480,6 +491,8 @@ export default {
         this.currentTime = this.formatTime(this.audioPlayer.currentTime);
         this.updateProgressBar();
       });
+
+      console.log('Audio Player: ', this.audioPlayer);
     },
 
     stopAudio()
@@ -527,6 +540,28 @@ export default {
   },
 
   watch: {
+    showControls(val)
+    {
+      this.currentTime = '0:00';
+      this.duration = '0:00';
+      this.progressBarWidth = '0%';
+    },
+    filterArtist(val, prev)
+    {
+
+      if (val.id !== prev?.id) 
+      {
+        this.currentTime = '0:00';
+        this.duration = '0:00';
+        this.progressBarWidth = '0%';
+
+        if (this.audioPlayer) {
+          console.log('Current Playing song: ', val?.song);
+          this.playSong();
+        }
+      }
+
+    },
     currentVolume()
     {
       this.updateVolume();
