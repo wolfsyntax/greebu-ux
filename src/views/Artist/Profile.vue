@@ -432,8 +432,7 @@
               <div class="text-center">
                 <!-- <button type="submit" class="btn btn-success submit-form" 
                 data-bs-toggle="modal" data-bs-target="#successDetailsModal">Submit</button> -->
-                <button type="submit" class="btn btn-success submit-form" 
-                >
+                <button type="submit" class="btn btn-success submit-form" :disabled="!(checkImage && checkAudio)">
                 <span v-if="isLoading">
                 <i class="busy-submitting"></i>Submit</span>
                 <span v-else>Submit</span>
@@ -471,6 +470,7 @@
           </div>
 
           <div class="col-3"></div>
+          
         </div> <!-- end of row -->
       </div> <!-- end of container -->
     </section>
@@ -543,6 +543,9 @@ export default {
       playIcon: '/assets/play-circle.svg',
       memberIndex: -1,
       isSearchable: true,
+
+      validImage: false,
+      validAudio: false,
     }
   },
   setup()
@@ -663,9 +666,32 @@ export default {
     ...mapMutations([
       'SET_PROFILE', 'SET_ARTIST', 'SET_MEMBERS',
     ]),
-    changeImage(event){
+    changeImage(event)
+    {
+      
       this.avatar = URL.createObjectURL(event.target.files[0]);
-      this.form.avatar = event.target.files[0];
+
+      const { type } = event.target.files[0];
+
+      switch (type) {
+        case 'image/png':
+        case 'image/webp':
+        case 'image/svg':
+        case 'image/jpeg':
+          this.validImage = true;
+          this.form.avatar = event.target.files[0];
+
+          break;
+        default:
+
+          this.validImage = false;
+          this.avatar = this.account?.avatar || this.profile?.avatar || '/assets/artist-account/new.svg';
+
+          return false;
+      }
+
+      console.log('Change Image: ', event.target.files[0])
+      
     },
     onOpenOption(event)
     {
@@ -819,6 +845,19 @@ export default {
     },
     handleMusicUpload(event) {
       const file = event.target.files[0];
+
+      
+      const { type } = event.target.files[0];
+      console.log('Music Upload Type: ', type);
+      switch (type) {
+        case 'audio/mpeg':
+          this.validAudio = true;
+          break;
+        default:
+          this.validAudio = false;
+
+      }
+
       this.handleFiles(file);
       //this.isDragOver = false;
     },
@@ -826,28 +865,36 @@ export default {
       if (file) {
          // Check if the file is an MP3 file
         if (file.type === 'audio/mpeg') {
+
           this.uploadedMusic = URL.createObjectURL(file);
-        this.songTitle = file.name.replace(/\.[^/.]+$/, '');
-        this.form.song = file;
-        const sizeInBytes = file.size;
-        const sizeInKilobytes = Math.floor(sizeInBytes / 1024);
-        this.fileSize = sizeInKilobytes;
-        this.uploadDragSongBox = false;
-        this.uploadedSongWrapper = true;
+          this.songTitle = file.name.replace(/\.[^/.]+$/, '');
+
+          this.form.song = file;
+          const sizeInBytes = file.size;
+          const sizeInKilobytes = Math.floor(sizeInBytes / 1024);
+
+          this.fileSize = sizeInKilobytes;
+          this.uploadDragSongBox = false;
+          this.uploadedSongWrapper = true;
+
         }else {
-          alert('Please upload an MP3 file.');
           event.target.value = null;
         }
       }
     },
-    removeMusic() {
+    removeMusic()
+    {
+
+      this.validAudio = false;
+
       this.uploadedMusic = null;
       this.songTitle = '';
       this.uploadDragSongBox = true;
       this.uploadedSongWrapper = false;
      // this.togglePlay();
-     this.$refs.audioPlayer.pause();
-     this.playIcon = '/assets/play-circle.svg';
+      this.$refs.audioPlayer.pause();
+      this.playIcon = '/assets/play-circle.svg';
+      
     },
     togglePlay()
     {
@@ -892,6 +939,27 @@ export default {
     }),
     remainingChars(){
       return 500 - (this.form.bio ? this.form.bio.length : 0);
+    },
+    checkImage()
+    {
+      var flagImage = true;
+
+      if (typeof this.form.avatar === 'object')
+      {
+        flagImage = this.validImage
+      }
+
+      return this.validImage && flagImage;
+    },
+    checkAudio()
+    {
+      var flagAudio = true;
+
+      if (typeof this.form.song === 'object') {
+        flagAudio = this.validAudio
+      }
+
+      return this.validAudio && flagAudio;
     }
   },
   watch: {
