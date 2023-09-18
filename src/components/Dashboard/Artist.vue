@@ -79,7 +79,7 @@
                   <div class="d-flex align-items-center justify-content-between mb-2">
                     <h5 class="card-title mb-0">Information</h5>
                     <div class="edit">
-                      <a href="">Edit</a>
+                      <a href="/account/profile">Edit</a>
                     </div>
                   </div>
 
@@ -122,7 +122,7 @@
                     </div>
 
                     <div class="see-all">
-                      <a href="">See all</a>
+                      <a href="#" data-bs-toggle="modal" data-bs-target="#editBandMembers">Edit</a>
                     </div>
                   </div>
 
@@ -135,13 +135,10 @@
                         <p>{{ member.role }}</p>
                       </div>
                     </div>
-
-                    <div class="more">
-                      <a href="#"><span class="material-symbols-outlined">more_vert</span></a>
-                    </div>
                   </div>   
                 </div>  <!-- end of card-body -->     
-              </div>      
+              </div>     
+              <EditBandMembers /> 
             </div>
 
             <!-- left wrapper end -->
@@ -343,6 +340,7 @@ import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
 // import CreatePostModal from '/src/components/Artist/CreatePostModal.vue';
 import BannerModal from '/src/components/Artist/BannerModal.vue';
 import Post from '/src/components/Post/Index.vue';
+import EditBandMembers from "../Artist/EditBandMembers.vue";
 import { Modal } from 'bootstrap';
 
 export default {
@@ -353,6 +351,7 @@ export default {
   },
   components: {
     // CreatePostModal,
+    EditBandMembers,
     BannerModal,
     Post,
   },
@@ -439,6 +438,15 @@ export default {
     openCreatePostModal(data)
     {
       this.$root.$emit("bv::show::modal", "#artistPost");
+      // const body = document.querySelector("body");
+
+      // this.active = !this.active;
+      // this.active ? body.classList.add("modal-open") : body.classList.remove("modal-open")
+
+    },
+    openEditBandMembersModal(data)
+    {
+      this.$root.$emit("bv::show::modal", "#editBandMembers");
       // const body = document.querySelector("body");
 
       // this.active = !this.active;

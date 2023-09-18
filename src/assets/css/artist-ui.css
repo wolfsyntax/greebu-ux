@@ -396,7 +396,7 @@ body{
 }
 .profile-page .left-wrapper  .card-body .members-list .member-profile {
     display: flex;
-    width: 93%;
+    width: 100%;
     align-items: center;
 }
 .profile-page .left-wrapper  .card-body .members-list img{
@@ -425,12 +425,6 @@ body{
     font-weight: 400;
     line-height: 23px;
     margin-bottom: 0;
-}
-.profile-page .left-wrapper  .card-body .members-list .more {
-    width: 7%;
-}
-.profile-page .left-wrapper  .card-body .members-list .more span{
-    color: #7A7A9D;
 }
 
 /* To post - write something */
@@ -520,6 +514,9 @@ body{
   margin-right: 8px;
   transition: font-variation-setings 0.25s;
   font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 48;
+}
+.profile-page .middle-wrapper .post .card-body .post-features .post-icon:hover span{
+  font-variation-settings: 'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 48;
 }
 
 /* Artist post */
@@ -1167,6 +1164,9 @@ body{
   width: 11.5rem;
   height: 11.5rem;
   border-radius: 100%;
+  position: relative;
+  -o-object-fit: cover;
+  object-fit: cover;
 }
 /* .profile-details .container .fill-details .upload-img .label-img .camera-inner{
   color: #FFFFFF;
@@ -1487,8 +1487,6 @@ body{
   font-weight: 500;
   line-height: 1.3125rem;
 }
-
-
 
 .profile-details .fill-details .song-preview{
   margin-top: 1.75rem;
@@ -2338,26 +2336,29 @@ background: var(--btn-hovered);
   border-radius: 100%;
 }
 
-/* Upload Cover photo */
+/* Upload Cover photo / Edit band Members*/
 
-#uploadArtistCoverPhoto .modal-content{
+#uploadArtistCoverPhoto .modal-content, #editBandMembers .modal-content{
     padding: 2.38rem 2.5rem 3rem;
 }
-#uploadArtistCoverPhoto .modal-content .modal-header, #uploadArtistCoverPhoto .modal-body {
+#uploadArtistCoverPhoto .modal-content .modal-header, #uploadArtistCoverPhoto .modal-body,
+#editBandMembers .modal-content .modal-header, #editBandMembers .modal-body {
   border: 0;
   padding: 0;
 }
-#uploadArtistCoverPhoto .modal-content .modal-header {
+#uploadArtistCoverPhoto .modal-content .modal-header,
+#editBandMembers .modal-content .modal-header {
   margin-bottom: 2.5rem;
 }
-#uploadArtistCoverPhoto .modal-content .modal-header .btn-close {
+#uploadArtistCoverPhoto .modal-content .modal-header .btn-close,
+#editBandMembers .modal-content .modal-header .btn-close {
   font-size: 0.6rem;
   padding: 0.4rem;
   border: 1px solid #23262F;
   border-radius: 100px;
   color: #23262F;
 }
-#uploadArtistCoverPhoto .modal-title{
+#uploadArtistCoverPhoto .modal-title, #editBandMembers .modal-header .modal-title{
   color: #23262F;
   font-feature-settings: 'clig' off, 'liga' off;
   font-size: 1.5rem;
@@ -2399,22 +2400,7 @@ background: var(--btn-hovered);
   display: block;
   opacity: 1;
   position: relative;
-  /* padding: 4rem 0;
-  width: 100%; */
 }
-/* #uploadArtistCoverPhoto .croppa-container canvas {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%!important;
-  height: 21rem!important;
-} */
-/* .croppa-container canvas{
-  width: 700px!important;
-  height: 700px!important;
-} */
 #uploadArtistCoverPhoto .upload-file-wrapper .upload-file-content{
     border-radius: 0.25rem;
     background: #EFEFFC;
@@ -2482,10 +2468,10 @@ background: var(--btn-hovered);
 #uploadArtistCoverPhoto .upload-file-wrapper .uploaded-image-wrapper .remove-image:hover span{
   border: 0.1px solid var(--white);
 }
-#uploadArtistCoverPhoto .modal-footer{
+#uploadArtistCoverPhoto .modal-footer, #editBandMembers .modal-footer{
   border: 0;
 }
-#uploadArtistCoverPhoto .modal-footer .upload-cover-photo{
+#uploadArtistCoverPhoto .modal-footer .upload-cover-photo, #editBandMembers .modal-footer .save{
   color: var(--white);
   font-size: 1.25rem;
   font-weight: 700;
@@ -2493,10 +2479,53 @@ background: var(--btn-hovered);
   padding: 0.75rem 8.63rem;
   background-color: var(--orange);
 }
-#uploadArtistCoverPhoto .modal-footer .upload-cover-photo:hover{
+#uploadArtistCoverPhoto .modal-footer .upload-cover-photo:hover, #editBandMembers .modal-footer .save:hover{
   background-color: var(--btn-hovered);
 }
 
+/* Edit Band Members modal */
+#editBandMembers .member-info-wrapper{
+  padding: 1.5rem 1.5rem 1.5rem 0.9375rem;
+  border-radius: 0.3125rem;
+  border: 1px solid var(--gray6);
+  margin-bottom: 1rem;
+}
+#editBandMembers .member-info-wrapper .member-info{
+  gap: 0.8rem;
+}
+#editBandMembers .member-info-wrapper .member-info img{
+  width: 3rem;
+  height: 3rem;
+  position: relative;
+  -o-object-fit: cover;
+  object-fit: cover;
+  backface-visibility: hidden;
+  border-radius: 100%;
+}
+#editBandMembers .member-info-wrapper .member-name .name{
+  color: var(--black);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 136.023%;
+  margin-bottom: 0;
+  text-decoration: none;
+}
+#editBandMembers .member-info-wrapper .member-name .role{
+  color: #425466;
+  font-feature-settings: 'salt' on;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.4375rem;
+  margin-bottom: 0;
+}
+#editBandMembers .member-info-wrapper .more-options span{
+  font-size: 24px;
+  color: rgba(0, 0, 0, 1);
+  cursor: pointer;
+}
+#editBandMembers .modal-footer{
+  margin-top: 3rem;
+}
 
 
   /* Styles for when the user is dragging over the drop area */
@@ -3026,7 +3055,6 @@ margin-right: 6px;
   height: 1.9rem;
   margin-right: 0.5rem;
 }
-.profile-page .left-wrapper  .card-body .members-list .more span,
 .profile-page .right-wrapper .past-events .card-body .events-list .more span, 
 .profile-page .right-wrapper .original-songs .songs-list .more span {
   font-size: 20px;
