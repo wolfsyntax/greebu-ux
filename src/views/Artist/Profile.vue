@@ -427,8 +427,6 @@
                   <div v-for="err in error?.song" :key="err" class="text-danger">{{ err }}</div>
               </div> <!-- end of song-preview -->
               
-              
-
               <div class="text-center">
                 <!-- <button type="submit" class="btn btn-success submit-form" 
                 data-bs-toggle="modal" data-bs-target="#successDetailsModal">Submit</button> -->
@@ -943,6 +941,10 @@ export default {
     {
       var flagImage = true;
 
+      if (typeof this.form.avatar === 'string') {
+        return true;
+      }
+
       if (typeof this.form.avatar === 'object')
       {
         flagImage = this.validImage
@@ -953,6 +955,10 @@ export default {
     checkAudio()
     {
       var flagAudio = true;
+
+      if (typeof this.form.song === 'string') {
+        return true;
+      }
 
       if (typeof this.form.song === 'object') {
         flagAudio = this.validAudio
