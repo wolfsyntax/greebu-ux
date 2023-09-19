@@ -856,6 +856,8 @@ export default {
       
       const { type, name, size } = file;
 
+      this.error.song = [];
+
       this.validAudio = false;
 
       this.audioSize = size;
