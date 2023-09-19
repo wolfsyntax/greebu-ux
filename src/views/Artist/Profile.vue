@@ -436,7 +436,7 @@
               <div class="text-center">
                 <!-- <button type="submit" class="btn btn-success submit-form" 
                 data-bs-toggle="modal" data-bs-target="#successDetailsModal">Submit</button> -->
-                <button type="submit" class="btn btn-success submit-form" :disabled="!(checkImage && checkAudio)">
+                <button type="submit" class="btn btn-success submit-form">
                 <span v-if="isLoading">
                 <i class="busy-submitting"></i>Submit</span>
                 <span v-else>Submit</span>
