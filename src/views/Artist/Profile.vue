@@ -396,14 +396,9 @@
                   </div>
                 </div>
 
-                <div v-if="uploadDragSongBox"  class="d-flex align-items-center audio-file-format">
-                  <span class="material-symbols-outlined info">&#xe88e;</span>
-                  <p class="max-file-size">Please upload an audio file in .mp3 format, with a maximum file size of 64 megabytes.</p>
-                </div>
-
                 <!-- Uploaded music -->
                 <transition name="fade" mode="out-in">
-                <div v-if="uploadedSongWrapper" class="uploaded-song-wrapper">
+                <div v-if="uploadedSongWrapper && !errorMessage" class="uploaded-song-wrapper">
                   <audio controls class="audio-controls-wrapper" ref="audioPlayer">
                     <source :src="uploadedMusic" type="audio/mpeg">
                     Your browser does not support the audio element.
@@ -422,7 +417,18 @@
                     </div>
                   </div>  
                   </div>
+                <div v-else-if="errorMessage" 
+                :class="{ 'errorMessage': errorMessage}"
+                 class="d-flex align-items-center audio-file-format">
+                  <span class="material-symbols-outlined info">&#xe88e;</span>
+                  <p class="max-file-size">{{ errorMessage }}</p>
+                </div>
                 </transition>
+
+                <div v-if="defaultFileFormat"  class="d-flex align-items-center audio-file-format">
+                  <span class="material-symbols-outlined info">&#xe88e;</span>
+                  <p class="max-file-size">Please upload an MP3 audio file with a maximum size of 64MB.</p>
+                </div>
 
                   <div v-for="err in error?.song" :key="err" class="text-danger">{{ err }}</div>
               </div> <!-- end of song-preview -->
@@ -531,8 +537,10 @@ export default {
       isLoading: false,
       uploadedMusic: null,
       uploadedSongWrapper: false,
-      songTitle: 'My Awesome Song',
+      songTitle: 'My Awesome Song.mp3',
       fileSize: '', // Store file size here
+      errorMessage: '',
+      defaultFileFormat: true,
       isDragOver: false,
       uploadDragSongBox: true,
             // For update social media link
@@ -866,35 +874,50 @@ export default {
          // Check if the file is an MP3 file
         if (file.type === 'audio/mpeg') {
 
-          this.uploadedMusic = URL.createObjectURL(file);
-          this.songTitle = file.name.replace(/\.[^/.]+$/, '');
-
-          this.form.song = file;
           const sizeInBytes = file.size;
           const sizeInKilobytes = Math.floor(sizeInBytes / 1024);
-
-          this.fileSize = sizeInKilobytes;
-          this.uploadDragSongBox = false;
-          this.uploadedSongWrapper = true;
-
+        //  this.fileSize = sizeInKilobytes;
+          if(sizeInKilobytes <= 10000){
+            this.uploadedMusic = URL.createObjectURL(file);
+            this.songTitle = file.name; //.replace(/\.[^/.]+$/, '')
+            this.form.song = file;
+            this.fileSize = sizeInKilobytes;
+            this.errorMessage = '';
+            this.uploadDragSongBox = false;
+            this.uploadedSongWrapper = true;
+            this.defaultFileFormat = false;
+          }else{
+            this.errorMessage = 'File size exceeds 64MB. Please upload a smaller MP3 file.'
+            event.target.value = null;
+            this.clearErrorMessageAfterDelay();
+          }
         }else {
+          this.errorMessage = 'Please upload an MP3 file.';
           event.target.value = null;
+          this.clearErrorMessageAfterDelay();
         }
       }
     },
+    clearErrorMessage() {
+      this.errorMessage = ''; 
+    },
+    clearErrorMessageAfterDelay() {
+      setTimeout(() => {
+        this.clearErrorMessage();
+        this.defaultFileFormat = true;
+      }, 64000); 
+      this.defaultFileFormat = false;
+    },
     removeMusic()
     {
-
       this.validAudio = false;
-
       this.uploadedMusic = null;
       this.songTitle = '';
       this.uploadDragSongBox = true;
       this.uploadedSongWrapper = false;
-     // this.togglePlay();
+      this.defaultFileFormat = true;
       this.$refs.audioPlayer.pause();
       this.playIcon = '/assets/play-circle.svg';
-      
     },
     togglePlay()
     {

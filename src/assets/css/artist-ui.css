@@ -1582,6 +1582,12 @@ body{
   letter-spacing: -0.04375rem;
   margin-bottom: 0;
 }
+.profile-details .song-preview .errorMessage{
+  background: #FECACA;
+}
+.profile-details .song-preview .errorMessage .info, .profile-details .song-preview  .errorMessage  .max-file-size{
+  color: red;
+}
 .profile-details .song-preview .uploaded-song-wrapper {
   position: relative;
   border-radius: 0.3125rem;
@@ -2489,9 +2495,13 @@ background: var(--btn-hovered);
   border-radius: 0.3125rem;
   border: 1px solid var(--gray6);
   margin-bottom: 1rem;
+  position: relative;
 }
 #editBandMembers .member-info-wrapper .member-info{
   gap: 0.8rem;
+}
+#editBandMembers .modal-body{
+  position: relative;
 }
 #editBandMembers .member-info-wrapper .member-info img{
   width: 3rem;
@@ -2523,9 +2533,58 @@ background: var(--btn-hovered);
   color: rgba(0, 0, 0, 1);
   cursor: pointer;
 }
+#editBandMembers .hidden-more-options {
+  position: absolute;
+  top: 70%;
+  left: 75%;
+  display: flex;
+  flex-direction: column;
+  width: 9.5rem;
+  border-radius: 0.4375rem;
+  background: var(--white);
+  box-shadow: 0px 1px 12px 0px rgba(56, 29, 219, 0.07);
+  padding: 0.81rem;
+  z-index: 1;
+}
+#editBandMembers .hidden-more-options button{
+  display: block;
+  color: var(--black);
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: 0;
+  padding: 0;
+  margin-bottom: 0.81rem;
+  text-align: left;
+}
+#editBandMembers .hidden-more-options button:last-child{
+  margin-bottom: 0;
+}
+#editBandMembers .hidden-more-options button:hover{
+  color: var(--orange);
+}
+#editBandMembers .add-member{
+  color: var(--orange);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 100%; 
+  letter-spacing: 0.05rem;
+  display: flex;
+  align-items: center;
+  border: 0;
+  padding: 0;
+  margin: 2rem 0;
+}
+#editBandMembers .add-member span{
+  margin-right: 0.59rem;
+  font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 48;
+}
+#editBandMembers .add-member:hover{
+  color: var(--btn-hovered);
+}
 #editBandMembers .modal-footer{
   margin-top: 3rem;
 }
+
 
 
   /* Styles for when the user is dragging over the drop area */
@@ -2573,15 +2632,66 @@ background: var(--btn-hovered);
   28px 1.75 rem
 */
 
+/*  Edit Band Members*/
+#editBandMembers .modal-header .modal-title{
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 2rem;
+}
+#editBandMembers .member-info-wrapper {
+  padding: 1.25rem 1.25rem 1.25rem 0.9375rem;
+  margin-bottom: 0.63rem;
+}
+#editBandMembers .member-info-wrapper .member-name .name {
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+#editBandMembers .member-info-wrapper .member-name .role {
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+#editBandMembers .member-info-wrapper .member-info img {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+#editBandMembers .member-info-wrapper .more-options span {
+  font-size: 20px;
+}
+#editBandMembers .add-member {
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 100%; 
+  letter-spacing: 0.04375rem;
+  margin: 1.5rem 0;
+}
+#editBandMembers .modal-footer {
+  margin-top: 1.5rem;
+}
+#editBandMembers .hidden-more-options {
+    top: 70%;
+    left: 65%;
+    width: 8.5rem;;
+}
+#editBandMembers .hidden-more-options button {
+  font-size: 0.8125rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
 
-/* Upload Cover photo */
+/* Upload Cover photo / Edit Band Members*/
 
-#uploadArtistCoverPhoto .modal-content {
+#uploadArtistCoverPhoto .modal-content, #editBandMembers .modal-content {
   padding: 2.06rem 2.38rem 2.63rem;
   width: 35rem;
   margin: 0 auto;
 }
-#uploadArtistCoverPhoto .modal-content .modal-header {
+#uploadArtistCoverPhoto .modal-content .modal-header,  #editBandMembers .modal-content .modal-header{
   margin-bottom: 1.25rem;
 }
 #uploadArtistCoverPhoto .modal-title{
@@ -2620,7 +2730,7 @@ background: var(--btn-hovered);
 #uploadArtistCoverPhoto .modal-footer{
   padding: 0;
 }
-#uploadArtistCoverPhoto .modal-footer .upload-cover-photo{
+#uploadArtistCoverPhoto .modal-footer .upload-cover-photo, #editBandMembers .modal-footer .save{
   font-size: 1rem;
   letter-spacing: -0.02rem;
   padding: 0.88rem 7rem;
@@ -2638,9 +2748,10 @@ background: var(--btn-hovered);
   font-size: 18px;
   margin-right: 0.32rem;
 }
-
-
-
+#uploadArtistCoverPhoto .modal-content .modal-header .btn-close, #editBandMembers .modal-content .modal-header .btn-close {
+  font-size: 0.5rem;
+  padding: 0.3rem;
+}
 
                                             /* Create post - Uploaded music */
 
