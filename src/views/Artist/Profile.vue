@@ -367,7 +367,7 @@
 
                   <div v-for="err in error?.song_title" :key="err" class="text-danger">{{ err }}</div>
                 </div>
-
+                
                 <div class="upload-audio"   
                 v-if="uploadDragSongBox"   
                  @dragover="handleDragOverSong"
@@ -885,7 +885,7 @@ export default {
 
       this.validAudio = false;
 
-      this.uploadedMusic = null;
+      this.uploadedMusic = '';
       this.songTitle = '';
       this.uploadDragSongBox = true;
       this.uploadedSongWrapper = false;
@@ -957,7 +957,12 @@ export default {
     {
       var flagAudio = true;
 
-      if (typeof this.form.song === 'string') {
+      if (this.uploadedMusic !== '')
+      {
+        return true;
+      }
+
+      if (typeof this.form.song === 'string' && this.uploadedMusic !== '') {
         return true;
       }
 
