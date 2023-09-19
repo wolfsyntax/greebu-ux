@@ -544,6 +544,7 @@ export default {
 
       validImage: false,
       validAudio: false,
+      audioSize: 0,
     }
   },
   setup()
@@ -636,7 +637,13 @@ export default {
     this.avatar = this.myAvatar || '/assets/artist-account/new.svg'
     this.formGenres = this.myAccount?.genres || [];
     this.uploadedSongWrapper = this.uploadedMusic !== '' ? true : false;
-    this.uploadDragSongBox = !this.uploadedSongWrapper
+    this.uploadDragSongBox = !this.uploadedSongWrapper;
+    if (this.uploadedSongWrapper)
+    {
+      this.audioSize = 64000000;
+    }
+
+    
     console.log('\n\n-----------------------------------\n1. Form: ', this.form,
       `\n2. Uploaded Music [${this.songTitle}]: `, this.uploadedMusic,
       '\n3. Avatar: ', this.avatar,
@@ -847,13 +854,20 @@ export default {
 
       console.log('Handle Music Upload: ', file);
       
-      const { type, name } = file;
+      const { type, name, size } = file;
 
       this.validAudio = false;
+
+      this.audioSize = size;
 
       if (type === 'audio/mpeg' && name.endsWith('.mp3'))
       {
         this.validAudio = true;
+      } else {
+        this.error.song = [
+          'The Song should be in a mp3 format.'
+        ];
+        event.target.value = null;
       }
 
       this.handleFiles(file);
@@ -884,6 +898,8 @@ export default {
     {
 
       this.validAudio = false;
+
+      this.error.song = [];
 
       this.uploadedMusic = '';
       this.songTitle = '';
@@ -957,6 +973,14 @@ export default {
     {
       var flagAudio = true;
 
+      if (this.audioSize > 64000000)
+      {
+        this.error.song = [
+          'The Song maximum file size to upload is 64MB (65536 KB). Try to compress it to make it under 64MB.'
+        ]
+        return false;
+
+      }
       if (this.uploadedMusic !== '')
       {
         return true;
@@ -968,6 +992,8 @@ export default {
 
       if (typeof this.form.song === 'object') {
         flagAudio = this.validAudio
+        this.validAudio = this.audioSize <= 65536000 ? true : false;
+        console.log(`Form Song [${this.audioSize}]: `, this.validAudio);
       }
 
       return this.validAudio && flagAudio;
