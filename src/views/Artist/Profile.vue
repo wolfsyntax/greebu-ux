@@ -545,6 +545,7 @@ export default {
       validImage: false,
       validAudio: false,
       audioSize: 0,
+      invalidAudio: false,
     }
   },
   setup()
@@ -574,8 +575,14 @@ export default {
       song: null,
       song_title: null,
       song_genre: null,
+      
      // isDragOver: false
     };
+
+    this.validImage = false;
+    this.validAudio = false;
+    this.audioSize = 0;
+    this.invalidAudio = false;
 
     this.social = {
       text: '', key: '',
@@ -865,11 +872,23 @@ export default {
       if (type === 'audio/mpeg' && name.endsWith('.mp3'))
       {
         this.validAudio = true;
+        this.invalidAudio = false;
       } else {
+        this.invalidAudio = true;
+
+        this.uploadedMusic = URL.createObjectURL(file);
+        this.songTitle = file.name.replace(/\.[^/.]+$/, '');
+
+        const sizeInBytes = file.size;
+        const sizeInKilobytes = Math.floor(sizeInBytes / 1024);
+
+        this.fileSize = sizeInKilobytes;
+        this.uploadDragSongBox = false;
+        this.uploadedSongWrapper = true;
+
         this.error.song = [
           'The Song should be in a mp3 format.'
         ];
-        event.target.value = null;
       }
 
       this.handleFiles(file);
@@ -974,6 +993,14 @@ export default {
     checkAudio()
     {
       var flagAudio = true;
+      
+      if (this.invalidAudio) {
+        this.error.song = [
+          'The Song should be in a mp3 format.',
+        ]
+        return false;
+
+      }
 
       if (this.audioSize > 65536000)
       {
@@ -981,8 +1008,8 @@ export default {
           'The Song maximum file size to upload is 64MB (65536 KB). Try to compress it to make it under 64MB.'
         ]
         return false;
-
       }
+
       if (this.uploadedMusic !== '')
       {
         return true;
