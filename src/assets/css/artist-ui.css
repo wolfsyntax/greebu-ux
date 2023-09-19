@@ -1585,7 +1585,7 @@ body{
 .profile-details .song-preview .errorMessage{
   background: #FECACA;
 }
-.profile-details .song-preview .errorMessage .info, .profile-details .song-preview  .errorMessage  .max-file-size{
+.profile-details .song-preview .errorMessage .info, .profile-details .song-preview  .errorMessage .max-file-size{
   color: red;
 }
 .profile-details .song-preview .uploaded-song-wrapper {

@@ -204,7 +204,7 @@
                             <div class="carousel-inner">
                               <div class="carousel-item" v-for="(slide, index) in artists" :key="index" :class="{ active: index === activeSlide }">
                                 <div class="row select-aritst-row">
-                                  <div class="col-3" v-for="(artist, itemIndex) in showArtists" :key="itemIndex">
+                                  <div class="col-4" v-for="(artist, itemIndex) in showArtists" :key="itemIndex">
                                     <div class="card">
                                       <img :src="artist.image" class="card-img-top img-fluid" loading="lazy" alt="Trending Artist" />
                                       <div class="middle">
