@@ -846,16 +846,15 @@ export default {
     handleMusicUpload(event) {
       const file = event.target.files[0];
 
+      console.log('Handle Music Upload: ', file);
       
-      const { type } = event.target.files[0];
-      console.log('Music Upload Type: ', type);
-      switch (type) {
-        case 'audio/mpeg':
-          this.validAudio = true;
-          break;
-        default:
-          this.validAudio = false;
+      const { type, name } = file;
 
+      this.validAudio = false;
+
+      if (type === 'audio/mpeg' && name.endsWith('.mp3'))
+      {
+        this.validAudio = true;
       }
 
       this.handleFiles(file);
