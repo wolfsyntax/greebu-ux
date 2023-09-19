@@ -367,7 +367,7 @@
 
                   <div v-for="err in error?.song_title" :key="err" class="text-danger">{{ err }}</div>
                 </div>
-
+                
                 <div class="upload-audio"   
                 v-if="uploadDragSongBox"   
                  @dragover="handleDragOverSong"
@@ -433,8 +433,6 @@
                   <div v-for="err in error?.song" :key="err" class="text-danger">{{ err }}</div>
               </div> <!-- end of song-preview -->
               
-              
-
               <div class="text-center">
                 <!-- <button type="submit" class="btn btn-success submit-form" 
                 data-bs-toggle="modal" data-bs-target="#successDetailsModal">Submit</button> -->
@@ -554,6 +552,8 @@ export default {
 
       validImage: false,
       validAudio: false,
+      audioSize: 0,
+      invalidAudio: false,
     }
   },
   setup()
@@ -583,8 +583,14 @@ export default {
       song: null,
       song_title: null,
       song_genre: null,
+      
      // isDragOver: false
     };
+
+    this.validImage = false;
+    this.validAudio = false;
+    this.audioSize = 0;
+    this.invalidAudio = false;
 
     this.social = {
       text: '', key: '',
@@ -645,7 +651,14 @@ export default {
 
     this.avatar = this.myAvatar || '/assets/artist-account/new.svg'
     this.formGenres = this.myAccount?.genres || [];
+    this.uploadedSongWrapper = this.uploadedMusic !== '' ? true : false;
+    this.uploadDragSongBox = !this.uploadedSongWrapper;
+    if (this.uploadedSongWrapper)
+    {
+      this.audioSize = 64000000; // 65536000
+    }
 
+    
     console.log('\n\n-----------------------------------\n1. Form: ', this.form,
       `\n2. Uploaded Music [${this.songTitle}]: `, this.uploadedMusic,
       '\n3. Avatar: ', this.avatar,
@@ -854,16 +867,36 @@ export default {
     handleMusicUpload(event) {
       const file = event.target.files[0];
 
+      console.log('Handle Music Upload: ', file);
       
-      const { type } = event.target.files[0];
-      console.log('Music Upload Type: ', type);
-      switch (type) {
-        case 'audio/mpeg':
-          this.validAudio = true;
-          break;
-        default:
-          this.validAudio = false;
+      const { type, name, size } = file;
 
+      this.error.song = [];
+
+      this.validAudio = false;
+
+      this.audioSize = size;
+
+      if (type === 'audio/mpeg' && name.endsWith('.mp3'))
+      {
+        this.validAudio = true;
+        this.invalidAudio = false;
+      } else {
+        this.invalidAudio = true;
+
+        this.uploadedMusic = URL.createObjectURL(file);
+        this.songTitle = file.name.replace(/\.[^/.]+$/, '');
+
+        const sizeInBytes = file.size;
+        const sizeInKilobytes = Math.floor(sizeInBytes / 1024);
+
+        this.fileSize = sizeInKilobytes;
+        this.uploadDragSongBox = false;
+        this.uploadedSongWrapper = true;
+
+        this.error.song = [
+          'The Song should be in a mp3 format.'
+        ];
       }
 
       this.handleFiles(file);
@@ -911,7 +944,8 @@ export default {
     removeMusic()
     {
       this.validAudio = false;
-      this.uploadedMusic = null;
+      this.error.song = [];
+      this.uploadedMusic = '';
       this.songTitle = '';
       this.uploadDragSongBox = true;
       this.uploadedSongWrapper = false;
@@ -967,6 +1001,10 @@ export default {
     {
       var flagImage = true;
 
+      if (typeof this.form.avatar === 'string') {
+        return true;
+      }
+
       if (typeof this.form.avatar === 'object')
       {
         flagImage = this.validImage
@@ -977,9 +1015,36 @@ export default {
     checkAudio()
     {
       var flagAudio = true;
+      
+      if (this.invalidAudio) {
+        this.error.song = [
+          'The Song should be in a mp3 format.',
+        ]
+        return false;
+
+      }
+
+      if (this.audioSize > 65536000)
+      {
+        this.error.song = [
+          'The Song maximum file size to upload is 64MB (65536 KB). Try to compress it to make it under 64MB.'
+        ]
+        return false;
+      }
+
+      if (this.uploadedMusic !== '')
+      {
+        return true;
+      }
+
+      if (typeof this.form.song === 'string' && this.uploadedMusic !== '') {
+        return true;
+      }
 
       if (typeof this.form.song === 'object') {
         flagAudio = this.validAudio
+        this.validAudio = this.audioSize <= 65536000 ? true : false;
+        console.log(`Form Song [${this.audioSize}]: `, this.validAudio);
       }
 
       return this.validAudio && flagAudio;

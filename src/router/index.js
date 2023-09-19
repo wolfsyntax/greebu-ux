@@ -5,7 +5,9 @@ const defaultMenu = [
   { title: '', url: '', },
 ];
 const artistMenu = [
-
+  { title: 'Library', url: '/library' },
+    {title: 'Artist', url: '/artists'},
+    {title: 'Events', url: '/events'},
 ]
 
 const customerMenu = [
@@ -50,6 +52,7 @@ const router = createRouter({
             breadcrumb: [
               {title: '', url: '',},
             ],
+
           },
         },
         {
