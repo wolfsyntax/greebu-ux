@@ -378,6 +378,20 @@ const router = createRouter({
       ]
     },
     {
+      path: '/library',
+      name: 'artist-library',
+      component: () => import('/src/views/Artist/Library.vue'),
+      meta: {
+        requiresLogin: true, // true
+        title: 'Library',
+        role: 'artists',
+        parent: 'artist',
+        breadcrumb: [
+          {title: '', url: '',},
+        ],
+      },
+    },
+    {
       path: '/subscription',
       name: 'event',
       component: () => import('/src/components/Subscription/Index.vue'),
