@@ -640,7 +640,7 @@ export default {
     this.uploadDragSongBox = !this.uploadedSongWrapper;
     if (this.uploadedSongWrapper)
     {
-      this.audioSize = 64000000;
+      this.audioSize = 64000000; // 65536000
     }
 
     
@@ -973,7 +973,7 @@ export default {
     {
       var flagAudio = true;
 
-      if (this.audioSize > 64000000)
+      if (this.audioSize > 65536000)
       {
         this.error.song = [
           'The Song maximum file size to upload is 64MB (65536 KB). Try to compress it to make it under 64MB.'
