@@ -635,7 +635,8 @@ export default {
 
     this.avatar = this.myAvatar || '/assets/artist-account/new.svg'
     this.formGenres = this.myAccount?.genres || [];
-
+    this.uploadedSongWrapper = this.uploadedMusic !== '' ? true : false;
+    this.uploadDragSongBox = !this.uploadedSongWrapper
     console.log('\n\n-----------------------------------\n1. Form: ', this.form,
       `\n2. Uploaded Music [${this.songTitle}]: `, this.uploadedMusic,
       '\n3. Avatar: ', this.avatar,
