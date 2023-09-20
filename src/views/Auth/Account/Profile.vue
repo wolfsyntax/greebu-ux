@@ -63,7 +63,7 @@ export default {
            // this.$router.push('/artist');
 
             setTimeout(() => {
-              this.message = false;
+              this.message = '';
             }, 5000);
 
           } else {

@@ -544,6 +544,12 @@ export default {
 
       validImage: false,
       validAudio: false,
+
+      audioMagic: '',
+      imageMagic: '',
+      avatarMagic: '',
+      tempMagic: '',
+      targetMagic: '',
       audioSize: 0,
       invalidAudio: false,
     }
@@ -592,7 +598,9 @@ export default {
     this.$store.commit('SET_MEMBER_INDEX');
     console.log('-Before Create-')
   },
-  created() {
+  created()
+  {
+    
     this.$store.commit('SET_MEMBER_INDEX');
     // this.isLoading = true;
     console.log('Fetch Profile (created)')
@@ -607,7 +615,11 @@ export default {
   },
   mounted()
   {
-
+    this.audioMagic = '';
+    this.imageMagic = '';
+    this.tempMagic = '';
+    this.targetMagic = '';
+    
     console.log('--- Mounted ---')
     this.$store.commit('SET_MEMBER_INDEX');
     this.$refs.multiselect.$el.focus();
@@ -641,7 +653,8 @@ export default {
     this.uploadedMusic = this.myAccount.song || '';
     this.songTitle = this.myAccount?.song_title || '';
 
-    this.avatar = this.myAvatar || '/assets/artist-account/new.svg'
+    this.avatar = this.myAvatar || '/assets/artist-account/new.svg';
+    this.avatarMagic = this.myAvatar || '/assets/artist-account/new.svg';
     this.formGenres = this.myAccount?.genres || [];
     this.uploadedSongWrapper = this.uploadedMusic !== '' ? true : false;
     this.uploadDragSongBox = !this.uploadedSongWrapper;
@@ -662,8 +675,8 @@ export default {
   },
   props: {
     error: {
-      type: Array,
-      default: [],
+      type: Object,
+      default: {},
       required: true
     },
     message: {
@@ -679,30 +692,59 @@ export default {
     ...mapMutations([
       'SET_PROFILE', 'SET_ARTIST', 'SET_MEMBERS',
     ]),
+    fileCheck(file)
+    {
+      // magicAudio
+      var fileReader = new FileReader();
+      var self = this;
+      this.tempMagic = '';
+
+      fileReader.readAsArrayBuffer(file);
+      fileReader.onloadend = function (e)
+      {
+
+        var arr = (new Uint8Array(e.target.result)).subarray(0, 4);
+
+        var header = "";
+        for (var i = 0; i < arr.length; i++) {
+          header += arr[i].toString(16);
+        }
+
+        self.tempMagic = header;
+      };
+
+    },
     changeImage(event)
     {
-      
-      this.avatar = URL.createObjectURL(event.target.files[0]);
+      const file = event.target.files[0];
+      this.targetMagic = 'image';
+      this.avatarMagic = file;
+      // this.avatar = URL.createObjectURL(file);
 
-      const { type } = event.target.files[0];
+      // this.form.avatar = file;
 
-      switch (type) {
-        case 'image/png':
-        case 'image/webp':
-        case 'image/svg':
-        case 'image/jpeg':
-          this.validImage = true;
-          this.form.avatar = event.target.files[0];
+      // const { type } = file;
 
-          break;
-        default:
+      // switch (type) {
+      //   case 'image/png':
+      //   case 'image/webp':
+      //   case 'image/svg':
+      //   case 'image/jpeg':
+      //     this.validImage = true;
+      //     this.form.avatar = file;
+          
+      //     break;
+      //   default:
 
-          this.validImage = false;
-          this.avatar = this.account?.avatar || this.profile?.avatar || '/assets/artist-account/new.svg';
+      //     this.validImage = false;
+      //     this.avatar = this.account?.avatar || this.profile?.avatar || '/assets/artist-account/new.svg';
 
-          return false;
+      //     //return false;
+      // }
+      if (file) {
+        this.fileCheck(file);
       }
-
+      // return this.validImage;
       console.log('Change Image: ', event.target.files[0])
       
     },
@@ -839,12 +881,12 @@ export default {
         this.members.push(val);
       }
 
-      this.$stor.commit('SET_MEMBER_INDEX');
+      // this.$store.commit('SET_MEMBER_INDEX');
 
       this.dismiss()
     },
     closeToastArtist(){
-      this.message = false;
+      this.message = '';
     },
     fetchGenre(query)
     {
@@ -860,6 +902,8 @@ export default {
       const file = event.target.files[0];
 
       console.log('Handle Music Upload: ', file);
+      this.targetMagic = 'audio';
+      this.fileCheck(file);
       
       const { type, name, size } = file;
 
@@ -919,6 +963,7 @@ export default {
     {
 
       this.validAudio = false;
+      this.audioMagic = '';
 
       this.error.song = [];
 
@@ -979,6 +1024,10 @@ export default {
     {
       var flagImage = true;
 
+      if (!this.validImage && this.imageMagic !== '') {
+        return false;
+      }
+      
       if (typeof this.form.avatar === 'string') {
         return true;
       }
@@ -994,7 +1043,7 @@ export default {
     {
       var flagAudio = true;
       
-      if (this.invalidAudio) {
+      if (!this.validAudio && this.audioMagic !== '') {
         this.error.song = [
           'The Song should be in a mp3 format.',
         ]
@@ -1029,6 +1078,36 @@ export default {
     }
   },
   watch: {
+    tempMagic(val)
+    {
+      if (this.targetMagic === 'audio' && val !== '')
+      {
+        this.audioMagic = val;
+        this.validAudio = val === '4944334' ? true : false;
+      } else if (this.targetMagic === 'image' && val !== '') {
+        this.imageMagic = val;
+        
+        switch (val) {
+          case '89504e47': // png
+          case 'ffd8ffe0': // jpg, jpeg, jps, jiff
+          case '52494646': // webp
+          case '3c737667': // svg
+            this.validImage = true;
+            this.avatar = URL.createObjectURL(this.avatarMagic);
+            this.form.avatar = this.avatarMagic;
+            console.log('Accepted Image: ', this.avatar);
+            break;
+          default:
+           
+            // this.form.avatar = this.account?.avatar || this.profile?.avatar || '';
+            // this.avatar = this.account?.avatar || this.profile?.avatar || '/assets/artist-account/new.svg';
+            console.log('Rejected Image: ', this.account, this.avatar, this.form.avatar);
+            this.validImage = false;
+            break;
+        }
+
+      }
+    },
     account(val)
     {
       this.form = val;
