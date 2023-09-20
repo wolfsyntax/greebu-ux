@@ -544,6 +544,11 @@ export default {
 
       validImage: false,
       validAudio: false,
+
+      audioMagic: '',
+      imageMagic: '',
+      tempMagic: '',
+      targetMagic: '',
       audioSize: 0,
       invalidAudio: false,
     }
@@ -592,7 +597,9 @@ export default {
     this.$store.commit('SET_MEMBER_INDEX');
     console.log('-Before Create-')
   },
-  created() {
+  created()
+  {
+    
     this.$store.commit('SET_MEMBER_INDEX');
     // this.isLoading = true;
     console.log('Fetch Profile (created)')
@@ -607,6 +614,10 @@ export default {
   },
   mounted()
   {
+    this.audioMagic = '';
+    this.imageMagic = '';
+    this.tempMagic = '';
+    this.targetMagic = '';
 
     console.log('--- Mounted ---')
     this.$store.commit('SET_MEMBER_INDEX');
@@ -662,8 +673,8 @@ export default {
   },
   props: {
     error: {
-      type: Array,
-      default: [],
+      type: Object,
+      default: {},
       required: true
     },
     message: {
@@ -679,9 +690,31 @@ export default {
     ...mapMutations([
       'SET_PROFILE', 'SET_ARTIST', 'SET_MEMBERS',
     ]),
+    fileCheck(file)
+    {
+      // magicAudio
+      var fileReader = new FileReader();
+      var self = this;
+      this.tempMagic = '';
+
+      fileReader.readAsArrayBuffer(file);
+      fileReader.onloadend = function (e)
+      {
+
+        var arr = (new Uint8Array(e.target.result)).subarray(0, 4);
+
+        var header = "";
+        for (var i = 0; i < arr.length; i++) {
+          header += arr[i].toString(16);
+        }
+
+        self.tempMagic = header;
+      };
+
+    },
     changeImage(event)
     {
-      
+      this.targetMagic = 'image';
       this.avatar = URL.createObjectURL(event.target.files[0]);
 
       const { type } = event.target.files[0];
@@ -839,12 +872,12 @@ export default {
         this.members.push(val);
       }
 
-      this.$stor.commit('SET_MEMBER_INDEX');
+      // this.$store.commit('SET_MEMBER_INDEX');
 
       this.dismiss()
     },
     closeToastArtist(){
-      this.message = false;
+      this.message = '';
     },
     fetchGenre(query)
     {
@@ -860,6 +893,8 @@ export default {
       const file = event.target.files[0];
 
       console.log('Handle Music Upload: ', file);
+      this.targetMagic = 'audio';
+      this.fileCheck(file);
       
       const { type, name, size } = file;
 
@@ -919,6 +954,7 @@ export default {
     {
 
       this.validAudio = false;
+      this.audioMagic = '';
 
       this.error.song = [];
 
@@ -994,7 +1030,7 @@ export default {
     {
       var flagAudio = true;
       
-      if (this.invalidAudio) {
+      if (!this.validAudio && this.audioMagic !== '') {
         this.error.song = [
           'The Song should be in a mp3 format.',
         ]
@@ -1029,6 +1065,29 @@ export default {
     }
   },
   watch: {
+    tempMagic(val)
+    {
+      if (this.targetMagic === 'audio' && val !== '')
+      {
+        this.audioMagic = val;
+        this.validAudio = val === '4944334' ? true : false;
+      } else if (this.targetMagic === 'image' && val !== '') {
+        this.imageMagic = val;
+
+        switch (val) {
+          case '89504e47': // png
+          case 'ffd8ffe0': // jpg, jpeg, jps, jiff
+          case '52494646': // webp
+          case '3c737667': // svg
+            this.validImage = true;
+            break;
+          default:
+            this.validImage = false;
+            break;
+        }
+
+      }
+    },
     account(val)
     {
       this.form = val;
