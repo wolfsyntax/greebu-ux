@@ -547,6 +547,7 @@ export default {
 
       audioMagic: '',
       imageMagic: '',
+      avatarMagic: '',
       tempMagic: '',
       targetMagic: '',
       audioSize: 0,
@@ -618,7 +619,7 @@ export default {
     this.imageMagic = '';
     this.tempMagic = '';
     this.targetMagic = '';
-
+    
     console.log('--- Mounted ---')
     this.$store.commit('SET_MEMBER_INDEX');
     this.$refs.multiselect.$el.focus();
@@ -652,7 +653,8 @@ export default {
     this.uploadedMusic = this.myAccount.song || '';
     this.songTitle = this.myAccount?.song_title || '';
 
-    this.avatar = this.myAvatar || '/assets/artist-account/new.svg'
+    this.avatar = this.myAvatar || '/assets/artist-account/new.svg';
+    this.avatarMagic = this.myAvatar || '/assets/artist-account/new.svg';
     this.formGenres = this.myAccount?.genres || [];
     this.uploadedSongWrapper = this.uploadedMusic !== '' ? true : false;
     this.uploadDragSongBox = !this.uploadedSongWrapper;
@@ -714,28 +716,35 @@ export default {
     },
     changeImage(event)
     {
+      const file = event.target.files[0];
       this.targetMagic = 'image';
-      this.avatar = URL.createObjectURL(event.target.files[0]);
+      this.avatarMagic = file;
+      // this.avatar = URL.createObjectURL(file);
 
-      const { type } = event.target.files[0];
+      // this.form.avatar = file;
 
-      switch (type) {
-        case 'image/png':
-        case 'image/webp':
-        case 'image/svg':
-        case 'image/jpeg':
-          this.validImage = true;
-          this.form.avatar = event.target.files[0];
+      // const { type } = file;
 
-          break;
-        default:
+      // switch (type) {
+      //   case 'image/png':
+      //   case 'image/webp':
+      //   case 'image/svg':
+      //   case 'image/jpeg':
+      //     this.validImage = true;
+      //     this.form.avatar = file;
+          
+      //     break;
+      //   default:
 
-          this.validImage = false;
-          this.avatar = this.account?.avatar || this.profile?.avatar || '/assets/artist-account/new.svg';
+      //     this.validImage = false;
+      //     this.avatar = this.account?.avatar || this.profile?.avatar || '/assets/artist-account/new.svg';
 
-          return false;
+      //     //return false;
+      // }
+      if (file) {
+        this.fileCheck(file);
       }
-
+      // return this.validImage;
       console.log('Change Image: ', event.target.files[0])
       
     },
@@ -1015,6 +1024,10 @@ export default {
     {
       var flagImage = true;
 
+      if (!this.validImage && this.imageMagic !== '') {
+        return false;
+      }
+      
       if (typeof this.form.avatar === 'string') {
         return true;
       }
@@ -1073,15 +1086,22 @@ export default {
         this.validAudio = val === '4944334' ? true : false;
       } else if (this.targetMagic === 'image' && val !== '') {
         this.imageMagic = val;
-
+        
         switch (val) {
           case '89504e47': // png
           case 'ffd8ffe0': // jpg, jpeg, jps, jiff
           case '52494646': // webp
           case '3c737667': // svg
             this.validImage = true;
+            this.avatar = URL.createObjectURL(this.avatarMagic);
+            this.form.avatar = this.avatarMagic;
+            console.log('Accepted Image: ', this.avatar);
             break;
           default:
+           
+            // this.form.avatar = this.account?.avatar || this.profile?.avatar || '';
+            // this.avatar = this.account?.avatar || this.profile?.avatar || '/assets/artist-account/new.svg';
+            console.log('Rejected Image: ', this.account, this.avatar, this.form.avatar);
             this.validImage = false;
             break;
         }
