@@ -1231,11 +1231,14 @@ body{
   margin-left: 1.3rem;
 }
 .profile-details .container .fill-details .required-fields select, .profile-details .container .fill-details .required-fields input {
-  padding: 0.8rem;
+  padding: .8rem;
   color: var(--black-color);
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.3125rem; 
+}
+.profile-details .container .fill-details .multiselect-tags-search .required-fields input {
+  padding: .8rem .8rem .1rem;
 }
 .profile-details .container .fill-details .required-fields .multiselect-tags {
   padding-top: 0.8rem;
@@ -1335,7 +1338,7 @@ body{
   color: #FF6B00;
   margin-right: 0.60rem;
 }
-.profile-details .container .fill-details .band-members .list-group-item {
+.profile-details .container .fill-details .band-members .list-group-item, #editBandMembers .list-group-item{
   border-radius: 0.3125rem;
   border: 1px solid #B8BBCF;
   margin-bottom: 1.25rem;
@@ -1344,7 +1347,7 @@ body{
   gap: .3rem;
   padding: 1rem 1.5rem;
 }
-.profile-details .container .fill-details .band-members .list-group-item .items {
+.profile-details .container .fill-details .band-members .list-group-item .items, #editBandMembers .list-group-item .items {
   float: left;
   width: 90%;
   display: flex;
@@ -1352,7 +1355,8 @@ body{
   gap: 1rem;
 }
 .profile-details .container .fill-details .band-members .list-group-item .items .band-name,
-.profile-details .container .fill-details .card .card-body .card-title{
+.profile-details .container .fill-details .card .card-body .card-title,
+#editBandMembers .list-group-item .items .band-name {
   color: #121212;
   font-size: 1rem;
   font-style: normal;
@@ -1361,7 +1365,8 @@ body{
   margin-bottom: 0;
 }
 .profile-details .container .fill-details .band-members .list-group-item .items .band-role,
-.profile-details .container .fill-details .card .card-body .card-text{
+.profile-details .container .fill-details .card .card-body .card-text,
+#editBandMembers .list-group-item .items .band-role {
   color: var(--text-body-light, #425466);
   font-size: 0.875rem;
   font-family: Urbanist;
@@ -1370,27 +1375,38 @@ body{
   line-height: 1.4375rem;
   margin-bottom: 0;
 }
-.profile-details .container .fill-details .band-members .list-group-item .options{
+.profile-details .container .fill-details .band-members .list-group-item .options,
+#editBandMembers .list-group-item .options{
   float: right;
   width: 10%;
 }
-.profile-details .container .fill-details .band-members .list-group-item button {
+.profile-details .container .fill-details .band-members .list-group-item button,
+#editBandMembers .list-group-item button {
   background-color: var(--white);
   border: 0;
   padding-right: 0;
 }
-.profile-details .container .fill-details .band-members .list-group-item:hover img{
+#editBandMembers .list-group-item img {
+  vertical-align: middle;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.profile-details .container .fill-details .band-members .list-group-item:hover img,
+#editBandMembers .list-group-item:hover .options img  {
   opacity: 1;
 }
 .profile-details .fill-details .band-members .edit-band-member-wrapper .edit-band-member,
-.profile-details .fill-details .band-members .delete-band-member-wrapper .delete-band-member {
+.profile-details .fill-details .band-members .delete-band-member-wrapper .delete-band-member,
+#editBandMembers .list-group-item  .edit-band-member-wrapper .edit-band-member, 
+#editBandMembers .list-group-item  .delete-band-member-wrapper .delete-band-member{
   width: 1.5rem;
   height: 1.5rem;
   opacity: 0;
 }
 
 
-.profile-details .fill-details .social-media-account-row:hover .social-media-account-wrapper img{
+.profile-details .fill-details .social-media-account-row:hover .social-media-account-wrapper img {
   opacity: 1;
 }
 .profile-details .fill-details .social-media-account-wrapper, .profile-details .fill-details .social-media-account-wrapper {
@@ -2491,62 +2507,7 @@ background: var(--btn-hovered);
 }
 
 /* Edit Band Members modal */
-#editBandMembers .member-info-wrapper{
-  padding: 1.5rem 1.5rem 1.5rem 0.9375rem;
-  border-radius: 0.3125rem;
-  border: 1px solid var(--gray6);
-  margin-bottom: 1rem;
-  position: relative;
-}
-#editBandMembers .member-info-wrapper .member-info{
-  gap: 0.8rem;
-}
-#editBandMembers .modal-body{
-  position: relative;
-}
-#editBandMembers .member-info-wrapper .member-info img{
-  width: 3rem;
-  height: 3rem;
-  position: relative;
-  -o-object-fit: cover;
-  object-fit: cover;
-  backface-visibility: hidden;
-  border-radius: 100%;
-}
-#editBandMembers .member-info-wrapper .member-name .name{
-  color: var(--black);
-  font-size: 1rem;
-  font-weight: 600;
-  line-height: 136.023%;
-  margin-bottom: 0;
-  text-decoration: none;
-}
-#editBandMembers .member-info-wrapper .member-name .role{
-  color: #425466;
-  font-feature-settings: 'salt' on;
-  font-size: 0.875rem;
-  font-weight: 400;
-  line-height: 1.4375rem;
-  margin-bottom: 0;
-}
-#editBandMembers .member-info-wrapper .more-options span{
-  font-size: 24px;
-  color: rgba(0, 0, 0, 1);
-  cursor: pointer;
-}
-#editBandMembers .hidden-more-options {
-  position: absolute;
-  top: 70%;
-  left: 75%;
-  display: flex;
-  flex-direction: column;
-  width: 9.5rem;
-  border-radius: 0.4375rem;
-  background: var(--white);
-  box-shadow: 0px 1px 12px 0px rgba(56, 29, 219, 0.07);
-  padding: 0.81rem;
-  z-index: 1;
-}
+
 #editBandMembers .hidden-more-options button{
   display: block;
   color: var(--black);
@@ -2615,8 +2576,6 @@ background: var(--btn-hovered);
 
 
 
-
-
                                                                              /* MEDIA QUERIES */
 
 /* Large (lg) and Extra large (xl) */
@@ -2639,28 +2598,37 @@ background: var(--btn-hovered);
   font-weight: 600;
   line-height: 2rem;
 }
-#editBandMembers .member-info-wrapper {
+.profile-details .container .fill-details .band-members .list-group-item, #editBandMembers .list-group-item {
   padding: 1.25rem 1.25rem 1.25rem 0.9375rem;
   margin-bottom: 0.63rem;
 }
-#editBandMembers .member-info-wrapper .member-name .name {
+#editBandMembers .list-group-item img {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+.profile-details .container .fill-details .band-members .list-group-item .items .band-name, 
+#editBandMembers .list-group-item .items .band-name {
   font-size: 1rem;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
 }
-#editBandMembers .member-info-wrapper .member-name .role {
+.profile-details .container .fill-details .band-members .list-group-item .items .band-role,
+ #editBandMembers .list-group-item .items .band-role {
   font-size: 0.875rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
 }
-#editBandMembers .member-info-wrapper .member-info img {
-  width: 2.5rem;
-  height: 2.5rem;
+.profile-details .fill-details .band-members .edit-band-member-wrapper .edit-band-member, 
+.profile-details .fill-details .band-members .delete-band-member-wrapper .delete-band-member, 
+#editBandMembers .list-group-item  .edit-band-member-wrapper .edit-band-member,
+ #editBandMembers .list-group-item  .delete-band-member-wrapper .delete-band-member {
+  width: 1.2rem;
+  height: 1.2rem;
 }
-#editBandMembers .member-info-wrapper .more-options span {
-  font-size: 20px;
+.profile-details .container .fill-details .band-members .list-group-item .items, #editBandMembers .list-group-item .items {
+  gap: 0.8rem;
 }
 #editBandMembers .add-member {
   font-size: 0.875rem;
