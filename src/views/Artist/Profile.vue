@@ -426,7 +426,7 @@
                 </transition>
                 <div v-if="defaultFileFormat"  class="d-flex align-items-center audio-file-format">
                   <span class="material-symbols-outlined info">&#xe88e;</span>
-                  <p class="max-file-size">Please upload an MP3 audio file with a maximum size of 10MB.</p>
+                  <p class="max-file-size">Please upload an MP3 or MP4 audio file with a maximum size of 10MB.</p>
                 </div>
 
                   <div v-for="err in error?.song" :key="err"
@@ -959,7 +959,7 @@ export default {
 
       this.audioSize = size;
 
-      if (type === 'audio/mpeg' && name.endsWith('.mp3'))
+      if (type === 'audio/mpeg' && (name.endsWith('.mp3') || name.endsWith('.mp4')))
       {
         this.validAudio = true;
         this.invalidAudio = false;
@@ -977,7 +977,7 @@ export default {
         this.uploadedSongWrapper = true;
 
         this.error.song = [
-          'The Song should be in a mp3 format.'
+          'The Song should be in a mp3 or mp4 format.'
         ];
       }
 
@@ -1041,12 +1041,12 @@ export default {
         fileReader.readAsArrayBuffer(file);
 
           }else{
-            this.error.song = ['File size exceeds 10MB. Please upload a smaller MP3 file.'];
+            this.error.song = ['File size exceeds 10MB. Please upload a smaller MP3 or MP4 file.'];
             event.target.value = null;
             this.clearErrorMessageAfterDelay();
           }
         }else {
-          this.error.song = ['Please upload an MP3 file.']
+          this.error.song = ['Please upload an MP3 or MP4 file.']
           event.target.value = null;
           this.clearErrorMessageAfterDelay();
         }
