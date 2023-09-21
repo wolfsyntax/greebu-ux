@@ -30,6 +30,7 @@ const router = createRouter({
   scrollBehavior () {
     return { x: 0, y: 0 }
   },
+  linkActiveClass: 'site-active-page',
   routes: [
     {
       path: '',

@@ -17,20 +17,19 @@
               <a class="nav-link" :href="item.link">{{ item.page }}</a>
               </li>
             </ul>
-
+            
             <ul class="navbar-nav me-auto mb-2 mb-lg-0" v-else>
               <li class="nav-item" v-for="(customer, index) in navItems" :key="index" v-if="userRole === 'customers'">
               <a class="nav-link" :href="customer.link">{{ customer.page }}</a>
               </li>
-
-              <li class="nav-item" v-for="(artist, index) in navItemsArtists" :key="index" v-if="userRole === 'artists'">
-              <a class="nav-link" :href="artist.link">{{ artist.page }}</a>
+              <li class="nav-item artist-menu" v-if="userRole === 'artists'">
+                <router-link to="/library">Library</router-link>
+                <router-link to="/artists">Artist</router-link>
+                <router-link to="/events">Events</router-link>
               </li>
-
               <li class="nav-item" v-for="(organizer, index) in navItemsOrganizers" :key="index" v-if="userRole === 'organizer'">
               <a class="nav-link" :href="organizer.link">{{ organizer.page }}</a>
               </li>
-
             </ul>
 
             <div class="float-end nav-button" v-if="!isLoggedIn">
@@ -275,11 +274,6 @@ export default {
         { page: 'Events', link: '/events' },
         { page: 'Services', link: '/services' },
         // { page: 'Partner With Us', link: '/partners' }
-      ],
-      navItemsArtists: [
-        { page: 'Library', link: '/library' },
-        { page: 'Artist', link: '/artists' },
-        { page: 'Events', link: '/events' }
       ],
       navItemsOrganizers: [
         { page: 'Home', link: '/' },

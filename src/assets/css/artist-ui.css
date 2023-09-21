@@ -724,7 +724,6 @@ body{
   color: white;
 }
 
-
 .profile-page .middle-wrapper  .artist-post .card-footer {
   border: 0;
   padding: 5px 17px 17px 17px;
@@ -1237,15 +1236,14 @@ body{
   font-weight: 500;
   line-height: 1.3125rem; 
 }
-.profile-details .container .fill-details .multiselect-tags-search .required-fields input {
-  padding: .8rem .8rem .1rem;
-}
 .profile-details .container .fill-details .required-fields .multiselect-tags {
   padding-top: 0.8rem;
   padding-bottom: 0.75rem;
   margin-top: 0;
 }
-
+.profile-details .container .fill-details .required-fields .multiselect-tags-search{
+  padding: 0!important;
+}
 /* WebKit, Edge */
 .profile-details .container .fill-details .required-fields select::-webkit-input-placeholder,
 .profile-details .container .fill-details .required-fields input ::-webkit-input-placeholder,
@@ -1271,7 +1269,7 @@ body{
   color: var(--gray6);
   font-size: 1rem;
   font-weight: 500;
-  line-height: 1.3125rem; 
+  line-height: normal; 
 }
 /* IE 10-11 */
 .profile-details .container .fill-details .required-fields select:-ms-input-placeholder, 
