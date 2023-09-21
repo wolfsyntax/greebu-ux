@@ -426,7 +426,7 @@
                 </transition>
                 <div v-if="defaultFileFormat"  class="d-flex align-items-center audio-file-format">
                   <span class="material-symbols-outlined info">&#xe88e;</span>
-                  <p class="max-file-size">Please upload an MP3 audio file with a maximum size of 64MB.</p>
+                  <p class="max-file-size">Please upload an MP3 audio file with a maximum size of 10MB.</p>
                 </div>
 
                   <div v-for="err in error?.song" :key="err"
@@ -674,7 +674,7 @@ export default {
     this.uploadDragSongBox = !this.uploadedSongWrapper;
     if (this.uploadedSongWrapper)
     {
-      this.audioSize = 64000000; // 65536000
+      this.audioSize = 10000000; // 65536000
     }
 
     
@@ -992,7 +992,7 @@ export default {
           const sizeInKilobytes = Math.floor(sizeInBytes / 1024);
     
         //  this.fileSize = sizeInKilobytes;
-          if(sizeInBytes <= 65536000){
+          if(sizeInBytes <= 10000000){
             this.uploadedMusic = URL.createObjectURL(file);
             this.songTitle = file.name; //.replace(/\.[^/.]+$/, '')
             this.form.song = file;
@@ -1041,7 +1041,7 @@ export default {
         fileReader.readAsArrayBuffer(file);
 
           }else{
-            this.error.song = ['File size exceeds 64MB. Please upload a smaller MP3 file.'];
+            this.error.song = ['File size exceeds 10MB. Please upload a smaller MP3 file.'];
             event.target.value = null;
             this.clearErrorMessageAfterDelay();
           }
@@ -1052,20 +1052,6 @@ export default {
         }
       }
     },
-    // checkFileType(header) {
-    //   const fileTypeMap = {
-    //     "89504e47": "PNG",
-    //     "ffd8ffe0": "JPEG",
-    //     "49443303": "MP3",
-    //     "66747970": "MP4",
-    //   };
-      
-    //   if (fileTypeMap.hasOwnProperty(header)) {
-    //     return { type: fileTypeMap[header], value: header };
-    //   } else {
-    //     return null;
-    //   }
-    // },
     clearErrorMessage() {
       this.error.song = [];
     },
@@ -1101,9 +1087,6 @@ export default {
         this.playIcon = '/assets/play-circle.svg'
       }
     },
-    // openFileInput() {
-    //   this.$refs.musicInput.click();
-    // },
     handleDragOverSong(event) {
       event.preventDefault();
       this.isDragOver = true;
@@ -1166,10 +1149,10 @@ export default {
 
       }
 
-      if (this.audioSize > 65536000)
+      if (this.audioSize > 10000000)
       {
         this.error.song = [
-          'The Song maximum file size to upload is 64MB (65536 KB). Try to compress it to make it under 64MB.'
+          'The Song maximum file size to upload is 10MB (10000 KB). Try to compress it to make it under 10MB.'
         ]
         return false;
       }
@@ -1185,7 +1168,7 @@ export default {
 
       if (typeof this.form.song === 'object') {
         flagAudio = this.validAudio
-        this.validAudio = this.audioSize <= 65536000 ? true : false;
+        this.validAudio = this.audioSize <= 10000000 ? true : false;
         console.log(`Form Song [${this.audioSize}]: `, this.validAudio);
       }
 
