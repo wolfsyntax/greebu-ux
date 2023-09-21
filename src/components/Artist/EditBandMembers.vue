@@ -7,30 +7,32 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ref="bannerClose" ></button>
           </div>
           <div class="modal-body">
-            <transition-group name="fade" tag="div">
-            <div class="band-members-list" v-for="member in members" :key="member.id">
-              <div class="d-flex align-items-center justify-content-between member-info-wrapper">
-                <div class="d-flex align-items-center member-info">
-                  <img :src="member.avatar" alt="Member profile">
-                  <div class="member-name">
-                    <a href="#" class="name">{{ member.member_name }}</a>
-                    <p class="role">{{ member.role }}</p>
-                  </div>
+          <transition-group name="fade" tag="div">
+            <li class="list-group-item" v-for="(mem, index) in members" :key="mem.id">
+              <div class="items">
+                <img @error="replaceByDefault" class="avatar" :src="mem.avatar" alt="" />      
+                
+                <div class="member-info">
+                  <h6 class="band-name">{{ mem.member_name }}</h6>
+                  <p class="band-role">{{ mem.role }}</p>
                 </div>
-                <div class="more-options">
-                  <span class="material-symbols-rounded" @click="showMemberOptions(member.id)">&#xe5d3;</span>
-                </div>
-                  <div class="hidden-more-options" 
-                  v-if="visibleMemberOption === member.id">
-                    <button class="btn" @click="removeMember(member.id)">Remove Member</button>
-                    <button class="btn" @click="toggle('members', true, index)">Edit Member</button>
-                  </div>
               </div>
-            </div>
+
+              <div class="options"> 
+                <div class="d-flex align-items-center text-end">
+                  <button type="button" class="edit-band-member-wrapper" @click="toggle('members', true, index)">
+                    <img src="/assets/artist-account/edit-band-member.svg" class="edit-band-member" alt="edit band member" >
+                  </button>
+                  <button type="button" @click="removeMember(mem.id)" class="delete-band-member-wrapper">
+                    <img src="/assets/artist-account/delete-band-member.svg" class="delete-band-member" alt="delete band member">
+                  </button>
+                </div>
+              </div>
+            </li>
           </transition-group>
+          <!-- <member-form @modalClose="dismiss" @form="updateMember" /> -->
             <button class="btn add-member"  @click="toggle('members', false, -1)"><span class="material-symbols-outlined">&#xe146;</span>Add Member</button>
           </div> 
-          <!-- <member-form @modalClose="dismiss" @form="updateMember" /> -->
           <div class="modal-footer justify-content-center" >
             <button class="btn btn-lg save">Save</button>
           </div>
@@ -88,7 +90,7 @@
         this.members.push(val);
       }
 
-      this.$stor.commit('SET_MEMBER_INDEX');
+      this.$store.commit('SET_MEMBER_INDEX');
 
       this.dismiss()
     },
