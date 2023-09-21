@@ -277,10 +277,8 @@ export default {
         // { page: 'Partner With Us', link: '/partners' }
       ],
       navItemsArtists: [
-        { page: 'Home', link: '/' },
         { page: 'Library', link: '/library' },
         { page: 'Artist', link: '/artists' },
-        { page: 'Organizers', link: '/organizers' },
         { page: 'Events', link: '/events' }
       ],
       navItemsOrganizers: [

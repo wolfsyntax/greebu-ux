@@ -54,7 +54,7 @@ export default {
           this.errors = [];
 
           const { status: statusCode, data: {status, result}} = response;
-
+          console.log(`Result: `, response);
           if (response?.status === 200 && status === 200)
           {
             this.message = 'Updated successfully';
@@ -67,6 +67,7 @@ export default {
             }, 5000);
 
           } else {
+            console.log(`Result: `, result);
             const { errors } = result;
             if (errors) this.errors = errors;
 

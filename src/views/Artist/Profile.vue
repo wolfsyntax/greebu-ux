@@ -396,11 +396,6 @@
                   </div>
                 </div>
 
-                <div v-if="uploadDragSongBox"  class="d-flex align-items-center audio-file-format">
-                  <span class="material-symbols-outlined info">&#xe88e;</span>
-                  <p class="max-file-size">Please upload an audio file in .mp3 format, with a maximum file size of 64 megabytes.</p>
-                </div>
-
                 <!-- Uploaded music -->
                 <transition name="fade" mode="out-in">
                 <div v-if="uploadedSongWrapper" class="uploaded-song-wrapper">
@@ -422,15 +417,29 @@
                     </div>
                   </div>  
                   </div>
+                <!-- <div v-else-if="errorMessage" 
+                :class="{ 'errorMessage': errorMessage}"
+                 class="d-flex align-items-center audio-file-format" >
+                  <span class="material-symbols-outlined info">&#xe88e;</span>
+                  <p class="max-file-size">{{ errorMessage }}</p>
+                </div> -->
                 </transition>
+                <div v-if="defaultFileFormat"  class="d-flex align-items-center audio-file-format">
+                  <span class="material-symbols-outlined info">&#xe88e;</span>
+                  <p class="max-file-size">Please upload an MP3 audio file with a maximum size of 64MB.</p>
+                </div>
 
-                  <div v-for="err in error?.song" :key="err" class="text-danger">{{ err }}</div>
+                  <div v-for="err in error?.song" :key="err"
+                  class="d-flex align-items-center audio-file-format errorMessage">
+                    <span class="material-symbols-outlined info">&#xe88e;</span>
+                  <p class="max-file-size"> {{ err }}</p>
+                  </div>
               </div> <!-- end of song-preview -->
               
               <div class="text-center">
                 <!-- <button type="submit" class="btn btn-success submit-form" 
                 data-bs-toggle="modal" data-bs-target="#successDetailsModal">Submit</button> -->
-                <button type="submit" class="btn btn-success submit-form" :disabled="!(checkImage && checkAudio)">
+                <button type="submit" class="btn btn-success submit-form">
                 <span v-if="isLoading">
                 <i class="busy-submitting"></i>Submit</span>
                 <span v-else>Submit</span>
@@ -481,7 +490,8 @@ import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
 import MemberForm from '/src/views/Artist/Form/AddMember.vue';
 import SocialMediaForm from '/src/views/Artist/Form/SocialMedia.vue';
 import BlankHeader from "@/components/Home/BlankHeader.vue";
-import Multiselect from '@vueform/multiselect'
+import Multiselect from '@vueform/multiselect';
+
 
 export default {
   components: {
@@ -529,8 +539,12 @@ export default {
       isLoading: false,
       uploadedMusic: null,
       uploadedSongWrapper: false,
-      songTitle: 'My Awesome Song',
+      songTitle: 'My Awesome Song.mp3',
       fileSize: '', // Store file size here
+      metadata: {},
+      fileInfo: null,
+      errorMessage: '',
+      defaultFileFormat: true,
       isDragOver: false,
       uploadDragSongBox: true,
             // For update social media link
@@ -903,7 +917,8 @@ export default {
 
       console.log('Handle Music Upload: ', file);
       this.targetMagic = 'audio';
-      this.fileCheck(file);
+      //this.fileCheck(file);
+      if(file) this.fileCheck(file);
       
       const { type, name, size } = file;
 
@@ -936,45 +951,115 @@ export default {
       }
 
       this.handleFiles(file);
-      //this.isDragOver = false;
     },
     handleFiles(file) {
       if (file) {
          // Check if the file is an MP3 file
         if (file.type === 'audio/mpeg') {
 
-          this.uploadedMusic = URL.createObjectURL(file);
-          this.songTitle = file.name.replace(/\.[^/.]+$/, '');
-
-          this.form.song = file;
           const sizeInBytes = file.size;
           const sizeInKilobytes = Math.floor(sizeInBytes / 1024);
+  
+    
+        //  this.fileSize = sizeInKilobytes;
+          if(sizeInBytes <= 65536000){
+            this.uploadedMusic = URL.createObjectURL(file);
+            this.songTitle = file.name; //.replace(/\.[^/.]+$/, '')
+            this.form.song = file;
+            this.fileSize = sizeInKilobytes;
+            this.errorMessage = '';
+            this.uploadDragSongBox = false;
+            this.uploadedSongWrapper = true;
+            this.defaultFileFormat = false;
 
-          this.fileSize = sizeInKilobytes;
-          this.uploadDragSongBox = false;
-          this.uploadedSongWrapper = true;
+            const fileReader = new FileReader();
+        fileReader.onloadend = (e) => {
+          const arr = new Uint8Array(e.target.result).subarray(0, 4);
 
+          const buffer = fileReader.result;
+          const view = new DataView(buffer);
+            // Check for ID3v2 tag (common for MP3 files)
+          if (
+            view.getUint8(0) === 73 &&  // I
+            view.getUint8(1) === 68 &&  // D
+            view.getUint8(2) === 51     // 3
+          ) {
+            // Extract metadata (this is a simplified example)
+            const title = String.fromCharCode(view.getUint8(6), view.getUint8(7));
+            const artist = String.fromCharCode(view.getUint8(30), view.getUint8(31));
+            const album = String.fromCharCode(view.getUint8(63), view.getUint8(64));
+            const genre = String.fromCharCode(view.getUint8(90));
+            const date = String.fromCharCode(view.getUint8(93), view.getUint8(94));
+
+            // Store metadata
+            this.metadata.title = title;
+            this.metadata.artist = artist;
+            this.metadata.album = album;
+            this.metadata.genre = genre;
+            this.metadata.date = date;
+
+            if (!this.hasCompleteMetadata) {
+              this.error.song = ['Missing metadata fields. Please check the file.'];
+              event.target.value = null;
+              this.clearErrorMessageAfterDelay();
+            }} else {
+              this.error.song = ['File format not supported or no metadata found.'];
+            event.target.value = null;
+            this.clearErrorMessageAfterDelay();
+          }
+        }
+        fileReader.readAsArrayBuffer(file);
+
+          }else{
+            this.error.song = ['File size exceeds 64MB. Please upload a smaller MP3 file.'];
+            event.target.value = null;
+            this.clearErrorMessageAfterDelay();
+          }
         }else {
+          this.error.song = ['Please upload an MP3 file.']
           event.target.value = null;
+          this.clearErrorMessageAfterDelay();
         }
       }
     },
+    // checkFileType(header) {
+    //   const fileTypeMap = {
+    //     "89504e47": "PNG",
+    //     "ffd8ffe0": "JPEG",
+    //     "49443303": "MP3",
+    //     "66747970": "MP4",
+    //   };
+      
+    //   if (fileTypeMap.hasOwnProperty(header)) {
+    //     return { type: fileTypeMap[header], value: header };
+    //   } else {
+    //     return null;
+    //   }
+    // },
+    clearErrorMessage() {
+      this.error.song = [];
+    },
+    clearErrorMessageAfterDelay() {
+      setTimeout(() => {
+        this.clearErrorMessage();
+        this.defaultFileFormat = true;
+      }, 10000); 
+      this.defaultFileFormat = false;
+    },
     removeMusic()
     {
-
+      this.metadata = {};
       this.validAudio = false;
       this.audioMagic = '';
 
       this.error.song = [];
-
       this.uploadedMusic = '';
       this.songTitle = '';
       this.uploadDragSongBox = true;
       this.uploadedSongWrapper = false;
-     // this.togglePlay();
+      this.defaultFileFormat = true;
       this.$refs.audioPlayer.pause();
       this.playIcon = '/assets/play-circle.svg';
-      
     },
     togglePlay()
     {
@@ -1075,7 +1160,17 @@ export default {
       }
 
       return this.validAudio && flagAudio;
-    }
+    },
+    hasCompleteMetadata() {
+      // Check if any of the metadata fields are missing
+      return (
+        this.metadata.title !== undefined &&
+        this.metadata.artist !== undefined &&
+        this.metadata.album !== undefined &&
+        this.metadata.genre !== undefined &&
+        this.metadata.date !== undefined
+      );
+    },
   },
   watch: {
     tempMagic(val)
