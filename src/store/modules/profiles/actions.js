@@ -95,6 +95,8 @@ export const accountProfile = ({ commit, state, rootState }, payload) =>
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
 
     if (typeof (payload?.avatar) === 'string') delete payload?.avatar;
+    if (typeof (payload?.song) === 'string') delete payload?.song;
+
     await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/account/profile?role=${rootState.role}`, payload, {
       headers: {
         "Content-Type": "multipart/form-data",

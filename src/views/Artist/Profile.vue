@@ -398,7 +398,7 @@
 
                 <!-- Uploaded music -->
                 <transition name="fade" mode="out-in">
-                <div v-if="uploadedSongWrapper && !errorMessage" class="uploaded-song-wrapper">
+                <div v-if="uploadedSongWrapper" class="uploaded-song-wrapper">
                   <audio controls class="audio-controls-wrapper" ref="audioPlayer">
                     <source :src="uploadedMusic" type="audio/mpeg">
                     Your browser does not support the audio element.
@@ -408,14 +408,6 @@
                       <img src="/assets/artist-account/mp3-icon.svg" alt="Music icon">
                     <div>
                       <h5 class="song-title">{{ songTitle }}</h5>
-
-                      <h2>Song title: {{ metadata.title }}</h2>
-                      <p>Artist: {{ metadata.artist }}</p>
-                      <p>Album: {{ metadata.album }}</p>
-                      <p>Genre: {{ metadata.genre }}</p>
-                      <p>Release Date: {{ metadata.date }}</p>
-                      
-
                       <p class="preview"><span class="badge file-size">{{ fileSize }}KB</span></p>
                     </div>
                     </div>
@@ -425,22 +417,23 @@
                     </div>
                   </div>  
                   </div>
-                <div v-else-if="errorMessage" 
+                <!-- <div v-else-if="errorMessage" 
                 :class="{ 'errorMessage': errorMessage}"
-                 class="d-flex align-items-center audio-file-format">
+                 class="d-flex align-items-center audio-file-format" >
                   <span class="material-symbols-outlined info">&#xe88e;</span>
                   <p class="max-file-size">{{ errorMessage }}</p>
-                </div>
+                </div> -->
                 </transition>
                 <div v-if="defaultFileFormat"  class="d-flex align-items-center audio-file-format">
                   <span class="material-symbols-outlined info">&#xe88e;</span>
                   <p class="max-file-size">Please upload an MP3 audio file with a maximum size of 64MB.</p>
                 </div>
 
-                  <div v-for="err in error?.song" :key="err" class="text-danger">{{ err }}</div>
-
-                  <p v-if="fileInfo">Type: {{ fileInfo.type }} value: {{ fileInfo.value }}</p>
-                <p v-else>Unknown File Type</p>
+                  <div v-for="err in error?.song" :key="err"
+                  class="d-flex align-items-center audio-file-format errorMessage">
+                    <span class="material-symbols-outlined info">&#xe88e;</span>
+                  <p class="max-file-size"> {{ err }}</p>
+                  </div>
               </div> <!-- end of song-preview -->
               
               <div class="text-center">
@@ -565,6 +558,12 @@ export default {
 
       validImage: false,
       validAudio: false,
+
+      audioMagic: '',
+      imageMagic: '',
+      avatarMagic: '',
+      tempMagic: '',
+      targetMagic: '',
       audioSize: 0,
       invalidAudio: false,
     }
@@ -613,7 +612,9 @@ export default {
     this.$store.commit('SET_MEMBER_INDEX');
     console.log('-Before Create-')
   },
-  created() {
+  created()
+  {
+    
     this.$store.commit('SET_MEMBER_INDEX');
     // this.isLoading = true;
     console.log('Fetch Profile (created)')
@@ -628,7 +629,11 @@ export default {
   },
   mounted()
   {
-
+    this.audioMagic = '';
+    this.imageMagic = '';
+    this.tempMagic = '';
+    this.targetMagic = '';
+    
     console.log('--- Mounted ---')
     this.$store.commit('SET_MEMBER_INDEX');
     this.$refs.multiselect.$el.focus();
@@ -662,7 +667,8 @@ export default {
     this.uploadedMusic = this.myAccount.song || '';
     this.songTitle = this.myAccount?.song_title || '';
 
-    this.avatar = this.myAvatar || '/assets/artist-account/new.svg'
+    this.avatar = this.myAvatar || '/assets/artist-account/new.svg';
+    this.avatarMagic = this.myAvatar || '/assets/artist-account/new.svg';
     this.formGenres = this.myAccount?.genres || [];
     this.uploadedSongWrapper = this.uploadedMusic !== '' ? true : false;
     this.uploadDragSongBox = !this.uploadedSongWrapper;
@@ -683,8 +689,8 @@ export default {
   },
   props: {
     error: {
-      type: Array,
-      default: [],
+      type: Object,
+      default: {},
       required: true
     },
     message: {
@@ -700,30 +706,59 @@ export default {
     ...mapMutations([
       'SET_PROFILE', 'SET_ARTIST', 'SET_MEMBERS',
     ]),
+    fileCheck(file)
+    {
+      // magicAudio
+      var fileReader = new FileReader();
+      var self = this;
+      this.tempMagic = '';
+
+      fileReader.readAsArrayBuffer(file);
+      fileReader.onloadend = function (e)
+      {
+
+        var arr = (new Uint8Array(e.target.result)).subarray(0, 4);
+
+        var header = "";
+        for (var i = 0; i < arr.length; i++) {
+          header += arr[i].toString(16);
+        }
+
+        self.tempMagic = header;
+      };
+
+    },
     changeImage(event)
     {
-      
-      this.avatar = URL.createObjectURL(event.target.files[0]);
+      const file = event.target.files[0];
+      this.targetMagic = 'image';
+      this.avatarMagic = file;
+      // this.avatar = URL.createObjectURL(file);
 
-      const { type } = event.target.files[0];
+      // this.form.avatar = file;
 
-      switch (type) {
-        case 'image/png':
-        case 'image/webp':
-        case 'image/svg':
-        case 'image/jpeg':
-          this.validImage = true;
-          this.form.avatar = event.target.files[0];
+      // const { type } = file;
 
-          break;
-        default:
+      // switch (type) {
+      //   case 'image/png':
+      //   case 'image/webp':
+      //   case 'image/svg':
+      //   case 'image/jpeg':
+      //     this.validImage = true;
+      //     this.form.avatar = file;
+          
+      //     break;
+      //   default:
 
-          this.validImage = false;
-          this.avatar = this.account?.avatar || this.profile?.avatar || '/assets/artist-account/new.svg';
+      //     this.validImage = false;
+      //     this.avatar = this.account?.avatar || this.profile?.avatar || '/assets/artist-account/new.svg';
 
-          return false;
+      //     //return false;
+      // }
+      if (file) {
+        this.fileCheck(file);
       }
-
+      // return this.validImage;
       console.log('Change Image: ', event.target.files[0])
       
     },
@@ -860,12 +895,12 @@ export default {
         this.members.push(val);
       }
 
-      this.$stor.commit('SET_MEMBER_INDEX');
+      // this.$store.commit('SET_MEMBER_INDEX');
 
       this.dismiss()
     },
     closeToastArtist(){
-      this.message = false;
+      this.message = '';
     },
     fetchGenre(query)
     {
@@ -881,6 +916,9 @@ export default {
       const file = event.target.files[0];
 
       console.log('Handle Music Upload: ', file);
+      this.targetMagic = 'audio';
+      //this.fileCheck(file);
+      if(file) this.fileCheck(file);
       
       const { type, name, size } = file;
 
@@ -924,7 +962,7 @@ export default {
   
     
         //  this.fileSize = sizeInKilobytes;
-          if(sizeInKilobytes <= 10000){
+          if(sizeInBytes <= 65536000){
             this.uploadedMusic = URL.createObjectURL(file);
             this.songTitle = file.name; //.replace(/\.[^/.]+$/, '')
             this.form.song = file;
@@ -934,16 +972,13 @@ export default {
             this.uploadedSongWrapper = true;
             this.defaultFileFormat = false;
 
-
-
             const fileReader = new FileReader();
         fileReader.onloadend = (e) => {
           const arr = new Uint8Array(e.target.result).subarray(0, 4);
 
           const buffer = fileReader.result;
           const view = new DataView(buffer);
-
-          // Check for ID3v2 tag (common for MP3 files)
+            // Check for ID3v2 tag (common for MP3 files)
           if (
             view.getUint8(0) === 73 &&  // I
             view.getUint8(1) === 68 &&  // D
@@ -964,63 +999,59 @@ export default {
             this.metadata.date = date;
 
             if (!this.hasCompleteMetadata) {
-              this.errorMessage = 'Missing metadata fields. Please check the file.';
+              this.error.song = ['Missing metadata fields. Please check the file.'];
               event.target.value = null;
               this.clearErrorMessageAfterDelay();
             }} else {
-            this.errorMessage = 'File format not supported or no metadata found.';
+              this.error.song = ['File format not supported or no metadata found.'];
             event.target.value = null;
             this.clearErrorMessageAfterDelay();
           }
-
-          let header = "";
-          for (let i = 0; i < arr.length; i++) {
-            header += arr[i].toString(16).padStart(2, '0');
-          }
-          this.fileInfo = this.checkFileType(header);
-        };
+        }
         fileReader.readAsArrayBuffer(file);
 
           }else{
-            this.errorMessage = 'File size exceeds 64MB. Please upload a smaller MP3 file.'
+            this.error.song = ['File size exceeds 64MB. Please upload a smaller MP3 file.'];
             event.target.value = null;
             this.clearErrorMessageAfterDelay();
           }
         }else {
-          this.errorMessage = 'Please upload an MP3 file.';
+          this.error.song = ['Please upload an MP3 file.']
           event.target.value = null;
           this.clearErrorMessageAfterDelay();
         }
       }
     },
-    checkFileType(header) {
-      const fileTypeMap = {
-        "89504e47": "PNG",
-        "ffd8ffe0": "JPEG",
-        "49443303": "MP3",
-        "66747970": "MP4",
-      };
+    // checkFileType(header) {
+    //   const fileTypeMap = {
+    //     "89504e47": "PNG",
+    //     "ffd8ffe0": "JPEG",
+    //     "49443303": "MP3",
+    //     "66747970": "MP4",
+    //   };
       
-      if (fileTypeMap.hasOwnProperty(header)) {
-        return { type: fileTypeMap[header], value: header };
-      } else {
-        return null;
-      }
-    },
+    //   if (fileTypeMap.hasOwnProperty(header)) {
+    //     return { type: fileTypeMap[header], value: header };
+    //   } else {
+    //     return null;
+    //   }
+    // },
     clearErrorMessage() {
-      this.errorMessage = ''; 
+      this.error.song = [];
     },
     clearErrorMessageAfterDelay() {
       setTimeout(() => {
         this.clearErrorMessage();
         this.defaultFileFormat = true;
-      }, 3000); 
+      }, 10000); 
       this.defaultFileFormat = false;
     },
     removeMusic()
     {
       this.metadata = {};
       this.validAudio = false;
+      this.audioMagic = '';
+
       this.error.song = [];
       this.uploadedMusic = '';
       this.songTitle = '';
@@ -1078,6 +1109,10 @@ export default {
     {
       var flagImage = true;
 
+      if (!this.validImage && this.imageMagic !== '') {
+        return false;
+      }
+      
       if (typeof this.form.avatar === 'string') {
         return true;
       }
@@ -1093,7 +1128,7 @@ export default {
     {
       var flagAudio = true;
       
-      if (this.invalidAudio) {
+      if (!this.validAudio && this.audioMagic !== '') {
         this.error.song = [
           'The Song should be in a mp3 format.',
         ]
@@ -1138,6 +1173,36 @@ export default {
     },
   },
   watch: {
+    tempMagic(val)
+    {
+      if (this.targetMagic === 'audio' && val !== '')
+      {
+        this.audioMagic = val;
+        this.validAudio = val === '4944334' ? true : false;
+      } else if (this.targetMagic === 'image' && val !== '') {
+        this.imageMagic = val;
+        
+        switch (val) {
+          case '89504e47': // png
+          case 'ffd8ffe0': // jpg, jpeg, jps, jiff
+          case '52494646': // webp
+          case '3c737667': // svg
+            this.validImage = true;
+            this.avatar = URL.createObjectURL(this.avatarMagic);
+            this.form.avatar = this.avatarMagic;
+            console.log('Accepted Image: ', this.avatar);
+            break;
+          default:
+           
+            // this.form.avatar = this.account?.avatar || this.profile?.avatar || '';
+            // this.avatar = this.account?.avatar || this.profile?.avatar || '/assets/artist-account/new.svg';
+            console.log('Rejected Image: ', this.account, this.avatar, this.form.avatar);
+            this.validImage = false;
+            break;
+        }
+
+      }
+    },
     account(val)
     {
       this.form = val;

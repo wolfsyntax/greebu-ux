@@ -1569,6 +1569,7 @@ body{
   padding: 0.9rem 1.21rem;
   border-radius: 0.40375rem;
   background: #EFEFFC;
+  margin: 1rem 0;
 }
 .profile-details .song-preview .audio-file-format .info{
   font-size: 20px;
