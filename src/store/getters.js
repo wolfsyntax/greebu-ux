@@ -38,10 +38,10 @@ var getters = {
   myAvatar: state => state.account?.avatar || state.profile?.avatar || '',
   spotify: state =>
   {
-    if (state.account.spotify_profile !== null && state.account.spotify_profile !== undefined) {
+    if (state.profile.spotify !== null && state.profile.spotify !== undefined) {
 
         const regex = /\/artist\/[^/]+$/;
-        const match = state.account.spotify_profile.match(regex);
+        const match = state.profile.spotify.match(regex);
         if (match) {
           const artistSlug = match[0].split('/').pop();
           return artistSlug;
@@ -54,22 +54,22 @@ var getters = {
   },
   instagram: state =>
   {
-    if (state.account?.instagram_username !== null && state.account?.instagram_username !== undefined) {
-      return state.account.instagram_username.replace(/^https?:\/\/(www\.)?/, "");
+    if (state.profile.instagram !== null && state.profile.instagram !== undefined) {
+      return state.profile.instagram.replace(/^https?:\/\/(www\.)?/, "");
     }
     return '';
   },
   youtube: state =>
   {
-    if (state.account?.youtube_channel !== null && state.account?.youtube_channel !== undefined) {
-      return state.account.youtube_channel.replace(/^https?:\/\/(www\.)?/, "");
+    if (state.profile?.youtube !== null && state.profile?.youtube !== undefined) {
+      return state.profile.youtube.replace(/^https?:\/\/(www\.)?/, "");
     }
     return '';
   },
   twitter: state =>
   {
-    if (state.account?.twitter_username !== null && state.account?.twitter_username !== undefined) {
-      return state.account.twitter_username.replace(/^https?:\/\/(www\.)?/, "");
+    if (state.profile?.twitter !== null && state.profile?.twitter !== undefined) {
+      return state.profile.twitter.replace(/^https?:\/\/(www\.)?/, "");
     }
     return '';
   },

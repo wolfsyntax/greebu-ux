@@ -209,7 +209,7 @@
                 
                 <transition name="fade" mode="out-in">                
 
-                <div class="card mb-3 social-media-account-row" v-if="form?.instagram_username">
+                <div class="card mb-3 social-media-account-row" v-if="form?.instagram">
                   <div class="row g-0">
                     <div class="col-md-1">
                       <img src="/assets/social icons/_Instagram.svg" class="img-fluid rounded-start mx-2" alt="Instagram">
@@ -218,14 +218,14 @@
                     <div class="col-md-10">
                       <div class="card-body">
                         <h5 class="card-title">Instagram</h5>
-                        <p class="card-text"><small class="text-body-secondary">{{ form?.instagram_username }}</small></p>
+                        <p class="card-text"><small class="text-body-secondary">{{ form?.instagram }}</small></p>
                       </div>
                     </div>
 
                     <div class="col-md-1">
                       <div class="d-flex align-items-center text-end">
 
-                        <button type="button" class="social-media-account-wrapper" @click="toggle('links', true, { key: 'instagram', text: form.instagram_username })">
+                        <button type="button" class="social-media-account-wrapper" @click="toggle('links', true, { key: 'instagram', text: form.instagram })">
                           <img src="/assets/artist-account/edit-band-member.svg" class="social-media-account" alt="edit social media account" >
                         </button>
                         <button type="button" @click="removeSocialMedia('instagram')" class="social-media-account-wrapper">
@@ -238,7 +238,7 @@
                 </div>
                 </transition>
                 <transition name="fade" mode="out-in"> 
-                <div class="card mb-3 social-media-account-row" v-if="form.spotify_profile" style="height: 90px;">
+                <div class="card mb-3 social-media-account-row" v-if="form.spotify" style="height: 90px;">
                   <div class="row g-0">
                     <div class="col-md-1">
                       <img src="/assets/social icons/_Spotify.svg" class="img-fluid rounded-start mx-2" alt="Spotify">
@@ -247,14 +247,14 @@
                     <div class="col-md-10">
                       <div class="card-body">
                         <h5 class="card-title">Spotify</h5>
-                        <p class="card-text"><small class="text-body-secondary">{{ form.spotify_profile }}</small></p>
+                        <p class="card-text"><small class="text-body-secondary">{{ form.spotify }}</small></p>
                       </div>
                     </div>
 
                     <div class="col-md-1">
                       <div class="d-flex align-items-center text-end">
 
-                        <button type="button" class="social-media-account-wrapper" @click="toggle('links', true, { key: 'spotify', text: form.spotify_profile })">
+                        <button type="button" class="social-media-account-wrapper" @click="toggle('links', true, { key: 'spotify', text: form.spotify })">
                           <img src="/assets/artist-account/edit-band-member.svg" class="social-media-account" alt="edit social media account" />
                         </button>
                         <button type="button" @click="removeSocialMedia('spotify')" class="social-media-account-wrapper">
@@ -267,7 +267,7 @@
                 </div>
                 </transition>
                 <transition name="fade" mode="out-in">
-                <div class="card mb-3 social-media-account-row" v-if="form.twitter_username" style="height: 90px;">
+                <div class="card mb-3 social-media-account-row" v-if="form.twitter" style="height: 90px;">
                   <div class="row g-0">
                     <div class="col-md-1">
                       <img src="/assets/social icons/_Twitter.svg" class="img-fluid rounded-start mx-2" alt="Twitter">
@@ -276,14 +276,14 @@
                     <div class="col-md-10">
                       <div class="card-body">
                         <h5 class="card-title">Twitter</h5>
-                        <p class="card-text"><small class="text-body-secondary">{{ form.twitter_username }}</small></p>
+                        <p class="card-text"><small class="text-body-secondary">{{ form.twitter }}</small></p>
                       </div>
                     </div>
 
                     <div class="col-md-1">
                       <div class="d-flex align-items-center text-end">
 
-                        <button type="button" class="social-media-account-wrapper" @click="toggle('links', true, { key: 'twitter', text: form.twitter_username })">
+                        <button type="button" class="social-media-account-wrapper" @click="toggle('links', true, { key: 'twitter', text: form.twitter })">
                           <img src="/assets/artist-account/edit-band-member.svg" class="social-media-account" alt="edit social media account" >
                         </button>
                         <button type="button" @click="removeSocialMedia('twitter')" class="social-media-account-wrapper">
@@ -296,7 +296,7 @@
                 </div>
               </transition>
               <transition name="fade" mode="out-in">
-                <div class="card mb-3 social-media-account-row " v-if="form.youtube_channel" style="height: 90px;">
+                <div class="card mb-3 social-media-account-row " v-if="form.youtube" style="height: 90px;">
                   <div class="row g-0">
                     <div class="col-md-1">
                       <img src="/assets/social icons/_YouTube.svg" class="img-fluid rounded-start mx-2" alt="YouTube">
@@ -305,13 +305,13 @@
                     <div class="col-md-10">
                       <div class="card-body">
                         <h5 class="card-title">YouTube</h5>
-                        <p class="card-text"><small class="text-body-secondary">{{ form.youtube_channel }}</small></p>
+                        <p class="card-text"><small class="text-body-secondary">{{ form.youtube }}</small></p>
                       </div>
                     </div>
 
                     <div class="col-md-1">
                       <div class="d-flex align-items-center text-end">
-                        <button type="button" class="social-media-account-wrapper" @click="toggle('links', true, { key: 'youtube', text: form.youtube_channel })">
+                        <button type="button" class="social-media-account-wrapper" @click="toggle('links', true, { key: 'youtube', text: form.youtube })">
                           <img src="/assets/artist-account/edit-band-member.svg" class="social-media-account" alt="edit social media account">
                         </button>
                         <button type="button" @click="removeSocialMedia('youtube')" class="social-media-account-wrapper">
@@ -513,10 +513,10 @@ export default {
         street_address: null,
         city: null,
         province: null,
-        youtube_channel: null,
-        twitter_username: null,
-        instagram_username: null,
-        spotify_profile: null,
+        youtube: null,
+        twitter: null,
+        instagram: null,
+        spotify: null,
         accept_request: false,
         accept_booking: false,
         accept_proposal: false,
@@ -585,10 +585,10 @@ export default {
       street_address: null,
       city: null,
       province: null,
-      youtube_channel: null,
-      twitter_username: null,
-      instagram_username: null,
-      spotify_profile: null,
+      youtube: null,
+      twitter: null,
+      instagram: null,
+      spotify: null,
       accept_request: false,
       accept_booking: false,
       accept_proposal: false,
@@ -688,6 +688,35 @@ export default {
 
   },
   props: {
+    hasNoError: { 
+      type: Boolean,
+      default: false,
+      required: true
+    },
+    formData: {
+      type: Object,
+      default: {
+        artist_type: null,
+        artist_name: null,
+        genres: [],
+        bio: null,
+        avatar: null,
+        street_address: null,
+        city: null,
+        province: null,
+        youtube: null,
+        twitter: null,
+        instagram: null,
+        spotify: null,
+        accept_request: false,
+        accept_booking: false,
+        accept_proposal: false,
+        song: null,
+        song_title: null,
+        song_genre: null,        
+      },
+      required: true
+    },    
     error: {
       type: Object,
       default: {},
@@ -781,15 +810,17 @@ export default {
       
       this.$emit('form', this.form)
       this.isLoading = true;
-      
-      this.fetchProfile().then(res =>
-      {
-        const { status: statusCode, data: { result: { genres } } } = res
 
-        this.form.genres = genres
-        this.isLoading = false;
+      if (this.hasNoError) {
+        this.fetchProfile().then(res =>
+        {
+          const { status: statusCode, data: { result: { genres } } } = res
 
-      });
+          this.form.genres = genres
+          this.isLoading = false;
+
+        });
+      }
 
       //this.$router.push('/artist');
     },
@@ -798,16 +829,16 @@ export default {
 
       switch (key) {
         case 'youtube':
-          this.form.youtube_channel = '';
+          this.form.youtube = '';
           break;
         case 'instagram':
-          this.form.instagram_username = '';
+          this.form.instagram = '';
           break;
         case 'twitter':
-          this.form.twitter_username = '';
+          this.form.twitter = '';
           break;
         case 'spotify':
-          this.form.spotify_profile = '';
+          this.form.spotify = '';
           break;
         default:
 
@@ -854,28 +885,28 @@ export default {
 
       switch (key) {
         case 'youtube':
-          this.form.youtube_channel = val;
+          this.form.youtube = val;
 
           this.social.key = key;
           this.social.text = val;
 
           break;
         case 'instagram':
-          this.form.instagram_username = val;
+          this.form.instagram = val;
 
           this.social.key = key;
           this.social.text = val;
 
           break;
         case 'twitter':
-          this.form.twitter_username = val;
+          this.form.twitter = val;
 
           this.social.key = key;
           this.social.text = val;
 
           break;
         case 'spotify':
-          this.form.spotify_profile = val;
+          this.form.spotify = val;
 
           this.social.key = key;
           this.social.text = val;
@@ -959,7 +990,6 @@ export default {
 
           const sizeInBytes = file.size;
           const sizeInKilobytes = Math.floor(sizeInBytes / 1024);
-  
     
         //  this.fileSize = sizeInKilobytes;
           if(sizeInBytes <= 65536000){
@@ -1175,6 +1205,7 @@ export default {
   watch: {
     tempMagic(val)
     {
+      console.log('Magic Mime: ', val);
       if (this.targetMagic === 'audio' && val !== '')
       {
         this.audioMagic = val;
