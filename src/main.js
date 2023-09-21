@@ -37,11 +37,8 @@ import { VueFire, VueFireAuth } from 'vuefire'
 import { firebaseApp } from './firebase/init';
 
 import Pusher from './plugins/pusher';
-
 import { Cropper } from 'vue-advanced-cropper'
 import 'vue-advanced-cropper/dist/style.css';
-
-// import VueCookies from 'vue3-cookies'
 import TreeItem from './components/Organizer/TreeItem.vue';
 
 const app = createApp(App)
@@ -75,7 +72,7 @@ const app = createApp(App)
   // .component('multiselect', Multiselect)
   .component('cropper', Cropper)
   .component('font-awesome-icon', FontAwesomeIcon)
-  .component('tree-item', TreeItem);
+  .component('tree-item', TreeItem)
 
 app.config.globalProperties.$moment = moment;
 app.config.globalProperties.$filters = {
