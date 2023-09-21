@@ -390,7 +390,7 @@
                         style="display:none;"
                         ref="musicInput" 
                         @change="handleMusicUpload" 
-                        accept=".mp3" />
+                        accept=".mp3,.mp4" />
                     </div>
                  
                   </div>
@@ -1143,7 +1143,8 @@ export default {
       
       if (!this.validAudio && this.audioMagic !== '') {
         this.error.song = [
-          'The Song should be in a mp3 format.',
+          // 'The Song should be in a mp3 format.',
+          'The Song should be in a mp3 or mp4 format.',
         ]
         return false;
 
@@ -1192,7 +1193,7 @@ export default {
       if (this.targetMagic === 'audio' && val !== '')
       {
         this.audioMagic = val;
-        this.validAudio = val === '4944334' ? true : false;
+        this.validAudio = (val === '4944334' || val === '00018') ? true : false;
       } else if (this.targetMagic === 'image' && val !== '') {
         this.imageMagic = val;
         
