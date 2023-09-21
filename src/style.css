@@ -230,14 +230,17 @@ header nav{
 .main-nav nav .navbar-nav{
   margin: 0 auto;
 }
-.main-nav nav li a{
+.main-nav nav .navbar-nav li{
+  padding: 0 4px;
+}
+.main-nav nav li a {
   font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
   color: var(--black);
   font-size: 20px;
   font-weight: 500;
   letter-spacing: 0.2px;
+  text-decoration: none;
+  padding: 0 1rem;
 }
 .main-nav nav li .nav-link.active{
   color: var(--orange)
@@ -252,8 +255,8 @@ header nav{
   width: 175px;
   height: 46px;
 }
-.main-nav nav .navbar-nav li{
-  padding: 0 4px;
+.main-nav nav .site-active-page{
+  color: var(--orange);
 }
 .main-nav .nav-button .log-in, .main-nav .nav-button .sign-up{
   border: 1px solid var(--orange);
