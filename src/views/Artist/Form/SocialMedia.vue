@@ -64,11 +64,11 @@ export default {
 
   },
   props: {
-    error: {
-      type: Array,
-      default: [],
-      required: true
-    },
+    // error: {
+    //   type: Array,
+    //   default: [],
+    //   required: true
+    // },
     media: {
       type: Object,
       default: {
