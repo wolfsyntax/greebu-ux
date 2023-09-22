@@ -12,7 +12,7 @@ import {
 import { useCurrentUser, useFirebaseAuth } from 'vuefire';
 
 var actions = {
-  signin({ commit }, payload)
+  signin({ commit, dispatch }, payload)
   {
     return new Promise(async (resolve, reject) =>
     {
@@ -52,6 +52,7 @@ var actions = {
             commit('SET_ROLES', roles || []);
 
             localStorage.api_token = token;
+            dispatch('fetchProfile')
 
           } else if (statusCode === 203 && status === 403) {
 

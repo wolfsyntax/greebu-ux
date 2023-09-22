@@ -73,6 +73,8 @@ export const fetchProfile = ({ commit, state, rootState, dispatch }, payload) =>
               // commit('SET_CUSTOM_GENRE', custom_genre);
 
               dispatch('artistOptions');
+            } else if (rootState.role === 'organizer') {
+              dispatch('fetchOrganizerOptions');
             }
 
             // commit('SET_PROFILE', profile);

@@ -1,0 +1,201 @@
+<template>
+  <div class="modal fade" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" >
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <h5 class="modal-title">Add Social Media Account</h5>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <span class="sub-heading">Lorem ipsum dolor sit amet consectetur. Nam lacus viverra nec orci arcu id fringilla ultrices.</span>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ref="modalClose"></button>
+        </div>
+
+        <div class="modal-body modal-add-social-media">
+          <form @submit.prevent="submit" >
+            <div class="container">
+              <div class="row py-2">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="social-media">Select Social Media Account</label>
+                    <select v-model="media_type" class="form-select">
+                      <option value="" selected>Please Select</option>
+                      <option v-for="media in social_media" :key="media.id" :value="media.value">{{ media.label }}</option>
+                    </select>
+                    <span v-if="errors?.media_type" class="text-danger">{{ errors.media_type }}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row py-2">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="social-media">URL</label>
+                    <input type="text" v-model="url" :disabled="media_flag" class="form-control"/>
+                    <span v-if="errors?.url" class="text-danger">{{ errors.url }}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col text-center">
+                  <button type="submit" :disabled="!(validType && validUrl)" class="btn btn-success add-social-media">Add</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import { mapGetters, mapState, mapActions } from "vuex";
+
+export default {
+  setup()
+  {
+
+
+    return {}
+  },
+  data: () => ({
+    social_media: [
+      { id: 1, value: 'instagram', label: 'Instagram', },
+      { id: 2, value: 'twitter', label: 'Twitter', },
+      { id: 3, value: 'facebook', label: 'Facebook' },
+    ],
+    media_type: null,
+    url: null,
+    regex_rules: '',
+    validUrl: false,
+    validType: false,
+    media_flag: true,
+    errors: {},
+  }),
+  props: {
+    media: {
+      type: Object,
+      default: {
+        key: '', text: '',
+      },
+      required: true
+    },
+  },
+  watch: {
+    media(n, o)
+    {
+      this.media_type = n.key ?? '';
+      this.url = n.text ?? '';
+      this.errors = {};
+    },
+    media_type(nv, ov)
+    {
+
+      if (nv) {
+        this.validType = true;
+        this.validUrl = false;
+        this.media_flag = false;
+        if (this.url) {
+
+          if (/^(?:(?:http|https):\/\/)?(?:www.)?(?:instagram.com|instagr.am|instagr.com)\/(\w+)/.test(this.url) && nv === 'instagram') {
+            this.validUrl = true;
+          } else if (/^(?:https?:\/\/)?(?:www\.)?(mbasic.facebook|m\.facebook|facebook|fb)\.(com|me)\/(?:(?:\w\.)*#!\/)?(?:pages\/)?(?:[\w\-\.]*\/)*([\w\-\.]*)$/.test(this.url) && nv === 'facebook') {
+            this.validUrl = true;
+          } else if (/^(?:(?:http|https):\/\/)?(?:www.)?(twitter.com\/(?![a-zA-Z0-9_]+\/)([a-zA-Z0-9_]+))$/.test(this.url) && nv === 'twitter') {
+            this.validUrl = true;
+          } else {
+            this.validType = false;
+
+          }
+        }
+
+      } else {
+        this.validType = false;
+        this.media_flag = true;
+      }
+
+      if (!this.validUrl && this.url !== '' && this.media_type !== '') {
+        this.errors['url'] = (`${this.media_type.charAt(0).toUpperCase()}${this.media_type.slice(1)}`) + ' url is invalid format.';
+      } else this.errors['url'] = '';
+    },
+    url(nv, ov)
+    {
+      this.errors['url'] = '';
+      this.validUrl = false;
+
+      if (/^(?:(?:http|https):\/\/)?(?:www.)?(?:instagram.com|instagr.am|instagr.com)\/(\w+)/.test(nv) && this.media_type === 'instagram') {
+        this.validUrl = true;
+        this.validType = this.media_type ? true : false;
+      } else if (/^(?:https?:\/\/)?(?:www\.)?(mbasic.facebook|m\.facebook|facebook|fb)\.(com|me)\/(?:(?:\w\.)*#!\/)?(?:pages\/)?(?:[\w\-\.]*\/)*([\w\-\.]*)$/.test(nv) && this.media_type === 'facebook') {
+        this.validUrl = true;
+        this.validType = this.media_type ? true : false;
+      } else if (/^(?:(?:http|https):\/\/)?(?:www.)?(twitter.com\/(?![a-zA-Z0-9_]+\/)([a-zA-Z0-9_]+))$/.test(nv) && this.media_type === 'twitter') {
+        this.validUrl = true;
+        this.validType = this.media_type ? true : false;
+      }
+
+      if (!this.validUrl && this.media_type === '' && this.url === '') {
+        this.errors.url = '';
+      } else if (ov !== '' && nv === '') {
+        this.errors.url = (`${this.media_type.charAt(0).toUpperCase()}${this.media_type.slice(1)}`) + ' url is required.';
+      } else if (!this.validUrl && this.url !== '' && this.media_type !== '') {
+        this.errors.url = (`${this.media_type.charAt(0).toUpperCase()}${this.media_type.slice(1)}`) + ' url is invalid format.';
+      } else {
+        this.errors.url = '';
+      }
+
+    }
+  },
+  created()
+  {
+    this.media_type = this.media.key;
+    this.url = this.media.text;
+    this.errors = {};
+    console.log('Created [media]: ', this.media);
+  },
+  methods: {
+    ...mapActions([
+      'addSocialMedia'
+    ]),
+    submit()
+    {
+
+      console.log('Social media add: ', this.media_type, this.url);
+
+      this.$emit('form', this.media_type, this.url)
+      // this.$emit('modalClose');
+      this.$refs.modalClose.click();
+
+    }
+  },
+  computed: {
+    ...mapGetters(["userInfo", "token"]),
+    ...mapState({
+      users: (state) => state.user,
+    }),
+  }
+}
+</script>
+
+
+<style>
+@import '@/assets/css/artist-ui.css';
+
+.avatar {
+  vertical-align: middle;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+</style>
