@@ -4,37 +4,47 @@
     <header class="main-nav">
       <nav class="navbar navbar-expand-lg">
         <div class="container">
-          <a class="navbar-brand logo" :href="home">
+          <router-link to="/" class="navbar-brand logo">
             <img src="/assets/geebu-logo.svg" alt="Geebu logo">
-          </a>
+          </router-link>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0" v-if="!isLoggedIn">
-              <li class="nav-item" v-for="(item, index) in navItems" :key="index">
-              <a class="nav-link" :href="item.link">{{ item.page }}</a>
+              <li class="nav-item">
+                <router-link to="/">Home</router-link>
+                <router-link to="/create-song">Create a Song</router-link>
+                <router-link to="/artists">Artist</router-link>
+                <router-link to="/events">Events</router-link>
+                <router-link to="/services">Services</router-link>
               </li>
             </ul>
             
             <ul class="navbar-nav me-auto mb-2 mb-lg-0" v-else>
-              <li class="nav-item" v-for="(customer, index) in navItems" :key="index" v-if="userRole === 'customers'">
-              <a class="nav-link" :href="customer.link">{{ customer.page }}</a>
+              <li class="nav-item" v-if="userRole === 'customers'">
+                <router-link to="/">Home</router-link>
+                <router-link to="/create-song">Create a Song</router-link>
+                <router-link to="/artists">Artist</router-link>
+                <router-link to="/events">Events</router-link>
+                <router-link to="/services">Services</router-link>
               </li>
               <li class="nav-item artist-menu" v-if="userRole === 'artists'">
                 <router-link to="/library">Library</router-link>
                 <router-link to="/artists">Artist</router-link>
                 <router-link to="/events">Events</router-link>
               </li>
-              <li class="nav-item" v-for="(organizer, index) in navItemsOrganizers" :key="index" v-if="userRole === 'organizer'">
-              <a class="nav-link" :href="organizer.link">{{ organizer.page }}</a>
+              <li class="nav-item" v-if="userRole === 'organizer'">
+              <router-link to="/artists">Artist</router-link>
+                <router-link to="/events">Events</router-link>
+                <router-link to="/reports">Reports</router-link>
               </li>
             </ul>
 
             <div class="float-end nav-button" v-if="!isLoggedIn">
-              <a :href="login" class="btn btn-primary log-in">Log In</a>
-              <a :href="signUp" type="button" class="btn btn-secondary sign-up">Sign Up</a>
+              <router-link to="/login" class="btn btn-primary log-in">Log In</router-link>
+              <router-link to="/register" class="btn btn-secondary sign-up">Sign Up</router-link>
             </div>
             <div class="float-end nav-button" v-else>
                                                   <!-- CUSTOMERS MENU AND DROPDOWN -->
@@ -56,7 +66,7 @@
                         <p class="name">{{  userInfo.business_name }}</p>
                         <!-- <p class="email">{{ userInfo.business_email }}</p> -->
                         <p class="name">{{  userInfo.role }}</p>
-                        <a class="dropdown-item view-profile" href="">View Profile</a>
+                        <router-link to="/dashboard" class="dropdown-item view-profile">View Profile</router-link>
                       </div>
                     </div>
                   </li>
@@ -98,7 +108,7 @@
                       <div class="artist-name">
                         <p class="name">{{ userInfo.business_name }}</p>
                         <p class="email" style="text-transform: capitalize;">{{ userInfo.role }}</p>
-                        <a class="dropdown-item view-profile" href="/dashboard">View Profile</a>
+                        <router-link to="/dashboard" class="dropdown-item view-profile">View Profile</router-link>
                       </div>
                     </div>
                   </li>
@@ -137,7 +147,7 @@
                       <div class="artist-name">
                         <p class="name">{{ userInfo.business_name }}</p>
                         <p class="email" style="text-transform: capitalize;">{{ userInfo.role }}</p>
-                        <a class="dropdown-item view-profile" href="/dashboard">View Profile</a>
+                        <router-link to="/dashboard" class="dropdown-item view-profile">View Profile</router-link>
                       </div>
                     </div>
                   </li>
@@ -267,21 +277,6 @@ export default {
   data()
   {
     return {
-      navItems: [
-        { page: 'Home', link: '/' },
-        { page: 'Create a Song', link: '/create-song' },
-        { page: 'Artist', link: '/artists' },
-        { page: 'Events', link: '/events' },
-        { page: 'Services', link: '/services' },
-        // { page: 'Partner With Us', link: '/partners' }
-      ],
-      navItemsOrganizers: [
-        { page: 'Home', link: '/' },
-        { page: 'Artist', link: '/artists' },
-        { page: 'Organizers', link: '/organizers' },
-        { page: 'Events', link: '/events' },
-        { page: 'Reports', link: '/reports' }
-      ],
       customersDropdown: [
         // change all icons name to &#x + Code point
         { icon: 'account_circle', name: 'Account Settings', link: ''},
@@ -303,7 +298,7 @@ export default {
       organizersDropdown: [
         { icon: 'account_circle', name: 'Account Settings', link: '/account/setting'},
         { icon: 'mail', name: 'Message', link: '/message'},
-        { icon: 'event_available', name: 'My Bookings', link: '/'},
+        { icon: 'queue_music', name: 'My Proposals', link: '/'},
         // { icon: 'queue_music', name: 'My Proposals', link: '/'},
         { icon: 'help', name: 'Help Center', link: '/'},
       ],
@@ -313,8 +308,6 @@ export default {
       events: '/events',
       otherServices: '/services',
       partnerWithUs: '/partners',
-      login: '/login',
-      signUp: '/register',
       blog: '/blog',
       privacy: '/privacy',
       support: '/support',
@@ -372,7 +365,7 @@ export default {
     replaceByDefault(e) 
     {
       e.target.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm3RFDZM21teuCMFYx_AROjt-AzUwDBROFww&usqp=CAU';
-    },    
+    },   
   },
   computed: {
     ...mapGetters(["isLoggedIn", 'userInfo', 'info', 'userRole', 'myAccount', 'myAvatar',]),

@@ -19,14 +19,14 @@
             <div class="post-features">
               <div class="post-icon">
                 <span class="material-symbols-outlined">&#xe813;</span>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#artistPost">
+                <button type="button" class="btn btn-primary features-button" data-bs-toggle="modal" data-bs-target="#artistPost">
                   Feeling
                 </button>
               </div>
 
               <div class="post-icon">
                 <span class="material-symbols-outlined">&#xe3f4;</span>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#artistPost">
+                <button type="button" class="btn btn-primary features-button" data-bs-toggle="modal" data-bs-target="#artistPost">
                   Photo/Video
                 </button>
               </div>
@@ -34,7 +34,7 @@
               <!-- @click="toggleContent('music')" -->
               <div class="post-icon">
                 <span class="material-symbols-outlined">&#xe030;</span>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#artistPost">
+                <button type="button" class="btn btn-primary features-button" data-bs-toggle="modal" data-bs-target="#artistPost">
                   Music
                 </button>
               </div>

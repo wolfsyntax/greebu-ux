@@ -5,6 +5,7 @@
     <provider-profile @form="submit" :error="errors" v-else-if="userRole === 'service-provider'" />
     <customer-profile @form="submit" :error="errors" v-else-if="userRole === 'customers'" />
     <p v-else>No Profile Exists</p>
+
   </div>
 </template>
 
@@ -33,7 +34,6 @@ export default {
     form: {},
     errors: [],
     message: '',
-    isValid: true,
   }),
   methods: {
     ...mapActions([
@@ -64,13 +64,15 @@ export default {
 
             this.message = 'Updated successfully';
             window.scrollBy(-10000, -10000);
-            this.isValid = true;
             this.$forceUpdate();
            // this.$router.push('/artist');
 
             setTimeout(() => {
-              this.message = '';
-            }, 5000);
+              this.message = 'Personal information updated successfully.';
+              setTimeout(() => {
+                this.message = '';
+              }, 100000);
+            }, 1000);
 
           } else {
 
@@ -87,7 +89,7 @@ export default {
           }
           
         });
-    }
+    },
   },
   mounted()
   { 

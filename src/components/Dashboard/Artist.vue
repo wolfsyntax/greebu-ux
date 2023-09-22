@@ -50,7 +50,7 @@
 
                     <div class="col-3">
                       <div class="d-none d-md-block text-end edit">
-                        <a href="/account/profile" class="btn btn-primary btn-lg">Edit Profile</a>
+                        <router-link to="/account/profile" class="btn btn-primary btn-lg">Edit Profile</router-link>
                       </div>
                     </div>
                   </div>

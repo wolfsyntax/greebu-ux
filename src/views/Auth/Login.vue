@@ -28,7 +28,7 @@
 
           <div class="login-form">
             <div class="logo">
-              <a href="/"><img src="/assets/geebu-logo.svg" width="175" height="46" alt="Logo"></a>
+              <router-link to="/"><img src="/assets/geebu-logo.svg" width="175" height="46" alt="Logo"></router-link>
             </div>
             <div class="card">
               <div class="card-header">
@@ -190,7 +190,7 @@ export default {
     vuefire(msg)
     {
       this.message = msg;
-    }
+    },
   },
   computed: mapState({
       users: (state) => state.user,

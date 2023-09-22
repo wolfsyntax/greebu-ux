@@ -7,9 +7,7 @@
           <div class="col-3"></div>
           <div class="col-6">
             <div class="back-wrapper">
-              <a href="/dashboard" class="back">
-                <span class="material-symbols-outlined">&#xef7d;</span>Back
-              </a>
+              <router-link to="/dashboard" class="back"><span class="material-symbols-outlined">&#xef7d;</span>Back</router-link>
             </div>
 
             <h2 class="title">Welcome! Let's create your profile as an artist</h2>
@@ -55,8 +53,20 @@
               {{ message }}
             </div> -->
 
+            <!-- DESIGN A MODAL THE SAME AS ONBOARDING MESSAGE here -->
+            <div class="onboarding-message"  v-if="message">
+            <input type="checkbox" id="modal-toggle" class="modal-toggle" checked style="display: none;">
+              <div class="modal">
+                <div class="modal-content">
+                  <img src="/assets/artist-account/check-circle.svg" class="check-cirle" alt="check circle">
+                  <h3 class="all-set">You are all set!</h3>
+                  <p class="message">{{ message }}</p>
+                    <label for="modal-toggle" class="close-modal-button" @click="viewProfile">View My Profile</label>
+                </div>
+              </div>
+          </div>
 
-            <div v-if="message" class="d-flex justify-content-between toast-artist-details">
+            <!-- <div v-if="message" class="d-flex justify-content-between toast-artist-details">
               <div class="d-flex accepted-wrapper">
                   <span class="material-symbols-rounded check-circle">&#xe86c;</span>
                 <div>
@@ -67,7 +77,12 @@
               <div class="close-toast">
                 <span class="material-symbols-rounded close-icon" @click="closeToastArtist">&#xe5cd;</span>
               </div>
-            </div>
+            </div> -->
+
+            
+
+
+
 
             <form @submit.prevent="submit" class="fill-details" autocomplete="off">
               <!-- {{ form }} --> 
@@ -131,7 +146,6 @@
                   <!-- <input type="text" v-model="others" @blur="updateGenre" placeholder="Genre" class="form-control province" v-if="hasOthers" required /> -->
                   <div v-for="err in error?.genre" :key="err" class="text-danger">{{ err }}</div>
 
-                  
                 </div>
 
                 <div class="row address">
@@ -448,7 +462,6 @@
             </form>
 
               <!-- IF THE FORM IS SUCCESSFUL SHOW THIS MODAL -->
-
               <!-- Modal -->
             <div class="modal fade" id="successDetailsModal" tabindex="-1" aria-labelledby="successDetailsLabel" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered">
@@ -480,6 +493,7 @@
           
         </div> <!-- end of row -->
       </div> <!-- end of container -->
+      
     </section>
   </div>
 
@@ -491,7 +505,6 @@ import MemberForm from '/src/views/Artist/Form/AddMember.vue';
 import SocialMediaForm from '/src/views/Artist/Form/SocialMedia.vue';
 import BlankHeader from "@/components/Home/BlankHeader.vue";
 import Multiselect from '@vueform/multiselect';
-
 
 export default {
   components: {
@@ -810,17 +823,15 @@ export default {
       
       this.$emit('form', this.form)
       this.isLoading = true;
+      
+      this.fetchProfile().then(res =>
+      {
+        const { status: statusCode, data: { result: { genres } } } = res
 
-      if (this.hasNoError) {
-        this.fetchProfile().then(res =>
-        {
-          const { status: statusCode, data: { result: { genres } } } = res
+        this.form.genres = genres
+        this.isLoading = false;
 
-          this.form.genres = genres
-          this.isLoading = false;
-
-        });
-      }
+      });
 
       //this.$router.push('/artist');
     },
@@ -1102,7 +1113,6 @@ export default {
       this.isDragOver = false;
     },
 
-
   },
   computed: {
     ...mapGetters(["userInfo", "token", 'artistProfile', 'artistGenre', 'myAccount', 'formArtistGenres','myAvatar', ]),
@@ -1185,6 +1195,9 @@ export default {
         this.metadata.date !== undefined
       );
     },
+    viewProfile(){
+      this.$router.push('/dashboard')
+    }
   },
   watch: {
     tempMagic(val)
@@ -1242,4 +1255,5 @@ export default {
   height: 50px;
   border-radius: 50%;
 }
+
 </style>

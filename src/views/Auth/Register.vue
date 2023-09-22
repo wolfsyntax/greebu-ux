@@ -22,7 +22,7 @@
 
       <div class="register-form">
         <div class="logo">
-          <a href="/"><img src="/assets/geebu-logo.svg" width="175" height="46" alt="Logo"></a>
+          <router-link to="/"><img src="/assets/geebu-logo.svg" width="175" height="46" alt="Logo"></router-link>
         </div>
         <div class="card">
           <div class="card-body">
@@ -75,7 +75,8 @@
                     </button>
                   </div>
                   <div class="have-account">
-                      <p class="text-center">Already have an Account?</p><a href="/login">Log In</a>
+                      <p class="text-center">Already have an Account?</p>
+                      <router-link to="/login">Log In</router-link>
                   </div>
                 </div>
               </div>
@@ -357,7 +358,7 @@ export default {
         {
           
         })
-    }
+    },
   },
   watch: {
     step(value)

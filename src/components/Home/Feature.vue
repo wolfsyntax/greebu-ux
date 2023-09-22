@@ -14,7 +14,7 @@
             <p class="description">Welcome to Geebu! We're thrilled to have you on board. Get ready to embark on an exciting journey of Music and 
               Events, and explore a world of possibilities. Whether you're a seasoned user or just starting out, we're here to support 
               you every step of the way. Let's dive in and make the most of your experience with Geebu together!"</p>
-              <label for="modal-toggle" class="close-modal-button">Let's Get Started!</label>
+              <label for="modal-toggle" class="close-modal-button" @click="viewProfile">Let's Get Started!</label>
           </div>
         </div>
       </div>
@@ -37,12 +37,31 @@
           </div>
         </div>
       </div>
-     
+    </div>
+
+    <div class="onboarding-message" v-if="userRole === 'organizer'" >
+        <div v-if="showOnboardingMessage">
+      <input type="checkbox" id="modal-toggle" class="modal-toggle" checked style="display: none;">
+
+        <div class="modal">
+          <div class="modal-content">
+            <h2 class="title">Welcome Aboard!</h2>
+            <p class="description organizer-description">Welcome to Geebu! Your Trusted Partner in Event Creation and Management. Where you can able to:</p>
+            <ul class="offers">
+              <li>Create Event</li>
+              <li>Send proposal for Artist</li>
+              <li>Accept proposal from Artist</li>
+              <li>Hire Artist for your Events</li>
+              <li>Post Upcoming Events</li>
+              <li>Post Handled Events </li>
+            </ul>
+              <label for="modal-toggle" class="close-modal-button" @click="viewProfile">Let's Get Started!</label>
+          </div>
+        </div>
+      </div>
     </div>
     </div>  <!-- end of v-else -->
 
-
-  
     <section class="home-slider">
       <div class="container">
         <div id="home-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5500">
@@ -567,6 +586,9 @@ export default {
 
       this.activeIndex = index;
     },
+    viewProfile(){
+      this.$router.push('/dashboard')
+    }
   },
   mounted() {
     this.observer = new IntersectionObserver((entries) => {
