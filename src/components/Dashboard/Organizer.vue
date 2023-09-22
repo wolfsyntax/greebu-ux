@@ -334,7 +334,6 @@
 
 </template>
 
-
 <script>
 import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
 import Post from '/src/components/Post/Organizer/Index.vue';
@@ -430,6 +429,5 @@ export default {
 </script>
 <style>
 @import '@/assets/css/artist-ui.css';
-
 
 </style>
