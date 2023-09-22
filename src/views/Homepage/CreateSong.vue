@@ -13,17 +13,16 @@
               <p>Please note that the process of creating a customized artist song is a meticulous and detailed one, requiring careful attention to 
                 every aspect of the composition, from the lyrics to the melody and instrumentation. As such, we require a minimum of one month to 
                 complete each project to ensure that we deliver the highest quality product possible.</p>
-
-                <div v-if="isLoggedIn"><a href="/basicinformation" class="btn btn-primary btn-lg get-started">Get Started</a></div>
+                <div v-if="isLoggedIn">
+                  <router-link to="/basicinformation" class="btn btn-primary btn-lg get-started">Get Started</router-link>
+                </div>
                 <div  v-else><button type="button" class="btn btn-primary btn-lg get-started"
                   @click="openModal"
                    data-bs-toggle="modal" data-bs-target="#mustSignUp">
                   Get Started
               </button>
               <MustSignupModal />
-
               </div> <!-- end of v-else -->
-
             </div>
           </div>
         </div>

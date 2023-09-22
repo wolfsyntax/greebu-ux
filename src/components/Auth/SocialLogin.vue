@@ -26,10 +26,10 @@
     </div>
 
     <div class="forgot-password" v-if="$route.name === 'login'">
-      <a href="/forgot">I Forgot my Password</a>
+      <router-link to="/forgot">I Forgot my Password</router-link>
     </div>
     <div class="no-account" v-if="$route.name === 'login'">
-      <p>Don’t have an account? <a href="/register">Sign up</a></p>
+      <p>Don’t have an account? <router-link to="/register">Sign up</router-link></p>
     </div>
   </div>
 
@@ -135,7 +135,7 @@ export default {
               })
           }
         });
-    }
+    },
   },
   computed: {
     ...mapGetters([]),

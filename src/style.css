@@ -4120,7 +4120,8 @@ justify-content: space-between;
   }
 }
 .forgot-password .verify-email .card-body .inbox, .reset-password .reset-successfully .card-body .check,
-.social-phone-verification .successfully-signup  .card-body .success-badge, .successfully-sent .container .message svg {
+.social-phone-verification .successfully-signup  .card-body .success-badge, .successfully-sent .container .message svg,
+.onboarding-message .modal-content .check-cirle {
   animation: bounce 1.5s 3; /* Animation will play 3 times */
 }
 .social-phone-verification .successfully-signup  .card-body .success-badge{
@@ -4280,16 +4281,17 @@ justify-content: space-between;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background: rgba(45, 54, 83, 0.40);
+  backdrop-filter: blur(3px);
   justify-content: center;
   align-items: center;
-  /* animation: fadeIn 0.5s 1.5s forwards; 
-  opacity: 0; */
+  animation: fadeIn 0.5s 1s forwards; 
+  opacity: 0;
 }
-/* @keyframes fadeIn {
+@keyframes fadeIn {
   0% { opacity: 0; }
   100% { opacity: 1; }
-} */
+}
 .onboarding-message .modal-toggle:checked + .modal {
   display: flex;
 }
@@ -4302,6 +4304,27 @@ justify-content: space-between;
   max-width: 32.25rem;
   text-align: center;
 }
+.onboarding-message .modal-content .check-cirle{
+  width: 5rem;
+  height: 5rem;
+  margin: 0 auto 2rem;
+  animation-delay: .5s;
+}
+.onboarding-message .modal-content .all-set{
+  color: var(--orange);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 2rem;
+  margin: 0 auto 2rem;
+}
+.onboarding-message .modal-content .message{
+  color: #8690A2;
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.5rem; 
+  margin: 0 auto 2.5rem;
+}
 .onboarding-message .modal-content .title{
   color: var(--black);
   font-size: 1.5rem;
@@ -4313,6 +4336,23 @@ justify-content: space-between;
   font-size: 1.125rem;
   font-weight: 500;
   margin-bottom: 3rem;
+}
+.onboarding-message .modal-content .organizer-description{
+  margin-bottom: 1.5rem;
+}
+.onboarding-message .modal-content .offers{
+  margin-bottom: 3rem;
+}
+.onboarding-message .modal-content .offers li{
+  color: var(--p-color1);
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 2.0875rem;
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+.onboarding-message .modal-content .offers li::marker{
+  color: var(--orange);
 }
 .onboarding-message .close-modal-button {
   padding: 1rem 9rem;
@@ -6310,11 +6350,32 @@ margin-bottom: 1rem;
   line-height: normal;
   margin-bottom: 1.06rem;
 }
-.onboarding-message .modal-content .description {
+.onboarding-message .modal-content .description, .onboarding-message .modal-content .offers li {
   font-size: 1rem;
   font-style: normal;
   font-weight: 400;
   line-height: 1.3rem;
+}
+.onboarding-message .modal-content .check-cirle {
+  width: 3.5rem;
+  height: 3.5rem;
+  margin: 0 auto 1.5rem;
+}
+.onboarding-message .modal-content .all-set {
+  font-size: 1.2rem;
+  line-height: normal;
+  margin: 0 auto 1.5rem;
+}
+.onboarding-message .modal-content .message {
+  font-size: 1rem;
+  line-height: normal;
+  margin: 0 auto 2.5rem;
+}
+.onboarding-message .modal-content .offers li{
+  margin-bottom: 0.4rem;
+}
+.onboarding-message .modal-content .offers{
+  margin-bottom: 2rem;
 }
 .onboarding-message .close-modal-button {
   padding: 0.75rem 8rem;

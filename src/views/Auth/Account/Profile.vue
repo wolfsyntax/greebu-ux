@@ -1,10 +1,11 @@
 <template>
   <div>
-    <artist-profile @form="submit" :error="errors" :message="message" :hasNoError="isValid" :formData="form" v-if="userRole === 'artists'"/>    
+    <artist-profile @form="submit" :error="errors" :message="message" v-if="userRole === 'artists'"/>    
     <organizer-profile @form="submit" :error="errors" v-else-if="userRole === 'organizer'" />
     <provider-profile @form="submit" :error="errors" v-else-if="userRole === 'service-provider'" />
     <customer-profile @form="submit" :error="errors" v-else-if="userRole === 'customers'" />
     <p v-else>No Profile Exists</p>
+
   </div>
 </template>
 
@@ -33,7 +34,6 @@ export default {
     form: {},
     errors: [],
     message: '',
-    isValid: true,
   }),
   methods: {
     ...mapActions([
@@ -47,8 +47,7 @@ export default {
     {
 
       console.log(`Account Profile [${this.userRole}]:: `, value);
-      this.form = value;
-
+      
       this.accountProfile(value)
         .then(response =>
         {
@@ -56,23 +55,22 @@ export default {
           this.errors = [];
 
           const { status: statusCode, data: {status, result}} = response;
-          console.log(`Result: `, response);
 
           if (response?.status === 200 && status === 200)
           {
-            this.message = 'Updated successfully';
             window.scrollBy(-10000, -10000);
-            this.isValid = true;
             this.$forceUpdate();
            // this.$router.push('/artist');
 
             setTimeout(() => {
-              this.message = '';
-            }, 5000);
+              this.message = 'Personal information updated successfully.';
+              setTimeout(() => {
+                this.message = '';
+              }, 100000);
+            }, 1000);
 
           } else {
             console.log(`Result: `, result);
-            this.isValid = false;
             const { errors } = result;
             if (errors) this.errors = errors;
 
@@ -83,7 +81,7 @@ export default {
           }
           
         });
-    }
+    },
   },
   mounted()
   { 

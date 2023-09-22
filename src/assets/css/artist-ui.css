@@ -487,7 +487,7 @@ body{
   display: flex;
   align-items: center;
 }
-.profile-page .middle-wrapper .post .card-body .post-features button {
+.profile-page .middle-wrapper .post .card-body .post-features .features-button{
   color: #536471;
   font-size: 16px;
   font-style: normal;
@@ -3149,7 +3149,7 @@ margin-right: 6px;
 .profile-page .middle-wrapper .post .card-body .write-something button {
   font-size: 0.9rem;
 }
-.profile-page .middle-wrapper .post .card-body .post-features button {
+.profile-page .middle-wrapper .post .card-body .post-features .features-button {
   font-size: 0.9rem;
   padding-top: 2px;
 }
