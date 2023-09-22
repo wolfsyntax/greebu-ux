@@ -59,7 +59,7 @@ export default new Vuex.Store({
     artist,
     userProfile,
     customer,
-    // organizer,
+    organizer,
     // services,
     songs,
     posts,

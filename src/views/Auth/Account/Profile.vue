@@ -1,7 +1,7 @@
 <template>
   <div>
     <artist-profile @form="submit" :error="errors" :message="message" :hasNoError="isValid" :formData="form" v-if="userRole === 'artists'"/>    
-    <organizer-profile @form="submit" :error="errors" v-else-if="userRole === 'organizer'" />
+    <organizer-profile @form="submit" :error="errors" :message="message" :hasNoError="isValid" v-else-if="userRole === 'organizer'" />
     <provider-profile @form="submit" :error="errors" v-else-if="userRole === 'service-provider'" />
     <customer-profile @form="submit" :error="errors" v-else-if="userRole === 'customers'" />
     <p v-else>No Profile Exists</p>
@@ -46,20 +46,22 @@ export default {
     submit(value)
     {
 
-      console.log(`Account Profile [${this.userRole}]:: `, value);
+      console.log(`Account Profile for [${this.userRole}] to send: `, value);
       this.form = value;
 
       this.accountProfile(value)
         .then(response =>
         {
-          console.log('Account Profile+: ', response);
+          console.log('Account Profile response: ', response);
           this.errors = [];
 
           const { status: statusCode, data: {status, result}} = response;
-          console.log(`Result: `, response);
 
           if (response?.status === 200 && status === 200)
           {
+
+            console.log(`Success Result: `, result);
+
             this.message = 'Updated successfully';
             window.scrollBy(-10000, -10000);
             this.isValid = true;
@@ -71,7 +73,9 @@ export default {
             }, 5000);
 
           } else {
-            console.log(`Result: `, result);
+
+            console.log(`Error Result: `, result);
+            
             this.isValid = false;
             const { errors } = result;
             if (errors) this.errors = errors;
