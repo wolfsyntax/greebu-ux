@@ -117,7 +117,8 @@ export default {
     },
     changeImage(e)
     {
-
+      this.avatar = URL.createObjectURL(event.target.files[0]);
+      this.form.member_avatar = event.target.files[0];
     }
   }
 }
