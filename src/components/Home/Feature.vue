@@ -14,7 +14,7 @@
             <p class="description">Welcome to Geebu! We're thrilled to have you on board. Get ready to embark on an exciting journey of Music and 
               Events, and explore a world of possibilities. Whether you're a seasoned user or just starting out, we're here to support 
               you every step of the way. Let's dive in and make the most of your experience with Geebu together!"</p>
-              <label for="modal-toggle" class="close-modal-button" @click="viewProfile">Let's Get Started!</label>
+              <label for="modal-toggle" class="close-modal-button" @click="$router.push('/account/profile')">Let's Get Started!</label>
           </div>
         </div>
       </div>
@@ -55,7 +55,7 @@
               <li>Post Upcoming Events</li>
               <li>Post Handled Events </li>
             </ul>
-              <label for="modal-toggle" class="close-modal-button" @click="viewProfile">Let's Get Started!</label>
+              <label for="modal-toggle" class="close-modal-button" @click="$router.push('/account/profile')">Let's Get Started!</label>
           </div>
         </div>
       </div>
@@ -586,9 +586,6 @@ export default {
 
       this.activeIndex = index;
     },
-    viewProfile(){
-      this.$router.push('/dashboard')
-    }
   },
   mounted() {
     this.observer = new IntersectionObserver((entries) => {

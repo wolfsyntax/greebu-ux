@@ -55,7 +55,7 @@
 
                <div class="dropdown dropstart">
                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                  <img :src="myAvatar" alt="artist profile" @error="replaceByDefault" >
+                  <img :src="myAvatar" alt="artist profile" @error="replaceByDefault" @click="$router.push('/dashboard')">
                   <span class="material-symbols-rounded">&#xe313;</span>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
@@ -98,13 +98,13 @@
 
                <div class="dropdown dropstart">
                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                  <img :src="myAccount?.avatar || myAvatar" alt="artist profile" @error="replaceByDefault" >
+                  <img :src="myAccount?.avatar || myAvatar" alt="artist profile" @error="replaceByDefault" @click="$router.push('/dashboard')">
                  <span class="material-symbols-rounded">&#xe313;</span>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
                   <li>
                     <div class="artist-info">
-                      <img :src="myAccount?.avatar || myAvatar" alt="artist profile" @error="replaceByDefault" >
+                      <img :src="myAccount?.avatar || myAvatar" alt="artist profile" @error="replaceByDefault" @click="$router.push('/dashboard')">
                       <div class="artist-name">
                         <p class="name">{{ userInfo.business_name }}</p>
                         <p class="email" style="text-transform: capitalize;">{{ userInfo.role }}</p>
@@ -113,9 +113,21 @@
                     </div>
                   </li>
                   <li><hr class="dropdown-divider"></li>
-                  <li v-for="(artist, index) in artistsDropdown" :key="index">
-                    <span class="material-symbols-outlined">{{ artist.icon }}</span>
-                    <a class="dropdown-item" :href="artist.link">{{ artist.name }}</a>
+                  <li>
+                    <span class="material-symbols-outlined">&#xe853;</span>
+                    <router-link to="/account/setting" class="dropdown-item">Account Settings</router-link>
+                  </li>
+                  <li>
+                    <span class="material-symbols-outlined">&#xe030;</span>
+                    <router-link to="/create-song" class="dropdown-item">Customized Songs</router-link>
+                  </li>
+                  <li>
+                    <span class="material-symbols-outlined">&#xe614;</span>
+                    <router-link to="#" class="dropdown-item">My Bookings</router-link>
+                  </li>
+                  <li>
+                    <span class="material-symbols-outlined">&#xf0fb;</span>
+                    <router-link to="#" class="dropdown-item">My Subscription</router-link>
                   </li>
                   <li><hr class="dropdown-divider"></li>
                   <li class="logout-wrapper">
@@ -137,7 +149,7 @@
 
                <div class="dropdown dropstart">
                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                  <img :src="myAccount?.avatar || myAvatar" alt="artist profile" @error="replaceByDefault" >
+                  <img :src="myAccount?.avatar || myAvatar" alt="artist profile" @error="replaceByDefault" @click="$router.push('/dashboard')">
                  <span class="material-symbols-rounded">&#xe313;</span>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
@@ -152,9 +164,21 @@
                     </div>
                   </li>
                   <li><hr class="dropdown-divider"></li>
-                  <li v-for="(organizer, index) in organizersDropdown" :key="index">
-                    <span class="material-symbols-outlined">{{ organizer.icon }}</span>
-                    <a class="dropdown-item" :href="organizer.link">{{ organizer.name }}</a>
+                  <li>
+                    <span class="material-symbols-outlined">&#xe853;</span>
+                    <router-link to="/account/setting" class="dropdown-item">Account Settings</router-link>
+                  </li>
+                  <li>
+                    <span class="material-symbols-outlined">&#xe158;</span>
+                    <router-link to="/message" class="dropdown-item">Message</router-link>
+                  </li>
+                  <li>
+                    <span class="material-symbols-outlined">&#xe03d;</span>
+                    <router-link to="#" class="dropdown-item">My Proposals</router-link>
+                  </li>
+                  <li>
+                    <span class="material-symbols-outlined">&#xe887;</span>
+                    <router-link to="#" class="dropdown-item">Help Center</router-link>
                   </li>
                   <li><hr class="dropdown-divider"></li>
                   <li class="logout-wrapper">
@@ -283,22 +307,6 @@ export default {
         { icon: 'mail', name: 'Message', link: ''},
         { icon: 'library_music	', name: 'My Songs', link: '/'},
         { icon: 'event_available', name: 'My Bookings', link: '/'},
-        // { icon: 'queue_music', name: 'My Proposals', link: '/'},
-        { icon: 'help', name: 'Help Center', link: '/'},
-      ],
-      artistsDropdown: [
-        { icon: 'account_circle', name: 'Account Settings', link: '/account/setting'},
-        // { icon: 'mail', name: 'Message', link: '/message'},
-        { icon: 'library_music	', name: 'Customized Songs', link: '/create-song'},
-        { icon: 'event_available', name: 'My Bookings', link: '/'},
-        // { icon: 'queue_music', name: 'My Proposals', link: '/'},
-        { icon: 'upgrade', name: 'My Subscription', link: '/'},
-        // { icon: 'help', name: 'Help Center', link: '/'},
-      ],
-      organizersDropdown: [
-        { icon: 'account_circle', name: 'Account Settings', link: '/account/setting'},
-        { icon: 'mail', name: 'Message', link: '/message'},
-        { icon: 'queue_music', name: 'My Proposals', link: '/'},
         // { icon: 'queue_music', name: 'My Proposals', link: '/'},
         { icon: 'help', name: 'Help Center', link: '/'},
       ],

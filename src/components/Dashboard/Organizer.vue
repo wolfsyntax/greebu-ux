@@ -9,6 +9,7 @@
                 <div class="cover" >
                   <div class="gray-shade" ></div>
                   <figure >
+                    <!-- <img :src="bannerImage" class="img-fluid" alt="profile cover" > -->
                     <img :src="bannerImage" class="img-fluid" alt="profile cover" >
                   </figure>
                   <div class="cover-photo-camera" >
@@ -196,29 +197,17 @@
             </div>
             <!-- right wrapper end -->
           </div> <!-- end of Post tab -->
-          <div v-if="activeItem === 'About'">
-            <h2>About</h2>
-          </div>
-          <div v-if="activeItem === 'Events'">
-            <h2>Events</h2>
-          </div>
-          <div v-if="activeItem === 'Photos'">
-            <h2>Photos</h2>
-          </div>
-          <div v-if="activeItem === 'Videos'">
-            <h2>Videos</h2>
-          </div>
-          <div v-if="activeItem === 'Reviews'">
-            <h2>Reviews</h2>
-          </div>
+
+
           <!-- About tab -->
-          <!-- <div class="row about-tab" v-if="activeItem === 'About'">
+          <div class="row about-tab" v-if="activeItem === 'About'">
             <div class="col-7">
               <h3 class="overview">Overview</h3>
               <p class="content">Lorem ipsum dolor sit amet consectetur.</p>
               <h5 class="capacity">Our capacity:</h5>  
               <ol type="1" class="capacity-list">
-                <li v-for="(capacity, index) in artistCapacity" :key="index">{{ capacity }}</li>
+                <li>Mobile apps design</li>
+                <li>Website design & development</li>
               </ol> 
 
               <div class="genres">
@@ -233,11 +222,11 @@
               <div class="social-media">
                 <h4>Social Media</h4>
                 <ul>
-                  <li><img src="/assets/artist-account/type-of-artist-icon-gray.svg" alt="artist type icon">{{ account?.artist_name }}</li>
+                  <!-- <li><img src="/assets/artist-account/type-of-artist-icon-gray.svg" alt="artist type icon">{{ account?.artist_name }}</li>
                   <li v-if="spotify"><img src="/assets/artist-account/spotify-icon-gray.svg" alt="spotify icon">{{ spotify }}</li>
                   <li v-if="youtube"><img src="/assets/artist-account/youtube-icon-gray.svg" alt="youtube icon">{{ youtube }}</li>
                   <li v-if="twitter"><img src="/assets/artist-account/twitter-icon-gray.svg" alt="twitter icon">{{ twitter }}</li>
-                  <li v-if="instagram"><img src="/assets/artist-account/instagram-icon-gray.svg" alt="instagram icon">{{ instagram }}</li>
+                  <li v-if="instagram"><img src="/assets/artist-account/instagram-icon-gray.svg" alt="instagram icon">{{ instagram }}</li> -->
                 </ul>
               </div>
 
@@ -262,7 +251,7 @@
                 </div>
               </div>
             </div>
-          </div> -->
+          </div>
 
           <!-- <div class="row songs-tab" v-if="activeItem === 'Songs'">
             <div class="col-12">
@@ -324,7 +313,23 @@
           <!-- <div class="row profile-body" v-if="activeItem === 'Events'"><h2>Events</h2></div>
 
           <div class="row profile-body" v-if="activeItem === 'Reviews'"><h2>Reviews</h2></div> -->
+
+        
+          <div v-if="activeItem === 'Events'">
+            <h2>Events</h2>
+          </div>
+          <div v-if="activeItem === 'Photos'">
+            <h2>Photos</h2>
+          </div>
+          <div v-if="activeItem === 'Videos'">
+            <h2>Videos</h2>
+          </div>
+          <div v-if="activeItem === 'Reviews'">
+            <h2>Reviews</h2>
+          </div>
+
         </div>
+        <banner-modal @close="toggle" :active="isActive" />
       </div>
     </section>
   </div>
@@ -337,6 +342,7 @@
 <script>
 import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
 import Post from '/src/components/Post/Organizer/Index.vue';
+import BannerModal from '/src/components/Organizer/BannerModal.vue';
 import { Modal } from 'bootstrap';
 
 export default {
@@ -346,7 +352,8 @@ export default {
     return {}
   },
   components: {
-    Post
+    Post,
+    BannerModal
   },
   data: () => ({
     bannerImage: '/assets/organizer-account/default-cover-photo.webp',
@@ -368,14 +375,17 @@ export default {
     ],
     activeItem: 'Post',
     // activeItem: 'Post',
-    // artistRatings: '4.95',
-    // artistReviews: '234',
+    artistRatings: '4.95',
+    artistReviews: '234',
 
     // isModalVisible: false,
   
   }),
   
   methods: {
+    // ...mapActions([
+    //   'fetchOrganizerOptions', 'fetchProfile', 'oragnizerOptions',
+    // ]),
     openCreatePostModal(data)
     {
       this.$root.$emit("bv::show::modal", "#artistPost");
@@ -412,9 +422,37 @@ export default {
       }
     },
     
- 
+  },
+  mounted()
+  {
+
+    // this.fetchProfile()
+    //   .then(res =>
+    //   {
+    //     console.log('Fetch Profile [Organizer]: ', res)
+    //   }).catch(err =>
+    //   {
+    //     console.log('Fetch Profile Error [Organizer]: ', err)
+    //   })
+
+    // this.artistOptions()
+    //   .then(res =>
+    //   {
+    //     console.log('Artist Options [Organizer] ', res)
+    //   });
+
+    // this.bannerImage = this.profile.cover_photo || this.account?.cover_photo || '/assets/organizer-account/default-cover-photo.webp';
+
   },
   watch: {
+    // profile: {
+    //   handler(res)
+    //   {
+    //     console.log('Profile object updated: ', res)
+    //     this.bannerImage = res?.cover_photo || this.account.cover_photo || '/assets/organizer-account/default-cover-photo.webp';
+    //   },
+    //   deep: true,
+    // },
   
   },
   // computed: {

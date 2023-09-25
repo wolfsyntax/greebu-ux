@@ -7,28 +7,28 @@
             <div class="col-3"></div>
             <div class="col-6">
               <div class="back-wrapper">
-                <a href="/dashboard" class="back">
-                  <span class="material-symbols-outlined">&#xef7d;</span>Back
-                </a>
+                <router-link to="/dashboard" class="back"><span class="material-symbols-outlined">&#xef7d;</span>Back</router-link>
               </div>
 
               <h2 class="title">Welcome! Let's create your profile as an Event Organizer</h2>
 
               <p class="sub-heading">Let customers and other co-artists know you better!</p>
               <h3 class="profile-details">Profile Details</h3>
-              
-              <div v-if="message" class="d-flex justify-content-between toast-artist-details">
-                <div class="d-flex accepted-wrapper">
-                  <span class="material-symbols-rounded check-circle">&#xe86c;</span>
-                  <div>
-                    <h5 class="accepted">{{ message }}</h5>
-                    <p class="description">Lorem ipsum dolor set amet.</p>
+
+              <div class="onboarding-message"  v-if="message">
+              <input type="checkbox" id="modal-toggle" class="modal-toggle" checked style="display: none;">
+                <div class="modal">
+                  <!-- <div class="close-toast">
+                   <span class="material-symbols-rounded close-icon" @click="message = ''">&#xe5cd;</span>
+                  </div> -->
+                  <div class="modal-content">
+                    <img src="/assets/artist-account/check-circle.svg" class="check-cirle" alt="check circle">
+                    <h3 class="all-set">You are all set!</h3>
+                    <p class="message">{{ message }}</p>
+                      <label for="modal-toggle" class="close-modal-button" @click="$router.push('/dashboard')">View Profile</label>
                   </div>
                 </div>
-                <div class="close-toast">
-                  <span class="material-symbols-rounded close-icon" @click="message = ''">&#xe5cd;</span>
-                </div>
-              </div>
+            </div> 
 
               <form @submit.prevent="submit" class="fill-details" autocomplete="off">
                 <div class="form-group upload-img">
