@@ -30,3 +30,35 @@ export const fetchOrganizerOptions = ({ commit, rootState, state}, payload) => {
     });
   })
 }
+
+export const addStaff = ({ commit, rootState, state }, payload) =>
+{
+
+  return new Promise(async (resolve, reject) =>
+  {
+
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
+
+    await axios.get(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/organizer/staff`, payload)
+      .then(response =>
+      {
+
+      });
+  });
+}
+
+export const editStaff = ({ commit, rootState, state }, payload) =>
+{
+
+  return new Promise(async (resolve, reject) =>
+  {
+
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
+
+    await axios.get(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/organizer/forms`, payload)
+      .then(response =>
+      {
+
+      });
+  });
+}

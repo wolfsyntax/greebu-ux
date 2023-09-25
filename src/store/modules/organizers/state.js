@@ -1,5 +1,7 @@
 var state = {
   staff: [],
+  staffIndex: -1,
+  staffFilter: {},
   eventTypes: [
     "Battle of the bands",
     "Weddings",

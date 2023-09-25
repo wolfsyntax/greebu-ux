@@ -59,6 +59,13 @@ var getters = {
     }
     return '';
   },
+  threadsNET: state =>
+  {
+    if (state.profile.threads !== null && state.profile.threads !== undefined) {
+      return state.profile.threads.replace(/^https?:\/\/(www\.)?/, "");
+    }
+    return '';
+  },
   youtube: state =>
   {
     if (state.profile?.youtube !== null && state.profile?.youtube !== undefined) {

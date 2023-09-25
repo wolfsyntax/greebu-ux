@@ -46,7 +46,7 @@ export default {
     return {
       social_media: [
         { id: 1, value: 'instagram', label: 'Instagram', },
-        { id: 2, value: 'twitter', label: 'Twitter', },
+        { id: 2, value: 'twitter', label: 'X Formerly Twitter', },
         { id: 3, value: 'youtube', label: 'Youtube' },
         { id: 4, value: 'spotify', label: 'Spotify' },
       ],
@@ -106,7 +106,7 @@ export default {
           } else if (/^http(s)?:\/\/(www|m)\.youtube\.com\/((channel|c)\/)?(?!feed|user\/|watch\?)([a-zA-Z0-9-_.])*.*$/.test(this.url) && nv === 'youtube') {
             // console.log('Valid YouTube URL: ', this.url)
             this.validUrl = true;
-          } else if (/^(?:(?:http|https):\/\/)?(?:www.)?(twitter.com\/(?![a-zA-Z0-9_]+\/)([a-zA-Z0-9_]+))$/.test(this.url) && nv === 'twitter') {
+          } else if (/^(?:(?:http|https):\/\/)?(?:www.)?((twitter.com|x.com)\/(?![a-zA-Z0-9_]+\/)([a-zA-Z0-9_]+))$/.test(this.url) && nv === 'twitter') {
             // console.log('Valid Twitter Profile: ', this.url)
             this.validUrl = true;
           } else {

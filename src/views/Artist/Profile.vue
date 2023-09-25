@@ -270,12 +270,12 @@
                 <div class="card mb-3 social-media-account-row" v-if="form.twitter" style="height: 90px;">
                   <div class="row g-0">
                     <div class="col-md-1">
-                      <img src="/assets/social icons/_Twitter.svg" class="img-fluid rounded-start mx-2" alt="Twitter">
+                      <img src="/assets/social icons/_X.svg" class="img-fluid rounded-start mx-2" alt="X">
                     </div>
 
                     <div class="col-md-10">
                       <div class="card-body">
-                        <h5 class="card-title">Twitter</h5>
+                        <h5 class="card-title">X</h5>
                         <p class="card-text"><small class="text-body-secondary">{{ form.twitter }}</small></p>
                       </div>
                     </div>
@@ -882,6 +882,12 @@ export default {
     },
     updateSocial(key, val)
     {
+      
+      val = val.replace('https://www.', '');
+      val = val.replace('https://', '');
+      val = val.replace('www.', '');
+
+      val = `https://www.${val}`;
 
       switch (key) {
         case 'youtube':

@@ -72,8 +72,9 @@ export default {
   data: () => ({
     social_media: [
       { id: 1, value: 'instagram', label: 'Instagram', },
-      { id: 2, value: 'twitter', label: 'Twitter', },
+      { id: 2, value: 'twitter', label: 'X Formerly Twitter', },
       { id: 3, value: 'facebook', label: 'Facebook' },
+      { id: 3, value: 'threads', label: 'Threads' },
     ],
     media_type: null,
     url: null,
@@ -110,9 +111,11 @@ export default {
 
           if (/^(?:(?:http|https):\/\/)?(?:www.)?(?:instagram.com|instagr.am|instagr.com)\/(\w+)/.test(this.url) && nv === 'instagram') {
             this.validUrl = true;
+          } else if (/^(?:(?:http|https):\/\/)?(?:www.)?(threads.net)\/@(\w+)/.test(this.url) && nv === 'threads') {
+            this.validUrl = true;
           } else if (/^(?:https?:\/\/)?(?:www\.)?(mbasic.facebook|m\.facebook|facebook|fb)\.(com|me)\/(?:(?:\w\.)*#!\/)?(?:pages\/)?(?:[\w\-\.]*\/)*([\w\-\.]*)$/.test(this.url) && nv === 'facebook') {
             this.validUrl = true;
-          } else if (/^(?:(?:http|https):\/\/)?(?:www.)?(twitter.com\/(?![a-zA-Z0-9_]+\/)([a-zA-Z0-9_]+))$/.test(this.url) && nv === 'twitter') {
+          } else if (/^(?:(?:http|https):\/\/)?(?:www.)?((twitter.com|x.com)\/(?![a-zA-Z0-9_]+\/)([a-zA-Z0-9_]+))$/.test(this.url) && nv === 'twitter') {
             this.validUrl = true;
           } else {
             this.validType = false;
@@ -137,10 +140,13 @@ export default {
       if (/^(?:(?:http|https):\/\/)?(?:www.)?(?:instagram.com|instagr.am|instagr.com)\/(\w+)/.test(nv) && this.media_type === 'instagram') {
         this.validUrl = true;
         this.validType = this.media_type ? true : false;
+      } else if (/^(?:(?:http|https):\/\/)?(?:www.)?(threads.net)\/@(\w+)/.test(nv) && this.media_type === 'threads') {
+        this.validUrl = true;
+        this.validType = this.media_type ? true : false;
       } else if (/^(?:https?:\/\/)?(?:www\.)?(mbasic.facebook|m\.facebook|facebook|fb)\.(com|me)\/(?:(?:\w\.)*#!\/)?(?:pages\/)?(?:[\w\-\.]*\/)*([\w\-\.]*)$/.test(nv) && this.media_type === 'facebook') {
         this.validUrl = true;
         this.validType = this.media_type ? true : false;
-      } else if (/^(?:(?:http|https):\/\/)?(?:www.)?(twitter.com\/(?![a-zA-Z0-9_]+\/)([a-zA-Z0-9_]+))$/.test(nv) && this.media_type === 'twitter') {
+      } else if (/^(?:(?:http|https):\/\/)?(?:www.)?((twitter.com|x.com)\/(?![a-zA-Z0-9_]+\/)([a-zA-Z0-9_]+))$/.test(nv) && this.media_type === 'twitter') {
         this.validUrl = true;
         this.validType = this.media_type ? true : false;
       }

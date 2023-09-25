@@ -4,7 +4,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="staticBackdropLabel">Organizer Staff</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ref="staffFormDismiss"></button>
         </div>
         <div class="modal-body">
           <form @submit.prevent="submit" class="modal-add-member">
@@ -105,21 +105,55 @@ export default {
   computed: {
     ...mapGetters(['profileForm', 'myAccount', 'myAvatar',]),
     ...mapState({
-      account: state => state.account,
-      eventTypes: state => state.organizer.eventTypes,
-      roles: state => state.organizer.staffRoles,
+      account: state      => state.account,
+      eventTypes: state   => state.organizer.eventTypes,
+      roles: state        => state.organizer.staffRoles,
+      pos: state          => state.organizer.staffIndex,
+      member: state       => state.organizer.staffFilter,
     })
   },
+  unmounted() {
+    console.log('\n\nUnmount Staff Form\n')
+  },
+  mounted()
+  {
+    if (Object.keys(this.member).length > 0) {
+      this.form = this.member;
+    } else {
+
+      this.form = {
+        member_avatar: null,
+        member_name: '',
+        role: null,
+      };
+
+    }
+  },
   methods: {
+    ...mapActions(['addStaff']),
     submit()
     {
-      
+      if (pos > -1)
+      {
+
+        
+      } else {
+        this.addStaff(this.form)
+          .then(response =>
+          {
+            this.$emit('form', this.form);
+            this.$refs.staffFormDismiss.click();
+          })
+      }
     },
     changeImage(e)
     {
       this.avatar = URL.createObjectURL(event.target.files[0]);
       this.form.member_avatar = event.target.files[0];
     }
+  },
+  watch: {
+    
   }
 }
 </script>
