@@ -108,7 +108,7 @@
                   <div class="col">
                     <div class="row">
                       <div class="col-12">
-                        <!-- <ul class="list-group band-members" v-if="members">
+                        <ul class="list-group band-members" v-if="members">
                           <transition-group name="fade" tag="div">
                             <li class="list-group-item" v-for="(mem, index) in members" :key="mem.id">
                               <div class="items">
@@ -122,17 +122,17 @@
 
                               <div class="options"> 
                                 <div class="d-flex align-items-center text-end">
-                                  <button type="button" class="edit-band-member-wrapper" @click="toggle('members', true, index)">
+                                  <button type="button" class="edit-band-member-wrapper" @click="editMember(index)" >
                                     <img src="/assets/artist-account/edit-band-member.svg" class="edit-band-member" alt="edit band member" >
                                   </button>
-                                  <button type="button" @click="removeMember(mem.id)" class="delete-band-member-wrapper">
+                                  <button type="button" @click="removeStaff(mem.id)" class="delete-band-member-wrapper">
                                     <img src="/assets/artist-account/delete-band-member.svg" class="delete-band-member" alt="delete band member">
                                   </button>
                                 </div>
                               </div>
                             </li>
                           </transition-group>
-                        </ul> -->
+                        </ul>
                       </div>
                     </div>
                   </div>
@@ -141,29 +141,29 @@
                   <div class="form-group">
                     <label for="social-media">Social Media Accounts</label><br>  
                     <button type="button" class="btn btn-primary add-social-media" @click="social = { text: '', key: '' }; toggle('organizerLinks')"><span class="material-symbols-rounded">add_link</span>Add Links</button>
-                  </div>    
+                  </div>
 
-                  <transition name="fade" mode="out-in">                
-                    <div class="card mb-3 social-media-account-row" v-if="form?.threads">
+                  <transition name="fade" mode="out-in"> 
+                    <div class="card mb-3 social-media-account-row" v-if="form.facebook" style="height: 90px;">
                       <div class="row g-0">
                         <div class="col-md-1">
-                          <img src="/assets/social icons/_Threads.svg" class="img-fluid rounded-start mx-2" alt="Threads">
+                          <img src="/assets/social icons/_Facebook.svg" class="img-fluid rounded-start mx-2" alt="Facebook">
                         </div>
 
                         <div class="col-md-10">
                           <div class="card-body">
-                            <h5 class="card-title">Threads</h5>
-                            <p class="card-text"><small class="text-body-secondary">{{ form?.threads }}</small></p>
+                            <h5 class="card-title">Facebook</h5>
+                            <p class="card-text"><small class="text-body-secondary">{{ form.facebook }}</small></p>
                           </div>
                         </div>
 
                         <div class="col-md-1">
                           <div class="d-flex align-items-center text-end">
-                            <button type="button" class="social-media-account-wrapper" @click="toggle('organizerLinks', true, { key: 'instagram', text: form.instagram })">
-                              <img src="/assets/artist-account/edit-band-member.svg" class="social-media-account" alt="edit social media account" >
+                            <button type="button" class="social-media-account-wrapper" @click="toggle('organizerLinks', true, { key: 'facebook', text: form.facebook })">
+                              <img src="/assets/artist-account/edit-band-member.svg" class="social-media-account" alt="edit social media account" />
                             </button>
 
-                            <button type="button" @click="removeSocialMedia('instagram')" class="social-media-account-wrapper">
+                            <button type="button" @click="removeSocialMedia('facebook')" class="social-media-account-wrapper">
                               <img src="/assets/artist-account/delete-band-member.svg" class="social-media-account" alt="delete social media account">
                             </button>
                           </div>
@@ -171,7 +171,6 @@
                       </div>
                     </div>
                   </transition>
-
 
                   <transition name="fade" mode="out-in">                
                     <div class="card mb-3 social-media-account-row" v-if="form?.instagram">
@@ -201,28 +200,28 @@
                       </div>
                     </div>
                   </transition>
-
-                  <transition name="fade" mode="out-in"> 
-                    <div class="card mb-3 social-media-account-row" v-if="form.facebook" style="height: 90px;">
+                  
+                  <transition name="fade" mode="out-in">                
+                    <div class="card mb-3 social-media-account-row" v-if="form?.threads">
                       <div class="row g-0">
                         <div class="col-md-1">
-                          <img src="/assets/social icons/_Facebook.svg" class="img-fluid rounded-start mx-2" alt="Facebook">
+                          <img src="/assets/social icons/_Threads.svg" class="img-fluid rounded-start mx-2" alt="Threads">
                         </div>
 
                         <div class="col-md-10">
                           <div class="card-body">
-                            <h5 class="card-title">Facebook</h5>
-                            <p class="card-text"><small class="text-body-secondary">{{ form.facebook }}</small></p>
+                            <h5 class="card-title">Threads</h5>
+                            <p class="card-text"><small class="text-body-secondary">{{ form?.threads }}</small></p>
                           </div>
                         </div>
 
                         <div class="col-md-1">
                           <div class="d-flex align-items-center text-end">
-                            <button type="button" class="social-media-account-wrapper" @click="toggle('organizerLinks', true, { key: 'facebook', text: form.facebook })">
-                              <img src="/assets/artist-account/edit-band-member.svg" class="social-media-account" alt="edit social media account" />
+                            <button type="button" class="social-media-account-wrapper" @click="toggle('organizerLinks', true, { key: 'instagram', text: form.instagram })">
+                              <img src="/assets/artist-account/edit-band-member.svg" class="social-media-account" alt="edit social media account" >
                             </button>
 
-                            <button type="button" @click="removeSocialMedia('facebook')" class="social-media-account-wrapper">
+                            <button type="button" @click="removeSocialMedia('instagram')" class="social-media-account-wrapper">
                               <img src="/assets/artist-account/delete-band-member.svg" class="social-media-account" alt="delete social media account">
                             </button>
                           </div>
@@ -330,7 +329,7 @@
       </section>
     </div>
 
-    <social-media id="organizerLinks" @form="updateSocial" :media="social" @modalClose="dismiss"/>
+    <social-media id="organizerLinks" @form="updateSocial" :media="social" @modalClose="dismiss" />
     <staff-form id="organizerStaff" @form="onStaffSave" @modalClose="dismiss" />
 
   </div>
@@ -431,7 +430,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      'fetchOrganizerOptions', 'fetchProfile',
+      'fetchOrganizerOptions', 'fetchProfile', 'removeStaff',
     ]),
     ...mapMutations(['SET_STAFF_FILTER']),
     replaceByDefault(e) 
@@ -447,7 +446,19 @@ export default {
     },
     onStaffSave(staff)
     {
+      console.log('\n\non save staff\n');
       this.SET_STAFF_FILTER();
+    },
+    editMember(index = -1)
+    {
+
+      this.SET_STAFF_FILTER(index);
+
+      new Modal(document.getElementById('organizerStaff'), {
+        keyboard: false,
+        backdrop: 'static',
+      }).show();
+      
     },
     updateSocial(key, val)
     {
@@ -532,8 +543,11 @@ export default {
         backdrop: 'static',
       }).show();
 
+      this.triggerType = 'staff';
+
       if (id === 'organizerLinks' && flag === true)
       {
+        this.triggerType = 'media';
         this.social = options
       }
     },

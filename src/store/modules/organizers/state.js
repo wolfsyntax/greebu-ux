@@ -2,6 +2,7 @@ var state = {
   staff: [],
   staffIndex: -1,
   staffFilter: {},
+  staffRole: 'others',
   eventTypes: [
     "Battle of the bands",
     "Weddings",

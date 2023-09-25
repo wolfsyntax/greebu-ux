@@ -2,7 +2,7 @@
   <div class="modal fade" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog" >
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header border-bottom-0">
           <div class="container">
             <div class="row">
               <div class="col">

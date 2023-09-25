@@ -138,8 +138,14 @@ export const SET_STAFF_FILTER = (state, index = -1) =>
 
   if (index > -1) {
     state.staffFilter = state.staff[index];
+    state.staffRole = state.staff[index].role;
   } else {
     state.staffFilter = {};
+    state.staffRole = '';
   }
 
+}
+
+export const SET_STAFF = (state, payload) => {
+  state.staff = payload || [];
 }
