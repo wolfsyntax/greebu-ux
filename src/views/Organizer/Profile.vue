@@ -108,7 +108,7 @@
                   <div class="col">
                     <div class="row">
                       <div class="col-12">
-                        <!-- <ul class="list-group band-members" v-if="members">
+                        <ul class="list-group band-members" v-if="members">
                           <transition-group name="fade" tag="div">
                             <li class="list-group-item" v-for="(mem, index) in members" :key="mem.id">
                               <div class="items">
@@ -122,17 +122,17 @@
 
                               <div class="options"> 
                                 <div class="d-flex align-items-center text-end">
-                                  <button type="button" class="edit-band-member-wrapper" @click="toggle('members', true, index)">
+                                  <button type="button" class="edit-band-member-wrapper" @click="editMember(index)" >
                                     <img src="/assets/artist-account/edit-band-member.svg" class="edit-band-member" alt="edit band member" >
                                   </button>
-                                  <button type="button" @click="removeMember(mem.id)" class="delete-band-member-wrapper">
+                                  <button type="button" @click="removeStaff(mem.id)" class="delete-band-member-wrapper">
                                     <img src="/assets/artist-account/delete-band-member.svg" class="delete-band-member" alt="delete band member">
                                   </button>
                                 </div>
                               </div>
                             </li>
                           </transition-group>
-                        </ul> -->
+                        </ul>
                       </div>
                     </div>
                   </div>
@@ -140,8 +140,37 @@
                   <!-- Social Media Links -->
                   <div class="form-group">
                     <label for="social-media">Social Media Accounts</label><br>  
-                    <button type="button" class="btn btn-primary add-social-media" @click="toggle('organizerLinks')"><span class="material-symbols-rounded">add_link</span>Add Links</button>
-                  </div>    
+                    <button type="button" class="btn btn-primary add-social-media" @click="social = { text: '', key: '' }; toggle('organizerLinks')"><span class="material-symbols-rounded">add_link</span>Add Links</button>
+                  </div>
+
+                  <transition name="fade" mode="out-in"> 
+                    <div class="card mb-3 social-media-account-row" v-if="form.facebook" style="height: 90px;">
+                      <div class="row g-0">
+                        <div class="col-md-1">
+                          <img src="/assets/social icons/_Facebook.svg" class="img-fluid rounded-start mx-2" alt="Facebook">
+                        </div>
+
+                        <div class="col-md-10">
+                          <div class="card-body">
+                            <h5 class="card-title">Facebook</h5>
+                            <p class="card-text"><small class="text-body-secondary">{{ form.facebook }}</small></p>
+                          </div>
+                        </div>
+
+                        <div class="col-md-1">
+                          <div class="d-flex align-items-center text-end">
+                            <button type="button" class="social-media-account-wrapper" @click="toggle('organizerLinks', true, { key: 'facebook', text: form.facebook })">
+                              <img src="/assets/artist-account/edit-band-member.svg" class="social-media-account" alt="edit social media account" />
+                            </button>
+
+                            <button type="button" @click="removeSocialMedia('facebook')" class="social-media-account-wrapper">
+                              <img src="/assets/artist-account/delete-band-member.svg" class="social-media-account" alt="delete social media account">
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </transition>
 
                   <transition name="fade" mode="out-in">                
                     <div class="card mb-3 social-media-account-row" v-if="form?.instagram">
@@ -171,28 +200,28 @@
                       </div>
                     </div>
                   </transition>
-
-                  <transition name="fade" mode="out-in"> 
-                    <div class="card mb-3 social-media-account-row" v-if="form.facebook" style="height: 90px;">
+                  
+                  <transition name="fade" mode="out-in">                
+                    <div class="card mb-3 social-media-account-row" v-if="form?.threads">
                       <div class="row g-0">
                         <div class="col-md-1">
-                          <img src="/assets/social icons/_Spotify.svg" class="img-fluid rounded-start mx-2" alt="Facebook">
+                          <img src="/assets/social icons/_Threads.svg" class="img-fluid rounded-start mx-2" alt="Threads">
                         </div>
 
                         <div class="col-md-10">
                           <div class="card-body">
-                            <h5 class="card-title">Facebook</h5>
-                            <p class="card-text"><small class="text-body-secondary">{{ form.facebook }}</small></p>
+                            <h5 class="card-title">Threads</h5>
+                            <p class="card-text"><small class="text-body-secondary">{{ form?.threads }}</small></p>
                           </div>
                         </div>
 
                         <div class="col-md-1">
                           <div class="d-flex align-items-center text-end">
-                            <button type="button" class="social-media-account-wrapper" @click="toggle('organizerLinks', true, { key: 'facebook', text: form.facebook })">
-                              <img src="/assets/artist-account/edit-band-member.svg" class="social-media-account" alt="edit social media account" />
+                            <button type="button" class="social-media-account-wrapper" @click="toggle('organizerLinks', true, { key: 'instagram', text: form.instagram })">
+                              <img src="/assets/artist-account/edit-band-member.svg" class="social-media-account" alt="edit social media account" >
                             </button>
 
-                            <button type="button" @click="removeSocialMedia('facebook')" class="social-media-account-wrapper">
+                            <button type="button" @click="removeSocialMedia('instagram')" class="social-media-account-wrapper">
                               <img src="/assets/artist-account/delete-band-member.svg" class="social-media-account" alt="delete social media account">
                             </button>
                           </div>
@@ -205,19 +234,19 @@
                     <div class="card mb-3 social-media-account-row" v-if="form.twitter" style="height: 90px;">
                       <div class="row g-0">
                         <div class="col-md-1">
-                          <img src="/assets/social icons/_Twitter.svg" class="img-fluid rounded-start mx-2" alt="Twitter">
+                          <img src="/assets/social icons/_X.svg" class="img-fluid rounded-start mx-2" alt="X">
                         </div>
 
                         <div class="col-md-10">
                           <div class="card-body">
-                            <h5 class="card-title">Twitter</h5>
+                            <h5 class="card-title">X</h5>
                             <p class="card-text"><small class="text-body-secondary">{{ form.twitter }}</small></p>
                           </div>
                         </div>
 
                         <div class="col-md-1">
                           <div class="d-flex align-items-center text-end">
-                            <button type="button" class="social-media-account-wrapper" @click="toggle('links', true, { key: 'twitter', text: form.twitter })">
+                            <button type="button" class="social-media-account-wrapper" @click="toggle('organizerLinks', true, { key: 'twitter', text: form.twitter })">
                               <img src="/assets/artist-account/edit-band-member.svg" class="social-media-account" alt="edit social media account" >
                             </button>
                             <button type="button" @click="removeSocialMedia('twitter')" class="social-media-account-wrapper">
@@ -300,14 +329,14 @@
       </section>
     </div>
 
-    <social-media id="organizerLinks" @form="updateSocial" />
-    <staff-form id="organizerStaff" />
+    <social-media id="organizerLinks" @form="updateSocial" :media="social" @modalClose="dismiss" />
+    <staff-form id="organizerStaff" @form="onStaffSave" @modalClose="dismiss" />
 
   </div>
 </template>
 
 <script>
-import { mapGetters, mapState, mapActions } from "vuex";
+import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
 import Multiselect from '@vueform/multiselect';
 import StaffForm from './Forms/StaffForm.vue';
 import SocialMedia from "./Forms/SocialMedia.vue";
@@ -338,6 +367,7 @@ export default {
       facebook: '',
       twitter: '',
       instagram: '',
+      threads: '',
       accept_proposal: false,
       send_proposal: false,
     },
@@ -354,6 +384,7 @@ export default {
     tempMagic: '',
     targetMagic: '',
     isLoading: false,
+    triggerType: '',
   }),
   props: {
     hasNoError: {
@@ -375,6 +406,7 @@ export default {
   mounted()
   {
 
+    this.triggerType = '';
 
     this.fetchOrganizerOptions()
       .then(res =>
@@ -388,6 +420,7 @@ export default {
     
     this.form = this.myAccount;
 
+    this.SET_STAFF_FILTER();
 
     this.avatar = this.myAvatar || '/assets/artist-account/new.svg';
     this.avatarMagic = this.avatar;
@@ -397,18 +430,44 @@ export default {
   },
   methods: {
     ...mapActions([
-      'fetchOrganizerOptions', 'fetchProfile',
+      'fetchOrganizerOptions', 'fetchProfile', 'removeStaff',
     ]),
+    ...mapMutations(['SET_STAFF_FILTER']),
     replaceByDefault(e) 
     {
       e.target.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm3RFDZM21teuCMFYx_AROjt-AzUwDBROFww&usqp=CAU';
     },
-    changeImage(event)
+    dismiss(trigger)
+    {
+      if (trigger === 'social') {
+        this.social.key = '';
+        this.social.text = '';
+      }
+    },
+    onStaffSave(staff)
+    {
+      console.log('\n\non save staff\n');
+      this.SET_STAFF_FILTER();
+    },
+    editMember(index = -1)
     {
 
+      this.SET_STAFF_FILTER(index);
+
+      new Modal(document.getElementById('organizerStaff'), {
+        keyboard: false,
+        backdrop: 'static',
+      }).show();
+      
     },
     updateSocial(key, val)
     {
+
+      val = val.replace('https://www.', '');
+      val = val.replace('https://', '');
+      val = val.replace('www.', '');
+
+      val = `https://www.${val}`;
 
       switch (key) {
         case 'facebook':
@@ -432,7 +491,13 @@ export default {
           this.social.text = val;
 
           break;
+        case 'threads':
+          this.form.threads = val;
 
+          this.social.key = key;
+          this.social.text = val;
+
+          break;
         default:
 
           this.social.key = '';
@@ -468,14 +533,23 @@ export default {
       if (key === 'facebook') this.form.facebook = '';
       if (key === 'twitter') this.form.twitter = '';
       if (key === 'instagram') this.form.instagram = '';
+      if (key === 'threads') this.form.threads = '';
 
     },
-    toggle(id = 'organizerLinks', flag, options)
+    toggle(id = 'organizerLinks', flag = false, options = {key: '', text: ''})
     {
       new Modal(document.getElementById(id), {
         keyboard: false,
         backdrop: 'static',
       }).show();
+
+      this.triggerType = 'staff';
+
+      if (id === 'organizerLinks' && flag === true)
+      {
+        this.triggerType = 'media';
+        this.social = options
+      }
     },
     submit()
     {
@@ -539,10 +613,12 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(['profileForm', 'myAccount', 'myAvatar', ]),
+    ...mapGetters(['profileForm', 'myAccount', 'myAvatar', '']),
     ...mapState({
       account: state => state.account,
       eventTypes: state => state.organizer.eventTypes,
+      memberIndex: state => state.organizer.staffIndex,
+      members: state => state.organizer.staff,
     }),
     remainingChars()
     {
@@ -568,6 +644,7 @@ export default {
     },
   },
   watch: {
+
     account(val)
     {
 

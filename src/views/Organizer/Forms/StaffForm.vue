@@ -2,11 +2,12 @@
   <div class="modal fade" id="organizerStaff" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header border-bottom-0">
           <h1 class="modal-title fs-5" id="staticBackdropLabel">Organizer Staff</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ref="staffFormDismiss"></button>
         </div>
         <div class="modal-body">
+
           <form @submit.prevent="submit" class="modal-add-member">
             <div class="container">
               <div class="row py-2">
@@ -35,7 +36,7 @@
                     <input type="text" v-model="form.member_name" placeholder="Name of the member" 
                       class="form-control member-name" required 
                     />
-                    <div v-for="err in error?.member_name" :key="err" class="member-name text-danger">{{ err }}</div>
+                    <div v-for="err in errors?.member_name" :key="err" class="member-name text-danger">{{ err }}</div>
                   </div>
                 </div>
               </div>
@@ -51,7 +52,7 @@
                     </select>
 
                     <br />
-
+                    
                     <input type="text" v-model="other" placeholder="Role of Member" class="form-control member-name" v-if="form.role === 'others'" required />
 
                     <div v-for="err in errors?.role" :key="err" class="text-danger">{{ err }}</div>
@@ -77,7 +78,7 @@
 </template>
 
 <script>
-import { mapGetters, mapState, mapActions } from "vuex";
+import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
 export default {
   setup () {
     
@@ -86,9 +87,9 @@ export default {
   },
   data: () => ({
     form: {
-      member_avatar: null,
+      member_avatar: '',
       member_name: '',
-      role: null,
+      role: '',
     },
     avatar: '',
     other: '',
@@ -96,29 +97,143 @@ export default {
     isLoading: false,
   }),
   props: {
-    error: {
-      type: Array,
-      default: [],
-      required: true
-    },
+    // error: {
+    //   type: Array,
+    //   default: [],
+    //   required: true
+    // },
   },
   computed: {
-    ...mapGetters(['profileForm', 'myAccount', 'myAvatar',]),
+    ...mapGetters(['profileForm', 'myAccount', 'myAvatar', 'getStaff',]),
     ...mapState({
-      account: state => state.account,
-      eventTypes: state => state.organizer.eventTypes,
-      roles: state => state.organizer.staffRoles,
+      account: state      => state.account,
+      eventTypes: state   => state.organizer.eventTypes,
+      roles: state        => state.organizer.staffRoles,
+      pos: state          => state.organizer.staffIndex,
+      member: state       => state.organizer.staffFilter,
+      role: state         => state.organizer.staffRole,
     })
   },
+  unmounted() {
+    console.log('\n\nUnmount Staff Form\n')
+  },
+  mounted()
+  {
+
+    const myModal = document.getElementById('organizerStaff');
+
+    myModal.addEventListener('hide.bs.modal', () =>
+    {
+      this.form = {
+        member_avatar: '',
+        member_name: '',
+        role: '',
+      };
+
+      this.avatar = '';
+      this.other = '';
+      this.errors = {};
+      this.isLoading = false;
+      
+      this.fetchStaff();
+      this.SET_STAFF_FILTER();
+
+    });
+
+  },
   methods: {
+    ...mapActions(['addStaff', 'fetchStaff', 'editStaff', ]),
+    ...mapMutations(['SET_STAFF_FILTER']),
     submit()
     {
-      
+      if (Object.keys(this.member).length > 0)
+      {
+
+        if (this.other !== '' && this.form.role === 'others') {
+          this.form.role = this.other;
+        }
+
+        if (typeof this.form.member_avatar === 'string') {
+          this.form.member_avatar = '';
+        }
+
+        this.editStaff(this.form)
+          .then(response =>
+          {
+            this.$emit('form', this.form);
+            this.$refs.staffFormDismiss.click();
+          })
+      } else {
+
+        if (this.other !== '')
+        {
+          this.form.role = this.other;
+        }
+
+        this.addStaff(this.form)
+          .then(response =>
+          {
+            this.$emit('form', this.form);
+            this.$refs.staffFormDismiss.click();
+          })
+      }
     },
     changeImage(e)
     {
-      this.avatar = URL.createObjectURL(event.target.files[0]);
-      this.form.member_avatar = event.target.files[0];
+      const file = event.target.files[0];
+      if (file) {
+        this.avatar = URL.createObjectURL(file);
+        this.form.member_avatar = file;
+      }
+
+    }
+  },
+  watch: {
+    form(val)
+    {
+      if (val) {
+        if (val.role !== 'others') this.other = '';
+      }
+    },
+    member(cur, prev)
+    {
+      if (Object.keys(cur).length > 0) {
+
+        const { avatar, id, member_name, role } = cur;
+
+        this.form = {
+          id,
+          member_avatar: avatar || '',
+          member_name,
+          role: this.roles.filter(el => el.toLocaleLowerCase() === cur.role.toLocaleLowerCase()).length > 0
+            ? (cur.role.toLowerCase() || '')
+            : 'others'
+        };
+
+        this.avatar = avatar || '';
+        this.other = role;
+
+        if (this.form.role !== 'others') 
+        {
+          this.form.role = role;
+        }
+        console.log('Staff Form: ', this.form);
+      }
+      // if (Object.keys(this.member).length > 0) {
+
+      //   var member_role = this.roles.filter(el => el.toLocaleLowerCase() === this.member.role.toLocaleLowerCase()).length > 0
+      //     ? (this.member?.role.toLowerCase() || '')
+      //     : 'others';
+          
+      //   if (member_role === 'others') {
+
+      //     this.other = this.role;
+      //     this.form.role = 'others';
+
+      //   }
+
+      // }
+
     }
   }
 }

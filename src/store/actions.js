@@ -131,6 +131,12 @@ var actions = {
 
           const { status, data } = response
           if (status === 200 && data.status === 200) {
+
+            if (state.role === 'organizer')
+            {
+              commit('CLEAR_ORGANIZER_STATE');
+            }
+            
             commit('CLEAR_ARTIST')
             commit('SET_AUTH', {});
             commit('SET_TOKEN', '');
