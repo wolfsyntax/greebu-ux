@@ -294,13 +294,16 @@ header nav{
   color: var(--white);
   border-color: 1px solid  var(--orange);
 }
-.main-nav  .nav-button{
+.main-nav .nav-button{
   display: flex;
   align-items: center;
 }
-.main-nav  .nav-button span{
+.main-nav .nav-button span{
   margin: 4px 16px;
-  color: #FF6B00;
+  color: var(--orange);
+}
+.main-nav .nav-button span:hover{
+  color: var(--btn-hovered);
 }
 /* dropdown */
 .main-nav  .nav-button .dropdown button {
@@ -310,9 +313,14 @@ header nav{
   align-items: center;
   padding: 0;
 }
-.main-nav  .nav-button .dropdown span{
+.main-nav .nav-button .dropdown span{
   margin: 0 2px;
+  /* border: 1px solid var(--white); */
 }
+/* .main-nav .nav-button .dropdown span:hover{
+  border-radius: 100%;
+  border: 1px solid var(--orange);
+} */
 /* shake animation */
 .main-nav  .nav-button  .bell-icon:hover {
   animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
@@ -334,7 +342,7 @@ header nav{
     transform: translate3d(4px, 0, 0);
   }
 }
-.main-nav  .nav-button .dropdown img {
+.main-nav .nav-button .dropdown img{
   width: 48px;
   height: 48px;
   flex-shrink: 0;
@@ -343,6 +351,11 @@ header nav{
   -o-object-fit: cover;
   object-fit: cover;
   backface-visibility: hidden;
+  border: 2px solid var(--white);
+}
+.main-nav .nav-button .dropdown img:hover{
+  border: 2px solid var(--orange);
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.12);
 }
 .main-nav .nav-button .dropdown .dropdown-menu {
   width: 336px;
@@ -363,6 +376,12 @@ header nav{
   object-fit: cover;
   backface-visibility: hidden;
   margin-right: 10px;
+  cursor: pointer;
+  border: 2px solid var(--white);
+}
+.main-nav .nav-button .dropdown .dropdown-menu .artist-info img:hover{
+  border: 2px solid var(--orange);
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.12);
 }
 .main-nav .nav-button .dropdown .dropdown-menu .artist-info {
   display: flex;
@@ -402,6 +421,10 @@ header nav{
   background: var(--light-orange);
   text-align: center;
   width: fit-content;
+}
+.main-nav .nav-button .dropdown .dropdown-menu .artist-info .artist-name .view-profile:hover{
+  background: var(--orange);
+  color: var(--white);
 }
 .main-nav .nav-button .dropdown .dropdown-menu li{
   margin: 30px 1rem;

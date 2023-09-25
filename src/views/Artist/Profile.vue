@@ -31,7 +31,7 @@
 
                       <div class="row">
                         <div class="col">
-                          <span class="sub-heading">{{ formSubHeading }}</span>
+                          <span class="modal-sub-heading">{{ formSubHeading }}</span>
                         </div>
                       </div>
                     </div>
@@ -49,39 +49,17 @@
             
             <div v-if="active" class="modal-backdrop fade show"></div>
 
-            <!-- <div class="alert alert-success updated-successfully" role="alert" v-if="message">
-              {{ message }}
-            </div> -->
-
-            <!-- DESIGN A MODAL THE SAME AS ONBOARDING MESSAGE here -->
             <div class="onboarding-message"  v-if="message">
-            <input type="checkbox" id="modal-toggle" class="modal-toggle" checked style="display: none;">
-              <div class="modal">
-                <div class="modal-content">
-                  <img src="/assets/artist-account/check-circle.svg" class="check-cirle" alt="check circle">
-                  <h3 class="all-set">You are all set!</h3>
-                  <p class="message">{{ message }}</p>
-                    <label for="modal-toggle" class="close-modal-button" @click="viewProfile">View My Profile</label>
+              <input type="checkbox" id="modal-toggle" class="modal-toggle" checked style="display: none;">
+                <div class="modal">
+                  <div class="modal-content">
+                    <img src="/assets/artist-account/check-circle.svg" class="check-cirle" alt="check circle">
+                    <h3 class="all-set">You are all set!</h3>
+                    <p class="message">{{ message }}</p>
+                      <label for="modal-toggle" class="close-modal-button" @click="$router.push('/dashboard')">View Profile</label>
+                  </div>
                 </div>
-              </div>
-          </div>
-
-            <!-- <div v-if="message" class="d-flex justify-content-between toast-artist-details">
-              <div class="d-flex accepted-wrapper">
-                  <span class="material-symbols-rounded check-circle">&#xe86c;</span>
-                <div>
-                  <h5 class="accepted">{{ message }}</h5>
-                  <p class="description">Lorem ipsum dolor set amet.</p>
-                </div>
-              </div>
-              <div class="close-toast">
-                <span class="material-symbols-rounded close-icon" @click="closeToastArtist">&#xe5cd;</span>
-              </div>
-            </div> -->
-
-            
-
-
+            </div>
 
 
             <form @submit.prevent="submit" class="fill-details" autocomplete="off">
@@ -941,9 +919,6 @@ export default {
 
       this.dismiss()
     },
-    closeToastArtist(){
-      this.message = '';
-    },
     fetchGenre(query)
     {
       if (!query) {
@@ -1195,9 +1170,6 @@ export default {
         this.metadata.date !== undefined
       );
     },
-    viewProfile(){
-      this.$router.push('/dashboard')
-    }
   },
   watch: {
     tempMagic(val)

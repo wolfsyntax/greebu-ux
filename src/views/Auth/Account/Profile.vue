@@ -62,7 +62,7 @@ export default {
 
             console.log(`Success Result: `, result);
 
-            this.message = 'Updated successfully';
+           // this.message = 'Updated successfully';
             window.scrollBy(-10000, -10000);
             this.$forceUpdate();
            // this.$router.push('/artist');
