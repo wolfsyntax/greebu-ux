@@ -29,7 +29,7 @@
                   <div class="seeking-for" v-if="userRole === 'artists' || userRole === 'organizer'" ></div>
                 </div> -->
 
-         <div class="create-event-wrapper d-flex justify-content-end">
+         <div v-if="userRole === 'organizer'" class="create-event-wrapper d-flex justify-content-end">
           <button class="d-flex align-items-center btn create-event">
             <span class="material-symbols-rounded add-circle">&#xe147;</span>
             Create event
