@@ -54,6 +54,12 @@
                     <div v-if="error?.organizer_name" class="organizer-name-error text-danger"></div>
                   </div>
 
+                  <div class="form-group">
+                    <label for="organizerName">Company Name</label>
+                    <input type="text" v-model="form.company_name" placeholder="Company Name" class="form-control organizer-name" required autocomplete="off"/>
+                    <div v-if="error?.company_name" class="organizer-name-error text-danger"></div>
+                  </div>
+
                   <div class="form-group" >
                     <label for="typeOfEvent">Type of Event</label>
                     <multiselect v-model="formEventTypes" mode="tags" :close-on-select="false" :create-option="true" 
@@ -355,22 +361,22 @@ export default {
     Multiselect,
   },
   data: () => ({
-    form: {
-      avatar: '',
-      organizer_name: '',
-      progress: null,
-      event_types: [],
-      street_address: '',
-      city: '',
-      province: '',
-      bio: '',
-      facebook: '',
-      twitter: '',
-      instagram: '',
-      threads: '',
-      accept_proposal: false,
-      send_proposal: false,
-    },
+    // form: {
+    //   avatar: '',
+    //   organizer_name: '',
+    //   progress: null,
+    //   event_types: [],
+    //   street_address: '',
+    //   city: '',
+    //   province: '',
+    //   bio: '',
+    //   facebook: '',
+    //   twitter: '',
+    //   instagram: '',
+    //   threads: '',
+    //   accept_proposal: false,
+    //   send_proposal: false,
+    // },
     avatar: '/assets/artist-account/new.svg',
     isSearchable: true,
     social: {
@@ -414,11 +420,11 @@ export default {
         console.log('Fetch Organizer Options: ', res);
       });
 
-    this.form.avatar = '';
+    // this.form.avatar = '';
 
     this.fetchProfile();
-    
-    this.form = this.myAccount;
+    console.log('My Account Info: ', this.account)
+    // this.form = this.myAccount;
 
     this.SET_STAFF_FILTER();
 
@@ -619,6 +625,7 @@ export default {
       eventTypes: state => state.organizer.eventTypes,
       memberIndex: state => state.organizer.staffIndex,
       members: state => state.organizer.staff,
+      form: state => state.organizer.form,
     }),
     remainingChars()
     {

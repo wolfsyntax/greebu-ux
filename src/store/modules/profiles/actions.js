@@ -74,8 +74,12 @@ export const fetchProfile = ({ commit, state, rootState, dispatch }, payload) =>
 
               dispatch('artistOptions');
             } else if (rootState.role === 'organizer') {
-              const { members } = result;
+              const { members, account } = result;
+
+              console.log('Organizer Info: ', result);
               console.log('Organizer Staff: ', members);
+
+              commit('SET_ORGANIZER_FORM', account);
               commit('SET_STAFF', members);
               dispatch('fetchOrganizerOptions');
             }
