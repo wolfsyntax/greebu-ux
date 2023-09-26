@@ -2768,6 +2768,26 @@ height: 100%;
 .events-showing .container .top-row{
   margin-bottom: 70px;
 }
+.events-showing .create-event-wrapper{
+  margin-bottom: 3rem;
+}
+.events-showing .create-event-wrapper .create-event {
+  color: var(--white);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.0625rem;
+  padding: 1rem 1.25rem;
+  border-radius: 0.5rem;
+  background: var(--orange);
+  gap: 0.38rem;
+}
+.events-showing .create-event-wrapper .create-event:hover{
+  background: var(--btn-hovered);
+}
+.events-showing .create-event-wrapper .add-circle{
+  font-size: 24px;
+  color: var(--white);
+} 
 .events-showing .container .card {
   border: 0;
   border-radius: 10px;

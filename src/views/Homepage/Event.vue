@@ -29,6 +29,14 @@
                   <div class="seeking-for" v-if="userRole === 'artists' || userRole === 'organizer'" ></div>
                 </div> -->
 
+         <div class="create-event-wrapper d-flex justify-content-end">
+          <button class="d-flex align-items-center btn create-event">
+            <span class="material-symbols-rounded add-circle">&#xe147;</span>
+            Create event
+          </button>
+        </div>
+
+
         <div class="row top-row">
           <div class="col-6">
             <a href="#" class="btn btn-primary filter"><span class="material-symbols-outlined next">sort</span>Filter</a>
