@@ -1,16 +1,13 @@
 <template>
   <layout>
-    <!-- Static icon font -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0" />
 
     <section class="events">
       <div class="container-fluid">
         <div class="container">
           <div class="content">
-            <h2>Let's make some noise<br> and create unforgettable<br> moments</h2>
-            <p>Custom tunes for any mood, and booking the best artists just<br> got easier with our website!</p>
-            <a href="#" class="btn btn-primary">Find Event Planner</a>
+            <h2 class="top-level-title">Let's make some noise<br> and create unforgettable<br> moments</h2>
+            <p class="top-level-sub-title">Custom tunes for any mood, and booking the best artists just<br> got easier with our website!</p>
+            <a href="#" class="btn btn-primary find-event-planner">Find Event Planner</a>
           </div>
         </div>
         <div class="hidden-img">
@@ -20,8 +17,26 @@
     </section>
     <section class="events-showing">
       <div class="container">
-        <h3>Events</h3>
-        <p class="sub-heading">Collaborate with a professional independent artist to turn your story into one-of-a-kind custom song</p>
+
+        <div class="text-center">
+          <h3>Events</h3>
+          <p class="sub-heading">Collaborate with a professional independent artist to turn your story into one-of-a-kind custom song</p>
+        </div>
+
+        <!-- <div v-if="!isLoggedIn"></div>
+
+                <div v-else>
+                  <div class="seeking-for" v-if="userRole === 'artists' || userRole === 'organizer'" ></div>
+                </div> -->
+
+         <div v-if="userRole === 'organizer'" class="create-event-wrapper d-flex justify-content-end">
+          <button class="d-flex align-items-center btn create-event">
+            <span class="material-symbols-rounded add-circle">&#xe147;</span>
+            Create event
+          </button>
+        </div>
+
+
         <div class="row top-row">
           <div class="col-6">
             <a href="#" class="btn btn-primary filter"><span class="material-symbols-outlined next">sort</span>Filter</a>
@@ -95,7 +110,24 @@
                   <span class="material-symbols-outlined">schedule</span>
                   <span class="orange-text">{{ event.time }}</span>
                 </p>
-                <a href="#" class="btn btn-primary">View Details</a>
+                <div v-if="!isLoggedIn"></div>
+
+                <div v-else>
+                  <div class="seeking-for" v-if="userRole === 'artists' || userRole === 'organizer'" >
+                    <h6 class="title">Seeking for</h6>
+                    <span class="badge type-artist">Artist</span>
+                    <span class="badge type-artist">Full Band Artist</span>
+                    <span class="badge type-artist">Solo Band Artist</span>
+                    <span class="badge type-artist">Artist</span>
+                    <span class="badge type-artist">Full Band Artist</span>
+                    <span class="badge type-artist">Solo Band Artist</span>
+                  </div>
+                </div>
+
+                <button class="btn btn-primary view-details">View Details</button>
+
+                <button class="btn btn-primary send-proposal" v-if="userRole === 'artists'" >Send Proposal</button>
+               
               </div>
             </div>
           </div>
@@ -103,17 +135,21 @@
 
       </div>
     </section>
+    <signupmodal />
     <faq />
   </layout>
 </template>
 <script>
+import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
 import Layout from '/src/components/Layouts/Layout.vue';
 import Faq from '/src/components/Home/FAQ.vue';
+import MustSignupModal from '/src/components/Artist/MustSignupModal.vue';
 
 export default {
   components: {
     layout: Layout,
-    faq: Faq
+    faq: Faq,
+    signupmodal: MustSignupModal
   },
   setup()
   {
@@ -243,6 +279,14 @@ export default {
       ]
 
     }
+  },
+  computed: {
+    ...mapGetters(["isLoggedIn", 'userInfo', 'info', 'userRole']),
+  },
+  methods: {
+    openModal(data){
+        this.$root.$emit("bv::show::modal", "#mustSignUp");
+      },
   }
 }
 </script>

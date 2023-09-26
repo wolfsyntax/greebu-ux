@@ -1476,6 +1476,9 @@ z-index: 1;
   margin: 16px 0px 0px 16px;
   width: 250px;
 }
+.featured-artists .audio-controls-fixed .card{
+  box-shadow: none;
+}
 .featured-artists .audio-controls-fixed .card .row, .artists .audio-controls-fixed .card .row, 
 .basic-information .audio-controls-fixed .card .row{
   margin: 0;
@@ -2731,7 +2734,7 @@ height: 100%;
   position: absolute;
   margin-top: -5px;
 }
-.events .container h2{
+.events .container .top-level-title{
   color: var(--white);
   font-size: 85px;
   font-weight: 700;
@@ -2742,14 +2745,14 @@ height: 100%;
   top: 30%;
   z-index: 2;
 }
-.events .container p{
+.events .container .top-level-sub-title{
   color: var(--white);
   font-size: 28px;
   font-weight: 500;
   line-height: 34.2px;
   margin-bottom: 40px;
 }
-.events .container a{
+.events .container .find-event-planner{
   color: var(--white);
   font-size: 24px;
   font-weight: 700;
@@ -2765,6 +2768,26 @@ height: 100%;
 .events-showing .container .top-row{
   margin-bottom: 70px;
 }
+.events-showing .create-event-wrapper{
+  margin-bottom: 3rem;
+}
+.events-showing .create-event-wrapper .create-event {
+  color: var(--white);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.0625rem;
+  padding: 1rem 1.25rem;
+  border-radius: 0.5rem;
+  background: var(--orange);
+  gap: 0.38rem;
+}
+.events-showing .create-event-wrapper .create-event:hover{
+  background: var(--btn-hovered);
+}
+.events-showing .create-event-wrapper .add-circle{
+  font-size: 24px;
+  color: var(--white);
+} 
 .events-showing .container .card {
   border: 0;
   border-radius: 10px;
@@ -2885,7 +2908,26 @@ height: 100%;
   margin-top: 5px;
 }
 .events-showing .container .card .time{
-  margin-bottom: 33px;
+  margin-bottom: 20px;
+}
+.events-showing .seeking-for{
+  margin-bottom: 1.5rem;
+}
+.events-showing .seeking-for .title{
+  color: var(--black);
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+.events-showing .seeking-for .type-artist{
+  color: var(--orange);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 2rem;
+  background: #FED7AA;
+  margin: 0 0.37rem 0.37rem 0;
 }
 .events-showing .container .card .location .material-symbols-outlined, 
 .events-showing .container .card .date .material-symbols-outlined, 
@@ -2906,7 +2948,7 @@ height: 100%;
   font-weight: 500;
   letter-spacing: -0.24px;
 }
-.events-showing .container .card-body a{
+.events-showing .container .card-body .view-details, .events-showing .container .card-body .send-proposal{
   color: var(--white);
   font-size: 16px;
   font-weight: 700;
@@ -2917,6 +2959,20 @@ height: 100%;
   padding: 16px 0px;
   width: 100%;
   border: 0;
+  margin-bottom: 0.5rem;
+}
+.events-showing .container .card-body .send-proposal{
+  border-radius: 0.4375rem;
+  color: var(--orange);
+  background: var(--white);
+  border: 1px solid var(--orange);
+}
+.events-showing .container .card-body .view-details:hover{
+  background: var(--btn-hovered);
+}
+.events-showing .container .card-body .send-proposal:hover{
+  color: var(--btn-hovered);
+  border: 1px solid var(--btn-hovered);
 }
 
 
@@ -6284,8 +6340,6 @@ margin-bottom: 1rem;
   margin-bottom: 2.5rem!important;
 }
 
-
-
                                     /* Onboarding Message and Subscription Plan */
 
 #selectPlanModal .modal-content .modal-header {
@@ -7272,10 +7326,13 @@ margin-bottom: 1rem;
   margin-bottom: 100px;
 }
 .events-showing .container .card .bg-wrapper, .events-showing .container .card .card-bg  {
-  height: 320px;
+  height: 16.625rem;
 }
 .events-showing .container {
   margin-bottom: 100px;
+}
+.events-showing .container .card .time{
+  margin-bottom: 16px;
 }
 
 /* BANNER SECTION */
@@ -7310,22 +7367,113 @@ margin-bottom: 1rem;
   position: absolute;
   margin-top: -5px;
 }
-.events .container h2 {
-  font-size: 75px;
-  line-height: 70px;
-  margin-bottom: 20px;
+.events .container .top-level-title {
+  font-size: 4.25rem;
+  font-weight: 700;
+  line-height: normal;
+  margin-bottom: 0.75rem;
+}
+.events .container .top-level-sub-title {
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 2.1375rem; 
 }
 .events .container .content {
   top: 29%;
 }
-.events .container a {
-  font-size: 20px;
-  padding: 22px 53px;
+.events .container .find-event-planner {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 100%;
+  letter-spacing: 0.05rem;
+  padding: 1.2rem 3.19rem;
+}
+.events-showing .container .card .card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: normal;
+  margin-bottom: 0.5rem;
+}
+.events-showing .container .card .card-title .free, .events-showing .container .card .card-title .paid {
+  font-size: 10px;
+  line-height: normal;
+  margin-left: 8px;
+  margin-top: 1px;
+}
+.events-showing .container .card .card-text {
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: normal;
+  margin-bottom: 0.5rem;
+}
+.events-showing .container .card .card-body .location .text {
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.015rem;
+}
+.events-showing .seeking-for .title {
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: normal;
+}
+.events-showing .seeking-for .type-artist {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  line-height: 1rem; 
+}
+.events-showing .seeking-for {
+  margin-bottom: 1.2rem;
+}
+.events-showing .container .card-body .view-details, .events-showing .container .card-body .send-proposal {
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: normal;
+  padding: 0.72rem 0px;
+}
+.events-showing .container .card .card-body {
+  padding: 4% 5% 5%;
+}
+.events-showing .container .top-row, .events-showing .container .card {
+  margin-bottom: 2.5rem;
+}
+.events-showing .container .card .organized-by {
+  left: 49%;
+  padding-left: 18px;
+}
+.events-showing .container .card .organized-by img {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-right: 0.5rem;
+  border-radius: 2.5rem;
+}
+.events-showing .container .card .organized-by h5 {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.02rem;
+}
+.events-showing .container .card .organized-by p {
+  font-size: 0.75rem;
+  font-weight: 500;
 }
 
 
                                                               /* ARTIST PAGE */
-/* BANNER CAROUSEL SECTION */                                                   
+/* BANNER CAROUSEL SECTION */   
+.artists .container h3, .events-showing .container h3 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: normal;
+  margin-bottom: 1.2rem;
+}    
+.artists .container p, .events-showing .container .sub-heading {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: normal;
+  margin-bottom: 5.625rem;
+}                                            
 .artist-banner .container-fluid{
   margin: 0;
   padding: 0;
@@ -7755,7 +7903,10 @@ header nav {
 .artists .container .row div:first-child {
   margin-bottom: 0.75rem;
 }
-.featured-artists .card, .artists .container .card, .basic-information .container .step2 .select-artist .card {
+.featured-artists .card{
+  padding: 1rem 1rem .5rem;
+}
+.artists .container .card, .basic-information .container .step2 .select-artist .card {
   padding: 1.25rem 1.25rem .5rem;
 }
 .featured-artists .card, .artists .container .card, .basic-information .container .step2 .select-artist .card {
