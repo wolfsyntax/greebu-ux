@@ -364,7 +364,8 @@
 <script>
 import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
 import Post from '/src/components/Post/Index.vue';
-import BannerModal from '/src/components/Organizer/BannerModal.vue';
+// import BannerModal from '/src/components/Organizer/BannerModal.vue';
+import BannerModal from './Modals/BannerModal.vue';
 import { Modal } from 'bootstrap';
 
 export default {
@@ -458,14 +459,13 @@ export default {
 
   },
   watch: {
-    // profile: {
-    //   handler(res)
-    //   {
-    //     console.log('Profile object updated: ', res)
-    //     this.bannerImage = res?.cover_photo || this.account.cover_photo || '/assets/organizer-account/default-cover-photo.webp';
-    //   },
-    //   deep: true,
-    // },
+    profile: {
+      handler(res)
+      {
+        this.bannerImage = res?.cover_photo || this.account.cover_photo || '/assets/organizer-account/default-cover-photo.webp';
+      },
+      deep: true,
+    },
   
   },
   computed: {

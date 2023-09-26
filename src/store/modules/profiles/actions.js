@@ -373,8 +373,11 @@ export const updateBanner = ({ commit, rootState }, payload) =>
         console.log('\n\nUpdate Banner Image: ', response);
 
         if (statusCode === 200 && status === 200) {
-          commit('SET_PROFILE', result?.profile)
-          resolve(response)
+          if (result?.account) commit('SET_ACCOUNT', result?.account);
+          if (result?.profile) commit('SET_PROFILE', result?.profile);
+
+          resolve(response);
+
         } else {
           reject({ msg: message, status: statusCode });
         }

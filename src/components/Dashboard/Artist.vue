@@ -338,7 +338,7 @@
 <script>
 import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
 // import CreatePostModal from '/src/components/Artist/CreatePostModal.vue';
-import BannerModal from '/src/components/Artist/BannerModal.vue';
+import BannerModal from './Modals/BannerModal.vue';
 import Post from '/src/components/Post/Index.vue';
 import EditBandMembers from "../Artist/EditBandMembers.vue";
 import { Modal } from 'bootstrap';
