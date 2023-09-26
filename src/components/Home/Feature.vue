@@ -178,7 +178,7 @@
             <ul>
               <li v-for="feature in geebuFeatures">{{ feature }}</li>
             </ul>
-            <a href="/login" class="btn btn-primary btn-lg learn-more">Learn more</a>
+            <router-link to="/login" class="btn btn-primary btn-lg learn-more">Learn more</router-link>
         </div>
         <div class="col-6">
           <div class="video-container">
@@ -235,7 +235,7 @@
                       <h3>Find an artist. Create your song</h3>
                       <p>Select the artist you want. Then pick your preffered genre, tempo, and mood so that they can get
                         started.</p>
-                      <a href="/create-song" class="btn btn-primary btn-lg">Create your song</a>
+                      <a href="/artists" class="btn btn-primary btn-lg">Find Your Artist</a>
                     </div>
                   </div>
                   <div class="col-lg-6 col-xl-7 col-xxl-7">
@@ -284,7 +284,7 @@
                   <li>Lorem ipsum dolor sit amet consectetur.</li>
                   <li>Lorem ipsum dolor sit amet consectetur.</li>
                 </ul>
-                <a href="/artist" class="btn btn-primary btn-lg">Find your artist</a>
+                <a href="/artists" class="btn btn-primary btn-lg">Find your artist</a>
               </div>
             </div>
             <div class="col-lg-6 col-xl-6 col-xxl-6">
