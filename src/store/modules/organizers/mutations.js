@@ -14,6 +14,7 @@ export const CLEAR_ORGANIZER_STATE = (state) =>
   state.staffIndex = -1;
   state.form = {
     avatar: '',
+    company_name: '',
     organizer_name: '',
     progress: null,
     event_types: [],
