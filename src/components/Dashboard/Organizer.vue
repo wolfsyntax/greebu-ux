@@ -80,11 +80,6 @@
                     <img src="/assets/artist-account/type-of-artist-icon-gray.svg" loading="lazy" alt="artist type icon">
                     <p>{{ account?.organizer_name }}</p>
                   </div>
-
-                  <div v-if="facebook" class="mt-3 social-media" >
-                    <img src="/assets/artist-account/spotify-icon-gray.svg" loading="lazy" alt="spotify icon">
-                    <p style="text-transform: lowercase;">Event Organizer</p>
-                  </div>
          
                   <div v-if="facebook" class="mt-3 social-media" >
                     <img src="/assets/social icons/facebook-gray.svg" loading="lazy" alt="youtube icon">
