@@ -12,7 +12,23 @@ export const CLEAR_ORGANIZER_STATE = (state) =>
   state.staff = [];
 
   state.staffIndex = -1;
-
+  state.form = {
+    avatar: '',
+    company_name: '',
+    organizer_name: '',
+    progress: null,
+    event_types: [],
+    street_address: '',
+    city: '',
+    province: '',
+    bio: '',
+    facebook: '',
+    twitter: '',
+    instagram: '',
+    threads: '',
+    accept_proposal: false,
+    send_proposal: false,
+  }
   state.eventTypes = [
     "Battle of the bands",
     "Weddings",
@@ -148,4 +164,9 @@ export const SET_STAFF_FILTER = (state, index = -1) =>
 
 export const SET_STAFF = (state, payload) => {
   state.staff = payload || [];
+}
+
+export const SET_ORGANIZER_FORM = (state, payload) =>
+{
+  state.form = payload
 }

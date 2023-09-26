@@ -17,22 +17,23 @@
                       <span class="material-symbols-outlined">&#xE412;</span>
                     </button>
                   </div>
+                  
                   <div class="row cover-body d-flex justify-content-between align-items-center">
                     <div class="col-9">
                       <div class="profile-info">
                         <div class="position-relative">
-                          <img class="profile-pic" :src="profileImage" alt="profile">
+                          <img class="profile-pic" :src="account.avatar" alt="profile">
                         </div>
 
                         <div class="profile-wrapper">
                           <div class="name-artist">
-                            <h3 class="profile-name">Corona Event Organizer</h3>
-                            <h5 class="type-of-artist">Corona Event Organizer</h5>
+                            <h3 class="profile-name">{{ account.organizer_name }}</h3>
+                            <h5 class="type-of-artist">{{ account.company_name }}</h5>
                           </div>
                           
                           <div class="music-genre">
-                            <h5 class="title">Genres:</h5>
-                            <span class="badge">Birthday</span>
+                            <h5 class="title">Event Types:</h5>
+                            <span class="badge" v-for="(event_type, index) in account.event_types" :key="index">{{ event_type }}</span>
                           </div>
                         </div>
                       </div>
@@ -45,7 +46,7 @@
                     </div>
                   </div>
                 </div>
-
+                
                 <div class="header-links">
                   <ul class="nav">
                     <li class="nav-item" v-for="item in navItems" :key="item">
@@ -73,21 +74,26 @@
                   </div>
 
                   <h5 class="about">About</h5>
-                  <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque posuere fermentum urna, eu condimentum mauris</p>
+                  <p class="description">{{ account.bio }}</p>
 
                   <div class="mt-3 social-media">
                     <img src="/assets/artist-account/type-of-artist-icon-gray.svg" loading="lazy" alt="artist type icon">
-                    <p>{{ account?.artist_name }}</p>
+                    <p>{{ account?.organizer_name }}</p>
                   </div>
-
-                  <div v-if="spotify" class="mt-3 social-media" >
-                    <img src="/assets/artist-account/spotify-icon-gray.svg" loading="lazy" alt="spotify icon">
-                    <p style="text-transform: lowercase;">Event Organizer</p>
+         
+                  <div v-if="facebook" class="mt-3 social-media" >
+                    <img src="/assets/social icons/facebook-gray.svg" loading="lazy" alt="youtube icon">
+                    <p style="text-transform: lowercase;">{{ facebook }}</p>
                   </div>
-
-                  <div v-if="youtube" class="mt-3 social-media" >
-                    <img src="/assets/artist-account/youtube-icon-gray.svg" loading="lazy" alt="youtube icon">
-                    <p style="text-transform: lowercase;">{{ youtube }}</p>
+                    
+                  <div v-if="instagram" class="mt-3 social-media" >
+                    <img src="/assets/artist-account/instagram-icon-gray.svg" loading="lazy" alt="instagram icon">
+                    <p style="text-transform: lowercase;">{{ instagram }}</p>
+                  </div>
+                    
+                  <div v-if="threadsNET" class="mt-3 social-media" >
+                    <img src="/assets/social icons/threads-gray.svg" loading="lazy" alt="instagram icon">
+                    <p style="text-transform: lowercase;">{{ threadsNET }}</p>
                   </div>
 
                   <div v-if="twitter" class="mt-3 social-media" >
@@ -95,10 +101,6 @@
                     <p style="text-transform: lowercase;">{{ twitter }}</p>
                   </div>
 
-                  <div v-if="instagram" class="mt-3 social-media" >
-                    <img src="/assets/artist-account/instagram-icon-gray.svg" loading="lazy" alt="instagram icon">
-                    <p style="text-transform: lowercase;">{{ instagram }}</p>
-                  </div>
                 </div>
               </div>
 
@@ -115,13 +117,13 @@
                     </div>
                   </div>
 
-                  <!-- Band Members list -->
+                  <!-- Organizer Staff list -->
                   <div class="members-list" >
-                    <div class="member-profile" v-for="organizer in organizerMembers">
-                      <img :src="organizer.profile" loading="lazy" alt="member profile" />
+                    <div class="member-profile" v-for="(staff, index) in members" :key="index">
+                      <img :src="staff.avatar" loading="lazy" alt="member profile" />
                       <div class="member-info">
-                        <a href="#">{{ organizer.name }}</a>
-                        <p>{{ organizer.role }}</p>
+                        <a href="#">{{ staff.member_name }}</a>
+                        <p>{{ staff.role }}</p>
                       </div>
                     </div>
                   </div>   
@@ -135,7 +137,7 @@
             <div class="col-md-8 col-xl-6 middle-wrapper">
 
               <post />
-              <!-- Artist Posts -->
+              <!-- Organizer Posts -->
             </div><!-- middle wrapper end -->
 
             <!-- right wrapper start -->
@@ -211,9 +213,9 @@
               </ol> 
 
               <div class="genres">
-                <h4>Genres</h4>
+                <h4>Event Types</h4>
                 <div class="genres-list">
-                  <span class="badge">Birthday</span>
+                  <span class="badge" v-for="(event_type, index) in account.event_types" :key="index">{{ event_type }}</span>
                 </div>
               </div>
             </div>
@@ -222,6 +224,25 @@
               <div class="social-media">
                 <h4>Social Media</h4>
                 <ul>
+                  <li class="text-lowercase">
+                    <img src="/assets/social icons/facebook-gray.svg" loading="lazy" alt="facebook-gray-icon" />
+                    {{ account.facebook }}
+                  </li>
+                  <li class="text-lowercase">
+                    <img src="/assets/artist-account/instagram-icon-gray.svg" loading="lazy" alt="facebook-icon" />
+                    {{ account.instagram }}
+                  </li>
+
+                  <li class="text-lowercase">
+                    <img src="/assets/social icons/threads-gray.svg" loading="lazy" alt="threads-gray-icon" />
+                    {{ account.threads }}
+                  </li>
+
+                  <li class="text-lowercase">
+                    <img src="/assets/social icons/twitter-gray.svg" loading="lazy" alt="twitter-gray-icon" />
+                    {{ account.twitter }}
+                  </li>
+
                   <!-- <li><img src="/assets/artist-account/type-of-artist-icon-gray.svg" alt="artist type icon">{{ account?.artist_name }}</li>
                   <li v-if="spotify"><img src="/assets/artist-account/spotify-icon-gray.svg" alt="spotify icon">{{ spotify }}</li>
                   <li v-if="youtube"><img src="/assets/artist-account/youtube-icon-gray.svg" alt="youtube icon">{{ youtube }}</li>
@@ -241,12 +262,12 @@
 
             <div class="col-12">
               <div class="band-members">
-                <h4>Band Members</h4>
-                <div class="card" v-for="organizer in organizerMembers">
-                  <img :src="organizer.profile" class="card-img-top" loading="lazy" alt="band member">
+                <h4>Organizer Staff</h4>
+                <div class="card" v-for="(staff, index) in members" :key="index">
+                  <img :src="staff.avatar" class="card-img-top" loading="lazy" alt="band member">
                   <div class="card-body">
-                    <h5 class="card-title">{{ organizer.name }}</h5>
-                    <p class="card-text">{{organizer.role }}</p>
+                    <h5 class="card-title">{{ staff.member_name }}</h5>
+                    <p class="card-text">{{ staff.role }}</p>
                   </div>
                 </div>
               </div>
@@ -332,6 +353,7 @@
         <banner-modal @close="toggle" :active="isActive" />
       </div>
     </section>
+    
   </div>
 <!-- 
     <pre> <b>Profile</b> {{  $store.state.profile  }} <br></pre>
@@ -341,8 +363,9 @@
 
 <script>
 import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
-import Post from '/src/components/Post/Organizer/Index.vue';
-import BannerModal from '/src/components/Organizer/BannerModal.vue';
+import Post from '/src/components/Post/Index.vue';
+// import BannerModal from '/src/components/Organizer/BannerModal.vue';
+import BannerModal from './Modals/BannerModal.vue';
 import { Modal } from 'bootstrap';
 
 export default {
@@ -383,16 +406,13 @@ export default {
   }),
   
   methods: {
-    // ...mapActions([
-    //   'fetchOrganizerOptions', 'fetchProfile', 'oragnizerOptions',
-    // ]),
+    ...mapActions([
+      'fetchProfile'
+    ]),
     openCreatePostModal(data)
     {
       this.$root.$emit("bv::show::modal", "#artistPost");
 
-    },
-    editProfile(){
-      this.$router.push('/account/profile');
     },
     setActiveItem(item)
     {
@@ -426,43 +446,38 @@ export default {
   mounted()
   {
 
-    // this.fetchProfile()
-    //   .then(res =>
-    //   {
-    //     console.log('Fetch Profile [Organizer]: ', res)
-    //   }).catch(err =>
-    //   {
-    //     console.log('Fetch Profile Error [Organizer]: ', err)
-    //   })
+    this.fetchProfile()
+      .then(res =>
+      {
+        console.log('Fetch Profile [Organizer]: ', res)
+      }).catch(err =>
+      {
+        console.log('Fetch Profile Error [Organizer]: ', err)
+      })
 
-    // this.artistOptions()
-    //   .then(res =>
-    //   {
-    //     console.log('Artist Options [Organizer] ', res)
-    //   });
-
-    // this.bannerImage = this.profile.cover_photo || this.account?.cover_photo || '/assets/organizer-account/default-cover-photo.webp';
+    this.bannerImage = this.profile.cover_photo || this.account?.cover_photo || '/assets/organizer-account/default-cover-photo.webp';
 
   },
   watch: {
-    // profile: {
-    //   handler(res)
-    //   {
-    //     console.log('Profile object updated: ', res)
-    //     this.bannerImage = res?.cover_photo || this.account.cover_photo || '/assets/organizer-account/default-cover-photo.webp';
-    //   },
-    //   deep: true,
-    // },
+    profile: {
+      handler(res)
+      {
+        this.bannerImage = res?.cover_photo || this.account.cover_photo || '/assets/organizer-account/default-cover-photo.webp';
+      },
+      deep: true,
+    },
   
   },
-  // computed: {
-  //   ...mapGetters(["userInfo", "token", 'myAvatar', 'instagram', 'youtube', 'twitter', 'spotify', 'isComplete',]),
-  //   ...mapState({
-  //     users: (state) => state.user,
-  //     profile: (state) => state.profile,
-  //   }),
+  computed: {
+    ...mapGetters(["userInfo", "token", 'myAvatar', 'instagram', 'threadsNET', 'twitter', 'facebook', 'isComplete',]),
+    ...mapState({
+      users: (state) => state.user,
+      profile: (state) => state.profile,
+      account: (state) => state.account,
+      members: state => state.organizer.staff,
+    }),
   
-  // }
+  }
 }
 </script>
 <style>

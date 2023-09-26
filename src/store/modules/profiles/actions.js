@@ -74,8 +74,12 @@ export const fetchProfile = ({ commit, state, rootState, dispatch }, payload) =>
 
               dispatch('artistOptions');
             } else if (rootState.role === 'organizer') {
-              const { members } = result;
+              const { members, account } = result;
+
+              console.log('Organizer Info: ', result);
               console.log('Organizer Staff: ', members);
+
+              commit('SET_ORGANIZER_FORM', account);
               commit('SET_STAFF', members);
               dispatch('fetchOrganizerOptions');
             }
@@ -369,8 +373,11 @@ export const updateBanner = ({ commit, rootState }, payload) =>
         console.log('\n\nUpdate Banner Image: ', response);
 
         if (statusCode === 200 && status === 200) {
-          commit('SET_PROFILE', result?.profile)
-          resolve(response)
+          if (result?.account) commit('SET_ACCOUNT', result?.account);
+          if (result?.profile) commit('SET_PROFILE', result?.profile);
+
+          resolve(response);
+
         } else {
           reject({ msg: message, status: statusCode });
         }

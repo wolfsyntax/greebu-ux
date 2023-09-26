@@ -59,6 +59,13 @@ var getters = {
     }
     return '';
   },
+  facebook: state =>
+  {
+    if (state.profile.facebook !== null && state.profile.facebook !== undefined) {
+      return state.profile.facebook.replace(/^https?:\/\/(www\.)?/, "");
+    }
+    return '';
+  },
   threadsNET: state =>
   {
     if (state.profile.threads !== null && state.profile.threads !== undefined) {
