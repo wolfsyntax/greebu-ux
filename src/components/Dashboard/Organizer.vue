@@ -77,28 +77,28 @@
                   <p class="description">{{ account.bio }}</p>
 
                   <div class="mt-3 social-media">
-                    <img src="/assets/artist-account/type-of-artist-icon-gray.svg" loading="lazy" alt="artist type icon">
+                    <img src="/assets/organizer-account/event-organizer-icon.svg" loading="lazy" alt="artist type icon">
                     <p>{{ account?.organizer_name }}</p>
                   </div>
          
                   <div v-if="facebook" class="mt-3 social-media" >
                     <img src="/assets/social icons/facebook-gray.svg" loading="lazy" alt="youtube icon">
-                    <p style="text-transform: lowercase;">{{ facebook }}</p>
+                    <p>{{ facebook }}</p>
                   </div>
                     
                   <div v-if="instagram" class="mt-3 social-media" >
                     <img src="/assets/artist-account/instagram-icon-gray.svg" loading="lazy" alt="instagram icon">
-                    <p style="text-transform: lowercase;">{{ instagram }}</p>
+                    <p>{{ instagram }}</p>
                   </div>
                     
                   <div v-if="threadsNET" class="mt-3 social-media" >
                     <img src="/assets/social icons/threads-gray.svg" loading="lazy" alt="instagram icon">
-                    <p style="text-transform: lowercase;">{{ threadsNET }}</p>
+                    <p>{{ threadsNET }}</p>
                   </div>
 
                   <div v-if="twitter" class="mt-3 social-media" >
                     <img src="/assets/artist-account/twitter-icon-gray.svg" loading="lazy" alt="twitter icon">
-                    <p style="text-transform: lowercase;">{{ twitter }}</p>
+                    <p>{{ twitter }}</p>
                   </div>
 
                 </div>
@@ -224,7 +224,7 @@
               <div class="social-media">
                 <h4>Social Media</h4>
                 <ul>
-                  <li class="text-lowercase" v-if="facebook">
+                  <!-- <li class="text-lowercase" v-if="facebook">
                     <img src="/assets/social icons/facebook-gray.svg" loading="lazy" alt="facebook-gray-icon" />
                     {{ account.facebook }}
                   </li>
@@ -241,13 +241,14 @@
                   <li class="text-lowercase" v-if="twitter">
                     <img src="/assets/social icons/twitter-gray.svg" loading="lazy" alt="twitter-gray-icon" />
                     {{ account.twitter }}
-                  </li>
+                  </li> -->
 
-                  <!-- <li><img src="/assets/artist-account/type-of-artist-icon-gray.svg" alt="artist type icon">{{ account?.artist_name }}</li>
-                  <li v-if="spotify"><img src="/assets/artist-account/spotify-icon-gray.svg" alt="spotify icon">{{ spotify }}</li>
+                  <li><img src="/assets/organizer-account/event-organizer-icon.svg" alt="artist type icon">{{ account?.organizer_name }}</li>
+                  <li v-if="facebook"><img src="/assets/social icons/facebook-gray.svg" alt="facebook icon">{{ facebook }}</li>
                   <li v-if="youtube"><img src="/assets/artist-account/youtube-icon-gray.svg" alt="youtube icon">{{ youtube }}</li>
-                  <li v-if="twitter"><img src="/assets/artist-account/twitter-icon-gray.svg" alt="twitter icon">{{ twitter }}</li>
-                  <li v-if="instagram"><img src="/assets/artist-account/instagram-icon-gray.svg" alt="instagram icon">{{ instagram }}</li> -->
+                  <li v-if="threadsNET"><img src="/assets/social icons/threads-gray.svg" alt="twitter icon">{{ threadsNET }}</li>
+                  <li v-if="instagram"><img src="/assets/artist-account/instagram-icon-gray.svg" alt="instagram icon">{{ instagram }}</li>
+                  <li v-if="twitter"><img src="/assets/social icons/twitter-gray.svg" alt="youtube icon">{{ twitter }}</li>
                 </ul>
               </div>
 

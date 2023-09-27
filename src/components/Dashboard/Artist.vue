@@ -93,23 +93,34 @@
 
                   <div v-if="spotify" class="mt-3 social-media" >
                     <img src="/assets/artist-account/spotify-icon-gray.svg" loading="lazy" alt="spotify icon">
-                    <p style="text-transform: lowercase;">{{ spotify }}</p>
+                    <p>{{ spotify }}</p>
+                  </div>
+                  
+                  <div v-if="facebook" class="mt-3 social-media" >
+                    <img src="/assets/social icons/facebook-gray.svg" loading="lazy" alt="facebook icon">
+                    <p>{{ facebook }}</p>
                   </div>
 
                   <div v-if="youtube" class="mt-3 social-media" >
                     <img src="/assets/artist-account/youtube-icon-gray.svg" loading="lazy" alt="youtube icon">
-                    <p style="text-transform: lowercase;">{{ youtube }}</p>
+                    <p>{{ youtube }}</p>
                   </div>
 
                   <div v-if="twitter" class="mt-3 social-media" >
                     <img src="/assets/artist-account/twitter-icon-gray.svg" loading="lazy" alt="twitter icon">
-                    <p style="text-transform: lowercase;">{{ twitter }}</p>
+                    <p>{{ twitter }}</p>
                   </div>
 
                   <div v-if="instagram" class="mt-3 social-media" >
                     <img src="/assets/artist-account/instagram-icon-gray.svg" loading="lazy" alt="instagram icon">
-                    <p style="text-transform: lowercase;">{{ instagram }}</p>
+                    <p>{{ instagram }}</p>
                   </div>
+
+                  <div v-if="threadsNET" class="mt-3 social-media" >
+                    <img src="/assets/social icons/threads-gray.svg" loading="lazy" alt="threadsNET icon">
+                    <p>{{ threadsNET }}</p>
+                  </div>
+
                 </div>
               </div>
 
@@ -233,10 +244,12 @@
                 <h4>Social Media</h4>
                 <ul>
                   <li><img src="/assets/artist-account/type-of-artist-icon-gray.svg" alt="artist type icon">{{ account?.artist_name }}</li>
+                  <li v-if="facebook"><img src="/assets/social icons/facebook-gray.svg" alt="facebook icon">{{ facebook }}</li>
                   <li v-if="spotify"><img src="/assets/artist-account/spotify-icon-gray.svg" alt="spotify icon">{{ spotify }}</li>
                   <li v-if="youtube"><img src="/assets/artist-account/youtube-icon-gray.svg" alt="youtube icon">{{ youtube }}</li>
                   <li v-if="twitter"><img src="/assets/artist-account/twitter-icon-gray.svg" alt="twitter icon">{{ twitter }}</li>
                   <li v-if="instagram"><img src="/assets/artist-account/instagram-icon-gray.svg" alt="instagram icon">{{ instagram }}</li>
+                  <li v-if="threadsNET"><img src="/assets/social icons/threads-gray.svg" alt="twitter icon">{{ threadsNET }}</li>
                 </ul>
               </div>
 
@@ -583,7 +596,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["userInfo", "token", 'myAvatar', 'instagram', 'youtube', 'twitter', 'spotify', 'isComplete',]),
+    ...mapGetters(["userInfo", "token", 'myAvatar', 'instagram', 'youtube', 'twitter', 'spotify', 'facebook', 'threadsNET', 'isComplete',]),
     ...mapState({
       users: (state) => state.user,
       profile: (state) => state.profile,
