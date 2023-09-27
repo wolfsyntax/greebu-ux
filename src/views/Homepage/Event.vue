@@ -29,8 +29,8 @@
                   <div class="seeking-for" v-if="userRole === 'artists' || userRole === 'organizer'" ></div>
                 </div> -->
 
-         <div v-if="userRole === 'organizer'" class="create-event-wrapper d-flex justify-content-end">
-          <button class="d-flex align-items-center btn create-event">
+        <div v-if="userRole === 'organizer'" class="create-event-wrapper d-flex justify-content-end">
+          <button class="d-flex align-items-center btn create-event" @click="toggleCreate">
             <span class="material-symbols-rounded add-circle">&#xe147;</span>
             Create event
           </button>
@@ -136,6 +136,7 @@
       </div>
     </section>
     <signupmodal />
+    <events-modal />
     <faq />
   </layout>
 </template>
@@ -144,12 +145,15 @@ import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
 import Layout from '/src/components/Layouts/Layout.vue';
 import Faq from '/src/components/Home/FAQ.vue';
 import MustSignupModal from '/src/components/Artist/MustSignupModal.vue';
+import EventsModal from '/src/components/Auth/Events/Modal.vue';
+import { Modal } from 'bootstrap';
 
 export default {
   components: {
     layout: Layout,
     faq: Faq,
-    signupmodal: MustSignupModal
+    signupmodal: MustSignupModal,
+    EventsModal,
   },
   setup()
   {
@@ -284,9 +288,21 @@ export default {
     ...mapGetters(["isLoggedIn", 'userInfo', 'info', 'userRole']),
   },
   methods: {
+    ...mapActions([
+      'fetchEventOptions',
+    ]),
     openModal(data){
         this.$root.$emit("bv::show::modal", "#mustSignUp");
-      },
+    },
+    toggleCreate()
+    {
+      this.fetchEventOptions()
+
+      new Modal(document.getElementById('eventsModal'), {
+        keyboard: false,
+        backdrop: 'static',
+      }).show();
+    }
   }
 }
 </script>

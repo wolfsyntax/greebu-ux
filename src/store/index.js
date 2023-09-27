@@ -16,6 +16,7 @@ import customer from './modules/customers';
 import posts from './modules/posts';
 import organizer from './modules/organizers';
 import services from './modules/services';
+import events from './modules/events';
 import songs from './modules/songs';
 const ls = new SecureLS({ isCompression: false });
 
@@ -58,6 +59,7 @@ export default new Vuex.Store({
   modules: {
     artist,
     userProfile,
+    events,
     customer,
     organizer,
     // services,
