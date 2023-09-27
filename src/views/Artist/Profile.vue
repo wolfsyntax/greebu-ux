@@ -54,7 +54,7 @@
                 <div class="modal">
                   <div class="modal-content">
                     <img src="/assets/artist-account/check-circle.svg" class="check-cirle" alt="check circle">
-                    <h3 class="all-set">You are all set!</h3>
+                    <h3 class="all-set">You're all set!</h3>
                     <p class="message">{{ message }}</p>
                       <label for="modal-toggle" class="close-modal-button" @click="$router.push('/dashboard')">View Profile</label>
                   </div>

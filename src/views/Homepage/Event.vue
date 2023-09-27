@@ -19,7 +19,7 @@
       <div class="container">
 
         <div class="text-center">
-          <h3>Events</h3>
+          <h3 class="events-showing-title">Events</h3>
           <p class="sub-heading">Collaborate with a professional independent artist to turn your story into one-of-a-kind custom song</p>
         </div>
 
@@ -124,7 +124,8 @@
                   </div>
                 </div>
 
-                <button class="btn btn-primary view-details">View Details</button>
+                <button class="btn btn-primary view-details" data-bs-toggle="modal" data-bs-target="#eventDetailsModal">View Details</button>
+                <viewEventDetails />
 
                 <button class="btn btn-primary send-proposal" v-if="userRole === 'artists'" >Send Proposal</button>
                
@@ -135,7 +136,6 @@
 
       </div>
     </section>
-    <signupmodal />
     <faq />
   </layout>
 </template>
@@ -144,12 +144,14 @@ import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
 import Layout from '/src/components/Layouts/Layout.vue';
 import Faq from '/src/components/Home/FAQ.vue';
 import MustSignupModal from '/src/components/Artist/MustSignupModal.vue';
+import ViewEventDetailsModal from '/src/components/Events/ViewEventDetailsModal.vue';
 
 export default {
   components: {
     layout: Layout,
     faq: Faq,
-    signupmodal: MustSignupModal
+    signupmodal: MustSignupModal,
+    viewEventDetails: ViewEventDetailsModal
   },
   setup()
   {
@@ -284,9 +286,12 @@ export default {
     ...mapGetters(["isLoggedIn", 'userInfo', 'info', 'userRole']),
   },
   methods: {
-    openModal(data){
-        this.$root.$emit("bv::show::modal", "#mustSignUp");
-      },
+    // openModal(data){
+    //     this.$root.$emit("bv::show::modal", "#mustSignUp");
+    //   },
+    openEventDetailsModal(data){
+        this.$root.$emit("bv::show::modal", "#eventDetailsModal");
+    },
   }
 }
 </script>
