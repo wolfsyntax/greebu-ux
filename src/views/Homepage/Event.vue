@@ -110,9 +110,7 @@
                   <span class="material-symbols-outlined">schedule</span>
                   <span class="orange-text">{{ event.time }}</span>
                 </p>
-                <div v-if="!isLoggedIn"></div>
-
-                <div v-else>
+                
                   <div class="seeking-for" v-if="userRole === 'artists' || userRole === 'organizer'" >
                     <h6 class="title">Seeking for</h6>
                     <span class="badge type-artist">Artist</span>
@@ -122,12 +120,17 @@
                     <span class="badge type-artist">Full Band Artist</span>
                     <span class="badge type-artist">Solo Band Artist</span>
                   </div>
+                
+                <div v-if="isLoggedIn">
+                  <button class="btn btn-primary view-details" data-bs-toggle="modal" data-bs-target="#eventDetailsModal">View Details</button>
+                  <viewEventDetails />
+                </div>
+                <div v-else>
+                  <button class="btn btn-primary view-details" data-bs-toggle="modal" data-bs-target="#mustSignUp">View Details</button>
+                <signupmodal />
                 </div>
 
-                <button class="btn btn-primary view-details" data-bs-toggle="modal" data-bs-target="#eventDetailsModal">View Details</button>
-                <viewEventDetails />
-
-                <button class="btn btn-primary send-proposal" v-if="userRole === 'artists'" >Send Proposal</button>
+                <button class="btn btn-primary send-proposal" @click="$router.push('/proposal')" v-if="userRole === 'artists'" >Send Proposal</button>
                
               </div>
             </div>

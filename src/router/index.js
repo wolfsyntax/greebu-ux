@@ -405,7 +405,21 @@ const router = createRouter({
           {title: '', url: ''},
         ],
       },
-    },    
+    },  
+    {
+      path: '/proposal',
+      name: 'proposal',
+      component: () => import('/src/views/Artist/Form/ProposalForm.vue'),
+      meta: {
+        requiresLogin: true, // true
+        title: 'Proposal Form',
+        role: 'artists',
+        parent: 'artist',
+        breadcrumb: [
+          {title: '', url: '',},
+        ],
+      },
+    },  
     {
       path: '/pages',
       component: () => import('/src/components/FullPage.vue'),
