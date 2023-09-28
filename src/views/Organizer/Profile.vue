@@ -7,7 +7,7 @@
             <div class="col-3"></div>
             <div class="col-6">
               <div class="back-wrapper">
-                <router-link to="/dashboard" class="back"><span class="material-symbols-outlined">&#xef7d;</span>Back</router-link>
+                <router-link to="/dashboard" class="back"><span class="material-symbols-outlined">&#xef7d;</span>Go to Your Dashboard</router-link>
               </div>
 
               <h2 class="title">Welcome! Let's create your profile as an Event Organizer</h2>

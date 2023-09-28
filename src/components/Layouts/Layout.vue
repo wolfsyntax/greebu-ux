@@ -66,7 +66,7 @@
                         <p class="name">{{  userInfo.business_name }}</p>
                         <!-- <p class="email">{{ userInfo.business_email }}</p> -->
                         <p class="name">{{  userInfo.role }}</p>
-                        <router-link to="/dashboard" class="dropdown-item view-profile">View Profile</router-link>
+                        <router-link to="/account/profile" class="dropdown-item view-profile">Edit Profile</router-link>
                       </div>
                     </div>
                   </li>
@@ -108,7 +108,7 @@
                       <div class="artist-name">
                         <p class="name">{{ userInfo.business_name }}</p>
                         <p class="email" style="text-transform: capitalize;">{{ userInfo.role }}</p>
-                        <router-link to="/dashboard" class="dropdown-item view-profile">View Profile</router-link>
+                        <router-link to="/account/profile" class="dropdown-item view-profile">Edit Profile</router-link>
                       </div>
                     </div>
                   </li>
@@ -159,7 +159,7 @@
                       <div class="artist-name">
                         <p class="name">{{ userInfo.business_name }}</p>
                         <p class="email" style="text-transform: capitalize;">{{ userInfo.role }}</p>
-                        <router-link to="/dashboard" class="dropdown-item view-profile">View Profile</router-link>
+                        <router-link to="/account/profile" class="dropdown-item view-profile">Edit Profile</router-link>
                       </div>
                     </div>
                   </li>

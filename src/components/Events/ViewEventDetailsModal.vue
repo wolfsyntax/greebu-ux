@@ -1,18 +1,18 @@
 <template>
-  
+
 <div class="modal fade come-from-modal right" id="eventDetailsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
-        <div class="modal-header d-flex align-items-center justify-content-between">
+        <div class="modal-header d-flex align-items-center justify-content-end">
 
-              <button class="btn close-modal" data-bs-dismiss="modal" aria-label="Close">
-                <span class="material-symbols-rounded">&#xe5e0;</span>
-              </button>
-            
-              <button class="d-flex align-items-center btn new-tab">
-                <span class="material-symbols-rounded new-tab-icon">&#xe89e;</span>
-                Open event in a new window
-              </button>
+          <!-- <button class="d-flex align-items-center btn new-tab">
+            <span class="material-symbols-rounded new-tab-icon">&#xe89e;</span>
+            Open event in a new window
+          </button> -->
+
+          <button class="btn close-modal-btn" data-bs-dismiss="modal" aria-label="Close">
+            <span class="material-symbols-rounded close-icon">&#xe5cd;</span>
+          </button>
            
         </div>
         <div class="modal-body">
@@ -21,10 +21,12 @@
 
             <div>
               <h3 class="title">Sneaker Con Bay Area</h3>
-              <p class="posted">Public Event - Posted 3 hours ago</p>
+              <p class="d-flex align-items-center posted">Public Event
+                <span class="material-symbols-rounded dot">&#xe061;</span>
+                 Posted 3 hours ago</p>
             </div>
 
-            <button type="button" class="btn send">Send Proposal</button>
+            <button v-if="userRole === 'artists'" type="button" class="btn send">Send Proposal</button>
 
           </div>
 
@@ -111,13 +113,14 @@
 
 
 
-
 </template>
 
 <script>
 import { mapGetters, mapState, mapActions } from "vuex";
 
 export default {
+  components: {
+  },
 
   setup () {
 
@@ -130,13 +133,13 @@ export default {
     
   },
   computed: {
+    ...mapGetters(["isLoggedIn", 'userInfo', 'info', 'userRole']),
   },
   mounted()
   {
   
   },
   methods: {
-    
 	},
 
 }
