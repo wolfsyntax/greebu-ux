@@ -2587,7 +2587,7 @@ height: 100%;
 .artists .container{
   margin-bottom: 150px;
 }
-.artists .container h3, .events-showing .container h3{
+.artists .container h3, .events-showing .container .events-showing-title{
   font-style: normal;
   font-weight: 700;
   font-size: 48px;
@@ -2760,7 +2760,7 @@ height: 100%;
   letter-spacing: 1.2px;
   border-radius: 10px;
   background: var(--orange);
-  padding: 22px 59px;
+  padding: 22px 44px;
   border: 0;
 }
 
@@ -2919,7 +2919,8 @@ height: 100%;
   font-weight: 500;
   margin-bottom: 0.5rem;
 }
-.events-showing .seeking-for .type-artist{
+.events-showing .seeking-for .type-artist,
+#eventDetailsModal .looking-for-wrap .type-artist{
   color: var(--orange);
   font-size: 0.875rem;
   font-weight: 600;
@@ -5885,8 +5886,187 @@ width: 100%;
   background-color: var(--btn-hovered);
 }
 
+/* View Events Details modal */
+#eventDetailsModal{
+  background: rgba(45, 54, 83, 0.40);
+}
+#eventDetailsModal .modal-dialog {
+  margin-right: 0;
+  margin-top: 0;
+}
+#eventDetailsModal .modal-content{
+  border-radius: 0;
+}
+#eventDetailsModal .modal-content .modal-header{
+  border-bottom: 0;
+}
+#eventDetailsModal .modal-header button{
+  border: 0;
+}
+#eventDetailsModal .modal-header .close-icon{
+  color: var(--black-color);
+  font-size: 24px;
+}
+#eventDetailsModal .modal-header .new-tab{
+  color: var(--orange);
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+#eventDetailsModal .modal-header .new-tab-icon{
+  color: var(--orange);
+  font-size: 24px;
+  margin-right: 0.5rem;
+}
+#eventDetailsModal .modal-header .new-tab-icon:hover{
+  color: var(--btn-hovered);
+}
+#eventDetailsModal .modal-content .modal-body,
+#eventDetailsModal .modal-content .modal-header {
+  padding: 2rem 2.69rem 2.84rem;
+  border-radius: 0;
+}
+#eventDetailsModal .modal-content .modal-body{
+  padding: 0 2.69rem 2.84rem;
+}
+#eventDetailsModal .event-title-wrap{
+  margin-bottom: 2.5rem;
+}
+#eventDetailsModal .event-title-wrap .title{
+  color: var(--black);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+#eventDetailsModal .event-title-wrap .posted{
+  color: var(--gray2);
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 0;
+}
+#eventDetailsModal .event-title-wrap .send{
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.05rem;
+  border-radius: 1.5rem;
+  border: 1px solid var(--orange);
+  background: var(--orange);
+  padding: 0.91rem 2.03rem;
+}
+#eventDetailsModal .event-title-wrap .send:hover{
+  border: 1px solid var(--btn-hovered);
+  background: var(--btn-hovered);
+}
+#eventDetailsModal .event-background-img-wrap{
+  margin-bottom: 2rem;
+}
+#eventDetailsModal .event-background-img-wrap .event-background-img{
+  width: 100%;
+  height: 29.375rem;
+  position: relative;
+  -o-object-fit: cover;
+  object-fit: cover;
+  backface-visibility: hidden;
+}
 
-                                    
+#eventDetailsModal .event-details-wrapper,
+#eventDetailsModal .about-event-wrap,
+#eventDetailsModal .requirements-wrap,
+#eventDetailsModal .looking-for-wrap {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #E5E7EB;
+}
+#eventDetailsModal .event-details-wrapper .event-details,
+#eventDetailsModal .about-event-wrap .about,
+#eventDetailsModal .organizer-details-wrapper .organizer-details,
+#eventDetailsModal .organizer-details-wrapper .organizer-name,
+#eventDetailsModal .requirements-wrap .requirements,
+#eventDetailsModal .looking-for-wrap .looking-for{
+  color: var(--black);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+}
+#eventDetailsModal .event-details-wrapper > div:first-of-type{
+  margin-bottom: 1.25rem;
+}
+#eventDetailsModal .event-details-wrapper span{
+  font-size: 24px;
+  color: var(--gray6);
+  margin-right: 1rem;
+  font-variation-settings: 'FILL' 1,'wght' 800,'GRAD' 0,'opsz' 48;
+}
+#eventDetailsModal .event-details-wrapper h6,
+#eventDetailsModal .about-event-wrap .description,
+#eventDetailsModal .requirements-wrap .description, #eventDetailsModal .requirements-wrap ol li{
+  color: var(--gray2);
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+} 
+#eventDetailsModal .event-details-wrapper p{
+  color: var(--orange);
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 0;
+}   
+#eventDetailsModal .about-event-wrap{
+  width: 90%;
+}     
+#eventDetailsModal .about-event-wrap .about{
+  margin-bottom: .5rem;
+}                         
+#eventDetailsModal .about-event-wrap .description{
+  margin-bottom: 0;
+}  
+#eventDetailsModal .organizer-details-wrapper .organizer-details{
+  margin-bottom: 1.03rem;
+}
+#eventDetailsModal .organizer-details-wrapper .organizer-img{
+  width: 3.625rem;
+  height: 3.625rem;
+  border-radius: 100%;
+  position: relative;
+  -o-object-fit: cover;
+  object-fit: cover;
+  backface-visibility: hidden;
+  margin-right: 0.5rem;
+}
+#eventDetailsModal .organizer-details-wrapper .organizer-name{
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+#eventDetailsModal .organizer-details-wrapper .company{
+  color: var(--black);
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+#eventDetailsModal .organizer-details-wrapper .view-profile{
+  color: var(--orange);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.05rem;
+  padding: 0.66rem 1.16rem;
+  border-radius: 0.375rem;
+  border: 1px solid var(--orange);
+}
+#eventDetailsModal .organizer-details-wrapper .view-profile:hover{
+  border: 1px solid var(--orange);
+  color: var(--white);
+  background: var(--orange);
+}
+#eventDetailsModal .requirements-wrap{
+  margin-bottom: 3rem;
+}
+#eventDetailsModal .requirements-wrap .description{
+  margin-bottom: 1.5rem;
+}
+#eventDetailsModal .requirements-wrap ol li{
+  margin-bottom: 0.5rem;
+}
 
 
 
@@ -6985,7 +7165,7 @@ margin-bottom: 1rem;
   padding: 3.03rem 4.8rem 6.5rem;
   margin-top: 1.5rem;
 }
-.artists .container .row .filter, .events-showing .container .row .filter, .event-organizers .container .top-row .filter, 
+.artists .container .row .filter, .events-showing .create-event-wrapper .create-event, .events-showing .container .row .filter, .event-organizers .container .top-row .filter, 
 .basic-information .container .step2 .top-row .filter {
   font-size: 0.9375rem;
   line-height: 100%;
@@ -6994,13 +7174,28 @@ margin-bottom: 1rem;
   align-items: center;
   margin-bottom: 2rem;
 }
+.events-showing .create-event-wrapper .create-event{
+  gap: 0.3rem;
+  margin-bottom: 0;
+}
 .events-showing .container .row .filter span{
  padding-top: -0.3rem;
 }
-.artists .container .row .filter span, .events-showing .container .row .filter span, .event-organizers .container .top-row .filter span, .basic-information .container .step2 .top-row .filter span {
+.artists .container .row .filter span, .event-organizers .container .top-row .filter span, .basic-information .container .step2 .top-row .filter span {
   margin-right: 0.47rem;
   width: 1.125rem;
   height: 1.125rem;
+}
+.events-showing .create-event-wrapper {
+  margin-bottom: 2rem;
+}
+.events-showing .container .row .filter span{
+  margin-right: 0.47rem;
+  font-size: 16px;
+}
+.events-showing .create-event-wrapper .add-circle{
+  margin-right: 0;
+  font-size: 18px;
 }
 .artists .container .row .input-group .form-control, .events-showing .container .row .input-group .form-control, 
 .event-organizers .container .top-row .input-group .form-control, .basic-information .container .step2 .top-row .input-group .form-control {
@@ -7417,7 +7612,8 @@ margin-bottom: 1rem;
   font-weight: 500;
   line-height: normal;
 }
-.events-showing .seeking-for .type-artist {
+.events-showing .seeking-for .type-artist,
+#eventDetailsModal .looking-for-wrap .type-artist {
   font-size: 0.6875rem;
   font-weight: 600;
   line-height: 1rem; 
@@ -7461,7 +7657,7 @@ margin-bottom: 1rem;
 
                                                               /* ARTIST PAGE */
 /* BANNER CAROUSEL SECTION */   
-.artists .container h3, .events-showing .container h3 {
+.artists .container h3, .events-showing .container .events-showing-title{
   font-size: 2.5rem;
   font-weight: 700;
   line-height: normal;

@@ -952,6 +952,8 @@ body{
   line-height: 26px;
   text-transform: capitalize;
   margin-bottom: 10px;
+  display: flex;
+  align-items: center;
 }
 .profile-page .about-tab .ratings h4{
   color: #111827;
@@ -3018,6 +3020,11 @@ height: 200px;
   font-size: 12px;
   line-height: 22px;
   margin-bottom: 8px;
+}
+.profile-page .about-tab .social-media ul img {
+  width: 18px;
+  height: 18px;
+  margin-right: 4px;
 }
 .profile-page .about-tab .ratings h4 {
   font-size: 20px;
