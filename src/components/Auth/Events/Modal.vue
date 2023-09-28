@@ -1,10 +1,10 @@
 <template>
-  <div class="modal fade" id="eventsModal" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal fade modal-lg" id="eventsModal" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ref="eventModalDismiss"></button>
         </div>
         <div class="modal-body">
           <event-form @next-step="nextStep" v-if="step === 'detail'" />
@@ -43,6 +43,9 @@ export default {
       this.$store.commit('RESET_EVENT_FORM')
       this.step = 'detail';
     });
+  },
+  beforeUnmount() {
+    this.$store.commit('RESET_EVENT_FORM')
   },
   methods: {
     nextStep()

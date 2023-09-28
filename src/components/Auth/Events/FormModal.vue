@@ -2,6 +2,7 @@
   <div>
     <form class="required-fields" @submit.prevent="submit">
       <drag-drop @dragCover="setCover" />
+      <div v-for="err in error?.cover_photo" :key="err" class="text-danger">{{ err }}</div>
       <div class="row py-2">
         <div class="col">
           <div class="form-group">
@@ -42,7 +43,7 @@
         <div class="col">
           <div class="form-group">
             <label for="eventType">Audience</label>
-            <select v-mode="form.audience" class="form-select">
+            <select v-model="form.audience" class="form-select">
               <option value="false" selected>Private Event</option>
               <option value="true">Public Event</option>
             </select>
@@ -61,7 +62,7 @@
         </div>
         <div class="col">
           <div class="form-group">
-            <label for="eventType">End Date</label>{{ startDate }}
+            <label for="eventType">End Date</label>
             <input type="date" v-model="form.end_date" placeholder="YYYY-MM-DD" class="form-control " required autocomplete="off" :min="$moment().add(5, 'days').format('YYYY-MM-DD')" />
             <div v-for="err in error?.end_date" :key="err" class="text-danger">{{ err }}</div>
           </div>
@@ -151,7 +152,21 @@ export default {
     submit()
     {
       this.isLoading = true;
-      this.$emit('next-step')
+      this.createEvent()
+        .then(res =>
+        {
+          console.log('Next Step: ', res);
+          this.isLoading = false;
+          this.$emit('next-step')
+        })
+        .catch(err =>
+        {
+
+          const { status, message, result: {errors, form} } = err;
+          this.error = errors;
+
+        })
+
     },
     
   },

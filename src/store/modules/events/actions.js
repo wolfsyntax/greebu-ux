@@ -7,18 +7,20 @@ export const fetchEventOptions = ({ commit, rootState }) =>
 
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
 
-    await axios.get(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/event/create`)
+    await axios.get(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/events/create`)
       .then(response =>
       {
         const { status: statusCode, data: { status, message, result } } = response;
 
         if (statusCode === 200 && status === 200) 
         {
-          const { event_types } = result;
+          console.log('Fetch Event Option: ', response);
+          const { event_types, event_artist_type, event_service_type, event_pricing } = result;
 
           commit('SET_EVENT_OPTIONS', event_types || []);
-
+          commit('SET_LOOK_FORM', { event_artist_type, event_service_type });
           resolve({ status: statusCode, message, result: result });
+
         }
         
 
@@ -26,17 +28,77 @@ export const fetchEventOptions = ({ commit, rootState }) =>
       })
   });
 }
-export const createEvent = ({ commit, rootState }, payload) =>
+export const createEvent = ({ commit, rootState, state }) =>
 {
   return new Promise(async (resolve, reject) =>
   {
 
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
+    console.log('Form data: ', state.form);
+    await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/events`, state.form, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      }
+    })
+    .then(response =>
+    {
+      console.log('Create Event: ', response);
+      const { status: statusCode, data } = response
+      if (statusCode === 200) {
+        const { status, message, result: { event } } = data; 
+        if (status === 201) {
+          event.look_for = 'artist';
+        }
+        commit('SET_EVENT_FORM', event);
 
-    await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/artists/create`, payload)
-      .then(response =>
-      {
-        console.log('Create Event: ', response)
-      })
+        resolve(data);
+
+      }
+
+      reject(data)
+    })
+    .catch(err =>
+    {
+      const { data } = err;
+      reject(data);
+    })
+  });
+}
+
+export const updateEvent = ({ commit, rootState, state }) =>
+{
+  return new Promise(async (resolve, reject) =>
+  {
+
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
+    
+    console.log('Update Form data for step 2: ', state.form);
+    const { look_for, look_type, requirement } = state.form;
+    var formData = { look_for, look_type, requirement }
+    await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/events/${state.form.id}/look`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      }
+    })
+    .then(response =>
+    {
+      console.log('Update Event: ', response);
+
+      const { status: statusCode, data } = response;
+
+      if (statusCode === 200) {
+        const { status, message, result: { event } } = data; 
+        
+        commit('SET_EVENT_FORM', event);
+        resolve(data);
+      }
+
+      reject(data)
+    })
+    .catch(err =>
+    {
+      const { data } = err;
+      reject(data);
+    })
   });
 }
