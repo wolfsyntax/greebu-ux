@@ -80,7 +80,7 @@
 
                                                              <!-- Upcoming Events -->
         <div class="row">
-          <div class="col-4" v-for="(event, index) in events">
+          <div class="col-4" v-for="(event, index) in events" :key="index">
             <div class="card">
               <div class="bg-wrapper">
                 <img :src="event.image" class="img-fluid card-bg" loading="lazy" alt="Event image">
@@ -136,22 +136,25 @@
             </div>
           </div>
         </div>                                                   
-
+s -->
       </div>
     </section>
     <signupmodal />
-    <events-modal />
+    <events-modal @close="dismiss"/>
+    <event-success />
     <faq />
   </layout>
 </template>
 <script>
 import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
+import { Modal } from 'bootstrap';
+
 import Layout from '/src/components/Layouts/Layout.vue';
 import Faq from '/src/components/Home/FAQ.vue';
 import MustSignupModal from '/src/components/Artist/MustSignupModal.vue';
 import EventsModal from '/src/components/Auth/Events/Modal.vue';
-import { Modal } from 'bootstrap';
 import ViewEventDetailsModal from '/src/components/Events/ViewEventDetailsModal.vue';
+import EventSuccess from '/src/components/Auth/Events/SuccessModal.vue';
 
 export default {
   components: {
@@ -159,7 +162,8 @@ export default {
     faq: Faq,
     signupmodal: MustSignupModal,
     EventsModal,
-    viewEventDetails: ViewEventDetailsModal
+    viewEventDetails: ViewEventDetailsModal,
+    EventSuccess,
   },
   setup()
   {
@@ -308,6 +312,17 @@ export default {
         keyboard: false,
         backdrop: 'static',
       }).show();
+    },
+    dismiss(option)
+    {
+      // console.log('Dismiss option: ', option);
+      // if (option === 'skip')
+      // {
+      //   new Modal(document.getElementById('eventsModal'), {
+      //     keyboard: false,
+      //     backdrop: 'static',
+      //   }).hide();
+      // }
     },
     // openModal(data){
     //     this.$root.$emit("bv::show::modal", "#mustSignUp");

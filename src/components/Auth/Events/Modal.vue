@@ -8,7 +8,8 @@
         </div>
         <div class="modal-body">
           <event-form @next-step="nextStep" v-if="step === 'detail'" />
-          <event-lookup v-if="step === 'lookup'" />
+          <event-lookup @next-step="finalStep" v-if="step === 'lookup'" />
+          
         </div>
         <!-- <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -51,6 +52,10 @@ export default {
     nextStep()
     {
       this.step = 'lookup';
+    },
+    finalStep(val = 'skip')
+    {
+      this.$emit('close', val);
     }
   }
 }

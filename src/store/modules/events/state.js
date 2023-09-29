@@ -33,7 +33,10 @@ const state = {
   look_for: [
     { value: 'artist', text: 'Artist' },
     { value: 'service', text: 'Service' },
-  ]
+  ],
+  filterType: '',
+  filterLocation: '',
+  filterCost: 'free'
 };
 
 export default state;

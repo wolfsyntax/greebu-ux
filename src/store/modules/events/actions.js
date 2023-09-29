@@ -28,6 +28,74 @@ export const fetchEventOptions = ({ commit, rootState }) =>
       })
   });
 }
+
+export const fetchEvents = ({ commit, rootState, state }) =>
+{
+  return new Promise(async (resolve, reject) =>
+  {
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
+
+    var url = '';
+    await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/events/${state.form.id}/look`, formData)
+    .then(response =>
+    {
+      console.log('Fetch Events: ', response);
+
+      const { status: statusCode, data } = response;
+
+      if (statusCode === 200) {
+        const { status, message, result: { event } } = data; 
+        
+        commit('SET_EVENT_FORM', event);
+        resolve(data);
+      }
+
+      reject(data)
+    })
+    .catch(err =>
+    {
+      const { data } = err;
+      reject(data);
+    })
+  })  
+}
+
+export const verifyEvent = ({ commit, rootState, state }) =>
+{
+  return new Promise(async (resolve, reject) =>
+  {
+
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
+    
+    await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/events/verify`, state.form, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      }
+    })
+    .then(response =>
+    {
+      console.log('Event form Validation: ', response);
+      const { status: statusCode, data } = response
+      if (statusCode === 200) {
+        const { status, message, result: { event } } = data; 
+        if (status === 201) {
+          event.look_for = 'artist';
+        }
+        
+        resolve(data);
+
+      }
+
+      reject(data)
+    })
+    .catch(err =>
+    {
+      const { data } = err;
+      reject(data);
+    })
+  });
+}
+
 export const createEvent = ({ commit, rootState, state }) =>
 {
   return new Promise(async (resolve, reject) =>

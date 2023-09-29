@@ -29,13 +29,27 @@
       </div>
       
       
-      <div class="row py-2">
+      <div class="row my-2">
         <div class="col">
-          <div class="form-group">
-            <label for="eventType">Location</label>
-            <input type="text" v-model="form.location" placeholder="Location" class="form-control city" required autocomplete="off"/>
-            <div v-for="err in error?.location" :key="err" class="text-danger">{{ err }}</div>
-        </div>
+          <label for="eventType">Venue Address</label>
+          <div class="row">
+            <div class="row my-2">
+              <div class="col-12">
+                <input type="text" class="form-control" placeholder="Unit/Floor No. Premises/Bldg. Name, House/Bldg. No., Street Name" />
+              </div>
+            </div>
+            <div class="row my-2">
+              <div class="col-12 col-md-4">
+                <input type="text" class="form-control" placeholder="Village/Subdivision, District, Barangay" />
+              </div>
+              <div class="col-12 col-md-4">
+                <input type="text" class="form-control" placeholder="Town/City">
+              </div>
+              <div class="col-12 col-md-4">
+                <input type="text" class="form-control" placeholder="Province">
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       
@@ -142,7 +156,7 @@ export default {
   }),
   methods: {
     ...mapActions([
-      'fetchEventOptions', 'createEvent',
+      'fetchEventOptions', 'createEvent', 'verifyEvent',
     ]),
     setCover(val)
     {
@@ -152,7 +166,9 @@ export default {
     submit()
     {
       this.isLoading = true;
-      this.createEvent()
+      console.log('Emit: ', this.form);
+
+      this.verifyEvent()
         .then(res =>
         {
           console.log('Next Step: ', res);
@@ -161,8 +177,9 @@ export default {
         })
         .catch(err =>
         {
-
-          const { status, message, result: {errors, form} } = err;
+          console.log('Event Verify [error]: ', err)
+          const { status, message, result: { errors, form } } = err;
+          this.isLoading = false;
           this.error = errors;
 
         })

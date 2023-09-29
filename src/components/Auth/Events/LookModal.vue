@@ -27,13 +27,15 @@
       </div>
 
       <div class="text-end">
-        <button type="button" class="btn btn-outline-geebu mx-1" data-bs-dismiss="modal" ref="eventSkip">Skip</button>
-        <button type="submit" class="btn btn-geebu mx-1">
+        <!-- <button type="button" class="btn btn-outline-geebu mx-1" @click="$emit('next-step', 'skip')" ref="eventSkip">Skip</button> -->
+        <button type="button" class="btn btn-outline-geebu mx-1" @click="$emit('next-step', 'detail')" ref="eventSkip">Back</button>
+        <button type="submit" class="btn btn-geebu mx-1" @click="$emit('next-step', 'submit')">
           <span >
             <i class="busy-submitting" v-if="isLoading"></i>Submit
           </span>
         </button>
       </div>
+      {{ form }}
     </form>    
   </div>
 </template>
