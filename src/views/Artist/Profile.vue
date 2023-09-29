@@ -409,12 +409,6 @@
                     </div>
                   </div>  
                   </div>
-                <!-- <div v-else-if="errorMessage" 
-                :class="{ 'errorMessage': errorMessage}"
-                 class="d-flex align-items-center audio-file-format" >
-                  <span class="material-symbols-outlined info">&#xe88e;</span>
-                  <p class="max-file-size">{{ errorMessage }}</p>
-                </div> -->
                 </transition>
                 <div v-if="defaultFileFormat"  class="d-flex align-items-center audio-file-format">
                   <span class="material-symbols-outlined info">&#xe88e;</span>
@@ -426,6 +420,7 @@
                     <span class="material-symbols-outlined info">&#xe88e;</span>
                   <p class="max-file-size"> {{ err }}</p>
                   </div>
+                  
               </div> <!-- end of song-preview -->
               
               <div class="text-center">

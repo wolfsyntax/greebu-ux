@@ -1,14 +1,14 @@
 <template>
   <div>
-    <h5>What are you looking for?</h5>
     <form @submit.prevent="submit" class="event-lookup">
+
       <div class="form-group">
-        <label for="lookingFor">Looking for</label>
-        <select class="form-select" v-model="form.look_for">
-          <option value="artist" selected>Artist</option>
+          <label for="lookingFor">Looking for</label>
+          <select v-model="form.look_for" class="form-select">
+            <option value="artist" selected>Artist</option>
           <option value="service">Service</option>
-        </select>
-        <div v-for="err in error?.look_for" :key="err" class="text-danger">{{ err }}</div>
+          </select>
+          <div v-for="err in error?.look_for" :key="err" class="text-danger">{{ err }}</div>
       </div>
 
       <div class="form-group">
@@ -19,21 +19,23 @@
           </select>
           <div v-for="err in error?.look_type" :key="err" class="text-danger">{{ err }}</div>
       </div>
-      <div class="form-group">
+
+      <div class="form-group event-details-wrap">
         <label for="eventRequirement">Description / Requirement</label>
         <textarea id="eventRequirement" v-model="form.requirement" maxlength="500" class="form-control about-artist" placeholder="Write description" required>
         </textarea>
         <div v-for="err in error?.requirement" :key="err" class="text-danger">{{ err }}</div>
       </div>
 
-      <div class="text-end">
-        <button type="button" class="btn btn-outline-geebu mx-1" data-bs-dismiss="modal" ref="eventSkip">Skip</button>
-        <button type="submit" class="btn btn-geebu mx-1">
+      <div class="text-end action-btn-wrap">
+        <button type="button" class="btn cancel" data-bs-dismiss="modal" ref="eventSkip">Back</button> 
+        <button type="submit" class="btn next">
           <span >
             <i class="busy-submitting" v-if="isLoading"></i>Submit
           </span>
         </button>
       </div>
+
     </form>    
   </div>
 </template>

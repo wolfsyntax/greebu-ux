@@ -1,9 +1,9 @@
 <template>
-  <div class="modal fade modal-lg" id="eventsModal" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal fade modal-lg" id="createEventModal" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+          <h2 class="modal-title fs-5" id="staticBackdropLabel">Create an Event</h2>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ref="eventModalDismiss"></button>
         </div>
         <div class="modal-body">
@@ -36,7 +36,7 @@ export default {
   }),
   mounted()
   {
-    const myModal = document.getElementById('eventsModal');
+    const myModal = document.getElementById('createEventModal');
 
     myModal.addEventListener('hide.bs.modal', () =>
     {

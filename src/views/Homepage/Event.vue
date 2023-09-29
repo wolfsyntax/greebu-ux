@@ -23,12 +23,6 @@
           <p class="sub-heading">Collaborate with a professional independent artist to turn your story into one-of-a-kind custom song</p>
         </div>
 
-        <!-- <div v-if="!isLoggedIn"></div>
-
-                <div v-else>
-                  <div class="seeking-for" v-if="userRole === 'artists' || userRole === 'organizer'" ></div>
-                </div> -->
-
         <div v-if="userRole === 'organizer'" class="create-event-wrapper d-flex justify-content-end">
           <button class="d-flex align-items-center btn create-event" @click="toggleCreate">
             <span class="material-symbols-rounded add-circle">&#xe147;</span>
@@ -140,7 +134,7 @@
       </div>
     </section>
     <signupmodal />
-    <events-modal />
+    <create-event-modal />
     <faq />
   </layout>
 </template>
@@ -149,7 +143,7 @@ import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
 import Layout from '/src/components/Layouts/Layout.vue';
 import Faq from '/src/components/Home/FAQ.vue';
 import MustSignupModal from '/src/components/Artist/MustSignupModal.vue';
-import EventsModal from '/src/components/Auth/Events/Modal.vue';
+import createEventModal from '/src/components/Auth/Events/Modal.vue';
 import { Modal } from 'bootstrap';
 import ViewEventDetailsModal from '/src/components/Events/ViewEventDetailsModal.vue';
 
@@ -158,7 +152,7 @@ export default {
     layout: Layout,
     faq: Faq,
     signupmodal: MustSignupModal,
-    EventsModal,
+    createEventModal,
     viewEventDetails: ViewEventDetailsModal
   },
   setup()
@@ -304,14 +298,11 @@ export default {
     {
       this.fetchEventOptions()
 
-      new Modal(document.getElementById('eventsModal'), {
+      new Modal(document.getElementById('createEventModal'), {
         keyboard: false,
         backdrop: 'static',
       }).show();
     },
-    // openModal(data){
-    //     this.$root.$emit("bv::show::modal", "#mustSignUp");
-    //   },
     openEventDetailsModal(data){
         this.$root.$emit("bv::show::modal", "#eventDetailsModal");
     },
