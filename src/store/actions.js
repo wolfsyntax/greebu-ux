@@ -135,6 +135,7 @@ var actions = {
             if (state.role === 'organizer')
             {
               commit('CLEAR_ORGANIZER_STATE');
+              commit('RESET_EVENT_FORM');
             }
             
             commit('CLEAR_ARTIST')

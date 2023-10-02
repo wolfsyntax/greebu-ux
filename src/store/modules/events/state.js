@@ -1,10 +1,14 @@
 const state = {
   form: {
-    id: '',
     cover_photo: '',
     event_type: '',
     event_name: '',
     location: '',
+    // venue
+    street_address: '',
+    barangay: '',
+    city: '',
+    province: '',    
     // audience
     audience: false,
     start_date: '',
@@ -33,7 +37,10 @@ const state = {
   look_for: [
     { value: 'artist', text: 'Artist' },
     { value: 'service', text: 'Service' },
-  ]
+  ],
+  filterType: '',
+  filterLocation: '',
+  filterCost: 'free'
 };
 
 export default state;

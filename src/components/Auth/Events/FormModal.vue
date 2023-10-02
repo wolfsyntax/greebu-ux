@@ -1,15 +1,27 @@
 <template>
   <div>
     <form class="required-fields" @submit.prevent="submit">
-      <drag-drop @dragCover="setCover" />
+      <div class="upload-file-wrapper" v-if="cover">
+        <div class="uploaded-image-wrapper" >
+          <div >
+            <img ref="uploadedImage" class="uploaded-image" :src="cover" alt="banner-modal" />
+          </div>
+        
+          <button class="remove-image" @click="removeBanner" >
+            <span class="material-symbols-outlined">&#xe5cd;</span> 
+          </button>
+        </div>
+      </div>
+      <drag-drop @dragCover="setCover" v-else/>
+      
       <div v-for="err in error?.cover_photo" :key="err" class="text-danger">{{ err }}</div>
       <div class="row py-2">
         <div class="col">
           <div class="form-group">
             <label for="eventType">Event Type</label>
-            <select v-model="form.event_type" class="form-select" >
-              <option v-for="(event_type, index) in eventTypes" :key="index" :value="event_type.id" >
-                {{ event_type.name }}
+            <select v-model="form.event_type" class="form-select" style="text-transform: capitalize;">
+              <option v-for="(event_type, index) in eventTypes" :key="index" :value="event_type">
+                {{ event_type }}
               </option>
             </select>
 
@@ -29,13 +41,27 @@
       </div>
       
       
-      <div class="row py-2">
+      <div class="row my-2">
         <div class="col">
-          <div class="form-group">
-            <label for="eventType">Location</label>
-            <input type="text" v-model="form.location" placeholder="Location" class="form-control city" required autocomplete="off"/>
-            <div v-for="err in error?.location" :key="err" class="text-danger">{{ err }}</div>
-        </div>
+          <label for="eventType">Venue Address</label>
+          <div class="row">
+            <div class="row my-2">
+              <div class="col-12">
+                <input type="text" v-model="form.street_address" class="form-control" placeholder="Unit/Floor No. Premises/Bldg. Name, House/Bldg. No., Street Name" />
+              </div>
+            </div>
+            <div class="row my-2">
+              <div class="col-12 col-md-4">
+                <input type="text" v-model="form.barangay" class="form-control" placeholder="Village/Subdivision, District, Barangay" />
+              </div>
+              <div class="col-12 col-md-4">
+                <input type="text" v-model="form.city" class="form-control" placeholder="Town/City">
+              </div>
+              <div class="col-12 col-md-4">
+                <input type="text" v-model="form.province" class="form-control" placeholder="Province">
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       
@@ -88,20 +114,26 @@
         </div>
       </div>
       
+      <div class="row py-2" v-if="errorTime">
+        <div class="col text-danger">
+          {{ errorTime }}
+        </div>
+      </div>
+
       <div class="row py-2">
         <div class="col">
           <div class="form-group">
             <label for="eventDetails">Event Details</label>
-            <textarea v-model="form.description" maxlength="500" class="form-control about-artist" placeholder="Write description" required>
+            <textarea v-model="form.description" maxlength="500" rows="7" class="form-control about-artist" placeholder="Write description" required>
             </textarea>
             <div v-for="err in error?.description" :key="err" class="text-danger">{{ err }}</div>
           </div>
         </div>
       </div>
-
+      
       <div class="text-end">
         <button type="button" class="btn btn-outline-geebu mx-1" data-bs-dismiss="modal">Cancel</button>
-        <button type="submit" class="btn btn-geebu mx-1" >
+        <button type="submit" class="btn btn-geebu mx-1" :disabled="!validInput">
           <span >
             <i class="busy-submitting" v-if="isLoading"></i>Next
           </span>
@@ -126,7 +158,10 @@ export default {
   },
   data: () => ({
     error: [],
+    cover: '',
     isLoading: false,
+    isComplete: false,
+    errorTime: '',
     // form: {
     //   cover_photo: '',
     //   event_type: '',
@@ -142,17 +177,25 @@ export default {
   }),
   methods: {
     ...mapActions([
-      'fetchEventOptions', 'createEvent',
+      'fetchEventOptions', 'createEvent', 'verifyEvent',
     ]),
     setCover(val)
     {
       this.form.cover_photo = val;
+      this.cover = URL.createObjectURL(val);
       console.log('Set Cover:: ', val);
+    },
+    removeBanner()
+    {
+      this.cover = '';
+      this.form.cover_photo = '';
     },
     submit()
     {
       this.isLoading = true;
-      this.createEvent()
+      console.log('Emit: ', this.form);
+
+      this.verifyEvent()
         .then(res =>
         {
           console.log('Next Step: ', res);
@@ -161,8 +204,9 @@ export default {
         })
         .catch(err =>
         {
-
-          const { status, message, result: {errors, form} } = err;
+          console.log('Event Verify [error]: ', err)
+          const { status, message, result: { errors, form } } = err;
+          this.isLoading = false;
           this.error = errors;
 
         })
@@ -172,7 +216,37 @@ export default {
   },
   mounted()
   {
-    this.fetchEventOptions()
+    this.cover = this.form.cover_photo ? URL.createObjectURL(this.form.cover_photo) : '';
+
+    if (
+      this.form.event_type !== '' && this.form.event_name !== '' &&
+      this.form.street_address !== '' && this.form.barangay !== '' &&
+      this.form.city !== '' && this.form.province !== '' && this.form.description !== '' &&
+      this.form.start_date !== '' && this.form.start_time !== '' &&
+      this.form.end_date !== '' && this.form.end_time !== '' && this.form.cover_photo !== ''
+    ) this.isComplete = true;
+
+    this.fetchEventOptions();
+    const myModal = document.getElementById('eventsModal');
+    myModal.addEventListener('shown.bs.modal', () =>
+    {
+      this.$store.commit('RESET_EVENT_FORM')
+      // this.form.event_type = this.eventTypes[0];
+      this.step = 'detail';
+      if (this.form.cover_photo) {
+        // this.cover = URL.createObjectURL(this.form.cover_photo);
+      }
+    });
+
+    myModal.addEventListener('hide.bs.modal', () =>
+    {
+      this.$store.commit('RESET_EVENT_FORM')
+      this.step = 'detail';
+      this.cover = '';
+      
+    });
+
+
   },
   computed: {
     ...mapState({
@@ -182,14 +256,57 @@ export default {
     startDate()
     {
       return this.$moment().add(5, 'days').format('DD-MM-YYYY');
+    },
+    eventEnd()
+    {
+      return `${this.form.end_date} ${this.form.end_time}`;
+    },
+    eventStart()
+    {
+      return `${this.form.start_date} ${this.form.start_time}`;
+    },
+    validInput()
+    {
+      if (this.isComplete) {
+        if (this.$moment(this.eventEnd).isAfter(this.eventStart)) {
+          return true;
+        } else {
+          this.errorTime = `The end date and time must be a date after or equal to ${this.eventStart}.`;
+        }
+      }
+      
+      return false;
     }
   },
   watch: {
+    form: {
+      handler(val)
+      {
+        this.isComplete = false;
+        if (
+          val.event_type !== '' && val.event_name !== '' &&
+          val.street_address !== '' && val.barangay !== '' &&
+          val.city !== '' && val.province !== '' && val.description !== '' &&
+          val.start_date !== '' && val.start_time !== '' && 
+          val.end_date !== '' && val.end_time !== '' && val.cover_photo !== ''
+        ) this.isComplete = true;
+
+        if (val.start_date !== '' && val.start_time !== '' &&
+          val.end_date !== '' && val.end_time !== '') {
+          this.errorTime = '';
+
+          if (!this.$moment(this.eventEnd).isAfter(this.eventStart)) { 
+            this.errorTime = `The end date and time must be a date after or equal to ${this.eventStart}.`;
+          }
+        }
+      },
+      deep:true,
+    },
     eventTypes: {
       handler(val)
       {
 
-        if(val) this.form.event_type = val[0].id;
+        if(val) this.form.event_type = val[0];
       },
       deep: true,
     }
@@ -227,4 +344,82 @@ export default {
     --bs-btn-disabled-border-color: #FF6B00;
     --bs-gradient: none;
 }
+
+.upload-file-wrapper .upload-file-content{
+    border-radius: 0.25rem;
+    background: #EFEFFC;
+    padding: 2rem 0;
+}
+
+.upload-file-wrapper .upload-file-content svg {
+  margin-bottom: 1.5rem;
+}
+
+.upload-file-wrapper .upload-file-content .drag-files {
+  color: var(--black-color);
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.upload-file-wrapper .upload-file-content .image-type{
+  color: rgba(0, 0, 0, 0.40);
+  font-size: 0.75rem;
+  font-weight: 400;
+  margin-bottom: 1.25rem;
+}
+
+.upload-file-content  .select-files-wrapper label {
+  color: var(--orange);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  background-color: transparent;
+  padding: 0.75rem 1rem;
+  border-radius: 0.3125rem;
+  border: 1px solid var(--orange);
+}
+
+.upload-file-content  .select-files-wrapper label:hover{
+    background-color: var(--orange);
+    color: var(--white);
+}
+
+.upload-file-wrapper .uploaded-image-wrapper .uploaded-image{
+  height: 21.313rem;
+  width: 100%;
+  border-radius: 0.25rem;
+  position: relative;
+  -o-object-fit: cover;
+  object-fit: cover;
+  backface-visibility: hidden;
+}
+
+.upload-file-wrapper .uploaded-image-wrapper .remove-image{
+  margin: 0;
+  position: absolute;
+  top: 3%;
+  left: 92%;
+  border: 0;
+  background-color: transparent;
+}
+
+.upload-file-wrapper .uploaded-image-wrapper .remove-image span{
+  cursor: pointer;
+  color: var(--white);
+  margin: 0;
+  position: absolute;
+  top: 3%;
+  left: 89.5%;
+  background: #00000075;
+  border-radius: 100px;
+  padding: 2px;
+  font-size: 16px;
+  border: 0.1px solid #ffffff91;
+}
+
+.upload-file-wrapper .uploaded-image-wrapper .remove-image:hover span{
+  border: 0.1px solid var(--white);
+}
+
 </style>

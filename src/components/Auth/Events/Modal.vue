@@ -1,14 +1,14 @@
 <template>
-  <div class="modal fade modal-lg" id="eventsModal" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal fade modal-lg"  id="eventsModal" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+        <div class="modal-header border-bottom-0">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">&emsp;</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ref="eventModalDismiss"></button>
         </div>
         <div class="modal-body">
           <event-form @next-step="nextStep" v-if="step === 'detail'" />
-          <event-lookup v-if="step === 'lookup'" />
+          <event-lookup @next-step="finalStep" v-if="step === 'lookup'" />
         </div>
         <!-- <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -21,6 +21,7 @@
 <script>
 import EventForm from '/src/components/Auth/Events/FormModal.vue';
 import EventLookup from '/src/components/Auth/Events/LookModal.vue';
+import EventSuccess from '/src/components/Auth/Events/SuccessModal.vue';
 
 export default {
   setup()
@@ -30,6 +31,7 @@ export default {
   components: {
     EventForm,
     EventLookup,
+    EventSuccess,
   },
   data: () => ({
     step: 'detail',
@@ -43,15 +45,40 @@ export default {
       this.$store.commit('RESET_EVENT_FORM')
       this.step = 'detail';
     });
+
+    // myModal.addEventListener('shown.bs.modal', () =>
+    // {
+    //   console.log('Create Event modal shown: ', this.form)
+    //   this.$store.commit('RESET_EVENT_FORM')
+    //   console.log('Reset Form: ', this.form)
+    //   this.step = 'detail';
+    // });
   },
   beforeUnmount() {
-    this.$store.commit('RESET_EVENT_FORM')
+    // this.$store.commit('RESET_EVENT_FORM')
   },
   methods: {
     nextStep()
     {
       this.step = 'lookup';
+    },
+    finalStep(val = 'skip')
+    {
+      if (val === 'detail') this.step = 'detail';
+      else if (val === 'success') {
+        this.step = 'success';
+        this.$emit('close', val);
+        this.$refs.eventModalDismiss.click();
+      }
+      console.log('Modal [finalStep]: ', val)
+      // this.$emit('close', val);
     }
   }
 }
 </script>
+<style scoped >
+textarea {
+  /* height: 100px !important; */
+  resize: none !important;
+}
+</style>

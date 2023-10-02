@@ -21,19 +21,24 @@
       </div>
       <div class="form-group">
         <label for="eventRequirement">Description / Requirement</label>
-        <textarea id="eventRequirement" v-model="form.requirement" maxlength="500" class="form-control about-artist" placeholder="Write description" required>
+        <textarea id="eventRequirement" v-model="form.requirement" maxlength="500" rows="7" class="form-control about-artist" placeholder="Write description" required>
         </textarea>
         <div v-for="err in error?.requirement" :key="err" class="text-danger">{{ err }}</div>
       </div>
 
       <div class="text-end">
-        <button type="button" class="btn btn-outline-geebu mx-1" data-bs-dismiss="modal" ref="eventSkip">Skip</button>
-        <button type="submit" class="btn btn-geebu mx-1">
-          <span >
+        <!-- <button type="button" class="btn btn-outline-geebu mx-1" @click="$emit('next-step', 'skip')" ref="eventSkip">Skip</button> -->
+        <button type="button" class="btn btn-outline-geebu mx-1" @click="back">Back</button>
+        <button type="button" class="btn btn-geebu mx-1" @click="submit">
+          <span v-if="!canSkip">
+            <i class="busy-submitting" v-if="isLoading"></i>Skip
+          </span>
+          <span v-else>
             <i class="busy-submitting" v-if="isLoading"></i>Submit
           </span>
         </button>
       </div>
+
     </form>    
   </div>
 </template>
@@ -59,21 +64,39 @@ export default {
     ...mapState({
       form: state => state.events.form,
       eventTypes: state => state.events.event_types,
-    })
+    }),
+    canSkip()
+    {
+      return this.form.look_for !== '' && this.form.look_type !== '' && this.form.requirement !== '';
+    }
   },
   methods: {
-    ...mapActions(['updateEvent',]),
+    ...mapActions(['createEvent',]),
+    back()
+    {
+      this.$emit('next-step', 'detail')
+      console.log('Back')
+    },
+    skip()
+    {
+      this.$emit('next-step', 'submit');
+      console.log('Skip');
+    },
     submit()
     {
-      this.updateEvent()
+      var action = !this.canSkip ? 'skip' : '';
+
+      this.createEvent(action)
         .then(res =>
         {
-          this.$refs.eventSkip.click();
+          console.log(`${action} - Look: `, res);
+          this.$emit('next-step', 'success')
         }).catch(err =>
         {
-          const { status, message, result: {errors} } = err;
-          
-          this.error = errors;
+          const { status, message, result} = err;
+          if (result?.errors) {
+            this.error = result.errors;
+          }
         })
     }
   },
