@@ -131,12 +131,11 @@
                 </div>
 
                 <button class="btn btn-primary send-proposal" @click="$router.push('/proposal')" v-if="userRole === 'artists'" >Send Proposal</button>
-               
               </div>
             </div>
           </div>
         </div>                                                   
-s -->
+
       </div>
     </section>
     <signupmodal />
@@ -297,6 +296,10 @@ export default {
   computed: {
     ...mapGetters(["isLoggedIn", 'userInfo', 'info', 'userRole']),
   },
+  mounted()
+  {
+    
+  },
   methods: {
     ...mapActions([
       'fetchEventOptions',
@@ -315,6 +318,14 @@ export default {
     },
     dismiss(option)
     {
+      console.log('Event Modal dismiss: ', option);
+      
+      if (option === 'success') {
+        new Modal(document.getElementById('eventsSuccessModal'), {
+          keyboard: false,
+          backdrop: 'static',
+        }).show()
+      }
       // console.log('Dismiss option: ', option);
       // if (option === 'skip')
       // {

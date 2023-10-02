@@ -45,8 +45,8 @@ export const fetchEvents = ({ commit, rootState, state }) =>
 
       if (statusCode === 200) {
         const { status, message, result: { event } } = data; 
-        
-        commit('SET_EVENT_FORM', event);
+        console.log('Fetch Event Form: ', event);
+        // commit('SET_EVENT_FORM', event);
         resolve(data);
       }
 
@@ -66,7 +66,7 @@ export const verifyEvent = ({ commit, rootState, state }) =>
   {
 
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
-    
+    console.log('Verify Event [form]: ', state.form)
     await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/events/verify`, state.form, {
       headers: {
         "Content-Type": "multipart/form-data",
@@ -96,13 +96,18 @@ export const verifyEvent = ({ commit, rootState, state }) =>
   });
 }
 
-export const createEvent = ({ commit, rootState, state }) =>
+export const createEvent = ({ commit, rootState, state }, payload) =>
 {
   return new Promise(async (resolve, reject) =>
   {
 
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
-    console.log('Form data: ', state.form);
+
+    if (payload === 'skip') {
+      delete state.form.look_for;
+      delete state.form.look_type;
+      delete state.form.requirement;
+    }
     await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/events`, state.form, {
       headers: {
         "Content-Type": "multipart/form-data",
@@ -114,9 +119,7 @@ export const createEvent = ({ commit, rootState, state }) =>
       const { status: statusCode, data } = response
       if (statusCode === 200) {
         const { status, message, result: { event } } = data; 
-        if (status === 201) {
-          event.look_for = 'artist';
-        }
+       
         commit('SET_EVENT_FORM', event);
 
         resolve(data);

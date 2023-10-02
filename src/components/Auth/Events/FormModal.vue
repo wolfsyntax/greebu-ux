@@ -7,9 +7,9 @@
         <div class="col">
           <div class="form-group">
             <label for="eventType">Event Type</label>
-            <select v-model="form.event_type" class="form-select" >
-              <option v-for="(event_type, index) in eventTypes" :key="index" :value="event_type.id" >
-                {{ event_type.name }}
+            <select v-model="form.event_type" class="form-select" style="text-transform: capitalize;">
+              <option v-for="(event_type, index) in eventTypes" :key="index" :value="event_type">
+                {{ event_type }}
               </option>
             </select>
 
@@ -35,18 +35,18 @@
           <div class="row">
             <div class="row my-2">
               <div class="col-12">
-                <input type="text" class="form-control" placeholder="Unit/Floor No. Premises/Bldg. Name, House/Bldg. No., Street Name" />
+                <input type="text" v-model="form.street_address" class="form-control" placeholder="Unit/Floor No. Premises/Bldg. Name, House/Bldg. No., Street Name" />
               </div>
             </div>
             <div class="row my-2">
               <div class="col-12 col-md-4">
-                <input type="text" class="form-control" placeholder="Village/Subdivision, District, Barangay" />
+                <input type="text" v-model="form.barangay" class="form-control" placeholder="Village/Subdivision, District, Barangay" />
               </div>
               <div class="col-12 col-md-4">
-                <input type="text" class="form-control" placeholder="Town/City">
+                <input type="text" v-model="form.city" class="form-control" placeholder="Town/City">
               </div>
               <div class="col-12 col-md-4">
-                <input type="text" class="form-control" placeholder="Province">
+                <input type="text" v-model="form.province" class="form-control" placeholder="Province">
               </div>
             </div>
           </div>
@@ -106,7 +106,7 @@
         <div class="col">
           <div class="form-group">
             <label for="eventDetails">Event Details</label>
-            <textarea v-model="form.description" maxlength="500" class="form-control about-artist" placeholder="Write description" required>
+            <textarea v-model="form.description" maxlength="500" rows="7" class="form-control about-artist" placeholder="Write description" required>
             </textarea>
             <div v-for="err in error?.description" :key="err" class="text-danger">{{ err }}</div>
           </div>
@@ -189,7 +189,14 @@ export default {
   },
   mounted()
   {
-    this.fetchEventOptions()
+    this.fetchEventOptions();
+    const myModal = document.getElementById('eventsModal');
+    myModal.addEventListener('shown.bs.modal', () =>
+    {
+      this.$store.commit('RESET_EVENT_FORM')
+      // this.form.event_type = this.eventTypes[0];
+      this.step = 'detail';
+    });
   },
   computed: {
     ...mapState({
@@ -206,7 +213,7 @@ export default {
       handler(val)
       {
 
-        if(val) this.form.event_type = val[0].id;
+        if(val) this.form.event_type = val[0];
       },
       deep: true,
     }
