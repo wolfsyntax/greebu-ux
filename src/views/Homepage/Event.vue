@@ -23,11 +23,17 @@
           <p class="sub-heading">Collaborate with a professional independent artist to turn your story into one-of-a-kind custom song</p>
         </div>
 
-        <div v-if="userRole === 'organizer'" class="create-event-wrapper d-flex justify-content-end">
-          <button class="d-flex align-items-center btn create-event" @click="toggleCreate">
+        <div v-if="userRole === 'organizer'" class="d-flex align-items-center justify-content-between create-event-wrapper">
+          <div>
+
+          </div>
+          
+          <div>
+            <button class="d-flex align-items-center btn create-event" @click="toggleCreate">
             <span class="material-symbols-rounded add-circle">&#xe147;</span>
             Create event
           </button>
+          </div>
         </div>
 
 
@@ -123,8 +129,8 @@
                   <button class="btn btn-primary view-details" data-bs-toggle="modal" data-bs-target="#mustSignUp">View Details</button>
                 <signupmodal />
                 </div>
-
-                <button class="btn btn-primary send-proposal" @click="$router.push('/proposal')" v-if="userRole === 'artists'" >Send Proposal</button>
+                <!-- <router-link to="/proposal" class="send-proposal">Send Proposal</router-link> -->
+                <a href="/proposal" class="send-proposal" v-if="userRole === 'artists'" >Send Proposal</a>
                
               </div>
             </div>

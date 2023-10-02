@@ -23,12 +23,26 @@
       </div>
 
       <div class="form-group">
-          <label for="eventType">Location</label>
-          <div class="location-wrap">
-            <input type="text" v-model="form.location" class="form-control location-input" placeholder="Location" required autocomplete="off"/>
-            <span class="material-symbols-rounded location-icon">&#xe0c8;</span>
-          </div>
+          <label for="eventType">Venue Address</label>
+            <input type="text" v-model="form.location" class="form-control location-input" 
+            placeholder="Unit/Floor No. Bldg.Name,House/Bldg.No.," required autocomplete="off"/>
           <div v-for="err in error?.location" :key="err" class="text-danger">{{ err }}</div>
+
+          <div class="d-flex justify-content-between venue-sub-groups">
+
+            <div>
+              <input type="text" class="form-control location-input" placeholder="Village/Subdivision, Barangay" required autocomplete="off"/>
+            </div>
+
+            <div>
+              <input type="text" class="form-control location-input" placeholder="Town/City" required autocomplete="off"/>
+            </div>
+
+            <div>
+              <input type="text" class="form-control location-input" placeholder="Province" required autocomplete="off"/>
+            </div>
+
+           </div> 
       </div>
 
       <div class="form-group">

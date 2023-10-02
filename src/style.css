@@ -2365,7 +2365,7 @@ background-color: var(--orange);
 }
 
                                                   /* CREATE SONG PAGE */
-.create-song .container{
+.create-song .container, .library .container{
   margin: 6.25rem auto;
 }
 .create-song .content {
@@ -2963,11 +2963,15 @@ height: 100%;
   border: 0;
   margin-bottom: 0.5rem;
 }
-.events-showing .container .card-body .send-proposal{
+.events-showing .container .card-body .send-proposal {
   border-radius: 0.4375rem;
   color: var(--orange);
   background: var(--white);
   border: 1px solid var(--orange);
+  text-decoration: none;
+  width: 100%;
+  display: block;
+  text-align: center;
 }
 .events-showing .container .card-body .view-details:hover{
   background: var(--btn-hovered);
@@ -5966,6 +5970,7 @@ width: 100%;
   border: 1px solid var(--orange);
   background: var(--orange);
   padding: 0.91rem 2.03rem;
+  text-decoration: none;
 }
 #eventDetailsModal .event-title-wrap .send:hover{
   border: 1px solid var(--btn-hovered);
@@ -6064,6 +6069,7 @@ width: 100%;
   padding: 0.66rem 1.16rem;
   border-radius: 0.375rem;
   border: 1px solid var(--orange);
+  text-decoration: none;
 }
 #eventDetailsModal .organizer-details-wrapper .view-profile:hover{
   border: 1px solid var(--orange);
@@ -6121,31 +6127,24 @@ width: 100%;
 }
 #createEventModal .modal-body .form-group select, 
 #createEventModal .modal-body .form-group input, 
+#createEventModal .modal-body .venue-sub-groups input,
 #createEventModal .modal-body textarea {
   width: 100%;
   height: 3rem;
   border-radius: 0.3125rem;
   border: 1px solid var(--gray6);
 }
+#createEventModal .modal-body .venue-sub-groups{
+  margin-top: 1.12rem;
+}
+#createEventModal .modal-body .venue-sub-groups input {
+  width: 14.5rem;
+}
 #createEventModal .modal-body .start-end-wrap{
   gap: 1.38rem;
 }
 #createEventModal .modal-body .start-end-wrap .form-group{
   width: 50%;
-}
-#createEventModal .modal-body .location-wrap{
-  position: relative;
-}
-#createEventModal .modal-body .location-icon {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  right: 0;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  color: var(--gray2);
-  font-size: 24px;
-  font-variation-settings: 'FILL' 1,'wght' 800,'GRAD' 0,'opsz' 48;
 }
 #createEventModal .modal-body textarea{
   height: 12.1875rem;
@@ -6257,6 +6256,132 @@ width: 100%;
   border: 0.1px solid var(--white);
 }
 
+                                            /* LIBRARY PAGE */
+.library .top-wrapper{
+  margin-bottom: 3rem;
+}                                            
+.library .top-wrapper .top-level-title{
+  color: var(--black);
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 3.3rem;
+}
+.library .top-wrapper .upload-song{
+  color: var(--white);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 100%;
+  letter-spacing: 0.0625rem;
+  border-radius: 0.625rem;
+  background-color: var(--orange);
+  padding: 1.25rem 1.16rem;
+  border: 0;
+}
+.library .top-wrapper .upload-song:hover,
+.library .no-song-uploaded-wrap .no-song-uploaded .upload-song:hover{
+  background-color: var(--btn-hovered);
+}
+.library .top-wrapper .upload-song .upload-icon{
+  font-size: 24px;
+  margin-right: 0.62rem;
+}
+.library .nav-tabs {
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid #B8BBCF4D;
+  padding-bottom: 1rem;
+}
+.library .nav-tabs li{
+  color: var(--black);
+  font-size: 1.25rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 0 1.4105rem;
+}
+.library .nav-tabs .active{
+  color: var(--orange);
+}
+.library .no-song-uploaded-wrap{
+  border-radius: 0.25rem;
+  border: 1px dashed var(--gray6);
+  background: var(--white);
+}
+.library .no-song-uploaded-wrap .no-song-uploaded {
+  margin: 11rem auto;
+}
+.library .no-song-uploaded-wrap .no-song-uploaded .empty{
+  width: 6.1875rem;
+  height: 6.1875rem;
+  margin-bottom: 0.62rem;
+}
+.library .no-song-uploaded-wrap .no-song-uploaded h5{
+  color: var(--gray6);
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: -0.0625rem;
+  margin-bottom: 2.19rem;
+}
+.library .no-song-uploaded-wrap .no-song-uploaded .upload-song{
+  color: var(--white);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 100%;
+  letter-spacing: 0.0625rem;
+  margin-bottom: 0;
+  padding: 1.25rem 1.81rem;
+  border-radius: 0.625rem;
+  background: var(--orange);
+  border: 0;
+  margin: 0 auto;
+}
+.library .no-song-uploaded-wrap .no-song-uploaded .upload-icon{
+  font-size: 24px;
+  margin-right: 0.62rem;
+}
+.library .songs-row-wrap {
+  width: 100%;
+}
+.library .songs-row-wrap .songs-wrap {
+  width: 20%;
+  margin-bottom: 3.75rem;
+}
+.library .songs-row-wrap .songs-wrap .song-img{
+  width: 100%; /* 17.3125rem */
+  height: 18rem;
+  border-radius: 0.9375rem;
+  position: relative;
+  -o-object-fit: cover;
+  object-fit: cover;
+  backface-visibility: hidden;
+  border-radius: 0.9375rem;
+  margin-bottom: 1rem;
+  opacity: 1;
+}
+.library .songs-row-wrap .songs-wrap .song-img:hover{
+  opacity: 0.9;
+}
+.library .songs-row-wrap .songs-wrap .song-name{
+  color: var(--black);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.02rem;
+  margin-bottom: 0.31rem;
+}
+.library .songs-row-wrap .songs-wrap .release{
+  color: #AAA;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: -0.04rem;
+}
+.library .songs-row-wrap .songs-wrap .likes{
+  color: var(--black);
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+.library .songs-row-wrap .songs-wrap .heart-icon{
+  font-size: 24px;
+  color: var(--gray6);
+  margin-right: 0.25rem;
+}
 
 
                                                                     /* MEDIA QUERIES */
@@ -6274,6 +6399,88 @@ width: 100%;
   24 px	1.5 rem
   28px 1.75 rem
 */
+
+                                            /* LIBRARY PAGE */                                           
+.library .top-wrapper{
+margin-bottom: 2.5rem;
+} 
+.library .top-wrapper .top-level-title {
+  font-size: 2rem;
+  line-height: 2.475rem; 
+}
+.library .top-wrapper .upload-song {
+  font-size: 0.875rem;
+  line-height: 100%; 
+  letter-spacing: 0.04375rem;
+  padding: 0.81rem 1.05rem;
+}
+.library .top-wrapper .upload-song .upload-icon {
+  font-size: 18px;
+  margin-right: 0.47rem;
+}
+.library .nav-tabs li {
+  font-size: 1rem;
+  margin: 0 0.89rem;
+}
+.library .nav-tabs {
+  margin-bottom: 1.87rem;
+  padding-bottom: 0.75rem;
+}
+.library .songs-row-wrap .songs-wrap {
+  margin-bottom: 2.25rem;
+}
+.library .songs-row-wrap .songs-wrap .song-img {
+  height: 13.5rem;
+  border-radius: 0.70313rem;
+  margin-bottom: 0.66rem;
+}
+.library .songs-row-wrap .songs-wrap .song-name {
+  font-size: 0.875rem;
+  letter-spacing: -0.0175rem;
+  margin-bottom: 0.23rem;
+}
+.library .songs-row-wrap .songs-wrap .release {
+  font-size: 0.75rem;
+  letter-spacing: -0.03rem;
+}
+.library .songs-row-wrap .songs-wrap .heart-icon {
+  font-size: 18px;
+  color: var(--gray6);
+  margin-right: 0.19rem;
+}
+/* .library .songs-row-wrap .songs-wrap .liked{
+  color: var(--orange);
+} */
+.library .songs-row-wrap .songs-wrap .likes {
+  font-size: 0.65625rem;
+}
+.library .no-song-uploaded-wrap {
+  border-radius: 0.1875rem;
+}
+.library .no-song-uploaded-wrap .no-song-uploaded {
+  margin: 6.7rem auto;
+}
+.library .no-song-uploaded-wrap .no-song-uploaded .empty {
+  width: 4.64063rem;
+  height: 4.64063rem;
+  margin-bottom: 0.47rem;
+}
+.library .no-song-uploaded-wrap .no-song-uploaded h5 {
+  font-size: 1rem;
+  letter-spacing: -0.05rem;
+  margin-bottom: 1.64rem;
+}
+.library .no-song-uploaded-wrap .no-song-uploaded .upload-song {
+  font-size: 0.875rem;
+  line-height: 100%; 
+  letter-spacing: 0.04375rem;
+  padding: 0.81rem 1.05rem;
+  border-radius: 0.375rem;
+}
+.library .no-song-uploaded-wrap .no-song-uploaded .upload-icon {
+  font-size: 18px;
+  margin-right: 0.47rem;
+}
 
 /* Create an Event modal */
 #createEventModal .modal-content {
@@ -6297,13 +6504,22 @@ width: 100%;
 #createEventModal .modal-body .form-group label {
   font-size: 0.875rem;
 }
-#createEventModal .modal-body .form-group select, #createEventModal .modal-body .form-group input, #createEventModal .modal-body textarea {
+#createEventModal .modal-body .form-group select, 
+#createEventModal .modal-body .form-group input, 
+#createEventModal .modal-body .venue-sub-groups input,
+#createEventModal .modal-body textarea {
   height: 2.5rem;
   border-radius: 0.23438rem;
   border: 1px solid var(--gray6);
   font-size: 0.875rem;
   line-height: 140%; 
   letter-spacing: -0.0175rem;
+}
+#createEventModal .modal-body .venue-sub-groups {
+  margin-top: 0.75rem;
+}
+#createEventModal .modal-body .venue-sub-groups input {
+  width: 15rem;
 }
 #createEventModal .modal-body .event-details-wrap {
   margin-bottom: 4rem;
@@ -6333,9 +6549,6 @@ width: 100%;
 #drag-file-component-wrap .upload-file-content span {
   font-size: 54px;
   margin-bottom: 0.38rem;
-}
-#createEventModal .modal-body .location-icon {
-  font-size: 18px;
 }
 #drag-file-component-wrap .upload-file-content .drag-file, #drag-file-component-wrap .upload-file-content .file-type {
   font-size: 0.75rem;
@@ -8041,7 +8254,7 @@ margin-bottom: 1rem;
 } */
 
 /* CREATE SONG PAGE */
-.create-song .container{
+.create-song .container, .library .container{
   margin: 5rem auto;
 }
 .create-song .content {

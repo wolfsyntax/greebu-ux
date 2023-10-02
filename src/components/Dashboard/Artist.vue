@@ -473,15 +473,18 @@ export default {
     shouldShowBadge(item)
     {
       return item === 'Post' && this.submissions.length > 0 ||
-        item === 'Songs' && this.songs.length > 0 ||
-        item === 'Videos' && this.videos.length > 0 ||
-        item === 'Photos' && this.photos.length > 0;
+                      item === 'About' && this.songs.length > 0 ||
+                      item === 'Songs' && this.songs.length > 0 ||
+                      item === 'Videos' && this.videos.length > 0 ||
+                      item === 'Photos' && this.photos.length > 0;
     },
     getCount(item)
     {
       switch (item) {
         case 'Post':
           return this.submissions.length;
+        case 'About':
+          return this.songs.about;
         case 'Songs':
           return this.songs.length;
         case 'Videos':
