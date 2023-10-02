@@ -1,7 +1,19 @@
 <template>
   <div>
     <form class="required-fields" @submit.prevent="submit">
-      <drag-drop @dragCover="setCover" />
+      <div class="upload-file-wrapper" v-if="cover">
+        <div class="uploaded-image-wrapper" >
+          <div >
+            <img ref="uploadedImage" class="uploaded-image" :src="cover" alt="banner-modal" />
+          </div>
+        
+          <button class="remove-image" @click="removeBanner" >
+            <span class="material-symbols-outlined">&#xe5cd;</span> 
+          </button>
+        </div>
+      </div>
+      <drag-drop @dragCover="setCover" v-else/>
+      
       <div v-for="err in error?.cover_photo" :key="err" class="text-danger">{{ err }}</div>
       <div class="row py-2">
         <div class="col">
@@ -140,6 +152,7 @@ export default {
   },
   data: () => ({
     error: [],
+    cover: '',
     isLoading: false,
     // form: {
     //   cover_photo: '',
@@ -161,7 +174,13 @@ export default {
     setCover(val)
     {
       this.form.cover_photo = val;
+      this.cover = URL.createObjectURL(val);
       console.log('Set Cover:: ', val);
+    },
+    removeBanner()
+    {
+      this.cover = '';
+      this.form.cover_photo = '';
     },
     submit()
     {
@@ -189,6 +208,8 @@ export default {
   },
   mounted()
   {
+    this.cover = this.form.cover_photo ? URL.createObjectURL(this.form.cover_photo) : '';
+
     this.fetchEventOptions();
     const myModal = document.getElementById('eventsModal');
     myModal.addEventListener('shown.bs.modal', () =>
@@ -196,6 +217,17 @@ export default {
       this.$store.commit('RESET_EVENT_FORM')
       // this.form.event_type = this.eventTypes[0];
       this.step = 'detail';
+      if (this.form.cover_photo) {
+        // this.cover = URL.createObjectURL(this.form.cover_photo);
+      }
+    });
+
+    myModal.addEventListener('hide.bs.modal', () =>
+    {
+      this.$store.commit('RESET_EVENT_FORM')
+      this.step = 'detail';
+      this.cover = '';
+      
     });
   },
   computed: {
@@ -209,6 +241,7 @@ export default {
     }
   },
   watch: {
+    
     eventTypes: {
       handler(val)
       {
@@ -251,4 +284,82 @@ export default {
     --bs-btn-disabled-border-color: #FF6B00;
     --bs-gradient: none;
 }
+
+.upload-file-wrapper .upload-file-content{
+    border-radius: 0.25rem;
+    background: #EFEFFC;
+    padding: 2rem 0;
+}
+
+.upload-file-wrapper .upload-file-content svg {
+  margin-bottom: 1.5rem;
+}
+
+.upload-file-wrapper .upload-file-content .drag-files {
+  color: var(--black-color);
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.upload-file-wrapper .upload-file-content .image-type{
+  color: rgba(0, 0, 0, 0.40);
+  font-size: 0.75rem;
+  font-weight: 400;
+  margin-bottom: 1.25rem;
+}
+
+.upload-file-content  .select-files-wrapper label {
+  color: var(--orange);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  background-color: transparent;
+  padding: 0.75rem 1rem;
+  border-radius: 0.3125rem;
+  border: 1px solid var(--orange);
+}
+
+.upload-file-content  .select-files-wrapper label:hover{
+    background-color: var(--orange);
+    color: var(--white);
+}
+
+.upload-file-wrapper .uploaded-image-wrapper .uploaded-image{
+  height: 21.313rem;
+  width: 100%;
+  border-radius: 0.25rem;
+  position: relative;
+  -o-object-fit: cover;
+  object-fit: cover;
+  backface-visibility: hidden;
+}
+
+.upload-file-wrapper .uploaded-image-wrapper .remove-image{
+  margin: 0;
+  position: absolute;
+  top: 3%;
+  left: 92%;
+  border: 0;
+  background-color: transparent;
+}
+
+.upload-file-wrapper .uploaded-image-wrapper .remove-image span{
+  cursor: pointer;
+  color: var(--white);
+  margin: 0;
+  position: absolute;
+  top: 3%;
+  left: 89.5%;
+  background: #00000075;
+  border-radius: 100px;
+  padding: 2px;
+  font-size: 16px;
+  border: 0.1px solid #ffffff91;
+}
+
+.upload-file-wrapper .uploaded-image-wrapper .remove-image:hover span{
+  border: 0.1px solid var(--white);
+}
+
 </style>

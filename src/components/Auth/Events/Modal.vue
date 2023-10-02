@@ -65,10 +65,11 @@ export default {
     finalStep(val = 'skip')
     {
       if (val === 'detail') this.step = 'detail';
-      else if (val === 'success') this.step = 'success';
-      
-      this.$emit('close', val);
-      this.$refs.eventModalDismiss.click();
+      else if (val === 'success') {
+        this.step = 'success';
+        this.$emit('close', val);
+        this.$refs.eventModalDismiss.click();
+      }
       console.log('Modal [finalStep]: ', val)
       // this.$emit('close', val);
     }

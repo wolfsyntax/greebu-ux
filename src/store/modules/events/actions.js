@@ -108,6 +108,7 @@ export const createEvent = ({ commit, rootState, state }, payload) =>
       delete state.form.look_type;
       delete state.form.requirement;
     }
+    
     await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/events`, state.form, {
       headers: {
         "Content-Type": "multipart/form-data",
