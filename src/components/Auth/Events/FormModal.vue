@@ -114,6 +114,12 @@
         </div>
       </div>
       
+      <div class="row py-2" v-if="errorTime">
+        <div class="col text-danger">
+          {{ errorTime }}
+        </div>
+      </div>
+
       <div class="row py-2">
         <div class="col">
           <div class="form-group">
@@ -124,10 +130,10 @@
           </div>
         </div>
       </div>
-
+      
       <div class="text-end">
         <button type="button" class="btn btn-outline-geebu mx-1" data-bs-dismiss="modal">Cancel</button>
-        <button type="submit" class="btn btn-geebu mx-1" >
+        <button type="submit" class="btn btn-geebu mx-1" :disabled="!validInput">
           <span >
             <i class="busy-submitting" v-if="isLoading"></i>Next
           </span>
@@ -154,6 +160,8 @@ export default {
     error: [],
     cover: '',
     isLoading: false,
+    isComplete: false,
+    errorTime: '',
     // form: {
     //   cover_photo: '',
     //   event_type: '',
@@ -210,6 +218,14 @@ export default {
   {
     this.cover = this.form.cover_photo ? URL.createObjectURL(this.form.cover_photo) : '';
 
+    if (
+      this.form.event_type !== '' && this.form.event_name !== '' &&
+      this.form.street_address !== '' && this.form.barangay !== '' &&
+      this.form.city !== '' && this.form.province !== '' && this.form.description !== '' &&
+      this.form.start_date !== '' && this.form.start_time !== '' &&
+      this.form.end_date !== '' && this.form.end_time !== '' && this.form.cover_photo !== ''
+    ) this.isComplete = true;
+
     this.fetchEventOptions();
     const myModal = document.getElementById('eventsModal');
     myModal.addEventListener('shown.bs.modal', () =>
@@ -229,6 +245,8 @@ export default {
       this.cover = '';
       
     });
+
+
   },
   computed: {
     ...mapState({
@@ -238,10 +256,52 @@ export default {
     startDate()
     {
       return this.$moment().add(5, 'days').format('DD-MM-YYYY');
+    },
+    eventEnd()
+    {
+      return `${this.form.end_date} ${this.form.end_time}`;
+    },
+    eventStart()
+    {
+      return `${this.form.start_date} ${this.form.start_time}`;
+    },
+    validInput()
+    {
+      if (this.isComplete) {
+        if (this.$moment(this.eventEnd).isAfter(this.eventStart)) {
+          return true;
+        } else {
+          this.errorTime = `The end date and time must be a date after or equal to ${this.eventStart}.`;
+        }
+      }
+      
+      return false;
     }
   },
   watch: {
-    
+    form: {
+      handler(val)
+      {
+        this.isComplete = false;
+        if (
+          val.event_type !== '' && val.event_name !== '' &&
+          val.street_address !== '' && val.barangay !== '' &&
+          val.city !== '' && val.province !== '' && val.description !== '' &&
+          val.start_date !== '' && val.start_time !== '' && 
+          val.end_date !== '' && val.end_time !== '' && val.cover_photo !== ''
+        ) this.isComplete = true;
+
+        if (val.start_date !== '' && val.start_time !== '' &&
+          val.end_date !== '' && val.end_time !== '') {
+          this.errorTime = '';
+
+          if (!this.$moment(this.eventEnd).isAfter(this.eventStart)) { 
+            this.errorTime = `The end date and time must be a date after or equal to ${this.eventStart}.`;
+          }
+        }
+      },
+      deep:true,
+    },
     eventTypes: {
       handler(val)
       {
