@@ -62,6 +62,10 @@ var mutations = {
     state.artist_genre = [];
 
   },
+  SET_CITY(state, payload)
+  {
+    state.cities = payload;
+  },
   SET_PHONE_ISMODIFIED(state)
   {
     state.isPhoneModify = state

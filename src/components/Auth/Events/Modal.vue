@@ -46,13 +46,11 @@ export default {
       this.step = 'detail';
     });
 
-    // myModal.addEventListener('shown.bs.modal', () =>
-    // {
-    //   console.log('Create Event modal shown: ', this.form)
-    //   this.$store.commit('RESET_EVENT_FORM')
-    //   console.log('Reset Form: ', this.form)
-    //   this.step = 'detail';
-    // });
+    myModal.addEventListener('shown.bs.modal', () =>
+    {
+      this.$store.commit('RESET_EVENT_FORM')
+      this.step = 'detail';
+    });
   },
   beforeUnmount() {
     // this.$store.commit('RESET_EVENT_FORM')
@@ -61,6 +59,7 @@ export default {
     nextStep()
     {
       this.step = 'lookup';
+      console.log('method-nexStep: ', this.step);
     },
     finalStep(val = 'skip')
     {

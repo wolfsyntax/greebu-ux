@@ -147,6 +147,8 @@
 import { mapActions, mapState } from 'vuex';
 
 import DragDrop from '/src/components/DragDrop.vue';
+import Multiselect from '@vueform/multiselect';
+
 export default {
   setup () {
     
@@ -216,7 +218,22 @@ export default {
   },
   mounted()
   {
-    this.cover = this.form.cover_photo ? URL.createObjectURL(this.form.cover_photo) : '';
+    
+    if (this.form.cover_photo === null || this.form.cover_photo === undefined) {
+      this.cover = '';
+    } else {
+      if (typeof this.form.cover_photo === 'object') {
+        try {
+          this.cover = this.form.cover_photo ? URL.createObjectURL(this.form.cover_photo) : '';
+        } catch (err) {
+          this.cover = '';
+        }
+
+      }
+    }
+    // if (typeof this.form.cover_photo === 'object' && Object.keys(this.form.cover_photo).length > 0) {
+    //   this.cover = this.form.cover_photo ? URL.createObjectURL(this.form.cover_photo) : '';
+    // } else this.form.cover_photo = null;
 
     if (
       this.form.event_type !== '' && this.form.event_name !== '' &&
@@ -233,9 +250,6 @@ export default {
       this.$store.commit('RESET_EVENT_FORM')
       // this.form.event_type = this.eventTypes[0];
       this.step = 'detail';
-      if (this.form.cover_photo) {
-        // this.cover = URL.createObjectURL(this.form.cover_photo);
-      }
     });
 
     myModal.addEventListener('hide.bs.modal', () =>
@@ -299,6 +313,9 @@ export default {
             this.errorTime = `The end date and time must be a date after or equal to ${this.eventStart}.`;
           }
         }
+
+        this.cover = val.cover_photo ? URL.createObjectURL(val.cover_photo) : '';
+
       },
       deep:true,
     },
