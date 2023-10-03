@@ -42,3 +42,19 @@ export const RESET_EVENT_FORM = state =>
   state.form.event_type = '2123';
   console.log('[RESET_EVENT_FORM] Event Form: ', state.form)
 }
+
+export const SET_EVENT_LIST = (state, payload) =>
+{
+  state.events = payload
+}
+
+export const RESET_EVENT_FILTER = (state) =>
+{
+  state.eventFilter = {
+    event_type: '',
+    city: '',
+    cost: false,
+    search: '',
+    sortBy: 'DESC',
+  };
+}

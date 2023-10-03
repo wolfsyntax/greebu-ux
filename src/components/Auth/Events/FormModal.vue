@@ -216,7 +216,7 @@ export default {
   },
   mounted()
   {
-    this.cover = this.form.cover_photo ? URL.createObjectURL(this.form.cover_photo) : '';
+    // this.cover = this.form.cover_photo ? URL.createObjectURL(this.form.cover_photo) : '';
 
     if (
       this.form.event_type !== '' && this.form.event_name !== '' &&
