@@ -38,9 +38,13 @@ const state = {
     { value: 'artist', text: 'Artist' },
     { value: 'service', text: 'Service' },
   ],
-  filterType: '',
-  filterLocation: '',
-  filterCost: 'free',
+  eventFilter: {
+    event_type: '',
+    city: '',
+    cost: false,
+    search: '',
+    sortBy: 'DESC',
+  },
   events: [],
 };
 

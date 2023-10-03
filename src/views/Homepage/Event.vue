@@ -43,37 +43,36 @@
           </div>
           <div class="col-6">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search for Events" aria-label="Search for Events" aria-describedby="button-addon2">
-              <button class="btn btn-success border-rad" type="button" id="button-addon2">
+              <input type="text" class="form-control" placeholder="Search for Events" v-model="eventFilter.search" aria-label="Search for Events" aria-describedby="button-addon2" @input="fetchEventList">
+              <button class="btn btn-success border-rad" type="button" id="button-addon2" @click="fetchEventList">
                 <span class="material-symbols-outlined next">search</span>
                 </button>
             </div>
           </div>
           <div class="col-4">
             <h5>Type of Event</h5>
-            <select class="form-select" aria-label="Default select example">
-              <option selected>Music Festival Events</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
+            <select class="form-select" aria-label="Default select example" v-model="eventFilter.event_type" @change="fetchEventList">
+              <option value="" selected>&emsp;</option>
+              <option v-for="(event_type, index) in eventTypes" :key="index" :value="event_type.value">
+                {{ event_type.text }}
+              </option>
             </select>
           </div>
           <div class="col-4">
             <h5>Location</h5>
-            <select class="form-select" aria-label="Default select example">
-              <option selected>Naga City</option>
-              <option value="1">One</option>
+            <select class="form-select" aria-label="Default select example" v-model="eventFilter.city" @change="fetchEventList">
+              <option value="" selected>&emsp;</option>
+              <option value="naga city">Naga City</option>
               <option value="2">Two</option>
               <option value="3">Three</option>
             </select>
           </div>
           <div class="col-4">
             <h5>Cost</h5>
-            <select class="form-select" aria-label="Default select example">
-              <option selected>Free</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
+            <select class="form-select" aria-label="Default select example" v-model="eventFilter.cost" @change="fetchEventList">
+              <option value="both" selected>&emsp;</option>
+              <option value="free">Free</option>
+              <option value="paid">Paid</option>
             </select>
           </div>
         </div> <!-- end of row -->
@@ -298,11 +297,24 @@ export default {
     ...mapGetters(["isLoggedIn", 'userInfo', 'info', 'userRole']),
     ...mapState({
       events: state => state.events.events,
+      eventFilter: state => state.events.eventFilter,
+      eventTypes: state => state.events.event_types.map(function (obj)
+      {
+        var words = obj.split(" ")
+        return {
+          value: obj,
+          text: words.map((word) =>
+          {
+            return word[0].toUpperCase() + word.substring(1);
+          }).join(" "),
+        }
+      }),
     })
   },
   mounted()
   {
-    this.fetchEventOptions()
+    
+    this.fetchEventOptions().then(res => this.RESET_EVENT_FILTER())
     this.fetchEventList()
       .then(res =>
       {
@@ -312,6 +324,9 @@ export default {
   methods: {
     ...mapActions([
       'fetchEventOptions', 'fetchEventList',
+    ]),
+    ...mapMutations([
+      'RESET_EVENT_FILTER'
     ]),
     openModal(data){
         this.$root.$emit("bv::show::modal", "#mustSignUp");

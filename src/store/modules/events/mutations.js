@@ -47,3 +47,14 @@ export const SET_EVENT_LIST = (state, payload) =>
 {
   state.events = payload
 }
+
+export const RESET_EVENT_FILTER = (state) =>
+{
+  state.eventFilter = {
+    event_type: '',
+    city: '',
+    cost: false,
+    search: '',
+    sortBy: 'DESC',
+  };
+}

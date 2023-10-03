@@ -35,8 +35,25 @@ export const fetchEventList = ({ commit, rootState, state }) =>
   {
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
 
-    var url = `${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/events`;
+    var url = `${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/events?search=${state.eventFilter.search || ''}`;
 
+    if (state.eventFilter?.city !== '') {
+      url = `${url}&city=${state.eventFilter.city || ''}`
+    } 
+    
+    if (state.eventFilter?.sortBy !== '') {
+      url = `${url}&sortBy=${state.eventFilter.sortBy || 'DESC'}`
+    }
+
+    if (state.eventFilter?.cost === 'free' || state.eventFilter?.cost === 'paid' || state.eventFilter?.cost === 'both') {
+      url = `${url}&cost=${state.eventFilter.cost || 'both'}`
+    }
+
+    if (state.eventFilter?.event_type !== '') {
+      url = `${url}&event_type=${state.eventFilter.event_type || ''}`
+    }
+    
+    console.log('Event Request URL: ', url)
     await axios.get(url)
     .then(response =>
     {
