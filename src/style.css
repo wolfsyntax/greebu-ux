@@ -5418,12 +5418,11 @@ width: 100%;
 }
 /* END OF INNER MODAL */
 
-
                                     /* CUSTOMIZED SONGS TAB */
 
 .account-settings .customized-songs-tabs {
     gap: 0.94rem;
-    border-bottom: 2.5px solid rgba(193, 199, 222, 0.70);
+    border-bottom: 2px solid #C1C7DEB2;
     margin-bottom: 2.06rem;
 }
 .account-settings .title-wrapper{
@@ -5433,9 +5432,9 @@ width: 100%;
   color: var(--orange);
   font-weight: 700;
 }
-.account-settings .customized-songs-tabs .active-option{
+/* .account-settings .customized-songs-tabs .active-option{
   border-bottom: 3px solid var(--orange);
-}
+} */
 .account-settings .title-wrapper .title{
   font-size: 1.5rem;
   font-weight: 700;
@@ -5701,14 +5700,14 @@ width: 100%;
 }
 .account-settings .request-song-modal .note-wrapper{
   border-radius: 0.625rem;
-  background:  #FED7AA;
+  background: #FFF1E1;
   margin-bottom: 2.5rem;
   padding: 0.75rem;
 }
 .account-settings .request-song-modal .note-wrapper .note{
   color: var(--orange);
   font-size: 1.125rem;
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: -0.045rem;
   margin-bottom: 0;
 }
@@ -5738,7 +5737,10 @@ width: 100%;
   margin-bottom: 2.5rem;
   text-align: left;
 }
-.account-settings .request-song-modal .song-info-wrapper h5{
+.account-settings .request-song-modal .song-info-wrapper h5,
+.account-settings .request-application-wrap .request-song-modal .genre-wrap h5,
+.account-settings .request-application-wrap .request-song-modal .cover-letter-wrap h5,
+.account-settings .request-application-wrap .request-song-modal .music-sample-wrap h5{
   color: var(--gray2);
   font-size: 1.25rem;
   font-weight: 600;
@@ -5773,6 +5775,107 @@ width: 100%;
   height: 30px;
   background-color: var(--orange); /* #FED7AA; */
   /* display: none; */
+}
+
+/* Organizer Account - Account Settings (Request Application tab) */
+.account-settings .request-application-wrap .event-wrap {
+  margin-bottom: 0.94rem;
+  gap: 0.62rem;
+}
+.account-settings .request-application-wrap .event-wrap .dot-icon{
+  font-size: 12px;
+  color: var(--orange);
+  font-variation-settings: 'FILL' 1,'wght' 800,'GRAD' 0,'opsz' 48;
+}
+.account-settings .request-application-wrap .requested-wrapper .dot-icon{
+  font-size: 10px;
+  color: var(--gray6);
+  font-variation-settings: 'FILL' 1,'wght' 800,'GRAD' 0,'opsz' 48;
+  margin-left: 0.44rem;
+}
+.account-settings .request-application-wrap .applied-event-wrap{
+  border-radius: 0.5rem;
+  border: 1px solid var(--gray6);
+  padding: 1.25rem;
+  gap: 1.75rem;
+}
+.account-settings .request-application-wrap .applied-event-wrap .event-img{
+  width: 18.5625rem;
+  height: 14.375rem;
+  border-radius: 0.25rem;
+  position: relative;
+  -o-object-fit: cover;
+  object-fit: cover;
+  backface-visibility: hidden;
+}
+.account-settings .request-application-wrap .applied-event-wrap .event-title-wrap{
+  margin-bottom: 1.88rem;
+}
+.account-settings .request-application-wrap .applied-event-wrap .event-title{
+  color: var(--black);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+.account-settings .request-application-wrap .applied-event-wrap .event-title-wrap h5{
+  color: var(--gray2);
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+.account-settings .request-application-wrap .applied-event-wrap .dot-icon{
+  font-size: 10px;
+  color: var(--gray2);
+  margin: 0 0.37rem;
+  font-variation-settings: 'FILL' 1,'wght' 800,'GRAD' 0,'opsz' 48;
+}
+.account-settings .request-application-wrap .applied-event-wrap .event-start-end-wrap,
+.account-settings .request-application-wrap .applied-event-wrap .event-venue-wrap{
+  margin-bottom: 1.25rem;
+  gap: 1rem;
+}
+.account-settings .request-application-wrap .applied-event-wrap .event-start-end-wrap h5,
+.account-settings .request-application-wrap .applied-event-wrap .event-venue-wrap h5{
+  color: var(--gray2);
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+.account-settings .request-application-wrap .applied-event-wrap .event-start-end-wrap .date,
+.account-settings .request-application-wrap .applied-event-wrap .event-venue-wrap .venue{
+  margin-bottom: 0.25rem;
+}
+.account-settings .request-application-wrap .applied-event-wrap .event-start-end-wrap .time,
+.account-settings .request-application-wrap .applied-event-wrap .event-venue-wrap .place{
+  color: var(--orange);
+}
+.account-settings .request-application-wrap .applied-event-wrap .event-start-end-wrap .calendar-icon,
+.account-settings .request-application-wrap .applied-event-wrap .event-venue-wrap .location-icon{
+  color: var(--gray6);
+  font-size: 24px;
+}
+.account-settings .request-application-wrap .request-song-modal .artist-details{
+  color: var(--black);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+.account-settings .request-application-wrap .request-song-modal .genre-wrap,
+.account-settings .request-application-wrap .request-song-modal .cover-letter-wrap{
+  margin-bottom: 2.5rem;
+}
+.account-settings .request-application-wrap .request-song-modal .genre-wrap .badge{
+  color: var(--orange);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 2rem;
+  background-color: #FED7AA;
+  margin: 0 0.25rem 0.25rem 0;
+}
+.account-settings .request-application-wrap .request-song-modal .cover-letter-wrap p{
+  color: var(--black);
+  font-size: 1.25rem;
+  font-weight: 400;
 }
 
 .profile-details .toast-artist-details {
@@ -6353,11 +6456,41 @@ width: 100%;
   object-fit: cover;
   backface-visibility: hidden;
   border-radius: 0.9375rem;
-  margin-bottom: 1rem;
-  opacity: 1;
+}
+.library .songs-wrap .cover-img-wrap .play-wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+}
+.library .songs-wrap .play-wrap button{
+  border: none;
+}
+.library .songs-wrap .cover-img-wrap .play-wrap .play-icon {
+  font-size: 32px;
+  padding: 16px;
+  border-radius: 100%;
+  border: 1px solid var(--orange);
+  background-color: var(--orange);
+  color: var(--white);
+  font-variation-settings: 'FILL' 1,'wght' 800,'GRAD' 0,'opsz' 48;
+  /* transition: 0.5s ease; */
 }
 .library .songs-row-wrap .songs-wrap .song-img:hover{
-  opacity: 0.9;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.80) 0%, rgba(0, 0, 0, 0.00) 100%), lightgray 50%;
+  -moz-filter: brightness(70%);
+  -o-filter: brightness(70%);
+  -ms-filter: brightness(70%);
+  filter: brightness(70%);
+  transition: all 0.5s;
+}
+.library .songs-row-wrap .cover-img-wrap:hover .play-wrap{
+  opacity: 1;
+}
+.library .songs-row-wrap .songs-wrap .song-img:hover .play-wrap{
+  display: block;
 }
 .library .songs-row-wrap .songs-wrap .song-name{
   color: var(--black);
@@ -6376,11 +6509,86 @@ width: 100%;
   color: var(--black);
   font-size: 0.875rem;
   font-weight: 400;
+  border: none;
 }
 .library .songs-row-wrap .songs-wrap .heart-icon{
   font-size: 24px;
   color: var(--gray6);
   margin-right: 0.25rem;
+}
+
+/* Upload Song - Song Information */
+#albumSongInfo .modal-content{
+  border-radius: 0.625rem;
+  background: var(--white);
+  box-shadow: 0px 25px 50px -12px rgba(0, 0, 0, 0.25);
+  padding: 2.5rem 2.9375rem;
+}
+#albumSongInfo .modal-header{
+  margin-bottom: 2.5rem;
+}
+#albumSongInfo .modal-content .modal-title{
+  color: var(--black);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.075rem;
+}
+#albumSongInfo .modal-header .close-btn{
+  border: none;
+}
+#albumSongInfo .modal-header .close-btn .close-icon {
+  color: #23262F;
+  font-size: 20px;
+  border: 2px solid #DFDFE6;
+  border-radius: 100%;
+  padding: 2px;
+}
+#albumSongInfo .form-group label{
+  color: #2D3748;
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: -0.025rem;
+  margin-bottom: 0.38rem;
+}
+#albumSongInfo .form-group input,
+#albumSongInfo .form-group select{
+  border-radius: 0.3125rem;
+  border: 1px solid var(--gray6);
+  height: 3.5rem;
+}
+#albumSongInfo .form-group .badge{
+  color: var(--indigo);
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1rem; 
+  border-radius: 2rem;
+  background: #C7D2FE;
+  padding: 0.25rem 0.5rem;
+}
+#albumSongInfo .last-form-group{
+  margin-bottom: 4.38rem!important;
+}
+#albumSongInfo .action-btn button{
+  padding: 0.875rem 3.56rem;
+  border-radius: 0.5rem;
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 113.2%;
+}
+#albumSongInfo .action-btn .close{
+  border: 2px solid #DFE4EB;
+  background: var(--white);
+  color: #8E9CAB;
+  margin-right: 0.75rem;
+}
+#albumSongInfo .action-btn .next{
+  background: var(--orange);
+  border: 2px solid var(--orange);
+}
+#albumSongInfo .action-btn .next:hover{
+  background: var(--btn-hovered);
+  border: 2px solid var(--btn-hovered);
 }
 
 
@@ -6429,10 +6637,16 @@ margin-bottom: 2.5rem;
 .library .songs-row-wrap .songs-wrap {
   margin-bottom: 2.25rem;
 }
+.library .songs-row-wrap .songs-wrap .cover-img-wrap{
+  margin-bottom: 0.66rem!important;
+}
 .library .songs-row-wrap .songs-wrap .song-img {
   height: 13.5rem;
   border-radius: 0.70313rem;
-  margin-bottom: 0.66rem;
+}
+.library .songs-wrap .cover-img-wrap .play-wrap .play-icon {
+  font-size: 24px;
+  padding: 12px;
 }
 .library .songs-row-wrap .songs-wrap .song-name {
   font-size: 0.875rem;
@@ -6739,7 +6953,10 @@ margin-bottom: 2.5rem;
 .account-settings .request-song-modal .song-info-wrapper {
   margin-bottom: 0.94rem;
 }
-.account-settings .request-song-modal .song-info-wrapper h5 {
+.account-settings .request-song-modal .song-info-wrapper h5,
+.account-settings .request-application-wrap .request-song-modal .genre-wrap h5,
+.account-settings .request-application-wrap .request-song-modal .cover-img-wrap h5,
+.account-settings .request-application-wrap .request-song-modal .music-sample-wrap h5  {
   font-size: 1rem;
   letter-spacing: -0.02rem;
   margin-bottom: 0.37rem;
@@ -6758,6 +6975,7 @@ margin-bottom: 2.5rem;
 }
 
                           /* CUSTOMIZED SONGS TAB */
+
 .account-settings .title-wrapper .title {
   font-size: 1.5rem;
 }
@@ -6771,6 +6989,7 @@ margin-bottom: 2.5rem;
 .account-settings .customized-songs-tabs {
   gap: 0.5rem;
   margin-bottom: 1.87rem;
+  border-bottom: 1px solid #C1C7DEB2;
 }
 .account-settings .customized-songs-wrapper {
   margin-bottom: 0.62rem;
@@ -6796,6 +7015,7 @@ margin-bottom: 2.5rem;
 .account-settings .customized-songs-wrapper .requested-wrapper .time {
   font-size: 0.875rem;
   letter-spacing: -0.0175rem;
+  margin-left: 0.44rem;
 }
 .account-settings .customized-songs-wrapper .requested-wrapper .requested-by-image {
   width: 1.25rem;
@@ -6816,6 +7036,20 @@ margin-bottom: 2.5rem;
   height: 1rem;
   margin-right: 0.1rem;
 }
+.account-settings .request-application-wrap .event-wrap {
+  margin-bottom: 0.74rem;
+  gap: 0.42rem;
+}
+.account-settings .request-application-wrap .event-wrap .dot-icon {
+  font-size: 10px;
+}
+.account-settings .request-application-wrap .requested-wrapper .dot-icon {
+  font-size: 8px;
+  color: var(--gray6);
+  font-variation-settings: 'FILL' 1,'wght' 800,'GRAD' 0,'opsz' 48;
+  margin-left: 0.34rem;
+}
+
 
                       /* CHANGE PASSWORD MODAL */
 .update-my-account-modal .modal-content {

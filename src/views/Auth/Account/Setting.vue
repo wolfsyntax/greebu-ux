@@ -3,8 +3,10 @@
   <section class="account-settings">
     <div class="container">
       <div class="user-message">
-        <h2 class="title">Welcome back {{ user.first_name }}!</h2>
-        <p class="sub-title">You are on the Free Plan.</p>
+        <h2 class="title">Welcome, {{ user.first_name }}!</h2>
+        <p class="sub-title" v-if="userRole === 'artists'">You are on the Free Plan.</p>
+        <p class="sub-title" v-if="userRole === 'organizer'">Manage your account as an Organizer.</p>
+        <p class="sub-title" v-if="userRole === 'customers'">Manage your account as an Organizer.</p>
       </div>
 
       <div class="row">

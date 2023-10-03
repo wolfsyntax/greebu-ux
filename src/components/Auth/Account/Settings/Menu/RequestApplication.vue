@@ -1,22 +1,20 @@
 <template>
-  <div>
+  <div class="request-application-wrap">
     <div class="content">
-      <h3>Request Application</h3>
+        <request-application />
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapState, mapActions } from "vuex";
-import CustomizedSong from './Customized Song/Index.vue';
+import RequestApplication from './Request Application/Index.vue';
 export default {
   components: {
-    CustomizedSong
+    RequestApplication
   },
   setup()
   {
-
-
     return {}
   }
 }

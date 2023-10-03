@@ -41,8 +41,17 @@
 
         <div class="row songs-row-wrap" v-else>
 
-          <div class="songs-wrap" v-for="song in origSongArray" :key="song">
-            <img :src="song.image" class="song-img" alt="Song cover image">
+          <div class="songs-wrap" v-for="song in origSongArray" :key="song.id">
+            <div class="position-relative cover-img-wrap mb-3">
+              <img :src="song.image" class="song-img" alt="Song cover image">
+
+              <div class="m-0 play-wrap">
+                <button class="btn p-0">
+                  <span class="material-symbols-sharp play-icon">&#xe037;</span>
+                </button>
+              </div>
+
+            </div>
 
             <div class="d-flex align-items-center justify-content-between">
 
@@ -54,9 +63,9 @@
               </div>
 
               <div>
-                <button class="p-0 d-flex align-items-center btn likes" @click="toggleLike">
+                <button class="p-0 d-flex align-items-center btn likes" @click="toggleLike(song)">
                   <span class="material-symbols-outlined heart-icon"
-                  :style="{ color: isClicked ? '#FF6B00' : '' }">
+                  :style="{ color: isLiked(song.id) ? '#FF6B00' : '#B8BBCF' }">
                   &#xe87d;</span>
                   {{ song.likes }}
                 </button>
@@ -99,52 +108,68 @@ export default {
   },
   data: () => ({
     modalType: 'song',
-    isClicked: false,
 
     navItems: ['Original Songs', 'Album', 'Covered Songs'],
     activeItem: 'Original Songs',
     origSongArray: [
       {
+        id: 1,
+        artistId: 1,
         image: '/assets/artist-account/song-cover1.webp',
         song_name: 'Loving You',
-        likes: 23
+        likes: 0
       },
       {
+        id: 2,
+        artistId: 2,
         image: '/assets/artist-account/song-cover2.webp',
         song_name: 'Loving In Stereo',
         likes: 23
       },
       {
+        id: 3,
+        artistId: 3,
         image: '/assets/artist-account/song-cover1.webp',
         song_name: 'Loving In Stereo',
-        likes: 23
+        likes: 5
       },
       {
+        id: 4,
+        artistId: 4,
         image: '/assets/artist-account/song-cover2.webp',
         song_name: 'Loving In Stereo',
-        likes: 23
+        likes: 0
       },
       {
+        id: 5,
+        artistId: 5,
         image: '/assets/artist-account/song-cover1.webp',
         song_name: 'Loving In Stereo',
-        likes: 23
+        likes: 0
       },
       {
+        id: 6,
+        artistId: 6,
         image: '/assets/artist-account/song-cover2.webp',
         song_name: 'Loving In Stereo',
-        likes: 23
+        likes: 34
       },
       {
+        id: 7,
+        artistId: 7,
         image: '/assets/artist-account/song-cover1.webp',
         song_name: 'Loving In Stereo',
-        likes: 23
+        likes: 0
       },
       {
+        id: 8,
+        artistId: 8,
         image: '/assets/artist-account/song-cover2.webp',
         song_name: 'Loving In Stereo',
-        likes: 23
+        likes: 100
       },
-    ]
+    ],
+    likedSongs: [],
 
   }),
   methods: {
@@ -159,10 +184,22 @@ export default {
       }).show();
 
     },
-    toggleLike(){
-      this.isClicked = !this.isClicked;
-      console.log(this.isClicked);
-    }
+    toggleLike(song) {
+      const likedIndex = this.likedSongs.findIndex((liked) => liked.songId === song.id);
+
+      if (likedIndex === -1) {
+        // If the song is not liked yet, add it to the likedSongs array
+        this.likedSongs.push({ songId: song.id });
+        song.likes++;
+      } else {
+        // If the song is already liked, remove it from the likedSongs array and decrease the likes
+        this.likedSongs.splice(likedIndex, 1);
+        song.likes--;
+      }
+    },
+    isLiked(songId) {
+      return this.likedSongs.some((liked) => liked.songId === songId);
+    },
     
   },
   computed: {
