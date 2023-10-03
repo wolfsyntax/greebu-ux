@@ -40,7 +40,8 @@ const state = {
   ],
   filterType: '',
   filterLocation: '',
-  filterCost: 'free'
+  filterCost: 'free',
+  events: [],
 };
 
 export default state;

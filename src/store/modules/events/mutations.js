@@ -42,3 +42,8 @@ export const RESET_EVENT_FORM = state =>
   state.form.event_type = '2123';
   console.log('[RESET_EVENT_FORM] Event Form: ', state.form)
 }
+
+export const SET_EVENT_LIST = (state, payload) =>
+{
+  state.events = payload
+}
