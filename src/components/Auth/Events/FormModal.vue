@@ -218,22 +218,7 @@ export default {
   },
   mounted()
   {
-    
-    if (this.form.cover_photo === null || this.form.cover_photo === undefined) {
-      this.cover = '';
-    } else {
-      if (typeof this.form.cover_photo === 'object') {
-        try {
-          this.cover = this.form.cover_photo ? URL.createObjectURL(this.form.cover_photo) : '';
-        } catch (err) {
-          this.cover = '';
-        }
-
-      }
-    }
-    // if (typeof this.form.cover_photo === 'object' && Object.keys(this.form.cover_photo).length > 0) {
-    //   this.cover = this.form.cover_photo ? URL.createObjectURL(this.form.cover_photo) : '';
-    // } else this.form.cover_photo = null;
+    // this.cover = this.form.cover_photo ? URL.createObjectURL(this.form.cover_photo) : '';
 
     if (
       this.form.event_type !== '' && this.form.event_name !== '' &&
