@@ -18,15 +18,15 @@
         </div>
       </div>
 
-      <div class="uploaded-image-wrapper" v-else>
-        <div  v-if="banner">
-          <img ref="uploadedImage" class="uploaded-image" :src="banner" alt="banner-modal" />
+      <!-- <div class="uploaded-image-wrapper" v-else>
+        <div  v-if="preview">
+          <img ref="uploadedImage" class="uploaded-image" :src="preview" alt="banner-modal" />
         </div>
         
-        <button class="remove-image" @click="removeBanner">
+        <button class="remove-image" @click="removeBanner" ref="removeBannerImage">
           <span class="material-symbols-outlined">&#xe5cd;</span> 
         </button>
-      </div>
+      </div> -->
     </div>
 
     <!-- <div class="d-flex align-items-center img-dimensions">
@@ -49,34 +49,49 @@ export default {
     uploadBox: true,
     showImage: false,
     validImage: false,
-    banner: '',
+    // banner: '',
     preview: '',
     cropImage: '',
     magicCode: '',
     targetFile: null,
   }),
+  props: {
+    banner: { 
+      type: String,
+      default: '',
+      required: true
+    },
+  },
+  mounted()
+  {
+    console.log('\n\nBanner Content: ', this.banner);
+    this.preview = this.banner;
+  },
   methods: {
     fileCheck(file)
     {
-      var fileReader = new FileReader();
-      var self = this;
-      this.magicCode = '';
-      
-      this.targetFile = file;
+      if (file) {
+        var fileReader = new FileReader();
+        var self = this;
+        this.magicCode = '';
 
-      fileReader.readAsArrayBuffer(file);
-      fileReader.onloadend = function (e)
-      {
+        this.targetFile = file;
+        console.log('Target File: ', file);
+        fileReader.readAsArrayBuffer(file);
+        fileReader.onloadend = function (e)
+        {
 
-        var arr = (new Uint8Array(e.target.result)).subarray(0, 4);
+          var arr = (new Uint8Array(e.target.result)).subarray(0, 4);
 
-        var header = "";
-        for (var i = 0; i < arr.length; i++) {
-          header += arr[i].toString(16);
-        }
+          var header = "";
+          for (var i = 0; i < arr.length; i++) {
+            header += arr[i].toString(16);
+          }
 
-        self.magicCode = header;
-      };
+          self.magicCode = header;
+        };
+
+      }
 
     },
     isImage(file)
@@ -95,12 +110,12 @@ export default {
 
         console.log('Handle Cover Image:: ', files);
 
-        this.banner = this.preview = URL.createObjectURL(files);
+        this.preview = URL.createObjectURL(files);
 
         this.uploadBox = false;
         // check the image width and height
         const img = new Image();
-        img.src = this.banner;
+        img.src = this.preview;
 
         img.onload = () =>
         {
@@ -160,7 +175,7 @@ export default {
     },
     removeBanner()
     {
-      this.banner = null;
+      this.preview = null;
       this.cropImage = null;
       this.$refs['bannerInput'].value = null;
       this.uploadBox = true;

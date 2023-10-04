@@ -135,6 +135,7 @@ var actions = {
             if (state.role === 'organizer')
             {
               commit('CLEAR_ORGANIZER_STATE');
+              commit('RESET_EVENT_FORM');
             }
             
             commit('CLEAR_ARTIST')
@@ -314,67 +315,6 @@ var actions = {
         });
     })
   },
-  // syncProfile({ commit }, { user, profile })
-  // {
-  //   commit('SET_PROFILE', profile)
-  //   commit('SET_AUTH', user)
-  // },
-  // switchUserProfile({ commit }, payload)
-  // {
-  //   return new Promise(async (resolve, reject) => {
-  //     axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
-
-  //     await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/users/${payload}/switch`)
-  //       .then(response =>
-  //       {
-
-  //         console.log('\n\nSwitch User Profile Response: ', response)
-
-  //         const { data, status} = response
-  //         if (status === 200) {
-
-  //           const { result: { profile, user, account } } = data;
-  //           commit('SET_PROFILE', profile);
-  //           commit('SET_AUTH', user);
-  //           commit('SET_ROLE', profile?.role);
-  //           commit('SET_ACCOUNT', account);
-
-  //         }
-  //         resolve(data)
-  //       })
-  //       .catch(err =>
-  //       {
-  //         reject(err)
-  //       });
-  //   })
-  // },
-
-  // resyncProfile({ commit, state }, payload)
-  // {
-  //   return new Promise(async (resolve, reject) => {
-  //     axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
-
-  //     await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/user-details`, {role: state.role})
-  //       .then(response =>
-  //       {
-          
-  //         console.log('\n\nReSync Profile Response: ', response)
-
-  //         const { data, status} = response
-  //         if (status === 200) {
-
-  //           const { result: { profile, user } } = data;
-  //           commit('SET_PROFILE', profile);
-  //           commit('SET_AUTH', user);
-  //         }
-  //         resolve(data)
-  //       })
-  //       .catch(err =>
-  //       {
-  //         reject(err)
-  //       });
-  //   })
-  // },
   socialMediaAuth({ commit, state }, payload)
   {
     return new Promise(async (resolve, reject) =>
@@ -691,136 +631,6 @@ var actions = {
         });
     });
   },
-  // accountSetting({ commit, state }, payload)
-  // {
-  //   return new Promise(async (resolve, reject) =>
-  //   {
-  //     axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
-
-  //     await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/account/settings`, payload)
-  //       .then(response =>
-  //       {
-          
-  //         console.log('\n\nAccount Setting Response: ', response)
-
-  //         const { status: statusCode, data: { status, message, result } } = response;
-
-  //         if (statusCode === 200) {
-
-  //           if (status === 200) {
-
-  //             const { user } = result;
-  //             if (state.user.phone !== user.phone)
-  //             {
-  //               commit('SET_PHONE_ISMODIFIED', state.user?.phone !== user?.phone || false);
-  //             }
-
-  //             commit('SET_AUTH', user);
-
-  //           }
-  //         }
-
-  //         resolve(response);
-  //       })
-  //       .catch(err =>
-  //       {
-  //         reject(err)
-  //       });
-  //   })
-  // },
-  // fetchProfile({ commit, state, dispatch }, payload)
-  // {
-  //   return new Promise((resolve, reject) =>
-  //   {
-  //     axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
-      
-  //     axios.get(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/account?role=${state.role}`, payload, {
-  //     headers: {
-  //       "Content-Type": "multipart/form-data",
-  //     }
-  //   })
-  //       .then(response =>
-  //       {
-  //         const { status: statusCode, data: { status, message, result } } = response;
-
-  //         console.log('\n\nFetch Profile Response: ', response)
-
-  //         if (statusCode === 200) {
-            
-  //           if (status === 200) {
-              
-  //             const { account } = result;
-  //             console.log('[vuex] fetchProfile updating state: ', account)
-  //             // commit('SET_AUTH', user);
-  //             commit('SET_ACCOUNT', account);
-
-  //             if (state.role === 'artists') {
-
-  //               const { genres, members } = result;
-  //               // console.log('Band Members: ', members);
-  //               // commit('SET_ACCOUNT_GENRE', genres);
-  //               commit('SET_ARTIST_GENRES', genres);
-  //               commit('SET_MEMBERS', members || [])
-  //               // commit('SET_CUSTOM_GENRE', custom_genre);
-
-  //               dispatch('artistOptions');
-  //             }
-
-  //             // commit('SET_PROFILE', profile);
-
-  //           }
-  //         }
-
-  //         resolve(response);
-  //       })
-  //       .catch(err =>
-  //       {
-  //         reject(err)
-  //       });
-  //   })    
-  // },
-  // accountProfile({ commit, state }, payload)
-  // {
-  //   return new Promise(async (resolve, reject) =>
-  //   {
-  //     axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
-
-  //     if (typeof (payload?.avatar) === 'string') delete payload?.avatar;
-  //     await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/account/profile?role=${state.role}`, payload, {
-  //     headers: {
-  //       "Content-Type": "multipart/form-data",
-  //     }
-  //   })
-  //       .then(response =>
-  //       {
-  //         const { status: statusCode, data: { status, message, result } } = response;
-  //         console.log('\n\nAccount Profile Response: ', response)
-  //         if (statusCode === 200) {
-  //           if (status === 200) {
-              
-  //             const { account, user, profile } = result;
-
-  //             commit('SET_AUTH', user);
-  //             commit('SET_ACCOUNT', account);
-  //             commit('SET_PROFILE', profile);
-  //             commit('SET_ARTIST', profile);
-  //             if (state.role === 'artists') {
-  //               const { members, genres } = result;
-  //               commit('SET_ARTIST_GENRES', genres || []);
-  //               commit('SET_MEMBERS', members || [])
-  //             }
-              
-  //           }
-  //         }
-          
-  //         resolve(response);
-  //       })
-  //       .catch(err =>
-  //       {
-  //         reject(err)
-  //       });
-  //   })
-  // },
   test2({ commit, state }, payload)
   {
     return new Promise(async (resolve, reject) =>
@@ -844,212 +654,30 @@ var actions = {
         });
     })
   },
-  
-  // verifyCurrentEmail({ commit, state }, payload)
-  // {
-  //   console.log('Verify Current Email');
-  //   return new Promise(async(resolve, reject) =>
-  //   {
-  //     axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
+  fetchCityList({ commit, rootState }, payload = '') {
+  return new Promise(async (resolve, reject) =>
+  {
+    // axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
+    await axios.get(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/events/create?city=${payload}`)
+      .then(response =>
+      {
+        const { status: statusCode, data: { status, message, result } } = response;
 
-  //     await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/account/check-email`, payload)
-  //       .then(response =>
-  //       {
+        if (statusCode === 200 && status === 200) 
+        {
+          const { city } = result;
 
-  //         const { data: { message, status, result }, status: statusCode } = response;
-          
-  //         console.log('\n\nCheck current email: ', response);
+          if (city) commit('SET_CITY', city)
 
-  //         if (statusCode === 200 && status === 200)
-  //         {
-  //           resolve(response)
-  //         } else {
-  //           reject({ msg: 'Current Email is incorrect', status: statusCode });
-  //         } 
-          
-  //       })
-  //       .catch(err =>
-  //       {
-  //         reject(err)
-  //       });
-  //   });
-  // },   
-  // verifyCurrentPhone({ commit, state }, payload)
-  // {
-  //   return new Promise(async(resolve, reject) =>
-  //   {
-  //     axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
+          resolve({ status: statusCode, message, result: result });
 
-  //     await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/account/check-phone`, payload)
-  //       .then(response =>
-  //       {
+        }
+        
 
-  //         const { data: { message, status, result }, status: statusCode } = response;
-          
-  //         console.log('\n\nCheck current phone: ', response);
-
-  //         if (statusCode === 200 && status === 200)
-  //         {
-  //           resolve(response)
-  //         } else {
-  //           reject({ msg: 'Current Phone is incorrect', status: statusCode });
-  //         } 
-          
-  //       })
-  //       .catch(err =>
-  //       {
-  //         reject(err)
-  //       });
-  //   });
-  // },
-  // updateEmail({ commit, state }, payload)
-  // {
-  //   return new Promise(async (resolve, reject) =>
-  //   {
-  //     axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
-
-  //     await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/account/update-email`, payload)
-  //       .then(response =>
-  //       {
-
-  //         const { data: { message, status, result }, status: statusCode } = response;
-          
-  //         console.log('\n\nUpdate Email: ', response);
-
-  //         if (status == 200 && statusCode === 200)
-  //         {
-  //           commit('SET_AUTH', result?.user);
-  //           resolve(response);
-  //         } else {
-  //           reject({ msg: message, status: statusCode });
-  //         }
-
-  //       })
-  //       .catch(err =>
-  //       {
-  //         reject(err)
-  //       });
-  //   });
-  // },
-  // updatePhone({ commit, state }, payload)
-  // {
-  //   return new Promise(async (resolve, reject) =>
-  //   {
-  //     axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
-
-  //     await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/account/update-phone` )
-  //       .then(response =>
-  //       {
-
-  //         const { data: { message, status, result }, status: statusCode } = response;
-          
-  //         console.log('\n\nUpdate phone: ', response);
-          
-  //         if (status == 200 && statusCode === 200)
-  //         {
-  //           commit('SET_AUTH', result?.user);
-  //           resolve(response);
-  //         } else {
-  //           reject({ msg: message, status: statusCode });
-  //         }
-
-  //       })
-  //       .catch(err =>
-  //       {
-  //         reject(err)
-  //       });
-  //   });
-  // },
-  // updatePassword({ commit, state }, payload)
-  // {
-  //   return new Promise(async (resolve, reject) =>
-  //   {
-  //     axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
-
-  //     await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/account/change-password` )
-  //       .then(response =>
-  //       {
-
-  //         const { data: { message, status, result }, status: statusCode } = response;
-          
-  //         console.log('\n\nUpdate password: ', response);
-          
-  //         if (status == 200 && statusCode === 200)
-  //         {
-  //           commit('SET_AUTH', result?.user);
-  //           resolve(response);
-  //         } else {
-  //           reject({ msg: message, status: statusCode });
-  //         }
-
-  //       })
-  //       .catch(err =>
-  //       {
-  //         reject(err)
-  //       });
-  //   });
-  // },
-  // updateAvatar({ commit, state }, payload)
-  // {
-  //   return new Promise(async (resolve, reject) =>
-  //   {
-  //     axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
-
-  //     await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/account/update/${state.profile?.id}/avatar` )
-  //       .then(response =>
-  //       {
-
-  //         const { data: { message, status, result }, status: statusCode } = response;
-          
-  //         console.log('\n\nUpdate Avatar: ', response);
-          
-  //         if (statusCode === 200 && status == 200) {
-  //           commit('SET_PROFILE', result?.profile);
-  //           resolve(response);
-  //         } else {
-  //           reject({ msg: message, status: statusCode });
-  //         }
-  //       })
-  //       .catch(err =>
-  //       {
-  //         reject(err)
-  //       });
-  //   });
-  // },
-  // updateBanner({ commit, state }, payload)
-  // {
-  //   return new Promise(async(resolve, reject) =>
-  //   {
-  //     axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
-  //     console.log('Banner Form: ', payload)
-  //     await axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/account/update/${state.profile?.id}/banner`, payload, {
-  //       headers: {
-  //         "Content-Type": "multipart/form-data",
-  //       }
-  //     })
-  //       .then(response =>
-  //       {
-
-  //         const { data: { message, status, result }, status: statusCode } = response;
-          
-  //         console.log('\n\nUpdate Banner Image: ', response);
-
-  //         if (statusCode === 200 && status === 200)
-  //         {
-  //           commit('SET_PROFILE', result?.profile)
-  //           resolve(response)
-  //         } else {
-  //           reject({ msg: message, status: statusCode });
-  //         } 
-          
-
-  //       })
-  //       .catch(err =>
-  //       {
-  //         reject(err)
-  //       });
-  //   });
-  // }      
+        reject({ message, status: statusCode, result });
+      })
+  });
+}
 }
 
 export default actions

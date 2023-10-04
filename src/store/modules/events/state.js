@@ -1,10 +1,14 @@
 const state = {
   form: {
-    id: '',
     cover_photo: '',
     event_type: '',
     event_name: '',
     location: '',
+    // venue
+    street_address: '',
+    barangay: '',
+    city: '',
+    province: '',    
     // audience
     audience: false,
     start_date: '',
@@ -13,8 +17,9 @@ const state = {
     end_time: '',
     description: '',
     look_for: '',
-    look_type: '',
+    look_types: [],
     requirement: '',
+    cover: '',
   },
   event_types: [],
   event_artist_type: [
@@ -33,7 +38,15 @@ const state = {
   look_for: [
     { value: 'artist', text: 'Artist' },
     { value: 'service', text: 'Service' },
-  ]
+  ],
+  eventFilter: {
+    event_type: '',
+    city: '',
+    cost: false,
+    search: '',
+    sortBy: 'DESC',
+  },
+  events: [],
 };
 
 export default state;

@@ -1,20 +1,30 @@
 <template>
   <div>
-    <form @submit.prevent="submit">
-
-      <drag-drop @dragCover="setCover" />
-
-      <div v-for="err in error?.cover_photo" :key="err" class="text-danger">{{ err }}</div>
-
-      <div class="form-group">
-          <label for="eventType">Event Type</label>
-          <select v-model="form.event_type" class="form-select" >
-            <option v-for="(event_type, index) in eventTypes" :key="index" :value="event_type.id" >
-                {{ event_type.name }}
-              </option>
-          </select>
-          <div v-for="err in error?.event_type" :key="err" class="text-danger">{{ err }}</div>
+    <form class="required-fields" @submit.prevent="submit">
+      <div class="upload-file-wrapper" v-if="form.cover">
+        <div class="uploaded-image-wrapper" >
+          <div >
+            <img ref="uploadedImage" class="uploaded-image" :src="form.cover" alt="banner-modal" />
+          </div>
+          
+          <button class="remove-image" @click="removeBanner" >
+            <span class="material-symbols-outlined">&#xe5cd;</span> 
+          </button>
+        </div>
       </div>
+      <drag-drop @dragCover="setCover" v-else/>
+      
+      <div v-for="err in error?.cover_photo" :key="err" class="text-danger">{{ err }}</div>
+      
+      <div class="form-group">
+        <label for="eventType">Event Type</label>
+        <select v-model="form.event_type" class="form-select" style="text-transform: capitalize;">
+          <option v-for="(event_type, index) in eventTypes" :key="index" :value="event_type">
+            {{ event_type }}
+          </option>
+      </select>
+      <div v-for="err in error?.event_type" :key="err" class="text-danger">{{ err }}</div>
+    </div>
 
       <div class="form-group">
           <label for="eventType">Name of Event</label>
@@ -24,25 +34,26 @@
 
       <div class="form-group">
           <label for="eventType">Venue Address</label>
-            <input type="text" v-model="form.location" class="form-control location-input" 
+            <input type="text" v-model="form.street_address" class="form-control location-input" 
             placeholder="Unit/Floor No. Bldg.Name,House/Bldg.No.," required autocomplete="off"/>
           <div v-for="err in error?.location" :key="err" class="text-danger">{{ err }}</div>
 
           <div class="d-flex justify-content-between venue-sub-groups">
 
             <div>
-              <input type="text" class="form-control location-input" placeholder="Village/Subdivision, Barangay" required autocomplete="off"/>
+              <input type="text" v-model="form.barangay" class="form-control location-input" placeholder="Village/Subdivision, Barangay" required autocomplete="off"/>
             </div>
 
             <div>
-              <input type="text" class="form-control location-input" placeholder="Town/City" required autocomplete="off"/>
+              <input type="text" v-model="form.city" class="form-control location-input" placeholder="Town/City" required autocomplete="off"/>
             </div>
 
             <div>
-              <input type="text" class="form-control location-input" placeholder="Province" required autocomplete="off"/>
+              <input type="text" v-model="form.province" class="form-control location-input" placeholder="Province" required autocomplete="off"/>
             </div>
 
            </div> 
+           <div v-for="err in error?.street_address" :key="err" class="text-danger">{{ err }}</div>
       </div>
 
       <div class="form-group">
@@ -87,20 +98,29 @@
           <div v-for="err in error?.end_time" :key="err" class="text-danger">{{ err }}</div>
         </div>
 
+            
+        </div>
+        
+      
+      <div class="row py-2" v-if="errorTime">
+        <div class="col text-danger">
+          {{ errorTime }}
+        </div>
       </div>
 
-      <div class="form-group event-details-wrap">
-          <label for="eventType">Event Details</label>
-          <textarea v-model="form.description" maxlength="500" class="form-control about-artist" placeholder="Write description" required></textarea>
-          <div v-for="err in error?.description" :key="err" class="text-danger">{{ err }}</div>
-          <p v-show="form.description" class="text-end char-count">Maximum 500 characters ( {{ remainingChars }} left)</p> 
-      </div>
-
-
-      <div class="text-end action-btn-wrap">
-
-        <button type="button" class="btn cancel" data-bs-dismiss="modal">Cancel</button>
-        <button type="submit" class="btn next">
+      
+          <div class="form-group">
+            <label for="eventDetails">Event Details</label>
+            <textarea v-model="form.description" maxlength="500" rows="7" class="form-control about-artist" placeholder="Write description" required>
+            </textarea>
+            <div v-for="err in error?.description" :key="err" class="text-danger">{{ err }}</div>
+            <p v-show="form.description" class="text-end char-count">Maximum 500 characters ( {{ remainingChars }} left)</p> 
+          </div>
+        
+      
+      <div class="text-end">
+        <button type="button" class="btn btn-outline-geebu mx-1" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-geebu mx-1" :disabled="!validInput">
           <span >
             <i class="busy-submitting" v-if="isLoading"></i>Next
           </span>
@@ -112,9 +132,11 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex';
+import { mapActions, mapGetters, mapState } from 'vuex';
 
 import DragDrop from '/src/components/DragDrop.vue';
+import Multiselect from '@vueform/multiselect';
+
 export default {
   setup () {
     
@@ -126,7 +148,10 @@ export default {
   },
   data: () => ({
     error: [],
+    // cover: '',
     isLoading: false,
+    isComplete: false,
+    errorTime: '',
     // form: {
     //   cover_photo: '',
     //   event_type: '',
@@ -142,17 +167,25 @@ export default {
   }),
   methods: {
     ...mapActions([
-      'fetchEventOptions', 'createEvent',
+      'fetchEventOptions', 'createEvent', 'verifyEvent',
     ]),
     setCover(val)
     {
       this.form.cover_photo = val;
+      this.form.cover = URL.createObjectURL(val);
       console.log('Set Cover:: ', val);
+    },
+    removeBanner()
+    {
+      this.form.cover = '';
+      this.form.cover_photo = '';
     },
     submit()
     {
       this.isLoading = true;
-      this.createEvent()
+      console.log('Emit: ', this.form);
+
+      this.verifyEvent()
         .then(res =>
         {
           console.log('Next Step: ', res);
@@ -161,8 +194,9 @@ export default {
         })
         .catch(err =>
         {
-
-          const { status, message, result: {errors, form} } = err;
+          console.log('Event Verify [error]: ', err)
+          const { status, message, result: { errors, form } } = err;
+          this.isLoading = false;
           this.error = errors;
 
         })
@@ -172,11 +206,49 @@ export default {
   },
   mounted()
   {
-    this.fetchEventOptions()
+    // this.cover = this.form.cover_photo ? URL.createObjectURL(this.form.cover_photo) : '';
+
+    if (
+      this.form?.event_type !== '' && this.form?.event_name !== '' &&
+      this.form?.street_address !== '' && this.form?.barangay !== '' &&
+      this.form?.city !== '' && this.form?.province !== '' && this.form?.description !== '' &&
+      this.form?.start_date !== '' && this.form?.start_time !== '' &&
+      this.form?.end_date !== '' && this.form?.end_time !== '' && this.form?.cover_photo !== ''
+    ) this.isComplete = true;
+
+    this.fetchEventOptions();
+
+    document.getElementById('createEventModal').addEventListener('shown.bs.modal', () =>
+    {
+      
+      console.log('[FormModal.vue] Form data: ', this.form)
+      this.step = 'detail';
+
+    });
+    // const myModal = document.getElementById('eventsModal');
+    // myModal.addEventListener('shown.bs.modal', () =>
+    // {
+    //   this.$store.commit('RESET_EVENT_FORM')
+    //   // this.form.event_type = this.eventTypes[0];
+    //   this.step = 'detail';
+    // });
+
+    // myModal.addEventListener('hide.bs.modal', () =>
+    // {
+    //   this.$store.commit('RESET_EVENT_FORM')
+    //   this.step = 'detail';
+    //   this.cover = '';
+      
+    // });
+
+
   },
   computed: {
+    ...mapGetters([
+      'eventCover',
+    ]),
     ...mapState({
-      form:       state => state.events.form,
+      form: state => state.events.form,
       eventTypes: state => state.events.event_types,
     }),
     startDate()
@@ -186,13 +258,63 @@ export default {
     remainingChars(){
         return 500 - (this.form.description ? this.form.description.length : 0);
     },
+    eventEnd()
+    {
+      return `${this.form.end_date} ${this.form.end_time}`;
+    },
+    eventStart()
+    {
+      return `${this.form.start_date} ${this.form.start_time}`;
+    },
+    validInput()
+    {
+      if (this.isComplete) {
+        if (this.$moment(this.eventEnd).isAfter(this.eventStart)) {
+          return true;
+        } else {
+          this.errorTime = `The end date and time must be a date after or equal to ${this.eventStart}.`;
+        }
+      }
+      
+      return false;
+    }
   },
   watch: {
+    form: {
+      handler(val)
+      {
+        console.log('[FormModal.vue] Form data updated: ', val)
+        this.isComplete = false;
+        if (
+          val.event_type !== '' && val.event_name !== '' &&
+          val.street_address !== '' && val.barangay !== '' &&
+          val.city !== '' && val.province !== '' && val.description !== '' &&
+          val.start_date !== '' && val.start_time !== '' && 
+          val.end_date !== '' && val.end_time !== '' && val.cover_photo !== ''
+        ) this.isComplete = true;
+
+        if (val.start_date !== '' && val.start_time !== '' &&
+          val.end_date !== '' && val.end_time !== '') {
+          this.errorTime = '';
+
+          if (!this.$moment(this.eventEnd).isAfter(this.eventStart)) { 
+            this.errorTime = `The end date and time must be a date after or equal to ${this.eventStart}.`;
+          }
+        } else if (val.start_date === '' && val.end_date === ''){
+          this.form.start_date = this.$moment().add(5, 'days').format('YYYY-MM-DD');
+          this.form.end_date = this.$moment().add(5, 'days').format('YYYY-MM-DD');
+        }
+
+        this.cover = val.cover_photo ? URL.createObjectURL(val.cover_photo) : '';
+
+      },
+      deep:true,
+    },
     eventTypes: {
       handler(val)
       {
 
-        if(val) this.form.event_type = val[0].id;
+        if(val) this.form.event_type = val[0];
       },
       deep: true,
     }
@@ -202,32 +324,4 @@ export default {
 
 <style scoped>
 @import '@/assets/css/artist-ui.css';
-
-/* .btn-geebu {
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: -0.0175rem;
-  border-radius: 0.3125rem;
-  background: var(--orange);
-  border: 0;
-  margin: 3.5rem auto;
-}
-
-.btn-outline-geebu {
-    --bs-btn-color: #FF6B00;
-    --bs-btn-border-color: #FF6B00;
-    --bs-btn-hover-color: #fff;
-    --bs-btn-hover-bg: #FF6B00;
-    --bs-btn-hover-border-color: #FF6B00;
-    --bs-btn-focus-shadow-rgb: 13, 110, 253;
-    --bs-btn-active-color: #fff;
-    --bs-btn-active-bg: #FF6B00;
-    --bs-btn-active-border-color: #FF6B00;
-    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-    --bs-btn-disabled-color: #FF6B00;
-    --bs-btn-disabled-bg: transparent;
-    --bs-btn-disabled-border-color: #FF6B00;
-    --bs-gradient: none;
-} */
 </style>

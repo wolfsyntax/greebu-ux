@@ -6,7 +6,7 @@ export const SET_EVENT_OPTIONS = (state, payload) =>
 
 export const SET_EVENT_FORM = (state, payload) =>
 {
-  state.form = payload;
+  // state.form = payload;
 }
 
 export const SET_LOOK_FORM = (state, {event_artist_type, event_service_type}) =>
@@ -19,11 +19,13 @@ export const SET_LOOK_FORM = (state, {event_artist_type, event_service_type}) =>
 export const RESET_EVENT_FORM = state =>
 {
   state.form = {
-    id: '',
     cover_photo: '',
     event_type: '',
     event_name: '',
-    location: '',
+    street_address: '',
+    barangay: '',
+    city: '',
+    province: '',
     // audience
     audience: false,
     start_date: '',
@@ -33,7 +35,27 @@ export const RESET_EVENT_FORM = state =>
     description: '',
     // step two: What are you looking for?
     look_for: '',
-    look_type: '',
+    look_types: [],
     requirement: '',
+    cover: '',
   }
+
+  state.form.event_type = '2123';
+  console.log('[RESET_EVENT_FORM] Event Form: ', state.form)
+}
+
+export const SET_EVENT_LIST = (state, payload) =>
+{
+  state.events = payload
+}
+
+export const RESET_EVENT_FILTER = (state) =>
+{
+  state.eventFilter = {
+    event_type: '',
+    city: '',
+    cost: false,
+    search: '',
+    sortBy: 'DESC',
+  };
 }
