@@ -90,7 +90,7 @@
 
         <!-- Upcoming Events -->
         <div class="row" v-if="events.length">
-          <div class="col-4" v-for="(event, index) in events" :key="index">
+          <div class="col-3" v-for="(event, index) in events" :key="index">
             <div class="card">
               <div class="bg-wrapper">
                 <img :src="event.cover_photo" class="img-fluid card-bg" loading="lazy" alt="Event image">
