@@ -179,7 +179,7 @@ export default {
 
       if (action !== 'skip') {
         this.form.look_for = this.look_for;
-        this.form.look_type = this.look_type.join(",");
+        this.form.look_types = this.look_type;
         this.form.requirement = this.requirement;
       }
 

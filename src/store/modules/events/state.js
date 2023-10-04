@@ -17,7 +17,7 @@ const state = {
     end_time: '',
     description: '',
     look_for: '',
-    look_type: [],
+    look_types: [],
     requirement: '',
     cover: '',
   },
