@@ -175,7 +175,7 @@ export const createEvent = ({ dispatch, commit, rootState, state }, payload) =>
        
         commit('SET_EVENT_FORM', event);
         dispatch('fetchEventList');
-        
+
         resolve(data);
 
       }

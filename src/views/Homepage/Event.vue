@@ -43,7 +43,7 @@
           </div>
           <div class="col-6">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search for Events" v-model="eventFilter.search" aria-label="Search for Events" aria-describedby="button-addon2" @input="fetchEventList">
+              <input type="text" class="form-control" placeholder="Search for Events" v-model="eventFilter.search" aria-label="Search for Events" aria-describedby="button-addon2">
               <button class="btn btn-success border-rad" type="button" id="button-addon2" @click="fetchEventList">
                 <span class="material-symbols-outlined next">search</span>
                 </button>
@@ -51,7 +51,7 @@
           </div>
           <div class="col-4">
             <h5>Type of Event</h5>
-            <select class="form-select" aria-label="Default select example" v-model="eventFilter.event_type" @change="fetchEventList">
+            <select class="form-select" aria-label="Default select example" v-model="eventFilter.event_type" >
               <option value="" selected>&emsp;</option>
               <option v-for="(event_type, index) in eventTypes" :key="index" :value="event_type.value">
                 {{ event_type.text }}
@@ -60,12 +60,23 @@
           </div>
           <div class="col-4">
             <h5>Location</h5>
-            <select class="form-select" aria-label="Default select example" v-model="eventFilter.city" @change="fetchEventList">
-              <option value="" selected>&emsp;</option>
-              <option value="naga city">Naga City</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-            </select>
+            <multiselect v-model="eventFilter.city" mode="single"
+              :close-on-select="false"
+              :create-option="true" :options="async function (query) {
+                await fetchCityList(query)
+                return cities;
+
+              }"
+              searchable="true"  
+              :delay="0" 
+              autocomplete="off" 
+              ref="multiselect" 
+              :filter-results="false"
+              label="text"
+              noOptionsText="Please input town/city name"
+              class="form-select"
+            />
+            
           </div>
           <!-- <div class="col-4">
             <h5>Cost</h5>
@@ -146,6 +157,7 @@
 <script>
 import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
 import { Modal } from 'bootstrap';
+import Multiselect from '@vueform/multiselect';
 
 import Layout from '/src/components/Layouts/Layout.vue';
 import Faq from '/src/components/Home/FAQ.vue';
@@ -162,6 +174,7 @@ export default {
     EventsModal,
     viewEventDetails: ViewEventDetailsModal,
     EventSuccess,
+    Multiselect,
   },
   setup()
   {
@@ -297,6 +310,10 @@ export default {
     ...mapState({
       events: state => state.events.events,
       eventFilter: state => state.events.eventFilter,
+      cities: state => state.cities.map(function (city)
+      {
+        return city.name;
+      }),
       eventTypes: state => state.events.event_types.map(function (obj)
       {
         var words = obj.split(" ")
@@ -314,6 +331,7 @@ export default {
   {
     
     this.fetchEventOptions().then(res => this.RESET_EVENT_FILTER())
+    this.fetchCityList();
     this.fetchEventList()
       .then(res =>
       {
@@ -322,7 +340,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      'fetchEventOptions', 'fetchEventList',
+      'fetchEventOptions', 'fetchEventList', 'fetchCityList',
     ]),
     ...mapMutations([
       'RESET_EVENT_FILTER'
@@ -364,6 +382,16 @@ export default {
     openEventDetailsModal(data){
         this.$root.$emit("bv::show::modal", "#eventDetailsModal");
     },
+
+  },
+  watch: {
+    eventFilter: {
+      handler(val)
+      {
+        this.fetchEventList()
+      },
+      deep: true,
+    }
   }
 }
 </script>
