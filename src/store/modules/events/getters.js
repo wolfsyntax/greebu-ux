@@ -12,3 +12,5 @@ export const eventLookType = (state,getters, rootState) =>
     return state.event_artist_type
   }
 }
+
+export const eventCover = state => state.form.cover ?? '';

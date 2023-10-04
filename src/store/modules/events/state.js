@@ -17,8 +17,9 @@ const state = {
     end_time: '',
     description: '',
     look_for: '',
-    look_type: '',
+    look_type: [],
     requirement: '',
+    cover: '',
   },
   event_types: [],
   event_artist_type: [

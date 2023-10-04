@@ -35,8 +35,9 @@ export const RESET_EVENT_FORM = state =>
     description: '',
     // step two: What are you looking for?
     look_for: '',
-    look_type: '',
+    look_type: [],
     requirement: '',
+    cover: '',
   }
 
   state.form.event_type = '2123';
