@@ -309,7 +309,7 @@ export default {
           if (!this.$moment(this.eventEnd).isAfter(this.eventStart)) { 
             this.errorTime = `The end date and time must be a date after or equal to ${this.eventStart}.`;
           }
-        } else {
+        } else if (val.start_date === '' && val.end_date === ''){
           this.form.start_date = this.$moment().add(5, 'days').format('YYYY-MM-DD');
           this.form.end_date = this.$moment().add(5, 'days').format('YYYY-MM-DD');
         }
