@@ -46,9 +46,10 @@
               <img :src="song.image" class="song-img" alt="Song cover image">
 
               <div class="m-0 play-wrap">
-                <button class="btn p-0">
-                  <span class="material-symbols-sharp play-icon">&#xe037;</span>
-                </button>
+                <button class="btn p-0" @click="togglePlay(song)">
+        <span class="material-symbols-sharp play-icon" v-if="!isPlaying(song)">&#xe037;</span>
+        <span class="material-symbols-sharp pause-icon" v-else>&#xe034;</span>
+      </button>
               </div>
 
             </div>
@@ -106,8 +107,10 @@ export default {
     InfoModal,
     layout: Layout,
   },
-  data: () => ({
-    modalType: 'song',
+  data()
+  {
+    return {
+      modalType: 'song',
 
     navItems: ['Original Songs', 'Album', 'Covered Songs'],
     activeItem: 'Original Songs',
@@ -116,62 +119,27 @@ export default {
         id: 1,
         artistId: 1,
         image: '/assets/artist-account/song-cover1.webp',
-        song_name: 'Loving You',
+        song_name: 'Please forgive me',
+        music: 'https://res.cloudinary.com/daorvtlls/video/upload/v1687411951/please-forgive-me-bryan-adams_bnyj1o.mp3',
         likes: 0
       },
       {
         id: 2,
         artistId: 2,
         image: '/assets/artist-account/song-cover2.webp',
-        song_name: 'Loving In Stereo',
+        song_name: 'Smells like teen spirit',
+        music: 'https://res.cloudinary.com/daorvtlls/video/upload/v1686647605/Nirvana_-_Smells_like_teen_spirit_zs8yo4.mp3',
         likes: 23
       },
-      {
-        id: 3,
-        artistId: 3,
-        image: '/assets/artist-account/song-cover1.webp',
-        song_name: 'Loving In Stereo',
-        likes: 5
-      },
-      {
-        id: 4,
-        artistId: 4,
-        image: '/assets/artist-account/song-cover2.webp',
-        song_name: 'Loving In Stereo',
-        likes: 0
-      },
-      {
-        id: 5,
-        artistId: 5,
-        image: '/assets/artist-account/song-cover1.webp',
-        song_name: 'Loving In Stereo',
-        likes: 0
-      },
-      {
-        id: 6,
-        artistId: 6,
-        image: '/assets/artist-account/song-cover2.webp',
-        song_name: 'Loving In Stereo',
-        likes: 34
-      },
-      {
-        id: 7,
-        artistId: 7,
-        image: '/assets/artist-account/song-cover1.webp',
-        song_name: 'Loving In Stereo',
-        likes: 0
-      },
-      {
-        id: 8,
-        artistId: 8,
-        image: '/assets/artist-account/song-cover2.webp',
-        song_name: 'Loving In Stereo',
-        likes: 100
-      },
+      
     ],
     likedSongs: [],
+    audioPlayers: {}, // Object to store audio players for each song
+    playingSongId: null, // Store the currently playing song ID
+   
+    }
+  },
 
-  }),
   methods: {
     ...mapActions([]),
     ...mapMutations([]),
@@ -200,22 +168,45 @@ export default {
     isLiked(songId) {
       return this.likedSongs.some((liked) => liked.songId === songId);
     },
+    togglePlay(song) {
+      if (this.playingSongId === song.id) {
+        // If the clicked song is already playing, pause it
+        const audioPlayer = this.audioPlayers[song.id];
+        audioPlayer.pause();
+        this.playingSongId = null;
+      } else {
+        // If a different song is playing, pause it first (if any)
+        if (this.playingSongId !== null) {
+          const previouslyPlayingAudio = this.audioPlayers[this.playingSongId];
+          previouslyPlayingAudio.pause();
+        }
+
+        // Create or retrieve the audio player for the clicked song
+        if (!this.audioPlayers[song.id]) {
+          this.audioPlayers[song.id] = new Audio(song.music);
+        }
+
+        // Start playing the clicked song
+        const audioPlayer = this.audioPlayers[song.id];
+        audioPlayer.play();
+        this.playingSongId = song.id;
+      }
+    },
+    isPlaying(song) {
+      return this.playingSongId === song.id;
+    },
+  
     
   },
   computed: {
     ...mapState({
       user: state => state.user,
     }),
-    ...mapGetters(['isLoggedIn',])
-  },
-  setup() {
-
-
-    return {}
+    ...mapGetters(['isLoggedIn',]),
   },
   mounted() {
-
-  }
+  },
+  
 }
 </script>
 

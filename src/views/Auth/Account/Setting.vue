@@ -118,7 +118,7 @@ export default {
       this.sidebarOptions = [
         { icon: 'account_circle', name: 'My Account' },
         { icon: 'subscriptions', name: 'My Proposal' },
-        { icon: 'music_note', name: 'Request Application' },
+        { icon: 'breaking_news', name: 'Request Application' },
         { icon: 'notifications', name: 'Notifications' },
         { icon: 'page_info', name: 'Others' }
       ];

@@ -10,7 +10,7 @@
 
         <div class="d-flex">
           <span class="material-symbols-rounded info-icon">&#xe88e;</span>
-          <p class="note">Clients will only pay if the requested customized song is already been accepted by chosen Artist.</p>
+          <p class="note">Clients will only pay if you accept the requested customized song.</p>
         </div>
       </div>
 

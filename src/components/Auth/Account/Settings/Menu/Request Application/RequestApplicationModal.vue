@@ -27,15 +27,22 @@
           <div class="d-flex align-items-center">
             <button class="btn decline">Decline</button>
             <button class="btn accept" @click="acceptRequest">Acccept</button>
+
+            <!-- SHOW THIS IF THE ORGANIZER ACCEPTED THE REQUEST  -->
+            <!-- <button class="btn accepted">Decline</button> -->
+
+            <!-- SHOW THIS IF THE ORGANIZER DENIED THE REQUEST  -->
+            <!-- <button class="btn cancelled">Cancelled</button> -->
+
           </div>
         </div> <!-- end of action-wrapper -->
 
-        <div class="mb-4 d-flex align-items-center note-wrapper">
-          <span class="material-symbols-rounded info-icon">&#xe88e;</span>
+        <div class="d-flex align-items-center note-wrapper">
+          <span class="material-symbols-rounded info-icon">&#xea08;</span>
           <p class="note">Idlepitch band has submitted an application request for your event</p>
         </div>
 
-        <div class="mb-4 d-flex align-items-center applied-event-wrap">
+        <div class="d-flex align-items-center applied-event-wrap">
 
           <div>
             <img src="/assets/organizer-account/post-img.webp" class="event-img" alt="Event cover image">
@@ -76,7 +83,7 @@
 
         </div> <!-- end of applied-event-wrap -->
 
-        <h4 class="mb-4 text-start artist-details">Artist Details</h4>
+        <h4 class="text-start artist-details">Artist Details</h4>
 
         <div class="d-flex justify-content-between action-wrapper song-info-wrapper">
           <div>
@@ -105,8 +112,29 @@
 
         <div class="text-start music-sample-wrap">
          <h5>Music Sample</h5>
+
+         <div class="d-flex align-items-center justify-content-between artist-music-details">
+
+          <div class="d-flex align-items-center song-wrap">
+            <img src="/assets/artist-account/song-cover1.webp" alt="Proposal form of song cover image">
+
+            <div>
+              <h5 class="song-name">Lupang Hinirang.mp3</h5>
+              <h6>Idlepitch</h6>
+              <span class="badge">3:12</span>
+            </div>
+          </div>
+
+          <div>
+            <button class="btn d-flex align-items-center p-0 play-wrap">
+              <span class="material-symbols-sharp play-icon">&#xe037;</span>
+              Play
+            </button>
+          </div>
+
+         </div>
          
-        </div>
+        </div> <!-- end of music-sample-wrap -->
 
       </div> <!-- end of modal-body -->
     </div>

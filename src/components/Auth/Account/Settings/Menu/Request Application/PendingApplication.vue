@@ -1,18 +1,18 @@
 <template>
   <div>
-    <div class="customized-songs-wrapper " v-for="(request, index) in requestedSongs" :key="index">
+    <div class="customized-songs-wrapper " v-for="(pending, index) in pendingApplication" :key="index">
       <div class="event-description">
 
       <div class="d-flex align-items-center event-wrap">
         <span class="material-symbols-sharp dot-icon">&#xe061;</span>
-        <h5 class="mb-0 event">{{ request.event }}</h5>
+        <h5 class="mb-0 event">{{ pending.event }}</h5>
       </div>
 
         <div class="mb-0 d-flex align-items-center requested-wrapper">
-          <img :src=request.profile_image class="requested-by-image" alt="Requested by image"> 
-          <a href="#" class="requested-by">Requested by <span class="name">{{ request.name }}</span></a> 
+          <img :src=pending.profile_image class="requested-by-image" alt="Submitted by image"> 
+          <a href="#" class="requested-by">Submitted by <span class="name">{{ pending.name }}</span></a> 
           <span class="material-symbols-sharp dot-icon">&#xe061;</span>
-          <span class="time">{{ request.time }} hours ago</span>
+          <span class="time">{{ pending.time }} hours ago</span>
         </div>
 
       </div>
@@ -40,7 +40,7 @@ export default {
     RequestApplicationModal,
   },
   data: () => ({
-    requestedSongs: [
+    pendingApplication: [
       { event: 'Birthday Song', profile_image: 'https://lh3.googleusercontent.com/a-/AD_cMMSLi2SfUJdD4SS2bXaL5NxayPEdYmT3NNso4i_pkSNZ=s64-p-k-rw-no', name: 'John Flores', time: 3, },
       { event: 'Wedding Song', profile_image: 'https://lh3.googleusercontent.com/ogw/AGvuzYaE0rvo3xwVU3H4f2K3wcaEYqe9ht06pHbd9Lxh=s32-c-mo', name: 'Dante Magno', time: 12, },
       { event: 'Wedding Song', profile_image: 'https://lh3.googleusercontent.com/ogw/AGvuzYaE0rvo3xwVU3H4f2K3wcaEYqe9ht06pHbd9Lxh=s32-c-mo', name: 'Dante Magno', time: 12, },

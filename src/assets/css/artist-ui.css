@@ -21,6 +21,8 @@
   --p-color4: #2D3748;
   --btn-hovered: #ED6300;
   --btn-focus: #FFE4C5;
+  --warning: #DC2626;
+  --warning-light: #FECACA;
 }
 body{   
   font-family: 'Urbanist', sans-serif;
