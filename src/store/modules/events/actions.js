@@ -148,7 +148,7 @@ export const verifyEvent = ({ commit, rootState, state }) =>
   });
 }
 
-export const createEvent = ({ commit, rootState, state }, payload) =>
+export const createEvent = ({ dispatch, commit, rootState, state }, payload) =>
 {
   return new Promise(async (resolve, reject) =>
   {
@@ -174,7 +174,8 @@ export const createEvent = ({ commit, rootState, state }, payload) =>
         const { status, message, result: { event } } = data; 
        
         commit('SET_EVENT_FORM', event);
-
+        dispatch('fetchEventList');
+        
         resolve(data);
 
       }

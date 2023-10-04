@@ -69,10 +69,7 @@
         <!-- <button type="button" class="btn btn-outline-geebu mx-1" @click="$emit('next-step', 'skip')" ref="eventSkip">Skip</button> -->
         <button type="button" class="btn btn-outline-geebu mx-1" @click="back">Back</button>
         <button type="button" class="btn btn-geebu mx-1" @click="submit">
-          <span v-if="!canSkip">
-            <i class="busy-submitting" v-if="isLoading"></i>Skip
-          </span>
-          <span v-else>
+          <span >
             <i class="busy-submitting" v-if="isLoading"></i>Submit
           </span>
         </button>
