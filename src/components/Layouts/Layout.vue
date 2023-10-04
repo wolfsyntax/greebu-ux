@@ -16,7 +16,7 @@
               <li class="nav-item">
                 <router-link to="/">Home</router-link>
                 <router-link to="/create-song">Create a Song</router-link>
-                <router-link to="/artists">Artist</router-link>
+                <router-link to="/artists">Artists</router-link>
                 <router-link to="/events">Events</router-link>
                 <router-link to="/services">Services</router-link>
               </li>
@@ -26,17 +26,17 @@
               <li class="nav-item" v-if="userRole === 'customers'">
                 <router-link to="/">Home</router-link>
                 <router-link to="/create-song">Create a Song</router-link>
-                <router-link to="/artists">Artist</router-link>
+                <router-link to="/artists">Artists</router-link>
                 <router-link to="/events">Events</router-link>
                 <router-link to="/services">Services</router-link>
               </li>
               <li class="nav-item artist-menu" v-if="userRole === 'artists'">
                 <router-link to="/library">Library</router-link>
-                <router-link to="/artists">Artist</router-link>
+                <router-link to="/artists">Artists</router-link>
                 <router-link to="/events">Events</router-link>
               </li>
               <li class="nav-item" v-if="userRole === 'organizer'">
-              <router-link to="/artists">Artist</router-link>
+              <router-link to="/artists">Artists</router-link>
                 <router-link to="/events">Events</router-link>
                 <router-link to="/reports">Reports</router-link>
               </li>

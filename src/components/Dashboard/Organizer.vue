@@ -224,24 +224,6 @@
               <div class="social-media">
                 <h4>Social Media</h4>
                 <ul>
-                  <!-- <li class="text-lowercase" v-if="facebook">
-                    <img src="/assets/social icons/facebook-gray.svg" loading="lazy" alt="facebook-gray-icon" />
-                    {{ account.facebook }}
-                  </li>
-                  <li class="text-lowercase" v-if="instagram">
-                    <img src="/assets/artist-account/instagram-icon-gray.svg" loading="lazy" alt="facebook-icon" />
-                    {{ account.instagram }}
-                  </li>
-
-                  <li class="text-lowercase" v-if="threadsNET">
-                    <img src="/assets/social icons/threads-gray.svg" loading="lazy" alt="threads-gray-icon" />
-                    {{ account.threads }}
-                  </li>
-
-                  <li class="text-lowercase" v-if="twitter">
-                    <img src="/assets/social icons/twitter-gray.svg" loading="lazy" alt="twitter-gray-icon" />
-                    {{ account.twitter }}
-                  </li> -->
 
                   <li><img src="/assets/organizer-account/event-organizer-icon.svg" alt="artist type icon">{{ account?.organizer_name }}</li>
                   <li v-if="facebook"><img src="/assets/social icons/facebook-gray.svg" alt="facebook icon">{{ facebook }}</li>

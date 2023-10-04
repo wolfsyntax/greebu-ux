@@ -15,104 +15,92 @@
       <drag-drop @dragCover="setCover" v-else/>
       
       <div v-for="err in error?.cover_photo" :key="err" class="text-danger">{{ err }}</div>
-      <div class="row py-2">
-        <div class="col">
-          <div class="form-group">
-            <label for="eventType">Event Type</label>
-            <select v-model="form.event_type" class="form-select" style="text-transform: capitalize;">
-              <option v-for="(event_type, index) in eventTypes" :key="index" :value="event_type">
-                {{ event_type }}
-              </option>
-            </select>
+      
+      <div class="form-group">
+        <label for="eventType">Event Type</label>
+        <select v-model="form.event_type" class="form-select" style="text-transform: capitalize;">
+          <option v-for="(event_type, index) in eventTypes" :key="index" :value="event_type">
+            {{ event_type }}
+          </option>
+      </select>
+      <div v-for="err in error?.event_type" :key="err" class="text-danger">{{ err }}</div>
+    </div>
 
-            <div v-for="err in error?.event_type" :key="err" class="text-danger">{{ err }}</div>
-          </div>          
-        </div>
+      <div class="form-group">
+          <label for="eventType">Name of Event</label>
+          <input type="text" v-model="form.event_name" class="form-control" placeholder="Name of Event" required autocomplete="off"/>
+          <div v-for="err in error?.event_name" :key="err" class="text-danger">{{ err }}</div>
       </div>
 
-      <div class="row py-2">
-        <div class="col">
-          <div class="form-group">
-            <label for="eventType">Name of Event</label>
-            <input type="text" v-model="form.event_name" placeholder="Name of Event" class="form-control city" required autocomplete="off"/>
-            <div v-for="err in error?.event_name" :key="err" class="text-danger">{{ err }}</div>
-          </div>
-        </div>
-      </div>
-      
-      
-      <div class="row my-2">
-        <div class="col">
+      <div class="form-group">
           <label for="eventType">Venue Address</label>
-          <div class="row">
-            <div class="row my-2">
-              <div class="col-12">
-                <input type="text" v-model="form.street_address" class="form-control" placeholder="Unit/Floor No. Premises/Bldg. Name, House/Bldg. No., Street Name" />
-              </div>
+            <input type="text" v-model="form.street_address" class="form-control location-input" 
+            placeholder="Unit/Floor No. Bldg.Name,House/Bldg.No.," required autocomplete="off"/>
+          <div v-for="err in error?.location" :key="err" class="text-danger">{{ err }}</div>
+
+          <div class="d-flex justify-content-between venue-sub-groups">
+
+            <div>
+              <input type="text" v-model="form.barangay" class="form-control location-input" placeholder="Village/Subdivision, Barangay" required autocomplete="off"/>
             </div>
-            <div class="row my-2">
-              <div class="col-12 col-md-4">
-                <input type="text" v-model="form.barangay" class="form-control" placeholder="Village/Subdivision, District, Barangay" />
-              </div>
-              <div class="col-12 col-md-4">
-                <input type="text" v-model="form.city" class="form-control" placeholder="Town/City">
-              </div>
-              <div class="col-12 col-md-4">
-                <input type="text" v-model="form.province" class="form-control" placeholder="Province">
-              </div>
+
+            <div>
+              <input type="text" v-model="form.city" class="form-control location-input" placeholder="Town/City" required autocomplete="off"/>
             </div>
-          </div>
-        </div>
+
+            <div>
+              <input type="text" v-model="form.province" class="form-control location-input" placeholder="Province" required autocomplete="off"/>
+            </div>
+
+           </div> 
+           <div v-for="err in error?.street_address" :key="err" class="text-danger">{{ err }}</div>
       </div>
-      
-      <div class="row py-2">
-        <div class="col">
-          <div class="form-group">
-            <label for="eventType">Audience</label>
-            <select v-model="form.audience" class="form-select">
-              <option value="false" selected>Private Event</option>
+
+      <div class="form-group">
+          <label for="eventType">Audience</label>
+          <select v-model="form.audience" class="form-select" >
+            <option value="false" selected>Private Event</option>
               <option value="true">Public Event</option>
-            </select>
-            <div v-for="err in error?.audience" :key="err" class="text-danger">{{ err }}</div>
-          </div>
-        </div>
+          </select>
+          <div v-for="err in error?.audience" :key="err" class="text-danger">{{ err }}</div>
       </div>
 
-      <div class="row py-2">
-        <div class="col">
-          <div class="form-group">
-            <label for="eventType">Start Date</label>
-            <input type="date" v-model="form.start_date" placeholder="YYYY-MM-DD" class="form-control " required autocomplete="off" :min="$moment().add(5, 'days').format('YYYY-MM-DD')" />
-            <div v-for="err in error?.start_date" :key="err" class="text-danger">{{ err }}</div>
-          </div>
+      <div class="d-flex align-items-center start-end-wrap">
+
+        <div class="form-group">
+          <label for="eventType">Start Date</label>
+          
+          <input type="date" v-model="form.start_date" placeholder="YYYY-MM-DD" class="form-control " required autocomplete="off" :min="$moment().add(5, 'days').format('YYYY-MM-DD')" />
+
+          <!-- <input type="date" v-model="form.start_date" placeholder="YYYY-MM-DD" class="form-control " required autocomplete="off" :min="$moment().add(5, 'days').format('YYYY-MM-DD')" /> -->
+          <div v-for="err in error?.start_date" :key="err" class="text-danger">{{ err }}</div>
         </div>
-        <div class="col">
-          <div class="form-group">
-            <label for="eventType">End Date</label>
-            <input type="date" v-model="form.end_date" placeholder="YYYY-MM-DD" class="form-control " required autocomplete="off" :min="$moment().add(5, 'days').format('YYYY-MM-DD')" />
-            <div v-for="err in error?.end_date" :key="err" class="text-danger">{{ err }}</div>
-          </div>
+
+        <div class="form-group">
+          <label for="eventType">End Date</label>
+          <input type="date" v-model="form.end_date" placeholder="YYYY-MM-DD" class="form-control " required autocomplete="off" :min="$moment().add(5, 'days').format('YYYY-MM-DD')" />
+          <div v-for="err in error?.end_date" :key="err" class="text-danger">{{ err }}</div>
         </div>
+
       </div>
 
-      <div class="row py-2">
-        <div class="col">
-          <div class="form-group">
-            <label for="eventType">Start Time</label>
-            <input type="time" v-model="form.start_time" class="form-control " required autocomplete="off"/>
+      <div class="d-flex align-items-center start-end-wrap">
 
-            <div v-for="err in error?.start_time" :key="err" class="text-danger">{{ err }}</div>
-          </div>
+        <div class="form-group">
+          <label for="eventType">Start Time</label>
+          <input type="time" v-model="form.start_time" class="form-control " required autocomplete="off"/>
+          <div v-for="err in error?.start_time" :key="err" class="text-danger">{{ err }}</div>
         </div>
-        <div class="col">
-          <div class="form-group">
-            <label for="eventType">End Time</label>
-            <input type="time" v-model="form.end_time" class="form-control " required autocomplete="off"/>
 
-            <div v-for="err in error?.end_time" :key="err" class="text-danger">{{ err }}</div>
-          </div>
+        <div class="form-group">
+          <label for="eventType">End Time</label>
+          <input type="time" v-model="form.end_time" class="form-control " required autocomplete="off"/>
+          <div v-for="err in error?.end_time" :key="err" class="text-danger">{{ err }}</div>
         </div>
-      </div>
+
+            
+        </div>
+        
       
       <div class="row py-2" v-if="errorTime">
         <div class="col text-danger">
@@ -120,16 +108,15 @@
         </div>
       </div>
 
-      <div class="row py-2">
-        <div class="col">
+      
           <div class="form-group">
             <label for="eventDetails">Event Details</label>
             <textarea v-model="form.description" maxlength="500" rows="7" class="form-control about-artist" placeholder="Write description" required>
             </textarea>
             <div v-for="err in error?.description" :key="err" class="text-danger">{{ err }}</div>
+            <p v-show="form.description" class="text-end char-count">Maximum 500 characters ( {{ remainingChars }} left)</p> 
           </div>
-        </div>
-      </div>
+        
       
       <div class="text-end">
         <button type="button" class="btn btn-outline-geebu mx-1" data-bs-dismiss="modal">Cancel</button>
@@ -139,6 +126,7 @@
           </span>
         </button>
       </div>
+
     </form>    
   </div>
 </template>
@@ -221,16 +209,16 @@ export default {
     // this.cover = this.form.cover_photo ? URL.createObjectURL(this.form.cover_photo) : '';
 
     if (
-      this.form.event_type !== '' && this.form.event_name !== '' &&
-      this.form.street_address !== '' && this.form.barangay !== '' &&
-      this.form.city !== '' && this.form.province !== '' && this.form.description !== '' &&
-      this.form.start_date !== '' && this.form.start_time !== '' &&
-      this.form.end_date !== '' && this.form.end_time !== '' && this.form.cover_photo !== ''
+      this.form?.event_type !== '' && this.form?.event_name !== '' &&
+      this.form?.street_address !== '' && this.form?.barangay !== '' &&
+      this.form?.city !== '' && this.form?.province !== '' && this.form?.description !== '' &&
+      this.form?.start_date !== '' && this.form?.start_time !== '' &&
+      this.form?.end_date !== '' && this.form?.end_time !== '' && this.form?.cover_photo !== ''
     ) this.isComplete = true;
 
     this.fetchEventOptions();
 
-    document.getElementById('eventsModal').addEventListener('shown.bs.modal', () =>
+    document.getElementById('createEventModal').addEventListener('shown.bs.modal', () =>
     {
       
       console.log('[FormModal.vue] Form data: ', this.form)
@@ -266,6 +254,9 @@ export default {
     startDate()
     {
       return this.$moment().add(5, 'days').format('DD-MM-YYYY');
+    },
+    remainingChars(){
+        return 500 - (this.form.description ? this.form.description.length : 0);
     },
     eventEnd()
     {
@@ -333,110 +324,4 @@ export default {
 
 <style scoped>
 @import '@/assets/css/artist-ui.css';
-
-.btn-geebu {
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: -0.0175rem;
-  border-radius: 0.3125rem;
-  background: var(--orange);
-  border: 0;
-  margin: 3.5rem auto;
-}
-
-.btn-outline-geebu {
-    --bs-btn-color: #FF6B00;
-    --bs-btn-border-color: #FF6B00;
-    --bs-btn-hover-color: #fff;
-    --bs-btn-hover-bg: #FF6B00;
-    --bs-btn-hover-border-color: #FF6B00;
-    --bs-btn-focus-shadow-rgb: 13, 110, 253;
-    --bs-btn-active-color: #fff;
-    --bs-btn-active-bg: #FF6B00;
-    --bs-btn-active-border-color: #FF6B00;
-    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-    --bs-btn-disabled-color: #FF6B00;
-    --bs-btn-disabled-bg: transparent;
-    --bs-btn-disabled-border-color: #FF6B00;
-    --bs-gradient: none;
-}
-
-.upload-file-wrapper .upload-file-content{
-    border-radius: 0.25rem;
-    background: #EFEFFC;
-    padding: 2rem 0;
-}
-
-.upload-file-wrapper .upload-file-content svg {
-  margin-bottom: 1.5rem;
-}
-
-.upload-file-wrapper .upload-file-content .drag-files {
-  color: var(--black-color);
-  font-size: 0.875rem;
-  font-weight: 600;
-  margin-bottom: 0.75rem;
-}
-
-.upload-file-wrapper .upload-file-content .image-type{
-  color: rgba(0, 0, 0, 0.40);
-  font-size: 0.75rem;
-  font-weight: 400;
-  margin-bottom: 1.25rem;
-}
-
-.upload-file-content  .select-files-wrapper label {
-  color: var(--orange);
-  font-size: 0.7rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  background-color: transparent;
-  padding: 0.75rem 1rem;
-  border-radius: 0.3125rem;
-  border: 1px solid var(--orange);
-}
-
-.upload-file-content  .select-files-wrapper label:hover{
-    background-color: var(--orange);
-    color: var(--white);
-}
-
-.upload-file-wrapper .uploaded-image-wrapper .uploaded-image{
-  height: 21.313rem;
-  width: 100%;
-  border-radius: 0.25rem;
-  position: relative;
-  -o-object-fit: cover;
-  object-fit: cover;
-  backface-visibility: hidden;
-}
-
-.upload-file-wrapper .uploaded-image-wrapper .remove-image{
-  margin: 0;
-  position: absolute;
-  top: 3%;
-  left: 92%;
-  border: 0;
-  background-color: transparent;
-}
-
-.upload-file-wrapper .uploaded-image-wrapper .remove-image span{
-  cursor: pointer;
-  color: var(--white);
-  margin: 0;
-  position: absolute;
-  top: 3%;
-  left: 89.5%;
-  background: #00000075;
-  border-radius: 100px;
-  padding: 2px;
-  font-size: 16px;
-  border: 0.1px solid #ffffff91;
-}
-
-.upload-file-wrapper .uploaded-image-wrapper .remove-image:hover span{
-  border: 0.1px solid var(--white);
-}
-
 </style>

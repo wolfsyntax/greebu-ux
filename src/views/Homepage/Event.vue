@@ -23,17 +23,17 @@
           <p class="sub-heading">Collaborate with a professional independent artist to turn your story into one-of-a-kind custom song</p>
         </div>
 
-        <!-- <div v-if="!isLoggedIn"></div>
+        <div v-if="userRole === 'organizer'" class="d-flex align-items-center justify-content-between create-event-wrapper">
+          <div>
 
-                <div v-else>
-                  <div class="seeking-for" v-if="userRole === 'artists' || userRole === 'organizer'" ></div>
-                </div> -->
-
-        <div v-if="userRole === 'organizer'" class="create-event-wrapper d-flex justify-content-end">
-          <button class="d-flex align-items-center btn create-event" @click="toggleCreate">
+          </div>
+          
+          <div>
+            <button class="d-flex align-items-center btn create-event" @click="toggleCreate">
             <span class="material-symbols-rounded add-circle">&#xe147;</span>
             Create event
           </button>
+          </div>
         </div>
 
 
@@ -352,7 +352,7 @@ export default {
     {
       this.fetchEventOptions()
 
-      new Modal(document.getElementById('eventsModal'), {
+      new Modal(document.getElementById('createEventModal'), {
         keyboard: false,
         backdrop: 'static',
       }).show();

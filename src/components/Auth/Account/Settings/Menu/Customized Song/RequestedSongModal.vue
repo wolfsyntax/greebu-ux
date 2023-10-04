@@ -25,8 +25,16 @@
           </div>
 
           <div class="d-flex align-items-center">
+
             <button class="btn decline">Decline</button>
             <button class="btn accept" @click="acceptRequest">Acccept</button>
+
+            <!-- SHOW THIS IF THE ARTIST ACCEPTED THE CUSTOMIZED SONG REQUEST  -->
+            <!-- <button class="btn accepted">Decline</button> -->
+
+            <!-- SHOW THIS IF THE ARTIST DENIED THE CUSTOMIZED SONG REQUEST  -->
+            <!-- <button class="btn cancelled">Cancelled</button> -->
+
           </div>
         </div> <!-- end of action-wrapper -->
 

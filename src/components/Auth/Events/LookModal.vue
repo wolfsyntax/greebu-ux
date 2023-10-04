@@ -1,14 +1,14 @@
 <template>
   <div>
-    <h5>What are you looking for?</h5>
     <form @submit.prevent="submit" class="event-lookup">
+
       <div class="form-group">
         <label for="lookingFor">Looking for</label>
         <select class="form-select" v-model="look_for">
           <option value="artist" selected>Artist</option>
           <option value="service">Service</option>
-        </select>
-        <div v-for="err in error?.look_for" :key="err" class="text-danger">{{ err }}</div>
+          </select>
+          <div v-for="err in error?.look_for" :key="err" class="text-danger">{{ err }}</div>
       </div>
 
       <div class="form-group">
@@ -58,7 +58,8 @@
         
         <div v-for="err in error?.look_type" :key="err" class="text-danger">{{ err }}</div>
       </div>
-      <div class="form-group">
+
+      <div class="form-group event-details-wrap">
         <label for="eventRequirement">Description / Requirement</label>
         <textarea id="eventRequirement" v-model="requirement" maxlength="500" rows="7" class="form-control about-artist" placeholder="Write description" required>
         </textarea>
@@ -102,7 +103,7 @@ export default {
   {
     this.look_for = 'artist';
     this.lookTypes = this.artistType
-    document.getElementById('eventsModal').addEventListener('hide.bs.modal', () =>
+    document.getElementById('createEventModal').addEventListener('hide.bs.modal', () =>
     {
       this.$store.commit('RESET_EVENT_FORM')
       this.step = 'detail';

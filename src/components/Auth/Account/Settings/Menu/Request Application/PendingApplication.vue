@@ -1,17 +1,20 @@
 <template>
   <div>
-    <div class="customized-songs-wrapper" v-for="(request, index) in requestedSongs" :key="index">
+    <div class="customized-songs-wrapper " v-for="(pending, index) in pendingApplication" :key="index">
       <div class="event-description">
-        <h5 class="event">{{ request.event }}</h5>
-        <div class="d-flex align-items-center requested-wrapper">
-          <img :src=request.profile_image class="requested-by-image" alt="Requested by image"> 
-          <a href="#" class="requested-by">Requested by <span class="name">{{ request.name }}</span></a> <span class="time">{{ request.time }} hours ago</span>
+
+      <div class="d-flex align-items-center event-wrap">
+        <span class="material-symbols-sharp dot-icon">&#xe061;</span>
+        <h5 class="mb-0 event">{{ pending.event }}</h5>
+      </div>
+
+        <div class="mb-0 d-flex align-items-center requested-wrapper">
+          <img :src=pending.profile_image class="requested-by-image" alt="Submitted by image"> 
+          <a href="#" class="requested-by">Submitted by <span class="name">{{ pending.name }}</span></a> 
+          <span class="material-symbols-sharp dot-icon">&#xe061;</span>
+          <span class="time">{{ pending.time }} hours ago</span>
         </div>
 
-        <div class="d-flex">
-          <span class="material-symbols-rounded info-icon">&#xe88e;</span>
-          <p class="note">Clients will only pay if you accept the requested customized song.</p>
-        </div>
       </div>
 
       <div class="details-wrapper">
@@ -20,12 +23,12 @@
         </div>
       </div>       
     </div>
-    <requested-song-modal :show="showModal" @close-modal="closeModal" @accept-request="onModalAccepted" />
+    <request-application-modal :show="showModal" @close-modal="closeModal" @accept-request="onModalAccepted" />
   </div>
 </template>
 
 <script>
-import RequestedSongModal from './RequestedSongModal.vue';
+import RequestApplicationModal from './RequestApplicationModal.vue';
 export default {
   setup()
   {
@@ -34,10 +37,10 @@ export default {
     return {}
   },
   components: {
-    RequestedSongModal,
+    RequestApplicationModal,
   },
   data: () => ({
-    requestedSongs: [
+    pendingApplication: [
       { event: 'Birthday Song', profile_image: 'https://lh3.googleusercontent.com/a-/AD_cMMSLi2SfUJdD4SS2bXaL5NxayPEdYmT3NNso4i_pkSNZ=s64-p-k-rw-no', name: 'John Flores', time: 3, },
       { event: 'Wedding Song', profile_image: 'https://lh3.googleusercontent.com/ogw/AGvuzYaE0rvo3xwVU3H4f2K3wcaEYqe9ht06pHbd9Lxh=s32-c-mo', name: 'Dante Magno', time: 12, },
       { event: 'Wedding Song', profile_image: 'https://lh3.googleusercontent.com/ogw/AGvuzYaE0rvo3xwVU3H4f2K3wcaEYqe9ht06pHbd9Lxh=s32-c-mo', name: 'Dante Magno', time: 12, },

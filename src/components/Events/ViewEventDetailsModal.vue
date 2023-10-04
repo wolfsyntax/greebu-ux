@@ -26,7 +26,7 @@
                  Posted 3 hours ago</p>
             </div>
 
-            <button v-if="userRole === 'artists'" type="button" class="btn send">Send Proposal</button>
+            <a href="/proposal" v-if="userRole === 'artists'" class="send">Send Proposal</a>
 
           </div>
 
@@ -100,7 +100,7 @@
                 </div>
               </div>
 
-              <button class="btn view-profile">View Profile</button>
+              <a href="/dashboard" class="view-profile">View Profile</a>
 
             </div>
 
