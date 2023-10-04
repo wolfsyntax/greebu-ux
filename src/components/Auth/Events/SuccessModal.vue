@@ -19,7 +19,12 @@
           </svg>
 
           <h3 class="title">Event created!</h3>
-          <p class="content">Your event is successfully created.</p>
+          <p class="content mt-2">Your event is successfully created.</p>
+          <button type="button" class="btn btn-geebu mx-1 w-100" data-bs-dismiss="modal">
+            <span>
+              Done
+            </span>
+          </button>
         </div>
       </div>
     </div>
@@ -36,4 +41,16 @@
 h3 {
   color: #FF6B00;
 }
+
+.btn-geebu {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.0175rem;
+  border-radius: 0.3125rem;
+  background: var(--orange);
+  border: 0;
+  margin: 3.5rem auto;
+}
+
 </style>

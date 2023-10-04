@@ -67,18 +67,18 @@
               <option value="3">Three</option>
             </select>
           </div>
-          <div class="col-4">
+          <!-- <div class="col-4">
             <h5>Cost</h5>
             <select class="form-select" aria-label="Default select example" v-model="eventFilter.cost" @change="fetchEventList">
               <option value="both" selected>&emsp;</option>
               <option value="free">Free</option>
               <option value="paid">Paid</option>
             </select>
-          </div>
+          </div> -->
         </div> <!-- end of row -->
 
         <!-- Upcoming Events -->
-        <div class="row">
+        <div class="row" v-if="events.length">
           <div class="col-4" v-for="(event, index) in events" :key="index">
             <div class="card">
               <div class="bg-wrapper">
@@ -111,14 +111,9 @@
                   <span class="orange-text">{{ $moment(`${$moment().format('YYYY-MM-DD')} ${event.start_time}`).format('h:mm a') }}&nbsp;&mdash;&nbsp;{{ $moment(`${$moment().format('YYYY-MM-DD')} ${event.end_time}`).format('h:mm a') }}</span>
                 </p>
                 
-                  <div class="seeking-for" v-if="userRole === 'artists' || userRole === 'organizer'" >
+                  <div class="seeking-for" v-if="(userRole === 'artists' || userRole === 'organizer') && event.look_types.length > 0" >
                     <h6 class="title">Seeking for</h6>
-                    <span class="badge type-artist">Artist</span>
-                    <span class="badge type-artist">Full Band Artist</span>
-                    <span class="badge type-artist">Solo Band Artist</span>
-                    <span class="badge type-artist">Artist</span>
-                    <span class="badge type-artist">Full Band Artist</span>
-                    <span class="badge type-artist">Solo Band Artist</span>
+                    <span class="badge type-artist" v-for="(look, index) in event.look_types" :key="index">{{ look }}</span>
                   </div>
                 
                 <div v-if="isLoggedIn">
@@ -135,7 +130,11 @@
             </div>
           </div>
         </div>                                                   
-
+        <div class="row" v-else>
+          <div class="col text-center">
+            <h3>No Events found!</h3>
+          </div>
+        </div>
       </div>
     </section>
     <signupmodal />

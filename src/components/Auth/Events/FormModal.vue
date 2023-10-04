@@ -1,12 +1,12 @@
 <template>
   <div>
     <form class="required-fields" @submit.prevent="submit">
-      <div class="upload-file-wrapper" v-if="cover">
+      <div class="upload-file-wrapper" v-if="form.cover">
         <div class="uploaded-image-wrapper" >
           <div >
-            <img ref="uploadedImage" class="uploaded-image" :src="cover" alt="banner-modal" />
+            <img ref="uploadedImage" class="uploaded-image" :src="form.cover" alt="banner-modal" />
           </div>
-        
+          
           <button class="remove-image" @click="removeBanner" >
             <span class="material-symbols-outlined">&#xe5cd;</span> 
           </button>
@@ -144,9 +144,11 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex';
+import { mapActions, mapGetters, mapState } from 'vuex';
 
 import DragDrop from '/src/components/DragDrop.vue';
+import Multiselect from '@vueform/multiselect';
+
 export default {
   setup () {
     
@@ -158,7 +160,7 @@ export default {
   },
   data: () => ({
     error: [],
-    cover: '',
+    // cover: '',
     isLoading: false,
     isComplete: false,
     errorTime: '',
@@ -182,12 +184,12 @@ export default {
     setCover(val)
     {
       this.form.cover_photo = val;
-      this.cover = URL.createObjectURL(val);
+      this.form.cover = URL.createObjectURL(val);
       console.log('Set Cover:: ', val);
     },
     removeBanner()
     {
-      this.cover = '';
+      this.form.cover = '';
       this.form.cover_photo = '';
     },
     submit()
@@ -227,30 +229,38 @@ export default {
     ) this.isComplete = true;
 
     this.fetchEventOptions();
-    const myModal = document.getElementById('eventsModal');
-    myModal.addEventListener('shown.bs.modal', () =>
-    {
-      this.$store.commit('RESET_EVENT_FORM')
-      // this.form.event_type = this.eventTypes[0];
-      this.step = 'detail';
-      if (this.form.cover_photo) {
-        // this.cover = URL.createObjectURL(this.form.cover_photo);
-      }
-    });
 
-    myModal.addEventListener('hide.bs.modal', () =>
+    document.getElementById('eventsModal').addEventListener('shown.bs.modal', () =>
     {
-      this.$store.commit('RESET_EVENT_FORM')
-      this.step = 'detail';
-      this.cover = '';
       
+      console.log('[FormModal.vue] Form data: ', this.form)
+      this.step = 'detail';
+
     });
+    // const myModal = document.getElementById('eventsModal');
+    // myModal.addEventListener('shown.bs.modal', () =>
+    // {
+    //   this.$store.commit('RESET_EVENT_FORM')
+    //   // this.form.event_type = this.eventTypes[0];
+    //   this.step = 'detail';
+    // });
+
+    // myModal.addEventListener('hide.bs.modal', () =>
+    // {
+    //   this.$store.commit('RESET_EVENT_FORM')
+    //   this.step = 'detail';
+    //   this.cover = '';
+      
+    // });
 
 
   },
   computed: {
+    ...mapGetters([
+      'eventCover',
+    ]),
     ...mapState({
-      form:       state => state.events.form,
+      form: state => state.events.form,
       eventTypes: state => state.events.event_types,
     }),
     startDate()
@@ -282,6 +292,7 @@ export default {
     form: {
       handler(val)
       {
+        console.log('[FormModal.vue] Form data updated: ', val)
         this.isComplete = false;
         if (
           val.event_type !== '' && val.event_name !== '' &&
@@ -298,7 +309,13 @@ export default {
           if (!this.$moment(this.eventEnd).isAfter(this.eventStart)) { 
             this.errorTime = `The end date and time must be a date after or equal to ${this.eventStart}.`;
           }
+        } else {
+          this.form.start_date = this.$moment().add(5, 'days').format('YYYY-MM-DD');
+          this.form.end_date = this.$moment().add(5, 'days').format('YYYY-MM-DD');
         }
+
+        this.cover = val.cover_photo ? URL.createObjectURL(val.cover_photo) : '';
+
       },
       deep:true,
     },

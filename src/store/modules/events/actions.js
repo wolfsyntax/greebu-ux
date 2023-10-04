@@ -45,8 +45,10 @@ export const fetchEventList = ({ commit, rootState, state }) =>
       url = `${url}&sortBy=${state.eventFilter.sortBy || 'DESC'}`
     }
 
-    if (state.eventFilter?.cost === 'free' || state.eventFilter?.cost === 'paid' || state.eventFilter?.cost === 'both') {
-      url = `${url}&cost=${state.eventFilter.cost || 'both'}`
+    if (state.eventFilter?.cost === 'free' || state.eventFilter?.cost === 'paid') {
+      url = `${url}&cost=${state.eventFilter.cost || 'both'}`;
+    } else {
+      url = `${url}&cost=both`;
     }
 
     if (state.eventFilter?.event_type !== '') {
@@ -146,7 +148,7 @@ export const verifyEvent = ({ commit, rootState, state }) =>
   });
 }
 
-export const createEvent = ({ commit, rootState, state }, payload) =>
+export const createEvent = ({ dispatch, commit, rootState, state }, payload) =>
 {
   return new Promise(async (resolve, reject) =>
   {
@@ -172,7 +174,8 @@ export const createEvent = ({ commit, rootState, state }, payload) =>
         const { status, message, result: { event } } = data; 
        
         commit('SET_EVENT_FORM', event);
-
+        dispatch('fetchEventList');
+        
         resolve(data);
 
       }

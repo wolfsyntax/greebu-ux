@@ -10,6 +10,7 @@ var state = {
   plans: null,
   base_url: import.meta.env.BASE_URL,
   countries: null,
+  cities: null,
   phone: null,
   account_type: '',
   account: null,
