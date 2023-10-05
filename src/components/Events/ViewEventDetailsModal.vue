@@ -64,15 +64,9 @@
 
           <div class="looking-for-wrap">
               <h5 class="looking-for">Looking for</h5>
-              <span class="badge type-artist">Artist</span>
-              <span class="badge type-artist">Full Band Artist</span>
-              <span class="badge type-artist">Solo Band Artist</span>
-              <span class="badge type-artist">Artist</span>
-              <span class="badge type-artist">Full Band Artist</span>
-              <span class="badge type-artist">Solo Band Artist</span>
-              <span class="badge type-artist">Artist</span>
-              <span class="badge type-artist">Full Band Artist</span>
-              <span class="badge type-artist">Solo Band Artist</span>
+              <span class="badge type-artist" style="text-transform: capitalize;">{{ event.look_for }}</span>
+              <span class="badge type-artist" style="text-transform: capitalize;" v-for="(e, index) in event.look_types" :key="index">{{ e }}</span>
+             
           </div>
 
           <div class="requirements-wrap">
