@@ -59,3 +59,7 @@ export const RESET_EVENT_FILTER = (state) =>
     sortBy: 'DESC',
   };
 }
+
+export const SET_EVENT = (state, payload) => {
+  state.event = payload;
+}

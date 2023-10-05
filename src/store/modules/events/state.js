@@ -47,6 +47,7 @@ const state = {
     sortBy: 'DESC',
   },
   events: [],
+  event: {}
 };
 
 export default state;

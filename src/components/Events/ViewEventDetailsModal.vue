@@ -4,7 +4,6 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header d-flex align-items-center justify-content-end">
-
           <!-- <button class="d-flex align-items-center btn new-tab">
             <span class="material-symbols-rounded new-tab-icon">&#xe89e;</span>
             Open event in a new window
@@ -20,10 +19,10 @@
           <div class="d-flex align-items-center justify-content-between event-title-wrap">
 
             <div>
-              <h3 class="title">Sneaker Con Bay Area</h3>
-              <p class="d-flex align-items-center posted">Public Event
+              <h3 class="title">{{ event.event_name }}</h3>
+              <p class="d-flex align-items-center posted">{{ event.is_public ? 'Public' : 'Private' }} Event
                 <span class="material-symbols-rounded dot">&#xe061;</span>
-                 Posted 3 hours ago</p>
+                 Posted {{ $filters.diffForHumans($moment(event?.created_at).format('YYYY-MM-DD hh:mm:ss a')) }}</p>
             </div>
 
             <a href="/proposal" v-if="userRole === 'artists'" class="send">Send Proposal</a>
@@ -31,7 +30,7 @@
           </div>
 
           <div class="event-background-img-wrap">
-            <img src="/assets/organizer-account/post-img.webp" class="event-background-img" alt="Event image">
+            <img :src="event.cover_photo || '/assets/organizer-account/post-img.webp'" class="event-background-img" alt="Event image">
           </div>
 
           <div class="event-details-wrapper">
@@ -42,8 +41,8 @@
               <div class="d-flex">
               <span class="material-symbols-rounded">&#xe935;</span>
               <div>
-                <h6>March 25, 2023</h6>
-                <p>Saturday, 8:00 am - 12:00 pm</p>
+                <h6>{{ $moment(`${event?.start_date}`).format('dddd, MMMM Do, YYYY') }}&nbsp;&mdash;&nbsp;{{ $moment(`${event?.end_date}`).format('dddd, MMMM Do, YYYY') }}</h6>
+                <p>{{ $moment(`${$moment().format('YYYY-MM-DD')} ${event?.start_time}`).format('h:mm a') }}&nbsp;&mdash;&nbsp;{{ $moment(`${$moment().format('YYYY-MM-DD')} ${event?.end_time}`).format('h:mm a') }}</p>
               </div>
             </div>
 
@@ -51,7 +50,7 @@
               <span class="material-symbols-rounded">&#xe0c8;</span>
               <div>
                 <h6>Momotz Restobar</h6>
-                <p>Naga City, Camarines Sur Philippines</p>
+                <p>{{ event?.location || event.city || '' }}</p>
               </div>
             </div>
             </div>
@@ -60,31 +59,24 @@
 
           <div class="about-event-wrap">
             <h5 class="about">About the Event</h5>
-            <p class="description">Lorem ipsum dolor sit amet consectetur. Blandit gravida neque hac malesuada sit arcu sed hendrerit posuere. 
-              Et tempus ut enim tortor congue augue mauris. Leo semper quam venenatis nisi.</p>
+            <p class="description">{{ event?.description  }}</p>
           </div>
 
           <div class="looking-for-wrap">
               <h5 class="looking-for">Looking for</h5>
-              <span class="badge type-artist">Artist</span>
-              <span class="badge type-artist">Full Band Artist</span>
-              <span class="badge type-artist">Solo Band Artist</span>
-              <span class="badge type-artist">Artist</span>
-              <span class="badge type-artist">Full Band Artist</span>
-              <span class="badge type-artist">Solo Band Artist</span>
-              <span class="badge type-artist">Artist</span>
-              <span class="badge type-artist">Full Band Artist</span>
-              <span class="badge type-artist">Solo Band Artist</span>
+              <span class="badge type-artist" style="text-transform: capitalize;">{{ event.look_for }}</span>
+              <span class="badge type-artist" style="text-transform: capitalize;" v-for="(e, index) in event.look_types" :key="index">{{ e }}</span>
+             
           </div>
 
           <div class="requirements-wrap">
             <h5 class="requirements">Requirements</h5>
-            <p class="description">Lorem ipsum dolor sit amet consectetur. Blandit gravida neque hac malesuada sit arcu sed hendrerit posuere.</p>
-            <ol>
+            <p class="description">{{ event?.requirement || 'N/A'}}</p>
+            <!-- <ol>
               <li>Lorem ipsum dolor sit amet consectetur. </li>
               <li>Lorem ipsum dolor sit amet consectetur. </li>
               <li>Lorem ipsum dolor sit amet consectetur. </li>
-            </ol>
+            </ol> -->
           </div>
 
           <div class="organizer-details-wrapper">
@@ -93,10 +85,10 @@
             <div class="d-flex align-items-center justify-content-between">
 
               <div class="d-flex align-items-center">
-                <img src="/assets/organizer-account/profile-img.webp" class="organizer-img" alt="Organizer profile image">
+                <img :src="event?.organizer_avatar || '/assets/organizer-account/profile-img.webp'" class="organizer-img" alt="Organizer profile image">
                 <div>
-                  <h5 class="organizer-name">Corona Event Organizer</h5>
-                  <p class="company">Idlepitch</p>
+                  <h5 class="organizer-name">{{ event?.organizer_name }}</h5>
+                  <p class="company">{{ event?.company_name || 'N/A'}}</p>
                 </div>
               </div>
 
@@ -134,6 +126,9 @@ export default {
   },
   computed: {
     ...mapGetters(["isLoggedIn", 'userInfo', 'info', 'userRole']),
+    ...mapState({
+      event: state => state.events.event
+    })
   },
   mounted()
   {
