@@ -17,9 +17,10 @@ var state = {
   member: {},
   memIndex: -1,
   proposal: {
+    event_id: '',
     artist_id: '',
     artist_name: '',
-    genres: '',
+    genres: [],
     total_member: 0,
     cover_letter: '',
     sample_song: '',

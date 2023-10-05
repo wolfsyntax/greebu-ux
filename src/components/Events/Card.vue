@@ -49,8 +49,7 @@
         <button class="btn btn-primary view-details" @click="toggle">View Details</button>
       </div>
 
-      <button class="btn btn-primary send-proposal" @click="$router.push('/proposal')" v-if="userRole === 'artists'">Send
-        Proposal</button>
+      <button class="btn btn-primary send-proposal" @click="sendProposal" v-if="userRole === 'artists'" >Send Proposal</button>
     </div>
   </div>
 </template>
@@ -85,6 +84,10 @@ export default {
   },
   computed: {
     ...mapGetters(["isLoggedIn", 'userRole']),
+    ...mapState({
+      account: state => state.account,
+      members: (state) => state.artist.members,
+    })
   },
   mounted()
   {
@@ -101,6 +104,22 @@ export default {
 
       this.$emit('show', pos);
 
+    },
+    sendProposal()
+    {
+      
+      this.$store.commit('SET_EVENT', this.event);
+      this.$store.commit('SET_PROPOSAL', {
+        event_id: this.event.id || '',
+        artist_id: this.account.id || '',
+        artist_name: this.account.artist_name || '',
+        genres: this.account.genres || [],
+        total_member: this.members.length || 0,
+        cover_letter: '',
+        sample_song: '',
+      })
+
+      this.$router.push('/proposal')
     }
   }
 }
