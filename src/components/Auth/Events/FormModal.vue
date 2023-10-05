@@ -3,7 +3,7 @@
     <form class="required-fields" @submit.prevent="submit">
       <div class="upload-file-wrapper" v-if="form.cover">
         <div class="uploaded-image-wrapper" >
-          <div >
+          <div>
             <img ref="uploadedImage" class="uploaded-image" :src="form.cover" alt="banner-modal" />
           </div>
           
@@ -14,7 +14,7 @@
       </div>
       <drag-drop @dragCover="setCover" v-else/>
       
-      <div v-for="err in error?.cover_photo" :key="err" class="text-danger">{{ err }}</div>
+      <div v-for="err in error?.cover_photo" :key="err" class="text-center text-danger">{{ err }}</div>
       
       <div class="form-group">
         <label for="eventType">Event Type</label>
@@ -104,34 +104,35 @@
           <div v-for="err in error?.end_time" :key="err" class="text-danger">{{ err }}</div>
         </div>
 
-            
         </div>
         
-      
-      <div class="row py-2" v-if="errorTime">
-        <div class="col text-danger">
-          {{ errorTime }}
+        <div class="row py-2" v-if="errorTime">
+          <div class="col text-danger">
+            {{ errorTime }}
+          </div>
         </div>
-      </div>
 
       
-          <div class="form-group">
-            <label for="eventDetails">Event Details</label>
-            <textarea v-model="form.description" maxlength="500" rows="7" class="form-control about-artist" placeholder="Write description" required>
-            </textarea>
-            <div v-for="err in error?.description" :key="err" class="text-danger">{{ err }}</div>
-            <p v-show="form.description" class="text-end char-count">Maximum 500 characters ( {{ remainingChars }} left)</p> 
-          </div>
+        <div class="form-group">
+          <label for="eventDetails">Event Details</label>
+          <textarea v-model="form.description" maxlength="500" rows="7" class="form-control about-artist" placeholder="Write description" required>
+          </textarea>
+          <div v-for="err in error?.description" :key="err" class="text-danger">{{ err }}</div>
+          <p v-show="form.description" class="text-end char-count">Maximum 500 characters ( {{ remainingChars }} left)</p> 
+        </div>
         
       
-      <div class="text-end">
-        <button type="button" class="btn btn-outline-geebu mx-1" data-bs-dismiss="modal">Cancel</button>
-        <button type="submit" class="btn btn-geebu mx-1" :disabled="!validInput">
-          <span >
-            <i class="busy-submitting" v-if="isLoading"></i>Next
-          </span>
-        </button>
-      </div>
+        <div class="text-end action-btn-wrap">
+
+          <button type="button" class="btn cancel" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn next" :disabled="!validInput">
+            <span >
+              <i class="busy-submitting" v-if="isLoading"></i>Next
+            </span>
+          </button>
+
+        </div>
+
 
     </form>    
   </div>

@@ -90,15 +90,19 @@
 
         <!-- Upcoming Events -->
         <div class="row" v-if="events.length">
-          <div class="col-3" v-for="(event, index) in events" :key="index">
+          <div class="col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3" v-for="(event, index) in events" :key="index">
+
             <event-card :event="event" :pos="index" @show="toggleEvent" />
+
           </div>
-        </div>                                                   
+        </div>     
+
         <div class="row" v-else>
           <div class="col text-center">
             <h3>No Events found!</h3>
           </div>
         </div>
+
       </div>
     </section>
     
@@ -141,7 +145,6 @@ export default {
   data()
   {
     return {
-
     }
   },
   computed: {
@@ -219,7 +222,7 @@ export default {
       console.log('Event Modal dismiss: ', option);
       
       if (option === 'success') {
-        new Modal(document.getElementById('eventsSuccessModal'), {
+        new Modal(document.getElementById('eventsCreatedModal'), {
           keyboard: false,
           backdrop: 'static',
         }).show()
