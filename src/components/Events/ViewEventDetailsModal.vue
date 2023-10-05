@@ -132,7 +132,7 @@ export default {
   },
   mounted()
   {
-  
+    console.log('Selected Event: ', this.event)
   },
   methods: {
 	},

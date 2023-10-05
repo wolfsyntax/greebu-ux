@@ -16,6 +16,14 @@ var state = {
   artist_profile: {},
   member: {},
   memIndex: -1,
+  proposal: {
+    artist_id: '',
+    artist_name: '',
+    genres: '',
+    total_member: 0,
+    cover_letter: '',
+    sample_song: '',
+  }
 }
 
 export default state
