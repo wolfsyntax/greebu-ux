@@ -25,7 +25,7 @@
 
             <div class="form-group">
               <label for="name">Genre/ Type of music</label>
-              <span class="badge" v-for="(propose, index) in proposal" :key="index">{{ propose }}</span>
+              <span class="badge" v-for="(propose, index) in proposal.genres" :key="index">{{ propose }}</span>
             </div>
 
             <div class="form-group">
