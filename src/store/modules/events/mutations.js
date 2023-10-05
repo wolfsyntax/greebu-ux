@@ -38,6 +38,7 @@ export const RESET_EVENT_FORM = state =>
     look_types: [],
     requirement: '',
     cover: '',
+    venue_name: '',
   }
 
   state.form.event_type = '2123';

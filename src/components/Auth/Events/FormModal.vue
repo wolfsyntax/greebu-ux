@@ -26,11 +26,17 @@
       <div v-for="err in error?.event_type" :key="err" class="text-danger">{{ err }}</div>
     </div>
 
-      <div class="form-group">
-          <label for="eventType">Name of Event</label>
-          <input type="text" v-model="form.event_name" class="form-control" placeholder="Name of Event" required autocomplete="off"/>
-          <div v-for="err in error?.event_name" :key="err" class="text-danger">{{ err }}</div>
-      </div>
+    <div class="form-group">
+        <label for="eventType">Name of Event</label>
+        <input type="text" v-model="form.event_name" class="form-control" placeholder="Name of Event" required autocomplete="off"/>
+        <div v-for="err in error?.event_name" :key="err" class="text-danger">{{ err }}</div>
+    </div>
+
+    <div class="form-group">
+          <label for="eventType">Venue Name</label>
+          <input type="text" v-model="form.venue_name" class="form-control" placeholder="Venue Name" required autocomplete="off"/>
+          <div v-for="err in error?.venue_name" :key="err" class="text-danger">{{ err }}</div>
+    </div>
 
       <div class="form-group">
           <label for="eventType">Venue Address</label>
@@ -196,6 +202,9 @@ export default {
         {
           console.log('Event Verify [error]: ', err)
           const { status, message, result: { errors, form } } = err;
+          if (status === 500) {
+            if (typeof errors === 'string' && errors === 'Unauthenticated.') this.$store.dispatch('signout');
+          }
           this.isLoading = false;
           this.error = errors;
 

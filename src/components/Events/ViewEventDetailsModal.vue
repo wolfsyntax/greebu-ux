@@ -49,7 +49,7 @@
             <div class="d-flex">
               <span class="material-symbols-rounded">&#xe0c8;</span>
               <div>
-                <h6>Momotz Restobar</h6>
+                <h6>{{ event.venue_name }}</h6>
                 <p>{{ event?.location || event.city || '' }}</p>
               </div>
             </div>
