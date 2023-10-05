@@ -76,8 +76,4 @@ export default {
 }
 </script>
 <style scoped >
-textarea {
-  /* height: 100px !important; */
-  resize: none !important;
-}
 </style>

@@ -66,10 +66,10 @@
         <div v-for="err in error?.requirement" :key="err" class="text-danger">{{ err }}</div>
       </div>
       
-      <div class="text-end">
+      <div class="text-end action-btn-wrap">
         <!-- <button type="button" class="btn btn-outline-geebu mx-1" @click="$emit('next-step', 'skip')" ref="eventSkip">Skip</button> -->
-        <button type="button" class="btn btn-outline-geebu mx-1" @click="back">Back</button>
-        <button type="button" class="btn btn-geebu mx-1" @click="submit">
+        <button type="button" class="btn cancel" @click="back">Back</button>
+        <button type="button" class="btn next" @click="submit">
           <span >
             <i class="busy-submitting" v-if="isLoading"></i>Submit
           </span>
@@ -236,39 +236,4 @@ export default {
 </script>
 
 <style scoped>
-.event-lookup {
-
-}
-
-.event-lookup .form-group {
-  margin: 0 0.5rem;
-}
-
-.btn-geebu {
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: -0.0175rem;
-  border-radius: 0.3125rem;
-  background: var(--orange);
-  border: 0;
-  margin: 3.5rem auto;
-}
-
-.btn-outline-geebu {
-  --bs-btn-color: #FF6B00;
-  --bs-btn-border-color: #FF6B00;
-  --bs-btn-hover-color: #fff;
-  --bs-btn-hover-bg: #FF6B00;
-  --bs-btn-hover-border-color: #FF6B00;
-  --bs-btn-focus-shadow-rgb: 13, 110, 253;
-  --bs-btn-active-color: #fff;
-  --bs-btn-active-bg: #FF6B00;
-  --bs-btn-active-border-color: #FF6B00;
-  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  --bs-btn-disabled-color: #FF6B00;
-  --bs-btn-disabled-bg: transparent;
-  --bs-btn-disabled-border-color: #FF6B00;
-  --bs-gradient: none;
-}
 </style>
