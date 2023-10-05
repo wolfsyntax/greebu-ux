@@ -42,14 +42,23 @@
         <div class="row songs-row-wrap" v-else>
 
           <div class="songs-wrap" v-for="song in origSongArray" :key="song.id">
-            <div class="position-relative cover-img-wrap mb-3">
+            <div class="position-relative cover-img-wrap mb-3" 
+            @mouseover="mouseOver(song.id)" @mouseleave="mouseLeave(song.id)">
               <img :src="song.image" class="song-img" alt="Song cover image">
 
               <div class="m-0 play-wrap">
-                <button class="btn p-0" @click="togglePlay(song)">
-        <span class="material-symbols-sharp play-icon" v-if="!isPlaying(song)">&#xe037;</span>
-        <span class="material-symbols-sharp pause-icon" v-else>&#xe034;</span>
-      </button>
+
+                <button class="btn p-0" @click="togglePlay(song)" v-if="showPlayButton[song.id]">
+                  <span class="material-symbols-sharp play-icon" v-if="!isPlaying(song)">&#xe037;</span>
+                  <span class="material-symbols-sharp pause-icon" v-else>&#xe034;</span>
+                </button>
+                <!-- Display the animated GIF when the song is playing and not mouseover -->
+                <img
+                src="/assets/artist-account/animated-song-play.gif"
+                class="animated-song-play"
+                alt="Animated song play"
+                v-if="isPlaying(song) && !showPlayButton[song.id]">
+
               </div>
 
             </div>
@@ -136,6 +145,7 @@ export default {
     likedSongs: [],
     audioPlayers: {}, // Object to store audio players for each song
     playingSongId: null, // Store the currently playing song ID
+    showPlayButton: {}, // Object to store the visibility of the play button
    
     }
   },
@@ -194,6 +204,18 @@ export default {
     },
     isPlaying(song) {
       return this.playingSongId === song.id;
+    },
+    mouseOver(songId) {
+      this.showPlayButton = {
+        ...this.showPlayButton,
+        [songId]: true,
+      };
+    },
+    mouseLeave(songId) {
+      this.showPlayButton = {
+        ...this.showPlayButton,
+        [songId]: false,
+      };
     },
   
     

@@ -41,6 +41,7 @@
         <h6 class="title">Seeking for</h6>
         <span class="badge type-artist" v-for="(look, index) in event.look_types" :key="index">{{ look }}</span>
       </div>
+      
       <div class="seeking-for"
         v-if="(userRole === 'artists' || userRole === 'organizer') && event.look_types.length === 0">
         <h6 class="title" style="opacity: 0;">Seeking for</h6>
