@@ -58,8 +58,7 @@
         <signupmodal />
       </div>
 
-      <button class="btn btn-primary send-proposal" @click="$router.push('/proposal')" v-if="userRole === 'artists'">Send
-        Proposal</button>
+      <button class="btn btn-primary send-proposal" @click="sendProposal" v-if="userRole === 'artists'" >Send Proposal</button>
     </div>
   </div> <!-- end of card -->
 </template>
@@ -107,6 +106,11 @@ export default {
 
       this.$emit('show', pos);
 
+    },
+    sendProposal()
+    {
+      this.$store.commit('SET_EVENT', this.event);
+      this.$router.push('/proposal')
     }
   }
 }
