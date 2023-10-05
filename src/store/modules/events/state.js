@@ -20,6 +20,7 @@ const state = {
     look_types: [],
     requirement: '',
     cover: '',
+    venue_name: '',
   },
   event_types: [],
   event_artist_type: [
