@@ -1,45 +1,51 @@
 <template>
   <div class="card">
+
     <div class="bg-wrapper">
       <img :src="event?.cover_photo" class="img-fluid card-bg" loading="lazy" alt="Event image">
-      <div class="organized-by">
+      <div class="d-flex align-items-start organized-by">
         <img :src="event?.organizer_avatar" class="float-start" alt="Organized by logo">
         <div>
           <h5>{{ event?.organizer_name }}</h5>
-          <p>Organized by</p>
+          <p class="mb-0">Organized by</p>
         </div>
       </div>
     </div> <!-- end of bg-wrapper -->
 
     <div class="card-body">
-      <h5 class="card-title">{{ event?.event_name }}
-        <span v-if="event?.is_free" class="badge free">Free</span>
-        <span v-else class="badge paid">Paid</span>
-      </h5>
 
-      <p class="card-text">{{ event?.description }}</p>
-      <p class="location">
-        <span class="material-symbols-outlined">location_on</span>
-        <span class="text">{{ event?.location }}</span>
-      </p>
-
-      <p class="date">
-        <span class="material-symbols-outlined">calendar_month</span>
-        <span class="orange-text">{{ $moment(`${event?.start_date}`).format('MMMM Do, YYYY') }}&nbsp;&mdash;&nbsp;{{
-          $moment(`${event?.end_date}`).format('MMMM Do, YYYY') }}</span>
-      </p>
-
-      <p class="time">
-        <span class="material-symbols-outlined">schedule</span>
-        <span class="orange-text">{{ $moment(`${$moment().format('YYYY-MM-DD')} ${event?.start_time}`).format('h:mm a')
-        }}&nbsp;&mdash;&nbsp;{{ $moment(`${$moment().format('YYYY-MM-DD')} ${event?.end_time}`).format('h:mm a')
-}}</span>
-      </p>
-
-      <div class="seeking-for" v-if="(userRole === 'artists' || userRole === 'organizer') && event?.look_types.length > 0">
-        <h6 class="title">Seeking for</h6>
-        <span class="badge type-artist" v-for="(look, index) in event?.look_types" :key="index">{{ look }}</span>
+      <div class="event-title-wrap">
+        <h5 class="card-title">{{ event?.event_name }} </h5>
+        <p class="mb-0 card-text">{{ event?.description }}</p>
       </div>
+
+      <div class="place-time-wrap">
+
+        <div class="location">
+        <span class="material-symbols-outlined">&#xe0c8;</span>
+        <p>{{ event?.location }}</p>
+      </div>
+      <div class="date">
+        <span class="material-symbols-outlined">&#xebcc;</span>
+        <p>{{ $moment(`${event?.start_date}`).format('MMMM Do, YYYY') }} - {{ $moment(`${event?.end_date}`).format('MMMM Do, YYYY') }}</p>
+      </div>
+      <div class="time">
+        <span class="material-symbols-outlined">&#xe8b5;</span>
+        <p>{{ $moment(`${$moment().format('YYYY-MM-DD')} ${event?.start_time}`).format('h:mm a') }} - {{ $moment(`${$moment().format('YYYY-MM-DD')} ${event?.end_time}`).format('h:mm a') }}</p>
+      </div>
+
+      </div>
+
+      <div class="seeking-for" v-if="(userRole === 'artists' || userRole === 'organizer') && event.look_types.length > 0" >
+        <h6 class="title">Seeking for</h6>
+        <span class="badge type-artist" v-for="(look, index) in event.look_types" :key="index">{{ look }}</span>
+      </div>
+
+      <!-- set the opacity to 0 on this div when the created event has no Seeking for -->
+      <!-- <div class="seeking-for" v-if="(userRole === 'artists' || userRole === 'organizer') && event.look_types.length === 0" >
+        <h6 class="title" style="opacity: 0;">Seeking for</h6>
+        <span class="badge type-artist" style="opacity: 0;">acoustic band</span>
+      </div> -->
 
       <div v-if="isLoggedIn">
         <button class="btn btn-primary view-details" @click="toggle(pos)">View Details</button>
