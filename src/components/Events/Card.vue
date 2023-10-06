@@ -5,7 +5,7 @@
       <img :src="event?.cover_photo" class="img-fluid card-bg" loading="lazy" alt="Event image">
       <div class="d-flex align-items-start organized-by">
         <img :src="event?.organizer_avatar" class="float-start" alt="Organized by logo">
-        <div>
+        <div class="organizer-wrap">
           <h5>{{ event?.organizer_name }}</h5>
           <p class="mb-0">Organized by</p>
         </div>
@@ -42,10 +42,10 @@
       </div>
 
       <!-- set the opacity to 0 on this div when the created event has no Seeking for -->
-      <!-- <div class="seeking-for" v-if="(userRole === 'artists' || userRole === 'organizer') && event.look_types.length === 0" >
+      <div class="seeking-for" v-if="(userRole === 'artists' || userRole === 'organizer') && event.look_types.length === 0" >
         <h6 class="title" style="opacity: 0;">Seeking for</h6>
         <span class="badge type-artist" style="opacity: 0;">acoustic band</span>
-      </div> -->
+      </div>
 
       <div v-if="isLoggedIn">
         <button class="btn btn-primary view-details" @click="toggle(pos)">View Details</button>

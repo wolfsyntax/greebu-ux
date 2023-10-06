@@ -1,7 +1,7 @@
 <template>
   <layout>
 
-    <section class="events">
+    <section class="events"  v-if="(userRole === 'artists' || userRole === 'customers') || !isLoggedIn">
       <div class="container-fluid">
         <div class="container">
           <div class="content">
@@ -15,10 +15,11 @@
         </div>
       </div>
     </section>
+
     <section class="events-showing">
       <div class="container">
 
-        <div class="text-center">
+        <div class="text-center" v-if="(userRole === 'artists' || userRole === 'customers') || !isLoggedIn">
           <h3 class="events-showing-title">Events</h3>
           <p class="sub-heading">Collaborate with a professional independent artist to turn your story into one-of-a-kind custom song</p>
         </div>
@@ -28,12 +29,13 @@
 
           </div>
           
-          <div>
+          <div class="create-event-btn-wrap">
             <button class="d-flex align-items-center btn create-event" @click="toggleCreate">
             <span class="material-symbols-rounded add-circle">&#xe147;</span>
             Create event
           </button>
           </div>
+          
         </div>
 
 
