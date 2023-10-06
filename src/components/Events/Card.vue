@@ -2,11 +2,11 @@
   <div class="card">
 
     <div class="bg-wrapper">
-      <img :src="event.cover_photo" class="img-fluid card-bg" loading="lazy" alt="Event image">
+      <img :src="event?.cover_photo" class="img-fluid card-bg" loading="lazy" alt="Event image">
       <div class="d-flex align-items-start organized-by">
-        <img :src="event.organizer_avatar" class="float-start" alt="Organized by logo">
+        <img :src="event?.organizer_avatar" class="float-start" alt="Organized by logo">
         <div>
-          <h5>{{ event.organizer_name }}</h5>
+          <h5>{{ event?.organizer_name }}</h5>
           <p class="mb-0">Organized by</p>
         </div>
       </div>
@@ -15,23 +15,23 @@
     <div class="card-body">
 
       <div class="event-title-wrap">
-        <h5 class="card-title">{{ event.event_name }} </h5>
-        <p class="mb-0 card-text">{{ event.description }}</p>
+        <h5 class="card-title">{{ event?.event_name }} </h5>
+        <p class="mb-0 card-text">{{ event?.description }}</p>
       </div>
 
       <div class="place-time-wrap">
 
         <div class="location">
         <span class="material-symbols-outlined">&#xe0c8;</span>
-        <p>{{ event.location }}</p>
+        <p>{{ event?.location }}</p>
       </div>
       <div class="date">
         <span class="material-symbols-outlined">&#xebcc;</span>
-        <p>{{ $moment(`${event.start_date}`).format('MMMM Do, YYYY') }} - {{ $moment(`${event.end_date}`).format('MMMM Do, YYYY') }}</p>
+        <p>{{ $moment(`${event?.start_date}`).format('MMMM Do, YYYY') }} - {{ $moment(`${event?.end_date}`).format('MMMM Do, YYYY') }}</p>
       </div>
       <div class="time">
         <span class="material-symbols-outlined">&#xe8b5;</span>
-        <p>{{ $moment(`${$moment().format('YYYY-MM-DD')} ${event.start_time}`).format('h:mm a') }} - {{ $moment(`${$moment().format('YYYY-MM-DD')} ${event.end_time}`).format('h:mm a') }}</p>
+        <p>{{ $moment(`${$moment().format('YYYY-MM-DD')} ${event?.start_time}`).format('h:mm a') }} - {{ $moment(`${$moment().format('YYYY-MM-DD')} ${event?.end_time}`).format('h:mm a') }}</p>
       </div>
 
       </div>
