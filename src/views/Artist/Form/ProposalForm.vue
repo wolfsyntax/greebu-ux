@@ -20,7 +20,7 @@
             <h3 class="title">Artist Details</h3>
             <div class="form-group">
               <label for="name">Name of the artist/Band</label>
-              <p v-html="proposal.artist_name"></p>
+              <p v-html="account.artist_name"></p>
             </div>
             
             <div class="form-group">
@@ -155,7 +155,7 @@ export default {
     }
   },
   mounted() {
-    this.form.total_member = this.proposal.total_member;
+    this.form.total_member = this.members.length;
     this.form.event_id = this.event.id;
   },
 }

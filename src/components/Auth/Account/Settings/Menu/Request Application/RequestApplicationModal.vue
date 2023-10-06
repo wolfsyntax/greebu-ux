@@ -6,9 +6,9 @@
           <h3 class="title">Request Application</h3>
           <p class="sub-title">Lorem ipsum dolor sit amet consectetur.</p>
         </div>
-
+        
         <div>
-          <button @click="$emit('close-modal')" class="close-button">
+          <button @click="$emit('close-modal')" class="close-button" ref="closeReqApp">
             <span class="material-symbols-rounded">&#xe5cd;</span>
           </button>
         </div>
@@ -17,16 +17,16 @@
       <div class="text-center modal-body">
         <div class="d-flex align-items-center justify-content-between action-wrapper">
           <div class="d-flex align-items-center">
-            <img src="/assets/artist-account/band-member-2.webp" class="customer-image" alt="Requester image">
+            <img :src="proposal?.artist_avatar" class="customer-image" alt="Requester image">
             <div>
-              <h5 class="name">Idlepitch</h5>
+              <h5 class="name">{{ proposal.artist_name }} </h5>
               <p class="username">Artist</p>
             </div>
           </div>
 
-          <div class="d-flex align-items-center">
-            <button class="btn decline">Decline</button>
-            <button class="btn accept" @click="acceptRequest">Acccept</button>
+          <div class="d-flex align-items-center" v-if="proposal?.status === 'pending'">
+            <button class="btn decline" @click="decline">Decline</button>
+            <button class="btn accept" @click="accept">Acccept</button>
 
             <!-- SHOW THIS IF THE ORGANIZER ACCEPTED THE REQUEST  -->
             <!-- <button class="btn accepted">Decline</button> -->
@@ -35,27 +35,35 @@
             <!-- <button class="btn cancelled">Cancelled</button> -->
 
           </div>
+
+          <div class="d-flex align-items-center" v-if="proposal?.status === 'accepted'">
+            <h3 class="btn accepted">Ongoing</h3>
+          </div>
+          
+           <div class="d-flex align-items-center" v-if="proposal?.status === 'declined'">
+            <h3 class="btn cancelled">Cancelled</h3>
+          </div>
         </div> <!-- end of action-wrapper -->
 
-        <div class="d-flex align-items-center note-wrapper">
+        <div class="d-flex align-items-center note-wrapper" v-if="proposal?.status === 'pending'">
           <span class="material-symbols-rounded info-icon">&#xea08;</span>
-          <p class="note">Idlepitch band has submitted an application request for your event</p>
+          <p class="note">{{ proposal.artist_name }} has submitted an application request for your event</p>
         </div>
 
         <div class="d-flex align-items-center applied-event-wrap">
 
           <div>
-            <img src="/assets/organizer-account/post-img.webp" class="event-img" alt="Event cover image">
+            <img :src="proposal?.cover_photo" class="event-img" alt="Event cover image">
           </div>
 
           <div class="text-start event-details-wrap">
 
             <div class="event-title-wrap">
-              <h3 class="event-title">Harmony Fest 2023</h3>
+              <h3 class="event-title">{{ proposal.event_name }}</h3>
               <div class="d-flex align-items-center ">
-                <h5 class="mb-0">Public Event Posted</h5>
+                <h5 class="mb-0">{{ proposal.is_public }} Posted</h5>
                 <span class="material-symbols-rounded dot-icon">&#xe061;</span>
-                <h5 class="mb-0">3 hours ago</h5>
+                <h5 class="mb-0">{{ $filters.diffForHumans($moment(proposal?.created_at).format('YYYY-MM-DD hh:mm:ss a')) }}</h5>
               </div>
             </div>
 
@@ -64,8 +72,11 @@
                 <span class="material-symbols-sharp calendar-icon">&#xe935;</span>
               </div>
               <div>
-                <h5 class="date">March 25, 2023</h5>
-                <h5 class="time">Saturday, 8:00 am - 12:00 pm</h5>
+                <h5 class="date">{{ $moment(`${proposal?.start_date}`).format('MMMM DD, YYYY') }} - {{ $moment(`${proposal?.end_date}`).format('MMMM DD, YYYY') }}</h5>
+                <h5 class="time" v-if="$moment(proposal?.start_date).isSame(proposal?.end_date)">
+                  {{ $moment(`${proposal?.start_date}`).format('dddd') }}, {{ $moment(proposal?.start_time).format('h:mm a') }} - {{ $moment(proposal?.end_time).format('h:mm a') }} 
+                </h5>
+                <h5 class="time" v-else>{{ $moment(`${proposal?.start_date}`).format('dddd') }}, {{ $moment(proposal?.start_time).format('h:mm a') }} - {{ $moment(`${proposal?.end_date}`).format('dddd') }}, {{ $moment(proposal?.end_time).format('h:mm a') }}</h5>
               </div>
             </div>
 
@@ -74,8 +85,8 @@
                 <span class="material-symbols-sharp location-icon">&#xe0c8;</span>
               </div>
               <div>
-                <h5 class="venue">Momotz Restobar</h5>
-                <h5 class="place">Naga City, Camarines Sur Philippines</h5>
+                <h5 class="venue">{{ proposal?.venue_name }}</h5>
+                <h5 class="place" style="text-transform: capitalize;">{{ proposal?.location }}</h5>
               </div>
             </div>
 
@@ -88,29 +99,26 @@
         <div class="d-flex justify-content-between action-wrapper song-info-wrapper">
           <div>
             <h5>Name of the band</h5>
-            <p>Idleaput</p>
+            <p>{{ proposal.artist_name }}</p>
           </div>
 
           <div class="right">
             <h5>Number of members</h5>
-            <p>8</p>
+            <p>{{ proposal.total_member }}</p>
           </div>
         </div>
 
         <div class="text-start genre-wrap">
           <h5>Genre:</h5>
-          <span class="badge">Rock</span>
-          <span class="badge">Jazz</span>
+          <span class="badge" v-for="(genre, index) in proposal?.genres" :key="index">{{ genre }}</span>
         </div>
 
         <div class="text-start cover-letter-wrap">
          <h5>Cover letter</h5>
-         <p class="mb-0">I hope this letter finds you in good health and high spirits. I am writing to you as a passionate event organizer 
-          who has been captivated by your exceptional talent and musical prowess. It is with great excitement that I present 
-          to you a proposal for an upcoming event, [Event Name], where we would be honored to have you as the headline artist.</p>
+         <p class="mb-0">{{ proposal?.cover_letter }}</p>
         </div>
 
-        <div class="text-start music-sample-wrap">
+        <div class="text-start music-sample-wrap" v-if="proposal?.sample_song">
          <h5>Music Sample</h5>
 
          <div class="d-flex align-items-center justify-content-between artist-music-details">
@@ -142,6 +150,7 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex';
 
 export default {
   props: {
@@ -152,8 +161,33 @@ export default {
     }
   },
   computed: {
+    ...mapState({
+      proposal: state => state.proposal,
+    })
   },
   methods: {
+    ...mapActions([
+      'acceptProposal', 'declineProposal',
+    ]),
+    accept()
+    {
+      
+      this.acceptProposal(this.proposal?.id || '')
+        .then(res =>
+        {
+          console.log('Accepted Response: ', res)
+          this.$refs.closeReqApp.click()
+        });
+    },
+    decline()
+    {
+      this.declineProposal(this.proposal?.id || '')
+        .then(res =>
+        {
+          console.log('Declined Response: ', res);
+          this.$refs.closeReqApp.click()
+        });
+    },
     acceptRequest() {
       // this.$emit('close-modal')
       this.$emit('accept-request');

@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="customized-songs-wrapper" v-for="(denied, index) in deniedApplication" :key="index">
-
-      <div class="event-description">
+    <div class="" v-for="(denied, index) in declinedProposals" :key="index">
+      <request-card :pending="denied" @request-toggle="toggle" :cardType="'declined'"/>
+      <!-- <div class="event-description">
         <h5 class="event">{{ denied.event }} <span class="in-progress denied">Denied</span></h5>
 
         <div class="mb-0 d-flex align-items-center requested-wrapper">
@@ -19,19 +19,22 @@
         <div class="button-wrapper">
           <button type="button" class="btn details" @click="showModal = true">View Details</button>
         </div>
-      </div>
+      </div> -->
     </div>
-  </div>
-  <request-application-modal :show="showModal" @close-modal="closeModal" @accept-request="onModalAccepted" />
+
+    <request-application-modal :show="showModal" @close-modal="closeModal" @accept-request="onModalAccepted" />
+  </div>  
 </template>
 
 <script>
-
+import { mapActions, mapState } from 'vuex';
+import RequestCard from './Card.vue';
 import RequestApplicationModal from './RequestApplicationModal.vue';
 
 export default {
   components: {
-    RequestApplicationModal
+    RequestApplicationModal,
+    RequestCard,
   },
   setup()
   {
@@ -39,7 +42,7 @@ export default {
 
     return {}
   },
-    data: () => ({
+  data: () => ({
     deniedApplication: [
       { event: 'Birthday Song', profile_image: 'https://lh3.googleusercontent.com/a-/AD_cMMSLi2SfUJdD4SS2bXaL5NxayPEdYmT3NNso4i_pkSNZ=s64-p-k-rw-no', name: 'John Flores', time: 3, },
       { event: 'Wedding Song', profile_image: 'https://lh3.googleusercontent.com/ogw/AGvuzYaE0rvo3xwVU3H4f2K3wcaEYqe9ht06pHbd9Lxh=s32-c-mo', name: 'Dante Magno', time: 12, },
@@ -48,7 +51,16 @@ export default {
     showModal: false,
     showToast: false
   }),
+  computed: {
+    ...mapState({
+      declinedProposals: state => state.organizer.declinedProposals,
+    })
+  },
   methods: {
+    toggle()
+    {
+      this.showModal = true;
+    },
     closeModal()
     {
       this.showModal = false;

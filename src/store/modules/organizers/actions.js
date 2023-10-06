@@ -175,3 +175,126 @@ export const removeStaff = ({ commit, rootState, state}, payload) => {
   })
   
 }
+// 
+
+export const fetchArtistProposal = ({ commit, rootState, state }, payload) =>
+{
+  
+  
+  return new Promise((resolve, reject) =>
+  { 
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
+
+    var filter = payload?.filterBy ?? 'pending';
+
+    axios.get(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/artist-proposal?role=organizer&search=${payload?.search || ''}&sortBy=${ payload?.sortBy || 'DESC' }&filterBy=${filter}`)
+      .then(response =>
+      { 
+        const { data: { status, result }, status: statusCode } = response;
+
+        if (statusCode === 200 && status === 200) {
+          console.log('URL Request: ', `/api/artist-proposal?role=organizer&search=${payload?.search || ''}&sortBy=${payload?.sortBy || 'DESC'}&filterBy=${filter}`)
+          
+          if (filter === 'accepted') {
+            commit('SET_PERFORMER_ACCEPTED_PROPOSAL', result?.proposals || []);
+          } else if (filter === 'declined') {
+            commit('SET_PERFORMER_DECLINED_PROPOSAL', result?.proposals || []);
+          } else {
+            commit('SET_PERFORMER_PENDING_PROPOSAL', result?.proposals || [])
+          }
+        }
+
+      });
+  });
+};
+
+export const acceptProposal = ({ commit, rootState, state, dispatch }, proposalId) =>
+{
+  
+  return new Promise((resolve, reject) =>
+  { 
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
+
+
+    if (!proposalId) resolve();
+
+    axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/organizer/${proposalId}/accept-proposal`)
+      .then(response =>
+      { 
+        const { data: { status, result }, status: statusCode } = response;
+        console.log('[Actions] accept proposal: ', response);
+        
+        if (statusCode === 200 && status === 200) {
+
+          dispatch('fetchArtistProposal', {
+            search: '',
+            sortBy: 'DESC',
+            filterBy: 'pending'
+          })
+
+          dispatch('fetchArtistProposal', {
+            search: '',
+            sortBy: 'DESC',
+            filterBy: 'accepted'
+          })
+
+          dispatch('fetchArtistProposal', {
+            search: '',
+            sortBy: 'DESC',
+            filterBy: 'declined'
+          })
+
+          resolve(response?.data);
+        }
+
+        reject(response?.data)
+      })
+      .catch(err =>
+      {
+        reject(err);
+      });
+  });
+};
+
+export const declineProposal = ({ commit, rootState, state, dispatch }, payload) =>
+{
+  
+  return new Promise((resolve, reject) =>
+  { 
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
+
+    if (!payload) resolve();
+
+    axios.post(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/organizer/${payload}/decline-proposal`)
+      .then(response =>
+      { 
+        const { data: { status, result }, status: statusCode } = response;
+
+        if (statusCode === 200 && status === 200) {
+          dispatch('fetchArtistProposal', {
+            search: '',
+            sortBy: 'DESC',
+            filterBy: 'pending'
+          })
+
+          dispatch('fetchArtistProposal', {
+            search: '',
+            sortBy: 'DESC',
+            filterBy: 'accepted'
+          })
+
+          dispatch('fetchArtistProposal', {
+            search: '',
+            sortBy: 'DESC',
+            filterBy: 'declined'
+          })
+
+          resolve(response?.data);
+        }
+        reject(response?.data)
+      }).catch(err =>
+      {
+        reject(err);
+      });
+  });
+};
