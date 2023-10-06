@@ -39,7 +39,7 @@
 </template>
   
 <script>
-
+import { mapActions, mapState } from 'vuex';
 import Accepted from './Accepted.vue';
 import Denied from './Denied.vue';
 import PendingApplication from './PendingApplication.vue';
@@ -66,11 +66,38 @@ export default {
     }
   },      
   computed: {
-
+    acceptedProposal: state => state.organizer.acceptedProposals,
+    declinedProposal: state => state.organizer.declinedProposals,
+    pendingProposal: state => state.organizer.pendingProposals,
   },
   methods: {
+    ...mapActions(['fetchArtistProposal']),
     showCustomizeContent(option) {
       this.selectedCustomized = option.name;
+
+      if (option.name === 'Pending Application') {
+        this.fetchArtistProposal({
+          search: '',
+          sortBy: 'DESC',
+          filterBy: 'pending'
+        });
+
+      } else if (option.name === 'Accepted') {
+
+        this.fetchArtistProposal({
+          search: '',
+          sortBy: 'DESC',
+          filterBy: 'accepted'
+        });
+
+      } else if (option.name === 'Declined') {
+        this.fetchArtistProposal({
+          search: '',
+          sortBy: 'DESC',
+          filterBy: 'declined'
+        });
+      }
+
     },
     closeModal(){
       this.showModal = false;
@@ -89,6 +116,26 @@ export default {
       this.showToast = true;
     }
   },
+  mounted()
+  {
+    this.fetchArtistProposal({
+      search: '',
+      sortBy: 'DESC',
+      filterBy: 'pending'
+    });
+
+    this.fetchArtistProposal({
+      search: '',
+      sortBy: 'DESC',
+      filterBy: 'accepted'
+    });
+
+    this.fetchArtistProposal({
+      search: '',
+      sortBy: 'DESC',
+      filterBy: 'declined'
+    });
+  }
 };
 </script>
 

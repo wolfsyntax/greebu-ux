@@ -73,6 +73,11 @@ var mutations = {
   // setShowOnboardingMessage(state, value) {
   //   state.showOnboardingMessage = value;
   // }
+
+  setProposal(state, payload = {})
+  {
+    state.proposal = payload;
+  }
 }
 
 export default mutations

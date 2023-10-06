@@ -32,6 +32,9 @@ var state = {
     "Marketing and Promotion Manager",
     "Operations Manager",
   ],
+  pendingProposals: [],
+  acceptedProposals: [],
+  declinedProposals: [],
   occupations: [
     {
       name: 'Accounting & Consulting',

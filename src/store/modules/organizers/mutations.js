@@ -8,6 +8,10 @@ export const SET_STAFF_ROLES = (state, payload) => {
 
 export const CLEAR_ORGANIZER_STATE = (state) =>
 {
+  console.log('CLEAR_OR')
+  state.pendingProposals = [];
+  state.acceptedProposals = [];
+  state.declinedProposals = [];
 
   state.staff = [];
 
@@ -169,4 +173,20 @@ export const SET_STAFF = (state, payload) => {
 export const SET_ORGANIZER_FORM = (state, payload) =>
 {
   state.form = payload
+}
+
+export const SET_PERFORMER_PENDING_PROPOSAL = (state, payload = []) =>
+{
+  console.log('[Mutation] Pending Proposal: ', payload)
+  state.pendingProposals = payload;
+}
+
+export const SET_PERFORMER_ACCEPTED_PROPOSAL = (state, payload = []) =>
+{
+  state.acceptedProposals = payload;
+}
+
+export const SET_PERFORMER_DECLINED_PROPOSAL = (state, payload = []) =>
+{
+  state.declinedProposals = payload;
 }

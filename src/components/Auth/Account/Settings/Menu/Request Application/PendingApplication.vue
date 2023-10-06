@@ -1,34 +1,20 @@
 <template>
   <div>
-    <div class="customized-songs-wrapper " v-for="(pending, index) in pendingApplication" :key="index">
-      <div class="event-description">
-
-      <div class="d-flex align-items-center event-wrap">
-        <span class="material-symbols-sharp dot-icon">&#xe061;</span>
-        <h5 class="mb-0 event">{{ pending.event }}</h5>
-      </div>
-
-        <div class="mb-0 d-flex align-items-center requested-wrapper">
-          <img :src=pending.profile_image class="requested-by-image" alt="Submitted by image"> 
-          <a href="#" class="requested-by">Submitted by <span class="name">{{ pending.name }}</span></a> 
-          <span class="material-symbols-sharp dot-icon">&#xe061;</span>
-          <span class="time">{{ pending.time }} hours ago</span>
-        </div>
-
-      </div>
-
-      <div class="details-wrapper">
-        <div class="button-wrapper">
-          <button type="button" class="btn details" @click="showModal = true">View Details</button>
-        </div>
-      </div>       
+    <div class="" v-for="(pending, index) in pendingProposal" :key="index">
+      <request-card :pending="pending" @request-toggle="toggle" :cardType="'pending'"/>
     </div>
+    <h5 v-if="pendingProposal.length === 0" class="text-center">No Pending Proposal found!</h5>
+
     <request-application-modal :show="showModal" @close-modal="closeModal" @accept-request="onModalAccepted" />
   </div>
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex';
+
 import RequestApplicationModal from './RequestApplicationModal.vue';
+import RequestCard from './Card.vue';
+
 export default {
   setup()
   {
@@ -38,6 +24,7 @@ export default {
   },
   components: {
     RequestApplicationModal,
+    RequestCard,
   },
   data: () => ({
     pendingApplication: [
@@ -48,10 +35,23 @@ export default {
     showModal: false,
     showToast: false
   }),
+  computed: {
+    ...mapState({
+      pendingProposal: state => state.organizer.pendingProposals,
+    })
+  },
   methods: {
+    ...mapActions([
+      'fetchArtistProposal',
+    ]),
     closeModal()
     {
+      this.$store.commit('setProposal');
       this.showModal = false;
+    },
+    toggle()
+    {
+      this.showModal = true;
     },
     onModalAccepted()
     {
@@ -62,6 +62,10 @@ export default {
       }, 7000);
       this.showModal = false;
     },    
+  },
+  mounted()
+  {
+
   }
 }
 </script>
