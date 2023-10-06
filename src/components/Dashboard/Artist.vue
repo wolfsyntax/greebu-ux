@@ -333,9 +333,14 @@
             </div>
           </div> <!-- end of photos-tab -->
 
-          <div class="row profile-body" v-if="activeItem === 'Events'"><h2>Events</h2></div>
+          <div class="row profile-body" v-if="activeItem === 'Events'">
+            <h2>Events</h2>
+          </div>
 
-          <div class="row profile-body" v-if="activeItem === 'Reviews'"><h2>Reviews</h2></div>
+          <div class="row profile-body" v-if="activeItem === 'Reviews'">
+            <h2>Reviews</h2>
+          </div>
+
         </div>
       </div>
     </section>
@@ -376,6 +381,8 @@ export default {
       'Songs',
       'Videos',
       'Photos',
+      'Events',
+      'Reviews'
     ],
     activeItem: 'Post',
     songs: [
