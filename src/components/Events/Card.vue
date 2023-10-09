@@ -54,8 +54,7 @@
       <div v-else>
         <button class="btn btn-primary view-details" @click="toggle">View Details</button>
       </div>
-
-      <button class="btn btn-primary send-proposal" @click="sendProposal" v-if="userRole === 'artists'" >Send Proposal</button>
+      <button class="btn btn-primary send-proposal" @click="sendProposal" v-if="userRole === 'artists'" :disabled="!event.accept_proposal">Send Proposal</button>
     </div>
   </div>
 </template>
