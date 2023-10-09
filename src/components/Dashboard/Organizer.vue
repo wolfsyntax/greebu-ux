@@ -118,8 +118,8 @@
                   </div>
 
                   <!-- Organizer Staff list -->
-                  <div class="members-list" >
-                    <div class="member-profile" v-for="(staff, index) in members" :key="index">
+                  <div class="members-list" v-for="(staff, index) in members" :key="index">
+                    <div class="member-profile">
                       <img :src="staff.avatar" loading="lazy" alt="member profile" />
                       <div class="member-info">
                         <a href="#">{{ staff.member_name }}</a>

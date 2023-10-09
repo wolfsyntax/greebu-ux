@@ -37,11 +37,11 @@
           </div>
 
           <div class="d-flex align-items-center" v-if="proposal?.status === 'accepted'">
-            <h3 class="btn accepted">Ongoing</h3>
+            <button class="btn accepted">Ongoing</button>
           </div>
           
            <div class="d-flex align-items-center" v-if="proposal?.status === 'declined'">
-            <h3 class="btn cancelled">Cancelled</h3>
+            <button class="btn cancelled">Cancelled</button>
           </div>
         </div> <!-- end of action-wrapper -->
 
@@ -97,7 +97,7 @@
         <h4 class="text-start artist-details">Artist Details</h4>
 
         <div class="d-flex justify-content-between action-wrapper song-info-wrapper">
-          <div>
+          <div class="left">
             <h5>Name of the band</h5>
             <p>{{ proposal.artist_name }}</p>
           </div>

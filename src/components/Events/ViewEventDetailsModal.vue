@@ -41,8 +41,8 @@
               <div class="d-flex">
               <span class="material-symbols-rounded">&#xe935;</span>
               <div>
-                <h6>{{ $moment(`${event?.start_date}`).format('dddd, MMMM Do, YYYY') }}&nbsp;&mdash;&nbsp;{{ $moment(`${event?.end_date}`).format('dddd, MMMM Do, YYYY') }}</h6>
-                <p>{{ $moment(`${$moment().format('YYYY-MM-DD')} ${event?.start_time}`).format('h:mm a') }}&nbsp;&mdash;&nbsp;{{ $moment(`${$moment().format('YYYY-MM-DD')} ${event?.end_time}`).format('h:mm a') }}</p>
+                <h6>{{ $moment(`${event?.start_date}`).format('MMMM Do, YYYY') }} - {{ $moment(`${event?.end_date}`).format('MMMM Do, YYYY') }}</h6>
+                <p>{{ $moment(`${$moment().format('YYYY-MM-DD')} ${event?.start_time}`).format('h:mm a') }} - {{ $moment(`${$moment().format('YYYY-MM-DD')} ${event?.end_time}`).format('h:mm a') }}</p>
               </div>
             </div>
 
