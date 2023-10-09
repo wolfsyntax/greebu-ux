@@ -24,8 +24,8 @@
                 <span class="material-symbols-rounded dot">&#xe061;</span>
                  Posted {{ $filters.diffForHumans($moment(event?.created_at).format('YYYY-MM-DD hh:mm:ss a')) }}</p>
             </div>
-
-            <a href="/proposal" v-if="userRole === 'artists'" class="send">Send Proposal</a>
+            
+            <a href="/proposal" v-if="userRole === 'artists'" class="send" :disabled="!event.accept_proposal ">Send Proposal</a>
 
           </div>
 
@@ -127,7 +127,7 @@ export default {
   computed: {
     ...mapGetters(["isLoggedIn", 'userInfo', 'info', 'userRole']),
     ...mapState({
-      event: state => state.events.event
+      event: state => state.events.event,
     })
   },
   mounted()
