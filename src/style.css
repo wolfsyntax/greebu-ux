@@ -4216,7 +4216,8 @@ justify-content: space-between;
 }
 .forgot-password .verify-email .card-body .inbox, .reset-password .reset-successfully .card-body .check,
 .social-phone-verification .successfully-signup  .card-body .success-badge, .successfully-sent .container .message svg,
-.onboarding-message .modal-content .check-cirle, #eventsCreatedModal .modal-content .check-cirle{
+.onboarding-message .modal-content .check-cirle, #eventsCreatedModal .modal-content .check-cirle,
+#sentProposalModal .modal-content .check-cirle{
   animation: bounce 1.5s 3; /* Animation will play 3 times */
 }
 .social-phone-verification .successfully-signup  .card-body .success-badge{
@@ -4400,14 +4401,16 @@ justify-content: space-between;
   text-align: center;
 }
 .onboarding-message .modal-content .check-cirle,
-#eventsCreatedModal .modal-content .check-cirle{
+#eventsCreatedModal .modal-content .check-cirle,
+#sentProposalModal .modal-content .check-cirle {
   width: 5rem;
   height: 5rem;
   margin: 0 auto 2rem;
   animation-delay: .5s;
 }
 .onboarding-message .modal-content .all-set,
-#eventsCreatedModal .modal-content .event-created{
+#eventsCreatedModal .modal-content .event-created,
+#sentProposalModal .modal-content .event-created{
   color: var(--orange);
   font-feature-settings: 'clig' off, 'liga' off;
   font-size: 1.5rem;
@@ -4416,7 +4419,8 @@ justify-content: space-between;
   margin: 0 auto 2rem;
 }
 .onboarding-message .modal-content .message,
-#eventsCreatedModal .modal-content .message{
+#eventsCreatedModal .modal-content .message,
+#sentProposalModal .modal-content .message {
   color: #8690A2;
   font-size: 1.25rem;
   font-weight: 400;
@@ -4453,7 +4457,8 @@ justify-content: space-between;
   color: var(--orange);
 }
 .onboarding-message .close-modal-button, 
-#eventsCreatedModal .modal-content .close-modal-button {
+#eventsCreatedModal .modal-content .close-modal-button,
+#sentProposalModal .modal-content .close-modal-button {
   padding: 1rem 9rem;
   border-radius: 0.5rem;
   background: var(--orange);
@@ -4465,7 +4470,8 @@ justify-content: space-between;
   border: 1px solid var(--orange);
 }
 .onboarding-message .close-modal-button:hover,
-#eventsCreatedModal .modal-content .close-modal-button:hover{
+#eventsCreatedModal .modal-content .close-modal-button:hover,
+#sentProposalModal .modal-content .close-modal-button:hover{
   background: var(--btn-hovered);
   border: 1px solid var(--btn-hovered);
 }
@@ -5027,6 +5033,7 @@ width: 100%;
 }
 .account-settings .user-message{
   margin-bottom: 3.88rem;
+  text-align: center;
 }
 .account-settings .user-message .title{
   color: var(--black-color);
@@ -5693,6 +5700,16 @@ width: 100%;
   font-weight: 700;
   letter-spacing: -0.03rem;
   margin-bottom: 0.19rem;
+  /* width: 95%; */
+  text-align: left;
+    /* show only two lines of description */
+  display: -webkit-box;
+  margin: 0 auto;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* height: 40px; */
 }
 .account-settings .request-song-modal .action-wrapper .username{
   color:  #637381;
@@ -5786,8 +5803,11 @@ width: 100%;
   line-height: 1.3125rem;
   margin-bottom: 0;
 }
+.account-settings .request-song-modal .song-info-wrapper .left {
+  width: 60%;
+}
 .account-settings .request-song-modal .song-info-wrapper .right {
-  text-align: right;
+  width: 40%;
 }
 .account-settings .request-song-modal .song-info-wrapper .hidden-song-info{
   opacity: 0;
@@ -6386,8 +6406,9 @@ width: 100%;
   background: var(--btn-hovered);
 }
 
-/* Event created modal */
-#eventsCreatedModal .modal-content{
+/* Event created modal and Success Proposal form modal*/
+#eventsCreatedModal .modal-content, 
+#sentProposalModal .modal-content{
   border-radius: 0.9375rem;
   background: #FCFCFD;
   padding: 2rem;
@@ -7634,22 +7655,26 @@ margin-bottom: 1rem;
   line-height: 1.3rem;
 }
 .onboarding-message .modal-content .check-cirle,
-#eventsCreatedModal .modal-content .check-cirle {
+#eventsCreatedModal .modal-content .check-cirle,
+#sentProposalModal .modal-content .check-cirle {
   width: 3.5rem;
   height: 3.5rem;
   margin: 0 auto 1.5rem;
 }
 .onboarding-message .modal-content .all-set,
-#eventsCreatedModal .modal-content .event-created {
+#eventsCreatedModal .modal-content .event-created,
+#sentProposalModal .modal-content .event-created {
   font-size: 1.2rem;
   line-height: normal;
   margin: 0 auto 1.5rem;
 }
 .onboarding-message .modal-content .message,
-#eventsCreatedModal .modal-content .message {
+#eventsCreatedModal .modal-content .message,
+#sentProposalModal .modal-content .message  {
   font-size: 1rem;
   line-height: normal;
   margin: 0 auto 2.5rem;
+  width: 80%;
 }
 .onboarding-message .modal-content .offers li{
   margin-bottom: 0.4rem;
@@ -7658,7 +7683,8 @@ margin-bottom: 1rem;
   margin-bottom: 2rem;
 }
 .onboarding-message .close-modal-button,
-#eventsCreatedModal .modal-content .close-modal-button {
+#eventsCreatedModal .modal-content .close-modal-button,
+#sentProposalModal .modal-content .close-modal-button {
   padding: 0.75rem 8rem;
   font-size: 1rem;
   font-style: normal;
