@@ -4,7 +4,7 @@
 
       <div class="form-group">
         <label for="lookingFor">Looking for</label>
-        <select class="form-select" v-model="look_for">
+        <select class="form-select" v-model="look_for" :disabled="!account.accept_proposal">
           <option value="artist" selected>Artist</option>
           <option value="service">Service</option>
           </select>
@@ -28,6 +28,7 @@
             label="text"
             noOptionsText="Please input look type(s)"
             class=""
+            :disabled="!account.accept_proposal"
           >
             <template slot="singleLabel" slot-scope="{ option }" >
               <span style="text-transform: capitalize;">{{ option.text }}12</span>
@@ -49,6 +50,7 @@
             label="text"
             noOptionsText="Please input look type(s)"
             class=""
+            :disabled="!account.accept_proposal"
           >
             <template slot="singleLabel" slot-scope="{ option }" >
               <span style="text-transform: capitalize;">{{ option.text }}12</span>
@@ -61,7 +63,7 @@
 
       <div class="form-group event-details-wrap">
         <label for="eventRequirement">Description / Requirement</label>
-        <textarea id="eventRequirement" v-model="requirement" maxlength="500" rows="7" class="form-control about-artist" placeholder="Write description" required>
+        <textarea :disabled="!account.accept_proposal" id="eventRequirement" v-model="requirement" maxlength="500" rows="7" class="form-control about-artist" placeholder="Write description" required>
         </textarea>
         <div v-for="err in error?.requirement" :key="err" class="text-danger">{{ err }}</div>
       </div>
@@ -119,6 +121,7 @@ export default {
       eventTypes: state => state.events.event_types,
       artistType: state => state.events.event_artist_type,
       serviceType: state => state.events.event_service_type,
+      account: state => state.account
     }),
     canSkip()
     {
