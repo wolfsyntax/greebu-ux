@@ -28,12 +28,6 @@
             <button class="btn decline" @click="decline">Decline</button>
             <button class="btn accept" @click="accept">Acccept</button>
 
-            <!-- SHOW THIS IF THE ORGANIZER ACCEPTED THE REQUEST  -->
-            <!-- <button class="btn accepted">Decline</button> -->
-
-            <!-- SHOW THIS IF THE ORGANIZER DENIED THE REQUEST  -->
-            <!-- <button class="btn cancelled">Cancelled</button> -->
-
           </div>
 
           <div class="d-flex align-items-center" v-if="proposal?.status === 'accepted'">

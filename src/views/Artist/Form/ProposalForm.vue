@@ -20,7 +20,7 @@
             <h3 class="title">Artist Details</h3>
             <div class="form-group">
               <label for="name">Name of the artist/Band</label>
-              <p v-html="account.artist_name"></p>
+              <p class="artist-name" v-html="account.artist_name"></p>
             </div>
             
             <div class="form-group">

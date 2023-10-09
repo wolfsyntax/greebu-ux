@@ -1646,7 +1646,7 @@ body{
   resize: none;
   border-radius: 0.5rem;
   border: 1px solid var(--low-sky-gray, rgba(86, 103, 137, 0.26));
-  font-weight: 600;
+  font-weight: 500;
 }
 .profile-details .container .fill-details .form-group .char-count,
 .artist-proposal-form .cover-letter-wrap .char-count{
@@ -2803,6 +2803,9 @@ background: var(--btn-hovered);
   margin-bottom: 3rem;
   border-bottom: 1px solid #E5E7EB;
 } 
+.artist-proposal-form .cover-letter-wrap{
+  border-bottom: none;
+}
 .artist-proposal-form h3{
   color: #121212;
   font-size: 1.375rem;
@@ -2814,6 +2817,22 @@ background: var(--btn-hovered);
 }
 .artist-proposal-form .artist-details-wrap > .form-group:last-of-type{
   margin-bottom: 0;
+}
+.artist-proposal-form .artist-details-wrap .form-group .badge{
+  color: var(--orange);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 140%;
+  letter-spacing: -0.02rem;
+  color: var(--white);
+  margin: 0 0.25rem 0.25rem 0;
+}
+.artist-proposal-form .artist-details-wrap .form-group .artist-name{
+  color: var(--black);
+  font-size: 1.1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
 }
 .artist-proposal-form .artist-details-wrap label{
   color: var(--black);
@@ -2995,6 +3014,13 @@ background: var(--btn-hovered);
 .artist-proposal-form .artist-details-wrap label {
   font-size: 0.875rem;
   margin-bottom: 0.25rem;
+}
+.artist-proposal-form .artist-details-wrap .form-group .artist-name {
+  font-size: 1rem;
+}
+.artist-proposal-form .artist-details-wrap .form-group .badge {
+  font-size: 0.7rem;
+  margin: 0 0.20rem 0.20rem 0;
 }
 .artist-proposal-form .artist-details-wrap select, .artist-proposal-form .artist-details-wrap input, .artist-proposal-form .cover-letter-wrap textarea {
   height: 2.5rem;
@@ -3782,7 +3808,6 @@ margin-right: 6px;
 .profile-details .fill-details .form-about-artist label, .profile-details .fill-details .song-preview label{
   font-size: 1rem;
   font-style: normal;
-  font-weight: 600;
   line-height: normal;
   letter-spacing: -0.02rem;
 }
@@ -3791,7 +3816,6 @@ margin-right: 6px;
   padding: 0.65rem;
   font-size: 1rem;
   font-style: normal;
-  font-weight: 600;
   line-height: 1.3125rem; 
 }
 .profile-details .container .fill-details .required-fields .multiselect-tags,

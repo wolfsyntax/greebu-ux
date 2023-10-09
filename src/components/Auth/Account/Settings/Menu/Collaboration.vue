@@ -1,19 +1,14 @@
 <template>
-  <div class="my-proposal">
+  <div>
     <div class="content">
-      <my-proposal />
+      <h3>Collaboration</h3>
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapState, mapActions } from "vuex";
-import MyProposal from './My Proposal/Index.vue';
-
 export default {
-  components: {
-    MyProposal
-  },
   setup()
   {
 
