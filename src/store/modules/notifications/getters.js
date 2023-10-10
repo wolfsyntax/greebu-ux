@@ -1,1 +1,2 @@
-export const getStaff = (state) => state.staffFilter;
+export const getNotifications = (state) => state.notifications;
+export const getNotification = (state) => state.notification;
