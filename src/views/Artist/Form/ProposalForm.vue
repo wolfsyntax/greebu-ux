@@ -119,14 +119,14 @@ export default {
         .catch(err =>
         {
           console.log('Error on proposal: ', err)
-          // const { status, result } = err;
+          const { status, result } = err;
 
-          // if (status === 422) {
-          //   const { errors } = result
-          //   this.errors = errors;
+          if (status === 422) {
+            const { errors } = result
+            this.errors = errors;
 
-          //   console.log('[Error] Proposal form: ', err);
-          // }
+            console.log('[Error] Proposal form: ', err);
+          }
 
         });
     },
