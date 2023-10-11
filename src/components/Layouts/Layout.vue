@@ -331,7 +331,7 @@ export default {
   {
     setInterval(() => {
       this.$store.dispatch("fetchNotifications");
-    }, 5000);
+    }, 60000);
   },
   methods: {
     openModal(data){

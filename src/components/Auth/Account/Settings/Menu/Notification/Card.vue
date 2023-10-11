@@ -44,6 +44,7 @@ export default {
   methods: {
     ...mapActions(['markNotificationAsRead']),
     markNotif() {
+      this.$store.commit('setProposal');
       this.$store.commit('SET_NOTIFICATION', this.content)
 
       this.markNotificationAsRead('profile')
