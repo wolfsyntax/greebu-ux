@@ -43,50 +43,56 @@ export const fetchNotifications = ({ commit, rootState, state }) => {
 
 // Mark As Read
 export const markNotificationAsRead = (
-  { commit, rootState, state },
-  payload
+  { commit, rootState, state, dispatch },
+  payload = "user"
 ) => {
+  var url = `${
+    import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+  }/api/notifications/${state.notification.id}/mark-read?role=${
+    rootState.role
+  }&type=${payload}`;
+
+  console.log("Notification ID: ", url);
+
   return new Promise((resolve, reject) => {
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + (rootState.bearerToken || localStorage.api_token);
-  });
 
-  axios
-    .post(
-      `${
-        import.meta.env.VITE_BASE_URL || "http://localhost:8000"
-      }/api/notifications/${state.notification.id}/mark-read?role=${
-        rootState.role
-      }`
-    )
-    .then((response) => {
-      const {
-        data,
-        data: { status, result },
-        status: statusCode,
-      } = response;
-
-      if (status === 200 && statusCode === 200) {
+    axios
+      .post(url)
+      .then((response) => {
+        console.log("Mark notif with ID: ", response);
         const {
-          result: { profile_notification },
-        } = data;
+          data,
+          data: { status, result },
+          status: statusCode,
+        } = response;
 
-        commit("SET_NOTIFICATIONS", profile_notification);
+        if (status === 200 && statusCode === 200) {
+          const {
+            result: { profile_notification },
+          } = data;
 
-        resolve(data);
-      }
+          dispatch("fetchNotifications");
+          resolve(data);
+        }
 
-      reject(data);
-    })
-    .catch((err) => {
-      const { data, status: statusCode } = err;
+        reject(data);
+      })
+      .catch((err) => {
+        console.log("Mark as read error: ", err);
+        const { data, status: statusCode } = err;
 
-      reject(data);
-    });
+        reject(data);
+      });
+  });
 };
 
 // Mark All Read
-export const markAllNotificationAsRead = ({ commit, rootState, state }) => {
+export const markAllNotificationAsRead = (
+  { commit, rootState, state, dispatch },
+  payload = "user"
+) => {
   return new Promise((resolve, reject) => {
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + (rootState.bearerToken || localStorage.api_token);
@@ -95,7 +101,9 @@ export const markAllNotificationAsRead = ({ commit, rootState, state }) => {
       .post(
         `${
           import.meta.env.VITE_BASE_URL || "http://localhost:8000"
-        }/api/notifications/mark-all-read?role=${rootState.role}`
+        }/api/notifications/mark-all-read?role=${
+          rootState.role
+        }&type=${payload}`
       )
       .then((response) => {
         const {
@@ -109,7 +117,7 @@ export const markAllNotificationAsRead = ({ commit, rootState, state }) => {
             result: { profile_notification },
           } = data;
 
-          commit("SET_NOTIFICATIONS", profile_notification);
+          dispatch("fetchNotifications");
 
           resolve(data);
         }

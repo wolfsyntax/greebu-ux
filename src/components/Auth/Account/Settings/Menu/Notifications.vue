@@ -1,14 +1,29 @@
 <template>
   <div>
-    <div class="content">
-      <h3>Notifications</h3>
+    <div class="content px-0">
+      <h3 class="mx-3">Notifications</h3>
+      <button @click="markAllNotificationAsRead('profile')">Clear</button>
+      <notification-card v-for="(notification, index) in notifications" :key="index" :content="notification" @openProposal="toggleProposal" />
+      <request-proposal :show="Object.keys(proposal).length > 0" @close-modal="closeModal" />
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapState, mapActions } from "vuex";
+import NotificationCard from '/src/components/Auth/Account/Settings/Menu/Notification/Card.vue';
+import RequestProposal from '/src/components/Auth/Account/Settings/Menu/Request Application/RequestApplicationModal.vue';
+
 export default {
+  components: {
+    NotificationCard,
+    RequestProposal,
+  },
+  data () {
+    return {
+      proposal: {}
+    }
+  },
   setup()
   {
 
@@ -17,11 +32,26 @@ export default {
   },
   computed: {
     ...mapGetters(['userInfo']),
+    ...mapState({
+      notifications: state => state.notifications.notifications,
+    })
   },
   methods: {
-    ...mapActions(['fetchNotifications',]),
+    ...mapActions(['fetchNotifications', 'markAllNotificationAsRead', ]),
+    toggleProposal (proposal) {
+      this.$store.dispatch('getArtistProposal', proposal)
+        .then(res => {
+          this.proposal = proposal;
+        });
+    },
+    closeModal() {
+      this.$store.commit('setProposal');
+      this.proposal = {};
+    }
   },
   mounted() {
+
+    this.proposal = {};
 
     this.fetchNotifications()
       .then(res => {

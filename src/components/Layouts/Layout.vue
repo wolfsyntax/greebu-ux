@@ -329,7 +329,9 @@ export default {
   },
   mounted()
   {
-
+    setInterval(() => {
+      this.$store.dispatch("fetchNotifications");
+    }, 5000);
   },
   methods: {
     openModal(data){
