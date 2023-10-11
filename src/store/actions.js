@@ -61,11 +61,7 @@ var actions = {
 
             localStorage.api_token = token;
             dispatch("fetchProfile");
-
-            setInterval(() => {
-              console.log("Fetching Notification with Interval of 5sec");
-              dispatch("fetchNotifications");
-            }, 30000);
+            dispatch("fetchNotifications");
           } else if (statusCode === 203 && status === 403) {
             const { profile, user, token } = result;
 
@@ -121,11 +117,6 @@ var actions = {
             }
 
             dispatch("fetchProfile");
-
-            setInterval(() => {
-              console.log("Fetching Notification with Interval of 5sec");
-              dispatch("fetchNotifications");
-            }, 30000);
           }
           resolve(response);
         })
