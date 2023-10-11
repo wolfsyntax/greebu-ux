@@ -44,7 +44,7 @@ export default {
   methods: {
     ...mapActions(['markNotificationAsRead']),
     markNotif() {
-      this.$store.commit('setProposal');
+
       this.$store.commit('SET_NOTIFICATION', this.content)
 
       this.markNotificationAsRead('profile')
@@ -55,6 +55,8 @@ export default {
     toggle() {
       
       if (this.notification_type === 'artist-proposal') {
+        console.log('Clear proposal container')
+        this.$store.commit('setProposal');
         this.$emit('openProposal', this.content.data.misc.id);
         console.log('Artist Proposal: ', this.content.data.misc.id)
       }
@@ -65,7 +67,7 @@ export default {
     notification_type: '',
   }),
   mounted() {
-    
+    this.$store.commit('setProposal');
     this.notification_type = this.content?.data?.notification_type;
     console.log('Notification Type: ', this.notification_type)
   }
