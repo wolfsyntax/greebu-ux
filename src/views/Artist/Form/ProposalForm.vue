@@ -121,6 +121,7 @@ export default {
         })
         .catch(err =>
         {
+          console.log('Error on proposal: ', err)
           const { status, result } = err;
 
           if (status === 422) {
