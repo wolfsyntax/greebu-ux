@@ -65,7 +65,7 @@ var actions = {
             setInterval(() => {
               console.log("Fetching Notification with Interval of 5sec");
               dispatch("fetchNotifications");
-            }, 5000);
+            }, 30000);
           } else if (statusCode === 203 && status === 403) {
             const { profile, user, token } = result;
 
@@ -125,7 +125,7 @@ var actions = {
             setInterval(() => {
               console.log("Fetching Notification with Interval of 5sec");
               dispatch("fetchNotifications");
-            }, 5000);
+            }, 30000);
           }
           resolve(response);
         })
@@ -155,6 +155,7 @@ var actions = {
               commit("RESET_EVENT_FORM");
             }
 
+            commit("SET_NOTIFICATIONS");
             commit("CLEAR_ARTIST");
             commit("SET_AUTH", {});
             commit("SET_TOKEN", "");
