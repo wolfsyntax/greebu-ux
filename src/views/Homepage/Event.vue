@@ -15,7 +15,7 @@
         </div>
       </div>
     </section>
-
+    
     <section class="events-showing">
       <div class="container">
 
@@ -173,7 +173,7 @@ export default {
   },
   mounted()
   {
-    
+    console.log('Window Hostname: ', window.location.hostname)
     this.fetchEventOptions().then(res => this.RESET_EVENT_FILTER())
     this.fetchCityList();
     this.fetchEventList()
