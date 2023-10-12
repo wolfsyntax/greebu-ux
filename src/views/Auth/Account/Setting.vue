@@ -82,13 +82,14 @@ export default {
           { icon: 'subscriptions', name: 'Manage Subscriptions'},
           { icon: 'page_info', name: 'Others'}
       ],
-      selectedOption: 'My Account', // Default selected option 
+      // selectedOption: 'My Account', // Default selected option 
     }
   },
   methods: {
     showSidebarContent(option)
     {
-      this.selectedOption = option.name;
+      this.$store.commit('setSettingMenu', option.name);
+      // this.selectedOption = option.name;
     },      
   },
   created() {
@@ -98,10 +99,12 @@ export default {
     ...mapGetters(["isPhoneVerified", "info", 'myAccount', 'userRole', ]),
     ...mapState({
       user: (state) => state.user,
+      selectedOption: state => state.selectedOption
     }),
   },
   mounted()
   {
+    
     if (this.userRole === 'artists') { 
       this.sidebarOptions = [
         { icon: 'account_circle', name: 'My Account' },

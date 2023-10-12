@@ -96,7 +96,11 @@ export const fetchProfile = (
               commit("SET_STAFF", members);
               dispatch("fetchOrganizerOptions");
             }
-            dispatch("fetchNotifications");
+
+            setInterval(() => {
+              dispatch("fetchNotifications");
+            }, 180000);
+
             // commit('SET_PROFILE', profile);
           }
         }
