@@ -61,7 +61,6 @@ var actions = {
 
             localStorage.api_token = token;
             dispatch("fetchProfile");
-            dispatch("fetchNotifications");
           } else if (statusCode === 203 && status === 403) {
             const { profile, user, token } = result;
 
