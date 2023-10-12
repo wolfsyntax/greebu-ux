@@ -1,8 +1,8 @@
 var state = {
   profile: {},
   user: {},
-  bearerToken: '',
-  role: '', // artists, customers, organizer, service-provider
+  bearerToken: "",
+  role: "", // artists, customers, organizer, service-provider
   roles: [],
   artist_types: null,
   genres: null,
@@ -12,12 +12,13 @@ var state = {
   countries: null,
   cities: null,
   phone: null,
-  account_type: '',
+  account_type: "",
   account: null,
   isPhoneModify: false,
-  custom_genre: '',
+  custom_genre: "",
   artist_genre: [],
   proposal: [],
-}
+  selectedOption: "My Account",
+};
 
-export default state
+export default state;

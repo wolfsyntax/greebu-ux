@@ -44,8 +44,50 @@
 
             <div class="float-end nav-button" v-else>
               <a href="#" class="btn btn-primary upgrade" @click="openModal" data-bs-toggle="modal" data-bs-target="#selectPlanModal" v-if="userRole === 'artists'">Upgrade Plan</a>
-              <a href="#"><span class="material-symbols-outlined bell-icon">&#xe7f4;</span></a>
+              
+              <div class="dropdown dropstart">
+                <button class="btn btn-secondary dropdown-toggle" data-bs-auto-close="outside" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                  <span class="material-symbols-outlined bell-icon">&#xe7f4;</span>
+                </button>
+
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start " id="dropdownNotif" data-bs-autoClose="false" style="margin-right: -2rem;margin-top: 1rem;">
+                  <li><span class="text-dark fw-bold">Notifications</span></li>
+                  
+                  <li v-for="(content, index) in notifications" :key="index" class="">
+                    <div class="my-0">
+                      <div class="card border-0" style="max-width: 300px;">
+                        <div class="row g-0" >
+                          <div class="col-md-2 mt-4 pl-5">
+                            <img :src="content?.data?.sender_avatar" class="mx-2 img-fluid rounded-start requested-by-image" alt="Sender Avatar">
+                          </div>
+                          <div class="col-md-10">
+                            <div class="card-body">
+                              <p class="card-text text-truncate my-0" v-if="content?.data?.notification_type === 'artist-proposal'">
+                                <strong>{{ content?.data?.sender_name }}</strong>&nbsp;{{ `${ content?.data?.header } ${content?.data?.misc?.event_name}`}}
+                              </p>
+                              <p class="card-text text-muted text-truncate my-0">{{ content?.data?.body }}</p>
+                              <p class="card-text row">
+                                <small class="text-body-secondary col">{{ $filters.diffForHumans($moment(content?.data?.time).format('YYYY-MM-DD hh:mm:ss a')) }}</small>
+                                <small class="text-body-secondary col">{{ $moment(content?.data?.time).format('MM/DD/YYYY') }}</small>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>        
+                        
+                    </div>
+                  </li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li class="mr-0">
+                    
+                    <button class="btn btn-light float-end" @click="markAsRead">Mark all as read</button>
+                    <router-link to="/account/setting" class="btn btn-geebu mx-3" @click="$store.commit('setSettingMenu', 'Notifications')">See all notification</router-link>
+                  </li>
+                </ul>
+              </div>
+
               <a href="#"><span class="material-symbols-outlined" v-if="userRole === 'customers'">&#xe8cc;</span></a>
+
               <div class="dropdown dropstart">
                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
                   <img :src="myAccount?.avatar || myAvatar" alt="artist profile" @error="replaceByDefault" @click="$router.push('/dashboard')">
@@ -59,7 +101,7 @@
                       <div class="artist-name">
                         <p class="name">{{  userInfo.business_name }}</p>
                         <!-- <p class="email">{{ userInfo.business_email }}</p> -->
-                        <p class="name">{{  userInfo.role }}</p>
+                        <p class="email" style="text-transform: capitalize;">{{  userInfo.role }}</p>
                         <router-link to="/account/profile" class="dropdown-item view-profile">Edit Profile</router-link>
                       </div>
                     </div>
@@ -69,7 +111,7 @@
 
                   <li >
                     <span class="material-symbols-outlined">&#xe853;</span>
-                    <router-link to="/account/setting" class="dropdown-item">Account Settings</router-link>
+                    <router-link to="/account/setting" class="dropdown-item" @click="$store.commit('setSettingMenu', 'My Account')">Account Settings</router-link>
                   </li>
 
                   <li v-if="[ 'customers', 'organizer', ].includes(userRole)">
@@ -79,27 +121,27 @@
                   
                   <li v-if="[ 'artists', ].includes(userRole)">
                     <span class="material-symbols-outlined">&#xe030;</span>
-                    <router-link to="/account/setting#custom-songs" class="dropdown-item">Customized Songs</router-link>
+                    <router-link to="/account/setting" @click="$store.commit('setSettingMenu', 'Customized Songs')" class="dropdown-item">Customized Songs</router-link>
                   </li>
 
                   <li v-if="[ 'customers', ].includes(userRole)">
                     <span class="material-symbols-outlined">library_music</span>
-                    <router-link to="/account/setting#songs" class="dropdown-item">My Songs</router-link>
+                    <router-link to="/account/setting" @click="$store.commit('setSettingMenu', 'My Songs')" class="dropdown-item">My Songs</router-link>
                   </li>
 
                   <li v-if="['customers', 'artists', ].includes(userRole)">
                     <span class="material-symbols-outlined">&#xe614;</span>
-                    <router-link to="/account/setting#bookings" class="dropdown-item">My Bookings</router-link>
+                    <router-link to="/account/setting" @click="$store.commit('setSettingMenu', 'My Bookings')" class="dropdown-item">My Bookings</router-link>
                   </li>
 
                   <li v-if="['artists', ].includes(userRole)">
                     <span class="material-symbols-outlined">&#xf0fb;</span>
-                    <router-link to="/account/setting#bookings" class="dropdown-item">My Subscription</router-link>
+                    <router-link to="/account/setting" @click="$store.commit('setSettingMenu', 'Manage Subscriptions')" class="dropdown-item">My Subscription</router-link>
                   </li>
 
                   <li v-if="['customers', 'organizer',].includes(userRole)">
                     <span class="material-symbols-outlined">queue_music</span>
-                    <router-link to="/account/setting#proposals" class="dropdown-item">My Proposals</router-link>
+                    <router-link to="/account/setting" @click="$store.commit('setSettingMenu', 'My Proposal')" class="dropdown-item">My Proposals</router-link>
                   </li>
 
                   <li>
@@ -219,7 +261,7 @@
 <script>
 import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
 import SubscriptionModal from '/src/components/Artist/SubscriptionModal.vue';
-
+import { Dropdown } from 'bootstrap'
 export default {
   components: {
     SubscriptionModal
@@ -258,6 +300,7 @@ export default {
   },
   mounted()
   {
+
     this.$store.dispatch("fetchNotifications");
     // setInterval(() => {
     //   this.$store.dispatch("fetchNotifications");
@@ -265,15 +308,18 @@ export default {
   },
   methods: {
     openModal(data){
-        this.$root.$emit("bv::show::modal", "#selectPlanModal");
-      },
+      this.$root.$emit("bv::show::modal", "#selectPlanModal");
+    },
     ...mapActions([
-      'signout'
+      'signout', 'markAllNotificationAsRead',
     ]),
     ...mapMutations([
       'SET_ACCOUNT', 'SET_PROFILE', 'SET_AUTH',
-      'SET_ARTIST_GENRES', 'SET_MEMBERS',
+      'SET_ARTIST_GENRES', 'SET_MEMBERS', 'SET_NOTIFICATIONS',
     ]),
+    markAsRead() {
+      this.markAllNotificationAsRead('profile')
+    },
     async logout()
     {
       
@@ -322,6 +368,21 @@ export default {
 </script>
 
 <style scoped>
+.requested-by-image {
+  width: 3rem !important; 
+  height: 3rem !important;
+  border-radius: 100% !important;
+  margin-right: 0.5rem !important;
+}
+
+.dropdown-notif li div {
+  background: #fff !important;
+}
+.truncate-text {
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  text-overflow: ellipsis ellipsis!important;
+}
 .footer .container{
   margin-top: 100px;
 }
