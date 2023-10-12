@@ -11,7 +11,7 @@
         </div>
 
         <div class="submit-proposal-wrap">
-          <h2 class="top-level-title">Submit a porposal to {{  event.organizer_name }}</h2>
+          <h2 class="top-level-title">Submit a proposal to {{  event.organizer_name }}</h2>
           <p class="top-level-sub-title">Lorem ipsum dolor sit amet consectetur. Nascetur enim cras mauris elementum montes ut tristique.</p>
         </div>
 
@@ -54,7 +54,7 @@
       </div>
     </section>
 
-    <div class="modal fade" id="sentProposalModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <!-- <div class="modal fade" id="sentProposalModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
 
@@ -67,18 +67,21 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
+    <success-proposal-modal />
   </layout>
 </template>
 
 <script>
 import Layout from '/src/components/Layouts/Layout.vue';
 import { mapActions, mapGetters, mapState } from "vuex";
+import SuccessProposalModal from '/src/components/Auth/Proposal/SuccessProposalModal.vue';
 import { Modal } from 'bootstrap';
 
 export default {
   components: {
-    layout: Layout
+    layout: Layout,
+    SuccessProposalModal,
   },
   data() {
     return {
@@ -137,6 +140,15 @@ export default {
       }, 10000); 
 
       this.defaultFileFormat = false;
+    },
+    dismiss(option)
+    {
+      console.log('Prposal Modal dismiss: ', option);
+     
+        new Modal(document.getElementById('sentProposalModal'), {
+          keyboard: false,
+          backdrop: 'static',
+        }).show()
     },
   },
   computed: {

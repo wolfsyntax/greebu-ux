@@ -3422,7 +3422,8 @@ body {
   }
   .profile-details .container .fill-details .band-members .list-group-item,
   #editBandMembers .list-group-item {
-    padding: 1.25rem 1.25rem 1.25rem 0.9375rem;
+    /* padding: 1.25rem 1.25rem 1.25rem 0.9375rem; */
+    padding: 1rem 1rem 1rem 0.9375rem;
     margin-bottom: 0.63rem;
   }
   #editBandMembers .list-group-item img {

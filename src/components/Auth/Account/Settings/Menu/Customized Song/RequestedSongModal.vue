@@ -56,7 +56,7 @@
         </div>
 
         <div class="d-flex justify-content-between action-wrapper song-info-wrapper">
-          <div>
+          <div class="left">
             <h5>What is the song for?</h5>
             <p>Birthday</p>
           </div>
@@ -68,7 +68,7 @@
         </div>
 
         <div class="d-flex justify-content-between action-wrapper song-info-wrapper">
-          <div>
+          <div class="left">
             <h5>Genre</h5>
             <p>Rock</p>
           </div>
@@ -80,7 +80,7 @@
         </div>
 
         <div class="d-flex justify-content-between action-wrapper song-info-wrapper">
-          <div>
+          <div class="left">
             <h5>Language</h5>
             <p>English</p>
           </div>
@@ -92,7 +92,7 @@
         </div>
 
         <div class="d-flex justify-content-between action-wrapper song-info-wrapper">
-          <div>
+          <div class="left">
             <h5>Delivery Date</h5>
             <p class="d-flex align-items-center"><span class="material-symbols-rounded date">&#xebcc;</span>June 12,2023</p>
           </div>
