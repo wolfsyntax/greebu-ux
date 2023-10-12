@@ -63,7 +63,7 @@
             <img src="/assets/artist-account/check-circle.svg" class="check-cirle" alt="check circle">
             <h3 class="event-created">Your proposal has been sent!</h3>
             <p class="message">We will notify you when the event organizer has accepted your proposal.</p>
-            <button class="bnt close-modal-button" data-bs-dismiss="modal">Done</button>
+            <button class="btn close-modal-button" data-bs-dismiss="modal">Done</button>
           </div>
         </div>
       </div>

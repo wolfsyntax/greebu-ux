@@ -1,42 +1,42 @@
 :root {
-  --orange: #FF6B00;
-  --light-orange: #FED7AA;
-  --gray1: #70868F;
-  --gray2: #8690A2;
-  --gray3: #B0AFB1;
-  --gray4: #C4C4C4;
-  --gray5: #AAAAAA;
-  --gray6: #B8BBCF;
-  --white: #FFFFFF;
+  --orange: #ff6b00;
+  --light-orange: #fed7aa;
+  --gray1: #70868f;
+  --gray2: #8690a2;
+  --gray3: #b0afb1;
+  --gray4: #c4c4c4;
+  --gray5: #aaaaaa;
+  --gray6: #b8bbcf;
+  --white: #ffffff;
   --black: #121212;
-  --indigo: #4F46E5;
-  --indigo-light: #C7D2FE;
+  --indigo: #4f46e5;
+  --indigo-light: #c7d2fe;
   --black-color: #000000;
-  --black-heading: #231D4F;
-  --bg-black1: #0C0D0F;
+  --black-heading: #231d4f;
+  --bg-black1: #0c0d0f;
   --bg-black2: #111317;
   --p-color1: #575757;
   --p-color2: #757575;
-  --p-color3: #1E1E1E;
-  --p-color4: #2D3748;
-  --btn-hovered: #ED6300;
-  --btn-focus: #FFE4C5;
-  --warning: #DC2626;
-  --warning-light: #FECACA;
+  --p-color3: #1e1e1e;
+  --p-color4: #2d3748;
+  --btn-hovered: #ed6300;
+  --btn-focus: #ffe4c5;
+  --warning: #dc2626;
+  --warning-light: #fecaca;
 }
-body{   
-  font-family: 'Urbanist', sans-serif;
+body {
+  font-family: "Urbanist", sans-serif;
   /* background: #F9FAFB; */
-  }
+}
 
-.artist-profile .container{
+.artist-profile .container {
   margin: 50px auto 100px;
 }
 /* .artist-profile .container h2{
   color: orange;
 } */
 .artist-profile .container .profile-page {
-    padding: 0 1%;
+  padding: 0 1%;
 }
 .profile-page .profile-header {
   box-shadow: 0 0 10px 0 rgba(183, 192, 206, 0.2);
@@ -52,9 +52,8 @@ body{
   margin-bottom: 0;
 }
 
-
 .profile-page .profile-header .cover figure img {
-  border-radius: .25rem .25rem 0 0;
+  border-radius: 0.25rem 0.25rem 0 0;
   width: 100%;
   height: 50vh; /* 456px; */
   position: relative;
@@ -78,23 +77,23 @@ body{
   left: 93%;
   z-index: 12;
 }
-.profile-page .profile-header .cover .cover-photo-camera button{
+.profile-page .profile-header .cover .cover-photo-camera button {
   cursor: pointer;
   border: 0;
   background-color: transparent;
 }
 .profile-page .profile-header .cover .cover-photo-camera button span {
-  color: #FF6B00;
-  font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 48;
+  color: #ff6b00;
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
   padding: 10px;
   border-radius: 5px;
-  border: 1px solid rgba(255, 255, 255, 0.30);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   background: white;
-  transition: .7s;
+  transition: 0.7s;
 }
-.profile-page .profile-header .cover .cover-photo-camera button span:hover{
-  color: #FF6B00;
-  font-variation-settings: 'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 48;
+.profile-page .profile-header .cover .cover-photo-camera button span:hover {
+  color: #ff6b00;
+  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 48;
 }
 .profile-page .profile-header .cover .cover-body {
   position: absolute;
@@ -115,65 +114,90 @@ body{
   left: 0;
   backface-visibility: hidden;
   border-radius: 315px;
-  border: 4px solid #FFF;
+  border: 4px solid #fff;
   background: lightgray 50% / cover no-repeat;
   box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.12);
 }
-.profile-page .profile-header .cover .cover-body .profile-pic:hover{
-  border: 4px solid #FF6B00;
-  transition: .5s ease-in-out;
+.profile-page .profile-header .cover .cover-body .profile-pic:hover {
+  border: 4px solid #ff6b00;
+  transition: 0.5s ease-in-out;
 }
-.profile-page .profile-header .cover .cover-body .profile-info .camera{
+.profile-page .profile-header .cover .cover-body .profile-info .camera {
   position: absolute;
   top: 80%;
   left: 85%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-.profile-page .profile-header .cover .cover-body .profile-info .camera button{
+.profile-page .profile-header .cover .cover-body .profile-info .camera button {
   border: 0;
   background-color: transparent;
 }
-.profile-page .profile-header .cover .cover-body .profile-info .camera button .material-symbols-outlined{
+.profile-page
+  .profile-header
+  .cover
+  .cover-body
+  .profile-info
+  .camera
+  button
+  .material-symbols-outlined {
   color: #fff;
   flex-shrink: 0;
   padding: 19px;
   border-radius: 33px;
-  background: #FF6B00;
-  font-variation-settings: 'FILL' 0;
+  background: #ff6b00;
+  font-variation-settings: "FILL" 0;
 }
-.profile-page .profile-header .cover .cover-body .profile-info .camera button .material-symbols-outlined:hover{
-  border: 2px solid #FFF;
+.profile-page
+  .profile-header
+  .cover
+  .cover-body
+  .profile-info
+  .camera
+  button
+  .material-symbols-outlined:hover {
+  border: 2px solid #fff;
   box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.12);
 }
 
 @media (max-width: 767px) {
   .profile-page .profile-header .cover .cover-body .profile-pic {
-      width: 70px;
+    width: 70px;
   }
 }
 .profile-page .profile-header .cover .cover-body .profile-info {
   display: flex;
   align-items: center;
 }
-.profile-page .profile-header .cover .cover-body .profile-info .profile-wrapper {
+.profile-page
+  .profile-header
+  .cover
+  .cover-body
+  .profile-info
+  .profile-wrapper {
   /* margin-top: 5rem;  if the followers features is uncomment */
-  margin-top: 3rem; 
+  margin-top: 3rem;
   margin-left: 45px;
 }
-.profile-page .profile-header .cover .cover-body .profile-info .folow{
+.profile-page .profile-header .cover .cover-body .profile-info .folow {
   display: inline-flex;
   align-items: center;
   gap: 18px;
   margin-bottom: 20px;
 }
-.profile-page .profile-header .cover .cover-body .profile-info .folow .divider{
+.profile-page .profile-header .cover .cover-body .profile-info .folow .divider {
   width: 1px;
   height: 25px;
-  background: #E7E7E7;
+  background: #e7e7e7;
 }
-.profile-page .profile-header .cover .cover-body .profile-info .folow .followers {
-  color: #212B36;
+.profile-page
+  .profile-header
+  .cover
+  .cover-body
+  .profile-info
+  .folow
+  .followers {
+  color: #212b36;
   text-align: center;
   font-size: 16px;
   font-weight: 700;
@@ -181,16 +205,23 @@ body{
   text-align: left;
   margin-bottom: 0;
 }
-.profile-page .profile-header .cover .cover-body .profile-info .folow .followers span{
+.profile-page
+  .profile-header
+  .cover
+  .cover-body
+  .profile-info
+  .folow
+  .followers
+  span {
   color: #637381;
   font-size: 14px;
   line-height: 20px;
 }
-.profile-page .profile-header .cover .cover-body .name-artist{
+.profile-page .profile-header .cover .cover-body .name-artist {
   margin-bottom: 20px;
 }
 .profile-page .profile-header .cover .cover-body .profile-name {
-  color: #212B36;
+  color: #212b36;
   font-size: 40px;
   font-weight: 700;
 }
@@ -204,7 +235,13 @@ body{
   display: flex;
   align-items: center;
 }
-.profile-page .profile-header .cover .cover-body .profile-info .music-genre .title{
+.profile-page
+  .profile-header
+  .cover
+  .cover-body
+  .profile-info
+  .music-genre
+  .title {
   color: var(--tail-grids-text-color, #637381);
   text-align: left;
   font-size: 16px;
@@ -213,27 +250,33 @@ body{
   margin-right: 10px;
   margin-bottom: 0;
 }
-.profile-page .profile-header .cover .cover-body .profile-info .music-genre .badge {
-  color: #EA580C;
+.profile-page
+  .profile-header
+  .cover
+  .cover-body
+  .profile-info
+  .music-genre
+  .badge {
+  color: #ea580c;
   font-size: 12px;
   font-weight: 600;
   line-height: 16px;
   border-radius: 32px;
-  background: #FED7AA;
+  background: #fed7aa;
   padding: 4px 8px;
   margin: 0 2px;
 }
-.profile-page .profile-header .cover .cover-body .edit a{
-  color: #FFF;
+.profile-page .profile-header .cover .cover-body .edit a {
+  color: #fff;
   font-size: 20px;
   font-weight: 700;
   line-height: 100%;
   letter-spacing: 1px;
   padding: 14px 37px;
-  background-color: #FF6B00;
+  background-color: #ff6b00;
   border: 0;
 }
-.profile-page .profile-header .cover .cover-body .edit a:hover{
+.profile-page .profile-header .cover .cover-body .edit a:hover {
   background-color: var(--btn-hovered);
 }
 .profile-page .profile-header .header-links {
@@ -243,7 +286,7 @@ body{
   -webkit-justify-content: center;
   justify-content: center;
   background: #fff;
-  border-radius:5px;
+  border-radius: 5px;
   height: 300px;
   position: relative;
 }
@@ -256,36 +299,38 @@ body{
   position: absolute;
   top: 260px;
   left: 25%;
-} 
-.profile-page .profile-header .header-links ul li:hover{
+}
+.profile-page .profile-header .header-links ul li:hover {
   cursor: pointer;
 }
-.profile-page .profile-header .header-links ul li a{
-  color: #7C828F;
+.profile-page .profile-header .header-links ul li a {
+  color: #7c828f;
   font-size: 20px;
   font-weight: 600;
   line-height: 20px;
 }
-.profile-page .profile-header .header-links ul li:hover a{
-  color:  #FF6B00;
+.profile-page .profile-header .header-links ul li:hover a {
+  color: #ff6b00;
 }
-.profile-page .profile-header .header-links ul li a.active{
-  color:  #FF6B00;
-  text-decoration:  underline;
+.profile-page .profile-header .header-links ul li a.active {
+  color: #ff6b00;
+  text-decoration: underline;
   text-underline-offset: 12px;
   text-decoration-thickness: 3px;
 }
-.profile-page .profile-header .header-links ul li a .orange-badge { /* if the badge is active */
+.profile-page .profile-header .header-links ul li a .orange-badge {
+  /* if the badge is active */
   color: white;
   padding: 0px 6px;
   font-size: 12px;
   font-weight: 700;
   line-height: 20px;
-  background-color: #FF6B00;
+  background-color: #ff6b00;
   border-radius: 3px;
 }
-.profile-page .profile-header .header-links ul li a .text-bg-secondary { /* if the badge is not active */
-  color: #454F59!important;
+.profile-page .profile-header .header-links ul li a .text-bg-secondary {
+  /* if the badge is not active */
+  color: #454f59 !important;
   leading-trim: both;
   text-edge: cap;
   font-size: 12px;
@@ -294,63 +339,66 @@ body{
   padding: 0px 6px;
   border-radius: 3px;
   border: 1px solid #969696;
-  background-color: #fff!important;
+  background-color: #fff !important;
 }
 
 /* Sidebar */
-.profile-page .left-wrapper .card{
+.profile-page .left-wrapper .card {
   border-radius: 10px;
-  background: #FFF;
+  background: #fff;
   box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.14);
 }
-.profile-page .left-wrapper .artist-info{
+.profile-page .left-wrapper .artist-info {
   margin-bottom: 24px;
 }
-.profile-page .left-wrapper .artist-info .card-body, .profile-page .left-wrapper .band-members .card-body{
-    padding: 24px 20px 42px;
+.profile-page .left-wrapper .artist-info .card-body,
+.profile-page .left-wrapper .band-members .card-body {
+  padding: 24px 20px 42px;
 }
-.profile-page .left-wrapper .artist-info .card-title{
-  color:  #27272E;
+.profile-page .left-wrapper .artist-info .card-title {
+  color: #27272e;
   font-size: 16px;
   font-weight: 600;
   line-height: 136.523%;
 }
-.profile-page .left-wrapper .artist-info .edit a{
-  color: #FF6B00;
+.profile-page .left-wrapper .artist-info .edit a {
+  color: #ff6b00;
   text-align: right;
   font-size: 12px;
   font-weight: 700;
   text-decoration: none;
 }
-.profile-page .left-wrapper .artist-info .edit a:hover, .profile-page .left-wrapper .band-members .see-all a:hover, 
-.profile-page .right-wrapper .past-events .see-all a:hover, .profile-page .right-wrapper .original-songs .see-all a:hover{
-    text-decoration: underline;
-} 
-.profile-page .left-wrapper .artist-info .about{
-  color:  #212B36;
+.profile-page .left-wrapper .artist-info .edit a:hover,
+.profile-page .left-wrapper .band-members .see-all a:hover,
+.profile-page .right-wrapper .past-events .see-all a:hover,
+.profile-page .right-wrapper .original-songs .see-all a:hover {
+  text-decoration: underline;
+}
+.profile-page .left-wrapper .artist-info .about {
+  color: #212b36;
   font-size: 16px;
   font-weight: 600;
   line-height: 24px;
 }
-.profile-page .left-wrapper .artist-info .description{
-  color: #B8BBCF;
+.profile-page .left-wrapper .artist-info .description {
+  color: #b8bbcf;
   font-size: 14px;
 }
-.profile-page .left-wrapper .artist-info .social-media{
+.profile-page .left-wrapper .artist-info .social-media {
   display: flex;
   align-items: center;
   max-width: 100%;
 }
-.profile-page .left-wrapper .artist-info .social-media span{
-  color: #B8BBCF;
+.profile-page .left-wrapper .artist-info .social-media span {
+  color: #b8bbcf;
 }
 .profile-page .left-wrapper .artist-info .social-media img {
-  color: #B8BBCF;
+  color: #b8bbcf;
   width: 1.5rem;
   height: 1.5rem;
 }
-.profile-page .left-wrapper .artist-info .social-media p{
-  color: #B8BBCF;
+.profile-page .left-wrapper .artist-info .social-media p {
+  color: #b8bbcf;
   font-size: 16px;
   font-weight: 500;
   line-height: 26px;
@@ -360,24 +408,24 @@ body{
 }
 
 /* left side bar bottom */
-.profile-page .left-wrapper .band-members .header{
-    margin-bottom: 20px;
+.profile-page .left-wrapper .band-members .header {
+  margin-bottom: 20px;
 }
-.profile-page .left-wrapper .band-members .title{
+.profile-page .left-wrapper .band-members .title {
   align-items: center;
 }
-.profile-page .left-wrapper .band-members .title img{
+.profile-page .left-wrapper .band-members .title img {
   margin-right: 6px;
 }
-.profile-page .left-wrapper .band-members .title .card-title{
-  color:  #27272E;
+.profile-page .left-wrapper .band-members .title .card-title {
+  color: #27272e;
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
   line-height: 136.523%;
 }
-.profile-page .left-wrapper .band-members .see-all a{
-  color: #FF6B00;
+.profile-page .left-wrapper .band-members .see-all a {
+  color: #ff6b00;
   text-align: right;
   font-size: 12px;
   font-style: normal;
@@ -385,23 +433,24 @@ body{
   line-height: normal;
   text-decoration: none;
 }
-.profile-page .left-wrapper  .card-body .members-list {
-    border-radius: 10px;
-    background: #FFF;
-    display: flex;
-    padding: 16px;
-    /* border: 1px solid red; */
-    box-shadow: 0px 3px 8px -1px rgba(50, 50, 71, 0.05), 0px 0px 1px 0px rgba(12, 26, 75, 0.24);
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
+.profile-page .left-wrapper .card-body .members-list {
+  border-radius: 10px;
+  background: #fff;
+  display: flex;
+  padding: 16px;
+  /* border: 1px solid red; */
+  box-shadow: 0px 3px 8px -1px rgba(50, 50, 71, 0.05),
+    0px 0px 1px 0px rgba(12, 26, 75, 0.24);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
 }
-.profile-page .left-wrapper  .card-body .members-list .member-profile {
-    display: flex;
-    width: 100%;
-    align-items: center;
+.profile-page .left-wrapper .card-body .members-list .member-profile {
+  display: flex;
+  width: 100%;
+  align-items: center;
 }
-.profile-page .left-wrapper  .card-body .members-list img{
+.profile-page .left-wrapper .card-body .members-list img {
   width: 48px;
   height: 48px;
   border-radius: 100%;
@@ -411,28 +460,28 @@ body{
   object-fit: cover;
   backface-visibility: hidden;
 }
-.profile-page .left-wrapper  .card-body .members-list .member-info a{
-    color: var(--text-heading-dark, #27272E);
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 136.023%;
-    margin-bottom: 0;
-    text-decoration: none;
+.profile-page .left-wrapper .card-body .members-list .member-info a {
+  color: var(--text-heading-dark, #27272e);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 136.023%;
+  margin-bottom: 0;
+  text-decoration: none;
 }
-.profile-page .left-wrapper  .card-body .members-list .member-info  p{
-    color: var(--text-body-light, #425466);
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 23px;
-    margin-bottom: 0;
+.profile-page .left-wrapper .card-body .members-list .member-info p {
+  color: var(--text-body-light, #425466);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 23px;
+  margin-bottom: 0;
 }
 
 /* To post - write something */
-.profile-page .middle-wrapper .post .card{
+.profile-page .middle-wrapper .post .card {
   border-radius: 10px;
-  background: #FFF;
+  background: #fff;
   box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.14);
   margin-bottom: 24px;
 }
@@ -441,30 +490,34 @@ body{
   align-items: center;
   margin-bottom: 16px;
   padding-bottom: 16px;
-  border-bottom: 1px solid #F3F3F3;
+  border-bottom: 1px solid #f3f3f3;
 }
-.profile-page .middle-wrapper .post .card-body .write-something:hover button{
+.profile-page .middle-wrapper .post .card-body .write-something:hover button {
   color: var(--orange);
   animation: bounceText 1s ease 1;
- }
- @keyframes bounceText {
-   0%, 20%, 50%, 80%, 100% {
-     transform: translateY(0);
-   }
-   40% {
-     transform: translateY(-4px);
-   }
-   60% {
-     transform: translateY(-2px);
-   }
- }
-.profile-page .middle-wrapper .post .card-body .write-something img{
+}
+@keyframes bounceText {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-4px);
+  }
+  60% {
+    transform: translateY(-2px);
+  }
+}
+.profile-page .middle-wrapper .post .card-body .write-something img {
   width: 48px;
   height: 48px;
   flex-shrink: 0;
   border-radius: 48px;
-  border: 4px solid #FFF;
-  background:  lightgray 50% / cover no-repeat;
+  border: 4px solid #fff;
+  background: lightgray 50% / cover no-repeat;
   box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.12);
   margin-right: 8px;
   position: relative;
@@ -485,11 +538,11 @@ body{
   text-align: left;
   padding: 0;
 }
-.profile-page .middle-wrapper .post .card-body .post-features{
+.profile-page .middle-wrapper .post .card-body .post-features {
   display: flex;
   align-items: center;
 }
-.profile-page .middle-wrapper .post .card-body .post-features .features-button{
+.profile-page .middle-wrapper .post .card-body .post-features .features-button {
   color: #536471;
   font-size: 16px;
   font-style: normal;
@@ -502,37 +555,49 @@ body{
   text-align: left;
   padding: 0;
 }
-.profile-page .middle-wrapper .post .card-body .post-features .post-icon{
+.profile-page .middle-wrapper .post .card-body .post-features .post-icon {
   display: flex;
   align-items: center;
   margin: 0 8px;
   cursor: pointer;
 }
-.profile-page .middle-wrapper .post .card-body .post-features .post-icon:hover *{
+.profile-page
+  .middle-wrapper
+  .post
+  .card-body
+  .post-features
+  .post-icon:hover
+  * {
   color: var(--orange);
 }
-.profile-page .middle-wrapper .post .card-body .post-features .post-icon span{
+.profile-page .middle-wrapper .post .card-body .post-features .post-icon span {
   color: #536471;
   margin-right: 8px;
   transition: font-variation-setings 0.25s;
-  font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 48;
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
 }
-.profile-page .middle-wrapper .post .card-body .post-features .post-icon:hover span{
-  font-variation-settings: 'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 48;
+.profile-page
+  .middle-wrapper
+  .post
+  .card-body
+  .post-features
+  .post-icon:hover
+  span {
+  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 48;
 }
 
 /* Artist post */
-.profile-page .middle-wrapper .artist-post .card{
+.profile-page .middle-wrapper .artist-post .card {
   border-radius: 10px;
-  background: #FFF;
+  background: #fff;
   box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.14);
   margin-bottom: 24px;
 }
-.profile-page .middle-wrapper  .artist-post .card-header .user-posted-info{
+.profile-page .middle-wrapper .artist-post .card-header .user-posted-info {
   display: flex;
   align-items: center;
 }
-.profile-page .middle-wrapper  .artist-post .card-header .user-posted-info img{
+.profile-page .middle-wrapper .artist-post .card-header .user-posted-info img {
   width: 40px;
   height: 40px;
   flex-shrink: 0;
@@ -545,32 +610,32 @@ body{
   object-fit: cover;
   backface-visibility: hidden;
 }
-.profile-page .middle-wrapper  .artist-post .card-header .group-posted .name{
-  color: #0F1419;
+.profile-page .middle-wrapper .artist-post .card-header .group-posted .name {
+  color: #0f1419;
   font-size: 18px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
   text-decoration: none;
 }
-.profile-page .middle-wrapper  .artist-post .card-header .group-posted .ago{
+.profile-page .middle-wrapper .artist-post .card-header .group-posted .ago {
   color: #536471;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
 }
-.profile-page .middle-wrapper  .artist-post .card-header .group-posted p{
+.profile-page .middle-wrapper .artist-post .card-header .group-posted p {
   margin: 0;
 }
-.profile-page .middle-wrapper  .artist-post .card-header .more-options{
+.profile-page .middle-wrapper .artist-post .card-header .more-options {
   position: relative;
   cursor: pointer;
 }
-.profile-page .middle-wrapper  .artist-post .card-header .more-options span{
+.profile-page .middle-wrapper .artist-post .card-header .more-options span {
   color: #536471;
 }
-.profile-page .middle-wrapper  .artist-post .card-header .show-more-options {
+.profile-page .middle-wrapper .artist-post .card-header .show-more-options {
   position: absolute;
   left: 75%;
   width: 9.875rem;
@@ -580,73 +645,96 @@ body{
   padding: 1.13rem 0.94rem;
   z-index: 1;
 }
-.profile-page .middle-wrapper  .pinned-post{
+.profile-page .middle-wrapper .pinned-post {
   margin-bottom: 0.5rem;
 }
-.profile-page .middle-wrapper  .artist-post .card-header .show-more-options .more-options-list-wrapper img,
-.profile-page .middle-wrapper  .pinned-post img{
+.profile-page
+  .middle-wrapper
+  .artist-post
+  .card-header
+  .show-more-options
+  .more-options-list-wrapper
+  img,
+.profile-page .middle-wrapper .pinned-post img {
   width: 1.5rem;
   height: 1.5rem;
   margin-right: 0.5rem;
 }
-.profile-page .middle-wrapper  .artist-post .card-header .show-more-options .more-options-list-wrapper h5,
-.profile-page .middle-wrapper .pinned-post h5{
+.profile-page
+  .middle-wrapper
+  .artist-post
+  .card-header
+  .show-more-options
+  .more-options-list-wrapper
+  h5,
+.profile-page .middle-wrapper .pinned-post h5 {
   color: #425466;
   font-size: 1rem;
   font-weight: 500;
   margin-bottom: 0;
 }
-.profile-page .middle-wrapper  .artist-post .card-header .show-more-options .more-options-list{
+.profile-page
+  .middle-wrapper
+  .artist-post
+  .card-header
+  .show-more-options
+  .more-options-list {
   cursor: pointer;
   margin-bottom: 0.88rem;
 }
-.profile-page .middle-wrapper  .artist-post .card-header .show-more-options .more-options-list:last-child{
-  margin-bottom: 0!important;
+.profile-page
+  .middle-wrapper
+  .artist-post
+  .card-header
+  .show-more-options
+  .more-options-list:last-child {
+  margin-bottom: 0 !important;
 }
-.profile-page .middle-wrapper  .artist-post .card-header{
+.profile-page .middle-wrapper .artist-post .card-header {
   border: 0;
 }
-.profile-page .middle-wrapper  .artist-post .card-body p{
-  color: #0F1419;
+.profile-page .middle-wrapper .artist-post .card-body p {
+  color: #0f1419;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   margin-top: 0;
 }
-.profile-page .middle-wrapper  .artist-post .card-body .posted-file{
+.profile-page .middle-wrapper .artist-post .card-body .posted-file {
   /* display: contents; */
 }
 
 /* one file uploaded */
-.profile-page .middle-wrapper  .artist-post .card-body .uploaded-one{
+.profile-page .middle-wrapper .artist-post .card-body .uploaded-one {
   position: relative;
-  padding: 0% .5%;
+  padding: 0% 0.5%;
   display: inline-flex;
   margin: 0;
-  width: 100%!important;
+  width: 100% !important;
 }
-.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-one video,
-.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-one img{
-  height: 21.563rem!important;
-  width: 100%!important;
+.profile-page .middle-wrapper .artist-post .card-body .uploaded-one video,
+.profile-page .middle-wrapper .artist-post .card-body .uploaded-one img {
+  height: 21.563rem !important;
+  width: 100% !important;
   position: relative;
   object-fit: cover;
   backface-visibility: hidden;
 }
 
 /* two files uploaded */
-.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-two{
+.profile-page .middle-wrapper .artist-post .card-body .uploaded-two {
   position: relative;
-  padding: 0% .5%;
+  padding: 0% 0.5%;
   margin-bottom: 0.62rem;
   display: contents;
   width: 99%;
   margin: 0;
 }
-.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-two video, .profile-page .middle-wrapper  .artist-post .card-body  .uploaded-two img {
-  height: 24.9375rem!important;
-  width: 49%!important;
+.profile-page .middle-wrapper .artist-post .card-body .uploaded-two video,
+.profile-page .middle-wrapper .artist-post .card-body .uploaded-two img {
+  height: 24.9375rem !important;
+  width: 49% !important;
   position: relative;
   -o-object-fit: cover;
   object-fit: cover;
@@ -655,39 +743,54 @@ body{
 }
 
 /* three files uploaded */
-.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-three-top{
+.profile-page .middle-wrapper .artist-post .card-body .uploaded-three-top {
   position: relative;
-  padding: 0% .5%;
+  padding: 0% 0.5%;
   margin-bottom: 0.62rem;
   display: contents;
   width: 99%;
   margin: 0;
 }
-.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-three-left,
-.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-three-right{
+.profile-page .middle-wrapper .artist-post .card-body .uploaded-three-left,
+.profile-page .middle-wrapper .artist-post .card-body .uploaded-three-right {
   position: relative;
-  padding: 0% .5%;
+  padding: 0% 0.5%;
   margin-bottom: 0.62rem;
   display: contents;
   width: 50%;
   margin: 0;
 }
-.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-three-top video, 
-.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-three-top img {
-  height: 15.75rem!important;
-  width: 100%!important;
+.profile-page .middle-wrapper .artist-post .card-body .uploaded-three-top video,
+.profile-page .middle-wrapper .artist-post .card-body .uploaded-three-top img {
+  height: 15.75rem !important;
+  width: 100% !important;
   position: relative;
   -o-object-fit: cover;
   object-fit: cover;
   backface-visibility: hidden;
   padding: 0 0.5% 1%;
 }
-.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-three-left video,
-.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-three-left img,
-.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-three-right video,
-.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-three-right img{
-  height: 12.75rem!important;
-  width: 50%!important;
+.profile-page
+  .middle-wrapper
+  .artist-post
+  .card-body
+  .uploaded-three-left
+  video,
+.profile-page .middle-wrapper .artist-post .card-body .uploaded-three-left img,
+.profile-page
+  .middle-wrapper
+  .artist-post
+  .card-body
+  .uploaded-three-right
+  video,
+.profile-page
+  .middle-wrapper
+  .artist-post
+  .card-body
+  .uploaded-three-right
+  img {
+  height: 12.75rem !important;
+  width: 50% !important;
   position: relative;
   -o-object-fit: cover;
   object-fit: cover;
@@ -695,25 +798,37 @@ body{
   padding: 0 0.5%;
 }
 /* 4 or more files uploaded */
-.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-four{
-  width: 100%!important;
+.profile-page .middle-wrapper .artist-post .card-body .uploaded-four {
+  width: 100% !important;
   position: relative;
-  padding: 0% .5%;
+  padding: 0% 0.5%;
   margin-bottom: 0.62rem;
   display: contents;
   margin: 0;
 }
-.profile-page .middle-wrapper  .artist-post .card-body .posted-file .uploaded-four img,
-.profile-page .middle-wrapper  .artist-post .card-body .posted-file .uploaded-four video{
+.profile-page
+  .middle-wrapper
+  .artist-post
+  .card-body
+  .posted-file
+  .uploaded-four
+  img,
+.profile-page
+  .middle-wrapper
+  .artist-post
+  .card-body
+  .posted-file
+  .uploaded-four
+  video {
   height: 13.3125rem;
-  width: 50%!important;
+  width: 50% !important;
   position: relative;
   -o-object-fit: cover;
   object-fit: cover;
   backface-visibility: hidden;
   padding: 0 0.5% 1%;
 }
-.profile-page .middle-wrapper  .artist-post .card-body .posted-file .file-count {
+.profile-page .middle-wrapper .artist-post .card-body .posted-file .file-count {
   margin: 0;
   position: absolute;
   top: 50%;
@@ -726,20 +841,38 @@ body{
   color: white;
 }
 
-.profile-page .middle-wrapper  .artist-post .card-footer {
+.profile-page .middle-wrapper .artist-post .card-footer {
   border: 0;
   padding: 5px 17px 17px 17px;
 }
-.profile-page .middle-wrapper  .artist-post .card-footer .post-actions .post-icon{
+.profile-page
+  .middle-wrapper
+  .artist-post
+  .card-footer
+  .post-actions
+  .post-icon {
   display: flex;
   align-items: center;
   margin-right: 24px;
 }
-.profile-page .middle-wrapper  .artist-post .card-footer .post-actions .post-icon span{
+.profile-page
+  .middle-wrapper
+  .artist-post
+  .card-footer
+  .post-actions
+  .post-icon
+  span {
   margin-right: 8px;
-  color: #B8BBCF;
+  color: #b8bbcf;
 }
-.profile-page .middle-wrapper  .artist-post .card-footer .post-actions .post-icon p, .profile-page .middle-wrapper  .artist-post .card-footer .comments p{
+.profile-page
+  .middle-wrapper
+  .artist-post
+  .card-footer
+  .post-actions
+  .post-icon
+  p,
+.profile-page .middle-wrapper .artist-post .card-footer .comments p {
   color: #536471;
   font-size: 12px;
   font-style: normal;
@@ -749,41 +882,44 @@ body{
 }
 
 /* Artist post zero state screen */
-.profile-page .middle-wrapper  .artist-post .no-post {
+.profile-page .middle-wrapper .artist-post .no-post {
   padding: 4.81rem 0;
 }
-.profile-page .middle-wrapper  .artist-post .no-post .no-post-icon {
+.profile-page .middle-wrapper .artist-post .no-post .no-post-icon {
   margin-bottom: 0.75rem;
 }
-.profile-page .middle-wrapper  .artist-post .no-post-title{
+.profile-page .middle-wrapper .artist-post .no-post-title {
   color: var(--gray2);
   font-size: 0.875rem;
   font-weight: 600;
 }
 
-
-
 /* Right Side Bar / Top & Bottom */
-.profile-page .right-wrapper .past-events .card-body .header, .profile-page .right-wrapper .original-songs .card-body .header {
+.profile-page .right-wrapper .past-events .card-body .header,
+.profile-page .right-wrapper .original-songs .card-body .header {
   margin-bottom: 20px;
 }
-.profile-page .right-wrapper .past-events .header .title, .profile-page .right-wrapper .original-songs .header .title{
+.profile-page .right-wrapper .past-events .header .title,
+.profile-page .right-wrapper .original-songs .header .title {
   align-items: center;
 }
-.profile-page .right-wrapper .past-events .header span, .profile-page .right-wrapper .original-songs .header span {
+.profile-page .right-wrapper .past-events .header span,
+.profile-page .right-wrapper .original-songs .header span {
   margin-right: 6px;
-  color: #B8BBCF;
+  color: #b8bbcf;
 }
-.profile-page .right-wrapper .past-events .header h5, .profile-page .right-wrapper .original-songs .header h5{
-  color: #27272E;
+.profile-page .right-wrapper .past-events .header h5,
+.profile-page .right-wrapper .original-songs .header h5 {
+  color: #27272e;
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
   line-height: 136.523%;
   text-decoration: none;
 }
-.profile-page .right-wrapper .past-events .see-all a, .profile-page .right-wrapper .original-songs .see-all a{
-  color: #FF6B00;
+.profile-page .right-wrapper .past-events .see-all a,
+.profile-page .right-wrapper .original-songs .see-all a {
+  color: #ff6b00;
   text-align: right;
   font-size: 12px;
   font-style: normal;
@@ -794,37 +930,57 @@ body{
 
 /* Past Events / Original Songs - zero state screen  */
 .profile-page .right-wrapper .past-events .card-body .no-events-posted,
-.profile-page .right-wrapper .original-songs .no-original-songs{
+.profile-page .right-wrapper .original-songs .no-original-songs {
   padding: 3.06rem 0 6.19rem;
 }
-.profile-page .right-wrapper .past-events .card-body .no-events-posted .no-events-posted-icon,
-.profile-page .right-wrapper .original-songs .no-original-songs, .no-original-songs-icon {
+.profile-page
+  .right-wrapper
+  .past-events
+  .card-body
+  .no-events-posted
+  .no-events-posted-icon,
+.profile-page .right-wrapper .original-songs .no-original-songs,
+.no-original-songs-icon {
   margin-bottom: 0.75rem;
 }
-.profile-page .right-wrapper .past-events .card-body .no-events-posted .no-events-posted-title,
-.profile-page .right-wrapper .original-songs .no-original-songs-title{
+.profile-page
+  .right-wrapper
+  .past-events
+  .card-body
+  .no-events-posted
+  .no-events-posted-title,
+.profile-page .right-wrapper .original-songs .no-original-songs-title {
   color: var(--gray2);
   font-size: 0.875rem;
   font-weight: 600;
   margin-bottom: 0;
 }
 
-.profile-page .right-wrapper .past-events .card-body .events-list, 
+.profile-page .right-wrapper .past-events .card-body .events-list,
 .profile-page .right-wrapper .original-songs .songs-list {
-    border-radius: 10px;
-    background: #FFF;
-    padding: 16px;
-    box-shadow: 0px 3px 8px -1px rgba(50, 50, 71, 0.05), 0px 0px 1px 0px rgba(12, 26, 75, 0.24);
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
+  border-radius: 10px;
+  background: #fff;
+  padding: 16px;
+  box-shadow: 0px 3px 8px -1px rgba(50, 50, 71, 0.05),
+    0px 0px 1px 0px rgba(12, 26, 75, 0.24);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
 }
-.profile-page .right-wrapper .past-events .card-body .events-list .events-info, .profile-page .right-wrapper .original-songs .songs-list .songs-info{
-    display: flex;
-    width: 93%;
-    align-items: center;
+.profile-page .right-wrapper .past-events .card-body .events-list .events-info,
+.profile-page .right-wrapper .original-songs .songs-list .songs-info {
+  display: flex;
+  width: 93%;
+  align-items: center;
 }
-.profile-page .right-wrapper .past-events .card-body .events-list .events-info img, .profile-page .right-wrapper .original-songs .songs-list .songs-info img{
+.profile-page
+  .right-wrapper
+  .past-events
+  .card-body
+  .events-list
+  .events-info
+  img,
+.profile-page .right-wrapper .original-songs .songs-list .songs-info img {
   width: 4.4375rem;
   height: 4.4375rem;
   flex-shrink: 0;
@@ -833,11 +989,18 @@ body{
   object-fit: cover;
   backface-visibility: hidden;
   border-radius: 10px;
-  background: lightgray 50% / cover no-repeat, #D9D9D9;
+  background: lightgray 50% / cover no-repeat, #d9d9d9;
   margin-right: 8px;
 }
-.profile-page .right-wrapper .past-events .card-body .events-list .events-info a, .profile-page .right-wrapper .original-songs .songs-list .songs-info a {
-  color: var(--text-heading-dark, #27272E);
+.profile-page
+  .right-wrapper
+  .past-events
+  .card-body
+  .events-list
+  .events-info
+  a,
+.profile-page .right-wrapper .original-songs .songs-list .songs-info a {
+  color: var(--text-heading-dark, #27272e);
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -845,7 +1008,14 @@ body{
   margin-bottom: 0;
   text-decoration: none;
 }
-.profile-page .right-wrapper .past-events .card-body .events-list .events-info  p, .profile-page .right-wrapper .original-songs .songs-list .songs-info p {
+.profile-page
+  .right-wrapper
+  .past-events
+  .card-body
+  .events-list
+  .events-info
+  p,
+.profile-page .right-wrapper .original-songs .songs-list .songs-info p {
   color: var(--text-body-light, #425466);
   font-size: 14px;
   font-style: normal;
@@ -853,26 +1023,36 @@ body{
   line-height: 23px;
   margin-bottom: 0;
 }
-.profile-page .right-wrapper .past-events .card-body .events-list .more, .profile-page .right-wrapper .original-songs .songs-list .more {
+.profile-page .right-wrapper .past-events .card-body .events-list .more,
+.profile-page .right-wrapper .original-songs .songs-list .more {
   width: 7%;
 }
-.profile-page .right-wrapper .past-events .card-body .events-list .more span, .profile-page .right-wrapper .original-songs .songs-list .more span {
-  color: #7A7A9D;
+.profile-page .right-wrapper .past-events .card-body .events-list .more span,
+.profile-page .right-wrapper .original-songs .songs-list .more span {
+  color: #7a7a9d;
 }
-.profile-page .right-wrapper .past-events .card-body .events-list .member-info .text-orange{
-  color: #FF6B00;
+.profile-page
+  .right-wrapper
+  .past-events
+  .card-body
+  .events-list
+  .member-info
+  .text-orange {
+  color: #ff6b00;
 }
 
 /* About tab */
-.profile-page .about-tab, .profile-page .events-tab {
+.profile-page .about-tab,
+.profile-page .events-tab {
   border-radius: 10px;
-  background: #FFF;
+  background: #fff;
   box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.14);
   padding: 90px;
-  margin: 0 .1%;
+  margin: 0 0.1%;
   position: relative;
 }
-.profile-page .about-tab .overview, .profile-page .events-tab h2{
+.profile-page .about-tab .overview,
+.profile-page .events-tab h2 {
   color: #111827;
   font-size: 32px;
   font-style: normal;
@@ -880,27 +1060,27 @@ body{
   line-height: normal;
   letter-spacing: -0.96px;
 }
-.profile-page .about-tab .content, 
+.profile-page .about-tab .content,
 .profile-page .about-tab .capacity,
 .profile-page .about-tab .capacity-list,
- .profile-page .about-tab .capacity-list li  {
-  color: #B8BBCF;
+.profile-page .about-tab .capacity-list li {
+  color: #b8bbcf;
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
 }
-.profile-page .about-tab  .capacity-list{
+.profile-page .about-tab .capacity-list {
   padding-left: 1rem;
   margin-bottom: 48px;
 }
-.profile-page .about-tab  .genres{
+.profile-page .about-tab .genres {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 18px;
 }
-.profile-page .about-tab .genres h4{
+.profile-page .about-tab .genres h4 {
   color: #111827;
   font-size: 24px;
   font-style: normal;
@@ -909,13 +1089,13 @@ body{
   letter-spacing: -0.72px;
   margin-bottom: 0;
 }
-.profile-page .about-tab .genres .genres-list{
+.profile-page .about-tab .genres .genres-list {
   display: block;
 }
 .profile-page .about-tab .genres .genres-list .badge {
   border-radius: 12px;
-  border: 2px solid #ABADC6;
-  color:  #ABADC6;
+  border: 2px solid #abadc6;
+  color: #abadc6;
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
@@ -925,11 +1105,11 @@ body{
   margin-bottom: 6px;
 }
 .profile-page .about-tab .social-media {
-  background: rgba(239, 243, 253, 0.50);
+  background: rgba(239, 243, 253, 0.5);
   padding: 10%;
   margin-bottom: 48px;
 }
-.profile-page .about-tab .social-media h4{
+.profile-page .about-tab .social-media h4 {
   color: #111827;
   font-size: 24px;
   font-style: normal;
@@ -938,16 +1118,16 @@ body{
   letter-spacing: -0.72px;
   margin-bottom: 18px;
 }
-.profile-page .about-tab .social-media ul{
+.profile-page .about-tab .social-media ul {
   list-style-type: none;
   padding-left: 0rem;
 }
-.profile-page .about-tab .social-media ul img{
+.profile-page .about-tab .social-media ul img {
   width: 32px;
   height: 32px;
   margin-right: 9px;
 }
-.profile-page .about-tab .social-media ul li{
+.profile-page .about-tab .social-media ul li {
   color: #121212;
   font-size: 16px;
   font-style: normal;
@@ -958,7 +1138,7 @@ body{
   display: flex;
   align-items: center;
 }
-.profile-page .about-tab .ratings h4{
+.profile-page .about-tab .ratings h4 {
   color: #111827;
   font-size: 24px;
   font-style: normal;
@@ -966,14 +1146,14 @@ body{
   line-height: normal;
   letter-spacing: -0.72px;
 }
-.profile-page .about-tab .ratings .ratings-wrapper{
+.profile-page .about-tab .ratings .ratings-wrapper {
   display: flex;
   align-items: center;
 }
 .profile-page .about-tab .ratings span {
-  color: #FF6B00;
+  color: #ff6b00;
   transition: font-variation-setings 0.25s;
-  font-variation-settings: 'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 48;
+  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 48;
   padding-right: 4px;
 }
 .profile-page .about-tab .ratings p {
@@ -986,7 +1166,7 @@ body{
   margin-top: 3px;
 }
 .profile-page .about-tab .ratings p .reviews {
-  color: #8C8C8C;
+  color: #8c8c8c;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -996,7 +1176,7 @@ body{
 }
 .profile-page .about-tab .band-members {
   margin-top: 60px;
-  border-top: 2px solid #E5E7EB;
+  border-top: 2px solid #e5e7eb;
 }
 .profile-page .about-tab .band-members h4 {
   color: #121212;
@@ -1009,7 +1189,7 @@ body{
   margin-bottom: 24px;
   margin-top: 32px;
 }
-.profile-page .about-tab .band-members .card{
+.profile-page .about-tab .band-members .card {
   width: 19%;
   border: 0;
   background: none;
@@ -1018,7 +1198,7 @@ body{
   margin-right: 1%;
   margin-bottom: 20px;
 }
-.profile-page .about-tab .band-members .card img{
+.profile-page .about-tab .band-members .card img {
   border-radius: 10px;
   position: relative;
   -o-object-fit: cover;
@@ -1027,10 +1207,10 @@ body{
   height: 254px;
   flex-shrink: 0;
 }
-.profile-page .about-tab .band-members .card .card-body{
+.profile-page .about-tab .band-members .card .card-body {
   padding-left: 1%;
 }
-.profile-page .about-tab .band-members .card .card-title{
+.profile-page .about-tab .band-members .card .card-title {
   color: #121212;
   font-size: 16px;
   font-style: normal;
@@ -1039,8 +1219,8 @@ body{
   letter-spacing: -0.32px;
   margin-bottom: 4px;
 }
-.profile-page .about-tab .band-members .card .card-text{
-  color: #AAA;
+.profile-page .about-tab .band-members .card .card-text {
+  color: #aaa;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -1050,12 +1230,12 @@ body{
 
 /* EVENTS TAB */
 
-.profile-page .events-tab h2{
+.profile-page .events-tab h2 {
   margin-bottom: 2.5rem;
 }
 .profile-page .events-tab > .row:first-of-type {
   padding-bottom: 2.38rem;
-  border-bottom: 2px solid #E5E7EB;
+  border-bottom: 2px solid #e5e7eb;
   margin-bottom: 4.38rem;
 }
 .profile-page .events-tab .card {
@@ -1067,11 +1247,11 @@ body{
 }
 .profile-page .events-tab .card .bg-wrapper {
   position: relative;
-  overflow: hidden!important;
+  overflow: hidden !important;
   height: 18.4375rem;
   border-radius: 0.25rem 0.25rem 0rem 0rem;
 }
-.profile-page .events-tab .card .bg-wrapper:hover .card-bg{
+.profile-page .events-tab .card .bg-wrapper:hover .card-bg {
   transform: scale(1.3);
 }
 .profile-page .events-tab .card .card-bg {
@@ -1081,7 +1261,7 @@ body{
   -o-object-fit: cover;
   object-fit: cover;
   left: 0;
-  transition: .6s ease;
+  transition: 0.6s ease;
   backface-visibility: hidden;
 }
 .profile-page .events-tab .card .organized-by img {
@@ -1124,33 +1304,33 @@ body{
 }
 .profile-page .events-tab .card .organized-by {
   width: 100%;
-  transition: .5s ease;
+  transition: 0.5s ease;
   position: absolute;
   bottom: 0;
   padding: 0.5rem 0.5rem 0.5rem 1.25rem;
   opacity: 0;
 }
 .profile-page .events-tab .card .bg-wrapper:hover .organized-by {
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.10) 0%, #000 100%);
-  overflow: hidden!important;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, #000 100%);
+  overflow: hidden !important;
   opacity: 1;
 }
 .profile-page .events-tab .event-details-wrap {
   margin-bottom: 1.56rem;
   gap: 1.25rem;
-  margin-left: .5rem;
+  margin-left: 0.5rem;
 }
-.profile-page .events-tab .event-details-wrap .month{
+.profile-page .events-tab .event-details-wrap .month {
   color: var(--orange);
   font-size: 0.75rem;
   font-weight: 700;
 }
-.profile-page .events-tab .event-details-wrap .num{
+.profile-page .events-tab .event-details-wrap .num {
   color: var(--black-color);
   font-size: 2rem;
   font-weight: 700;
 }
-.profile-page .events-tab .event-details-wrap .event-name{
+.profile-page .events-tab .event-details-wrap .event-name {
   color: var(--black);
   font-size: 1.25rem;
   font-weight: 700;
@@ -1164,7 +1344,7 @@ body{
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.profile-page .events-tab .event-details-wrap .event-place, 
+.profile-page .events-tab .event-details-wrap .event-place,
 .profile-page .events-tab .event-details-wrap .date-time {
   color: var(--gray2);
   font-size: 0.875rem;
@@ -1179,52 +1359,52 @@ body{
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.profile-page .events-tab .event-details-wrap .date-time{
+.profile-page .events-tab .event-details-wrap .date-time {
   color: var(--orange);
   margin-bottom: 0;
 }
-.profile-page .events-tab .event-details-wrap .upcoming{
+.profile-page .events-tab .event-details-wrap .upcoming {
   color: var(--gray2);
 }
 .profile-page .events-tab .card-body .view-details {
   color: var(--white);
   font-size: 1rem;
   font-weight: 600;
-  line-height: 1.5rem; 
+  line-height: 1.5rem;
   background: var(--orange);
   padding: 0.75rem 0px;
   width: 100%;
   border: 0;
 }
-.profile-page .events-tab .card-body .view-details:hover{
+.profile-page .events-tab .card-body .view-details:hover {
   background: var(--btn-hovered);
 }
 
 /* NO EVENTS ADDED */
-.profile-page .events-tab .no-events-wrap .no-events-icon{
+.profile-page .events-tab .no-events-wrap .no-events-icon {
   width: 6.375rem;
   height: 6.375rem;
   margin-bottom: 1.25rem;
 }
-.profile-page .events-tab .no-events-wrap .title{
+.profile-page .events-tab .no-events-wrap .title {
   color: var(--black);
   font-size: 2rem;
   font-weight: 600;
   letter-spacing: -0.1rem;
   margin-bottom: 0.5rem;
 }
-.profile-page .events-tab .no-events-wrap .description{
+.profile-page .events-tab .no-events-wrap .description {
   color: var(--gray2);
   font-size: 1.5rem;
   font-weight: 500;
   letter-spacing: -0.075rem;
   margin-bottom: 2.5rem;
 }
-.profile-page .events-tab .no-events-wrap .add-event{
+.profile-page .events-tab .no-events-wrap .add-event {
   color: var(--white);
   font-size: 1rem;
   font-weight: 700;
-  line-height: 100%; 
+  line-height: 100%;
   letter-spacing: 0.05rem;
   padding: 1rem 3.16rem;
   border-radius: 0.375rem;
@@ -1233,41 +1413,48 @@ body{
 
 /* SONGS TAB */
 
-.profile-page .songs-tab, .profile-page .videos-tab, .profile-page .photos-tab {
+.profile-page .songs-tab,
+.profile-page .videos-tab,
+.profile-page .photos-tab {
   border-radius: 0.3125rem;
   background: var(--white);
   box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.12);
-  margin: 0 .1% 10rem;
+  margin: 0 0.1% 10rem;
   position: relative;
 }
 /* zero state screen for SONGS TAB / VIDEOS TAB / PHOTOS TAB/   */
-.profile-page .songs-tab .no-songs, 
-.profile-page .videos-tab .no-videos, 
+.profile-page .songs-tab .no-songs,
+.profile-page .videos-tab .no-videos,
 .profile-page .photos-tab .no-photos,
-.profile-page .events-tab .no-events-wrap{
+.profile-page .events-tab .no-events-wrap {
   padding: 7.19rem 0;
   width: 60%;
   margin: 0 auto 1.25rem;
 }
-.profile-page .songs-tab .description-wrapper, .profile-page .videos-tab .description-wrapper, .profile-page .photos-tab .description-wrapper  {
+.profile-page .songs-tab .description-wrapper,
+.profile-page .videos-tab .description-wrapper,
+.profile-page .photos-tab .description-wrapper {
   margin-bottom: 2.5rem;
 }
-.profile-page .songs-tab .description-wrapper .title, .profile-page .videos-tab .description-wrapper .title,
-.profile-page .photos-tab .description-wrapper .title{
+.profile-page .songs-tab .description-wrapper .title,
+.profile-page .videos-tab .description-wrapper .title,
+.profile-page .photos-tab .description-wrapper .title {
   color: var(--black);
   font-size: 2rem;
   font-weight: 600;
   letter-spacing: -0.1rem;
   margin-bottom: 0.5rem;
 }
-.profile-page .songs-tab .description-wrapper .sub-title, .profile-page .videos-tab .description-wrapper .sub-title,
+.profile-page .songs-tab .description-wrapper .sub-title,
+.profile-page .videos-tab .description-wrapper .sub-title,
 .profile-page .photos-tab .description-wrapper .sub-title {
   color: var(--gray2);
   font-size: 1.5rem;
   font-weight: 500;
   letter-spacing: -0.075rem;
 }
-.profile-page .songs-tab .upload-songs, .profile-page .videos-tab .upload-video, 
+.profile-page .songs-tab .upload-songs,
+.profile-page .videos-tab .upload-video,
 .profile-page .photos-tab .upload-photos {
   color: var(--white);
   font-size: 1rem;
@@ -1277,43 +1464,44 @@ body{
   padding: 1rem 2.28rem;
   background-color: var(--orange);
 }
-.profile-page .songs-tab .upload-songs:hover, .profile-page .videos-tab .upload-video:hover,
-.profile-page .photos-tab .upload-photos:hover{
+.profile-page .songs-tab .upload-songs:hover,
+.profile-page .videos-tab .upload-video:hover,
+.profile-page .photos-tab .upload-photos:hover {
   background-color: var(--btn-hovered);
 }
 
 /* Artist profile form */
-.profile-details .container{
+.profile-details .container {
   margin: 5rem auto;
 }
-.profile-details .container .title{
-  color: #1D1D1D;
+.profile-details .container .title {
+  color: #1d1d1d;
   font-size: 2.3rem;
   font-weight: 700;
   line-height: 140%;
   letter-spacing: -0.05rem;
 }
-.profile-details .container .sub-heading{
-  color: #8690A2;
+.profile-details .container .sub-heading {
+  color: #8690a2;
   font-size: 1.25rem;
   font-weight: 500;
-  line-height: 140%; 
+  line-height: 140%;
   letter-spacing: -0.025rem;
   margin-bottom: 2.5rem;
 }
-.profile-details .container .profile-details{
-  color: #1D1D1D;
+.profile-details .container .profile-details {
+  color: #1d1d1d;
   font-size: 1.75rem;
   font-weight: 700;
   line-height: 140%;
   letter-spacing: -0.035rem;
   margin-bottom: 2.5rem;
 }
-.profile-details .container .back-wrapper{
+.profile-details .container .back-wrapper {
   margin-bottom: 2.5rem;
 }
-.profile-details .container .back-wrapper .back{
-  color: #2D3748;
+.profile-details .container .back-wrapper .back {
+  color: #2d3748;
   font-size: 1.25rem;
   font-style: normal;
   font-weight: 500;
@@ -1324,28 +1512,28 @@ body{
   display: flex;
   align-items: center;
 }
-.profile-details .container .back-wrapper .back:hover{
-  color: #FF6B00;
+.profile-details .container .back-wrapper .back:hover {
+  color: #ff6b00;
 }
-.profile-details .container .back-wrapper .back:hover span{
-  background:  #FF6B00;
-  color: #FFF;
-  border: 2px solid #FFF;
+.profile-details .container .back-wrapper .back:hover span {
+  background: #ff6b00;
+  color: #fff;
+  border: 2px solid #fff;
 }
 .profile-details .container .back-wrapper span {
-  color: #FF6B00;
+  color: #ff6b00;
   border-radius: 2.75rem;
-  border: 2px solid #DFDFE6;
-  background: #FFF;
+  border: 2px solid #dfdfe6;
+  background: #fff;
   margin-right: 0.75rem;
-  padding: 0.60rem;
+  padding: 0.6rem;
 }
-.profile-details .container .fill-details  .upload-img {
+.profile-details .container .fill-details .upload-img {
   margin: 0rem auto 1rem;
   display: flex;
   align-items: center;
 }
-.profile-details .container .fill-details  .upload-img .label-img{
+.profile-details .container .fill-details .upload-img .label-img {
   position: relative;
 }
 .profile-details .upload-img .label-img .default-avatar {
@@ -1377,40 +1565,46 @@ body{
   width: 100%;
   opacity: 0;
 }
-.profile-details .container .fill-details  .upload-img .label-img .camera input{
+.profile-details .container .fill-details .upload-img .label-img .camera input {
   background-color: transparent;
-  margin-bottom: 0rem!important;
+  margin-bottom: 0rem !important;
 }
-.profile-details .container .fill-details .upload-img .label-img  .camera-outer {
+.profile-details .container .fill-details .upload-img .label-img .camera-outer {
   color: #fff;
   padding: 0.7rem;
   border-radius: 33px;
-  background: #FF6B00;
-  font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 48;
+  background: #ff6b00;
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
   font-size: 20px;
   position: absolute;
   top: 70%;
   left: 72%;
-  border: 1px solid #FF6B00;
+  border: 1px solid #ff6b00;
 }
-.profile-details .container .fill-details .upload-img .label-img:hover .camera-outer{
+.profile-details
+  .container
+  .fill-details
+  .upload-img
+  .label-img:hover
+  .camera-outer {
   border: 1px solid #fff;
 }
-.profile-details .container .fill-details .form-group{
+.profile-details .container .fill-details .form-group {
   margin-bottom: 1.75rem;
 }
-.profile-details .container .fill-details .required-fields label, .profile-details .container .fill-details .band-and-social,
-.profile-details .fill-details .form-about-artist label{
+.profile-details .container .fill-details .required-fields label,
+.profile-details .container .fill-details .band-and-social,
+.profile-details .fill-details .form-about-artist label {
   color: #121212;
   font-size: 1.25rem;
   font-weight: 600;
   letter-spacing: -0.025rem;
   margin-bottom: 0.63rem;
 }
-.profile-details .container .fill-details .required-fields .typeArtist{
+.profile-details .container .fill-details .required-fields .typeArtist {
   margin-top: 2.5rem;
 }
-.profile-details .container .fill-details .upload-img .description{
+.profile-details .container .fill-details .upload-img .description {
   color: #121212;
   font-size: 1.25rem;
   font-weight: 600;
@@ -1418,100 +1612,156 @@ body{
   margin-bottom: 0.62rem;
   margin-left: 1.3rem;
 }
-.profile-details .container .fill-details .required-fields select, .profile-details .container .fill-details .required-fields input {
-  padding: .8rem;
+.profile-details .container .fill-details .required-fields select,
+.profile-details .container .fill-details .required-fields input {
+  padding: 0.8rem;
   color: var(--black-color);
   font-size: 1rem;
   font-weight: 500;
-  line-height: 1.3125rem; 
+  line-height: 1.3125rem;
 }
 .profile-details .container .fill-details .required-fields .multiselect-tags {
   padding-top: 0.8rem;
   padding-bottom: 0.75rem;
   margin-top: 0;
 }
-.profile-details .container .fill-details .required-fields .multiselect-tags-search{
-  padding: 0!important;
+.profile-details
+  .container
+  .fill-details
+  .required-fields
+  .multiselect-tags-search {
+  padding: 0 !important;
 }
 /* WebKit, Edge */
-.profile-details .container .fill-details .required-fields select::-webkit-input-placeholder,
-.profile-details .container .fill-details .required-fields input ::-webkit-input-placeholder,
-.profile-details .fill-details .form-about-artist textarea:-webkit-input-placeholder{
+.profile-details
+  .container
+  .fill-details
+  .required-fields
+  select::-webkit-input-placeholder,
+.profile-details
+  .container
+  .fill-details
+  .required-fields
+  input
+  ::-webkit-input-placeholder,
+.profile-details
+  .fill-details
+  .form-about-artist
+  textarea:-webkit-input-placeholder {
   color: var(--gray6);
   font-size: 1rem;
   font-weight: 500;
-  line-height: 1.3125rem; 
+  line-height: 1.3125rem;
 }
 /* Firefox 4-18 */
-.profile-details .container .fill-details .required-fields select:-moz-placeholder,
-.profile-details .container .fill-details .required-fields input:-moz-placeholder,
-.profile-details .fill-details .form-about-artist textarea:-moz-placeholder{ 
+.profile-details
+  .container
+  .fill-details
+  .required-fields
+  select:-moz-placeholder,
+.profile-details
+  .container
+  .fill-details
+  .required-fields
+  input:-moz-placeholder,
+.profile-details .fill-details .form-about-artist textarea:-moz-placeholder {
   color: var(--gray6);
   font-size: 1rem;
   font-weight: 500;
-  line-height: 1.3125rem; 
+  line-height: 1.3125rem;
 }
 /* Firefox 19+ */
-.profile-details .container .fill-details .required-fields select::-moz-placeholder,
-.profile-details .container .fill-details .required-fields input::-moz-placeholder,
-.profile-details .fill-details .form-about-artist textarea::-moz-placeholder{ 
+.profile-details
+  .container
+  .fill-details
+  .required-fields
+  select::-moz-placeholder,
+.profile-details
+  .container
+  .fill-details
+  .required-fields
+  input::-moz-placeholder,
+.profile-details .fill-details .form-about-artist textarea::-moz-placeholder {
   color: var(--gray6);
   font-size: 1rem;
   font-weight: 500;
-  line-height: normal; 
+  line-height: normal;
 }
 /* IE 10-11 */
-.profile-details .container .fill-details .required-fields select:-ms-input-placeholder, 
-.profile-details .container .fill-details .required-fields input:-ms-input-placeholder,  
-.profile-details .fill-details .form-about-artist textarea:-ms-input-placeholder{ 
+.profile-details
+  .container
+  .fill-details
+  .required-fields
+  select:-ms-input-placeholder,
+.profile-details
+  .container
+  .fill-details
+  .required-fields
+  input:-ms-input-placeholder,
+.profile-details
+  .fill-details
+  .form-about-artist
+  textarea:-ms-input-placeholder {
   color: var(--gray6);
   font-size: 1rem;
   font-weight: 500;
-  line-height: 1.3125rem; 
+  line-height: 1.3125rem;
 }
 /* Edge */
-.profile-details .container .fill-details .required-fields select::-ms-input-placeholder,
-.profile-details .container .fill-details .required-fields input::-ms-input-placeholder,
-.profile-details .fill-details .form-about-artist textarea::-ms-input-placeholder{ 
+.profile-details
+  .container
+  .fill-details
+  .required-fields
+  select::-ms-input-placeholder,
+.profile-details
+  .container
+  .fill-details
+  .required-fields
+  input::-ms-input-placeholder,
+.profile-details
+  .fill-details
+  .form-about-artist
+  textarea::-ms-input-placeholder {
   color: var(--gray6);
   font-size: 1rem;
   font-weight: 500;
-  line-height: 1.3125rem; 
+  line-height: 1.3125rem;
 }
 /* MODERN BROWSER */
-.profile-details .container .fill-details .required-fields select::placeholder, 
-.profile-details .container .fill-details .required-fields input::placeholder, 
-.profile-details .fill-details .form-about-artist textarea::placeholder { 
+.profile-details .container .fill-details .required-fields select::placeholder,
+.profile-details .container .fill-details .required-fields input::placeholder,
+.profile-details .fill-details .form-about-artist textarea::placeholder {
   color: var(--gray6);
   font-size: 1rem;
   font-weight: 500;
-  line-height: 1.3125rem; 
+  line-height: 1.3125rem;
 }
-.profile-details .fill-details .form-about-artist textarea::placeholder{
+.profile-details .fill-details .form-about-artist textarea::placeholder {
   padding: 0.2rem;
 }
 
-.profile-details .container .fill-details .form-group .hidden{
+.profile-details .container .fill-details .form-group .hidden {
   opacity: 0;
 }
-.profile-details .container .fill-details .form-group .multiselect{
+.profile-details .container .fill-details .form-group .multiselect {
   margin: 0rem;
 }
-.profile-details .container .fill-details .form-group .multiselect-tag{
-  color: #FF6B00;
+.profile-details .container .fill-details .form-group .multiselect-tag {
+  color: #ff6b00;
   font-size: 0.875rem;
   font-style: normal;
   font-weight: 600;
   line-height: 140%;
   letter-spacing: -0.0175rem;
   border-radius: 0.375rem;
-  background: #FED7AA;
+  background: #fed7aa;
   padding-bottom: 0;
 }
-.profile-details .container .fill-details .form-group .add-member, .profile-details .container .fill-details .form-group .add-social-media {
+.profile-details .container .fill-details .form-group .add-member,
+.profile-details .container .fill-details .form-group .add-social-media {
   border: 0;
   background-color: #fff;
-  color: #FF6B00;
+  color: #ff6b00;
   font-size: 1rem;
   font-style: normal;
   font-weight: 500;
@@ -1521,27 +1771,36 @@ body{
   align-items: center;
   padding: 0.5rem 0 0;
 }
-.profile-details .container .fill-details .form-group .add-member span, .profile-details .container .fill-details .form-group .add-social-media span {
-  color: #FF6B00;
-  margin-right: 0.60rem;
+.profile-details .container .fill-details .form-group .add-member span,
+.profile-details .container .fill-details .form-group .add-social-media span {
+  color: #ff6b00;
+  margin-right: 0.6rem;
 }
-.profile-details .container .fill-details .band-members .list-group-item, #editBandMembers .list-group-item{
+.profile-details .container .fill-details .band-members .list-group-item,
+#editBandMembers .list-group-item {
   border-radius: 0.3125rem;
-  border: 1px solid #B8BBCF;
+  border: 1px solid #b8bbcf;
   margin-bottom: 1.25rem;
   display: flex;
   align-items: center;
-  gap: .3rem;
+  gap: 0.3rem;
   padding: 1rem 1.5rem;
 }
-.profile-details .container .fill-details .band-members .list-group-item .items, #editBandMembers .list-group-item .items {
+.profile-details .container .fill-details .band-members .list-group-item .items,
+#editBandMembers .list-group-item .items {
   float: left;
   width: 90%;
   display: flex;
   align-items: center;
   gap: 1rem;
 }
-.profile-details .container .fill-details .band-members .list-group-item .items .band-name,
+.profile-details
+  .container
+  .fill-details
+  .band-members
+  .list-group-item
+  .items
+  .band-name,
 .profile-details .container .fill-details .card .card-body .card-title,
 #editBandMembers .list-group-item .items .band-name {
   color: #121212;
@@ -1551,7 +1810,13 @@ body{
   line-height: 136.023%;
   margin-bottom: 0;
 }
-.profile-details .container .fill-details .band-members .list-group-item .items .band-role,
+.profile-details
+  .container
+  .fill-details
+  .band-members
+  .list-group-item
+  .items
+  .band-role,
 .profile-details .container .fill-details .card .card-body .card-text,
 #editBandMembers .list-group-item .items .band-role {
   color: var(--text-body-light, #425466);
@@ -1562,8 +1827,13 @@ body{
   line-height: 1.4375rem;
   margin-bottom: 0;
 }
-.profile-details .container .fill-details .band-members .list-group-item .options,
-#editBandMembers .list-group-item .options{
+.profile-details
+  .container
+  .fill-details
+  .band-members
+  .list-group-item
+  .options,
+#editBandMembers .list-group-item .options {
   float: right;
   width: 10%;
 }
@@ -1579,69 +1849,99 @@ body{
   height: 50px;
   border-radius: 50%;
 }
-.profile-details .container .fill-details .band-members .list-group-item:hover img,
-#editBandMembers .list-group-item:hover .options img  {
+.profile-details
+  .container
+  .fill-details
+  .band-members
+  .list-group-item:hover
+  img,
+#editBandMembers .list-group-item:hover .options img {
   opacity: 1;
 }
-.profile-details .fill-details .band-members .edit-band-member-wrapper .edit-band-member,
-.profile-details .fill-details .band-members .delete-band-member-wrapper .delete-band-member,
-#editBandMembers .list-group-item  .edit-band-member-wrapper .edit-band-member, 
-#editBandMembers .list-group-item  .delete-band-member-wrapper .delete-band-member{
+.profile-details
+  .fill-details
+  .band-members
+  .edit-band-member-wrapper
+  .edit-band-member,
+.profile-details
+  .fill-details
+  .band-members
+  .delete-band-member-wrapper
+  .delete-band-member,
+#editBandMembers .list-group-item .edit-band-member-wrapper .edit-band-member,
+#editBandMembers
+  .list-group-item
+  .delete-band-member-wrapper
+  .delete-band-member {
   width: 1.5rem;
   height: 1.5rem;
   opacity: 0;
 }
 
-
-.profile-details .fill-details .social-media-account-row:hover .social-media-account-wrapper img {
+.profile-details
+  .fill-details
+  .social-media-account-row:hover
+  .social-media-account-wrapper
+  img {
   opacity: 1;
 }
-.profile-details .fill-details .social-media-account-wrapper, .profile-details .fill-details .social-media-account-wrapper {
+.profile-details .fill-details .social-media-account-wrapper,
+.profile-details .fill-details .social-media-account-wrapper {
   border: 0;
   background-color: transparent;
   margin: 0 auto;
   padding: 0;
 }
 
-.profile-details .fill-details .social-media-account-wrapper .social-media-account,
-.profile-details .fill-details .social-media-account-wrapper .social-media-account {
+.profile-details
+  .fill-details
+  .social-media-account-wrapper
+  .social-media-account,
+.profile-details
+  .fill-details
+  .social-media-account-wrapper
+  .social-media-account {
   width: 1.5rem;
   height: 1.5rem;
   opacity: 0;
 }
-.profile-details .fill-details .accept-events{
+.profile-details .fill-details .accept-events {
   margin-top: 2rem;
 }
 
-.profile-details .fill-details .social-media-options{
-  text-align: right!important;
+.profile-details .fill-details .social-media-options {
+  text-align: right !important;
 }
 
-.profile-details .container .fill-details .card{
+.profile-details .container .fill-details .card {
   border-radius: 0.3125rem;
-  border: 1px solid #B8BBCF;
+  border: 1px solid #b8bbcf;
   padding: 1.5rem;
 }
-.profile-details .container .fill-details .card .row{
+.profile-details .container .fill-details .card .row {
   display: flex;
   align-items: center;
 }
-.profile-details .container .fill-details .card .row .card-body{
+.profile-details .container .fill-details .card .row .card-body {
   padding: 0rem;
 }
-.profile-details .container .fill-details .card a{
+.profile-details .container .fill-details .card a {
   text-align: right;
 }
-.profile-details .container .fill-details .card a span{
-  color: #FF6B00;
+.profile-details .container .fill-details .card a span {
+  color: #ff6b00;
 }
-.profile-details .container .fill-details .band-members .list-group-item:last-child{
+.profile-details
+  .container
+  .fill-details
+  .band-members
+  .list-group-item:last-child {
   margin-bottom: 2.5rem;
 }
-.profile-details .container .fill-details .form-about-artist{
+.profile-details .container .fill-details .form-about-artist {
   margin-top: 1.75rem;
 }
-.profile-details .container .fill-details .form-group .about-artist{
+.profile-details .container .fill-details .form-group .about-artist {
   height: 10rem;
   resize: none;
   border-radius: 0.5rem;
@@ -1649,7 +1949,7 @@ body{
   font-weight: 600;
 }
 .profile-details .container .fill-details .form-group .char-count,
-.artist-proposal-form .cover-letter-wrap .char-count{
+.artist-proposal-form .cover-letter-wrap .char-count {
   color: var(--gray2);
   font-size: 0.875rem;
   font-weight: 500;
@@ -1657,75 +1957,76 @@ body{
   text-align: right;
   margin-top: 0.69rem;
 }
-.profile-details .group-item{
+.profile-details .group-item {
   margin-bottom: 2rem;
 }
-.profile-details .group-item .form-check-label{
+.profile-details .group-item .form-check-label {
   color: #121212;
   font-size: 1.25rem;
   font-weight: 600;
 }
-.profile-details .group-item .form-switch input{
+.profile-details .group-item .form-switch input {
   width: 3.5625rem;
   height: 1.75rem;
-  color: #B8BBCF;
+  color: #b8bbcf;
   /* background-color: #B8BBCF; */
 }
 .profile-details .group-item .form-check-input {
-  border: var(--bs-border-width) solid #B8BBCF;
+  border: var(--bs-border-width) solid #b8bbcf;
   /* background: #B8BBCF; */
   /* --bs-form-switch-bg: url("/assets/artist-account/off-switch.svg"); */
 }
 
 .profile-details .group-item .form-check-input:checked {
-  background-color:#FF6B00;
-  border-color: #FF6B00;
+  background-color: #ff6b00;
+  border-color: #ff6b00;
 }
 .profile-details .fill-details .form-about-artist textarea:-moz-placeholder, /* Firefox 18- */
 .profile-details .fill-details .form-about-artist textarea::-moz-placeholder, /* Firefox 19+ */
 .profile-details .fill-details .form-about-artist textarea:-ms-input-placeholder, /* IE 10+ */
 .profile-details .fill-details .form-about-artist textarea::-webkit-input-placeholder, /* Webkit based */
-.profile-details .fill-details .form-about-artist textarea::placeholder { /* Modern browsers */
-  color: #B8BBCF;
+.profile-details .fill-details .form-about-artist textarea::placeholder {
+  /* Modern browsers */
+  color: #b8bbcf;
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.3125rem;
 }
 
-.profile-details .fill-details .song-preview{
+.profile-details .fill-details .song-preview {
   margin-top: 1.75rem;
   margin-bottom: 5rem;
 }
-.profile-details .fill-details .song-preview .title{
+.profile-details .fill-details .song-preview .title {
   color: var(--black);
   font-size: 1.25rem;
   font-weight: 600;
   letter-spacing: -0.0625rem;
   margin-bottom: 0.25rem;
 }
-.profile-details .fill-details .song-preview .description{
+.profile-details .fill-details .song-preview .description {
   color: var(--gray6);
   font-size: 1rem;
   font-weight: 500;
   letter-spacing: -0.05rem;
   margin-bottom: 2.19rem;
 }
-.profile-details .fill-details .song-preview .form-group{
+.profile-details .fill-details .song-preview .form-group {
   margin-bottom: 1.5rem;
 }
-.profile-details .fill-details .song-preview label{
+.profile-details .fill-details .song-preview label {
   color: var(--black);
   font-size: 1.25rem;
   font-weight: 500;
   letter-spacing: -0.025rem;
   margin-bottom: 0.63rem;
 }
-.profile-details .fill-details .song-preview input{
-    padding: 0.8rem;
-    color: var(--black-color);
-    font-size: 1rem;
-    font-weight: 500;
-    line-height: 1.3125rem;
+.profile-details .fill-details .song-preview input {
+  padding: 0.8rem;
+  color: var(--black-color);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.3125rem;
 }
 .profile-details .fill-details .song-preview .multiselect-tags {
   padding-top: 0.8rem;
@@ -1733,18 +2034,18 @@ body{
   margin-top: 0;
 }
 .profile-details .fill-details .song-preview .upload-audio,
-.artist-proposal-form .music-sample-wrap .upload-audio{
+.artist-proposal-form .music-sample-wrap .upload-audio {
   border-radius: 0.625rem;
   border: 1px dashed var(--gray6);
   padding: 0;
   margin-bottom: 0.94rem;
 }
 .profile-details .fill-details .song-preview .upload-file-content,
-.artist-proposal-form .music-sample-wrap .upload-file-content{
+.artist-proposal-form .music-sample-wrap .upload-file-content {
   padding: 1.3rem;
 }
 .profile-details .fill-details .song-preview .upload-file-content svg,
-.artist-proposal-form .music-sample-wrap .upload-file-content svg{
+.artist-proposal-form .music-sample-wrap .upload-file-content svg {
   width: 2.5rem;
   height: 2.5rem;
   margin-bottom: 0.5rem;
@@ -1752,8 +2053,8 @@ body{
 .profile-details .fill-details .song-preview .upload-file-content .drag-files,
 .profile-details .fill-details .song-preview .upload-file-content .or,
 .artist-proposal-form .music-sample-wrap .drag-files,
-.artist-proposal-form .music-sample-wrap .or{
-  color: #8690A2;
+.artist-proposal-form .music-sample-wrap .or {
+  color: #8690a2;
   font-size: 1rem;
   font-weight: 500;
   letter-spacing: -0.04rem;
@@ -1764,15 +2065,19 @@ body{
   color: var(--orange);
   font-size: 0.875rem;
   font-weight: 700;
-  line-height: 100%; 
+  line-height: 100%;
   letter-spacing: 0.04375rem;
   padding: 0.75rem 1.34rem;
   border-radius: 0.75rem;
   border: 0.646px solid var(--orange);
   background-color: transparent;
 }
-.profile-details .song-preview .upload-file-content .select-files-wrapper label:hover,
-.artist-proposal-form .music-sample-wrap .select-files-wrapper label:hover{
+.profile-details
+  .song-preview
+  .upload-file-content
+  .select-files-wrapper
+  label:hover,
+.artist-proposal-form .music-sample-wrap .select-files-wrapper label:hover {
   background-color: var(--orange);
   color: var(--white);
 }
@@ -1780,45 +2085,45 @@ body{
 .artist-proposal-form .music-sample-wrap .audio-file-format {
   padding: 0.9rem 1.21rem;
   border-radius: 0.40375rem;
-  background: #EFEFFC;
+  background: #efeffc;
   margin: 1rem 0;
 }
 .profile-details .song-preview .audio-file-format .info,
-.artist-proposal-form .music-sample-wrap .info{
+.artist-proposal-form .music-sample-wrap .info {
   font-size: 20px;
   color: var(--gray6);
   margin-right: 0.32rem;
 }
 .profile-details .song-preview .audio-file-format .max-file-size,
-.artist-proposal-form .music-sample-wrap .max-file-size{
-  color: #8690A2;
+.artist-proposal-form .music-sample-wrap .max-file-size {
+  color: #8690a2;
   font-size: 0.875rem;
   font-weight: 500;
   letter-spacing: -0.04375rem;
   margin-bottom: 0;
 }
-.profile-details .song-preview .errorMessage{
-  background: #FECACA;
+.profile-details .song-preview .errorMessage {
+  background: #fecaca;
 }
-.profile-details .song-preview .errorMessage .info, .profile-details .song-preview  .errorMessage .max-file-size{
+.profile-details .song-preview .errorMessage .info,
+.profile-details .song-preview .errorMessage .max-file-size {
   color: red;
 }
 .profile-details .song-preview .uploaded-song-wrapper,
-.artist-proposal-form .music-sample-wrap .uploaded-song-wrapper{
+.artist-proposal-form .music-sample-wrap .uploaded-song-wrapper {
   position: relative;
   border-radius: 0.3125rem;
-  background-color: #FCFCFF;
+  background-color: #fcfcff;
   margin: 1.5rem 0;
   padding: 1.47rem 1.66rem;
-  border: 1px solid #CDD3D8;
+  border: 1px solid #cdd3d8;
   /* transition: all 1.5s ease-in-out; */
 }
 .profile-details .song-preview .uploaded-song-wrapper audio,
-.artist-proposal-form .music-sample-wrap audio{
+.artist-proposal-form .music-sample-wrap audio {
   display: none;
 }
-.profile-details .song-preview .uploaded-song-wrapper .song-wrapper{
-
+.profile-details .song-preview .uploaded-song-wrapper .song-wrapper {
 }
 .profile-details .song-preview .uploaded-song-wrapper .song-wrapper img,
 .artist-proposal-form .music-sample-wrap .song-wrapper img {
@@ -1827,7 +2132,7 @@ body{
   margin-right: 0.57rem;
 }
 .profile-details .song-preview .uploaded-song-wrapper .song-title-wrapper,
-.artist-proposal-form .music-sample-wrap .song-title-wrapper{
+.artist-proposal-form .music-sample-wrap .song-title-wrapper {
   width: 80%;
 }
 .profile-details .song-preview .uploaded-song-wrapper .song-wrapper .song-title,
@@ -1847,26 +2152,54 @@ body{
 .artist-proposal-form .music-sample-wrap .song-wrapper .preview {
   margin-bottom: 0;
 }
-.profile-details .song-preview .uploaded-song-wrapper .song-wrapper .preview .file-size,
+.profile-details
+  .song-preview
+  .uploaded-song-wrapper
+  .song-wrapper
+  .preview
+  .file-size,
 .artist-proposal-form .music-sample-wrap .preview .file-size {
-    color: #242634;
-    font-size: 0.7875rem;
-    font-weight: 700;
-    line-height: 0.75rem;
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.125rem;
-    background-color: transparent;
-    border: 1px solid #CDD3D8;
-    margin-right: 1rem;
+  color: #242634;
+  font-size: 0.7875rem;
+  font-weight: 700;
+  line-height: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.125rem;
+  background-color: transparent;
+  border: 1px solid #cdd3d8;
+  margin-right: 1rem;
 }
-.profile-details .song-preview .uploaded-song-wrapper .song-wrapper .remove-music-wrapper img,
-.artist-proposal-form .music-sample-wrap .remove-music-wrapper img{
+.profile-details
+  .song-preview
+  .uploaded-song-wrapper
+  .song-wrapper
+  .remove-music-wrapper
+  img,
+.artist-proposal-form .music-sample-wrap .remove-music-wrapper img {
   width: 1.5rem;
   height: 1.5rem;
   cursor: pointer;
   /* transition: all 0.5s ease; */
 }
 
+.btn-geebu {
+  color: #fff !important;
+  background: #ff6b00 !important;
+  border-color: #ff6b00 !important;
+  padding: 0.375rem 0.75rem !important;
+  font-size: 1rem !important;
+  font-weight: 400 !important;
+  line-height: 1.5 !important;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
 .profile-details .container .fill-details .submit-form {
   color: var(white);
   font-size: 1rem;
@@ -1878,7 +2211,8 @@ body{
   border: 0;
   margin: 3.5rem auto;
 }
-.profile-details .busy-submitting, .profile-details .busy-add-member,
+.profile-details .busy-submitting,
+.profile-details .busy-add-member,
 #artistPost .modal-body .button-wrapper .busy-submitting-post,
 #uploadArtistCoverPhoto .modal-footer .upload-cover-photo .busy-cover-photo {
   animation: spin 1s infinite linear;
@@ -1886,12 +2220,16 @@ body{
   font-weight: bold;
   font-size: 20px;
   font-style: normal;
-  color: white!important;
+  color: white !important;
   margin-right: 0.3rem;
 }
-.profile-details .busy-submitting::before, .profile-details .busy-add-member::before,
+.profile-details .busy-submitting::before,
+.profile-details .busy-add-member::before,
 #artistPost .modal-body .button-wrapper .busy-submitting-post::before,
-#uploadArtistCoverPhoto .modal-footer .upload-cover-photo .busy-cover-photo::before {
+#uploadArtistCoverPhoto
+  .modal-footer
+  .upload-cover-photo
+  .busy-cover-photo::before {
   content: "\25E0";
 }
 @keyframes spin {
@@ -1904,30 +2242,30 @@ body{
   }
 }
 
-.profile-details .container #successDetailsModal .modal-body{
+.profile-details .container #successDetailsModal .modal-body {
   padding-top: 0;
 }
-.profile-details .container #successDetailsModal .modal-body svg{
+.profile-details .container #successDetailsModal .modal-body svg {
   margin-bottom: 0.87rem;
 }
-.profile-details .container #successDetailsModal .modal-body .title{
+.profile-details .container #successDetailsModal .modal-body .title {
   color: var(--black);
   font-size: 1.5rem;
   font-weight: 600;
-  line-height: 1.75rem; 
+  line-height: 1.75rem;
   margin-bottom: 0.5rem;
 }
-.profile-details .container #successDetailsModal .modal-body .content{
-  color: #ABADC6;
+.profile-details .container #successDetailsModal .modal-body .content {
+  color: #abadc6;
   font-size: 1rem;
   font-weight: 400;
-  line-height: 1.5rem; 
+  line-height: 1.5rem;
 }
-.profile-details .container #successDetailsModal .modal-footer{
+.profile-details .container #successDetailsModal .modal-footer {
   padding-top: 0;
   border-top: 0;
 }
-.profile-details .container #successDetailsModal .modal-footer .view-profile{
+.profile-details .container #successDetailsModal .modal-footer .view-profile {
   color: var(--white);
   text-align: center;
   font-size: 0.875rem;
@@ -1941,106 +2279,132 @@ body{
   margin: 0 auto 1.5rem;
   text-decoration: none;
 }
-.profile-details .container #successDetailsModal .modal-footer .view-profile:hover{
+.profile-details
+  .container
+  #successDetailsModal
+  .modal-footer
+  .view-profile:hover {
   background: var(--btn-hovered);
 }
-.profile-details .container #successDetailsModal .modal-header .btn-close{
-  font-size: 0.50rem;
+.profile-details .container #successDetailsModal .modal-header .btn-close {
+  font-size: 0.5rem;
   padding: 0.5rem;
   border: 1px solid var(--gray6);
   border-radius: 100%;
 }
-.profile-details .container #successDetailsModal .modal-header .btn-close:hover{
+.profile-details
+  .container
+  #successDetailsModal
+  .modal-header
+  .btn-close:hover {
   opacity: 1;
   border: 1px solid var(--orange);
 }
-.profile-details .container .fill-details .submit-form:hover{
-background: var(--btn-hovered);
+.profile-details .container .fill-details .submit-form:hover {
+  background: var(--btn-hovered);
 }
 /* modal */
 .profile-details .container .modal-content .modal-header {
   border-bottom: 0;
   align-items: flex-start;
 }
-.profile-details .container .modal-content .modal-header .container{
+.profile-details .container .modal-content .modal-header .container {
   margin: 0;
-  padding-top: .9rem!important;
+  padding-top: 0.9rem !important;
 }
-.profile-details .container .modal-content .modal-body .container{
+.profile-details .container .modal-content .modal-body .container {
   margin: 0rem auto;
 }
-.profile-details .container .modal-content .modal-header .container .modal-title{
-  color: var(--color-dark-dark, #23262F);
+.profile-details
+  .container
+  .modal-content
+  .modal-header
+  .container
+  .modal-title {
+  color: var(--color-dark-dark, #23262f);
   font-size: 1.5rem;
   font-weight: 600;
   line-height: 2rem;
 }
-.modal-add-social-media .form-group label{
-  color: #2D3748;
+.modal-add-social-media .form-group label {
+  color: #2d3748;
   font-size: 1rem;
   font-weight: 600;
-  line-height: 140%; 
+  line-height: 140%;
   letter-spacing: -0.02rem;
   margin-bottom: 0.37rem;
 }
-.modal-add-social-media .form-group select, .modal-add-social-media .form-group input{
+.modal-add-social-media .form-group select,
+.modal-add-social-media .form-group input {
   height: 3rem;
 }
-.profile-details .container .modal-content .modal-header .container .modal-sub-heading{
-  color: var(--body-text, #2D3748);
+.profile-details
+  .container
+  .modal-content
+  .modal-header
+  .container
+  .modal-sub-heading {
+  color: var(--body-text, #2d3748);
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 140%;
   letter-spacing: -0.0175rem;
 }
-.profile-details .container .modal-content .modal-header .close-modal-icon:hover{
+.profile-details
+  .container
+  .modal-content
+  .modal-header
+  .close-modal-icon:hover {
   cursor: pointer;
 }
 .profile-details .container .modal-content .modal-header .close-modal-icon {
-  color: #23262F;
-  border: 1px solid #DFDFE6;
+  color: #23262f;
+  border: 1px solid #dfdfe6;
   border-radius: 100%;
   padding: 5px;
   font-size: 18px;
 }
-.profile-details .container .modal-content .modal-header .close-modal-icon:hover {
+.profile-details
+  .container
+  .modal-content
+  .modal-header
+  .close-modal-icon:hover {
   color: #fff;
   border: 0;
-  background-color: #FF6B00;
-
+  background-color: #ff6b00;
 }
 
 /* AddMember.vue & SocialMedia.vue */
-.modal-add-member .member-avatar{
+.modal-add-member .member-avatar {
   margin-bottom: 2rem;
 }
-.modal-add-member .form-group label{
-  color: var(--body-text, #2D3748);
+.modal-add-member .form-group label {
+  color: var(--body-text, #2d3748);
   font-size: 1rem;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
   letter-spacing: -0.02rem;
-  margin-bottom: .3rem;
+  margin-bottom: 0.3rem;
 }
-.modal-add-member input[type=file]::file-selector-button {
+.modal-add-member input[type="file"]::file-selector-button {
   /* padding: .2em .4em; */
-  transition: .5s;
+  transition: 0.5s;
   border-radius: 11.5rem;
   background-color: #0c0c0c;
   width: 9.5rem;
   height: 9.5rem;
   border: 0;
 }
-.modal-add-member input[type=file]::file-selector-button:hover{
-  background-color: #FF6B00;
+.modal-add-member input[type="file"]::file-selector-button:hover {
+  background-color: #ff6b00;
   color: #fff;
 }
-.modal-add-member .form-group .text-danger{
+.modal-add-member .form-group .text-danger {
   white-space: pre;
 }
-.modal-add-member .upload-img .add-member-default-avatar{
-  transition: .5s;
+.modal-add-member .upload-img .add-member-default-avatar {
+  transition: 0.5s;
   border-radius: 11.5rem;
   width: 9rem;
   height: 9rem;
@@ -2049,11 +2413,13 @@ background: var(--btn-hovered);
 /* .modal-add-member .form-group, .modal-add-social-media .form-group {
   margin-bottom: .3rem!important;
 } */
-.modal-add-member .form-group .member-name, .modal-add-member .form-group select{
+.modal-add-member .form-group .member-name,
+.modal-add-member .form-group select {
   height: 3rem;
 }
-.modal-add-member .add-member, .modal-add-social-media .add-social-media {
-  color: var(--white, #FFF);
+.modal-add-member .add-member,
+.modal-add-social-media .add-social-media {
+  color: var(--white, #fff);
   font-size: 1.01rem;
   font-style: normal;
   font-weight: 700;
@@ -2061,31 +2427,32 @@ background: var(--btn-hovered);
   letter-spacing: -0.025rem;
   padding: 0.9rem 20%;
   border-radius: 0.3125rem;
-  background: #FF6B00;
+  background: #ff6b00;
   margin: 2rem auto 1rem;
   border: 0;
 }
-.modal-add-member .add-member:hover, .modal-add-social-media .add-social-media:hover {
+.modal-add-member .add-member:hover,
+.modal-add-social-media .add-social-media:hover {
   background: var(--btn-hovered);
 }
-.modal-add-member  .upload-img {
+.modal-add-member .upload-img {
   margin: 0rem auto 1rem;
   display: flex;
   align-items: center;
 }
-.modal-add-member  .upload-img .label-img{
+.modal-add-member .upload-img .label-img {
   position: relative;
   margin: auto;
 }
-.modal-add-member .upload-img .label-img .camera-inner{
-  color: #FFFFFF;
-  background-color: #EAEBF1;
+.modal-add-member .upload-img .label-img .camera-inner {
+  color: #ffffff;
+  background-color: #eaebf1;
   padding: 3rem;
   border-radius: 100%;
   font-size: 3.5rem;
   margin-right: 1.5rem;
   transition: font-variation-setings 0.25s;
-  font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 48;
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
 }
 .modal-add-member .upload-img .label-img .camera {
   position: absolute;
@@ -2095,17 +2462,17 @@ background: var(--btn-hovered);
   width: 100%;
   opacity: 0;
 }
-.modal-add-member .upload-img .label-img .camera input{
+.modal-add-member .upload-img .label-img .camera input {
   background-color: transparent;
-  margin-bottom: 0rem!important;
+  margin-bottom: 0rem !important;
 }
-.modal-add-member .upload-img .label-img  .camera-outer {
+.modal-add-member .upload-img .label-img .camera-outer {
   color: #fff;
   flex-shrink: 0;
   padding: 0.7rem;
   border-radius: 33px;
-  background: #FF6B00;
-  font-variation-settings: 'FILL' 0;
+  background: #ff6b00;
+  font-variation-settings: "FILL" 0;
   font-size: 20px;
   position: absolute;
   top: 60%;
@@ -2138,11 +2505,12 @@ background: var(--btn-hovered);
 #artistPost .modal-content {
   padding: 2.5rem 2.5rem 3rem;
 }
-#artistPost .modal-content .modal-header, #artistPost .modal-body {
+#artistPost .modal-content .modal-header,
+#artistPost .modal-body {
   border: 0;
   padding: 0;
 }
-#artistPost .modal-content .modal-header{
+#artistPost .modal-content .modal-header {
   margin-bottom: 1.5rem;
 }
 /* #artistPost .modal-body{
@@ -2151,23 +2519,23 @@ background: var(--btn-hovered);
 #artistPost .modal-content .modal-header .btn-close {
   font-size: 0.6rem;
   padding: 0.4rem;
-  border: 1px solid #23262F;
+  border: 1px solid #23262f;
   border-radius: 100px;
-  color: #23262F;
+  color: #23262f;
 }
 #artistPost .modal-content .modal-header .modal-title {
-  color: #23262F;
-  font-feature-settings: 'clig' off, 'liga' off;
+  color: #23262f;
+  font-feature-settings: "clig" off, "liga" off;
   font-size: 1.5rem;
   font-weight: 600;
   line-height: 2rem;
   display: flex;
   align-items: center;
 }
-#artistPost .modal-body .artist-image{
+#artistPost .modal-body .artist-image {
   margin-bottom: 1.5rem;
 }
-#artistPost .modal-body .artist-image img{
+#artistPost .modal-body .artist-image img {
   width: 4.375rem;
   height: 4.375rem;
   border-radius: 100px;
@@ -2177,49 +2545,49 @@ background: var(--btn-hovered);
   backface-visibility: hidden;
   margin-right: 0.5rem;
 }
-#artistPost .modal-body .artist-image .band-name{
+#artistPost .modal-body .artist-image .band-name {
   font-size: 1.125rem;
   font-weight: 700;
   margin-bottom: 0;
 }
-#artistPost .modal-body .form-group{
+#artistPost .modal-body .form-group {
   margin-bottom: 1.5rem;
 }
-#artistPost .modal-body .form-group textarea{
+#artistPost .modal-body .form-group textarea {
   height: 12rem;
   border-radius: 0.625rem;
   resize: none;
   padding: 1.25rem;
 }
-#artistPost .modal-body .form-group textarea::placeholder{
-  color: #73788C;
+#artistPost .modal-body .form-group textarea::placeholder {
+  color: #73788c;
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.5rem;
 }
-#artistPost .modal-body .add-post{
+#artistPost .modal-body .add-post {
   color: var(--black);
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 1.5rem;
 }
-#artistPost .modal-body .manage-to-post{
+#artistPost .modal-body .manage-to-post {
   gap: 1.5rem;
   /* margin-bottom: 5rem; */
 }
-#artistPost .modal-body .manage-to-post .post-icon{
+#artistPost .modal-body .manage-to-post .post-icon {
   color: #536471;
   font-size: 2rem;
   padding: 1rem;
-  background-color: #EFEFFC;
+  background-color: #efeffc;
   border-radius: 100px;
   margin-right: 0.62rem;
 }
 #artistPost .modal-body .button-wrapper {
   margin-top: 5rem;
 }
-#artistPost .modal-body .manage-to-post button{
-  color: #8690A2;
+#artistPost .modal-body .manage-to-post button {
+  color: #8690a2;
   font-size: 1rem;
   font-weight: 600;
   margin-bottom: 0;
@@ -2229,14 +2597,14 @@ background: var(--btn-hovered);
 }
 
 #artistPost .modal-body .manage-to-post .selected {
-  color: var(--orange)!important;
+  color: var(--orange) !important;
 }
 #artistPost .modal-body .manage-to-post .post-icon.selected {
-  background-color: var(--orange)!important;
-  color: var(--white)!important; 
+  background-color: var(--orange) !important;
+  color: var(--white) !important;
 }
 
- /* #artistPost .modal-body .manage-to-post button:hover .post-icon{
+/* #artistPost .modal-body .manage-to-post button:hover .post-icon{
   background-color: var(--orange)!important;
   color: var(--white)!important;
   animation: bounceIcon 1s ease 1;
@@ -2271,7 +2639,7 @@ background: var(--btn-hovered);
   }
 } */
 
-#artistPost .modal-body .button-wrapper button{
+#artistPost .modal-body .button-wrapper button {
   color: var(--white);
   font-size: 1.25rem;
   font-weight: 700;
@@ -2280,20 +2648,20 @@ background: var(--btn-hovered);
   border-radius: 0.3125rem;
   background: var(--orange);
 }
-#artistPost .modal-body .button-wrapper button:hover{
+#artistPost .modal-body .button-wrapper button:hover {
   background: var(--btn-hovered);
 }
-#artistPost .modal-content .modal-title .back-to-post{
-  color: #8690A2;
+#artistPost .modal-content .modal-title .back-to-post {
+  color: #8690a2;
   margin-right: 1.25rem;
   width: 1.5rem;
   height: 1.5rem;
   cursor: pointer;
 }
-#artistPost .modal-content .modal-title .back-to-post:hover{
+#artistPost .modal-content .modal-title .back-to-post:hover {
   color: var(--orange);
 }
-#artistPost .modal-body .search-container{
+#artistPost .modal-body .search-container {
   display: flex;
   align-items: center;
   border-radius: 0.625rem;
@@ -2308,32 +2676,35 @@ background: var(--btn-hovered);
   width: 100%;
   font-size: 16px;
   border-radius: 0.625rem;
-  border: 1px solid #EFEFFC;
+  border: 1px solid #efeffc;
   /* box-shadow: 0px 4px 18px 0px rgba(56, 29, 219, 0.10); */
 }
 #artistPost .modal-body .search-container span {
   position: absolute;
   left: 2.3%;
-  color: #8690A2;
+  color: #8690a2;
 }
-#artistPost .modal-body .icons-list{
+#artistPost .modal-body .icons-list {
   width: 100%;
   gap: 6%;
   margin-bottom: 0.7rem;
 }
-#artistPost .modal-body .icons-list .left-icon, #artistPost .modal-body .icons-list .right-icon{
+#artistPost .modal-body .icons-list .left-icon,
+#artistPost .modal-body .icons-list .right-icon {
   width: 47%;
   padding: 1rem 1.6rem;
   border-radius: 0.3125rem;
-  border: 1px solid #EFEFFC;
+  border: 1px solid #efeffc;
   font-size: 1.5rem;
   font-weight: 600;
-  line-height: 2rem; 
+  line-height: 2rem;
 }
-#artistPost .modal-body .icons-list .left-icon:hover, #artistPost .modal-body .icons-list .right-icon:hover{
+#artistPost .modal-body .icons-list .left-icon:hover,
+#artistPost .modal-body .icons-list .right-icon:hover {
   border: 1px solid var(--orange);
 }
-#artistPost .modal-body .left-icon img, #artistPost .modal-body .right-icon img{
+#artistPost .modal-body .left-icon img,
+#artistPost .modal-body .right-icon img {
   margin-right: 1rem;
 }
 #artistPost .modal-body .upload-file-wrapper {
@@ -2344,29 +2715,29 @@ background: var(--btn-hovered);
   position: relative;
   z-index: 9999;
 }
-#artistPost .upload-file-wrapper .upload-file-content{
+#artistPost .upload-file-wrapper .upload-file-content {
   border-radius: 0.25rem;
-  background: #EFEFFC;
+  background: #efeffc;
   padding: 2rem 0;
 }
-#artistPost .upload-file-wrapper .upload-file-content svg{
+#artistPost .upload-file-wrapper .upload-file-content svg {
   margin-bottom: 1.5rem;
 }
-#artistPost .upload-file-wrapper .upload-file-content .title{
+#artistPost .upload-file-wrapper .upload-file-content .title {
   color: var(--black-color);
   font-size: 0.875rem;
   font-weight: 600;
   margin-bottom: 0.75rem;
 }
-#artistPost .upload-file-wrapper .upload-file-content .limit{
-  color: rgba(0, 0, 0, 0.40);
+#artistPost .upload-file-wrapper .upload-file-content .limit {
+  color: rgba(0, 0, 0, 0.4);
   font-size: 0.75rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   margin-bottom: 1.25rem;
 }
-#artistPost .upload-file-content .upload-wrapper label{
+#artistPost .upload-file-content .upload-wrapper label {
   color: var(--orange);
   font-size: 0.7rem;
   font-weight: 600;
@@ -2376,23 +2747,23 @@ background: var(--btn-hovered);
   border-radius: 0.3125rem;
   border: 1px solid var(--orange);
 }
-#artistPost .upload-file-content .upload-wrapper label:hover{
+#artistPost .upload-file-content .upload-wrapper label:hover {
   background-color: var(--orange);
   color: var(--white);
 }
-.profile-details .updated-successfully{
-    color: #FF6B00;
-    font-size: 1.25rem;
-    font-weight: 500;
-    letter-spacing: -0.025rem;
-    margin-left: 1.3rem;
-    background-color: var(--light-orange);
-    border: 0;
+.profile-details .updated-successfully {
+  color: #ff6b00;
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: -0.025rem;
+  margin-left: 1.3rem;
+  background-color: var(--light-orange);
+  border: 0;
 }
 
 /* Create post - Uploaded images/ videos */
 
-#artistPost .uploaded-wrapper{
+#artistPost .uploaded-wrapper {
   border-radius: 0.25rem;
   padding: 0;
 }
@@ -2402,7 +2773,8 @@ background: var(--btn-hovered);
   height: 14.5625rem;
   margin-bottom: 0.5%;
 }
-#artistPost .uploaded-wrapper .uploaded-images img, #artistPost .uploaded-wrapper .uploaded-images video{
+#artistPost .uploaded-wrapper .uploaded-images img,
+#artistPost .uploaded-wrapper .uploaded-images video {
   width: 100%;
   height: 14.5625rem;
   flex-shrink: 0;
@@ -2414,7 +2786,7 @@ background: var(--btn-hovered);
   /* z-index: 0; */
 }
 
-#artistPost .uploaded-wrapper .uploaded-images .image-container img{
+#artistPost .uploaded-wrapper .uploaded-images .image-container img {
   /* content: "";
   display: block;
   width: 100%;
@@ -2444,8 +2816,8 @@ background: var(--btn-hovered);
   background-color: #020202; */
 }
 
-#artistPost .uploaded-wrapper .uploaded-images:last-child{
-  margin-bottom: 0rem!important;
+#artistPost .uploaded-wrapper .uploaded-images:last-child {
+  margin-bottom: 0rem !important;
 }
 #artistPost .uploaded-wrapper .uploaded-images .remove-img {
   cursor: pointer;
@@ -2460,10 +2832,10 @@ background: var(--btn-hovered);
   font-size: 16px;
   border: 0.1px solid #ffffff91;
 }
-#artistPost .uploaded-wrapper .uploaded-images .remove-img:hover{
+#artistPost .uploaded-wrapper .uploaded-images .remove-img:hover {
   border: 0.1px solid var(--white);
 }
-#artistPost .uploaded-wrapper .uploaded-images .upload-more{
+#artistPost .uploaded-wrapper .uploaded-images .upload-more {
   margin: 0;
   position: absolute;
   top: 50%;
@@ -2472,15 +2844,15 @@ background: var(--btn-hovered);
   transform: translate(-50%, -50%);
   cursor: pointer;
 }
-#artistPost .uploaded-wrapper .uploaded-images .upload-more:hover *{
-  color: var(--orange)!important;
+#artistPost .uploaded-wrapper .uploaded-images .upload-more:hover * {
+  color: var(--orange) !important;
 }
-#artistPost .uploaded-wrapper .uploaded-images .upload-more .add-photo-icon{
+#artistPost .uploaded-wrapper .uploaded-images .upload-more .add-photo-icon {
   color: var(--gray6);
   font-size: 40px;
   margin-bottom: 0.62rem;
 }
-#artistPost .uploaded-wrapper .uploaded-images .upload-more .add-more{
+#artistPost .uploaded-wrapper .uploaded-images .upload-more .add-more {
   color: var(--gray2);
   font-size: 1rem;
   font-weight: 600;
@@ -2492,7 +2864,7 @@ background: var(--btn-hovered);
 
 /* Create post - Uploaded music */
 
-#artistPost .upload-file-content .upload-wrapper .upload-music-wrapper{
+#artistPost .upload-file-content .upload-wrapper .upload-music-wrapper {
   color: var(--orange);
   font-size: 0.7rem;
   font-weight: 600;
@@ -2502,23 +2874,23 @@ background: var(--btn-hovered);
   border-radius: 0.3125rem;
   border: 1px solid var(--orange);
 }
-#artistPost .uploaded-song-wrapper{
+#artistPost .uploaded-song-wrapper {
   position: relative;
   border-radius: 0.3125rem;
-  background-color: #FCFCFF;
+  background-color: #fcfcff;
   margin: 1.5rem 0;
   padding: 1.06rem 0.8rem;
-  border: 2px solid #CDD3D8;
+  border: 2px solid #cdd3d8;
 }
-#artistPost .uploaded-song-wrapper .song-wrapper{
+#artistPost .uploaded-song-wrapper .song-wrapper {
   gap: 0.87rem;
   width: 75%;
 }
-#artistPost .uploaded-song-wrapper .song-wrapper img{
+#artistPost .uploaded-song-wrapper .song-wrapper img {
   width: 3.625rem;
   height: 4.75rem;
 }
-#artistPost .uploaded-song-wrapper .audio-controls-wrapper{
+#artistPost .uploaded-song-wrapper .audio-controls-wrapper {
   display: none;
 }
 #artistPost .uploaded-song-wrapper .song-wrapper .song-title {
@@ -2533,7 +2905,7 @@ background: var(--btn-hovered);
   -webkit-box-orient: vertical;
   max-height: 3.2rem;
 }
-#artistPost .uploaded-song-wrapper .song-wrapper .preview{
+#artistPost .uploaded-song-wrapper .song-wrapper .preview {
   color: var(--orange);
   font-size: 0.875rem;
   font-weight: 500;
@@ -2545,7 +2917,7 @@ background: var(--btn-hovered);
   top: 10%;
   left: 84%;
 }
-#artistPost .uploaded-song-wrapper .remove-music-wrapper .file-size{
+#artistPost .uploaded-song-wrapper .remove-music-wrapper .file-size {
   color: #242634;
   font-size: 0.7875rem;
   font-weight: 700;
@@ -2553,7 +2925,7 @@ background: var(--btn-hovered);
   padding: 0.25rem 0.5rem;
   border-radius: 0.125rem;
   background-color: transparent;
-  border: 1px solid #CDD3D8;
+  border: 1px solid #cdd3d8;
   margin-right: 1rem;
 }
 #artistPost .uploaded-song-wrapper .remove-music-wrapper .remove-music {
@@ -2561,17 +2933,20 @@ background: var(--btn-hovered);
   font-size: 16px;
   cursor: pointer;
   padding: 2px;
-  background: #D9D9D9;
+  background: #d9d9d9;
   border-radius: 100%;
 }
 
 /* Upload Cover photo / Edit band Members*/
 
-#uploadArtistCoverPhoto .modal-content, #editBandMembers .modal-content{
-    padding: 2.38rem 2.5rem 3rem;
+#uploadArtistCoverPhoto .modal-content,
+#editBandMembers .modal-content {
+  padding: 2.38rem 2.5rem 3rem;
 }
-#uploadArtistCoverPhoto .modal-content .modal-header, #uploadArtistCoverPhoto .modal-body,
-#editBandMembers .modal-content .modal-header, #editBandMembers .modal-body {
+#uploadArtistCoverPhoto .modal-content .modal-header,
+#uploadArtistCoverPhoto .modal-body,
+#editBandMembers .modal-content .modal-header,
+#editBandMembers .modal-body {
   border: 0;
   padding: 0;
 }
@@ -2583,30 +2958,31 @@ background: var(--btn-hovered);
 #editBandMembers .modal-content .modal-header .btn-close {
   font-size: 0.6rem;
   padding: 0.4rem;
-  border: 1px solid #23262F;
+  border: 1px solid #23262f;
   border-radius: 100px;
-  color: #23262F;
+  color: #23262f;
 }
-#uploadArtistCoverPhoto .modal-title, #editBandMembers .modal-header .modal-title{
-  color: #23262F;
-  font-feature-settings: 'clig' off, 'liga' off;
+#uploadArtistCoverPhoto .modal-title,
+#editBandMembers .modal-header .modal-title {
+  color: #23262f;
+  font-feature-settings: "clig" off, "liga" off;
   font-size: 1.5rem;
   font-weight: 600;
-  line-height: 2rem; 
+  line-height: 2rem;
 }
-#uploadArtistCoverPhoto .modal-body .img-dimensions{
+#uploadArtistCoverPhoto .modal-body .img-dimensions {
   border-radius: 0.40375rem;
-  background: #EFEFFC;
+  background: #efeffc;
   padding: 0.38rem 1.21rem;
   margin-bottom: 3rem;
 }
-#uploadArtistCoverPhoto .modal-body .img-dimensions .info{
- font-size: 24px;
- margin-right: 0.32rem;
- color: rgba(184, 187, 207, 1);
- font-variation-settings: 'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 48;
+#uploadArtistCoverPhoto .modal-body .img-dimensions .info {
+  font-size: 24px;
+  margin-right: 0.32rem;
+  color: rgba(184, 187, 207, 1);
+  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 48;
 }
-#uploadArtistCoverPhoto .modal-body .img-dimensions .description{
+#uploadArtistCoverPhoto .modal-body .img-dimensions .description {
   color: var(--gray2);
   font-size: 0.875rem;
   font-weight: 500;
@@ -2614,26 +2990,26 @@ background: var(--btn-hovered);
   width: 95%;
   margin-bottom: 0;
 }
-#uploadArtistCoverPhoto .modal-body .upload-file-wrapper{
-    border-radius: 0.625rem;
-    border: 1px dashed var(--gray6);
-    padding: 0.75rem;
-    margin-bottom: 1.25rem;
+#uploadArtistCoverPhoto .modal-body .upload-file-wrapper {
+  border-radius: 0.625rem;
+  border: 1px dashed var(--gray6);
+  padding: 0.75rem;
+  margin-bottom: 1.25rem;
 }
 #uploadArtistCoverPhoto .upload-file-wrapper .uploaded-image-wrapper {
   overflow: hidden;
   width: 100%; /* 92.5rem */
-  height: 14.3rem; 
+  height: 14.3rem;
 }
-#uploadArtistCoverPhoto  .croppa-container {
+#uploadArtistCoverPhoto .croppa-container {
   display: block;
   opacity: 1;
   position: relative;
 }
-#uploadArtistCoverPhoto .upload-file-wrapper .upload-file-content{
-    border-radius: 0.25rem;
-    background: #EFEFFC;
-    padding: 2rem 0;
+#uploadArtistCoverPhoto .upload-file-wrapper .upload-file-content {
+  border-radius: 0.25rem;
+  background: #efeffc;
+  padding: 2rem 0;
 }
 #uploadArtistCoverPhoto .upload-file-wrapper .upload-file-content svg {
   margin-bottom: 1.5rem;
@@ -2644,13 +3020,13 @@ background: var(--btn-hovered);
   font-weight: 600;
   margin-bottom: 0.75rem;
 }
-#uploadArtistCoverPhoto .upload-file-wrapper .upload-file-content .image-type{
-  color: rgba(0, 0, 0, 0.40);
+#uploadArtistCoverPhoto .upload-file-wrapper .upload-file-content .image-type {
+  color: rgba(0, 0, 0, 0.4);
   font-size: 0.75rem;
   font-weight: 400;
   margin-bottom: 1.25rem;
 }
-#uploadArtistCoverPhoto .upload-file-content  .select-files-wrapper label {
+#uploadArtistCoverPhoto .upload-file-content .select-files-wrapper label {
   color: var(--orange);
   font-size: 0.7rem;
   font-weight: 600;
@@ -2660,11 +3036,14 @@ background: var(--btn-hovered);
   border-radius: 0.3125rem;
   border: 1px solid var(--orange);
 }
-#uploadArtistCoverPhoto .upload-file-content  .select-files-wrapper label:hover{
-    background-color: var(--orange);
-    color: var(--white);
+#uploadArtistCoverPhoto .upload-file-content .select-files-wrapper label:hover {
+  background-color: var(--orange);
+  color: var(--white);
 }
-#uploadArtistCoverPhoto .upload-file-wrapper .uploaded-image-wrapper .uploaded-image{
+#uploadArtistCoverPhoto
+  .upload-file-wrapper
+  .uploaded-image-wrapper
+  .uploaded-image {
   height: 21.313rem;
   width: 100%;
   border-radius: 0.25rem;
@@ -2673,7 +3052,10 @@ background: var(--btn-hovered);
   object-fit: cover;
   backface-visibility: hidden;
 }
-#uploadArtistCoverPhoto .upload-file-wrapper .uploaded-image-wrapper .remove-image{
+#uploadArtistCoverPhoto
+  .upload-file-wrapper
+  .uploaded-image-wrapper
+  .remove-image {
   margin: 0;
   position: absolute;
   top: 7%;
@@ -2681,7 +3063,11 @@ background: var(--btn-hovered);
   border: 0;
   background-color: transparent;
 }
-#uploadArtistCoverPhoto .upload-file-wrapper .uploaded-image-wrapper .remove-image span{
+#uploadArtistCoverPhoto
+  .upload-file-wrapper
+  .uploaded-image-wrapper
+  .remove-image
+  span {
   cursor: pointer;
   color: var(--white);
   margin: 0;
@@ -2694,13 +3080,19 @@ background: var(--btn-hovered);
   font-size: 16px;
   border: 0.1px solid #ffffff91;
 }
-#uploadArtistCoverPhoto .upload-file-wrapper .uploaded-image-wrapper .remove-image:hover span{
+#uploadArtistCoverPhoto
+  .upload-file-wrapper
+  .uploaded-image-wrapper
+  .remove-image:hover
+  span {
   border: 0.1px solid var(--white);
 }
-#uploadArtistCoverPhoto .modal-footer, #editBandMembers .modal-footer{
+#uploadArtistCoverPhoto .modal-footer,
+#editBandMembers .modal-footer {
   border: 0;
 }
-#uploadArtistCoverPhoto .modal-footer .upload-cover-photo, #editBandMembers .modal-footer .save{
+#uploadArtistCoverPhoto .modal-footer .upload-cover-photo,
+#editBandMembers .modal-footer .save {
   color: var(--white);
   font-size: 1.25rem;
   font-weight: 700;
@@ -2708,13 +3100,14 @@ background: var(--btn-hovered);
   padding: 0.75rem 8.63rem;
   background-color: var(--orange);
 }
-#uploadArtistCoverPhoto .modal-footer .upload-cover-photo:hover, #editBandMembers .modal-footer .save:hover{
+#uploadArtistCoverPhoto .modal-footer .upload-cover-photo:hover,
+#editBandMembers .modal-footer .save:hover {
   background-color: var(--btn-hovered);
 }
 
 /* Edit Band Members modal */
 
-#editBandMembers .hidden-more-options button{
+#editBandMembers .hidden-more-options button {
   display: block;
   color: var(--black);
   font-size: 0.875rem;
@@ -2724,17 +3117,17 @@ background: var(--btn-hovered);
   margin-bottom: 0.81rem;
   text-align: left;
 }
-#editBandMembers .hidden-more-options button:last-child{
+#editBandMembers .hidden-more-options button:last-child {
   margin-bottom: 0;
 }
-#editBandMembers .hidden-more-options button:hover{
+#editBandMembers .hidden-more-options button:hover {
   color: var(--orange);
 }
-#editBandMembers .add-member{
+#editBandMembers .add-member {
   color: var(--orange);
   font-size: 1rem;
   font-weight: 500;
-  line-height: 100%; 
+  line-height: 100%;
   letter-spacing: 0.05rem;
   display: flex;
   align-items: center;
@@ -2742,108 +3135,108 @@ background: var(--btn-hovered);
   padding: 0;
   margin: 2rem 0;
 }
-#editBandMembers .add-member span{
+#editBandMembers .add-member span {
   margin-right: 0.59rem;
-  font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 48;
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
 }
-#editBandMembers .add-member:hover{
+#editBandMembers .add-member:hover {
   color: var(--btn-hovered);
 }
-#editBandMembers .modal-footer{
+#editBandMembers .modal-footer {
   margin-top: 3rem;
 }
 
 /* Proposal Form */
-.artist-proposal-form .container{
+.artist-proposal-form .container {
   width: 53.875rem;
   margin: 5rem auto 10rem;
 }
-.artist-proposal-form .back-wrapper{
+.artist-proposal-form .back-wrapper {
   margin-bottom: 2.5rem;
 }
-.artist-proposal-form .back-wrapper .back{
+.artist-proposal-form .back-wrapper .back {
   color: var(--black);
   font-size: 1.25rem;
   font-weight: 600;
   gap: 0.75rem;
 }
-.artist-proposal-form .back-wrapper .back:hover{
+.artist-proposal-form .back-wrapper .back:hover {
   color: var(--orange);
 }
-.artist-proposal-form .back-wrapper .back:hover .back-icon{
+.artist-proposal-form .back-wrapper .back:hover .back-icon {
   background-color: var(--orange);
   border: 2px solid var(--orange);
   color: var(--white);
 }
-.artist-proposal-form .back-wrapper .back-icon{
+.artist-proposal-form .back-wrapper .back-icon {
   font-size: 24px;
   color: var(--orange);
   padding: 6px;
   border-radius: 100%;
-  border: 2px solid #DFDFE6;
+  border: 2px solid #dfdfe6;
 }
-.artist-proposal-form .submit-proposal-wrap{
+.artist-proposal-form .submit-proposal-wrap {
   margin-bottom: 2.5rem;
 }
-.artist-proposal-form .submit-proposal-wrap .top-level-title{
+.artist-proposal-form .submit-proposal-wrap .top-level-title {
   color: var(--black);
   font-size: 1.75rem;
   font-weight: 700;
   margin-bottom: 0.25rem;
 }
-.artist-proposal-form .submit-proposal-wrap .top-level-sub-title{
+.artist-proposal-form .submit-proposal-wrap .top-level-sub-title {
   color: var(--gray2);
   font-size: 1.25rem;
   font-weight: 400;
   margin-bottom: 0;
 }
-.artist-proposal-form .artist-details-wrap, 
-.artist-proposal-form .cover-letter-wrap{
+.artist-proposal-form .artist-details-wrap,
+.artist-proposal-form .cover-letter-wrap {
   padding-bottom: 3rem;
   margin-bottom: 3rem;
-  border-bottom: 1px solid #E5E7EB;
-} 
-.artist-proposal-form h3{
+  border-bottom: 1px solid #e5e7eb;
+}
+.artist-proposal-form h3 {
   color: #121212;
   font-size: 1.375rem;
   font-weight: 600;
   margin-bottom: 1.5rem;
 }
-.artist-proposal-form .artist-details-wrap .form-group{
+.artist-proposal-form .artist-details-wrap .form-group {
   margin-bottom: 1.75rem;
 }
-.artist-proposal-form .artist-details-wrap > .form-group:last-of-type{
+.artist-proposal-form .artist-details-wrap > .form-group:last-of-type {
   margin-bottom: 0;
 }
-.artist-proposal-form .artist-details-wrap label{
+.artist-proposal-form .artist-details-wrap label {
   color: var(--black);
   font-size: 1rem;
   font-weight: 500;
   margin-bottom: 0.38rem;
 }
-.artist-proposal-form .artist-details-wrap select, 
+.artist-proposal-form .artist-details-wrap select,
 .artist-proposal-form .artist-details-wrap input,
-.artist-proposal-form .cover-letter-wrap textarea{
+.artist-proposal-form .cover-letter-wrap textarea {
   height: 3.5rem;
-  color: #2D3748;
+  color: #2d3748;
   font-size: 1rem;
   font-weight: 500;
   border-radius: 0.3125rem;
   border: 1px solid var(--gray6);
 }
-.artist-proposal-form .cover-letter-wrap label{
+.artist-proposal-form .cover-letter-wrap label {
   color: var(--black);
   font-size: 1rem;
   font-weight: 500;
   margin-bottom: 0.38rem;
 }
-.artist-proposal-form .cover-letter-wrap textarea{
+.artist-proposal-form .cover-letter-wrap textarea {
   height: 12.1875rem;
 }
-.artist-proposal-form .music-sample-wrap{
+.artist-proposal-form .music-sample-wrap {
   margin-bottom: 6rem;
 }
-.artist-proposal-form .submit-proposal-btn{
+.artist-proposal-form .submit-proposal-btn {
   color: var(--white);
   font-size: 1rem;
   font-weight: 700;
@@ -2852,30 +3245,32 @@ background: var(--btn-hovered);
   padding: 0.91rem 8.41rem;
   border: 0;
 }
-.artist-proposal-form .submit-proposal-btn:hover{
+.artist-proposal-form .submit-proposal-btn:hover {
   background-color: var(--btn-hovered);
 }
 
-
-
-  /* Styles for when the user is dragging over the drop area */
+/* Styles for when the user is dragging over the drop area */
 .profile-details .fill-details .song-preview .drag-over,
 #uploadArtistCoverPhoto .modal-body .drag-over,
 #artistPost .modal-body .drag-over,
 .artist-proposal-form .drag-over {
-  border: 2px dashed var(--orange)!important;
+  border: 2px dashed var(--orange) !important;
 }
 
-.profile-details .fade-enter-active, .profile-details .fade-leave-active,
-.profile-page .fade-enter-active, .profile-page .fade-leave-active{
+.profile-details .fade-enter-active,
+.profile-details .fade-leave-active,
+.profile-page .fade-enter-active,
+.profile-page .fade-leave-active {
   transition: opacity 1s;
 }
-.profile-details .fade-enter, .profile-details .fade-leave-to,
-.profile-page .fade-enter, .profile-page .fade-leave-to {
+.profile-details .fade-enter,
+.profile-details .fade-leave-to,
+.profile-page .fade-enter,
+.profile-page .fade-leave-to {
   opacity: 0;
 }
 /* Data from backend - array of objects at the bottom */
-.artist-data .container .user{
+.artist-data .container .user {
   white-space: normal;
   /* overflow: hidden; */
   word-wrap: break-word;
@@ -2883,11 +3278,10 @@ background: var(--btn-hovered);
   word-break: break-word;
 }
 
-
-                                                                             /* MEDIA QUERIES */
+/* MEDIA QUERIES */
 
 /* Large (lg) and Extra large (xl) */
-@media (min-width: 992px) and (max-width: 1399.98px){
+@media (min-width: 992px) and (max-width: 1399.98px) {
   /* 
   STANDARD MARGIN:
   margin-top: 80px / 5rem
@@ -2900,1087 +3294,1371 @@ background: var(--btn-hovered);
   28px 1.75 rem
 */
 
-/* Organizer Profile page - Events tab */
-.profile-page .events-tab h2 {
-  margin-bottom: 1.56rem
-}
-.profile-page .events-tab .card {
-  border-radius: 0.51019rem;
-  box-shadow: 0px 3.26502px 16.32509px 0px rgba(56, 29, 219, 0.08);
-  margin-bottom: 2rem;
-}
-.profile-page .events-tab .card .bg-wrapper {
-  height: 15.04969rem;
-  border-radius: 0.20rem 0.20rem 0rem 0rem;
-}
-.profile-page .events-tab .card .organized-by img {
-  width: 2.04063rem;
-  height: 2.04063rem;
-  margin-right: 0.36rem;
-}
-.profile-page .events-tab .card .organized-by h5 {
-  font-size: 0.875rem;
-}
-.profile-page .events-tab .card .organized-by p {
-  font-size: 0.625rem;
-}
-.profile-page .events-tab .card .card-body {
-  padding: 1rem 0.8rem;
-}
-.profile-page .events-tab .event-details-wrap {
-  margin-bottom: 1rem;
-  gap: 0.8rem;
-  margin-left: .2rem;
-}
-.profile-page .events-tab .event-details-wrap .event-name {
-  font-size: 1rem;
-  letter-spacing: -0.02rem;
-  line-height: normal;
-  margin-bottom: 0.2rem;
-}
-.profile-page .events-tab .event-details-wrap .event-place, .profile-page .events-tab .event-details-wrap .date-time {
-  font-size: 0.75rem;
-  line-height: normal;
-  margin-bottom: 0.2rem;
-}
-.profile-page .events-tab .event-details-wrap .month {
-  font-size: 0.625rem;
-}
-.profile-page .events-tab .event-details-wrap .num {
-  font-size: 1.5rem;
-}
-.profile-page .events-tab .card-body .view-details {
-  font-size: 0.875rem;
-  line-height: normal;
-  padding: 0.83rem 0;
-}
-.profile-page .events-tab > .row:first-of-type {
-  padding-bottom: 1.38rem;
-  border-bottom: 1px solid #E5E7EB;
-  margin-bottom: 2.38rem;
-}
+  /* Organizer Profile page - Events tab */
+  .profile-page .events-tab h2 {
+    margin-bottom: 1.56rem;
+  }
+  .profile-page .events-tab .card {
+    border-radius: 0.51019rem;
+    box-shadow: 0px 3.26502px 16.32509px 0px rgba(56, 29, 219, 0.08);
+    margin-bottom: 2rem;
+  }
+  .profile-page .events-tab .card .bg-wrapper {
+    height: 15.04969rem;
+    border-radius: 0.2rem 0.2rem 0rem 0rem;
+  }
+  .profile-page .events-tab .card .organized-by img {
+    width: 2.04063rem;
+    height: 2.04063rem;
+    margin-right: 0.36rem;
+  }
+  .profile-page .events-tab .card .organized-by h5 {
+    font-size: 0.875rem;
+  }
+  .profile-page .events-tab .card .organized-by p {
+    font-size: 0.625rem;
+  }
+  .profile-page .events-tab .card .card-body {
+    padding: 1rem 0.8rem;
+  }
+  .profile-page .events-tab .event-details-wrap {
+    margin-bottom: 1rem;
+    gap: 0.8rem;
+    margin-left: 0.2rem;
+  }
+  .profile-page .events-tab .event-details-wrap .event-name {
+    font-size: 1rem;
+    letter-spacing: -0.02rem;
+    line-height: normal;
+    margin-bottom: 0.2rem;
+  }
+  .profile-page .events-tab .event-details-wrap .event-place,
+  .profile-page .events-tab .event-details-wrap .date-time {
+    font-size: 0.75rem;
+    line-height: normal;
+    margin-bottom: 0.2rem;
+  }
+  .profile-page .events-tab .event-details-wrap .month {
+    font-size: 0.625rem;
+  }
+  .profile-page .events-tab .event-details-wrap .num {
+    font-size: 1.5rem;
+  }
+  .profile-page .events-tab .card-body .view-details {
+    font-size: 0.875rem;
+    line-height: normal;
+    padding: 0.83rem 0;
+  }
+  .profile-page .events-tab > .row:first-of-type {
+    padding-bottom: 1.38rem;
+    border-bottom: 1px solid #e5e7eb;
+    margin-bottom: 2.38rem;
+  }
 
-/* Proposal Form */
-.artist-proposal-form .container{
-  width: 40.781rem;
-  margin: 5rem auto 8rem;
-}
-.artist-proposal-form .back-wrapper,
-.artist-proposal-form .submit-proposal-wrap {
-  margin-bottom: 1.88rem;
-}
-.artist-proposal-form .back-wrapper .back {
-  font-size: 0.9375rem;
-  gap: 0.56rem;
-}
-.artist-proposal-form .back-wrapper .back-icon {
-  font-size: 20px;
-  padding: 4px;
-}
-.artist-proposal-form .submit-proposal-wrap .top-level-title {
-  font-size: 1.375rem;
-  margin-bottom: 0.19rem;
-}
-.artist-proposal-form .submit-proposal-wrap .top-level-sub-title {
-  font-size: 0.875rem;
-}
-.artist-proposal-form .artist-details-wrap, .artist-proposal-form .cover-letter-wrap{
-  padding-bottom: 2.25rem;
-  margin-bottom: 2.25rem;
-}
-.artist-proposal-form h3 {
-  font-size: 1.125rem;
-  margin-bottom: 1.13rem;
-}
-.artist-proposal-form .artist-details-wrap label {
-  font-size: 0.875rem;
-  margin-bottom: 0.25rem;
-}
-.artist-proposal-form .artist-details-wrap select, .artist-proposal-form .artist-details-wrap input, .artist-proposal-form .cover-letter-wrap textarea {
-  height: 2.5rem;
-  font-size: 0.75rem;
-  border-radius: 0.23438rem;
-  border: 0.75px solid var(--gray6);
-}
-.artist-proposal-form .artist-details-wrap .form-group {
-  margin-bottom: 1.31rem;
-}
-.artist-proposal-form .cover-letter-wrap textarea{
-  height: 9.0625rem;
-}
-.artist-proposal-form .music-sample-wrap {
-  margin-bottom: 4.45rem;
-}
-.artist-proposal-form .submit-proposal-btn {
-  font-size: 0.875rem;
-  padding: 0.72rem 6.13rem;
-}
+  /* Proposal Form */
+  .artist-proposal-form .container {
+    width: 40.781rem;
+    margin: 5rem auto 8rem;
+  }
+  .artist-proposal-form .back-wrapper,
+  .artist-proposal-form .submit-proposal-wrap {
+    margin-bottom: 1.88rem;
+  }
+  .artist-proposal-form .back-wrapper .back {
+    font-size: 0.9375rem;
+    gap: 0.56rem;
+  }
+  .artist-proposal-form .back-wrapper .back-icon {
+    font-size: 20px;
+    padding: 4px;
+  }
+  .artist-proposal-form .submit-proposal-wrap .top-level-title {
+    font-size: 1.375rem;
+    margin-bottom: 0.19rem;
+  }
+  .artist-proposal-form .submit-proposal-wrap .top-level-sub-title {
+    font-size: 0.875rem;
+  }
+  .artist-proposal-form .artist-details-wrap,
+  .artist-proposal-form .cover-letter-wrap {
+    padding-bottom: 2.25rem;
+    margin-bottom: 2.25rem;
+  }
+  .artist-proposal-form h3 {
+    font-size: 1.125rem;
+    margin-bottom: 1.13rem;
+  }
+  .artist-proposal-form .artist-details-wrap label {
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+  }
+  .artist-proposal-form .artist-details-wrap select,
+  .artist-proposal-form .artist-details-wrap input,
+  .artist-proposal-form .cover-letter-wrap textarea {
+    height: 2.5rem;
+    font-size: 0.75rem;
+    border-radius: 0.23438rem;
+    border: 0.75px solid var(--gray6);
+  }
+  .artist-proposal-form .artist-details-wrap .form-group {
+    margin-bottom: 1.31rem;
+  }
+  .artist-proposal-form .cover-letter-wrap textarea {
+    height: 9.0625rem;
+  }
+  .artist-proposal-form .music-sample-wrap {
+    margin-bottom: 4.45rem;
+  }
+  .artist-proposal-form .submit-proposal-btn {
+    font-size: 0.875rem;
+    padding: 0.72rem 6.13rem;
+  }
 
-
-
-/*  Edit Band Members*/
-#editBandMembers .modal-header .modal-title{
-  font-size: 1.25rem;
-  font-weight: 600;
-  line-height: 2rem;
-}
-.profile-details .container .fill-details .band-members .list-group-item, #editBandMembers .list-group-item {
-  padding: 1.25rem 1.25rem 1.25rem 0.9375rem;
-  margin-bottom: 0.63rem;
-}
-#editBandMembers .list-group-item img {
-  width: 2.5rem;
-  height: 2.5rem;
-}
-.profile-details .container .fill-details .band-members .list-group-item .items .band-name, 
-#editBandMembers .list-group-item .items .band-name {
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-}
-.profile-details .container .fill-details .band-members .list-group-item .items .band-role,
- #editBandMembers .list-group-item .items .band-role {
-  font-size: 0.875rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
-.profile-details .fill-details .band-members .edit-band-member-wrapper .edit-band-member, 
-.profile-details .fill-details .band-members .delete-band-member-wrapper .delete-band-member, 
-#editBandMembers .list-group-item  .edit-band-member-wrapper .edit-band-member,
- #editBandMembers .list-group-item  .delete-band-member-wrapper .delete-band-member {
-  width: 1.2rem;
-  height: 1.2rem;
-}
-.profile-details .container .fill-details .band-members .list-group-item .items, #editBandMembers .list-group-item .items {
-  gap: 0.8rem;
-}
-#editBandMembers .add-member {
-  font-size: 0.875rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 100%; 
-  letter-spacing: 0.04375rem;
-  margin: 1.5rem 0;
-}
-#editBandMembers .modal-footer {
-  margin-top: 1.5rem;
-}
-#editBandMembers .hidden-more-options {
+  /*  Edit Band Members*/
+  #editBandMembers .modal-header .modal-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 2rem;
+  }
+  .profile-details .container .fill-details .band-members .list-group-item,
+  #editBandMembers .list-group-item {
+    padding: 1.25rem 1.25rem 1.25rem 0.9375rem;
+    margin-bottom: 0.63rem;
+  }
+  #editBandMembers .list-group-item img {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  .profile-details
+    .container
+    .fill-details
+    .band-members
+    .list-group-item
+    .items
+    .band-name,
+  #editBandMembers .list-group-item .items .band-name {
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+  .profile-details
+    .container
+    .fill-details
+    .band-members
+    .list-group-item
+    .items
+    .band-role,
+  #editBandMembers .list-group-item .items .band-role {
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  .profile-details
+    .fill-details
+    .band-members
+    .edit-band-member-wrapper
+    .edit-band-member,
+  .profile-details
+    .fill-details
+    .band-members
+    .delete-band-member-wrapper
+    .delete-band-member,
+  #editBandMembers .list-group-item .edit-band-member-wrapper .edit-band-member,
+  #editBandMembers
+    .list-group-item
+    .delete-band-member-wrapper
+    .delete-band-member {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+  .profile-details
+    .container
+    .fill-details
+    .band-members
+    .list-group-item
+    .items,
+  #editBandMembers .list-group-item .items {
+    gap: 0.8rem;
+  }
+  #editBandMembers .add-member {
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: 0.04375rem;
+    margin: 1.5rem 0;
+  }
+  #editBandMembers .modal-footer {
+    margin-top: 1.5rem;
+  }
+  #editBandMembers .hidden-more-options {
     top: 70%;
     left: 65%;
-    width: 8.5rem;;
-}
-#editBandMembers .hidden-more-options button {
-  font-size: 0.8125rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
+    width: 8.5rem;
+  }
+  #editBandMembers .hidden-more-options button {
+    font-size: 0.8125rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
 
-/* Upload Cover photo / Edit Band Members*/
+  /* Upload Cover photo / Edit Band Members*/
 
-#uploadArtistCoverPhoto .modal-content, #editBandMembers .modal-content {
-  padding: 2.06rem 2.38rem 2.63rem;
-  width: 35rem;
-  margin: 0 auto;
-}
-#uploadArtistCoverPhoto .modal-content .modal-header,  #editBandMembers .modal-content .modal-header{
-  margin-bottom: 1.25rem;
-}
-#uploadArtistCoverPhoto .modal-title{
-  font-size: 1.25rem;
-  font-weight: 600;
-  line-height: 2rem; 
-}
-#uploadArtistCoverPhoto .modal-body .upload-file-wrapper{
-  padding: 0.56rem;
-  margin-bottom: 0.93rem;
-}
-#uploadArtistCoverPhoto .upload-file-wrapper .upload-file-content{
-  padding: 1.56rem 0;
-}
-#uploadArtistCoverPhoto .upload-file-wrapper .upload-file-content svg {
-  margin-bottom: 0.62rem;
-  width: 1.8125rem;
-  height: 1.8125rem;
-}
-#uploadArtistCoverPhoto .upload-file-wrapper .upload-file-content .drag-files {
-  font-size: 0.75rem;
-}
-#uploadArtistCoverPhoto .upload-file-wrapper .upload-file-content .image-type{
-  font-size: 0.625rem;
-}
-#uploadArtistCoverPhoto .upload-file-content  .select-files-wrapper label {
-  font-size: 0.625rem;
-}
-#uploadArtistCoverPhoto .upload-file-wrapper .uploaded-image-wrapper .uploaded-image{
-  height: 18.813rem;
-}
-#uploadArtistCoverPhoto .upload-file-wrapper .uploaded-image-wrapper .remove-image {
-  top: 7%;
-  left: 89%;
-}
-#uploadArtistCoverPhoto .modal-footer{
-  padding: 0;
-}
-#uploadArtistCoverPhoto .modal-footer .upload-cover-photo, #editBandMembers .modal-footer .save{
-  font-size: 1rem;
-  letter-spacing: -0.02rem;
-  padding: 0.88rem 7rem;
-}
-#uploadArtistCoverPhoto .modal-body .img-dimensions {
-  padding: 0.81rem 1.21rem;
-  margin-bottom: 2.5rem;
-}
-#uploadArtistCoverPhoto .modal-body .img-dimensions .description {
-  font-size: 0.75rem;
-  letter-spacing: -0.04375rem;
-  line-height: normal;
-}
-#uploadArtistCoverPhoto .modal-body .img-dimensions .info {
-  font-size: 18px;
-  margin-right: 0.32rem;
-}
-#uploadArtistCoverPhoto .modal-content .modal-header .btn-close, #editBandMembers .modal-content .modal-header .btn-close {
-  font-size: 0.5rem;
-  padding: 0.3rem;
-}
-
-                                            /* Create post - Uploaded music */
-
-#artistPost .uploaded-song-wrapper .song-wrapper img {
-  width: 2.125rem;
-  height: 2.8125rem;
-}                                            
-#artistPost .uploaded-song-wrapper .song-wrapper {
-  gap: 0.63rem;
-}
-#artistPost .uploaded-song-wrapper .song-wrapper .song-title {
-  font-size: 0.875rem;
-  margin-bottom: 0.25rem;
-  line-height: 1rem;
-  max-height: 3rem;
-}
-#artistPost .uploaded-song-wrapper .song-wrapper .preview {
-  font-size: 0.75rem;
-}
-#artistPost .uploaded-song-wrapper {
-  margin: 1.25rem 0;
-  padding: 0.87rem;
-  border: 1.25px solid #CDD3D8;
-}
-#artistPost .uploaded-song-wrapper .remove-music-wrapper {
-  top: 10%;
-  left: 80%;
-}
-#artistPost .uploaded-song-wrapper .remove-music-wrapper .file-size {
-  font-size: 0.625rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 0.75rem;
-  margin-right: 0.63rem;
-}
-#artistPost .uploaded-song-wrapper .remove-music-wrapper .remove-music {
-  font-size: 16px;
-  padding: 1.8px;
-}
-
-
-
-                                          /* Create post - Uploaded images/ videos */
-
-#artistPost .uploaded-wrapper .uploaded-images {
-  height: 10.4375rem;
-}         
-#artistPost .uploaded-wrapper .uploaded-images img, #artistPost .uploaded-wrapper .uploaded-images video {
-  height: 10.4375rem;
-}
-#artistPost .uploaded-wrapper .uploaded-images img {
-  height: 10.4375rem;
-}    
-#artistPost .uploaded-wrapper .uploaded-images .upload-more .add-photo-icon {
-  font-size: 24px;
-}
-#artistPost .uploaded-wrapper .uploaded-images .upload-more .add-more {
-  font-size: 0.875rem;
-}
-#artistPost .uploaded-wrapper {
-  padding: 0 1%;
-}
-#artistPost .uploaded-wrapper .uploaded-images .remove-img {
-  left: 88%;
-  font-size: 14px;
-}
-.profile-page .middle-wrapper  .artist-post .card-header .show-more-options {
-  left: 72%;
-  /* width: 9.875rem;
-  padding: 1.13rem 0.94rem; */
-}
-/* one file uploaded */
-.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-one video,
-.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-one img{
-  height: 16.0625rem!important;
-}
-/* two files uploaded */
-.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-two video, 
-.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-two img {
-  padding: 0 0.3%;
-}
-/* three files uploaded */
-.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-three-left,
-.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-three-right{
-  padding: 0 0.2%;
-}
-.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-three-top video, 
-.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-three-top img {
-  padding: 0 0.2% 0.5%;
-}
-.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-three-left video,
-.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-three-left img,
-.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-three-right video,
-.profile-page .middle-wrapper  .artist-post .card-body  .uploaded-three-right img{
-  padding: 0 0.2%;
-}
-/* 4 or more files uploaded */
-.profile-page .middle-wrapper  .artist-post .card-body .posted-file .uploaded-four img,
-.profile-page .middle-wrapper  .artist-post .card-body .posted-file .uploaded-four video{
-  height: 12.32638rem;
-  padding: 0 0.2% 0.5%;
-}
-.profile-page .middle-wrapper  .artist-post .card-body .posted-file .file-count {
-  font-size: 2rem;
-}
-
-
-                                                    /* ARTIST POST MODAL */
-
-#artistPost .modal-dialog {
-  max-width: 35rem!important;
-}
-#artistPost .modal-content {
-    padding: 2.1rem 2.1rem 2.5rem;
-}
-#artistPost .modal-content .modal-header .modal-title {
-  font-size: 1.25rem;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 2rem; 
-}
-#artistPost .modal-body .artist-image img {
-  width: 3.5rem;
-  height: 3.5rem;
-  margin-right: 0.5rem;
-}
-#artistPost .modal-body .artist-image .band-name {
-  color: #0F1419;
-  font-size: 1.125rem;
-  font-weight: 700;
-}
-#artistPost .modal-body .add-post {
-  font-size: 1rem;
-  font-weight: 600;
-}
-#artistPost .modal-body .manage-to-post .post-icon {
-  font-size: 1.4rem;
-  padding: 0.71rem;
-  margin-right: 0.37rem;
-}
-#artistPost .modal-body .manage-to-post button .selected{
-  font-size: 0.875rem;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-}
-#artistPost .modal-body .button-wrapper button {
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  letter-spacing: -0.02rem;
-  padding: 0.94rem 10rem;
-}
-#artistPost .modal-body .icons-list .left-icon, #artistPost .modal-body .icons-list .right-icon {
-  padding: 0.78rem 1.25rem;
-  font-size: 1rem;
-}
-#artistPost .modal-body .left-icon img, #artistPost .modal-body .right-icon img {
-  margin-right: 0.62rem;
-  width: 1.5rem;
-  height: 1.5rem;
-}
-#artistPost .modal-body .form-group textarea::placeholder{
-  font-size: 0.875rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 1.5rem; 
-}
-#artistPost .modal-body .upload-file-wrapper {
-  padding: 0.5rem;
-}
-#artistPost .upload-file-wrapper .upload-file-content {
-  padding: 1.56rem 0;
-}
-#artistPost .upload-file-wrapper .upload-file-content svg {
-  margin-bottom: 0.62rem;
-  width: 1.8125rem;
-  height: 1.8125rem;
-}
-#artistPost .upload-file-wrapper .upload-file-content .title {
-  font-size: 0.75rem;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-}
-#artistPost .upload-file-wrapper .upload-file-content .limit {
-  font-size: 0.625rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
-#artistPost .upload-file-content .upload-wrapper label {
-  font-size: 0.625rem;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-  padding: 0.75rem 1rem;
-}
-#artistPost .modal-body .search-container {
-  margin: 0.25rem auto 1.25rem;
-}
-#artistPost .modal-body .search-container span {
-  left: 2.8%;
-}
-#artistPost .modal-body .search-container .search-input {
-  padding: 0.88rem 1.25rem 0.88rem 2.9rem;
-}
-
-                                                    /* ARTIST PROFILE PAGE*/
-
-.profile-page .profile-header .cover .cover-body .profile-info .profile-wrapper {
-    margin-top: 1rem;
-    margin-left: 2rem;
-}
-.profile-page .profile-header .cover .cover-body .profile-name {
-  font-size: 2.2rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  margin-bottom: 0.44rem;
-}
-.profile-page .profile-header .cover .cover-body .type-of-artist {
-  font-size: 1.25rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.25rem; 
-}
-.profile-page .profile-header .cover .cover-photo-camera {
-  top: 80%;
-}
-.profile-page .profile-header .cover .cover-photo-camera button span {
-  font-size: 1rem;
-}
-.profile-page .profile-header .cover .cover-body .edit a {
-  font-size: 1.25rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 100%; 
-  letter-spacing: 0.0625rem;
-  padding: 0.87rem 2rem;
-}
-.profile-page .about-tab .ratings p {
-  margin-top: 5px;
-}
-.profile-page .about-tab .genres .genres-list .badge {
-  padding: 10px 14px;
-  margin-right: 6px;
-  margin-bottom: 10px;
-}
-.profile-page .about-tab .band-members {
-margin-top: 40px;
-}
-.profile-page .about-tab, .profile-page .events-tab {
-  padding: 3rem 3.69rem 5rem;
-}
-.profile-page .about-tab .band-members .card img {
-height: 200px;
-}
-.profile-page .about-tab .overview,
-.profile-page .events-tab h2 {
-  font-size: 1.5rem;
-}
-.profile-page .about-tab .content, .profile-page .about-tab .capacity, .profile-page .about-tab .capacity-list, .profile-page .about-tab .capacity-list li {
-  font-size: 16px;
-}
-.profile-page .about-tab .genres h4 {
-  font-size: 20px;
-}
-.profile-page .about-tab  .genres {
-  gap: 12px;
-}
-.profile-page .about-tab .genres .genres-list .badge {
-  border-radius: 8px;
-  border: 1px solid #ABADC6;
-  font-size: 12px;
-  margin-right: 6px;
-  margin-bottom: 4px;
-}
-.profile-page .about-tab .genres .genres-list .badge {
-  padding: 8px 12px;
-  margin-right: 4px;
-  margin-bottom: 6px;
-}
-.profile-page .about-tab .social-media {
-  padding: 8%;
-  margin-bottom: 40px;
-}
-.profile-page .about-tab .social-media h4 {
-  font-size: 20px;
-  margin-bottom: 14px;
-}
-.profile-page .about-tab .social-media ul li {
-  font-size: 12px;
-  line-height: 22px;
-  margin-bottom: 8px;
-}
-.profile-page .about-tab .social-media ul img {
-  width: 18px;
-  height: 18px;
-  margin-right: 4px;
-}
-.profile-page .about-tab .ratings h4 {
-  font-size: 20px;
-}
-.profile-page .about-tab .ratings p {
-  font-size: 14px;
-  margin-top: 2px;
-}
-.profile-page .about-tab .ratings span {
-  font-size: 18px;
-  padding-right: 2px;
-}
-.profile-page .about-tab .band-members h4 {
-  font-size: 20px;
-  margin-bottom: 20px;
-  margin-top: 24px;
-}
-.profile-page .about-tab .band-members .card {
-  margin-bottom: 16px;
-}
-
-
-.profile-page .right-wrapper .past-events .card-body .events-list .events-info img, .profile-page .right-wrapper .original-songs .songs-list .songs-info img{
-width: 48px;
-height: 48px;
-margin-right: 6px;
-}
-.profile-page .profile-header .cover .cover-body .profile-pic {
-  width: 15.875rem;
-  height: 15.875rem;
-}
-.profile-page .profile-header .header-links ul li a {
-  leading-trim: both;
-  text-edge: cap;
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 1.25rem;
-}
-.profile-page .profile-header .header-links ul li a .orange-badge, .profile-page .profile-header .header-links ul li a .text-bg-secondary {
-  padding: 0px 4px;
-  font-size: 10px;
-  line-height: 14px;
-}
-.profile-page .left-wrapper .artist-info .card-body, .profile-page .left-wrapper .band-members .card-body,
-.profile-page .right-wrapper .past-events .card-body, .profile-page .right-wrapper .original-songs .card-body {
-  padding: 1.2rem 1rem;
-}
-.profile-page .left-wrapper .artist-info .card-title {
-  font-size: 0.875rem;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 136.523%; 
-}
-.profile-page .left-wrapper .artist-info .edit a, .profile-page .left-wrapper .band-members .see-all a,
-.profile-page .right-wrapper .past-events .see-all a, .profile-page .right-wrapper .original-songs .see-all a {
-  font-size: 0.75rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-}
-.profile-page .left-wrapper .artist-info .about, .profile-page .left-wrapper .band-members .title .card-title,
-.profile-page .right-wrapper .past-events .header h5, .profile-page .right-wrapper .original-songs .header h5,
-.profile-page .right-wrapper .past-events .card-body .events-list .events-info a, 
-.profile-page .right-wrapper .original-songs .songs-list .songs-info a {
-  font-size: 0.875rem;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 1.5rem;
-  margin-bottom: 0.31rem;
-}
-.profile-page .left-wrapper .artist-info .description {
-  font-size: 0.75rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
- .profile-page .left-wrapper .artist-info .social-media p {
-  font-size: 0.79rem;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 136.523%; 
-  margin-left: 6px;
-}
-/* .profile-page .left-wrapper .artist-info .social-media .calendar {
-  font-size: 24px;
-} */
-.profile-page .left-wrapper  .card-body .members-list,
-.profile-page .right-wrapper .past-events .card-body .events-list, .profile-page .right-wrapper .original-songs .songs-list {
-  padding: 12px;
-  margin-bottom: 8px;
-}
-.profile-page .left-wrapper .artist-info .social-media img, .profile-page .left-wrapper .band-members .title img,
-.profile-page .right-wrapper .past-events .header span, .profile-page .right-wrapper .original-songs .header span {
-  width: 1.5rem;
-  height: 1.5rem;
-}
-.profile-page .left-wrapper  .card-body .members-list .member-info a {
-  font-size: 0.75rem;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-  margin-bottom: 0.25rem;
-}
-.profile-page .left-wrapper  .card-body .members-list .member-info  p {
-  font-size: 0.625rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
-.profile-page .left-wrapper  .card-body .members-list img {
-  width: 1.9rem;
-  height: 1.9rem;
-  margin-right: 0.5rem;
-}
-.profile-page .right-wrapper .past-events .card-body .events-list .more span, 
-.profile-page .right-wrapper .original-songs .songs-list .more span {
-  font-size: 20px;
-}
-.profile-page .middle-wrapper .post .card-body .write-something {
-  margin-bottom: 14px;
-  padding-bottom: 14px;
-}
-.profile-page .middle-wrapper .post .card-body .write-something img,
-.profile-page .middle-wrapper .artist-post .card-header .user-posted-info img {
-  width: 2.625rem;
-  height: 2.625rem;
-}
-.profile-page .middle-wrapper .post .card-body .write-something button {
-  font-size: 0.9rem;
-}
-.profile-page .middle-wrapper .post .card-body .post-features .features-button {
-  font-size: 0.9rem;
-  padding-top: 2px;
-}
-.profile-page .middle-wrapper .post .card-body .post-features .post-icon span {
-  margin-right: 7px;
-}
-.profile-page .middle-wrapper .post .card-body .post-features .post-icon span {
- font-size: 20px;
-}
-.profile-page .middle-wrapper  .artist-post .card-header .group-posted .name {
-  font-size: 0.875rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-}
-.profile-page .middle-wrapper  .artist-post .card-header .group-posted .ago {
-  font-size: 0.875rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
-.profile-page .middle-wrapper  .artist-post .card-header .dropdown span {
- font-size: 20px;
-}
-.profile-page .middle-wrapper  .artist-post .card-header {
-  padding-top: 1rem;
-  padding-bottom: 0.5rem;
-}
-.profile-page .middle-wrapper  .artist-post .card-body p {
-  font-size: 0.9rem;
-}
-/* Artist page - zero state screen */
-.profile-page .middle-wrapper  .artist-post .no-post {
-  padding: 4rem 0;
-}
-.profile-page .middle-wrapper  .artist-post .no-post .no-post-icon {
-  margin-bottom: 0.70rem;
-  width: 48px;
-  height: 48px;
-}
-.profile-page .middle-wrapper  .artist-post .no-post-title {
-  font-size: 0.775rem;
-}
-
-/* .profile-page .middle-wrapper  .artist-post .card-body{
-  padding-bottom: 0.5rem;
-} */
-.profile-page .middle-wrapper  .artist-post .card-footer .post-actions .post-icon span {
-  margin-right: 6px;
-  font-size: 20px;
-}
-.profile-page .middle-wrapper  .artist-post .card-footer .post-actions .post-icon p {
-  font-size: 11px;
-  margin-top: 2px;
-} 
-.profile-page .middle-wrapper  .artist-post .card-footer .comments p {
-  font-size: 10px;
-}
-.profile-page .right-wrapper .past-events .card-body .events-list .events-info  p, .profile-page .right-wrapper .original-songs .songs-list .songs-info p {
-  font-size: 0.725rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  letter-spacing: -0.0125rem;
-}
-.profile-page .right-wrapper .past-events .card-body .events-list .events-info  p{
-  font-size: 0.75rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  margin-bottom: 0.20rem;
-}
-/* Past Events / Original Songs - zero state screen  */
-.profile-page .right-wrapper .past-events .card-body .no-events-posted, .profile-page .right-wrapper .original-songs .no-original-songs {
-  padding: 2.06rem 0 4.2rem;
-}
-.profile-page .right-wrapper .past-events .card-body .no-events-posted .no-events-posted-icon,
-.profile-page .right-wrapper .original-songs .no-original-songs, .no-original-songs-icon {
-  margin-bottom: 0.70rem;
-}
-.profile-page .right-wrapper .past-events .card-body .no-events-posted .no-events-posted-title,
-.profile-page .right-wrapper .original-songs .no-original-songs-title{
-  font-size: 0.775rem;
-}
-
-/* Songs tab / Videos tab / Photos tab - zero state screen  */
-.profile-page .songs-tab, .profile-page .videos-tab, .profile-page .photos-tab {
-  margin: 0 .1% 8rem;
-}
-.profile-page .songs-tab .no-songs, 
-.profile-page .videos-tab .no-videos, 
-.profile-page .photos-tab .no-photos,
-.profile-page .events-tab .no-events-wrap {
-  padding: 5.19rem 0;
-  margin: 0 auto 1rem;
-}
-.profile-page .songs-tab .description-wrapper, .profile-page .videos-tab .description-wrapper, .profile-page .photos-tab .description-wrapper {
-  margin-bottom: 2rem;
-}
-.profile-page .songs-tab .no-songs svg, 
-.profile-page .videos-tab .no-videos svg, 
-.profile-page .photos-tab .no-photos svg,
-.profile-page .events-tab .no-events-wrap .no-events-icon{
-  width: 5rem;
-  height: 5rem;
-  margin-bottom: 1rem;
-}
-.profile-page .songs-tab .description-wrapper .title, 
-.profile-page .videos-tab .description-wrapper .title, 
-.profile-page .photos-tab .description-wrapper .title,
-.profile-page .events-tab .no-events-wrap .title {
-  font-size: 1.5rem;
-  margin-bottom: 0.4rem;
-}
-.profile-page .songs-tab .description-wrapper .sub-title,
- .profile-page .videos-tab .description-wrapper .sub-title,
- .profile-page .photos-tab .description-wrapper .sub-title,
- .profile-page .events-tab .no-events-wrap .description {
-  font-size: 1.2rem;
-}
-.profile-page .songs-tab .upload-songs, 
-.profile-page .videos-tab .upload-video,
- .profile-page .photos-tab .upload-photos,
-.profile-page .events-tab .no-events-wrap .add-event {
-  font-size: 0.87rem;
-  padding: 0.9rem 2rem;
-}
-
-
-                                                    /* ARTIST PROFILE DETAILS*/
- .profile-details .container {
-    margin: 5rem auto;
-}          
-.profile-details .container .back-wrapper .back {
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 140%; 
-  letter-spacing: -0.02rem;
-} 
-.profile-details .container .back-wrapper span {
-  font-size: 1.5rem;
-  padding: 0.21rem;
-}    
-.profile-details .container .title {
-  font-size: 2.25rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  letter-spacing: -0.045rem;
-}      
-.profile-details .container .sub-heading {
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 140%; 
-  letter-spacing: -0.02rem;
-}  
-.profile-details .container .profile-details {
-  font-size: 1.5rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 140%;
-  letter-spacing: -0.03rem
-}  
-
-.profile-details .container .fill-details .card {
-  padding: 1.2rem;
-}
-.profile-details .fill-details .social-media-account-wrapper .social-media-account,
-.profile-details .fill-details .social-media-account-wrapper .social-media-account {
-  width: 1.2rem;
-  height: 1.2rem;
-  opacity: 0;
-}
-.profile-details .fill-details .social-media-account-wrapper, .profile-details .fill-details .social-media-account-wrapper {
-  padding: 0 0.2rem;
-}
-
-.profile-details .upload-img .label-img .default-avatar {
-  width: 9.125rem;
-  height: 9.125rem;
-} 
-.profile-details .container .fill-details .upload-img .label-img  .camera-outer {
-  padding: 0.6rem;
-  font-size: 18px;
-  top: 68%;
-  left: 72%;
-}   
-.profile-details .container .fill-details .upload-img .description {
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 140%;
-  letter-spacing: -0.02rem;
-  margin-left: 1rem;
-}
-.profile-details .container .fill-details .required-fields label, .profile-details .container .fill-details .band-and-social, 
-.profile-details .fill-details .form-about-artist label, .profile-details .fill-details .song-preview label{
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-  letter-spacing: -0.02rem;
-}
-.profile-details .container .fill-details .required-fields select, .profile-details .container .fill-details .required-fields input,
-.profile-details .fill-details .song-preview input{
-  padding: 0.65rem;
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 1.3125rem; 
-}
-.profile-details .container .fill-details .required-fields .multiselect-tags,
-.profile-details .fill-details .song-preview .multiselect-tags {
-  padding-top: 0.65rem;
-  padding-bottom: 0.60rem;
-}
-.profile-details .container .fill-details .required-fields .multiselect-tags .multiselect-tag,
-.profile-details .fill-details .song-preview .multiselect-tags .multiselect-tag{
-  font-size: 0.875rem;
-  line-height: 140%;
-  letter-spacing: -0.0175rem;
-  padding: 0.25rem 0.5rem;
-}
-.profile-details .container .fill-details .form-group .add-member, .profile-details .container .fill-details .form-group .add-social-media {
-  font-size: 0.875rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 100%; 
-  letter-spacing: 0.04375rem;
-  padding-top: 0.4rem;
-}
-.profile-details .group-item .form-check-label {
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-}
-.profile-details .group-item {
-  margin-bottom: 1.5rem;
-}
-.profile-details .group-item .form-switch input {
-  width: 3.0625rem;
-  height: 1.5rem;
-}
-.profile-details .container .fill-details .submit-form {
-  font-size: 0.875rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  letter-spacing: -0.0175rem;
-  margin-top: 1rem;
-}
-/* WebKit, Edge */
-.profile-details .container .fill-details .required-fields select::-webkit-input-placeholder,
-.profile-details .container .fill-details .required-fields input ::-webkit-input-placeholder,
-.profile-details .fill-details .form-about-artist textarea:-webkit-input-placeholder{
-  font-size: 0.875rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 1.3125rem; 
-}
-/* Firefox 4-18 */
-.profile-details .container .fill-details .required-fields select:-moz-placeholder,
-.profile-details .container .fill-details .required-fields input:-moz-placeholder,
-.profile-details .fill-details .form-about-artist textarea:-moz-placeholder{ 
-  font-size: 0.875rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 1.3125rem;  
-}
-/* Firefox 19+ */
-.profile-details .container .fill-details .required-fields select::-moz-placeholder,
-.profile-details .container .fill-details .required-fields input::-moz-placeholder,
-.profile-details .fill-details .form-about-artist textarea::-moz-placeholder{ 
-  font-size: 0.875rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 1.3125rem; 
-}
-/* IE 10-11 */
-.profile-details .container .fill-details .required-fields select:-ms-input-placeholder, 
-.profile-details .container .fill-details .required-fields input:-ms-input-placeholder,  
-.profile-details .fill-details .form-about-artist textarea:-ms-input-placeholder{ 
-  font-size: 0.875rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 1.3125rem;  
-}
-/* Edge */
-.profile-details .container .fill-details .required-fields select::-ms-input-placeholder,
-.profile-details .container .fill-details .required-fields input::-ms-input-placeholder,
-.profile-details .fill-details .form-about-artist textarea::-ms-input-placeholder{ 
-  font-size: 0.875rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 1.3125rem; 
-}
-/* MODERN BROWSER */
-.profile-details .container .fill-details .required-fields select::placeholder, 
-.profile-details .container .fill-details .required-fields input::placeholder, 
-.profile-details .fill-details .form-about-artist textarea::placeholder { 
-  font-size: 0.875rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 1.3125rem; 
-}
-.profile-details .fill-details .song-preview {
-  margin-bottom: 3.5rem;
-}
-.profile-details .fill-details .song-preview .title {
-  font-size: 1rem;
-  letter-spacing: -0.05rem;
-}
-.profile-details .container .fill-details .form-group .char-count,
-.artist-proposal-form .cover-letter-wrap .char-count {
-  font-size: 0.875rem;
-  letter-spacing: -0.04375rem;
-  margin-top: 0.49rem;
-}
-.profile-details .fill-details .song-preview .description {
-  font-size: 0.875rem;
-  letter-spacing: -0.04375rem;
-  margin-bottom: 2rem;
-}
-.profile-details .fill-details .song-preview .upload-file-content,
-.artist-proposal-form .music-sample-wrap .upload-file-content{
-  padding: 0.9rem 0;
-}
-.profile-details .fill-details .song-preview .upload-file-content svg,
-.artist-proposal-form .music-sample-wrap .upload-file-content svg {
+  #uploadArtistCoverPhoto .modal-content,
+  #editBandMembers .modal-content {
+    padding: 2.06rem 2.38rem 2.63rem;
+    width: 35rem;
+    margin: 0 auto;
+  }
+  #uploadArtistCoverPhoto .modal-content .modal-header,
+  #editBandMembers .modal-content .modal-header {
+    margin-bottom: 1.25rem;
+  }
+  #uploadArtistCoverPhoto .modal-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 2rem;
+  }
+  #uploadArtistCoverPhoto .modal-body .upload-file-wrapper {
+    padding: 0.56rem;
+    margin-bottom: 0.93rem;
+  }
+  #uploadArtistCoverPhoto .upload-file-wrapper .upload-file-content {
+    padding: 1.56rem 0;
+  }
+  #uploadArtistCoverPhoto .upload-file-wrapper .upload-file-content svg {
     margin-bottom: 0.62rem;
     width: 1.8125rem;
     height: 1.8125rem;
-}
-.profile-details .fill-details .song-preview .upload-file-content .drag-files,
- .profile-details .fill-details .song-preview .upload-file-content .or,
- .artist-proposal-form .music-sample-wrap .drag-files, 
- .artist-proposal-form .music-sample-wrap .or {
-  font-size: 0.75rem;
-  margin-bottom: 0.25rem;
-}
-.profile-details .song-preview .upload-file-content .select-files-wrapper label,
-.artist-proposal-form .music-sample-wrap .select-files-wrapper label {
-  font-size: 0.625rem;
-  font-weight: 600;
-  padding: 0.75rem 1rem;
-}
-.profile-details .song-preview .audio-file-format,
-.artist-proposal-form .music-sample-wrap .audio-file-format {
-  padding: 0.7rem 0.9rem;
-}
-.profile-details .song-preview .audio-file-format .info,
-.artist-proposal-form .music-sample-wrap .info {
-  font-size: 16px;
-  margin-right: 0.2rem;
-}
-.profile-details .song-preview .audio-file-format .max-file-size,
-.artist-proposal-form .music-sample-wrap .max-file-size {
-  font-size: 0.79rem;
-  letter-spacing: -0.04375rem;
-}
-.profile-details .fill-details .song-preview .form-group, .profile-details .container .fill-details .form-group {
-  margin-bottom: 1.2rem;
-}
-.profile-details .song-preview .uploaded-song-wrapper,
-.artist-proposal-form .music-sample-wrap .uploaded-song-wrapper {
+  }
+  #uploadArtistCoverPhoto
+    .upload-file-wrapper
+    .upload-file-content
+    .drag-files {
+    font-size: 0.75rem;
+  }
+  #uploadArtistCoverPhoto
+    .upload-file-wrapper
+    .upload-file-content
+    .image-type {
+    font-size: 0.625rem;
+  }
+  #uploadArtistCoverPhoto .upload-file-content .select-files-wrapper label {
+    font-size: 0.625rem;
+  }
+  #uploadArtistCoverPhoto
+    .upload-file-wrapper
+    .uploaded-image-wrapper
+    .uploaded-image {
+    height: 18.813rem;
+  }
+  #uploadArtistCoverPhoto
+    .upload-file-wrapper
+    .uploaded-image-wrapper
+    .remove-image {
+    top: 7%;
+    left: 89%;
+  }
+  #uploadArtistCoverPhoto .modal-footer {
+    padding: 0;
+  }
+  #uploadArtistCoverPhoto .modal-footer .upload-cover-photo,
+  #editBandMembers .modal-footer .save {
+    font-size: 1rem;
+    letter-spacing: -0.02rem;
+    padding: 0.88rem 7rem;
+  }
+  #uploadArtistCoverPhoto .modal-body .img-dimensions {
+    padding: 0.81rem 1.21rem;
+    margin-bottom: 2.5rem;
+  }
+  #uploadArtistCoverPhoto .modal-body .img-dimensions .description {
+    font-size: 0.75rem;
+    letter-spacing: -0.04375rem;
+    line-height: normal;
+  }
+  #uploadArtistCoverPhoto .modal-body .img-dimensions .info {
+    font-size: 18px;
+    margin-right: 0.32rem;
+  }
+  #uploadArtistCoverPhoto .modal-content .modal-header .btn-close,
+  #editBandMembers .modal-content .modal-header .btn-close {
+    font-size: 0.5rem;
+    padding: 0.3rem;
+  }
+
+  /* Create post - Uploaded music */
+
+  #artistPost .uploaded-song-wrapper .song-wrapper img {
+    width: 2.125rem;
+    height: 2.8125rem;
+  }
+  #artistPost .uploaded-song-wrapper .song-wrapper {
+    gap: 0.63rem;
+  }
+  #artistPost .uploaded-song-wrapper .song-wrapper .song-title {
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+    line-height: 1rem;
+    max-height: 3rem;
+  }
+  #artistPost .uploaded-song-wrapper .song-wrapper .preview {
+    font-size: 0.75rem;
+  }
+  #artistPost .uploaded-song-wrapper {
     margin: 1.25rem 0;
     padding: 0.87rem;
-}
-.profile-details .song-preview .uploaded-song-wrapper .song-wrapper img,
-.artist-proposal-form .music-sample-wrap .song-wrapper img {
-  width: 2.125rem;
-  height: 2.8125rem;
-}
-.profile-details .song-preview .uploaded-song-wrapper .song-wrapper .song-title,
-.artist-proposal-form .music-sample-wrap .song-wrapper .song-title {
-  font-size: 0.875rem;
-  margin-bottom: 0.25rem;
-  line-height: 1rem;
-  max-height: 3rem;
-}
-.profile-details .song-preview .uploaded-song-wrapper .song-wrapper .preview .file-size,
-.artist-proposal-form .music-sample-wrap .preview .file-size {
-  font-size: 0.625rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 0.75rem;
-  margin-right: 0.63rem;
-}
-.profile-details .song-preview .uploaded-song-wrapper .song-wrapper .remove-music-wrapper img,
-.artist-proposal-form .music-sample-wrap .remove-music-wrapper img {
-  width: 1.25rem;
-  height: 1.25rem;
-}
+    border: 1.25px solid #cdd3d8;
+  }
+  #artistPost .uploaded-song-wrapper .remove-music-wrapper {
+    top: 10%;
+    left: 80%;
+  }
+  #artistPost .uploaded-song-wrapper .remove-music-wrapper .file-size {
+    font-size: 0.625rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 0.75rem;
+    margin-right: 0.63rem;
+  }
+  #artistPost .uploaded-song-wrapper .remove-music-wrapper .remove-music {
+    font-size: 16px;
+    padding: 1.8px;
+  }
 
+  /* Create post - Uploaded images/ videos */
 
+  #artistPost .uploaded-wrapper .uploaded-images {
+    height: 10.4375rem;
+  }
+  #artistPost .uploaded-wrapper .uploaded-images img,
+  #artistPost .uploaded-wrapper .uploaded-images video {
+    height: 10.4375rem;
+  }
+  #artistPost .uploaded-wrapper .uploaded-images img {
+    height: 10.4375rem;
+  }
+  #artistPost .uploaded-wrapper .uploaded-images .upload-more .add-photo-icon {
+    font-size: 24px;
+  }
+  #artistPost .uploaded-wrapper .uploaded-images .upload-more .add-more {
+    font-size: 0.875rem;
+  }
+  #artistPost .uploaded-wrapper {
+    padding: 0 1%;
+  }
+  #artistPost .uploaded-wrapper .uploaded-images .remove-img {
+    left: 88%;
+    font-size: 14px;
+  }
+  .profile-page .middle-wrapper .artist-post .card-header .show-more-options {
+    left: 72%;
+    /* width: 9.875rem;
+  padding: 1.13rem 0.94rem; */
+  }
+  /* one file uploaded */
+  .profile-page .middle-wrapper .artist-post .card-body .uploaded-one video,
+  .profile-page .middle-wrapper .artist-post .card-body .uploaded-one img {
+    height: 16.0625rem !important;
+  }
+  /* two files uploaded */
+  .profile-page .middle-wrapper .artist-post .card-body .uploaded-two video,
+  .profile-page .middle-wrapper .artist-post .card-body .uploaded-two img {
+    padding: 0 0.3%;
+  }
+  /* three files uploaded */
+  .profile-page .middle-wrapper .artist-post .card-body .uploaded-three-left,
+  .profile-page .middle-wrapper .artist-post .card-body .uploaded-three-right {
+    padding: 0 0.2%;
+  }
+  .profile-page
+    .middle-wrapper
+    .artist-post
+    .card-body
+    .uploaded-three-top
+    video,
+  .profile-page
+    .middle-wrapper
+    .artist-post
+    .card-body
+    .uploaded-three-top
+    img {
+    padding: 0 0.2% 0.5%;
+  }
+  .profile-page
+    .middle-wrapper
+    .artist-post
+    .card-body
+    .uploaded-three-left
+    video,
+  .profile-page
+    .middle-wrapper
+    .artist-post
+    .card-body
+    .uploaded-three-left
+    img,
+  .profile-page
+    .middle-wrapper
+    .artist-post
+    .card-body
+    .uploaded-three-right
+    video,
+  .profile-page
+    .middle-wrapper
+    .artist-post
+    .card-body
+    .uploaded-three-right
+    img {
+    padding: 0 0.2%;
+  }
+  /* 4 or more files uploaded */
+  .profile-page
+    .middle-wrapper
+    .artist-post
+    .card-body
+    .posted-file
+    .uploaded-four
+    img,
+  .profile-page
+    .middle-wrapper
+    .artist-post
+    .card-body
+    .posted-file
+    .uploaded-four
+    video {
+    height: 12.32638rem;
+    padding: 0 0.2% 0.5%;
+  }
+  .profile-page
+    .middle-wrapper
+    .artist-post
+    .card-body
+    .posted-file
+    .file-count {
+    font-size: 2rem;
+  }
+
+  /* ARTIST POST MODAL */
+
+  #artistPost .modal-dialog {
+    max-width: 35rem !important;
+  }
+  #artistPost .modal-content {
+    padding: 2.1rem 2.1rem 2.5rem;
+  }
+  #artistPost .modal-content .modal-header .modal-title {
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 2rem;
+  }
+  #artistPost .modal-body .artist-image img {
+    width: 3.5rem;
+    height: 3.5rem;
+    margin-right: 0.5rem;
+  }
+  #artistPost .modal-body .artist-image .band-name {
+    color: #0f1419;
+    font-size: 1.125rem;
+    font-weight: 700;
+  }
+  #artistPost .modal-body .add-post {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  #artistPost .modal-body .manage-to-post .post-icon {
+    font-size: 1.4rem;
+    padding: 0.71rem;
+    margin-right: 0.37rem;
+  }
+  #artistPost .modal-body .manage-to-post button .selected {
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+  #artistPost .modal-body .button-wrapper button {
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.02rem;
+    padding: 0.94rem 10rem;
+  }
+  #artistPost .modal-body .icons-list .left-icon,
+  #artistPost .modal-body .icons-list .right-icon {
+    padding: 0.78rem 1.25rem;
+    font-size: 1rem;
+  }
+  #artistPost .modal-body .left-icon img,
+  #artistPost .modal-body .right-icon img {
+    margin-right: 0.62rem;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  #artistPost .modal-body .form-group textarea::placeholder {
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.5rem;
+  }
+  #artistPost .modal-body .upload-file-wrapper {
+    padding: 0.5rem;
+  }
+  #artistPost .upload-file-wrapper .upload-file-content {
+    padding: 1.56rem 0;
+  }
+  #artistPost .upload-file-wrapper .upload-file-content svg {
+    margin-bottom: 0.62rem;
+    width: 1.8125rem;
+    height: 1.8125rem;
+  }
+  #artistPost .upload-file-wrapper .upload-file-content .title {
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+  #artistPost .upload-file-wrapper .upload-file-content .limit {
+    font-size: 0.625rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  #artistPost .upload-file-content .upload-wrapper label {
+    font-size: 0.625rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    padding: 0.75rem 1rem;
+  }
+  #artistPost .modal-body .search-container {
+    margin: 0.25rem auto 1.25rem;
+  }
+  #artistPost .modal-body .search-container span {
+    left: 2.8%;
+  }
+  #artistPost .modal-body .search-container .search-input {
+    padding: 0.88rem 1.25rem 0.88rem 2.9rem;
+  }
+
+  /* ARTIST PROFILE PAGE*/
+
+  .profile-page
+    .profile-header
+    .cover
+    .cover-body
+    .profile-info
+    .profile-wrapper {
+    margin-top: 1rem;
+    margin-left: 2rem;
+  }
+  .profile-page .profile-header .cover .cover-body .profile-name {
+    font-size: 2.2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 0.44rem;
+  }
+  .profile-page .profile-header .cover .cover-body .type-of-artist {
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.25rem;
+  }
+  .profile-page .profile-header .cover .cover-photo-camera {
+    top: 80%;
+  }
+  .profile-page .profile-header .cover .cover-photo-camera button span {
+    font-size: 1rem;
+  }
+  .profile-page .profile-header .cover .cover-body .edit a {
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
+    letter-spacing: 0.0625rem;
+    padding: 0.87rem 2rem;
+  }
+  .profile-page .about-tab .ratings p {
+    margin-top: 5px;
+  }
+  .profile-page .about-tab .genres .genres-list .badge {
+    padding: 10px 14px;
+    margin-right: 6px;
+    margin-bottom: 10px;
+  }
+  .profile-page .about-tab .band-members {
+    margin-top: 40px;
+  }
+  .profile-page .about-tab,
+  .profile-page .events-tab {
+    padding: 3rem 3.69rem 5rem;
+  }
+  .profile-page .about-tab .band-members .card img {
+    height: 200px;
+  }
+  .profile-page .about-tab .overview,
+  .profile-page .events-tab h2 {
+    font-size: 1.5rem;
+  }
+  .profile-page .about-tab .content,
+  .profile-page .about-tab .capacity,
+  .profile-page .about-tab .capacity-list,
+  .profile-page .about-tab .capacity-list li {
+    font-size: 16px;
+  }
+  .profile-page .about-tab .genres h4 {
+    font-size: 20px;
+  }
+  .profile-page .about-tab .genres {
+    gap: 12px;
+  }
+  .profile-page .about-tab .genres .genres-list .badge {
+    border-radius: 8px;
+    border: 1px solid #abadc6;
+    font-size: 12px;
+    margin-right: 6px;
+    margin-bottom: 4px;
+  }
+  .profile-page .about-tab .genres .genres-list .badge {
+    padding: 8px 12px;
+    margin-right: 4px;
+    margin-bottom: 6px;
+  }
+  .profile-page .about-tab .social-media {
+    padding: 8%;
+    margin-bottom: 40px;
+  }
+  .profile-page .about-tab .social-media h4 {
+    font-size: 20px;
+    margin-bottom: 14px;
+  }
+  .profile-page .about-tab .social-media ul li {
+    font-size: 12px;
+    line-height: 22px;
+    margin-bottom: 8px;
+  }
+  .profile-page .about-tab .social-media ul img {
+    width: 18px;
+    height: 18px;
+    margin-right: 4px;
+  }
+  .profile-page .about-tab .ratings h4 {
+    font-size: 20px;
+  }
+  .profile-page .about-tab .ratings p {
+    font-size: 14px;
+    margin-top: 2px;
+  }
+  .profile-page .about-tab .ratings span {
+    font-size: 18px;
+    padding-right: 2px;
+  }
+  .profile-page .about-tab .band-members h4 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    margin-top: 24px;
+  }
+  .profile-page .about-tab .band-members .card {
+    margin-bottom: 16px;
+  }
+
+  .profile-page
+    .right-wrapper
+    .past-events
+    .card-body
+    .events-list
+    .events-info
+    img,
+  .profile-page .right-wrapper .original-songs .songs-list .songs-info img {
+    width: 48px;
+    height: 48px;
+    margin-right: 6px;
+  }
+  .profile-page .profile-header .cover .cover-body .profile-pic {
+    width: 15.875rem;
+    height: 15.875rem;
+  }
+  .profile-page .profile-header .header-links ul li a {
+    leading-trim: both;
+    text-edge: cap;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1.25rem;
+  }
+  .profile-page .profile-header .header-links ul li a .orange-badge,
+  .profile-page .profile-header .header-links ul li a .text-bg-secondary {
+    padding: 0px 4px;
+    font-size: 10px;
+    line-height: 14px;
+  }
+  .profile-page .left-wrapper .artist-info .card-body,
+  .profile-page .left-wrapper .band-members .card-body,
+  .profile-page .right-wrapper .past-events .card-body,
+  .profile-page .right-wrapper .original-songs .card-body {
+    padding: 1.2rem 1rem;
+  }
+  .profile-page .left-wrapper .artist-info .card-title {
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 136.523%;
+  }
+  .profile-page .left-wrapper .artist-info .edit a,
+  .profile-page .left-wrapper .band-members .see-all a,
+  .profile-page .right-wrapper .past-events .see-all a,
+  .profile-page .right-wrapper .original-songs .see-all a {
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+  .profile-page .left-wrapper .artist-info .about,
+  .profile-page .left-wrapper .band-members .title .card-title,
+  .profile-page .right-wrapper .past-events .header h5,
+  .profile-page .right-wrapper .original-songs .header h5,
+  .profile-page
+    .right-wrapper
+    .past-events
+    .card-body
+    .events-list
+    .events-info
+    a,
+  .profile-page .right-wrapper .original-songs .songs-list .songs-info a {
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1.5rem;
+    margin-bottom: 0.31rem;
+  }
+  .profile-page .left-wrapper .artist-info .description {
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  .profile-page .left-wrapper .artist-info .social-media p {
+    font-size: 0.79rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 136.523%;
+    margin-left: 6px;
+  }
+  /* .profile-page .left-wrapper .artist-info .social-media .calendar {
+  font-size: 24px;
+} */
+  .profile-page .left-wrapper .card-body .members-list,
+  .profile-page .right-wrapper .past-events .card-body .events-list,
+  .profile-page .right-wrapper .original-songs .songs-list {
+    padding: 12px;
+    margin-bottom: 8px;
+  }
+  .profile-page .left-wrapper .artist-info .social-media img,
+  .profile-page .left-wrapper .band-members .title img,
+  .profile-page .right-wrapper .past-events .header span,
+  .profile-page .right-wrapper .original-songs .header span {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  .profile-page .left-wrapper .card-body .members-list .member-info a {
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-bottom: 0.25rem;
+  }
+  .profile-page .left-wrapper .card-body .members-list .member-info p {
+    font-size: 0.625rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  .profile-page .left-wrapper .card-body .members-list img {
+    width: 1.9rem;
+    height: 1.9rem;
+    margin-right: 0.5rem;
+  }
+  .profile-page .right-wrapper .past-events .card-body .events-list .more span,
+  .profile-page .right-wrapper .original-songs .songs-list .more span {
+    font-size: 20px;
+  }
+  .profile-page .middle-wrapper .post .card-body .write-something {
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+  }
+  .profile-page .middle-wrapper .post .card-body .write-something img,
+  .profile-page
+    .middle-wrapper
+    .artist-post
+    .card-header
+    .user-posted-info
+    img {
+    width: 2.625rem;
+    height: 2.625rem;
+  }
+  .profile-page .middle-wrapper .post .card-body .write-something button {
+    font-size: 0.9rem;
+  }
+  .profile-page
+    .middle-wrapper
+    .post
+    .card-body
+    .post-features
+    .features-button {
+    font-size: 0.9rem;
+    padding-top: 2px;
+  }
+  .profile-page
+    .middle-wrapper
+    .post
+    .card-body
+    .post-features
+    .post-icon
+    span {
+    margin-right: 7px;
+  }
+  .profile-page
+    .middle-wrapper
+    .post
+    .card-body
+    .post-features
+    .post-icon
+    span {
+    font-size: 20px;
+  }
+  .profile-page .middle-wrapper .artist-post .card-header .group-posted .name {
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+  .profile-page .middle-wrapper .artist-post .card-header .group-posted .ago {
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  .profile-page .middle-wrapper .artist-post .card-header .dropdown span {
+    font-size: 20px;
+  }
+  .profile-page .middle-wrapper .artist-post .card-header {
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+  }
+  .profile-page .middle-wrapper .artist-post .card-body p {
+    font-size: 0.9rem;
+  }
+  /* Artist page - zero state screen */
+  .profile-page .middle-wrapper .artist-post .no-post {
+    padding: 4rem 0;
+  }
+  .profile-page .middle-wrapper .artist-post .no-post .no-post-icon {
+    margin-bottom: 0.7rem;
+    width: 48px;
+    height: 48px;
+  }
+  .profile-page .middle-wrapper .artist-post .no-post-title {
+    font-size: 0.775rem;
+  }
+
+  /* .profile-page .middle-wrapper  .artist-post .card-body{
+  padding-bottom: 0.5rem;
+} */
+  .profile-page
+    .middle-wrapper
+    .artist-post
+    .card-footer
+    .post-actions
+    .post-icon
+    span {
+    margin-right: 6px;
+    font-size: 20px;
+  }
+  .profile-page
+    .middle-wrapper
+    .artist-post
+    .card-footer
+    .post-actions
+    .post-icon
+    p {
+    font-size: 11px;
+    margin-top: 2px;
+  }
+  .profile-page .middle-wrapper .artist-post .card-footer .comments p {
+    font-size: 10px;
+  }
+  .profile-page
+    .right-wrapper
+    .past-events
+    .card-body
+    .events-list
+    .events-info
+    p,
+  .profile-page .right-wrapper .original-songs .songs-list .songs-info p {
+    font-size: 0.725rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.0125rem;
+  }
+  .profile-page
+    .right-wrapper
+    .past-events
+    .card-body
+    .events-list
+    .events-info
+    p {
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 0.2rem;
+  }
+  /* Past Events / Original Songs - zero state screen  */
+  .profile-page .right-wrapper .past-events .card-body .no-events-posted,
+  .profile-page .right-wrapper .original-songs .no-original-songs {
+    padding: 2.06rem 0 4.2rem;
+  }
+  .profile-page
+    .right-wrapper
+    .past-events
+    .card-body
+    .no-events-posted
+    .no-events-posted-icon,
+  .profile-page .right-wrapper .original-songs .no-original-songs,
+  .no-original-songs-icon {
+    margin-bottom: 0.7rem;
+  }
+  .profile-page
+    .right-wrapper
+    .past-events
+    .card-body
+    .no-events-posted
+    .no-events-posted-title,
+  .profile-page .right-wrapper .original-songs .no-original-songs-title {
+    font-size: 0.775rem;
+  }
+
+  /* Songs tab / Videos tab / Photos tab - zero state screen  */
+  .profile-page .songs-tab,
+  .profile-page .videos-tab,
+  .profile-page .photos-tab {
+    margin: 0 0.1% 8rem;
+  }
+  .profile-page .songs-tab .no-songs,
+  .profile-page .videos-tab .no-videos,
+  .profile-page .photos-tab .no-photos,
+  .profile-page .events-tab .no-events-wrap {
+    padding: 5.19rem 0;
+    margin: 0 auto 1rem;
+  }
+  .profile-page .songs-tab .description-wrapper,
+  .profile-page .videos-tab .description-wrapper,
+  .profile-page .photos-tab .description-wrapper {
+    margin-bottom: 2rem;
+  }
+  .profile-page .songs-tab .no-songs svg,
+  .profile-page .videos-tab .no-videos svg,
+  .profile-page .photos-tab .no-photos svg,
+  .profile-page .events-tab .no-events-wrap .no-events-icon {
+    width: 5rem;
+    height: 5rem;
+    margin-bottom: 1rem;
+  }
+  .profile-page .songs-tab .description-wrapper .title,
+  .profile-page .videos-tab .description-wrapper .title,
+  .profile-page .photos-tab .description-wrapper .title,
+  .profile-page .events-tab .no-events-wrap .title {
+    font-size: 1.5rem;
+    margin-bottom: 0.4rem;
+  }
+  .profile-page .songs-tab .description-wrapper .sub-title,
+  .profile-page .videos-tab .description-wrapper .sub-title,
+  .profile-page .photos-tab .description-wrapper .sub-title,
+  .profile-page .events-tab .no-events-wrap .description {
+    font-size: 1.2rem;
+  }
+  .profile-page .songs-tab .upload-songs,
+  .profile-page .videos-tab .upload-video,
+  .profile-page .photos-tab .upload-photos,
+  .profile-page .events-tab .no-events-wrap .add-event {
+    font-size: 0.87rem;
+    padding: 0.9rem 2rem;
+  }
+
+  /* ARTIST PROFILE DETAILS*/
+  .profile-details .container {
+    margin: 5rem auto;
+  }
+  .profile-details .container .back-wrapper .back {
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 140%;
+    letter-spacing: -0.02rem;
+  }
+  .profile-details .container .back-wrapper span {
+    font-size: 1.5rem;
+    padding: 0.21rem;
+  }
+  .profile-details .container .title {
+    font-size: 2.25rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.045rem;
+  }
+  .profile-details .container .sub-heading {
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 140%;
+    letter-spacing: -0.02rem;
+  }
+  .profile-details .container .profile-details {
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+    letter-spacing: -0.03rem;
+  }
+
+  .profile-details .container .fill-details .card {
+    padding: 1.2rem;
+  }
+  .profile-details
+    .fill-details
+    .social-media-account-wrapper
+    .social-media-account,
+  .profile-details
+    .fill-details
+    .social-media-account-wrapper
+    .social-media-account {
+    width: 1.2rem;
+    height: 1.2rem;
+    opacity: 0;
+  }
+  .profile-details .fill-details .social-media-account-wrapper,
+  .profile-details .fill-details .social-media-account-wrapper {
+    padding: 0 0.2rem;
+  }
+
+  .profile-details .upload-img .label-img .default-avatar {
+    width: 9.125rem;
+    height: 9.125rem;
+  }
+  .profile-details
+    .container
+    .fill-details
+    .upload-img
+    .label-img
+    .camera-outer {
+    padding: 0.6rem;
+    font-size: 18px;
+    top: 68%;
+    left: 72%;
+  }
+  .profile-details .container .fill-details .upload-img .description {
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 140%;
+    letter-spacing: -0.02rem;
+    margin-left: 1rem;
+  }
+  .profile-details .container .fill-details .required-fields label,
+  .profile-details .container .fill-details .band-and-social,
+  .profile-details .fill-details .form-about-artist label,
+  .profile-details .fill-details .song-preview label {
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: -0.02rem;
+  }
+  .profile-details .container .fill-details .required-fields select,
+  .profile-details .container .fill-details .required-fields input,
+  .profile-details .fill-details .song-preview input {
+    padding: 0.65rem;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1.3125rem;
+  }
+  .profile-details .container .fill-details .required-fields .multiselect-tags,
+  .profile-details .fill-details .song-preview .multiselect-tags {
+    padding-top: 0.65rem;
+    padding-bottom: 0.6rem;
+  }
+  .profile-details
+    .container
+    .fill-details
+    .required-fields
+    .multiselect-tags
+    .multiselect-tag,
+  .profile-details
+    .fill-details
+    .song-preview
+    .multiselect-tags
+    .multiselect-tag {
+    font-size: 0.875rem;
+    line-height: 140%;
+    letter-spacing: -0.0175rem;
+    padding: 0.25rem 0.5rem;
+  }
+  .profile-details .container .fill-details .form-group .add-member,
+  .profile-details .container .fill-details .form-group .add-social-media {
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: 0.04375rem;
+    padding-top: 0.4rem;
+  }
+  .profile-details .group-item .form-check-label {
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+  .profile-details .group-item {
+    margin-bottom: 1.5rem;
+  }
+  .profile-details .group-item .form-switch input {
+    width: 3.0625rem;
+    height: 1.5rem;
+  }
+  .profile-details .container .fill-details .submit-form {
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.0175rem;
+    margin-top: 1rem;
+  }
+  /* WebKit, Edge */
+  .profile-details
+    .container
+    .fill-details
+    .required-fields
+    select::-webkit-input-placeholder,
+  .profile-details
+    .container
+    .fill-details
+    .required-fields
+    input
+    ::-webkit-input-placeholder,
+  .profile-details
+    .fill-details
+    .form-about-artist
+    textarea:-webkit-input-placeholder {
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.3125rem;
+  }
+  /* Firefox 4-18 */
+  .profile-details
+    .container
+    .fill-details
+    .required-fields
+    select:-moz-placeholder,
+  .profile-details
+    .container
+    .fill-details
+    .required-fields
+    input:-moz-placeholder,
+  .profile-details .fill-details .form-about-artist textarea:-moz-placeholder {
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.3125rem;
+  }
+  /* Firefox 19+ */
+  .profile-details
+    .container
+    .fill-details
+    .required-fields
+    select::-moz-placeholder,
+  .profile-details
+    .container
+    .fill-details
+    .required-fields
+    input::-moz-placeholder,
+  .profile-details .fill-details .form-about-artist textarea::-moz-placeholder {
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.3125rem;
+  }
+  /* IE 10-11 */
+  .profile-details
+    .container
+    .fill-details
+    .required-fields
+    select:-ms-input-placeholder,
+  .profile-details
+    .container
+    .fill-details
+    .required-fields
+    input:-ms-input-placeholder,
+  .profile-details
+    .fill-details
+    .form-about-artist
+    textarea:-ms-input-placeholder {
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.3125rem;
+  }
+  /* Edge */
+  .profile-details
+    .container
+    .fill-details
+    .required-fields
+    select::-ms-input-placeholder,
+  .profile-details
+    .container
+    .fill-details
+    .required-fields
+    input::-ms-input-placeholder,
+  .profile-details
+    .fill-details
+    .form-about-artist
+    textarea::-ms-input-placeholder {
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.3125rem;
+  }
+  /* MODERN BROWSER */
+  .profile-details
+    .container
+    .fill-details
+    .required-fields
+    select::placeholder,
+  .profile-details .container .fill-details .required-fields input::placeholder,
+  .profile-details .fill-details .form-about-artist textarea::placeholder {
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.3125rem;
+  }
+  .profile-details .fill-details .song-preview {
+    margin-bottom: 3.5rem;
+  }
+  .profile-details .fill-details .song-preview .title {
+    font-size: 1rem;
+    letter-spacing: -0.05rem;
+  }
+  .profile-details .container .fill-details .form-group .char-count,
+  .artist-proposal-form .cover-letter-wrap .char-count {
+    font-size: 0.875rem;
+    letter-spacing: -0.04375rem;
+    margin-top: 0.49rem;
+  }
+  .profile-details .fill-details .song-preview .description {
+    font-size: 0.875rem;
+    letter-spacing: -0.04375rem;
+    margin-bottom: 2rem;
+  }
+  .profile-details .fill-details .song-preview .upload-file-content,
+  .artist-proposal-form .music-sample-wrap .upload-file-content {
+    padding: 0.9rem 0;
+  }
+  .profile-details .fill-details .song-preview .upload-file-content svg,
+  .artist-proposal-form .music-sample-wrap .upload-file-content svg {
+    margin-bottom: 0.62rem;
+    width: 1.8125rem;
+    height: 1.8125rem;
+  }
+  .profile-details .fill-details .song-preview .upload-file-content .drag-files,
+  .profile-details .fill-details .song-preview .upload-file-content .or,
+  .artist-proposal-form .music-sample-wrap .drag-files,
+  .artist-proposal-form .music-sample-wrap .or {
+    font-size: 0.75rem;
+    margin-bottom: 0.25rem;
+  }
+  .profile-details
+    .song-preview
+    .upload-file-content
+    .select-files-wrapper
+    label,
+  .artist-proposal-form .music-sample-wrap .select-files-wrapper label {
+    font-size: 0.625rem;
+    font-weight: 600;
+    padding: 0.75rem 1rem;
+  }
+  .profile-details .song-preview .audio-file-format,
+  .artist-proposal-form .music-sample-wrap .audio-file-format {
+    padding: 0.7rem 0.9rem;
+  }
+  .profile-details .song-preview .audio-file-format .info,
+  .artist-proposal-form .music-sample-wrap .info {
+    font-size: 16px;
+    margin-right: 0.2rem;
+  }
+  .profile-details .song-preview .audio-file-format .max-file-size,
+  .artist-proposal-form .music-sample-wrap .max-file-size {
+    font-size: 0.79rem;
+    letter-spacing: -0.04375rem;
+  }
+  .profile-details .fill-details .song-preview .form-group,
+  .profile-details .container .fill-details .form-group {
+    margin-bottom: 1.2rem;
+  }
+  .profile-details .song-preview .uploaded-song-wrapper,
+  .artist-proposal-form .music-sample-wrap .uploaded-song-wrapper {
+    margin: 1.25rem 0;
+    padding: 0.87rem;
+  }
+  .profile-details .song-preview .uploaded-song-wrapper .song-wrapper img,
+  .artist-proposal-form .music-sample-wrap .song-wrapper img {
+    width: 2.125rem;
+    height: 2.8125rem;
+  }
+  .profile-details
+    .song-preview
+    .uploaded-song-wrapper
+    .song-wrapper
+    .song-title,
+  .artist-proposal-form .music-sample-wrap .song-wrapper .song-title {
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+    line-height: 1rem;
+    max-height: 3rem;
+  }
+  .profile-details
+    .song-preview
+    .uploaded-song-wrapper
+    .song-wrapper
+    .preview
+    .file-size,
+  .artist-proposal-form .music-sample-wrap .preview .file-size {
+    font-size: 0.625rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 0.75rem;
+    margin-right: 0.63rem;
+  }
+  .profile-details
+    .song-preview
+    .uploaded-song-wrapper
+    .song-wrapper
+    .remove-music-wrapper
+    img,
+  .artist-proposal-form .music-sample-wrap .remove-music-wrapper img {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
 } /*  end of 1200px to 1399.98px  */
 
-@media (min-width: 992px) and (max-width: 1199.98px){
+@media (min-width: 992px) and (max-width: 1199.98px) {
   /* .profile-page .right-wrapper .past-events .card-body .events-list .events-info img, .profile-page .right-wrapper .original-songs .songs-list .songs-info img{
   width: 42px;
   height: 42px;
@@ -3990,34 +4668,33 @@ margin-right: 6px;
   width: 200px;
   height: 200px;
 } */
-
 } /*  end of 992px to 1199.98px  */
 
 @media (min-width: 2400px) {
   .profile-page .profile-header .cover figure {
-      /* height: 280px; */
-      overflow: hidden;
+    /* height: 280px; */
+    overflow: hidden;
   }
 }
 
 @media (max-width: 767px) {
   .profile-page .profile-header .cover figure {
-      /* height: 110px; */
-      overflow: hidden;
+    /* height: 110px; */
+    overflow: hidden;
   }
 }
 
 @media (max-width: 767px) {
   .profile-page .profile-header .cover figure img {
-      -webkit-transform: scale(2);
-      transform: scale(2);
-      margin-top: 15px;
+    -webkit-transform: scale(2);
+    transform: scale(2);
+    margin-top: 15px;
   }
 }
 
 @media (min-width: 2400px) {
   .profile-page .profile-header .cover figure img {
-      margin-top: -55px;
+    margin-top: -55px;
   }
 }
 
@@ -4086,4 +4763,3 @@ img {
   border: 1px solid #f2f4f9;
   border-radius: 0.25rem;
 }
-

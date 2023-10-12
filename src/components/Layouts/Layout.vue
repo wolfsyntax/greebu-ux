@@ -1,6 +1,6 @@
 <template>
-  <SubscriptionModal />
   <main>
+    <SubscriptionModal />
     <header class="main-nav">
       <nav class="navbar navbar-expand-lg">
         <div class="container">
@@ -8,37 +8,32 @@
             <img src="/assets/geebu-logo.svg" alt="Geebu logo">
           </router-link>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
+
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0" v-if="!isLoggedIn">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0" >
               <li class="nav-item">
-                <router-link to="/">Home</router-link>
-                <router-link to="/create-song">Create a Song</router-link>
-                <router-link to="/artists">Artists</router-link>
-                <router-link to="/events">Events</router-link>
-                <router-link to="/services">Services</router-link>
+                <router-link to="/" v-if="['','customers',].includes(userRole)">Home</router-link>
               </li>
-            </ul>
-            
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0" v-else>
-              <li class="nav-item" v-if="userRole === 'customers'">
-                <router-link to="/">Home</router-link>
-                <router-link to="/create-song">Create a Song</router-link>
-                <router-link to="/artists">Artists</router-link>
-                <router-link to="/events">Events</router-link>
-                <router-link to="/services">Services</router-link>
+              <li class="nav-item">
+                <router-link to="/library" v-if="userRole === 'artists'">Library</router-link>
               </li>
-              <li class="nav-item artist-menu" v-if="userRole === 'artists'">
-                <router-link to="/library">Library</router-link>
-                <router-link to="/artists">Artists</router-link>
-                <router-link to="/events">Events</router-link>
+              <li class="nav-item" v-if="['','customers',].includes(userRole)" >
+                <router-link to="/create-song">Create a Song</router-link>
+              </li>
+              <li class="nav-item" >
+                <router-link to="/artists">Artists</router-link>                
+              </li>
+              <li class="nav-item">
+                <router-link to="/events">Events</router-link>                
+              </li>
+              <li class="nav-item" v-if="['','customers',].includes(userRole)" >
+                <router-link to="/services">Services</router-link>                 
               </li>
               <li class="nav-item" v-if="userRole === 'organizer'">
-              <router-link to="/artists">Artists</router-link>
-                <router-link to="/events">Events</router-link>
-                <router-link to="/reports">Reports</router-link>
+                <router-link to="/reports">Reports</router-link>                
               </li>
             </ul>
 
@@ -46,18 +41,17 @@
               <router-link to="/login" class="btn btn-primary log-in">Log In</router-link>
               <router-link to="/register" class="btn btn-secondary sign-up">Sign Up</router-link>
             </div>
+
             <div class="float-end nav-button" v-else>
-                                                  <!-- CUSTOMERS MENU AND DROPDOWN -->
-
-           <div v-if="userRole === 'customers'" class="d-flex align-items-center customers">
+              <a href="#" class="btn btn-primary upgrade" @click="openModal" data-bs-toggle="modal" data-bs-target="#selectPlanModal" v-if="userRole === 'artists'">Upgrade Plan</a>
               <a href="#"><span class="material-symbols-outlined bell-icon">&#xe7f4;</span></a>
-              <a href="#"><span class="material-symbols-outlined">&#xe8cc;</span></a>
-
-               <div class="dropdown dropstart">
+              <a href="#"><span class="material-symbols-outlined" v-if="userRole === 'customers'">&#xe8cc;</span></a>
+              <div class="dropdown dropstart">
                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                  <img :src="myAvatar" alt="artist profile" @error="replaceByDefault" @click="$router.push('/dashboard')">
+                  <img :src="myAccount?.avatar || myAvatar" alt="artist profile" @error="replaceByDefault" @click="$router.push('/dashboard')">
                   <span class="material-symbols-rounded">&#xe313;</span>
                 </button>
+
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
                   <li>
                     <div class="artist-info">
@@ -70,217 +64,152 @@
                       </div>
                     </div>
                   </li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li v-for="(customer, index) in customersDropdown" :key="index">
-                    <span class="material-symbols-rounded">{{ customer.icon }}</span>
-                    <a class="dropdown-item" :href="customer.link">{{ customer.name }}</a>
-                  </li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li class="logout-wrapper">
-                    <span class="material-symbols-outlined">&#xe040;</span>
-                    <a class="dropdown-item logout" href="#" @click.prevent="logout">Switch Account</a>
-                  </li>
-                  <li class="logout-wrapper">
-                    <span class="material-symbols-rounded">logout</span>
-                    <a class="dropdown-item logout" href="#" @click.prevent="logout">Logout</a>
-                  </li>
-                </ul>
-              </div> <!-- end of dropdown -->
-            </div> <!-- end of user role for customers -->
 
-                                                 <!-- ARTISTS MENU AND DROPDOWN -->
-
-           <div v-if="userRole === 'artists'" class="d-flex align-items-center artists">
-            <a href="#" class="btn btn-primary upgrade" 
-            @click="openModal"
-            data-bs-toggle="modal" data-bs-target="#selectPlanModal">Upgrade Plan</a>
-              <a href="#"><span class="material-symbols-outlined bell-icon">&#xe7f4;</span></a>
-
-               <div class="dropdown dropstart">
-                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                  <img :src="myAccount?.avatar || myAvatar" alt="artist profile" @error="replaceByDefault" @click="$router.push('/dashboard')">
-                 <span class="material-symbols-rounded">&#xe313;</span>
-                </button>
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
-                  <li>
-                    <div class="artist-info">
-                      <img :src="myAccount?.avatar || myAvatar" alt="artist profile" @error="replaceByDefault" @click="$router.push('/dashboard')">
-                      <div class="artist-name">
-                        <p class="name">{{ userInfo.business_name }}</p>
-                        <p class="email" style="text-transform: capitalize;">{{ userInfo.role }}</p>
-                        <router-link to="/account/profile" class="dropdown-item view-profile">Edit Profile</router-link>
-                      </div>
-                    </div>
-                  </li>
                   <li><hr class="dropdown-divider"></li>
-                  <li>
+
+                  <li >
                     <span class="material-symbols-outlined">&#xe853;</span>
                     <router-link to="/account/setting" class="dropdown-item">Account Settings</router-link>
                   </li>
-                  <li>
-                    <span class="material-symbols-outlined">&#xe030;</span>
-                    <router-link to="/create-song" class="dropdown-item">Customized Songs</router-link>
-                  </li>
-                  <li>
-                    <span class="material-symbols-outlined">&#xe614;</span>
-                    <router-link to="#" class="dropdown-item">My Bookings</router-link>
-                  </li>
-                  <li>
-                    <span class="material-symbols-outlined">&#xf0fb;</span>
-                    <router-link to="#" class="dropdown-item">My Subscription</router-link>
-                  </li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li class="logout-wrapper">
-                    <span class="material-symbols-outlined">&#xe040;</span>
-                    <a class="dropdown-item logout" href="#" @click.prevent="logout">Switch Account</a>
-                  </li>
-                  <li class="logout-wrapper">
-                    <span class="material-symbols-rounded">logout</span>
-                    <a class="dropdown-item logout" href="#" @click.prevent="logout">Logout</a>
-                  </li>
-                </ul>
-              </div> <!-- end of dropdown -->
-            </div> <!-- end of user role for artists -->
 
-                                                           <!-- ORGANIZERS MENU AND DROPDOWN -->
-
-           <div v-if="userRole === 'organizer'" class="d-flex align-items-center artists">
-              <a href="#"><span class="material-symbols-outlined bell-icon">&#xe7f4;</span></a>
-
-               <div class="dropdown dropstart">
-                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                  <img :src="myAccount?.avatar || myAvatar" alt="artist profile" @error="replaceByDefault" @click="$router.push('/dashboard')">
-                 <span class="material-symbols-rounded">&#xe313;</span>
-                </button>
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
-                  <li>
-                    <div class="artist-info">
-                      <img :src="myAccount?.avatar || myAvatar" alt="artist profile" @error="replaceByDefault" >
-                      <div class="artist-name">
-                        <p class="name">{{ userInfo.business_name }}</p>
-                        <p class="email" style="text-transform: capitalize;">{{ userInfo.role }}</p>
-                        <router-link to="/account/profile" class="dropdown-item view-profile">Edit Profile</router-link>
-                      </div>
-                    </div>
-                  </li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li>
-                    <span class="material-symbols-outlined">&#xe853;</span>
-                    <router-link to="/account/setting" class="dropdown-item">Account Settings</router-link>
-                  </li>
-                  <li>
+                  <li v-if="[ 'customers', 'organizer', ].includes(userRole)">
                     <span class="material-symbols-outlined">&#xe158;</span>
                     <router-link to="/message" class="dropdown-item">Message</router-link>
                   </li>
-                  <li>
-                    <span class="material-symbols-outlined">&#xe03d;</span>
-                    <router-link to="#" class="dropdown-item">My Proposals</router-link>
+                  
+                  <li v-if="[ 'artists', ].includes(userRole)">
+                    <span class="material-symbols-outlined">&#xe030;</span>
+                    <router-link to="/account/setting#custom-songs" class="dropdown-item">Customized Songs</router-link>
                   </li>
+
+                  <li v-if="[ 'customers', ].includes(userRole)">
+                    <span class="material-symbols-outlined">library_music</span>
+                    <router-link to="/account/setting#songs" class="dropdown-item">My Songs</router-link>
+                  </li>
+
+                  <li v-if="['customers', 'artists', ].includes(userRole)">
+                    <span class="material-symbols-outlined">&#xe614;</span>
+                    <router-link to="/account/setting#bookings" class="dropdown-item">My Bookings</router-link>
+                  </li>
+
+                  <li v-if="['artists', ].includes(userRole)">
+                    <span class="material-symbols-outlined">&#xf0fb;</span>
+                    <router-link to="/account/setting#bookings" class="dropdown-item">My Subscription</router-link>
+                  </li>
+
+                  <li v-if="['customers', 'organizer',].includes(userRole)">
+                    <span class="material-symbols-outlined">queue_music</span>
+                    <router-link to="/account/setting#proposals" class="dropdown-item">My Proposals</router-link>
+                  </li>
+
                   <li>
                     <span class="material-symbols-outlined">&#xe887;</span>
                     <router-link to="#" class="dropdown-item">Help Center</router-link>
                   </li>
+
                   <li><hr class="dropdown-divider"></li>
                   <li class="logout-wrapper">
                     <span class="material-symbols-outlined">&#xe040;</span>
                     <a class="dropdown-item logout" href="#" @click.prevent="logout">Switch Account</a>
                   </li>
+
                   <li class="logout-wrapper">
                     <span class="material-symbols-rounded">logout</span>
                     <a class="dropdown-item logout" href="#" @click.prevent="logout">Logout</a>
                   </li>
                 </ul>
-              </div> <!-- end of dropdown -->
-            </div> <!-- end of user role for organizers -->
-
-
-            </div> <!-- end v-else -->
-
+              </div>
+            </div>  
           </div>
         </div>
-        </nav>
+      </nav>
+    </header>
+    <router-view></router-view>
+    <slot />
 
-      </header>
-
-      
-      <router-view></router-view>
-      <slot />
-      
-      <footer class="footer">
-        <div class="container">
-            <div class="row">
-              <div class="col-7">
-                <div class="menu">
-                  <div class="our-company">
-                    <h4>Our Company</h4>
-                    <ul>
-                      <li><a :href="blog" target="_blank">Blog</a></li>
-                      <li><a :href="support" target="_blank">Support</a></li>
-                      <li><a :href="privacy" target="_blank">Privacy Policy</a></li>
-                      <li><a :href="terms" target="_blank">Terms of Use</a></li>
-                    </ul>
-                  </div>
-                  <div class="songs">
-                    <h4>Songs</h4>
-                    <ul>
-                      <li><a :href="artist" target="_blank">Playlist</a></li>
-                      <li><a :href="artist" target="_blank">Artist</a></li>
-                    </ul>
-                  </div>
-                  <div class="for-artist">
-                    <h4>For Artist</h4>
-                    <ul>
-                      <li><a :href="login" target="_blank">Artist Login</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="col-5">
-                <div class="notify">
-                  <div class="card" style="width: 31.5rem;">
-                    <div class="card-body">
-                      <h5 class="card-title">Keep me Notified</h5>
-                      <div class="input-group mb-3 mt-4">
-                            <input type="text" class="form-control" placeholder="Enter email" aria-label="Email address" aria-describedby="button-addon2">
-                            <button class="btn btn-success border-rad" type="button" id="button-addon2">Subscribe</button>
-                      </div>
-                      <p class="card-text">Gravida sed justo, justo, id est et. Amet tristique convallis sed porttitor nullam eu ut. Duis et odio aliquam bibendum.
-                        Metus et lectus id viverra fringilla magna morbi. </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-          </div>
-          <div class="row">
-            <div class="col-4">
-              <div class="footer-logo">
-                <a href="/">
-                  <img src="/assets/geebu-logo.svg" loading="lazy" alt="logo">
-                </a>
-              </div>
-            </div>
-            <div class="col-4">
-              <div class="text-center copy">
-                <p>All Rights Reserved © Jeffray Dy 2023</p>
-              </div>
-            </div>
-            <div class="col-4">
-              <div class="social-media-icons">
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-7">
+            <div class="menu">
+              <div class="our-company">
+                <h4>Our Company</h4>
                 <ul>
-                  <li>
-                    <a href="#"  target="_blank"><img src="/assets/facebook.svg" width="25px" height="25px" loading="lazy" alt="facebook logo"></a>
-                  </li>
-                  <li>
-                    <a href="#"  target="_blank"><img src="/assets/instagram.svg" width="25px" height="25px" loading="lazy" alt="instagram logo"></a>
-                  </li>
-                  <li>
-                    <a href="#"  target="_blank"><img src="/assets/twitter.svg" width="25px" height="25px" loading="lazy" alt="twitter logo"></a>
-                  </li>
-                  <li>
-                    <a href="#" target="_blank"><img src="/assets/youtube.svg" width="25px" height="25px" loading="lazy" alt="youtube logo"></a>
-                  </li>
+                  <li><a :href="blog" target="_blank">Blog</a></li>
+                  <li><a :href="support" target="_blank">Support</a></li>
+                  <li><a :href="privacy" target="_blank">Privacy Policy</a></li>
+                  <li><a :href="terms" target="_blank">Terms of Use</a></li>
                 </ul>
               </div>
+
+              <div class="songs">
+                <h4>Songs</h4>
+                <ul>
+                  <li><a :href="artist" target="_blank">Playlist</a></li>
+                  <li><a :href="artist" target="_blank">Artist</a></li>
+                </ul>
+              </div>
+
+              <div class="for-artist">
+                <h4>For Artist</h4>
+                <ul>
+                  <li><a :href="login" target="_blank">Artist Login</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-5">
+            <div class="notify">
+              <div class="card" style="width: 31.5rem;">
+                <div class="card-body">
+                  <h5 class="card-title">Keep me Notified</h5>
+                  
+                  <div class="input-group mb-3 mt-4">
+                    <input type="text" class="form-control" placeholder="Enter email" aria-label="Email address" aria-describedby="button-addon2">
+                    <button class="btn btn-success border-rad" type="button" id="button-addon2">Subscribe</button>
+                  </div>
+
+                  <p class="card-text">Gravida sed justo, justo, id est et. Amet tristique convallis sed porttitor nullam eu ut. Duis et odio aliquam bibendum.
+                    Metus et lectus id viverra fringilla magna morbi. 
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-4">
+            <div class="footer-logo">
+              <a href="/">
+                <img src="/assets/geebu-logo.svg" loading="lazy" alt="logo">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-4">
+            <div class="text-center copy">
+              <p>All Rights Reserved © Jeffray Dy 2023</p>
+            </div>
+          </div>
+
+          <div class="col-4">
+            <div class="social-media-icons">
+              <ul>
+                <li>
+                  <a href="#"  target="_blank"><img src="/assets/facebook.svg" width="25px" height="25px" loading="lazy" alt="facebook logo"></a>
+                </li>
+                <li>
+                  <a href="#"  target="_blank"><img src="/assets/instagram.svg" width="25px" height="25px" loading="lazy" alt="instagram logo"></a>
+                </li>
+                <li>
+                  <a href="#"  target="_blank"><img src="/assets/twitter.svg" width="25px" height="25px" loading="lazy" alt="twitter logo"></a>
+                </li>
+                <li>
+                  <a href="#" target="_blank"><img src="/assets/youtube.svg" width="25px" height="25px" loading="lazy" alt="youtube logo"></a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -382,6 +311,7 @@ export default {
     ...mapGetters(["isLoggedIn", 'userInfo', 'info', 'userRole', 'myAccount', 'myAvatar',]),
     ...mapState({
       users: (state) => state.user,
+      notifications: state => state.notifications.notifications.slice(0, 5),
     }),
   },
   created() {
