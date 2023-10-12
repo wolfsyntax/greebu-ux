@@ -16,26 +16,19 @@
 
       <div class="text-center modal-body">
         <div class="d-flex align-items-center justify-content-between action-wrapper">
-          <div class="d-flex align-items-center ">
-            <img src="/assets/artist-account/band-member-2.webp" class="customer-image" alt="Requester image">
+          <div class="d-flex align-items-center organizer-offers-details-wrap">
+            <img src="/assets/artist-account/band-member-2.webp" class="offer-img" alt="Oganizer image">
 
             <div>
-              <h5 class="name">Alvin Makahiya</h5>
-              <p class="username">User12345</p>
-            </div>
-
-            <!-- <div>
 
               <h5 class="from"><span>From:</span> KC event organizer</h5>
-              <h6 class="d-flex align-items-center venue">Event Organizer
-              <span class="material-symbols-rounded dot-icon">&#xe061;</span>
-              Naga City, Camarines Sur</h6>
+              <h6 class="d-flex align-items-center venue">Event Organizer</h6>
               <p class="d-flex align-items-center mb-0 star-ratings">
                 <span class="material-symbols-rounded star-icon">&#xe838;</span>
                 4.95 <span class="reviews">(234 reviews)</span>
               </p>
 
-              </div> -->
+              </div>
 
           </div>
 
@@ -52,11 +45,6 @@
 
           </div>
         </div> <!-- end of action-wrapper -->
-
-        <!-- <div class="d-flex align-items-center note-wrapper">
-          <span class="material-symbols-rounded info-icon">&#xe88e;</span>
-          <p class="note">Clients will only pay if the requested customized song is accepted.</p>
-        </div> -->
 
         <div class="text-start event-organized-wrap">
           <h5>Event organized</h5>

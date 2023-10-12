@@ -1,7 +1,10 @@
 <template>
   <div class="customized-songs-wrapper ">
-    <div class="event-description">
-      <div class="d-flex align-items-center event-wrap">
+
+    <div class="d-flex align-items-center justify-content-between event-description">
+
+      <div class="left-wrap">
+        <div class="d-flex align-items-center event-wrap">
         <span class="material-symbols-sharp dot-icon">&#xe061;</span>
         <h5 class="mb-0 event">
           {{ pending.event_name }}
@@ -17,13 +20,17 @@
         <span class="time" v-else-if="cardType === 'accepted'">{{ $filters.diffForHumans($moment(pending?.accepted_at).format('YYYY-MM-DD hh:mm:ss a')) }}</span>
         <span class="time" v-else-if="cardType === 'declined'">{{ $filters.diffForHumans($moment(pending?.declined_at).format('YYYY-MM-DD hh:mm:ss a')) }}</span>
       </div>
-    </div>
-
-    <div class="details-wrapper">
-      <div class="button-wrapper">
-        <button type="button" class="btn details" @click="toggle">View Details</button>
+      
       </div>
-    </div>       
+
+      <div class="details-wrapper">
+        <div class="button-wrapper">
+          <button type="button" class="btn details" @click="toggle">View Details</button>
+        </div>
+      </div>  
+
+    </div>
+     
   </div>
 </template>
 
