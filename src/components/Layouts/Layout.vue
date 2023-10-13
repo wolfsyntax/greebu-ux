@@ -50,14 +50,36 @@
                   <span class="material-symbols-outlined bell-icon">&#xe7f4;</span>
                 </button>
 
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start " id="dropdownNotif" data-bs-autoClose="false" style="margin-right: -2rem;margin-top: 1rem;">
-                  <li><span class="text-dark fw-bold">Notifications</span></li>
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start p-0" id="dropdownNotif" data-bs-autoClose="false">
+                  <li class="title-wrap"><span class="title m-0">Notifications</span></li>
                   
-                  <li v-for="(content, index) in notifications" :key="index" class="">
-                    <div class="my-0">
-                      <div class="card border-0" style="max-width: 300px;">
-                        <div class="row g-0" >
-                          <div class="col-md-2 mt-4 pl-5">
+                  <li v-for="(content, index) in notifications" :key="index" class="sender-notif-wrap">
+
+                    <div class="d-flex align-items-start notif-wrap">
+
+                      <div class="img-wrap">
+                        <img :src="content?.data?.sender_avatar" class="sender-img" alt="Sender Avatar">
+                      </div>
+
+                      <div class="notif-msg-wrap">
+                        <div class="msg-wrap">
+                          <p class="m-0 sender-msg" v-if="content?.data?.notification_type === 'artist-proposal'">
+                            <span class="m-0 sender-name">{{ content?.data?.sender_name }}</span>&nbsp;{{ `${ content?.data?.header } ${content?.data?.misc?.event_name}`}}!
+                          </p>
+                        </div>
+
+                        <div class="date-time-wrap">
+                            <p class="mb-0 d-flex align-items-center justify-content-between">
+                            <small>{{ $filters.diffForHumans($moment(content?.data?.time).format('YYYY-MM-DD hh:mm:ss a')) }}</small>
+                            <small class="float-end">{{ $moment(content?.data?.time).format('MM/DD/YYYY') }}</small>
+                          </p>
+                        </div>
+
+                      </div>
+
+                      <!-- <div class="card border-0">
+                        <div class="row" >
+                          <div class="col-md-2">
                             <img :src="content?.data?.sender_avatar" class="mx-2 img-fluid rounded-start requested-by-image" alt="Sender Avatar">
                           </div>
                           <div class="col-md-10">
@@ -73,17 +95,20 @@
                             </div>
                           </div>
                         </div>
-                      </div>        
+                      </div>         -->
                         
                     </div>
+
                   </li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li class="mr-0">
-                    
-                    <button class="btn btn-light float-end" @click="markAsRead">Mark all as read</button>
-                    <router-link to="/account/setting" class="btn btn-geebu mx-3" @click="fetchNotifications(); $store.commit('setSettingMenu', 'Notifications')">See all notification</router-link>
-                  </li>
+
+               
+                  <div class="d-flex align-items-center justify-content-between mb-0 action-wrap">
+                      <button class="btn float-end mb-0 all-read" @click="markAsRead">Mark all as read</button>
+                      <router-link to="/account/setting" class="btn all-notif " @click="$store.commit('setSettingMenu', 'Notifications')">See all notification</router-link>
+                  </div>
+
                 </ul>
+
               </div>
 
               <a href="#"><span class="material-symbols-outlined" v-if="userRole === 'customers'">&#xe8cc;</span></a>
