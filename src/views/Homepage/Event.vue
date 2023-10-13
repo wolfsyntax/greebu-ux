@@ -1,7 +1,7 @@
 <template>
   <layout>
 
-    <section class="events"  v-if="(userRole === 'artists' || userRole === 'customers') || !isLoggedIn">
+    <section class="events" >
       <div class="container-fluid">
         <div class="container">
           <div class="content">
@@ -15,11 +15,11 @@
         </div>
       </div>
     </section>
-
+    
     <section class="events-showing">
       <div class="container">
 
-        <div class="text-center" v-if="(userRole === 'artists' || userRole === 'customers') || !isLoggedIn">
+        <div class="text-center" >
           <h3 class="events-showing-title">Events</h3>
           <p class="sub-heading">Collaborate with a professional independent artist to turn your story into one-of-a-kind custom song</p>
         </div>
@@ -173,7 +173,7 @@ export default {
   },
   mounted()
   {
-    
+    console.log('Window Hostname: ', window.location.hostname)
     this.fetchEventOptions().then(res => this.RESET_EVENT_FILTER())
     this.fetchCityList();
     this.fetchEventList()

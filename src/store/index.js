@@ -1,45 +1,58 @@
-import Vuex from 'vuex';
+import Vuex from "vuex";
 
 import createPersistedState from "vuex-persistedstate";
 import SecureLS from "secure-ls";
-import createMutationsSharer from 'vuex-shared-mutations'
-import createCache from 'vuex-cache';
+import createMutationsSharer from "vuex-shared-mutations";
+import createCache from "vuex-cache";
 
-import actions from './actions';
-import mutations from './mutations';
-import getters from './getters';
-import state from './state';
+import actions from "./actions";
+import mutations from "./mutations";
+import getters from "./getters";
+import state from "./state";
 
-import artist from './modules/artists';
-import userProfile from './modules/profiles';
-import artistProposal from './modules/proposals';
-import customer from './modules/customers';
-import posts from './modules/posts';
-import organizer from './modules/organizers';
-import services from './modules/services';
-import events from './modules/events';
-import songs from './modules/songs';
+import artist from "./modules/artists";
+import userProfile from "./modules/profiles";
+import artistProposal from "./modules/proposals";
+import customer from "./modules/customers";
+import posts from "./modules/posts";
+import organizer from "./modules/organizers";
+import notifications from "./modules/notifications";
+import services from "./modules/services";
+import events from "./modules/events";
+import songs from "./modules/songs";
 const ls = new SecureLS({ isCompression: false });
 
 export default new Vuex.Store({
-    plugins: [
+  plugins: [
     createPersistedState({
       // storage: window.sessionStorage,
       storage: {
         getItem: (key) => window.sessionStorage.getItem(key) || ls.get(key),
-        setItem: (key, value) => window.sessionStorage.setItem(key, value) || ls.set(key, value),
-        removeItem: (key) => window.sessionStorage.removeItem(key) || ls.remove(key)
+        setItem: (key, value) =>
+          window.sessionStorage.setItem(key, value) || ls.set(key, value),
+        removeItem: (key) =>
+          window.sessionStorage.removeItem(key) || ls.remove(key),
 
         // getItem: key => cookies.get(key),
         // setItem: (key, value) => cookies.set(key, value),
         // removeItem: key => cookies.remove(key)
-      }
+      },
     }),
     createMutationsSharer({
       predicate: (mutation, state) => {
         const predicate = [
-          'SET_AUTH', 'SET_TOKEN', 'SET_PROFILE', 'SET_ROLE', 'SET_ROLES', 'SET_PLANS', 'SET_COUNTRIES',
-          'SET_GENRES', 'SET_ARTIST_TYPES', 'SET_ARTIST_GENRES', 'SET_MEMBERS', 'SET_ARTIST',
+          "SET_AUTH",
+          "SET_TOKEN",
+          "SET_PROFILE",
+          "SET_ROLE",
+          "SET_ROLES",
+          "SET_PLANS",
+          "SET_COUNTRIES",
+          "SET_GENRES",
+          "SET_ARTIST_TYPES",
+          "SET_ARTIST_GENRES",
+          "SET_MEMBERS",
+          "SET_ARTIST",
         ];
         // Conditionally trigger other plugins subscription event here to
         // have them called only once (in the tab where the commit happened)
@@ -47,11 +60,11 @@ export default new Vuex.Store({
         // pluginStateChanged(mutation, state)
 
         return predicate.indexOf(mutation.type) >= 0;
-      }
+      },
     }),
     createCache({
-      timeout: 10000// 1 * 60 * 60 * 1000 
-    })
+      timeout: 10000, // 1 * 60 * 60 * 1000
+    }),
   ],
   state,
   mutations,
@@ -65,6 +78,7 @@ export default new Vuex.Store({
     organizer,
     // services,
     artistProposal,
+    notifications,
     songs,
     posts,
   },
