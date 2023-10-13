@@ -17,11 +17,11 @@
       <div class="text-center modal-body">
         <div class="d-flex align-items-center justify-content-between action-wrapper">
           <div class="d-flex align-items-center organizer-offers-details-wrap">
-            <img src="/assets/artist-account/band-member-2.webp" class="offer-img" alt="Oganizer image">
+            <img :src="proposal.organizer_avatar" class="offer-img" alt="Oganizer image">
 
             <div>
-
-              <h5 class="from"><span>From:</span> KC event organizer</h5>
+             
+              <h5 class="from"><span v-if="['pending', 'accepted', 'declined',].includes(option)">To:</span><span v-else>From:</span> {{ proposal.organizer_name }}</h5>
               <h6 class="d-flex align-items-center venue">Event Organizer</h6>
               <p class="d-flex align-items-center mb-0 star-ratings">
                 <span class="material-symbols-rounded star-icon">&#xe838;</span>
@@ -32,7 +32,7 @@
 
           </div>
 
-          <div class="d-flex align-items-center">
+          <div class="d-flex align-items-center" v-if="!['pending', 'accepted', 'declined',].includes(option)">
 
             <button class="btn decline">Decline</button>
             <button class="btn accept" @click="acceptRequest">Acccept</button>
@@ -117,16 +117,20 @@
 </template>
 
 <script>
-
+import { mapState } from 'vuex';
 export default {
   props: {
-    show: Boolean
+    show: Boolean,
+    option: String,
   },
   data() {
     return {
     }
   },      
   computed: {
+    ...mapState({
+      proposal: state => state.proposal,
+    })
   },
   methods: {
     acceptRequest(){

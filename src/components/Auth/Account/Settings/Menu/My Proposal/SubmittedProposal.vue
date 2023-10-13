@@ -1,6 +1,10 @@
 <template>
-  <div>
-    <div class="customized-songs-wrapper" v-for="(request, index) in requestedSongs" :key="index">
+  <div v-for="(proposal, index) in proposals" :key="index">
+    <event-card :proposal="proposal" @view="toggleProposal" />
+    <view-proposal-modal :show="showModal" :option="optionType"
+      @close-modal="closeModal" @accept-request="onModalAccepted" 
+    />
+    <!-- <div class="customized-songs-wrapper" v-for="(request, index) in requestedSongs" :key="index">
 
       <div class="d-flex align-items-center justify-content-between event-description">
 
@@ -36,15 +40,20 @@
 
       </div>
 
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex';
+import EventCard from './EventCardProposal.vue';
 import ViewProposalModal from './ViewProposalModal.vue';
+import RequestModal from '/src/components/Auth/Account/Settings/Menu/Request Application/RequestApplicationModal.vue';
 export default {
   components: {
     ViewProposalModal,
+    EventCard,
+    RequestModal,
   },
   setup()
   {
@@ -52,16 +61,34 @@ export default {
 
     return {}
   },
-    data: () => ({
+  data: () => ({
     requestedSongs: [
       { event: 'Birthday Song', profile_image: 'https://lh3.googleusercontent.com/a-/AD_cMMSLi2SfUJdD4SS2bXaL5NxayPEdYmT3NNso4i_pkSNZ=s64-p-k-rw-no', name: 'John Flores', time: 3, },
       { event: 'Wedding Song', profile_image: 'https://lh3.googleusercontent.com/ogw/AGvuzYaE0rvo3xwVU3H4f2K3wcaEYqe9ht06pHbd9Lxh=s32-c-mo', name: 'Dante Magno', time: 12, },
       { event: 'Wedding Song', profile_image: 'https://lh3.googleusercontent.com/ogw/AGvuzYaE0rvo3xwVU3H4f2K3wcaEYqe9ht06pHbd9Lxh=s32-c-mo', name: 'Dante Magno', time: 12, },
     ],
     showModal: false,
-    showToast: false
+    showToast: false,
+    showProposalModal: false,
+    optionType: 'pending'
   }),
+  computed: {
+    ...mapState({
+      proposals: state => state.artistProposal.pendingProposals,
+    })
+  },
+  mounted() {
+    if (this.proposals.length === 0) {
+      this.fetchMyProposals();
+    }
+  },
   methods: {
+    ...mapActions(['fetchMyProposals', ]),
+    toggleProposal(proposal) {
+      console.log('Toggle Proposal: ', proposal)
+      
+      this.showModal = true;
+    },
     closeModal()
     {
       this.showModal = false;

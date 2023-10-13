@@ -13,3 +13,19 @@ export const SET_PROPOSAL = (state, payload = {}) => {
   console.log("Proposal data: ", payload);
   state.proposal = payload;
 };
+
+export const SET_PROPOSALS = (state, payload = []) => {
+  state.proposals = payload;
+};
+
+export const SET_PENDING_PROPOSALS = (state, payload = []) => {
+  state.pendingProposals = payload;
+};
+
+export const SET_ACCEPTED_PROPOSALS = (state, payload = []) => {
+  state.acceptedProposals = payload;
+};
+
+export const SET_DECLINED_PROPOSALS = (state, payload = []) => {
+  state.declinedProposals = payload;
+};

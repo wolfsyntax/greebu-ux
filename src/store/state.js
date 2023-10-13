@@ -17,7 +17,7 @@ var state = {
   isPhoneModify: false,
   custom_genre: "",
   artist_genre: [],
-  proposal: [],
+  proposal: {},
   selectedOption: "My Account",
 };
 
