@@ -85,7 +85,7 @@ export default {
         })
     },
     toggle() {
-      
+      console.log('Proposal: ', this.content?.data)
       if (this.notification_type === 'artist-proposal') {
         console.log('Clear proposal container')
         this.$store.commit('setProposal');
