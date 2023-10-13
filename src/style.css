@@ -216,6 +216,20 @@ body{
   font-family: 'Urbanist', sans-serif;
   background-color: var(--white);
   } 
+img{
+  position: relative;
+  -o-object-fit: cover;
+  object-fit: cover;
+  backface-visibility: hidden;
+}
+.two-lines{
+  display: -webkit-box;
+  margin: 0 auto;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .form-check-input:focus, .form-select:focus:focus {
   border-color: var(--orange)!important;
   outline: 0;
@@ -326,7 +340,7 @@ header nav{
   border: 1px solid var(--orange);
 } */
 /* shake animation */
-.main-nav  .nav-button  .bell-icon:hover {
+/* .main-nav  .nav-button  .bell-icon:hover {
   animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
@@ -345,7 +359,7 @@ header nav{
   40%, 60% {
     transform: translate3d(4px, 0, 0);
   }
-}
+} */
 .main-nav .nav-button .dropdown img{
   width: 48px;
   height: 48px;
@@ -2784,9 +2798,6 @@ height: 100%;
   border-radius: 0.5rem;
   background: var(--orange);
   gap: 0.38rem;
-}
-.events-showing .create-event-btn-wrap{
-  margin-top: 5rem;
 }
 .events-showing .create-event-wrapper .create-event:hover{
   background: var(--btn-hovered);
@@ -5459,7 +5470,8 @@ width: 100%;
 /* .account-settings .customized-songs-tabs .active-option{
   border-bottom: 3px solid var(--orange);
 } */
-.account-settings .title-wrapper .title{
+.account-settings .title-wrapper .title,
+.account-settings .notifications-wrap .title{
   font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: -0.03rem;
@@ -5479,16 +5491,11 @@ width: 100%;
   border-radius: 0.25rem;
   border: 1px solid var(--gray6);
   background: var(--white);
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   padding: 1.94rem 1.5rem 1.5rem 1.5rem;
   width: 100%;
   display: flex;
   align-items: center;
-}
-.account-settings .customized-songs-wrapper .organizer-offers-details-wrap{
-  /* white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis; */
 }
 .account-settings .customized-songs-wrapper .event-description{
   /* width: 60%; */
@@ -5499,7 +5506,6 @@ width: 100%;
 }
 .account-settings .customized-songs-wrapper .details-wrapper{
   width: 40%;
-  /* width: 100%; */
   position: relative;
 }
 .account-settings .customized-songs-wrapper .event{
@@ -5508,12 +5514,6 @@ width: 100%;
   font-weight: 700;
   letter-spacing: -0.025rem;
   margin-bottom: 0.62rem;
-  /* display: -webkit-box;
-  margin: 0 auto;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis; */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -6102,6 +6102,104 @@ width: 100%;
   font-size: 20px;
   color: var(--orange);
   font-variation-settings: 'FILL' 1,'wght' 800,'GRAD' 0,'opsz' 48;
+}
+
+/* Organizer Account - Account Settings - Notifications tab */
+
+.account-settings .notifications-wrap .notif-title-wrap{
+  margin-bottom: 1.5rem;
+}
+.account-settings .notifications-wrap .notif-title-wrap .dropdown-center .dropdown-menu {
+  width: 12.9375rem;
+  padding: 1rem 1.25rem;
+  border-radius: 0.3125rem;
+  background: var(--white);
+  box-shadow: 0px 0px 17px 0px rgba(18, 18, 18, 0.15);
+  border: none;
+}
+.account-settings .notifications-wrap .notif-title-wrap .dropdown-center .dropdown-menu li button{
+  color: #2D3748;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 140%; 
+  letter-spacing: -0.02rem;
+}
+.account-settings .notifications-wrap .notif-title-wrap .dropdown-center .dropdown-menu li button:hover{
+  color: var(--orange);
+}
+.account-settings .notifications-wrap .notif-title-wrap .dropdown-center .dropdown-menu li{
+  margin-bottom: 0.75rem;
+}
+.account-settings .notifications-wrap .notif-title-wrap .dropdown-center .dropdown-menu li:last-child{
+  margin-bottom: 0;
+}
+.account-settings .notifications-wrap .notif-title-wrap .dropdown-center .more-wrap{
+  border: none;
+}
+.account-settings .notifications-wrap .notif-title-wrap .dropdown-center .more-icon{
+  font-size: 24px;
+  color: var(--gray2);
+}
+.account-settings .notifications-wrap .sender-img{
+  width: 3.75rem;
+  height: 3.75rem;
+  border-radius: 3.75rem;
+}
+.account-settings .notifications-wrap .sender-wrap{
+  gap: 0.62rem;;
+}
+.account-settings .notifications-wrap .customized-songs-wrapper{
+  border: 1px solid #DFE0EB;
+  background: #F7F9FC;
+}
+.account-settings .notifications-wrap .sender-details-wrap .sender-msg-wrap{
+  margin-bottom: 0.25rem;
+}
+.account-settings .notifications-wrap .sender-details-wrap .sender-msg{
+  color: var(--gray6);
+  font-size: 1rem;
+  font-weight: 600;
+}
+.account-settings .notifications-wrap .sender-details-wrap .msg{
+  color: var(--gray2);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+}
+.account-settings .notifications-wrap .sender-details-wrap .sender-name{
+  color: var(--black);
+  font-weight: 700;
+}
+.account-settings .notifications-wrap .details-wrapper .date-time{
+  color: var(--gray2);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+.account-settings .notifications-wrap .sender-details-wrap .details-wrap .details{
+  border: none;
+  color: var(--orange);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+.account-settings .notifications-wrap .sender-details-wrap .details-wrap .details:hover{
+  color: var(--orange);
+}
+.account-settings .notifications-wrap .details-wrapper .remove-notif-wrap {
+  display: flow-root;
+}
+.account-settings .notifications-wrap .details-wrapper .date-time-wrap{
+  display: block;
+}
+.account-settings .notifications-wrap .customized-songs-wrapper .remove-notif-wrap button{
+  border: none;
+}
+.account-settings .notifications-wrap .customized-songs-wrapper:hover .remove-notif-wrap .remove-icon{
+  opacity: 1;
+}
+.account-settings .notifications-wrap .details-wrapper .remove-notif-wrap .remove-icon{
+  font-size: 24px;
+  color: var(--gray2);
+  opacity: 0;
 }
 
 .profile-details .toast-artist-details {
@@ -6844,6 +6942,83 @@ width: 100%;
   border: 2px solid var(--btn-hovered);
 }
 
+/* Bell Notifications */
+
+#dropdownNotif{
+  width: 27.4865rem;
+  border-radius: 0.749rem;
+  background: var(--white);
+}
+#dropdownNotif li, #dropdownNotif .action-wrap{
+  padding: 1.37425rem 0.99931rem 1.37375rem 0.99931rem;
+  margin: 0;
+}
+#dropdownNotif .title-wrap{
+  border-bottom: 1px solid var(--indigo-light);
+}
+#dropdownNotif .sender-notif-wrap{
+  /* border-top: 1px solid var(--indigo-light); */
+  border-bottom: 1px solid var(--indigo-light);
+  background: #F7F9FC;
+}
+#dropdownNotif .title{
+  color: var(--black);
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.24938rem;
+}
+#dropdownNotif .notif-wrap{
+  gap: 0.62rem
+}
+#dropdownNotif .notif-wrap .sender-img{
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 2.5rem;
+}
+#dropdownNotif .notif-msg-wrap .msg-wrap{
+  display: -webkit-box;
+  margin: 0 auto;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 0.5rem;
+}
+#dropdownNotif .notif-msg-wrap .sender-msg, #dropdownNotif .notif-msg-wrap .sender-name{
+  color: var(--black);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.24938rem;
+}
+#dropdownNotif .notif-msg-wrap .sender-name{
+  font-weight: 700; 
+}
+#dropdownNotif .date-time-wrap p{
+  color: var(--gray6);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.24938rem; 
+}
+#dropdownNotif .action-wrap .all-notif,
+#dropdownNotif .action-wrap .all-read{
+  color:var(--white);
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 0.24988rem;
+  background: var(--orange);
+  padding: 0.47rem 0.97rem;
+}
+#dropdownNotif .action-wrap .all-read{
+  color: var(--orange);
+  background: var(--white);
+}
+#dropdownNotif .action-wrap .all-notif:hover{
+  background: var(--btn-hovered);
+}
+#dropdownNotif .action-wrap .all-read:hover{
+  color: var(--btn-hovered);
+}
+
 
                                                                     /* MEDIA QUERIES */
 
@@ -6860,6 +7035,84 @@ width: 100%;
   24 px	1.5 rem
   28px 1.75 rem
 */
+
+/* Bell Notifications */
+
+#dropdownNotif {
+  width: 20.61488rem;
+}
+#dropdownNotif li, #dropdownNotif .action-wrap {
+  padding: 1.03069rem 0.74963rem 1.03031rem 0.74963rem;
+}
+#dropdownNotif .title {
+  font-size: 0.75rem;
+  line-height: 0.93706rem; 
+}
+#dropdownNotif .notif-wrap .sender-img {
+  width: 1.875rem;
+  height: 1.875rem;
+}
+#dropdownNotif .notif-wrap {
+  gap: 0.47rem;
+}
+#dropdownNotif .notif-msg-wrap .sender-msg, #dropdownNotif .notif-msg-wrap .sender-name {
+  font-size: 0.7875rem;
+  line-height: 0.93706rem;
+}
+#dropdownNotif .date-time-wrap p {
+  font-size: 0.6625rem;
+  line-height: 0.93706rem; 
+}
+#dropdownNotif .action-wrap .all-notif, #dropdownNotif .action-wrap .all-read {
+  font-size: 0.725rem;
+  padding: 0.37rem 0.83rem;
+}
+
+/* Organizer Account - Account Settings - Notifications tab */
+
+.account-settings .notifications-wrap .notif-title-wrap {
+  margin-bottom: 1.02rem;
+}
+.account-settings .notifications-wrap .notif-title-wrap .dropdown-center .more-icon {
+  font-size: 18px;
+}
+.account-settings .notifications-wrap .notif-title-wrap .dropdown-center .dropdown-menu {
+  width: 9.9375rem;
+  padding: 0.87rem 1rem;
+  border-radius: 0.3125rem;
+  box-shadow: 0px 0px 17px 0px rgba(18, 18, 18, 0.15);
+}
+.account-settings .notifications-wrap .notif-title-wrap .dropdown-center .dropdown-menu li button {
+  font-size: 0.775rem;
+  line-height: 140%; 
+  letter-spacing: -0.0175rem;
+}
+.account-settings .notifications-wrap .notif-title-wrap .dropdown-center .dropdown-menu li {
+  margin-bottom: 0.2rem;
+}
+.account-settings .notifications-wrap .sender-img {
+  width: 2.8125rem;
+  height: 2.8125rem;
+}
+.account-settings .notifications-wrap .sender-wrap {
+  gap: 0.47rem;
+}
+.account-settings .notifications-wrap .sender-details-wrap .sender-msg {
+  font-size: 0.75rem;
+}
+.account-settings .notifications-wrap .sender-details-wrap .msg {
+  font-size: 0.625rem;
+  line-height: normal;
+}
+.account-settings .notifications-wrap .sender-details-wrap .details-wrap .details {
+  font-size: 0.6875rem;
+}
+.account-settings .notifications-wrap .details-wrapper .date-time {
+  font-size: 0.625rem;
+}
+.account-settings .notifications-wrap .details-wrapper .remove-notif-wrap .remove-icon {
+  font-size: 18px;
+}
 
                                             /* LIBRARY PAGE */                                           
 .library .top-wrapper{
@@ -7335,11 +7588,10 @@ margin-bottom: 2.5rem;
   margin-bottom: 1.5rem;
 }
 
-
-
                           /* CUSTOMIZED SONGS TAB */
 
-.account-settings .title-wrapper .title {
+.account-settings .title-wrapper .title, 
+.account-settings .notifications-wrap .title {
   font-size: 1.125rem;
   letter-spacing: -0.0225rem;
 }
@@ -7355,7 +7607,14 @@ margin-bottom: 2.5rem;
   margin-bottom: 1.87rem;
   border-bottom: 1px solid #C1C7DEB2;
 }
-.account-settings .customized-songs-wrapper {
+.account-settings .customized-songs-wrapper .event-description .left-wrap {
+  width: 70%;
+}
+.account-settings .customized-songs-wrapper .details-wrapper {
+  width: 30%;
+}
+.account-settings .customized-songs-wrapper,
+.account-settings .notifications-wrap .customized-songs-wrapper {
   margin-bottom: 0.62rem;
   padding: 1.45rem 1.12rem;
 }
@@ -8377,9 +8636,6 @@ margin-bottom: 1rem;
 .events-showing .create-event-wrapper .create-event{
   gap: 0.3rem;
   margin-bottom: 0;
-}
-.events-showing .create-event-btn-wrap{
-  margin-top: 3rem;
 }
 .events-showing .container .row .filter span{
  padding-top: -0.3rem;

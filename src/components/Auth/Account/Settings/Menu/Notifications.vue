@@ -1,8 +1,25 @@
 <template>
-  <div>
-    <div class="content px-0">
-      <h3 class="mx-3">Notifications</h3>
-      <button @click="markAllNotificationAsRead('profile')">Clear</button>
+  <div class="notifications-wrap">
+    <div class="content">
+
+      <div class="d-flex align-items-center justify-content-between notif-title-wrap">
+        <div>
+          <h3 class="title">Notifications</h3>
+        </div>
+       
+        <div class="dropdown-center">
+          <button class="btn p-0 more-wrap" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <span class="material-symbols-rounded more-icon">&#xe5d3;</span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><button class="btn p-0" @click="markAllNotificationAsRead('profile')">Clear all notifications</button></li>
+            <li><button class="btn p-0">Mark all as read</button></li>
+          </ul>
+        </div>
+      
+
+      </div>
+
       <notification-card v-for="(notification, index) in notifications" :key="index" :content="notification" @openProposal="toggleProposal" />
       <request-proposal :show="Object.keys(proposal).length > 0" @close-modal="closeModal" />
     </div>
@@ -47,7 +64,7 @@ export default {
     closeModal() {
       this.$store.commit('setProposal');
       this.proposal = {};
-    }
+    },
   },
   mounted() {
 
