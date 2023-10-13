@@ -39,6 +39,7 @@ export default {
   methods: {
     ...mapActions(['fetchNotifications', 'markAllNotificationAsRead', ]),
     toggleProposal (proposal) {
+      console.log('Proposal ID: ', proposal)
       this.$store.dispatch('getArtistProposal', proposal)
         .then(res => {
           this.proposal = proposal;
