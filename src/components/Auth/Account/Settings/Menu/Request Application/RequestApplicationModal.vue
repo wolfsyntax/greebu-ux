@@ -31,7 +31,7 @@
           </div>
 
           <div class="d-flex align-items-center" v-if="proposal?.status === 'accepted'">
-            <button class="btn accepted">Ongoing</button>
+            <!-- <button class="btn accepted">Ongoing</button> -->
           </div>
           
            <div class="d-flex align-items-center" v-if="proposal?.status === 'declined'">
@@ -97,8 +97,8 @@
           </div>
 
           <div class="right">
-            <h5>Number of members</h5>
-            <p>{{ proposal.total_member }}</p>
+            <h5 class="text-center">Number of members</h5>
+            <p class="text-center">{{ proposal.total_member }}</p>
           </div>
         </div>
 
@@ -109,7 +109,7 @@
 
         <div class="text-start cover-letter-wrap">
          <h5>Cover letter</h5>
-         <p class="mb-0">{{ proposal?.cover_letter }}</p>
+         <p class="mb-0 text-justify">{{ proposal?.cover_letter }}</p>
         </div>
 
         <div class="text-start music-sample-wrap" v-if="proposal?.sample_song">

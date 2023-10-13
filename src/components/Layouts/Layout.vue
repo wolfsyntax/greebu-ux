@@ -46,7 +46,7 @@
               <a href="#" class="btn btn-primary upgrade" @click="openModal" data-bs-toggle="modal" data-bs-target="#selectPlanModal" v-if="userRole === 'artists'">Upgrade Plan</a>
               
               <div class="dropdown dropstart">
-                <button class="btn btn-secondary dropdown-toggle" data-bs-auto-close="outside" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                <button class="btn btn-secondary dropdown-toggle" @click="fetchNotifications" data-bs-auto-close="outside" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false" >
                   <span class="material-symbols-outlined bell-icon">&#xe7f4;</span>
                 </button>
 
@@ -81,7 +81,7 @@
                   <li class="mr-0">
                     
                     <button class="btn btn-light float-end" @click="markAsRead">Mark all as read</button>
-                    <router-link to="/account/setting" class="btn btn-geebu mx-3" @click="$store.commit('setSettingMenu', 'Notifications')">See all notification</router-link>
+                    <router-link to="/account/setting" class="btn btn-geebu mx-3" @click="fetchNotifications(); $store.commit('setSettingMenu', 'Notifications')">See all notification</router-link>
                   </li>
                 </ul>
               </div>
@@ -311,7 +311,7 @@ export default {
       this.$root.$emit("bv::show::modal", "#selectPlanModal");
     },
     ...mapActions([
-      'signout', 'markAllNotificationAsRead',
+      'signout', 'markAllNotificationAsRead', 'fetchNotifications',
     ]),
     ...mapMutations([
       'SET_ACCOUNT', 'SET_PROFILE', 'SET_AUTH',
