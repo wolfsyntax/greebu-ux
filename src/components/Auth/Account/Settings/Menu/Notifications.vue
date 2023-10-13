@@ -13,7 +13,7 @@
           </button>
           <ul class="dropdown-menu">
             <li><button class="btn p-0" @click="markAllNotificationAsRead('profile')">Clear all notifications</button></li>
-            <li><button class="btn p-0">Mark all as read</button></li>
+            <!-- <li><button class="btn p-0" @click="markAllNotificationAsRead('profile')">Mark all as read</button></li> -->
           </ul>
         </div>
       
