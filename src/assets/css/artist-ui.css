@@ -1946,7 +1946,7 @@ body {
   resize: none;
   border-radius: 0.5rem;
   border: 1px solid var(--low-sky-gray, rgba(86, 103, 137, 0.26));
-  font-weight: 600;
+  font-weight: 500;
 }
 .profile-details .container .fill-details .form-group .char-count,
 .artist-proposal-form .cover-letter-wrap .char-count {

@@ -28,6 +28,7 @@
         <my-account v-if="selectedOption === 'My Account'"/>
         <customized-song v-if="selectedOption === 'Customized Songs'"/>
         <my-booking v-if="selectedOption === 'My Bookings'" />
+        <!-- <collaboration v-if="selectedOption === 'Collaboration'" /> -->
         <my-proposal v-if="selectedOption === 'My Proposal'" />
         <notifications v-if="selectedOption === 'Notifications'" />
         <subscriptions v-if="selectedOption === 'Manage Subscriptions'" />
@@ -47,6 +48,7 @@ import CustomizedSong from '@/components/Auth/Account/Settings/Menu/CustomizedSo
 
 import MyAccount from '@/components/Auth/Account/Settings/Menu/MyAccount.vue';
 import MyBooking from '@/components/Auth/Account/Settings/Menu/MyBookings.vue';
+//import Collaboration from '@/components/Auth/Account/Settings/Menu/Collaboration.vue';
 import MyProposal from '@/components/Auth/Account/Settings/Menu/MyProposal.vue';
 import Notifications from '@/components/Auth/Account/Settings/Menu/Notifications.vue';
 import Others from '@/components/Auth/Account/Settings/Menu/Others.vue';
@@ -57,6 +59,7 @@ export default {
   components: {
     MyAccount,
     MyBooking,
+    //Collaboration,
     MyProposal,
     Notifications,
     Others,
@@ -77,6 +80,7 @@ export default {
           { icon: 'account_circle', name: 'My Account'},
           { icon: 'library_music	', name: 'Customized Songs'},
           { icon: 'event_available', name: 'My Bookings'},
+          { icon: 'groups', name: 'Collaboration'},
           { icon: 'music_note', name: 'My Proposal'},
           { icon: 'notifications', name: 'Notifications'},
           { icon: 'subscriptions', name: 'Manage Subscriptions'},
@@ -110,6 +114,7 @@ export default {
         { icon: 'account_circle', name: 'My Account' },
         { icon: 'library_music	', name: 'Customized Songs' },
         { icon: 'event_available', name: 'My Bookings' },
+        { icon: 'groups', name: 'Collaboration' },
         { icon: 'music_note', name: 'My Proposal' },
         { icon: 'notifications', name: 'Notifications' },
         { icon: 'subscriptions', name: 'Manage Subscriptions' },

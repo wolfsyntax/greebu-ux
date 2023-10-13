@@ -1,20 +1,23 @@
 <template>
   <div>
     <div class="customized-songs-wrapper" v-for="(request, index) in requestedSongs" :key="index">
-      <div class="event-description">
-        <h5 class="event">{{ request.event }} <span class="in-progress">In Progress</span></h5>
-        <div class="d-flex align-items-center requested-wrapper">
-          <img :src=request.profile_image class="requested-by-image" alt="Requested by image"> 
-          <a href="#" class="requested-by">Requested by <span class="name">{{ request.name }}</span></a> <span class="time">{{ request.time }} hours ago</span>
+
+      <div class="d-flex align-items-center justify-content-between event-description">
+
+        <div class="left-wrap">
+          <h5 class="event">{{ request.event }} <span class="in-progress">In Progress</span></h5>
+          <div class="d-flex align-items-center requested-wrapper">
+            <img :src=request.profile_image class="requested-by-image" alt="Requested by image"> 
+            <a href="#" class="requested-by">Requested by <span class="name">{{ request.name }}</span></a> <span class="time">{{ request.time }} hours ago</span>
+          </div>
+
+          <div class="d-flex">
+            <span class="material-symbols-rounded info-icon">&#xe88e;</span>
+            <p class="note">Clients will only pay if the requested customized song is already been accepted by chosen Artist.</p>
+          </div>
         </div>
 
-        <div class="d-flex">
-          <span class="material-symbols-rounded info-icon">&#xe88e;</span>
-          <p class="note">Clients will only pay if the requested customized song is already been accepted by chosen Artist.</p>
-        </div>
-      </div>
-
-      <div class="details-wrapper">
+        <div class="details-wrapper">
         <div class="button-wrapper">
           <button type="button" class="btn details" @click="showModal = true">View Details</button>
           <requested-song-modal :show="showModal" 
@@ -30,6 +33,9 @@
           </button>
         </div>
       </div>
+
+      </div>
+
     </div>
   </div>
 </template>

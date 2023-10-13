@@ -5485,11 +5485,21 @@ width: 100%;
   display: flex;
   align-items: center;
 }
+.account-settings .customized-songs-wrapper .organizer-offers-details-wrap{
+  /* white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; */
+}
 .account-settings .customized-songs-wrapper .event-description{
+  /* width: 60%; */
+  width: 100%;
+}
+.account-settings .customized-songs-wrapper .event-description .left-wrap{
   width: 60%;
 }
 .account-settings .customized-songs-wrapper .details-wrapper{
   width: 40%;
+  /* width: 100%; */
   position: relative;
 }
 .account-settings .customized-songs-wrapper .event{
@@ -5498,6 +5508,15 @@ width: 100%;
   font-weight: 700;
   letter-spacing: -0.025rem;
   margin-bottom: 0.62rem;
+  /* display: -webkit-box;
+  margin: 0 auto;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis; */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .account-settings .customized-songs-wrapper .event .in-progress{
   color: var(--indigo);
@@ -5586,6 +5605,99 @@ width: 100%;
 .account-settings .customized-songs-wrapper .button-wrapper .details:hover{
   background: var(--orange);
   color: var(--white);
+}
+
+/* Account Settings - My Proposals */
+.account-settings .my-proposal .organizer-offers-details-wrap .offer-img,
+.account-settings .my-proposal .request-song-modal .organizer-offers-details-wrap .offer-img {
+  width: 4.875rem;
+  height: 4.875rem;
+  margin-right: 1rem;
+  position: relative;
+  -o-object-fit: cover;
+  object-fit: cover;
+  backface-visibility: hidden;
+  border-radius: 100%;
+}
+.account-settings .my-proposal .request-song-modal .organizer-offers-details-wrap .offer-img{
+  width: 4.75rem;
+  height: 4.75rem;
+  margin-right: 1.12rem;
+}
+.account-settings .my-proposal .organizer-offers-details-wrap .from,
+.account-settings .my-proposal .request-song-modal .organizer-offers-details-wrap .from {
+  color:var(--black);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  display: -webkit-box;
+  margin: 0 auto;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.account-settings .my-proposal .request-song-modal .organizer-offers-details-wrap .from{
+  margin-bottom: 0.25rem;
+  /* width: 90%; */
+}
+.account-settings .my-proposal .organizer-offers-details-wrap .from span,
+.account-settings .my-proposal .request-song-modal .organizer-offers-details-wrap .from span{
+  font-weight: 500;
+}
+.account-settings .my-proposal .organizer-offers-details-wrap .venue,
+.account-settings .my-proposal .request-song-modal .organizer-offers-details-wrap .venue {
+  color: var(--gray6);
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 0.81rem;
+}
+.account-settings .my-proposal .request-song-modal .organizer-offers-details-wrap .venue{
+  font-size: 1.25rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+}
+.account-settings .my-proposal .organizer-offers-details-wrap .dot-icon{
+  font-size: 10px;
+  font-variation-settings: 'FILL' 1,'wght' 800,'GRAD' 0,'opsz' 48;
+  color: var(--gray6);
+  margin: 0 0.41rem;
+}
+.account-settings .my-proposal .organizer-offers-details-wrap .star-ratings,
+.account-settings .my-proposal .request-song-modal .organizer-offers-details-wrap .star-ratings{
+  color: #1E1E1E;
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 0.69381rem;
+  gap: 0.25rem;
+}
+.account-settings .my-proposal .organizer-offers-details-wrap .star-ratings .star-icon,
+.account-settings .my-proposal .request-song-modal .organizer-offers-details-wrap .star-icon{
+  font-variation-settings: 'FILL' 1,'wght' 800,'GRAD' 0,'opsz' 48;
+  color: var(--orange);
+  font-size: 20px;
+}
+.account-settings .my-proposal .organizer-offers-details-wrap .star-ratings .reviews,
+.account-settings .my-proposal .request-song-modal .organizer-offers-details-wrap .review{
+  color: #8C8C8C;
+  font-weight: 400;
+  line-height: 0.84375rem; 
+}
+.account-settings .my-proposal .request-song-modal .event-organized-wrap{
+
+}
+.account-settings .my-proposal .request-song-modal .event-organized-wrap h5{
+  margin-bottom: 1.25rem;
+}
+.account-settings .my-proposal .request-song-modal .event-organized-wrap .badge{
+  color: var(--orange);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1rem; 
+  padding: 0.25rem 0.5rem;
+  border-radius: 2rem;
+  background: #FED7AA;
+  margin: 0 0.25rem 0.25rem 0;
 }
 
 /* VIEW DETAILS - REQUEST SONG MODAL */
@@ -5725,7 +5837,7 @@ width: 100%;
   line-height: 1.5rem; 
   border-radius: 0.5rem;
   border: 1px solid var(--orange);
-  padding: 0.75rem 3rem;
+  padding: 0.75rem 2rem;
 }
 .account-settings .request-song-modal .action-wrapper .accept{
   border-radius: 0.5rem;
@@ -5782,14 +5894,16 @@ width: 100%;
   font-weight: 400;
   letter-spacing: -0.025rem;
 }
-.account-settings .request-song-modal .song-info-wrapper{
+.account-settings .request-song-modal .song-info-wrapper,
+.account-settings .my-proposal .request-song-modal .event-organized-wrap{
   margin-bottom: 2.5rem;
   text-align: left;
 }
 .account-settings .request-song-modal .song-info-wrapper h5,
 .account-settings .request-application-wrap .request-song-modal .genre-wrap h5,
 .account-settings .request-application-wrap .request-song-modal .cover-letter-wrap h5,
-.account-settings .request-application-wrap .request-song-modal .music-sample-wrap h5{
+.account-settings .request-application-wrap .request-song-modal .music-sample-wrap h5,
+.account-settings .my-proposal .request-song-modal .event-organized-wrap h5{
   color: var(--gray2);
   font-size: 1.25rem;
   font-weight: 600;
@@ -6244,8 +6358,8 @@ width: 100%;
   font-weight: 500;
   margin-bottom: 0;
 }   
-#eventDetailsModal .about-event-wrap{
-  width: 90%;
+#eventDetailsModal .about-event-wrap, #eventDetailsModal .requirements-wrap{
+  width: 97%;
 }     
 #eventDetailsModal .about-event-wrap .about{
   margin-bottom: .5rem;
@@ -7109,14 +7223,16 @@ margin-bottom: 2.5rem;
 } 
 .account-settings .request-song-modal .song-info-wrapper,
 .account-settings .request-application-wrap .request-song-modal .genre-wrap, 
-.account-settings .request-application-wrap .request-song-modal .cover-letter-wrap {
+.account-settings .request-application-wrap .request-song-modal .cover-letter-wrap,
+.account-settings .my-proposal .request-song-modal .event-organized-wrap {
   margin-bottom: 1.88rem;
 }
 .account-settings .request-song-modal .song-info-wrapper h5,
 .account-settings .request-application-wrap .request-song-modal .genre-wrap h5,
 .account-settings .request-application-wrap .request-song-modal .cover-img-wrap h5,
 .account-settings .request-application-wrap .request-song-modal .music-sample-wrap h5,
-.account-settings .request-application-wrap .request-song-modal .cover-letter-wrap h5  {
+.account-settings .request-application-wrap .request-song-modal .cover-letter-wrap h5,
+.account-settings .my-proposal .request-song-modal .event-organized-wrap h5 {
   font-size: 0.9375rem;
   margin-bottom: 0.47rem;
 }
@@ -7294,6 +7410,40 @@ margin-bottom: 2.5rem;
 .account-settings .request-application-wrap .requested-wrapper .dot-icon {
   font-size: 8px;
   margin-left: 0.33rem;
+}
+
+/* Account Settings - My Proposas tab */
+.account-settings .my-proposal .organizer-offers-details-wrap{
+
+}
+.account-settings .my-proposal .organizer-offers-details-wrap .offer-img{
+  width: 3rem;
+  height: 3rem;
+  margin-right: 0.5rem;
+}
+.account-settings .my-proposal .organizer-offers-details-wrap .from {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+.account-settings .my-proposal .organizer-offers-details-wrap .venue {
+  font-size: 0.875rem;
+  margin-bottom: 0.61rem;
+}
+.account-settings .my-proposal .organizer-offers-details-wrap .dot-icon {
+  font-size: 8px;
+  margin: 0 0.26rem;
+}
+.account-settings .my-proposal .organizer-offers-details-wrap .star-ratings {
+  font-size: 0.875rem;
+  line-height: normal;
+  gap: 0.18rem;
+}
+.account-settings .my-proposal .organizer-offers-details-wrap .star-ratings .star-icon {
+  font-size: 16px;
+}
+.account-settings .my-proposal .organizer-offers-details-wrap .star-ratings .reviews {
+  line-height: normal
 }
 
 
