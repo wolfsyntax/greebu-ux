@@ -367,10 +367,6 @@ header nav{
   height: 48px;
   flex-shrink: 0;
   border-radius: 48px;
-  position: relative;
-  -o-object-fit: cover;
-  object-fit: cover;
-  backface-visibility: hidden;
   border: 2px solid var(--white);
 }
 .main-nav .nav-button .dropdown img:hover{
@@ -391,10 +387,7 @@ header nav{
   height: 64px;
   flex-shrink: 0;
   border-radius: 48px;
-  position: relative;
-  -o-object-fit: cover;
-  object-fit: cover;
-  backface-visibility: hidden;
+
   margin-right: 10px;
   cursor: pointer;
   border: 2px solid var(--white);
@@ -1028,10 +1021,7 @@ filter: brightness(70%);
   width: 100%;
   height: 25.0625rem;
   border-radius: 0.625rem;
-  position: relative;
-  -o-object-fit: cover;
-  object-fit: cover;
-  backface-visibility: hidden;
+
 }
 .artist-details-modal .artist-modal .modal-body .top-row{
   margin-bottom: 2.5rem;
@@ -1172,10 +1162,7 @@ filter: brightness(70%);
   width: 3.9375rem;
   height: 3.9375rem;
   border-radius: 0.625rem;
-  position: relative;
-  -o-object-fit: cover;
-  object-fit: cover;
-  backface-visibility: hidden;
+
   margin-bottom: 0rem;
   margin-right: 0.87rem;
 }
@@ -2435,12 +2422,6 @@ width: 45%;
 overflow: hidden;
 height: 100%;
 }
-#mustSignUp .modal-body .left img{
-  position: relative;
-  -o-object-fit: cover;
-  object-fit: cover;
-  backface-visibility: hidden;
-}
 #mustSignUp .modal-body .right{
   width: 55%;
   position: relative;
@@ -2861,10 +2842,6 @@ height: 100%;
   height: 2.1875rem;
   margin-right: 0.5rem;
   border-radius: 100%;
-  position: relative;
-  -o-object-fit: cover;
-  object-fit: cover;
-  backface-visibility: hidden;
 }
 .events-showing .container .card .organized-by h5{
   color: var(--white);
@@ -5524,17 +5501,19 @@ width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.account-settings .customized-songs-wrapper .event .in-progress{
+.account-settings .customized-songs-wrapper .event .in-progress,
+.account-settings .organizer-offers-details-wrap .from .cancelled{
   color: var(--indigo);
-  font-size: 0.8125rem;
-  font-weight: 600;
+  font-size: 0.75rem;
+  font-weight: 600!important;
   line-height: 1.5rem;
   padding: 0.25rem 0.5rem;
   border-radius: 2rem;
   background: var(--indigo-light);
   margin-left: 0.75rem;
 }
-.account-settings .customized-songs-wrapper .event .denied{
+.account-settings .customized-songs-wrapper .event .denied,
+.account-settings .organizer-offers-details-wrap .from .cancelled{
   background: var(--warning-light);
   color: var(--warning);
 }
@@ -5619,10 +5598,7 @@ width: 100%;
   width: 4.875rem;
   height: 4.875rem;
   margin-right: 1rem;
-  position: relative;
-  -o-object-fit: cover;
-  object-fit: cover;
-  backface-visibility: hidden;
+
   border-radius: 100%;
 }
 .account-settings .my-proposal .request-song-modal .organizer-offers-details-wrap .offer-img{
@@ -5695,16 +5671,6 @@ width: 100%;
 .account-settings .my-proposal .request-song-modal .event-organized-wrap h5{
   margin-bottom: 1.25rem;
 }
-.account-settings .my-proposal .request-song-modal .event-organized-wrap .badge{
-  color: var(--orange);
-  font-size: 1rem;
-  font-weight: 600;
-  line-height: 1rem; 
-  padding: 0.25rem 0.5rem;
-  border-radius: 2rem;
-  background: #FED7AA;
-  margin: 0 0.25rem 0.25rem 0;
-}
 
 /* VIEW DETAILS - REQUEST SONG MODAL */
 .account-settings .request-song-modal {
@@ -5721,7 +5687,7 @@ width: 100%;
 }
 .account-settings .request-song-modal .modal-content {
   background-color: var(--white);
-  padding: 2.5rem 3.125rem 4.4375rem 3.125rem;
+  padding: 2.5rem 3.125rem 3.4375rem 3.125rem;
   width: 50rem;
   margin: 3rem auto;
   position: relative;
@@ -5806,10 +5772,7 @@ width: 100%;
   height: 4.75rem;
   flex-shrink: 0;
   border-radius: 48px;
-  position: relative;
-  -o-object-fit: cover;
-  object-fit: cover;
-  backface-visibility: hidden;
+
   margin-right: 1.12rem;
 }
 .account-settings .request-song-modal .action-wrapper .name{
@@ -5906,10 +5869,9 @@ width: 100%;
   text-align: left;
 }
 .account-settings .request-song-modal .song-info-wrapper h5,
-.account-settings .request-application-wrap .request-song-modal .genre-wrap h5,
-.account-settings .request-application-wrap .request-song-modal .cover-letter-wrap h5,
-.account-settings .request-application-wrap .request-song-modal .music-sample-wrap h5,
-.account-settings .my-proposal .request-song-modal .event-organized-wrap h5{
+.account-settings .request-song-modal .genre-wrap h5,
+.account-settings .request-song-modal .cover-letter-wrap h5,
+.account-settings .request-application-wrap .request-song-modal .music-sample-wrap h5{
   color: var(--gray2);
   font-size: 1.25rem;
   font-weight: 600;
@@ -5965,78 +5927,77 @@ width: 100%;
   font-variation-settings: 'FILL' 1,'wght' 800,'GRAD' 0,'opsz' 48;
   margin-left: 0.44rem;
 }
-.account-settings .request-application-wrap .applied-event-wrap{
+
+.account-settings .applied-event-wrap{
   border-radius: 0.5rem;
   border: 1px solid var(--gray6);
   padding: 1.25rem;
   gap: 1.75rem;
   margin-bottom: 1.5rem;
 }
-.account-settings .request-application-wrap .applied-event-wrap .event-img{
+.account-settings .applied-event-wrap .event-img{
   width: 18.5625rem;
   height: 14.375rem;
   border-radius: 0.25rem;
-  position: relative;
-  -o-object-fit: cover;
-  object-fit: cover;
-  backface-visibility: hidden;
+
 }
-.account-settings .request-application-wrap .applied-event-wrap .event-title-wrap{
+.account-settings .applied-event-wrap .event-title-wrap{
   margin-bottom: 1.88rem;
 }
-.account-settings .request-application-wrap .applied-event-wrap .event-title{
+.account-settings .applied-event-wrap .event-title{
   color: var(--black);
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 0.25rem;
 }
-.account-settings .request-application-wrap .applied-event-wrap .event-title-wrap h5{
+.account-settings .applied-event-wrap .event-title-wrap h5{
   color: var(--gray2);
   font-size: 0.875rem;
   font-weight: 400;
 }
-.account-settings .request-application-wrap .applied-event-wrap .dot-icon{
+.account-settings .applied-event-wrap .dot-icon{
   font-size: 10px;
   color: var(--gray2);
   margin: 0 0.37rem;
   font-variation-settings: 'FILL' 1,'wght' 800,'GRAD' 0,'opsz' 48;
 }
-.account-settings .request-application-wrap .applied-event-wrap .event-start-end-wrap,
-.account-settings .request-application-wrap .applied-event-wrap .event-venue-wrap{
+.account-settings .applied-event-wrap .event-start-end-wrap,
+.account-settings .applied-event-wrap .event-venue-wrap{
   margin-bottom: 1.25rem;
   gap: 1rem;
 }
-.account-settings .request-application-wrap .applied-event-wrap .event-start-end-wrap h5,
-.account-settings .request-application-wrap .applied-event-wrap .event-venue-wrap h5{
+.account-settings .applied-event-wrap .event-start-end-wrap h5,
+.account-settings .applied-event-wrap .event-venue-wrap h5{
   color: var(--gray2);
   font-size: 0.875rem;
   font-weight: 500;
   margin-bottom: 0;
 }
-.account-settings .request-application-wrap .applied-event-wrap .event-start-end-wrap .date,
-.account-settings .request-application-wrap .applied-event-wrap .event-venue-wrap .venue{
+.account-settings .applied-event-wrap .event-start-end-wrap .date,
+.account-settings .applied-event-wrap .event-venue-wrap .venue{
   margin-bottom: 0.25rem;
 }
-.account-settings .request-application-wrap .applied-event-wrap .event-start-end-wrap .time,
-.account-settings .request-application-wrap .applied-event-wrap .event-venue-wrap .place{
+.account-settings .applied-event-wrap .event-start-end-wrap .time,
+.account-settings .applied-event-wrap .event-venue-wrap .place{
   color: var(--orange);
 }
-.account-settings .request-application-wrap .applied-event-wrap .event-start-end-wrap .calendar-icon,
-.account-settings .request-application-wrap .applied-event-wrap .event-venue-wrap .location-icon{
+.account-settings .applied-event-wrap .event-start-end-wrap .calendar-icon,
+.account-settings .applied-event-wrap .event-venue-wrap .location-icon{
   color: var(--gray6);
   font-size: 24px;
 }
-.account-settings .request-application-wrap .request-song-modal .artist-details{
+
+.account-settings .request-song-modal .artist-details{
   color: var(--black);
   font-size: 1.25rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
 }
-.account-settings .request-application-wrap .request-song-modal .genre-wrap,
-.account-settings .request-application-wrap .request-song-modal .cover-letter-wrap{
+.account-settings .request-song-modal .genre-wrap,
+.account-settings .request-song-modal .cover-letter-wrap{
   margin-bottom: 2.5rem;
 }
-.account-settings .request-application-wrap .request-song-modal .genre-wrap .badge{
+.account-settings .request-song-modal .genre-wrap .badge{
   color: var(--orange);
   font-size: 1rem;
   font-weight: 600;
@@ -6046,7 +6007,7 @@ width: 100%;
   background-color: #FED7AA;
   margin: 0 0.25rem 0.25rem 0;
 }
-.account-settings .request-application-wrap .request-song-modal .cover-letter-wrap p{
+.account-settings .request-song-modal .cover-letter-wrap p{
   color: var(--black);
   font-size: 1.25rem;
   font-weight: 400;
@@ -6069,10 +6030,7 @@ width: 100%;
   width: 6.0625rem;
   height: 6.0625rem;
   border-radius: 0.25rem;
-  position: relative;
-  -o-object-fit: cover;
-  object-fit: cover;
-  backface-visibility: hidden;
+
 }
 .account-settings .request-application-wrap .request-song-modal .artist-music-details .song-name{
   color: var(--black);
@@ -6415,10 +6373,7 @@ width: 100%;
 #eventDetailsModal .event-background-img-wrap .event-background-img{
   width: 100%;
   height: 29.375rem; /* 50vh */
-  position: relative;
-  -o-object-fit: cover;
-  object-fit: cover;
-  backface-visibility: hidden;
+
 }
 #eventDetailsModal .event-details-wrapper,
 #eventDetailsModal .about-event-wrap,
@@ -6478,10 +6433,7 @@ width: 100%;
   width: 3.625rem;
   height: 3.625rem;
   border-radius: 100%;
-  position: relative;
-  -o-object-fit: cover;
-  object-fit: cover;
-  backface-visibility: hidden;
+
   margin-right: 0.5rem;
 }
 #eventDetailsModal .organizer-details-wrapper .organizer-name{
@@ -6684,10 +6636,7 @@ width: 100%;
 #createEventModal .uploaded-image-wrapper .uploaded-image{
   height: 18.375rem;
   width: 100%;
-  position: relative;
-  -o-object-fit: cover;
-  object-fit: cover;
-  backface-visibility: hidden;
+
 }
 #createEventModal .uploaded-image-wrapper .remove-image {
   margin: 0;
@@ -6803,10 +6752,7 @@ width: 100%;
   width: 100%; /* 17.3125rem */
   height: 18rem;
   border-radius: 0.9375rem;
-  position: relative;
-  -o-object-fit: cover;
-  object-fit: cover;
-  backface-visibility: hidden;
+
   border-radius: 0.9375rem;
 }
 .library .songs-wrap .cover-img-wrap .play-wrap {
@@ -7449,17 +7395,19 @@ margin-bottom: 2.5rem;
   height: 3.5625rem;
   margin-right: 0.84rem;
 }
-.account-settings .request-song-modal .action-wrapper .name {
+.account-settings .request-song-modal .action-wrapper .name,
+.account-settings .my-proposal .request-song-modal .organizer-offers-details-wrap .from {
   font-size: 1.125rem;
   margin-bottom: 0.14rem;
 }
-.account-settings .request-song-modal .action-wrapper .username {
+.account-settings .request-song-modal .action-wrapper .username,
+.account-settings .my-proposal .request-song-modal .organizer-offers-details-wrap .venue {
   font-size: 0.9375rem;
 }
 .account-settings .request-song-modal .action-wrapper button {
   font-size: 0.75rem;
-  line-height: 1.125rem; /* 150% */
-  padding: 0.56rem 2rem;
+  line-height: 1.125rem; 
+  padding: 0.56rem 1.5rem;
 }
 .account-settings .request-song-modal .note-wrapper .note {
   font-size: 0.875rem;
@@ -7476,27 +7424,26 @@ margin-bottom: 2.5rem;
   margin-bottom: 1.25rem
 }
 .account-settings .request-song-modal .story-wrapper .title,
-.account-settings .request-application-wrap .request-song-modal .artist-details {
+.account-settings .request-song-modal .artist-details {
   font-size: 0.9375rem;
   margin-bottom: 1.12rem;
 } 
 .account-settings .request-song-modal .song-info-wrapper,
-.account-settings .request-application-wrap .request-song-modal .genre-wrap, 
+.account-settings .request-song-modal .genre-wrap, 
 .account-settings .request-application-wrap .request-song-modal .cover-letter-wrap,
 .account-settings .my-proposal .request-song-modal .event-organized-wrap {
   margin-bottom: 1.88rem;
 }
 .account-settings .request-song-modal .song-info-wrapper h5,
-.account-settings .request-application-wrap .request-song-modal .genre-wrap h5,
+.account-settings .request-song-modal .genre-wrap h5,
 .account-settings .request-application-wrap .request-song-modal .cover-img-wrap h5,
 .account-settings .request-application-wrap .request-song-modal .music-sample-wrap h5,
-.account-settings .request-application-wrap .request-song-modal .cover-letter-wrap h5,
-.account-settings .my-proposal .request-song-modal .event-organized-wrap h5 {
+.account-settings .request-song-modal .cover-letter-wrap h5 {
   font-size: 0.9375rem;
   margin-bottom: 0.47rem;
 }
 .account-settings .request-song-modal .song-info-wrapper p,
-.account-settings .request-application-wrap .request-song-modal .cover-letter-wrap p,
+.account-settings .request-song-modal .cover-letter-wrap p,
 .account-settings .request-song-modal .story-wrapper .message {
   font-size: 0.9375rem;
   letter-spacing: -0.01875rem;
@@ -7509,47 +7456,50 @@ margin-bottom: 2.5rem;
   margin: 2rem auto;
   max-height: calc(100vh - 2rem);
   width: 42.1875rem;
-  padding: 1.875rem 2.34375rem 3.32813rem 2.34375rem;
+  padding: 1.875rem 2.34375rem 2.32813rem 2.34375rem;
   border-radius: 0.75rem;
   box-shadow: 0px 18.75px 37.5px -9px rgba(0, 0, 0, 0.25);
 }
-.account-settings .request-application-wrap .applied-event-wrap {
+.account-settings .applied-event-wrap {
   border-radius: 0.375rem;
   border: 0.75px solid var(--gray6);
   padding: 0.94rem;
   gap: 1.31rem;
   margin-bottom: 1.12rem;
 }
-.account-settings .request-application-wrap .applied-event-wrap .event-img {
+.account-settings .applied-event-wrap .event-img {
   width: 13.92188rem;
   height: 10.78125rem;
   border-radius: 0.1875rem;
 }
-.account-settings .request-application-wrap .applied-event-wrap .event-title-wrap {
+.account-settings .applied-event-wrap .event-title-wrap {
   margin-bottom: 1.41rem;
 }
-.account-settings .request-application-wrap .applied-event-wrap .event-title {
+.account-settings .applied-event-wrap .event-title {
   font-size: 1.125rem;
   margin-bottom: 0.19rem;
 }
-.account-settings .request-application-wrap .applied-event-wrap .event-title-wrap h5 {
+.account-settings .applied-event-wrap .event-title-wrap h5 {
   font-size: 0.6875rem;
 }
-.account-settings .request-application-wrap .applied-event-wrap .dot-icon {
+.account-settings .applied-event-wrap .dot-icon {
   font-size: 8px;
   margin: 0 0.28rem;
 }
-.account-settings .request-application-wrap .applied-event-wrap .event-start-end-wrap, .account-settings .request-application-wrap .applied-event-wrap .event-venue-wrap {
+.account-settings .applied-event-wrap .event-start-end-wrap, 
+.account-settings .applied-event-wrap .event-venue-wrap {
   margin-bottom: 0.94rem;
   gap: 0.75rem;
 }
-.account-settings .request-application-wrap .applied-event-wrap .event-start-end-wrap .calendar-icon, .account-settings .request-application-wrap .applied-event-wrap .event-venue-wrap .location-icon {
+.account-settings .applied-event-wrap .event-start-end-wrap .calendar-icon,
+ .account-settings .applied-event-wrap .event-venue-wrap .location-icon {
   font-size: 18px;
 }
-.account-settings .request-application-wrap .applied-event-wrap .event-start-end-wrap h5, .account-settings .request-application-wrap .applied-event-wrap .event-venue-wrap h5 {
+.account-settings .request-application-wrap .applied-event-wrap .event-start-end-wrap h5, 
+.account-settings .request-application-wrap .applied-event-wrap .event-venue-wrap h5 {
   font-size: 0.6875rem;
 }
-.account-settings .request-application-wrap .request-song-modal .genre-wrap .badge {
+.account-settings .request-song-modal .genre-wrap .badge {
   font-size: 0.75rem;
   line-height: 0.75rem; 
   padding: 0.19rem 0.38rem;
@@ -7628,9 +7578,10 @@ margin-bottom: 2.5rem;
   font-size: 0.9375rem;
   letter-spacing: -0.01875rem;
 }
-.account-settings .customized-songs-wrapper .event .in-progress {
-  font-size: 0.75rem;
-  margin-left: 0.45rem;
+.account-settings .customized-songs-wrapper .event .in-progress,
+.account-settings .organizer-offers-details-wrap .from .cancelled {
+  font-size: 0.60rem;
+  margin-left: 0.40rem;
 }
 .account-settings .customized-songs-wrapper .requested-wrapper {
   margin-bottom: 1.34rem;
