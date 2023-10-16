@@ -7,7 +7,7 @@
         </div>
 
         <div>
-          <h5 class="from"><span>To:</span> {{ proposal.organizer_name }}</h5>
+          <h5 class="from"><span>To:</span> {{ proposal.organizer_name }}&nbsp;&nbsp;<small style="display: inline-block;" class="badge badge-cancelled" v-if="proposal.cancelled_at">Cancelled</small></h5>
           <h6 class="d-flex align-items-center venue">Event Organizer
             <span class="material-symbols-rounded dot-icon">&#xe061;</span>
             {{ proposal.location }}
@@ -62,6 +62,10 @@ export default {
 </script>
 
 <style scoped>
+  .badge-cancelled {
+    background: var(--warning-light);
+    color: var(--warning);    
+  }
   .requested-by-image {
     border-radius: 50%;
     width: 3rem !important;

@@ -139,6 +139,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+
 /* Styles for your modal */
 </style>

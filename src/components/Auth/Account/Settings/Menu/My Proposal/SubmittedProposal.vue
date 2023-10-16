@@ -91,6 +91,7 @@ export default {
     },
     closeModal()
     {
+      this.fetchMyProposals();
       this.showModal = false;
     },
     onModalAccepted()

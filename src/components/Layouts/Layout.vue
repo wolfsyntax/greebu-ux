@@ -281,6 +281,7 @@ export default {
         // { icon: 'queue_music', name: 'My Proposals', link: '/'},
         { icon: 'help', name: 'Help Center', link: '/'},
       ],
+      login: '/login',
       home: '/',
       createSong: '/create-song',
       artist: '/artist',

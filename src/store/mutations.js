@@ -66,6 +66,20 @@ var mutations = {
   setSettingMenu(state, payload = "My Account") {
     state.selectedOption = payload;
   },
+  setCancelReasons(
+    state,
+    payload = [
+      "Sudden Scheduling Conflict",
+      "Personal Emergency",
+      "Health Issues",
+      "Technical or Equipment Failure",
+      "Conflict to previous commitment",
+      "No Transportation",
+      "Change of Mind",
+    ]
+  ) {
+    state.cancelReasons = payload;
+  },
 };
 
 export default mutations;

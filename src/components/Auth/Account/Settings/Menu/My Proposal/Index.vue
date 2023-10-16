@@ -77,6 +77,7 @@ export default {
       'fetchMyProposals'
     ]),
     showCustomizeContent(option) {
+      console.log('showCustomizeContent: ', option)
       this.selectedCustomized = option.name;
     },
     closeModal(){
@@ -106,12 +107,14 @@ export default {
   watch: {
     selectedCustomized(val) {
       var payload = 'pending';
-      if (['Accepted Proposals', 'Denied Proposals', 'Submitted Proposal', ].includes(val)) {
+      
+      if (['Accepted Proposals', 'Denied Proposals', 'Submitted Proposals', ].includes(val)) {
+        
         if (val === 'Accepted Proposals') payload = 'accepted';
         else if (val=== 'Denied Proposals') payload = 'declined';
-        this.fetchMyProposals(payload);
-      } else {
-        payload = 'offers';
+
+        this.fetchMyProposals(payload)
+        .then(res => console.log('Tab click option (response): ', res));
       }
       
     }
