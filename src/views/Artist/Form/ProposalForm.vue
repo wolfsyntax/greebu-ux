@@ -68,7 +68,7 @@
         </div>
       </div>
     </div> -->
-    <success-proposal-modal />
+    <success-proposal-modal @close="closeModal" />
   </layout>
 </template>
 
@@ -83,6 +83,11 @@ export default {
     layout: Layout,
     SuccessProposalModal,
   },
+  setup() {
+    
+
+
+  },
   data() {
     return {
       form: {
@@ -92,12 +97,17 @@ export default {
       },
       errors: [],
       errorMessage: '',
+      modalObj: null,
     }
   },
   methods: {
-    ...mapActions(['sendArtistProposal']),
+    ...mapActions(['sendArtistProposal', 'fetchEvent',]),
     clearErrorMessage() {
       //this.error.song = [];
+    },
+    closeModal() {
+      this.modalObj.hide();
+      this.$router.push({name: 'events'});
     },
     submit()
     {
@@ -109,12 +119,7 @@ export default {
           const { status } = response
 
           if (status === 201) {
-            
-            new Modal(document.getElementById('sentProposalModal'), {
-              keyboard: false,
-              backdrop: 'static',
-            }).show();            
-
+            this.modalObj.show();
           }
 
           console.log('[Response] ProposalForm.vue: ', response);
@@ -143,12 +148,12 @@ export default {
     },
     dismiss(option)
     {
-      console.log('Prposal Modal dismiss: ', option);
-     
-        new Modal(document.getElementById('sentProposalModal'), {
-          keyboard: false,
-          backdrop: 'static',
-        }).show()
+      console.log('Proposal Modal dismiss: ', option);
+
+      new Modal(document.getElementById('sentProposalModal'), {
+        keyboard: false,
+        backdrop: 'static',
+      }).show()
     },
   },
   computed: {
@@ -167,7 +172,34 @@ export default {
       return this.form.total_member > 0 && this.form.cover_letter !== '';
     }
   },
+  created() {
+    this.fetchEvent(this.$route.params.eventId)
+      .catch(res => {
+        const { status, message, result } = res;
+        console.log(`Response ${this.$route.params.eventId}: `, status)
+        if (status === 404) {
+          this.$router.push({
+            name: 'page-error-404'
+          });
+
+        }
+      })
+  },
   mounted() {
+    
+    this.modalObj = new Modal(document.getElementById('sentProposalModal'), {
+      keyboard: false,
+      backdrop: 'static',
+    });    
+    
+    document.getElementById('sentProposalModal')
+    .addEventListener('hide.bs.modal', () => {
+      console.log('Close modal for proposal form')
+      // this.$router.push({
+      //   name: 'events',
+      // });
+    });
+
     this.form.total_member = this.members.length;
     this.form.event_id = this.event.id;
   },

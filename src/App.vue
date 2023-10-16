@@ -6,8 +6,10 @@ import HelloWorld from './components/HelloWorld.vue'
   <router-view></router-view>
 </template>
 <script>
+
 export default {
   setup() {
+
   },
   // compatConfig: { MODE: 3 },
 }
