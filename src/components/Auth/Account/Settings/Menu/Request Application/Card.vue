@@ -8,7 +8,8 @@
         <span class="material-symbols-sharp dot-icon">&#xe061;</span>
         <h5 class="mb-0 event">
           {{ pending.event_name }}
-          <span class="in-progress" v-if="cardType === 'accepted'">Ongoing</span> 
+          <!-- <span class="in-progress" v-if="cardType === 'accepted'">Ongoing</span> -->
+          <small class="in-progress badge-cancelled" v-if="pending.cancelled_at">Cancelled</small>
         </h5>
       </div>
       
@@ -63,6 +64,9 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-
+<style scoped>
+.in-progress.badge-cancelled {
+  background: var(--warning-light)!important;
+  color: var(--warning) !important; 
+}
 </style>

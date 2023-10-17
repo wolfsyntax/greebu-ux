@@ -707,6 +707,36 @@ var actions = {
         });
     });
   },
+  fetchUserInfo({ commit, rootState, dispatch }) {
+    return new Promise(async (resolve, reject) => {
+      if (rootState.bearerToken !== "" && localStorage.api_token !== "") {
+        axios.defaults.headers.common["Authorization"] =
+          "Bearer " + (rootState.bearerToken || localStorage.api_token);
+        await axios
+          .get(
+            `${
+              import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+            }/api/user`
+          )
+          .then((response) => {
+            const { status: statusCode, data } = response;
+
+            if (statusCode === 203) {
+              commit("CLEAR_ORGANIZER_STATE");
+              commit("SET_AUTH", {});
+              commit("SET_TOKEN", "");
+              commit("SET_PROFILE", {});
+              commit("SET_ROLE", "");
+              commit("SET_ACCOUNT", {});
+
+              dispatch("signout");
+              reject(data);
+            }
+            resolve(data);
+          });
+      }
+    });
+  },
 };
 
 export default actions;

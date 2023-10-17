@@ -25,8 +25,8 @@
           </div>
 
           <div class="d-flex align-items-center" v-if="proposal?.status === 'pending'">
-            <button class="btn decline" @click="decline">Decline</button>
-            <button class="btn accept" @click="accept">Acccept</button>
+            <button class="btn decline" :disabled="proposal?.cancelled_at" @click="decline">Decline</button>
+            <button class="btn accept" :disabled="proposal?.cancelled_at" @click="accept">Acccept</button>
 
           </div>
 

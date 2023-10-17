@@ -124,7 +124,7 @@ export default {
         sample_song: '',
       })
 
-      this.$router.push('/proposal')
+      this.$router.push(`/proposal/${this.event.id}/apply`)
     }
   }
 }

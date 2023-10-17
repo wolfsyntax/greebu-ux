@@ -2,8 +2,8 @@ import axios from "axios";
 
 export const fetchEventOptions = ({ commit, rootState }) => {
   return new Promise(async (resolve, reject) => {
-    axios.defaults.headers.common["Authorization"] =
-      "Bearer " + (rootState.bearerToken || localStorage.api_token);
+    // axios.defaults.headers.common["Authorization"] =
+    //   "Bearer " + (rootState.bearerToken || localStorage.api_token);
 
     await axios
       .get(
@@ -40,7 +40,10 @@ export const fetchEventList = ({ commit, rootState, state }) => {
   return new Promise(async (resolve, reject) => {
     var url = "";
 
-    if (rootState.bearerToken && Object.keys(rootState.profile).length !== 0) {
+    if (
+      rootState.bearerToken !== "" &&
+      Object.keys(rootState.profile).length !== 0
+    ) {
       axios.defaults.headers.common["Authorization"] =
         "Bearer " + (rootState.bearerToken || localStorage.api_token);
 
@@ -276,5 +279,38 @@ export const updateEvent = ({ commit, rootState, state }) => {
         const { data } = err;
         reject(data);
       });
+  });
+};
+
+export const fetchEvent = ({ commit, rootState, state }, payload) => {
+  return new Promise(async (resolve, reject) => {
+    axios.defaults.headers.common["Authorization"] =
+      "Bearer " + (rootState.bearerToken || localStorage.api_token);
+
+    if (!payload) reject({ status: 404, message: "", result: [] });
+    else {
+      var url = `${
+        import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+      }/api/events/${payload}`;
+
+      console.log("\n\nEvent Url: ", url);
+      await axios
+        .get(url)
+        .then((response) => {
+          console.log("Fetch Event: ", response);
+
+          const { status: statusCode, data } = response;
+
+          if (statusCode === 200) {
+            resolve(data);
+          }
+
+          reject(data);
+        })
+        .catch((err) => {
+          const { data } = err;
+          reject(data);
+        });
+    }
   });
 };

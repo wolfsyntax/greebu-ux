@@ -9,7 +9,7 @@
               <h3 class="event-created">Your proposal has been sent!</h3>
               <p class="message">We will notify you when the artist has accepted your proposal.</p>
               <!-- <button class="bnt close-modal-button" data-bs-dismiss="modal">Done</button> -->
-              <a href="events" class="btn close-modal-button">Done</a>
+              <a href="#" @click="$emit('close')" class="btn close-modal-button">Done</a>
           </div>
   
         </div>

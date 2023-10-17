@@ -14,7 +14,7 @@ import Pricing from '/src/components/Home/Pricing.vue';
 import Reminder from '/src/components/Home/Reminder.vue';
 import Faq from '/src/components/Home/FAQ.vue';
 import FeaturedArtists from '/src/components/Home/FeaturedArtists.vue';
-
+import { useHead } from '@vueuse/head'
 export default {
   components: {
     layout: Layout,
@@ -26,7 +26,17 @@ export default {
   },
   setup()
   {
-
+    useHead({
+      // Can be static or computed
+      title: 'Home',
+      meta: [
+        {
+          name: `description`,
+          content: 'this about about page',
+        },
+        ],
+     
+    })
   },
   data()
   {
