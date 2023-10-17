@@ -18,15 +18,17 @@
           <div class="d-flex align-items-center justify-content-between action-wrapper">
 
          <div class="d-flex align-items-center organizer-offers-details-wrap">
-            <img src="/assets/artist-account/band-member-2.webp" class="customer-image" alt="Oganizer image">
+            <img :src="proposal.organizer_avatar" class="customer-image" alt="Oganizer image">
             <div>
-              <h5 class="from"><span>From:</span> KC event organizer</h5>
+              <h5 class="from"><span>To:</span> {{ proposal.organizer_name }}</h5>
               <h6 class="d-flex align-items-center venue">Event Organizer</h6>
             </div>
           </div>
                     <!-- Accepted Proposal tab - View Proposal modal -->
             <div class="d-flex align-items-center">
-              <button class="btn decline">Cancel Proposal</button>
+              <button class="btn decline" v-if="proposal?.status === 'pending' && proposal?.cancelled_at === null" @click="cancel" >Cancel Proposal</button>
+              <button class="btn btn-denied" v-if="proposal?.status === 'pending' && proposal?.cancelled_at">Cancelled</button>
+              <button class="btn cancelled" v-if="proposal?.status === 'declined' && proposal?.declined_at">Declined</button>
             </div>
 
           </div> 
@@ -39,17 +41,17 @@
           <div class="d-flex align-items-center applied-event-wrap">
   
             <div>
-              <img src="/assets/organizers/organizers-banner-bg.webp" class="event-img" alt="Event cover image">
+              <img :src="proposal.cover_photo" class="event-img" alt="Event cover image">
             </div>
   
             <div class="text-start event-details-wrap">
   
               <div class="event-title-wrap">
-                <h3 class="event-title">Harmony Fest 2023</h3>
+                <h3 class="event-title">{{ proposal.event_name }}</h3>
                 <div class="d-flex align-items-center ">
-                  <h5 class="mb-0">Public Event Posted</h5>
+                  <h5 class="mb-0">{{ proposal.is_public }} Posted</h5>
                   <span class="material-symbols-rounded dot-icon">&#xe061;</span>
-                  <h5 class="mb-0">3 hours ago</h5>
+                  <h5 class="mb-0">{{ $filters.diffForHumans($moment(proposal?.created_at).format('YYYY-MM-DD hh:mm:ss a')) }}</h5>
                 </div>
               </div>
   
@@ -58,9 +60,12 @@
                   <span class="material-symbols-sharp calendar-icon">&#xe935;</span>
                 </div>
                 <div>
-                  <h5 class="date">March 25, 2023</h5>
-                  <h5 class="time">
-                    Saturday, 8:00 am - 12:00 pm
+                  <h5 class="date">{{ $moment(`${proposal?.start_date}`).format('MMMM DD, YYYY') }} - {{ $moment(`${proposal?.end_date}`).format('MMMM DD, YYYY') }}</h5>
+                  <h5 class="time" v-if="$moment(proposal?.start_date).isSame(proposal?.end_date)">
+                    {{ $moment(`${proposal?.start_date}`).format('dddd') }}, {{ $moment(proposal?.start_time).format('h:mm a') }} - {{ $moment(proposal?.end_time).format('h:mm a') }}
+                  </h5>
+                  <h5 v-else>
+                    {{ $moment(`${proposal?.start_date}`).format('dddd') }}, {{ $moment(proposal?.start_time).format('h:mm a') }} - {{ $moment(`${proposal?.end_date}`).format('dddd') }}, {{ $moment(proposal?.end_time).format('h:mm a') }}
                   </h5>
                   <!-- <h5 class="time" v-else>{{ $moment(`${proposal?.start_date}`).format('dddd') }}, {{ $moment(proposal?.start_time).format('h:mm a') }} - {{ $moment(`${proposal?.end_date}`).format('dddd') }}, {{ $moment(proposal?.end_time).format('h:mm a') }}</h5> -->
                 </div>
@@ -71,8 +76,8 @@
                   <span class="material-symbols-sharp location-icon">&#xe0c8;</span>
                 </div>
                 <div>
-                  <h5 class="venue">Momotz Restobar</h5>
-                  <h5 class="place" style="text-transform: capitalize;">Naga City, Camarines Sur Philippines</h5>
+                  <h5 class="venue">{{ proposal.venue_name }}</h5>
+                  <h5 class="place" style="text-transform: capitalize;">{{ proposal.location }}</h5>
                 </div>
               </div>
   
@@ -85,24 +90,24 @@
           <div class="d-flex justify-content-between action-wrapper song-info-wrapper">
             <div class="left">
               <h5>Name of the band</h5>
-              <p>Idlepitch</p>
+              <p>{{ proposal.artist_name }}</p>
             </div>
   
             <div class="right">
               <h5 class="text-center">Number of members</h5>
-              <p class="text-center">2</p>
+              <p class="text-center">{{ proposal.total_member || 0 }}</p>
             </div>
           </div>
   
           <div class="text-start genre-wrap">
             <h5>Genre:</h5>
-            <span class="badge">Rock</span>
+            <span class="badge" v-for="(genre, index) in proposal?.genres" :key="index">{{ genre }}</span>
           </div>
   
           <div class="text-start cover-letter-wrap">
            <h5>Cover letter</h5>
            <p class="mb-0 text-justify">
-            I hope this letter finds you in good health and high spirits. I am writing to you as a passionate event organizer
+            {{ proposal.cover_letter }}
            </p>
           </div>
 
@@ -124,12 +129,29 @@
       }
     },
     computed: {
-
+      ...mapState({
+        proposal: state => state.proposal,
+      })
     },
     methods: {
-
-      
+      ...mapActions([
+        'cancelMyProposal'
+      ]),
       acceptRequest() {
+        // this.$emit('close-modal')
+        this.$emit('accept-request');
+        // this.hideModal();
+      },
+      cancel() {
+        this.cancelMyProposal(this.proposal.id)
+          .then(res => {
+            this.$emit('close-modal');
+            // this.$refs.proposalClose.click()
+          })
+        
+      
+      },
+      acceptRequest(){
         // this.$emit('close-modal')
         this.$emit('accept-request');
         // this.hideModal();
@@ -138,5 +160,11 @@
   };
   </script>
   
-  <style>/* Styles for your modal */</style>
+<style>
+/* Styles for your modal */
+.btn-denied {
+  background: var(--warning-light) !important;
+  color: var(--warning) !important;
+}
+</style>
   

@@ -2,8 +2,8 @@ import axios from "axios";
 
 export const fetchEventOptions = ({ commit, rootState }) => {
   return new Promise(async (resolve, reject) => {
-    axios.defaults.headers.common["Authorization"] =
-      "Bearer " + (rootState.bearerToken || localStorage.api_token);
+    // axios.defaults.headers.common["Authorization"] =
+    //   "Bearer " + (rootState.bearerToken || localStorage.api_token);
 
     await axios
       .get(
@@ -40,7 +40,10 @@ export const fetchEventList = ({ commit, rootState, state }) => {
   return new Promise(async (resolve, reject) => {
     var url = "";
 
-    if (rootState.bearerToken && Object.keys(rootState.profile).length !== 0) {
+    if (
+      rootState.bearerToken !== "" &&
+      Object.keys(rootState.profile).length !== 0
+    ) {
       axios.defaults.headers.common["Authorization"] =
         "Bearer " + (rootState.bearerToken || localStorage.api_token);
 

@@ -3,15 +3,12 @@
     <div class="d-flex align-items-center justify-content-between event-description">
       <div class="d-flex align-items-center left-wrap organizer-offers-details-wrap">
         <div>
-          <img :src="proposal.organizer_avatar" class="offer-img" alt="Organizer Avatar"> 
+          <img :src="proposal.cover_photo" class="offer-img" alt="Requested by image"> 
         </div>
-
         <div>
-          <h5 class="from"><span>To:</span> {{ proposal.organizer_name }}&nbsp;&nbsp;<small style="display: inline-block;" class="badge badge-cancelled" v-if="proposal.cancelled_at">Cancelled</small></h5>
+          <h5 class="from"><span>To:</span> {{ proposal.organizer_name }}&nbsp;<span class="cancelled" v-if="proposal.cancelled_at && proposal.status === 'pending'">Cancelled</span></h5>
           <h6 class="d-flex align-items-center venue">Event Organizer
-            <span class="material-symbols-rounded dot-icon">&#xe061;</span>
-            {{ proposal.location }}
-          </h6>
+          <span class="material-symbols-rounded dot-icon">&#xe061;</span>{{ proposal.location }}</h6>
           <p class="d-flex align-items-center mb-0 star-ratings">
             <span class="material-symbols-rounded star-icon">&#xe838;</span>
             4.95 <span class="reviews">(234 reviews)</span>
@@ -21,7 +18,7 @@
 
       <div class="details-wrapper">
         <div class="button-wrapper">
-          <button type="button" class="btn details" @click="showModal">View Details</button>
+          <button type="button" class="btn details" @click="showModal">View Proposal</button>
         </div>
       </div>  
     </div>

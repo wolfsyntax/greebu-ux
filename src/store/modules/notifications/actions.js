@@ -3,6 +3,12 @@ import axios from "axios";
 // Fetch notifications
 export const fetchNotifications = ({ commit, rootState, state }) => {
   return new Promise((resolve, reject) => {
+    if (
+      !(rootState.bearerToken && Object.keys(rootState.profile).length !== 0)
+    ) {
+      resolve({ status: 403, message: "", result: [] });
+    }
+
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + (rootState.bearerToken || localStorage.api_token);
     console.log(
