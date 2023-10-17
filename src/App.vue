@@ -28,7 +28,7 @@ export default {
           console.log('Fetch User Info: ', res)
         })
         .catch(err => {
-          console.log('Err Fetch User Info: ', err)
+          this.$router.push({name: 'home' })
         })
     }
   }
