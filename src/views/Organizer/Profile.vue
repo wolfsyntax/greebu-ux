@@ -60,7 +60,7 @@
                     <div v-if="error?.company_name" class="organizer-name-error text-danger"></div>
                   </div>
 
-                  <div class="form-group" >
+                  <div class="form-group mb-0">
                     <label for="typeOfEvent">Type of Event</label>
                     <multiselect v-model="formEventTypes" mode="tags" :close-on-select="false" :create-option="true" 
                       :options="async function (query) {

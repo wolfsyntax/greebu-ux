@@ -1,29 +1,61 @@
 <template>
-  <div class="customized-songs-wrapper my-0" @dblclick="markNotif">
-    <div class="event-description">
-      <div class="d-flex align-items-center ">
-        <img :src="content?.data?.sender_avatar" style="  width: 3rem; height: 3rem; border-radius: 100%; margin-right: 0.5rem;" class="requested-by-image" alt="Submitted by image"> 
-        <!-- <span class="material-symbols-sharp dot-icon">&#xe061;</span> -->
-        <div class="row">
-          <div class="col-12 mb-0 d-flex" v-if="content?.data?.notification_type === 'artist-proposal'">
-            <strong>{{ content?.data?.sender_name }}</strong>&nbsp;{{ `${ content?.data?.header } ${content?.data?.misc?.event_name}`}} 
-          </div>
-          <div class="col-12">
-            <span class="text-muted">{{ content?.data?.body }}</span>
-          </div>
-          <div class="col-12">
-            <span class="text-muted">{{ $filters.diffForHumans($moment(content?.data?.time).format('YYYY-MM-DD hh:mm:ss a')) }}</span>
-          </div>
-        </div>
-      </div>
-    </div>
+  <transition-group name="fade" tag="div">
 
-    <div class="details-wrapper">
-      <div class="button-wrapper" v-if="content?.data?.can_view">
-        <button type="button" class="btn details" @click="toggle">View Details</button>
+  <div class="customized-songs-wrapper" @dblclick="markNotif">
+    
+    <div class="d-flex align-items-center justify-content-between event-description">
+
+      <div class="left-wrap">
+
+        <div class="d-flex align-items-start sender-wrap">
+          <div>
+            <img :src="content?.data?.sender_avatar" class="sender-img" alt="Submitted by image"> 
+          </div>
+
+        <div class="sender-details-wrap">
+          <div class="sender-msg-wrap" v-if="content?.data?.notification_type === 'artist-proposal'">
+            <p class="two-lines sender-msg">
+              <span class="sender-name">{{ content?.data?.sender_name }}</span>&nbsp;{{ `${ content?.data?.header } ${content?.data?.misc?.event_name}`}} 
+            </p>
+              <!-- Show this if the artist declined your proposal -->
+            <!-- <p class="two-lines msg">Congratulations! Now, it's time to finalize the details with the artist for your upcoming event.</p> -->
+
+             <!-- Show this if the artist accepted your proposal -->
+            <!-- <p class="two-lines msg">Don't worry, you can explore other talented artists for your event. We're here to help you find the perfect match!</p> -->
+
+             <!-- Show this if the artist submitted a proposal for your event -->
+            <p class="two-lines msg">{{ content?.data?.body }}</p>
+
+          </div>
+          
+            <div class="details-wrap" v-if="content?.data?.can_view">
+              <button type="button" class="btn p-0 details" @click="toggle">View Details</button>
+            </div>
+          
+        </div>
+
       </div>
-    </div>       
+
+      </div>
+
+      <div class="details-wrapper">
+        <div class="remove-notif-wrap">
+          <button class="btn p-0 float-end">
+            <span class="material-symbols-rounded remove-icon">&#xe5cd;</span>
+          </button>
+        </div>
+
+        <div class="date-time-wrap">
+          <span class="float-end date-time">{{ $filters.diffForHumans($moment(content?.data?.time).format('YYYY-MM-DD hh:mm:ss a')) }}</span>
+        </div>
+
+      </div>
+
+    </div> <!-- end of event-description -->
+
   </div>
+    
+  </transition-group>
 </template>
 
 <script>

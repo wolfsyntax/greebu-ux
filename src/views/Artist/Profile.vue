@@ -105,7 +105,7 @@
                   <div v-if="error?.artist_name" class="artist-name-error text-danger"></div>
                 </div>
 
-                <div class="form-group" >
+                <div class="form-group mb-0">
                   <label for="genre">Genre</label>
                   <multiselect v-model="formGenres" mode="tags"
                   :close-on-select="false"
@@ -126,12 +126,11 @@
 
                 </div>
 
-                <div class="row address">
+                <!-- <div class="row">
                   <div class="col-4">
                     <div class="form-group">
                       <label for="address">Address</label>
                       <input type="text" v-model="form.street_address" placeholder="Street" class="form-control street" required @focus="onInputAddress" autocomplete="off"/>
-                      <!-- <div v-if="errors.street" class="street-error text-danger"></div> -->
                       <div v-for="err in error?.street_address" :key="err" class="text-danger">{{ err }}</div>
                     </div>
                   </div>
@@ -151,7 +150,26 @@
                       <div v-for="err in error?.province" :key="err" class="text-danger">{{ err }}</div>
                     </div>
                   </div>
-                </div> <!-- end of row -->
+                </div>  -->
+
+                <div class="address-wrap">
+                  <div class="form-group">
+                      <label for="address">Address</label>
+                      <div class="d-flex align-items-center group-wrap">
+
+                        <input type="text" v-model="form.street_address" placeholder="Street" class="form-control street" required @focus="onInputAddress" autocomplete="off" />
+                        <div v-for="err in error?.street_address" :key="err" class="text-danger">{{ err }}</div>
+
+                        <input type="text" v-model="form.city" placeholder="City" class="form-control city" @focus="onInputAddress" required autocomplete="off" />
+                        <div v-for="err in error?.city" :key="err" class="text-danger">{{ err }}</div>
+
+                        <input type="text" v-model="form.province" placeholder="Province" class="form-control province" @focus="onInputAddress" required autocomplete="off" />
+                        <div v-for="err in error?.province" :key="err" class="text-danger">{{ err }}</div>
+
+                      </div>
+                  </div>
+                </div>
+
               </div> <!-- end of required-fields class -->
                 <!-- Band Members -->
 

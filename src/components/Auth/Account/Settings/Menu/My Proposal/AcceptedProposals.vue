@@ -4,12 +4,11 @@
     <view-proposal-modal :show="showModal" :option="optionType"
       @close-modal="closeModal" @accept-request="onModalAccepted" 
     />
-  </div>
+  <div>  
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex';
-import EventCard from './EventCardProposal.vue';
+import ProposalModal from './ProposalModal.vue';
 import ViewProposalModal from './ViewProposalModal.vue';
 export default {
   components: {
@@ -22,32 +21,35 @@ export default {
 
     return {}
   },
+  components: {
+    ProposalModal,
+    ViewProposalModal
+  },
   data: () => ({
-    optionType: 'accepted',
+    
     showModal: false,
+    showFromOrganizerModal: false,
+    showToast: false
   }),
-  computed: {
-    ...mapState({
-      proposals: state => state.artistProposal.acceptedProposals,
-    })
-  },
-  mounted() {
-    if (this.proposals.length === 0) {
-      this.fetchMyProposals('accepted');
-    }
-  },
   methods: {
-    ...mapActions(['fetchMyProposals', ]),
-    toggleProposal(proposal) {
-      console.log('Toggle Proposal: ', proposal)
-      
-      this.showModal = true;
-    },
     closeModal()
     {
       this.showModal = false;
     },
-  },
+    closeFromOrganizerModal()
+    {
+      this.showFromOrganizerModal = false;
+    },
+    onModalAccepted()
+    {
+      this.showToast = true;
+      setTimeout(() =>
+      {
+        this.showToast = false;
+      }, 7000);
+      this.showModal = false;
+    },    
+  }
 }
 </script>
 

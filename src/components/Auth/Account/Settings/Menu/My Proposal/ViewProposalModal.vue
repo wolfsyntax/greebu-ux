@@ -16,41 +16,29 @@
 
       <div class="text-center modal-body request-application-wrap">
         <div class="d-flex align-items-center justify-content-between action-wrapper">
+
           <div class="d-flex align-items-center organizer-offers-details-wrap">
-            <img :src="proposal.organizer_avatar" class="offer-img" alt="Oganizer image">
-
+            <img src="/assets/artist-account/band-member-2.webp" class="customer-image" alt="Organizer image">
             <div>
-             
-              <h5 class="from"><span v-if="['pending', 'accepted', 'declined',].includes(option)">To:</span><span v-else>From:</span> {{ proposal.organizer_name }}</h5>
+              <h5 class="from"><span>From:</span> KC event organizer</h5>
               <h6 class="d-flex align-items-center venue">Event Organizer</h6>
-              <!-- <p class="d-flex align-items-center mb-0 star-ratings">
-                <span class="material-symbols-rounded star-icon">&#xe838;</span>
-                4.95 <span class="reviews">(234 reviews)</span>
-              </p> -->
-
-              </div>
-
+            </div>
           </div>
 
-          <div class="d-flex align-items-center" v-if="['pending', 'accepted', 'declined',].includes(option)">
-            <button class="btn declined" v-if="proposal?.status === 'pending' && proposal?.cancelled_at === null" @click="cancel">Cancel Proposal</button>
-            <button class="btn btn-denied" v-if="proposal?.status === 'pending' && proposal?.cancelled_at">Cancelled</button>
-            <!-- <button class="btn decline">Decline</button>
-            <button class="btn accept" @click="acceptRequest">Acccept</button> -->
-
-
+          <div class="d-flex align-items-center">
+            <button class="btn decline">Decline</button>
+            <button class="btn accept" @click="acceptRequest">Acccept</button>
           </div>
-          <div class="d-flex align-items-center" v-else >
 
-            <!-- SHOW THIS IF THE ARTIST ACCEPTED THE CUSTOMIZED SONG REQUEST  -->
-            <!-- <button class="btn accepted">Decline</button> -->
+            <!-- SHOW THIS IF THE ARTIST DENIED THE PROPOSAL -->
+            <!-- <div class="d-flex align-items-center">
+              <button class="btn decline">Cancel Proposal</button>
+            </div> -->
 
-            <!-- SHOW THIS IF THE ARTIST DENIED THE CUSTOMIZED SONG REQUEST  -->
-            <!-- <button class="btn cancelled">Cancelled</button> -->
-          </div>
+
         </div> <!-- end of action-wrapper -->
 
-        <div class="story-wrapper" v-if="!['pending', 'accepted', 'declined',].includes(option)">
+        <div class="story-wrapper">
           <h4 class="title">Event Details</h4>
           <p class="message">I hope this letter finds you in good health and high spirits. I am writing to you as a passionate event organizer 
             who has been captivated by your exceptional talent and musical prowess. It is with great excitement that I present to you a proposal 
@@ -173,18 +161,6 @@
           <div class="right">
             <h5>Talent fee offered</h5>
             <p>2,000 - 3,000</p>
-          </div>
-        </div>
-
-        <div class="d-flex justify-content-between action-wrapper song-info-wrapper" v-if="!['pending', 'accepted', 'declined',].includes(option)">
-          <div class="left">
-            <h5>Language</h5>
-            <p>English</p>
-          </div>
-
-          <div class="right">
-            <h5>Duration of Song?</h5>
-            <p>5 minutes</p>
           </div>
         </div>
 

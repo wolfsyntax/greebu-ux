@@ -97,9 +97,9 @@ export const fetchProfile = (
               dispatch("fetchOrganizerOptions");
             }
 
-            setInterval(() => {
+           // setInterval(() => {
               dispatch("fetchNotifications");
-            }, 180000);
+          //  }, 180000);
 
             // commit('SET_PROFILE', profile);
           }

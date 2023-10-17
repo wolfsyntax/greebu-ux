@@ -28,7 +28,20 @@ body {
   font-family: "Urbanist", sans-serif;
   /* background: #F9FAFB; */
 }
-
+img{
+  position: relative;
+  -o-object-fit: cover;
+  object-fit: cover;
+  backface-visibility: hidden;
+}
+.two-lines{
+  display: -webkit-box;
+  margin: 0 auto;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .artist-profile .container {
   margin: 50px auto 100px;
 }
@@ -56,10 +69,7 @@ body {
   border-radius: 0.25rem 0.25rem 0 0;
   width: 100%;
   height: 50vh; /* 456px; */
-  position: relative;
-  -o-object-fit: cover;
-  object-fit: cover;
-  backface-visibility: hidden;
+
 }
 
 .profile-page .profile-header .cover .gray-shade {
@@ -229,6 +239,7 @@ body {
   color: #637381;
   font-size: 24px;
   line-height: 20px;
+  margin-bottom: 0;
 }
 .profile-page .profile-header .cover .cover-body .profile-info .music-genre {
   margin-bottom: 20px;
@@ -269,7 +280,7 @@ body {
 .profile-page .profile-header .cover .cover-body .edit a {
   color: #fff;
   font-size: 20px;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 100%;
   letter-spacing: 1px;
   padding: 14px 37px;
@@ -455,10 +466,7 @@ body {
   height: 48px;
   border-radius: 100%;
   margin-right: 15px;
-  position: relative;
-  -o-object-fit: cover;
-  object-fit: cover;
-  backface-visibility: hidden;
+
 }
 .profile-page .left-wrapper .card-body .members-list .member-info a {
   color: var(--text-heading-dark, #27272e);
@@ -520,10 +528,7 @@ body {
   background: lightgray 50% / cover no-repeat;
   box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.12);
   margin-right: 8px;
-  position: relative;
-  -o-object-fit: cover;
-  object-fit: cover;
-  backface-visibility: hidden;
+
 }
 .profile-page .middle-wrapper .post .card-body .write-something button {
   color: #536471;
@@ -605,10 +610,7 @@ body {
   background: lightgray 50% / cover no-repeat;
   box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.12);
   margin-right: 10px;
-  position: relative;
-  -o-object-fit: cover;
-  object-fit: cover;
-  backface-visibility: hidden;
+
 }
 .profile-page .middle-wrapper .artist-post .card-header .group-posted .name {
   color: #0f1419;
@@ -735,10 +737,7 @@ body {
 .profile-page .middle-wrapper .artist-post .card-body .uploaded-two img {
   height: 24.9375rem !important;
   width: 49% !important;
-  position: relative;
-  -o-object-fit: cover;
-  object-fit: cover;
-  backface-visibility: hidden;
+
   padding: 0 0.5%;
 }
 
@@ -764,10 +763,7 @@ body {
 .profile-page .middle-wrapper .artist-post .card-body .uploaded-three-top img {
   height: 15.75rem !important;
   width: 100% !important;
-  position: relative;
-  -o-object-fit: cover;
-  object-fit: cover;
-  backface-visibility: hidden;
+
   padding: 0 0.5% 1%;
 }
 .profile-page
@@ -806,20 +802,8 @@ body {
   display: contents;
   margin: 0;
 }
-.profile-page
-  .middle-wrapper
-  .artist-post
-  .card-body
-  .posted-file
-  .uploaded-four
-  img,
-.profile-page
-  .middle-wrapper
-  .artist-post
-  .card-body
-  .posted-file
-  .uploaded-four
-  video {
+.profile-page .middle-wrapper .artist-post .card-body .posted-file .uploaded-four img,
+.profile-page .middle-wrapper .artist-post .card-body .posted-file .uploaded-four video {
   height: 13.3125rem;
   width: 50% !important;
   position: relative;
@@ -984,10 +968,7 @@ body {
   width: 4.4375rem;
   height: 4.4375rem;
   flex-shrink: 0;
-  position: relative;
-  -o-object-fit: cover;
-  object-fit: cover;
-  backface-visibility: hidden;
+
   border-radius: 10px;
   background: lightgray 50% / cover no-repeat, #d9d9d9;
   margin-right: 8px;
@@ -1200,10 +1181,7 @@ body {
 }
 .profile-page .about-tab .band-members .card img {
   border-radius: 10px;
-  position: relative;
-  -o-object-fit: cover;
-  object-fit: cover;
-  backface-visibility: hidden;
+
   height: 254px;
   flex-shrink: 0;
 }
@@ -1269,10 +1247,7 @@ body {
   height: 2.1875rem;
   margin-right: 0.5rem;
   border-radius: 100%;
-  position: relative;
-  -o-object-fit: cover;
-  object-fit: cover;
-  backface-visibility: hidden;
+
 }
 .profile-page .events-tab .card .organizer-wrap {
   width: 80%;
@@ -1544,19 +1519,6 @@ body {
   -o-object-fit: cover;
   object-fit: cover;
 }
-/* .profile-details .container .fill-details .upload-img .label-img .camera-inner{
-  color: #FFFFFF;
-  background-color: #EAEBF1;
-  padding: 3rem;
-  border-radius: 100%;
-  font-size: 3.5rem;
-  margin-right: 1.5rem;
-  transition: font-variation-setings 0.25s;
-  font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 48;
-}
-.profile-details .container .fill-details .upload-img .label-img:hover .camera-inner{
-  background: #FF6B00;
-} */
 .profile-details .container .fill-details .upload-img .label-img .camera {
   position: absolute;
   top: 0;
@@ -1625,6 +1587,9 @@ body {
   padding-bottom: 0.75rem;
   margin-top: 0;
 }
+.profile-details .fill-details .address-wrap .group-wrap {
+  gap: 1rem;
+}
 .profile-details
   .container
   .fill-details
@@ -1649,8 +1614,8 @@ body {
   .form-about-artist
   textarea:-webkit-input-placeholder {
   color: var(--gray6);
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: 0.85rem;
+  font-style: normal;
   line-height: 1.3125rem;
 }
 /* Firefox 4-18 */
@@ -1666,8 +1631,8 @@ body {
   input:-moz-placeholder,
 .profile-details .fill-details .form-about-artist textarea:-moz-placeholder {
   color: var(--gray6);
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: 0.85rem;
+  font-style: normal;
   line-height: 1.3125rem;
 }
 /* Firefox 19+ */
@@ -1683,9 +1648,9 @@ body {
   input::-moz-placeholder,
 .profile-details .fill-details .form-about-artist textarea::-moz-placeholder {
   color: var(--gray6);
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: normal;
+  font-size: 0.85rem;
+  font-style: normal;
+  line-height: 1.3125rem;
 }
 /* IE 10-11 */
 .profile-details
@@ -1703,8 +1668,8 @@ body {
   .form-about-artist
   textarea:-ms-input-placeholder {
   color: var(--gray6);
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: 0.85rem;
+  font-style: normal;
   line-height: 1.3125rem;
 }
 /* Edge */
@@ -1723,8 +1688,8 @@ body {
   .form-about-artist
   textarea::-ms-input-placeholder {
   color: var(--gray6);
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: 0.85rem;
+  font-style: normal;
   line-height: 1.3125rem;
 }
 /* MODERN BROWSER */
@@ -1732,8 +1697,8 @@ body {
 .profile-details .container .fill-details .required-fields input::placeholder,
 .profile-details .fill-details .form-about-artist textarea::placeholder {
   color: var(--gray6);
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: 0.85rem;
+  font-style: normal;
   line-height: 1.3125rem;
 }
 .profile-details .fill-details .form-about-artist textarea::placeholder {
@@ -1755,7 +1720,7 @@ body {
   letter-spacing: -0.0175rem;
   border-radius: 0.375rem;
   background: #fed7aa;
-  padding-bottom: 0;
+  padding-bottom: 0.1rem;
 }
 .profile-details .container .fill-details .form-group .add-member,
 .profile-details .container .fill-details .form-group .add-social-media {
@@ -2539,10 +2504,7 @@ body {
   width: 4.375rem;
   height: 4.375rem;
   border-radius: 100px;
-  position: relative;
-  -o-object-fit: cover;
-  object-fit: cover;
-  backface-visibility: hidden;
+
   margin-right: 0.5rem;
 }
 #artistPost .modal-body .artist-image .band-name {
@@ -2779,10 +2741,7 @@ body {
   height: 14.5625rem;
   flex-shrink: 0;
   border-radius: 0.25rem;
-  position: relative;
-  -o-object-fit: cover;
-  object-fit: cover;
-  backface-visibility: hidden;
+
   /* z-index: 0; */
 }
 
@@ -3047,10 +3006,6 @@ body {
   height: 21.313rem;
   width: 100%;
   border-radius: 0.25rem;
-  position: relative;
-  -o-object-fit: cover;
-  object-fit: cover;
-  backface-visibility: hidden;
 }
 #uploadArtistCoverPhoto
   .upload-file-wrapper
@@ -3847,42 +3802,47 @@ body {
   }
 
   /* ARTIST PROFILE PAGE*/
-
-  .profile-page
-    .profile-header
-    .cover
-    .cover-body
-    .profile-info
-    .profile-wrapper {
-    margin-top: 1rem;
+.artist-profile .container {
+    margin: 3rem auto 5rem;
+}
+.profile-page .profile-header .cover .cover-body .profile-info .profile-wrapper {
+    margin-top: 2.5rem;
     margin-left: 2rem;
   }
   .profile-page .profile-header .cover .cover-body .profile-name {
-    font-size: 2.2rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    margin-bottom: 0.44rem;
+    font-size: 2rem;
+    margin-bottom: 0.36rem;
   }
+  .profile-page .profile-header .cover .cover-body .name-artist {
+    margin-bottom: 1rem;
+}
   .profile-page .profile-header .cover .cover-body .type-of-artist {
     font-size: 1.25rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 1.25rem;
+    line-height: 1.01013rem; 
   }
   .profile-page .profile-header .cover .cover-photo-camera {
     top: 80%;
   }
   .profile-page .profile-header .cover .cover-photo-camera button span {
-    font-size: 1rem;
+    font-size: 1.1rem;
+    padding: 0.4rem;
   }
+  .profile-page .profile-header .cover .cover-body .profile-info .music-genre .title {
+    font-size: 0.875rem;
+    line-height: 1.01013rem;
+}
+.profile-page .profile-header .cover .cover-body .profile-info .music-genre .badge {
+  font-size: 0.625rem;
+  line-height: 0.80813rem;
+  padding: 0.2rem 0.4rem;
+  margin: 0 0.2rem;
+  border-radius: 1.61619rem;
+}
   .profile-page .profile-header .cover .cover-body .edit a {
-    font-size: 1.25rem;
-    font-style: normal;
-    font-weight: 700;
+    font-size: 1rem;
     line-height: 100%;
     letter-spacing: 0.0625rem;
-    padding: 0.87rem 2rem;
+    padding: 0.76rem 2rem;
   }
   .profile-page .about-tab .ratings p {
     margin-top: 5px;
@@ -3981,9 +3941,18 @@ body {
     margin-right: 6px;
   }
   .profile-page .profile-header .cover .cover-body .profile-pic {
-    width: 15.875rem;
-    height: 15.875rem;
-  }
+    width: 14.25rem;
+    height: 14.25rem;
+}
+.profile-page .profile-header .cover .cover-body {
+  bottom: -175px;
+}
+.profile-page .profile-header .header-links {
+  height: 220px;
+}
+.profile-page .profile-header .header-links ul {
+  top: 180px;
+}
   .profile-page .profile-header .header-links ul li a {
     leading-trim: both;
     text-edge: cap;
@@ -4294,39 +4263,38 @@ body {
 
   /* ARTIST PROFILE DETAILS*/
   .profile-details .container {
-    margin: 5rem auto;
+    margin: 4rem auto 5rem;
   }
   .profile-details .container .back-wrapper .back {
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 140%;
-    letter-spacing: -0.02rem;
+    font-size: 0.9375rem;
+    line-height: 140%; 
+    letter-spacing: -0.01875rem;
   }
   .profile-details .container .back-wrapper span {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     padding: 0.21rem;
   }
+  .profile-details .container .back-wrapper {
+    margin-bottom: 1.97rem;
+}
   .profile-details .container .title {
-    font-size: 2.25rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    letter-spacing: -0.045rem;
+    font-size: 1.875rem;
+    line-height: 140%; 
+    letter-spacing: -0.0375rem;
   }
   .profile-details .container .sub-heading {
-    font-size: 1rem;
-    font-style: normal;
+    font-size: 0.9375rem;
     font-weight: 500;
     line-height: 140%;
-    letter-spacing: -0.02rem;
+    letter-spacing: -0.01875rem;
+    margin-bottom: 1.88rem;
   }
   .profile-details .container .profile-details {
-    font-size: 1.5rem;
-    font-style: normal;
+    font-size: 1.3125rem;
     font-weight: 700;
-    line-height: 140%;
-    letter-spacing: -0.03rem;
+    line-height: 140%; 
+    letter-spacing: -0.02625rem;
+    margin-bottom: 1.88rem;
   }
 
   .profile-details .container .fill-details .card {
@@ -4365,52 +4333,47 @@ body {
     left: 72%;
   }
   .profile-details .container .fill-details .upload-img .description {
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 600;
+    font-size: 0.9375rem;
     line-height: 140%;
-    letter-spacing: -0.02rem;
-    margin-left: 1rem;
+    letter-spacing: -0.01875rem;
+    margin-left: 1.31rem;
   }
   .profile-details .container .fill-details .required-fields label,
   .profile-details .container .fill-details .band-and-social,
   .profile-details .fill-details .form-about-artist label,
-  .profile-details .fill-details .song-preview label {
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    letter-spacing: -0.02rem;
+  .profile-details .fill-details .song-preview label,
+  .profile-details .fill-details .song-preview .title {
+    font-size: 0.9375rem;
+    letter-spacing: -0.01875rem;
   }
   .profile-details .container .fill-details .required-fields select,
   .profile-details .container .fill-details .required-fields input,
   .profile-details .fill-details .song-preview input {
     padding: 0.65rem;
-    font-size: 1rem;
+    font-size: 0.85rem;
     font-style: normal;
-    font-weight: 600;
     line-height: 1.3125rem;
   }
+  .profile-details .container .fill-details .form-group .about-artist {
+    height: 9.37119rem;
+    border-radius: 0.37488rem;
+    border: 0.75px solid var(--Low-Sky-Gray, rgba(86, 103, 137, 0.26));
+    font-size: 0.85rem;
+}
+.profile-details .fill-details .address-wrap .group-wrap {
+  gap: 0.6rem;
+}
   .profile-details .container .fill-details .required-fields .multiselect-tags,
   .profile-details .fill-details .song-preview .multiselect-tags {
     padding-top: 0.65rem;
     padding-bottom: 0.6rem;
   }
-  .profile-details
-    .container
-    .fill-details
-    .required-fields
-    .multiselect-tags
-    .multiselect-tag,
-  .profile-details
-    .fill-details
-    .song-preview
-    .multiselect-tags
-    .multiselect-tag {
-    font-size: 0.875rem;
-    line-height: 140%;
-    letter-spacing: -0.0175rem;
-    padding: 0.25rem 0.5rem;
+  .profile-details .container .fill-details .required-fields .multiselect-tags .multiselect-tag,
+  .profile-details .fill-details .song-preview .multiselect-tags .multiselect-tag {
+    font-size: 0.75625rem;
+    line-height: 140%; 
+    letter-spacing: -0.01313rem;
+    padding: 0.19rem 0.38rem;
   }
   .profile-details .container .fill-details .form-group .add-member,
   .profile-details .container .fill-details .form-group .add-social-media {
@@ -4553,21 +4516,21 @@ body {
   .profile-details .fill-details .song-preview {
     margin-bottom: 3.5rem;
   }
-  .profile-details .fill-details .song-preview .title {
-    font-size: 1rem;
-    letter-spacing: -0.05rem;
-  }
   .profile-details .container .fill-details .form-group .char-count,
   .artist-proposal-form .cover-letter-wrap .char-count {
-    font-size: 0.875rem;
-    letter-spacing: -0.04375rem;
-    margin-top: 0.49rem;
+    font-size: 0.625rem;
+    letter-spacing: -0.03125rem;
+    margin-top: 0.45rem;
   }
   .profile-details .fill-details .song-preview .description {
-    font-size: 0.875rem;
+    font-size: 0.79rem;
     letter-spacing: -0.04375rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
   }
+  .profile-details .container .fill-details .form-group .add-member span, .profile-details .container .fill-details .form-group .add-social-media span {
+    font-size: 18px;
+    margin-right: 0.4rem;
+}
   .profile-details .fill-details .song-preview .upload-file-content,
   .artist-proposal-form .music-sample-wrap .upload-file-content {
     padding: 0.9rem 0;
@@ -4617,6 +4580,12 @@ body {
   .artist-proposal-form .music-sample-wrap .uploaded-song-wrapper {
     margin: 1.25rem 0;
     padding: 0.87rem;
+  }
+  .profile-details .song-preview .uploaded-song-wrapper{
+    margin: 1.25rem 0 0.75rem;
+  }
+  .profile-details .song-preview .audio-file-format{
+    margin: 0;
   }
   .profile-details .song-preview .uploaded-song-wrapper .song-wrapper img,
   .artist-proposal-form .music-sample-wrap .song-wrapper img {

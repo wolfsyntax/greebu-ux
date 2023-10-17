@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="customized-songs-wrapper">
 
+    <div class="customized-songs-wrapper">
       <div class="d-flex align-items-center justify-content-between event-description">
 
         <div class="d-flex align-items-center left-wrap organizer-offers-details-wrap">
@@ -23,14 +23,13 @@
 
         <div class="details-wrapper">
           <div class="button-wrapper">
-            <button type="button" class="btn details" @click="showModal = true">View Details</button>
+            <button type="button" class="btn details" @click="showModal = true">View Proposal</button>
           </div>
         </div>  
       
       </div>
- 
-      
     </div>
+    
     <view-proposal-modal :show="showModal" @close-modal="closeModal" @accept-request="onModalAccepted" />
   </div>
 </template>
