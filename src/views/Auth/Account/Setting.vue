@@ -32,8 +32,11 @@
         <my-proposal v-if="selectedOption === 'My Proposal'" />
         <notifications v-if="selectedOption === 'Notifications'" />
         <subscriptions v-if="selectedOption === 'Manage Subscriptions'" />
-        <others v-if="selectedOption === 'Others'" />
+        <organizer-others v-if="selectedOption === 'Others' && [ 'organizer', ].includes(userRole)" />
+        <artist-others v-if="selectedOption === 'Others' && [ 'artists', ].includes(userRole)"/>   
         <request-application v-if="selectedOption === 'Request Application'" />
+
+        <!-- <component :is="selectedOptionComponent" /> -->
       </div>
     </div> <!-- end of row -->
 
@@ -51,7 +54,8 @@ import MyBooking from '@/components/Auth/Account/Settings/Menu/MyBookings.vue';
 //import Collaboration from '@/components/Auth/Account/Settings/Menu/Collaboration.vue';
 import MyProposal from '@/components/Auth/Account/Settings/Menu/MyProposal.vue';
 import Notifications from '@/components/Auth/Account/Settings/Menu/Notifications.vue';
-import Others from '@/components/Auth/Account/Settings/Menu/Others.vue';
+import OrganizerOthers from '@/components/Auth/Account/Settings/Menu/Others.vue';
+import ArtistOthers from '@/components/Auth/Account/Settings/Menu/Other.vue'
 import Subscriptions from '@/components/Auth/Account/Settings/Menu/ManagedSubscriptions.vue';
 import RequestApplication from '@/components/Auth/Account/Settings/Menu/RequestApplication.vue';
 
@@ -62,7 +66,8 @@ export default {
     //Collaboration,
     MyProposal,
     Notifications,
-    Others,
+    ArtistOthers,
+     OrganizerOthers,
     'verify-card': Verify,
     CustomizedSong,
     MyAccount,
@@ -84,7 +89,7 @@ export default {
           { icon: 'music_note', name: 'My Proposal'},
           { icon: 'notifications', name: 'Notifications'},
           { icon: 'subscriptions', name: 'Manage Subscriptions'},
-          { icon: 'page_info', name: 'Others'}
+          // { icon: 'page_info', name: 'Others' }
       ],
       // selectedOption: 'My Account', // Default selected option 
     }
@@ -118,7 +123,7 @@ export default {
         { icon: 'music_note', name: 'My Proposal' },
         { icon: 'notifications', name: 'Notifications' },
         { icon: 'subscriptions', name: 'Manage Subscriptions' },
-        { icon: 'page_info', name: 'Others' }
+         { icon: 'page_info', name: 'Others' }
       ];
 
     } else if (this.userRole === 'organizer') { 
@@ -137,7 +142,6 @@ export default {
         { icon: 'account_circle', name: 'My Account' },
         { icon: 'notifications', name: 'Notifications' },
         { icon: 'subscriptions', name: 'Manage Subscriptions' },
-        { icon: 'page_info', name: 'Others' }
       ];
 
     } else {

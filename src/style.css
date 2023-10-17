@@ -397,8 +397,6 @@ header nav{
   box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.12);
 }
 .main-nav .nav-button .dropdown .dropdown-menu .artist-info {
-  display: flex;
-  align-items: center;
   width: 100%;
 }
 .main-nav .nav-button .dropdown .dropdown-menu .artist-info .artist-name {
@@ -5510,7 +5508,7 @@ width: 100%;
   padding: 0.25rem 0.5rem;
   border-radius: 2rem;
   background: var(--indigo-light);
-  margin-left: 0.75rem;
+  margin-left: 0.5rem;
 }
 .account-settings .customized-songs-wrapper .event .denied,
 .account-settings .organizer-offers-details-wrap .from .cancelled{
@@ -5698,6 +5696,65 @@ width: 100%;
   /* max-height: 100%;
   overflow-y: auto; */
 }
+
+.account-settings .reason-wrap .form-group{
+  border-radius: 0.75rem;
+  border: 1px solid #E4E7EC;
+  background: var(--white);
+  margin-bottom: 0.75rem;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+}
+/* .account-settings .reason-wrap .form-group:last-child{
+  margin-bottom: 4rem;
+} */
+.account-settings .reason-wrap label{
+  color: var(--gray2);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.25rem; 
+}
+.account-settings .reason-wrap .form-check-input{
+  width: 1rem;
+  height: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #D0D5DD;
+  margin-right: 0.62rem;
+  margin-top: 0;
+}
+.account-settings .reason-wrap .form-check-input:checked{
+  background-color: var(--orange);
+  border-color: var(--orange);
+}
+.account-settings .reason-wrap .group-btn-wrap{
+  margin-top: 4rem;
+}
+.account-settings .reason-wrap .group-btn-wrap button{
+  border-radius: 0.5rem;
+  background: var(--orange);
+  border: 1px solid var(--orange);
+  color: var(--white);
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  padding: 1rem 2rem;
+}
+.account-settings .reason-wrap .group-btn-wrap .cancel{
+  color: var(--orange);
+  background: var(--white);
+  margin-right: 0.5rem;
+}
+.account-settings .reason-wrap .group-btn-wrap .confirm:hover{
+  background-color: var(--btn-hovered);
+  border-color: var(--btn-hovered);
+}
+.account-settings .reason-wrap .group-btn-wrap .cancel{
+  color: var(--btn-hovered);
+  border-color: var(--btn-hovered);
+}
+
 .account-settings .request-song-modal .close-button {
   background-color: transparent;
   border: none;
@@ -5828,23 +5885,22 @@ width: 100%;
 .account-settings .request-song-modal .action-wrapper .accept:hover{
   background: var(--btn-hovered);
 }
-.account-settings .request-song-modal .note-wrapper{
+.account-settings .note-wrapper{
   border-radius: 0.625rem;
   background: #FFF1E1;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
   padding: 0.75rem;
 }
-.account-settings .request-song-modal .note-wrapper .note{
+.account-settings .note-wrapper .note{
   color: var(--orange);
   font-size: 1.125rem;
   font-weight: 500;
   letter-spacing: -0.045rem;
   margin-bottom: 0;
 }
-.account-settings .request-song-modal .note-wrapper .info-icon{
+.account-settings .note-wrapper span{
   color: var(--orange);
-  font-size: 1.25rem;
-  font-variation-settings: 'FILL' 1,'wght' 800,'GRAD' 0,'opsz' 48;
+  font-size: 24px;
   margin-right: 0.5rem;
 } 
 .account-settings .request-song-modal .story-wrapper{
@@ -5856,6 +5912,21 @@ width: 100%;
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 1.25rem;
+}
+.account-settings .cancelled-proposal-wrap{
+  padding: 1.34375rem 1.5rem 1.40625rem 1.5rem;
+  border-radius: 0.75rem;
+  border: 2px solid #E4E7EC;
+  background: #FCFCFC;
+  margin-bottom: 2.5rem;
+}
+.account-settings .cancelled-proposal-wrap .title{
+
+}
+.account-settings .cancelled-proposal-wrap .reason{
+  color: var(--black);
+  font-size: 1.25rem;
+  font-weight: 400;
 }
 .account-settings .request-song-modal .story-wrapper .message{
   color: var(--black);
@@ -5871,7 +5942,8 @@ width: 100%;
 .account-settings .request-song-modal .song-info-wrapper h5,
 .account-settings .request-song-modal .genre-wrap h5,
 .account-settings .request-song-modal .cover-letter-wrap h5,
-.account-settings .request-application-wrap .request-song-modal .music-sample-wrap h5{
+.account-settings .request-application-wrap .request-song-modal .music-sample-wrap h5,
+.account-settings .cancelled-proposal-wrap .title{
   color: var(--gray2);
   font-size: 1.25rem;
   font-weight: 600;
@@ -6164,6 +6236,32 @@ width: 100%;
   font-size: 24px;
   color: var(--gray2);
   opacity: 0;
+}
+
+/* Organizer Account - Others */
+
+.account-settings .others .content{
+  padding: 4rem 4rem 12rem;
+}
+.account-settings .accept-send-proposal-wrap label{
+  color: var(--black);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+.account-settings .accept-send-proposal-wrap .form-check-input:checked {
+  background-color: var(--orange);
+  border-color: var(--orange);
+}
+.account-settings .accept-send-proposal-wrap .form-switch input {
+  width: 3.5625rem;
+  height: 1.75rem;
+  color: #b8bbcf;
+}
+.account-settings .accept-send-proposal-wrap .toggle-switch-wrap{
+  margin: 2.25rem 0;
+}
+.account-settings .accept-send-proposal-wrap .toggle-switch-wrap{
+  gap: 1.25rem;
 }
 
 .profile-details .toast-artist-details {
@@ -6988,6 +7086,52 @@ width: 100%;
   28px 1.75 rem
 */
 
+/* Organizer Account - Cancellation modal */
+
+.account-settings .reason-wrap .form-group {
+  padding: 0.75rem;
+  border-radius: 0.5625rem;
+  margin-bottom: 0.56rem;
+}
+.account-settings .reason-wrap label {
+  font-size: 0.75rem;
+  line-height: 0.9375rem;
+}
+.account-settings .reason-wrap .form-check-input {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 0.375rem;
+  border: 0.75px solid #D0D5DD;
+  margin-right: 0.47rem;
+}
+.account-settings .reason-wrap .group-btn-wrap {
+  margin-top: 3rem;
+}
+.account-settings .reason-wrap .group-btn-wrap button {
+  font-size: 0.9375rem;
+  padding: 0.75rem 1.5rem;
+}
+
+
+/* Organizer Account - Others */
+
+.account-settings .others .content{
+  padding: 4rem 4rem 8rem;
+}
+.account-settings .accept-send-proposal-wrap label{
+  font-size: 1rem;
+}
+.account-settings .accept-send-proposal-wrap .form-switch input {
+  width: 2.67188rem;
+  height: 1.3125rem;
+}
+.account-settings .accept-send-proposal-wrap .toggle-switch-wrap{
+  margin: 1.87rem 0;
+}
+.account-settings .accept-send-proposal-wrap .toggle-switch-wrap{
+  gap: 0.94rem;
+}
+
 /* Bell Notifications */
 
 #dropdownNotif {
@@ -7409,16 +7553,26 @@ margin-bottom: 2.5rem;
   line-height: 1.125rem; 
   padding: 0.56rem 1.5rem;
 }
-.account-settings .request-song-modal .note-wrapper .note {
+.account-settings .note-wrapper .note {
   font-size: 0.875rem;
   letter-spacing: -0.035rem;
 }
-.account-settings .request-song-modal .note-wrapper {
+.account-settings .note-wrapper {
   margin-bottom: 1.12rem;
   padding: 0.5rem;
 }
-.account-settings .request-song-modal .note-wrapper .info-icon {
+.account-settings .note-wrapper span {
   font-size: 1.1rem;
+  margin-right: 0.3rem;
+}
+.account-settings .cancelled-proposal-wrap {
+  padding: 1.00781rem 1.125rem 1.05469rem 1.125rem;
+  border-radius: 0.375rem;
+  border: 1px solid #E4E7EC;
+  margin-bottom: 1.88rem;
+}
+.account-settings .cancelled-proposal-wrap .reason {
+  font-size: 0.9375rem;
 }
 .account-settings .request-song-modal .story-wrapper {
   margin-bottom: 1.25rem
@@ -7438,7 +7592,8 @@ margin-bottom: 2.5rem;
 .account-settings .request-song-modal .genre-wrap h5,
 .account-settings .request-application-wrap .request-song-modal .cover-img-wrap h5,
 .account-settings .request-application-wrap .request-song-modal .music-sample-wrap h5,
-.account-settings .request-song-modal .cover-letter-wrap h5 {
+.account-settings .request-song-modal .cover-letter-wrap h5,
+.account-settings .cancelled-proposal-wrap .title {
   font-size: 0.9375rem;
   margin-bottom: 0.47rem;
 }
@@ -9173,12 +9328,12 @@ header nav {
 .main-nav nav .navbar-nav li {
   padding: 0 2px;
 }
-.nav-button .log-in, .nav-button .sign-up, .nav-button .log-out {
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  padding: 0.41px 1.41px;
+.main-nav .nav-button {
+  gap: 0;
+}
+.nav-button .log-in, .nav-button .sign-up{ /* .nav-button .log-out   */
+  font-size: 0.9375rem;
+  padding: 0.37rem 1.28rem;
 }
 .main-nav .nav-button .sign-up{
   margin-left: 0.31rem!important;
@@ -9194,34 +9349,51 @@ header nav {
 }
 .main-nav  .nav-button span {
   margin: 4px 10px;
-  font-size: 20px;
+  font-size: 18px;
+}
+.main-nav .nav-button .dropdown img {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+.main-nav .nav-button .dropdown .dropdown-menu .artist-info img {
+  width: 3rem;
+  height: 3rem;
+  margin-right: 0.5rem;
 }
 .main-nav .nav-button .dropdown .dropdown-menu .artist-info .artist-name .name {
-  font-size: 18px;
-  margin-bottom: 1.5px;
+  font-size: 0.75rem;
+  margin-bottom: 0.19rem;
 }
-.main-nav .nav-button .dropdown .dropdown-menu li span {
-  margin: 0 12px;
-  font-size: 20px;
+.main-nav .nav-button .dropdown .dropdown-menu .artist-info .artist-name .email {
+  font-size: 0.75rem;
+  margin-bottom: 0.33rem;
+}
+.main-nav .nav-button .dropdown .dropdown-menu{
+  width: 15.75rem;
+}
+.main-nav .nav-button .dropdown .dropdown-menu li span,
+.main-nav .nav-button .dropdown .dropdown-menu .logout-wrapper span {
+  margin: 0 0.56rem;
+  font-size: 1.1rem;
 }
 .main-nav .nav-button .dropdown .dropdown-menu li {
-  margin: 24px 1rem;
+  margin: 1rem 0.8rem;
 }
-.main-nav .nav-button .dropdown .dropdown-menu li a {
-  font-size: 16px;
+.main-nav .nav-button .dropdown .dropdown-menu li a,
+.main-nav .nav-button .dropdown .dropdown-menu  .logout-wrapper .logout {
+  font-size: 0.8125rem;
+  letter-spacing: -0.00813rem;
   padding: 0!important;
 }
 .main-nav .nav-button .dropdown .dropdown-menu .artist-info .artist-name .view-profile {
-  font-size: 12px;
-  line-height: normal;
-  padding: 7px 12px!important;
-}
-.main-nav .nav-button .dropdown .dropdown-menu  .logout-wrapper .logout {
-  font-size: 16px;
+  font-size: 0.65625rem;
+  font-style: normal;
+  padding: 0.39rem 0.77rem!important;
 }
 .main-nav .nav-button .upgrade {
-  font-size: 18px;
-  padding: 8px 20px;
+  font-size: 0.9375rem;
+  letter-spacing: 0.02156rem;
+  padding: 0.37rem 1.22rem;
 }
 .home-slider {
   background-position: top 50px left -250px,  bottom right -130px;

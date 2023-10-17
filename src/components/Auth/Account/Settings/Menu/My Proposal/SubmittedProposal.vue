@@ -10,7 +10,9 @@
           </div>
 
           <div>
-            <h5 class="from"><span>To:</span> KC event organizer KC event organizer KC event organizer KC event organizer KC event organizer KC event organizer</h5>
+            <h5 class="from"><span>To:</span> KC event organizer KC event organizer KC event Organizer event
+              <span class="cancelled">Cancelled</span>
+            </h5>
             <h6 class="d-flex align-items-center venue">Event Organizer
             <span class="material-symbols-rounded dot-icon">&#xe061;</span>
             Naga City, Camarines Sur</h6>
@@ -31,11 +33,15 @@
     </div>
 
     <proposal-modal :show="showModal" @close-modal="closeModal" @accept-request="onModalAccepted" />
+    <!-- <cancellation-modal :show="showModal" @close-modal="closeModal"  /> -->
+
   </div>
 </template>
 
 <script>
 import ProposalModal from './ProposalModal.vue';
+//import CancellationModal from './CancellationModal.vue';
+
 export default {
   setup()
   {
@@ -45,6 +51,7 @@ export default {
   },
   components: {
     ProposalModal,
+   // CancellationModal
   },
   data: () => ({
     

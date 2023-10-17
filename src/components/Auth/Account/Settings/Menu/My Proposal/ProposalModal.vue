@@ -26,14 +26,14 @@
           </div>
                     <!-- Accepted Proposal tab - View Proposal modal -->
             <div class="d-flex align-items-center">
-              <button class="btn decline">Cancel Proposal</button>
+              <button class="btn decline" @click="showCancelModal = true">Cancel Proposal</button>
             </div>
 
           </div> 
   
-        <div class="d-flex align-items-center note-wrapper">
-          <span class="material-symbols-rounded info-icon">&#xe88e;</span>
-          <p class="note">Lorem ipsum dolor sit amet consectetur.</p>
+          <div class="d-flex align-items-center note-wrapper">
+          <span class="material-symbols-rounded">&#xe28e;</span>
+          <p class="note">Your proposal is being reviewed</p>
         </div>
   
           <div class="d-flex align-items-center applied-event-wrap">
@@ -72,7 +72,7 @@
                 </div>
                 <div>
                   <h5 class="venue">Momotz Restobar</h5>
-                  <h5 class="place" style="text-transform: capitalize;">Naga City, Camarines Sur Philippines</h5>
+                  <h5 class="place">Naga City, Camarines Sur Philippines</h5>
                 </div>
               </div>
   
@@ -106,7 +106,8 @@
            </p>
           </div>
 
-  
+          <cancellation-modal :show="showCancelModal" @close-modal="closeModal"  />
+
         </div> <!-- end of modal-body -->
       </div>
     </div>
@@ -114,20 +115,28 @@
   
   <script>
   import { mapState, mapActions } from 'vuex';
-  
+  import CancellationModal from './CancellationModal.vue';
+
   export default {
+    components: {
+    CancellationModal,
+  },
     props: {
       show: Boolean
     },
     data() {
       return {
+        showCancelModal: false,
       }
     },
     computed: {
 
     },
     methods: {
-
+      closeModal()
+    {
+      this.showCancelModal = false;
+    },
       
       acceptRequest() {
         // this.$emit('close-modal')
