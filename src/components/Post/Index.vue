@@ -51,7 +51,7 @@
     </div>
 
     <div class="row artist-post">
-      <div class="col-md-12 grid-margin">
+      <div class="col-md-12">
         <transition-group name="fade" tag="div">
           <div v-for="(post, index) in posts" :key="index">
             <card-post :post="post" :pos="index"/>
@@ -64,7 +64,7 @@
     <!-- Zero state screen -->
     <transition-group name="fade" tag="div">
       <div class="row artist-post" v-if="posts.length == 0">
-        <div class="col-md-12 grid-margin">
+        <div class="col-md-12">
           <div class="card">
             <div class="card-body text-center no-post">
               <svg class="no-post-icon" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">

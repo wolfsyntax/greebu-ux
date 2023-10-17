@@ -16,41 +16,27 @@
 
       <div class="text-center modal-body">
         <div class="d-flex align-items-center justify-content-between action-wrapper">
+
           <div class="d-flex align-items-center organizer-offers-details-wrap">
-            <img src="/assets/artist-account/band-member-2.webp" class="offer-img" alt="Oganizer image">
-
+            <img src="/assets/artist-account/band-member-2.webp" class="customer-image" alt="Oganizer image">
             <div>
-
               <h5 class="from"><span>From:</span> KC event organizer</h5>
               <h6 class="d-flex align-items-center venue">Event Organizer</h6>
-              <p class="d-flex align-items-center mb-0 star-ratings">
-                <span class="material-symbols-rounded star-icon">&#xe838;</span>
-                4.95 <span class="reviews">(234 reviews)</span>
-              </p>
-
-              </div>
-
+            </div>
           </div>
 
           <div class="d-flex align-items-center">
-
             <button class="btn decline">Decline</button>
             <button class="btn accept" @click="acceptRequest">Acccept</button>
-
-            <!-- SHOW THIS IF THE ARTIST ACCEPTED THE CUSTOMIZED SONG REQUEST  -->
-            <!-- <button class="btn accepted">Decline</button> -->
-
-            <!-- SHOW THIS IF THE ARTIST DENIED THE CUSTOMIZED SONG REQUEST  -->
-            <!-- <button class="btn cancelled">Cancelled</button> -->
-
           </div>
-        </div> <!-- end of action-wrapper -->
 
-        <div class="text-start event-organized-wrap">
-          <h5>Event organized</h5>
-          <span class="badge">Birthdays</span>
-          <span class="badge">Weddings</span>
-        </div>
+            <!-- SHOW THIS IF THE ARTIST DENIED THE PROPOSAL -->
+            <!-- <div class="d-flex align-items-center">
+              <button class="btn decline">Cancel Proposal</button>
+            </div> -->
+
+
+        </div> <!-- end of action-wrapper -->
 
         <div class="story-wrapper">
           <h4 class="title">Event Details</h4>
@@ -85,18 +71,6 @@
           <div class="right">
             <h5>Talent fee offered</h5>
             <p>2,000 - 3,000</p>
-          </div>
-        </div>
-
-        <div class="d-flex justify-content-between action-wrapper song-info-wrapper">
-          <div class="left">
-            <h5>Language</h5>
-            <p>English</p>
-          </div>
-
-          <div class="right">
-            <h5>Duration of Song?</h5>
-            <p>5 minutes</p>
           </div>
         </div>
 
