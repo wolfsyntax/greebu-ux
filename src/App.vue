@@ -9,7 +9,7 @@ import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   setup() {
-
+    
   },
   // compatConfig: { MODE: 3 },
 }

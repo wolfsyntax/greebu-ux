@@ -53,6 +53,9 @@ import { Cropper } from "vue-advanced-cropper";
 import "vue-advanced-cropper/dist/style.css";
 import TreeItem from "./components/Organizer/TreeItem.vue";
 
+import { createHead } from "@vueuse/head";
+const head = createHead();
+
 const app = createApp(App)
   .use(i18n)
   .use(VueAxios, axios)
@@ -64,6 +67,7 @@ const app = createApp(App)
   //   sameSite: "None"
   // })
   .use(store)
+  .use(head)
   .use(router)
   // .use(Vuesax, {})
   .use(Pusher, {
