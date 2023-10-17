@@ -28,9 +28,9 @@
         <h5 class="tab-title">{{ proposal.name }}</h5>
       </li>
     </div>
-
+    
     <offers v-if="selectedCustomized === 'Offers'"/>
-    <submitted-proposal v-if="selectedCustomized === 'Submitted Proposal'" />
+    <submitted-proposal v-if="selectedCustomized === 'Submitted Proposals'" />
     <accepted-proposals v-if="selectedCustomized === 'Accepted Proposals'"/>
     <denied-proposals v-if="selectedCustomized === 'Denied Proposals'"/>
     
@@ -38,6 +38,8 @@
 </template>
   
 <script>
+
+import {mapActions, mapState} from 'vuex';
 
 import DeniedProposals from './DeniedProposals.vue';
 import AcceptedProposals from './AcceptedProposals.vue';
@@ -58,7 +60,7 @@ export default {
     return {
       myProposal: [
         { name: 'Offers'},
-        { name: 'Submitted Proposal'},
+        { name: 'Submitted Proposals'},
         { name: 'Accepted Proposals'},
         { name: 'Denied Proposals'},
       ],
@@ -68,10 +70,14 @@ export default {
     }
   },      
   computed: {
-
+    
   },
   methods: {
+    ...mapActions([
+      'fetchMyProposals'
+    ]),
     showCustomizeContent(option) {
+      console.log('showCustomizeContent: ', option)
       this.selectedCustomized = option.name;
     },
     closeModal(){
@@ -91,6 +97,28 @@ export default {
       this.showToast = true;
     }
   },
+  mounted() {
+    
+    this.fetchMyProposals();  
+    this.fetchMyProposals('accepted');  
+    this.fetchMyProposals('declined');  
+    
+  },
+  watch: {
+    selectedCustomized(val) {
+      var payload = 'pending';
+      
+      if (['Accepted Proposals', 'Denied Proposals', 'Submitted Proposals', ].includes(val)) {
+        
+        if (val === 'Accepted Proposals') payload = 'accepted';
+        else if (val=== 'Denied Proposals') payload = 'declined';
+
+        this.fetchMyProposals(payload)
+        .then(res => console.log('Tab click option (response): ', res));
+      }
+      
+    }
+  }
 };
 </script>
 

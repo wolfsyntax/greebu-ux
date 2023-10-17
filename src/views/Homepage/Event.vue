@@ -130,6 +130,10 @@ import EventSuccess from '/src/components/Auth/Events/SuccessModal.vue';
 import EventCard from '/src/components/Events/Card.vue';
 
 export default {
+  metaInfo: {
+    title: 'Default Title',
+    titleTemplate: '%s | Geebu'
+  },
   components: {
     layout: Layout,
     faq: Faq,

@@ -17,8 +17,17 @@ var state = {
   isPhoneModify: false,
   custom_genre: "",
   artist_genre: [],
-  proposal: [],
+  proposal: {},
   selectedOption: "My Account",
+  cancelReasons: [
+    "Sudden Scheduling Conflict",
+    "Personal Emergency",
+    "Health Issues",
+    "Technical or Equipment Failure",
+    "Conflict to previous commitment",
+    "No Transportation",
+    "Change of Mind",
+  ],
 };
 
 export default state;
