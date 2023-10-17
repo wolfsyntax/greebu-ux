@@ -97,9 +97,9 @@ export const fetchProfile = (
               dispatch("fetchOrganizerOptions");
             }
 
-           // setInterval(() => {
-              dispatch("fetchNotifications");
-          //  }, 180000);
+            // setInterval(() => {
+            dispatch("fetchNotifications");
+            //  }, 180000);
 
             // commit('SET_PROFILE', profile);
           }
@@ -442,6 +442,51 @@ export const updateBanner = ({ commit, rootState }, payload) => {
         } else {
           reject({ msg: message, status: statusCode });
         }
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+// Other Settings
+export const otherSettings = ({ commit, state, rootState }, payload) => {
+  return new Promise(async (resolve, reject) => {
+    if (!["artists", "organizer"].includes(rootState.role)) {
+      resolve({ status: 403, message: "", result: [] });
+    }
+
+    axios.defaults.headers.common["Authorization"] =
+      "Bearer " + (rootState.bearerToken || localStorage.api_token);
+
+    await axios
+      .post(
+        `${
+          import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+        }/api/account/profile/${rootState.role}/others`,
+        payload,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      )
+      .then((response) => {
+        const {
+          status: statusCode,
+          data: { status, message, result },
+        } = response;
+        console.log("\n\nAccount Settings > Others: ", response);
+        if (statusCode === 200) {
+          if (status === 200) {
+            const { account, profile } = result;
+
+            commit("SET_ACCOUNT", account);
+            commit("SET_PROFILE", profile);
+          }
+        }
+
+        resolve(response);
       })
       .catch((err) => {
         reject(err);
