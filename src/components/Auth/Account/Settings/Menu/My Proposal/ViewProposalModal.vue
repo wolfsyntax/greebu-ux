@@ -38,6 +38,16 @@
 
         </div> <!-- end of action-wrapper -->
 
+        <div class="d-flex align-items-center note-wrapper">
+          <span class="material-symbols-rounded">&#xe14b;</span>
+          <p class="note">This proposal is cancelled by the organizer</p>
+        </div>
+
+        <div class="text-start cancelled-proposal-wrap">
+            <h4 class="title">Cancellation Reason:</h4>
+            <h4 class="mb-0 reason">Financial Setback</h4>
+        </div>
+
         <div class="story-wrapper">
           <h4 class="title">Event Details</h4>
           <p class="message">I hope this letter finds you in good health and high spirits. I am writing to you as a passionate event organizer 

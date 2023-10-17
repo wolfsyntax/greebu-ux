@@ -10,7 +10,9 @@
           </div>
 
           <div>
-            <h5 class="from"><span>From:</span> KC event organizer KC event organizer KC event organizer KC event organizer KC event organizer KC event organizer</h5>
+            <h5 class="from"><span>From:</span> KCKC event organizer 
+              <span class="cancelled">Cancelled</span>
+            </h5>
             <h6 class="d-flex align-items-center venue">Event Organizer
             <span class="material-symbols-rounded dot-icon">&#xe061;</span>
             Naga City, Camarines Sur</h6>

@@ -33,9 +33,9 @@
 
           </div> 
   
-        <div class="d-flex align-items-center note-wrapper">
-          <span class="material-symbols-rounded info-icon">&#xe88e;</span>
-          <p class="note">Lorem ipsum dolor sit amet consectetur.</p>
+          <div class="d-flex align-items-center note-wrapper">
+          <span class="material-symbols-rounded">&#xe28e;</span>
+          <p class="note">Your proposal is being reviewed</p>
         </div>
   
           <div class="d-flex align-items-center applied-event-wrap">
@@ -77,7 +77,7 @@
                 </div>
                 <div>
                   <h5 class="venue">{{ proposal.venue_name }}</h5>
-                  <h5 class="place" style="text-transform: capitalize;">{{ proposal.location }}</h5>
+                  <h5 class="place">{{ proposal.location }}</h5>
                 </div>
               </div>
   
@@ -111,7 +111,8 @@
            </p>
           </div>
 
-  
+          <cancellation-modal :show="showCancelModal" @close-modal="closeModal"  />
+
         </div> <!-- end of modal-body -->
       </div>
     </div>
@@ -119,13 +120,18 @@
   
   <script>
   import { mapState, mapActions } from 'vuex';
-  
+  import CancellationModal from './CancellationModal.vue';
+
   export default {
+    components: {
+    CancellationModal,
+  },
     props: {
       show: Boolean
     },
     data() {
       return {
+        showCancelModal: false,
       }
     },
     computed: {
@@ -137,6 +143,10 @@
       ...mapActions([
         'cancelMyProposal'
       ]),
+      closeModal()
+    {
+      this.showCancelModal = false;
+    },
       acceptRequest() {
         // this.$emit('close-modal')
         this.$emit('accept-request');

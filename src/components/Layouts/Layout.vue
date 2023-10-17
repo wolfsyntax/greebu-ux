@@ -121,10 +121,10 @@
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
                   <li>
-                    <div class="artist-info">
+                    <div class="d-flex align-items-start artist-info">
                       <img :src="myAccount?.avatar || myAvatar" alt="artist profile" @error="replaceByDefault" >
                       <div class="artist-name">
-                        <p class="name">{{  userInfo.business_name }}</p>
+                        <p class="two-lines name">{{  userInfo.business_name }}</p>
                         <!-- <p class="email">{{ userInfo.business_email }}</p> -->
                         <p class="email" style="text-transform: capitalize;">{{  userInfo.role }}</p>
                         <router-link to="/account/profile" class="dropdown-item view-profile">Edit Profile</router-link>
@@ -150,7 +150,7 @@
                   </li>
 
                   <li v-if="[ 'customers', ].includes(userRole)">
-                    <span class="material-symbols-outlined">library_music</span>
+                    <span class="material-symbols-outlined">&#xe030;</span>
                     <router-link to="/account/setting" @click="$store.commit('setSettingMenu', 'My Songs')" class="dropdown-item">My Songs</router-link>
                   </li>
 
@@ -165,7 +165,7 @@
                   </li>
 
                   <li v-if="['customers', 'organizer',].includes(userRole)">
-                    <span class="material-symbols-outlined">queue_music</span>
+                    <span class="material-symbols-outlined">&#xe03d;</span>
                     <router-link to="/account/setting" @click="$store.commit('setSettingMenu', 'My Proposal')" class="dropdown-item">My Proposals</router-link>
                   </li>
 
@@ -181,7 +181,7 @@
                   </li>
 
                   <li class="logout-wrapper">
-                    <span class="material-symbols-rounded">logout</span>
+                    <span class="material-symbols-rounded">&#xe9ba;</span>
                     <a class="dropdown-item logout" href="#" @click.prevent="logout">Logout</a>
                   </li>
                 </ul>

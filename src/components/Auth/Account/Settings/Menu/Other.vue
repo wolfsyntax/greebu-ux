@@ -7,7 +7,7 @@
 </template>
 <script>
 import { mapGetters, mapState, mapActions } from "vuex";
-import Others from './Organizer Other Settings/Index.vue';
+import Others from './Artist Other Settings/Index.vue';
 export default {
   components: {
     Others
