@@ -50,21 +50,21 @@ export default {
           property: 'og:type',
           content: 'website',
         },
-        {
-          // hid: 'og-image-type',
-          property: 'og:image:type',
-          content: 'image/webp',
-        },
-        {
-          // hid: 'og-image-width',
-          property: 'og:image:width',
-          content: '1024',
-        },
-        {
-          // hid: 'og-image-height',
-          property: 'og:image:height',
-          content: '1024',
-        },
+        // {
+        //   // hid: 'og-image-type',
+        //   property: 'og:image:type',
+        //   content: 'image/webp',
+        // },
+        // {
+        //   // hid: 'og-image-width',
+        //   property: 'og:image:width',
+        //   content: '1024',
+        // },
+        // {
+        //   // hid: 'og-image-height',
+        //   property: 'og:image:height',
+        //   content: '1024',
+        // },
         {
           // hid: 'twitter-card',
           name: 'twitter:card',
