@@ -32,8 +32,7 @@
         <my-proposal v-if="selectedOption === 'My Proposal'" />
         <notifications v-if="selectedOption === 'Notifications'" />
         <subscriptions v-if="selectedOption === 'Manage Subscriptions'" />
-        <organizer-others v-if="selectedOption === 'Others' && [ 'organizer', ].includes(userRole)" />
-        <artist-others v-if="selectedOption === 'Others' && [ 'artists', ].includes(userRole)"/>   
+        <others v-if="selectedOption === 'Others' && [ 'organizer', 'artists', ].includes(userRole)" />
         <request-application v-if="selectedOption === 'Request Application'" />
 
       </div>
@@ -53,8 +52,8 @@ import MyBooking from '@/components/Auth/Account/Settings/Menu/MyBookings.vue';
 import Collaboration from '@/components/Auth/Account/Settings/Menu/Collaboration.vue';
 import MyProposal from '@/components/Auth/Account/Settings/Menu/MyProposal.vue';
 import Notifications from '@/components/Auth/Account/Settings/Menu/Notifications.vue';
-import OrganizerOthers from '@/components/Auth/Account/Settings/Menu/Others.vue';
-import ArtistOthers from '@/components/Auth/Account/Settings/Menu/Other.vue'
+import Others from '@/components/Auth/Account/Settings/Menu/Other.vue';
+
 import Subscriptions from '@/components/Auth/Account/Settings/Menu/ManagedSubscriptions.vue';
 import RequestApplication from '@/components/Auth/Account/Settings/Menu/RequestApplication.vue';
 
@@ -65,8 +64,7 @@ export default {
     Collaboration,
     MyProposal,
     Notifications,
-    ArtistOthers,
-     OrganizerOthers,
+    Others,
     'verify-card': Verify,
     CustomizedSong,
     MyAccount,
@@ -94,6 +92,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['fetchProfile',]),
     showSidebarContent(option)
     {
       this.$store.commit('setSettingMenu', option.name);
@@ -155,7 +154,11 @@ export default {
     }
   },
   watch: {
-    
+    selectedOption(val) {
+      if (val === 'Others') {
+        this.fetchProfile();
+      }
+    }
   }
 }
 </script>

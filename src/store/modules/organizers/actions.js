@@ -7,7 +7,7 @@ export const fetchOrganizerOptions = (
   return new Promise(async (resolve, reject) => {
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + (rootState.bearerToken || localStorage.api_token);
-
+    console.log("Fetch Organizer Options: ", payload, rootState.bearerToken);
     await axios
       .get(
         `${
