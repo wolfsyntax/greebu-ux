@@ -41,6 +41,7 @@
     <proposal-modal :show="showModal" :option="optionType"
       @close-modal="closeModal" @accept-request="onModalAccepted" 
     />
+    <cancel-reason :proposal="proposal" :show="showCancelModal" @close-modal="closeCancel" />
   </div> 
 
 </template>
@@ -50,7 +51,7 @@ import { mapState, mapActions } from 'vuex';
 
 import EventCard from './EventCardProposal.vue';
 import ProposalModal from './ProposalModal.vue';
-
+import CancelReason from './../CancelReason.vue';
 export default {
   setup()
   {
@@ -61,13 +62,16 @@ export default {
   components: {
     EventCard,
     ProposalModal,
+    CancelReason,
   },
   data: () => ({
     
     showModal: false,
+    showCancelModal: false,
     showToast: false,
     showProposalModal: false,
-    optionType: 'pending'
+    optionType: 'pending',
+    proposal: {}
   }),
   computed: {
     ...mapState({
@@ -80,16 +84,23 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['fetchMyProposals', ]),
+    ...mapActions(['fetchMyProposals', 'cancelMyProposal', ]),
     toggleProposal(proposal) {
-      console.log('Toggle Proposal: ', proposal)
-      
+
+      this.proposal = proposal;
       this.showModal = true;
     },
-    closeModal()
-    {
+    
+    closeCancel() {
+      
+      this.showCancelModal = false;
       this.fetchMyProposals();
+    },
+    closeModal(val = 'none')
+    {
       this.showModal = false;
+      if (val !== 'none') this.showCancelModal = true;
+      console.log('Cancel this proposal: ', this.proposal)
     },
     onModalAccepted()
     {

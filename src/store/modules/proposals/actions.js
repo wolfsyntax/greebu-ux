@@ -125,21 +125,23 @@ export const fetchMyProposals = (
 
 export const cancelMyProposal = (
   { commit, rootState, state, dispatch },
-  payload
+  { id, cancel_reason }
 ) => {
   return new Promise((resolve, reject) => {
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + (rootState.bearerToken || localStorage.api_token);
 
-    if (!payload) resolve();
+    if (!id) resolve();
 
     axios
       .post(
         `${
           import.meta.env.VITE_BASE_URL || "http://localhost:8000"
-        }/api/artist-proposal/${payload}/cancel`
+        }/api/artist-proposal/${id}/cancel`,
+        { cancel_reason }
       )
       .then((response) => {
+        console.log("Cancel Proposal [Response]: ", response);
         const {
           data: { status, result },
           status: statusCode,

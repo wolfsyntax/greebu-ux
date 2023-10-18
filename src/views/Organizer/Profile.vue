@@ -413,13 +413,14 @@ export default {
   {
 
     this.triggerType = '';
-
-    this.fetchOrganizerOptions()
-      .then(res =>
-      {
-        console.log('Fetch Organizer Options: ', res);
-      });
-
+    if (this.userRole === 'organizer') {
+      console.log('User role: ', this.userRole)
+      this.fetchOrganizerOptions()
+        .then(res =>
+        {
+          console.log('Fetch Organizer Options: ', res);
+        });
+    }
     // this.form.avatar = '';
 
     this.fetchProfile();
@@ -619,7 +620,7 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(['profileForm', 'myAccount', 'myAvatar', '']),
+    ...mapGetters(['profileForm', 'myAccount', 'myAvatar', 'userRole',]),
     ...mapState({
       account: state => state.account,
       eventTypes: state => state.organizer.eventTypes,
