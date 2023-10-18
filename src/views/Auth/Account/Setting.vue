@@ -28,7 +28,7 @@
         <my-account v-if="selectedOption === 'My Account'"/>
         <customized-song v-if="selectedOption === 'Customized Songs'"/>
         <my-booking v-if="selectedOption === 'My Bookings'" />
-        <!-- <collaboration v-if="selectedOption === 'Collaboration'" /> -->
+        <collaboration v-if="selectedOption === 'Collaboration'" />
         <my-proposal v-if="selectedOption === 'My Proposal'" />
         <notifications v-if="selectedOption === 'Notifications'" />
         <subscriptions v-if="selectedOption === 'Manage Subscriptions'" />
@@ -36,7 +36,6 @@
         <artist-others v-if="selectedOption === 'Others' && [ 'artists', ].includes(userRole)"/>   
         <request-application v-if="selectedOption === 'Request Application'" />
 
-        <!-- <component :is="selectedOptionComponent" /> -->
       </div>
     </div> <!-- end of row -->
 
@@ -51,7 +50,7 @@ import CustomizedSong from '@/components/Auth/Account/Settings/Menu/CustomizedSo
 
 import MyAccount from '@/components/Auth/Account/Settings/Menu/MyAccount.vue';
 import MyBooking from '@/components/Auth/Account/Settings/Menu/MyBookings.vue';
-//import Collaboration from '@/components/Auth/Account/Settings/Menu/Collaboration.vue';
+import Collaboration from '@/components/Auth/Account/Settings/Menu/Collaboration.vue';
 import MyProposal from '@/components/Auth/Account/Settings/Menu/MyProposal.vue';
 import Notifications from '@/components/Auth/Account/Settings/Menu/Notifications.vue';
 import OrganizerOthers from '@/components/Auth/Account/Settings/Menu/Others.vue';
@@ -63,7 +62,7 @@ export default {
   components: {
     MyAccount,
     MyBooking,
-    //Collaboration,
+    Collaboration,
     MyProposal,
     Notifications,
     ArtistOthers,

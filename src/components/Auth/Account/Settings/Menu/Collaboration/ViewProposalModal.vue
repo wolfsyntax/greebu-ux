@@ -3,7 +3,7 @@
     <div class="modal-content">
       <div class="d-flex justify-content-between title-wrapper">
         <div>
-          <h3 class="title">Proposal Details</h3>
+          <h3 class="mb-0 title">Collaboration Details</h3>
           <p class="sub-title">Lorem ipsum dolor sit amet consectetur.</p>
         </div>
 
@@ -18,10 +18,10 @@
         <div class="d-flex align-items-center justify-content-between action-wrapper">
 
           <div class="d-flex align-items-center organizer-offers-details-wrap">
-            <img src="/assets/artist-account/band-member-2.webp" class="customer-image" alt="Oganizer image">
+            <img src="/assets/artist-account/artist-profile-1.webp" class="customer-image" alt="Artist image">
             <div>
-              <h5 class="from"><span>From:</span> KC event organizer</h5>
-              <h6 class="d-flex align-items-center mb-0 venue">Event Organizer</h6>
+              <h5 class="from"><span>From:</span> Idlepitch</h5>
+              <h6 class="d-flex align-items-center mb-0 venue">Full band</h6>
             </div>
           </div>
 
@@ -30,44 +30,39 @@
             <button class="btn accept" @click="acceptRequest">Acccept</button>
           </div>
 
-            <!-- SHOW THIS IF THE ARTIST DENIED THE PROPOSAL -->
+            <!-- Pending Response - Waiting for approval button -->
             <!-- <div class="d-flex align-items-center">
-              <button class="btn decline">Cancel Proposal</button>
+              <button class="btn approval">Waiting for Approval</button>
+            </div> -->
+
+             <!-- Accepted Collaboration - Accepted button -->
+            <!-- <div class="d-flex align-items-center">
+              <button class="btn accept">Message</button>
+            </div> -->
+
+             <!-- Denied - Cancelled button -->
+            <!-- <div class="d-flex align-items-center">
+              <button class="btn cancelled">Cancelled</button>
             </div> -->
 
 
         </div> <!-- end of action-wrapper -->
 
-        <div class="d-flex align-items-center note-wrapper">
-          <span class="material-symbols-rounded">&#xe14b;</span>
-          <p class="note">This proposal is cancelled by the organizer</p>
-        </div>
-
-        <div class="text-start cancelled-proposal-wrap" v-if="proposal?.cancel_reason">
-            <h4 class="title">Cancellation Reason:</h4>
-            <h4 class="mb-0 reason">Financial Setback</h4>
-        </div>
-
-        <div class="story-wrapper">
-          <h4 class="title">Event Details</h4>
-          <p class="message">I hope this letter finds you in good health and high spirits. I am writing to you as a passionate event organizer 
-            who has been captivated by your exceptional talent and musical prowess. It is with great excitement that I present to you a proposal 
-            for an upcoming event, [Event Name], where we would be honored to have you as the headline artist.
+        <!-- Accepted Collaboration -->
+        <!-- <div class="d-flex align-items-center note-wrapper">
+          <span class="material-symbols-rounded">&#xe86c;</span><p class="note">
+            Artist accepted your proposal
           </p>
-          <p class="message">I hope this letter finds you in good health and high spirits. I am writing to you as a passionate event organizer who
-             has been captivated by your exceptional talent and musical prowess. It is with great excitement that I present to you a proposal for 
-             an upcoming event, [Event Name], where we would be honored to have you as the headline artist.
-          </p>
-        </div>
+        </div> -->
 
         <div class="d-flex justify-content-between action-wrapper song-info-wrapper">
           <div class="left">
-            <h5>Name of Event</h5>
+            <h5>Type of collaboration</h5>
             <p>Lorem ipsum dolor sit amet consectetur.</p>
           </div>
 
           <div class="right">
-            <h5>Type  of Event</h5>
+            <h5>Collaborating Artist</h5>
             <p>Birthday Event</p>
           </div>
         </div>
@@ -79,15 +74,22 @@
           </div>
 
           <div class="right">
-            <h5>Talent fee offered</h5>
+            <h5>Number of set to played</h5>
             <p>2,000 - 3,000</p>
           </div>
         </div>
 
         <div class="d-flex justify-content-between action-wrapper song-info-wrapper">
           <div class="left">
-            <h5>June 12,2023</h5>
-            <p class="d-flex align-items-center"><span class="material-symbols-rounded date">&#xebcc;</span>2: 00 PM</p>
+            <h5>Collaboration Date & Time</h5>
+            <p class="d-flex align-items-center">
+              <span class="material-symbols-rounded date">&#xebcc;</span>
+              June 12, 2023
+            </p>
+            <p class="d-flex align-items-center time-wrap">
+              <span class="material-symbols-rounded time">&#xe8b5;</span>
+              2: 00 PM - 8:00 PM
+            </p>
           </div>
 
           <div class="right hidden-song-info">
@@ -95,6 +97,15 @@
             <p>June 12,2023</p>
           </div>
         </div>
+
+        <div class="text-start cover-letter-wrap">
+          <h5>Cover letter</h5>
+          <p class="mb-0 text-justify">I hope this letter finds you in good health and high spirits. 
+            I am writing to you as a passionate event organizer who has been captivated by your exceptional 
+            talent and musical prowess. It is with great excitement that I present to you a proposal for an 
+            upcoming event, [Event Name], where we would be honored to have you as the headline artist.</p>
+        </div>
+
       </div> <!-- end of modal-body -->
     </div>
   </div>
