@@ -54,6 +54,9 @@ export default {
       reason: 'Sudden Scheduling Conflict',
     }
   },
+  mounted() {
+    
+  },
   computed: {
     ...mapState({
       reasons: state => state.cancelReasons,
@@ -64,11 +67,17 @@ export default {
       'cancelMyProposal',
     ]),
     submit() {
-      this.cancelMyProposal({id: this.proposal?.id, cancel_reason: this.reason})
-        .then(res => {
-          const { status } = res;
-          if (status == 200) this.$emit('close-modal');
-        })
+      
+      if (this.proposal?.id) {
+        
+        this.cancelMyProposal({id: this.proposal?.id, cancel_reason: this.reason})
+          .then(res => {
+            console.log(`Cancel Response for ${ this.proposal?.id }: `, res);
+            const { status } = res;
+            if (status == 200) this.$emit('close-modal', '');
+          });
+
+      }
     }
   },
 };

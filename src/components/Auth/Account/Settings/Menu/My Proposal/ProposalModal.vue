@@ -151,6 +151,7 @@
         // this.hideModal();
       },
       cancel() {
+        console.log('cancel proposal is clicked.')
         this.$emit('close-modal', '');
         // this.cancelMyProposal(this.proposal.id)
         //   .then(res => {

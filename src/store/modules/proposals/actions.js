@@ -141,7 +141,7 @@ export const cancelMyProposal = (
         { cancel_reason }
       )
       .then((response) => {
-        console.log("Cancel Proposal [Response]: ", response);
+        console.log(`Cancel Proposal [Response => ${id}]: `, response);
         const {
           data: { status, result },
           status: statusCode,

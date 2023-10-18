@@ -35,15 +35,16 @@
     <proposal-modal :show="showModal" @close-modal="closeModal" @accept-request="onModalAccepted" /> -->
 
   </div>
-
-  <div v-for="(proposal, index) in proposals" :key="index">
-    <event-card :proposal="proposal" @view="toggleProposal" />
-    <proposal-modal :show="showModal" :option="optionType"
-      @close-modal="closeModal" @accept-request="onModalAccepted" 
-    />
+  <div>
+    <div v-for="(proposal, index) in proposals" :key="index">
+      <event-card :proposal="proposal" @view="toggleProposal" />
+      <proposal-modal :show="showModal" :option="optionType"
+        @close-modal="closeModal" @accept-request="onModalAccepted" 
+      />
+    </div>
     <cancel-reason :proposal="proposal" :show="showCancelModal" @close-modal="closeCancel" />
-  </div> 
-
+    <success-modal @close="closeModal" header="Proposal successfully cancelled!" body="Your proposal has been successfully cancelled."  /> 
+  </div>
 </template>
 
 <script>
@@ -52,6 +53,9 @@ import { mapState, mapActions } from 'vuex';
 import EventCard from './EventCardProposal.vue';
 import ProposalModal from './ProposalModal.vue';
 import CancelReason from './../CancelReason.vue';
+import SuccessModal from '/src/components/Auth/Proposal/SuccessProposalModal.vue';
+
+import { Modal } from 'bootstrap';
 export default {
   setup()
   {
@@ -62,11 +66,13 @@ export default {
   components: {
     EventCard,
     ProposalModal,
+    SuccessModal,
     CancelReason,
   },
   data: () => ({
     
     showModal: false,
+    modalObj: null,
     showCancelModal: false,
     showToast: false,
     showProposalModal: false,
@@ -82,25 +88,36 @@ export default {
     if (this.proposals.length === 0) {
       this.fetchMyProposals();
     }
+
+    this.modalObj = new Modal(document.getElementById('sentProposalModal'), {
+      keyboard: false,
+      backdrop: 'static',
+    }); 
   },
   methods: {
     ...mapActions(['fetchMyProposals', 'cancelMyProposal', ]),
     toggleProposal(proposal) {
-
       this.proposal = proposal;
       this.showModal = true;
     },
     
-    closeCancel() {
+    closeCancel(val = 'none') {
       
       this.showCancelModal = false;
       this.fetchMyProposals();
+      if (val === '') {
+        this.modalObj.show();        
+      }
     },
     closeModal(val = 'none')
     {
       this.showModal = false;
-      if (val !== 'none') this.showCancelModal = true;
-      console.log('Cancel this proposal: ', this.proposal)
+      
+      if (val !== 'none') {
+        this.showCancelModal = true;
+        console.log(`Show cancel reason modal for proposal with ID of `, this.proposal.id)
+      } else this.showCancelModal = false;
+
     },
     onModalAccepted()
     {
@@ -111,6 +128,9 @@ export default {
       }, 7000);
       this.showModal = false;
     },    
+  },
+  watch: {
+    
   }
 }
 </script>
