@@ -2388,7 +2388,7 @@ background-color: var(--orange);
 .create-song .content p{
   font-size: 1.5rem;
   font-weight: 500;
-  line-height: 1.75rem;
+  line-height: 2rem;
   color: var(--gray2);
   margin-bottom: 2.5rem;
 }
@@ -9413,7 +9413,7 @@ header nav {
   font-size: 1.1rem;
 }
 .main-nav .nav-button .dropdown .dropdown-menu li {
-  margin: 1rem 0.8rem;
+  margin: 1rem;
 }
 .main-nav .nav-button .dropdown .dropdown-menu li a,
 .main-nav .nav-button .dropdown .dropdown-menu  .logout-wrapper .logout {

@@ -26,24 +26,35 @@ export default {
   },
   setup()
   {
-    useHead({
-      // Can be static or computed
-      title: 'Home',
-      meta: [
-        {
-          name: `description`,
-          content: 'this about about page',
-        },
-        ],
+    // useHead({
+    //   title: 'Home',
+    //   meta: [
+    //     {
+    //       name: `description`,
+    //       content: 'this about about page',
+    //     },
+    //     ],
      
-    })
+    // })
   },
   data()
   {
     return {
       plans: [{}]
     }
-  }
+  },
+  head() {
+    return {
+      title: 'Welcome to Geebu',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Experience the Ultimate Fusion of Creativity and Entertainment with Geebu Create Your Custom Song.',
+        },
+      ],
+    }
+  },
 }
 </script>
 <style scoped></style>

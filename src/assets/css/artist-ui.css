@@ -1587,6 +1587,34 @@ img{
   padding-bottom: 0.75rem;
   margin-top: 0;
 }
+.profile-details .container .fill-details .required-fields .multiselect-option {
+  color: var(--black);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 140%;
+  letter-spacing: -0.02rem;
+  padding-left: 1rem;
+}
+.profile-details .container .fill-details .required-fields .multiselect-option:hover{
+  /* background-color: rgb(253, 253, 253); */
+  background-color: rgb(255, 252, 251);
+  color: var(--orange);
+}
+.profile-details .container .fill-details .required-fields .multiselect-dropdown{
+  border-radius: 0.3125rem;
+  background: var(--white);
+  border: none;
+  box-shadow: 0px 0px 12.69425px 0px rgba(18, 18, 18, 0.15);
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+.profile-details .container .fill-details .required-fields .multiselect-dropdown::-webkit-scrollbar {
+  display: none;
+}
+/* Hide scrollbar for IE, Edge and Firefox */
+.profile-details .container .fill-details .required-fields .multiselect-dropdown {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
 .profile-details .fill-details .address-wrap .group-wrap {
   gap: 1rem;
 }
@@ -1710,6 +1738,7 @@ img{
 }
 .profile-details .container .fill-details .form-group .multiselect {
   margin: 0rem;
+  box-shadow: none;
 }
 .profile-details .container .fill-details .form-group .multiselect-tag {
   color: #ff6b00;
@@ -4401,6 +4430,9 @@ img{
     line-height: 140%; 
     letter-spacing: -0.01313rem;
     padding: 0.19rem 0.38rem;
+  }
+  .profile-details .container .fill-details .required-fields .multiselect-option {
+    font-size: 0.87rem;
   }
   .profile-details .container .fill-details .form-group .add-member,
   .profile-details .container .fill-details .form-group .add-social-media {
