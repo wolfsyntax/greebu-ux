@@ -40,7 +40,7 @@ export default {
         },
         {
           property: 'og:image',
-          content: 'https://picsum.photos/1200/67',
+          content: 'https://develop.geebu.ph/assets/home/home-slider-1.webp',
         },
         {
           name: 'twitter:card',
@@ -56,7 +56,7 @@ export default {
         },
         {
           name: 'twitter:image',
-          content: 'https://picsum.photos/1200/67',
+          content: 'https://develop.geebu.ph/assets/home/home-slider-1.webp',
         },
       ],
      
