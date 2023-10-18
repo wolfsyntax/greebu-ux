@@ -43,7 +43,7 @@ export default {
         {
           hid: 'og-image',
           property: 'og:image',
-          content: 'https://develop.geebu.ph/assets/geebu-logo.svg',
+          content: 'https://develop.geebu.ph/assets/home/home-slider-1.webp',
         },
         {
           hid: 'og-type',
@@ -67,27 +67,27 @@ export default {
         },
         {
           hid: 'twitter-card',
-          property: 'twitter:card',
+          name: 'twitter:card',
           content: 'summary',
         },
         {
           hid: 'twitter-title',
-          property: 'twitter:title',
+          name: 'twitter:title',
           content: 'Geebu',
         },
         {
           hid: 'twitter-description',
-          property: 'twitter:description',
+          name: 'twitter:description',
           content: 'Experience the Ultimate Fusion of Creativity and Entertainment with Geebu Create Your Custom Song, Tailored Exclusively for Your Special Event or Party.',
         },
         {
           hid: 'twitter-image',
-          property: 'twitter:image',
+          name: 'twitter:image',
           content: 'https://develop.geebu.ph/assets/geebu-logo.svg',
         },
         {
           hid: 'twitter-url',
-          property: 'twitter:url',
+          name: 'twitter:url',
           content: 'https://develop.geebu.ph',
         },
       ],
