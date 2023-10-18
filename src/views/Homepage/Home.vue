@@ -38,10 +38,10 @@ export default {
           property: 'og:description', 
           content: 'Experience the Ultimate Fusion of Creativity and Entertainment with Geebu Create Your Custom Song, Tailored Exclusively for Your Special Event or Party.',
         },
-        {
-          property: 'og:image',
-          content: 'https://develop.geebu.ph/assets/home/home-slider-1.webp',
-        },
+        // {
+        //   property: 'og:image',
+        //   content: 'https://develop.geebu.ph/assets/home/home-slider-1.webp',
+        // },
         {
           name: 'twitter:card',
           content: 'summary_large_image',
@@ -56,7 +56,7 @@ export default {
         },
         {
           name: 'twitter:image',
-          content: 'https://develop.geebu.ph/assets/home/home-slider-1.webp',
+          content: 'https://develop.geebu.ph/assets/geebu-logo.svg',
         },
       ],
      
