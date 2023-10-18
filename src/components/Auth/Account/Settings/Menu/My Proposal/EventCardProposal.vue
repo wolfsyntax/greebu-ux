@@ -6,7 +6,8 @@
           <img :src="proposal.cover_photo" class="offer-img" alt="Requested by image"> 
         </div>
         <div>
-          <h5 class="from"><span>To:</span> {{ proposal.organizer_name }}&nbsp;<span class="cancelled" v-if="proposal.cancelled_at && proposal.status === 'pending'">Cancelled</span></h5>
+          <h5 class="from"><span>To:</span> {{ proposal.organizer_name }}&nbsp;
+            <span class="cancelled lh-cancelled" v-if="proposal.cancelled_at && proposal.status === 'pending'">Cancelled</span></h5>
           <h6 class="d-flex align-items-center venue">Event Organizer
           <span class="material-symbols-rounded dot-icon">&#xe061;</span>{{ proposal.location }}</h6>
           <p class="d-flex align-items-center mb-0 star-ratings">

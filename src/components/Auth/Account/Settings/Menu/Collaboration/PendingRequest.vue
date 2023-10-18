@@ -6,14 +6,12 @@
 
         <div class="d-flex align-items-center left-wrap organizer-offers-details-wrap">
           <div>
-            <img src="/assets/organizer-account/profile-img.webp" class="offer-img" alt="Requested by image"> 
+            <img src="/assets/artist-account/artist-profile-1.webp" class="offer-img" alt="Artist image"> 
           </div>
 
           <div>
-            <h5 class="from"><span>From:</span> KCKC event organizer 
-              <span class="cancelled lh-cancelled">Cancelled</span>
-            </h5>
-            <h6 class="d-flex align-items-center venue">Event Organizer
+            <h5 class="from"><span>From: </span> Idlepitch </h5>
+            <h6 class="d-flex align-items-center venue">Full band
             <span class="material-symbols-rounded dot-icon">&#xe061;</span>
             Naga City, Camarines Sur</h6>
             <p class="d-flex align-items-center mb-0 star-ratings">

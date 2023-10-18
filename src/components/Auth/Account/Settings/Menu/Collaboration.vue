@@ -1,14 +1,19 @@
 <template>
-  <div>
+  <div class="collaboration">
     <div class="content">
-      <h3>Collaboration</h3>
+      <collaboration />
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapState, mapActions } from "vuex";
+import Collaboration from './Collaboration/Index.vue'
+
 export default {
+  components: {
+    Collaboration
+  },
   setup()
   {
 

@@ -129,7 +129,7 @@ export default {
         artistId: 1,
         image: '/assets/artist-account/song-cover1.webp',
         song_name: 'Please forgive me',
-        music: 'https://res.cloudinary.com/daorvtlls/video/upload/v1687411951/please-forgive-me-bryan-adams_bnyj1o.mp3',
+        music: 'https://res.cloudinary.com/daorvtlls/video/upload/v1697615328/Siakol___Tropa_Lyrics_Dina_Tayo_pabata_hanggat_Hindi_nahahalata___Siakolsonglyrics_tropalyrics_ndrbhu.mp4',
         likes: 0
       },
       {
@@ -137,7 +137,7 @@ export default {
         artistId: 2,
         image: '/assets/artist-account/song-cover2.webp',
         song_name: 'Smells like teen spirit',
-        music: 'https://res.cloudinary.com/daorvtlls/video/upload/v1686647605/Nirvana_-_Smells_like_teen_spirit_zs8yo4.mp3',
+        music: 'https://res.cloudinary.com/daorvtlls/video/upload/v1687411546/rivermaya-elesi_xj8lcy.mp3',
         likes: 23
       },
       

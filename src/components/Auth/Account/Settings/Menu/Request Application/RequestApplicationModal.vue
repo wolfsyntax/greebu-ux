@@ -31,11 +31,11 @@
           </div>
 
           <div class="d-flex align-items-center" v-if="proposal?.status === 'accepted'">
-            <!-- <button class="btn accepted">Ongoing</button> -->
+            <button class="btn accept">Message</button>
           </div>
           
            <div class="d-flex align-items-center" v-if="proposal?.status === 'declined'">
-            <button class="btn cancelled">Cancelled</button>
+            <button class="btn cancelled">Declined</button>
           </div>
         </div> <!-- end of action-wrapper -->
 

@@ -1,19 +1,17 @@
 <template>
-  <div>
-
-    <div class="customized-songs-wrapper">
+  <div class="customized-songs-wrapper">
       <div class="d-flex align-items-center justify-content-between event-description">
 
         <div class="d-flex align-items-center left-wrap organizer-offers-details-wrap">
           <div>
-            <img src="/assets/organizer-account/profile-img.webp" class="offer-img" alt="Requested by image"> 
+            <img src="/assets/artist-account/artist-profile-1.webp" class="offer-img" alt="Artist image"> 
           </div>
 
           <div>
-            <h5 class="from"><span>From:</span> KCKC event organizer 
-              <span class="cancelled lh-cancelled">Cancelled</span>
-            </h5>
-            <h6 class="d-flex align-items-center venue">Event Organizer
+            <h5 class="d-flex align-items-center from"><span>From:</span> Idlepitch
+              <span class="in-progress cancelled">Cancelled</span>
+             </h5>
+            <h6 class="d-flex align-items-center venue">Full band
             <span class="material-symbols-rounded dot-icon">&#xe061;</span>
             Naga City, Camarines Sur</h6>
             <p class="d-flex align-items-center mb-0 star-ratings">
@@ -31,33 +29,35 @@
       
       </div>
     </div>
-    
+
     <view-proposal-modal :show="showModal" @close-modal="closeModal" @accept-request="onModalAccepted" />
-  </div>
+
 </template>
 
 <script>
+
+import { mapState, mapActions } from 'vuex';
 import ViewProposalModal from './ViewProposalModal.vue';
+
 export default {
   setup()
   {
-
-
     return {}
   },
   components: {
-    ViewProposalModal,
+    ViewProposalModal
   },
   data: () => ({
     
     showModal: false,
-    showToast: false
   }),
   methods: {
+
     closeModal()
     {
       this.showModal = false;
     },
+
     onModalAccepted()
     {
       this.showToast = true;
@@ -67,7 +67,13 @@ export default {
       }, 7000);
       this.showModal = false;
     },    
-  }
+  },
+  mounted() {
+  
+  },
+  computed: { 
+  
+  },
 }
 </script>
 
