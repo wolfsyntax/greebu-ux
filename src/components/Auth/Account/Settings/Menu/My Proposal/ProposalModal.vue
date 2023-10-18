@@ -111,8 +111,6 @@
            </p>
           </div>
 
-          <cancellation-modal :show="showCancelModal" @close-modal="closeModal"  />
-
         </div> <!-- end of modal-body -->
       </div>
     </div>
@@ -120,18 +118,18 @@
   
   <script>
   import { mapState, mapActions } from 'vuex';
-  import CancellationModal from './CancellationModal.vue';
+  // import CancellationModal from './CancellationModal.vue';
 
   export default {
     components: {
-    CancellationModal,
+    // CancellationModal,
   },
     props: {
       show: Boolean
     },
     data() {
       return {
-        showCancelModal: false,
+        // showCancelModal: false,
       }
     },
     computed: {
@@ -153,11 +151,13 @@
         // this.hideModal();
       },
       cancel() {
-        this.cancelMyProposal(this.proposal.id)
-          .then(res => {
-            this.$emit('close-modal');
-            // this.$refs.proposalClose.click()
-          })
+        console.log('cancel proposal is clicked.')
+        this.$emit('close-modal', '');
+        // this.cancelMyProposal(this.proposal.id)
+        //   .then(res => {
+            
+        //     // this.$refs.proposalClose.click()
+        //   })
         
       
       },

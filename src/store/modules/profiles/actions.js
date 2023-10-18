@@ -458,19 +458,16 @@ export const otherSettings = ({ commit, state, rootState }, payload) => {
 
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + (rootState.bearerToken || localStorage.api_token);
-
+    var url = `${
+      import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+    }/api/account/profile/${rootState.role}/others`;
+    console.log("Others: ", url);
     await axios
-      .post(
-        `${
-          import.meta.env.VITE_BASE_URL || "http://localhost:8000"
-        }/api/account/profile/${rootState.role}/others`,
-        payload,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      )
+      .post(url, payload, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
       .then((response) => {
         const {
           status: statusCode,
