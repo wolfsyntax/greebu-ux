@@ -9,7 +9,7 @@
         <h5 class="mb-0 event">
           {{ pending.event_name }}
           <!-- <span class="in-progress" v-if="cardType === 'accepted'">Ongoing</span> -->
-          <small class="in-progress cancelled lh-cancelled" v-if="pending.cancelled_at">Cancelled</small>
+          <small class="in-progress cancelled lh-badge" v-if="pending.cancelled_at">Cancelled</small>
         </h5>
       </div>
       

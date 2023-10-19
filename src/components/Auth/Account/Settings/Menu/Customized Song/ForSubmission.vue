@@ -5,13 +5,27 @@
       <div class="d-flex align-items-center justify-content-between event-description">
 
         <div class="left-wrap">
-          <h5 class="event">{{ request.event }} <span class="in-progress">In Progress</span></h5>
+
+          <h5 class="event">
+            {{ request.event }}
+          <span class="in-progress lh-badge">In Progress</span>
+        </h5>
+
+       <!-- <div class="d-flex align-items-center">
+          <h5 class="event">{{ request.event }}</h5>
+          <div>
+            <span class="in-progress lh-badge">In Progress</span>
+          </div>
+       </div> -->
+      
           <div class="d-flex align-items-center requested-wrapper">
             <img :src=request.profile_image class="requested-by-image" alt="Requested by image"> 
-            <a href="#" class="requested-by">Requested by <span class="name">{{ request.name }}</span></a> <span class="time">{{ request.time }} hours ago</span>
+            <a href="#" class="requested-by">Requested by <span class="name">{{ request.name }}</span></a> 
+            <span class="material-symbols-sharp dot-icon">&#xe061;</span>
+            <span class="time">{{ request.time }} hours ago</span>
           </div>
 
-          <div class="d-flex">
+          <div class="d-flex event-note-wrap">
             <span class="material-symbols-rounded info-icon">&#xe88e;</span>
             <p class="note">Clients will only pay if the requested customized song is already been accepted by chosen Artist.</p>
           </div>
@@ -55,8 +69,7 @@ export default {
     data: () => ({
     requestedSongs: [
       { event: 'Birthday Song', profile_image: 'https://lh3.googleusercontent.com/a-/AD_cMMSLi2SfUJdD4SS2bXaL5NxayPEdYmT3NNso4i_pkSNZ=s64-p-k-rw-no', name: 'John Flores', time: 3, },
-      { event: 'Wedding Song', profile_image: 'https://lh3.googleusercontent.com/ogw/AGvuzYaE0rvo3xwVU3H4f2K3wcaEYqe9ht06pHbd9Lxh=s32-c-mo', name: 'Dante Magno', time: 12, },
-      { event: 'Wedding Song', profile_image: 'https://lh3.googleusercontent.com/ogw/AGvuzYaE0rvo3xwVU3H4f2K3wcaEYqe9ht06pHbd9Lxh=s32-c-mo', name: 'Dante Magno', time: 12, },
+      { event: 'Wedding Song', profile_image: 'https://lh3.googleusercontent.com/ogw/AGvuzYaE0rvo3xwVU3H4f2K3wcaEYqe9ht06pHbd9Lxh=s32-c-mo', name: 'Dante Magno', time: 12, }
     ],
     showModal: false,
     showToast: false

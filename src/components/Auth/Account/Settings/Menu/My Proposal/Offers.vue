@@ -11,7 +11,7 @@
 
           <div>
             <h5 class="from"><span>From:</span> KCKC event organizer 
-              <span class="cancelled lh-cancelled">Cancelled</span>
+              <span class="cancelled lh-badge">Cancelled</span>
             </h5>
             <h6 class="d-flex align-items-center venue">Event Organizer
             <span class="material-symbols-rounded dot-icon">&#xe061;</span>

@@ -3,7 +3,6 @@
   <div class="card">
     <div class="bg-wrapper">
 
-
       <div class="event-action-wrap">
 
       <button class="btn p-0 more-wrap" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -32,7 +31,6 @@
       </ul>
     </div>
 
-
     <img src="/assets/organizer-account/post-img.webp" class="img-fluid card-bg" loading="lazy" alt="Event image">
     <div class="d-flex align-items-start organized-by">
         <img src="/assets/organizer-account/post-img.webp" class="float-start" alt="Organized by logo">
@@ -45,14 +43,14 @@
     </div> <!-- end of bg-wrapper -->
     <div class="card-body">
     <div class="d-flex align-items-center event-details-wrap">
-        <div>
-        <h6 class="mb-0 month">APR</h6>
-        <h3 class="mb-0 num">01</h3>
+        <div class="left">
+          <h6 class="mb-0 month">APR</h6>
+          <h3 class="mb-0 num">01</h3>
         </div>
-        <div>
-        <h4 class="event-name">IDLE PITCH PAUSE PLAY REWIN</h4>
-        <h5 class="event-place">Naga City, Cam. Sur Philippines</h5>
-        <h5 class="date-time">Saturday, 8:00 am - 12:00 pm</h5>
+        <div class="right">
+          <h4 class="event-name">IDLE PITCH PAUSE PLAY REWIN</h4>
+          <h5 class="event-place">Naga City, Cam. Sur Philippines</h5>
+          <h5 class="date-time">Saturday, 8:00 am - 12:00 pm</h5>
         </div>
     </div>
     <div>

@@ -7,7 +7,7 @@
         </div>
         <div>
           <h5 class="from"><span>To:</span> {{ proposal.organizer_name }}&nbsp;
-            <span class="cancelled lh-cancelled" v-if="proposal.cancelled_at && proposal.status === 'pending'">Cancelled</span></h5>
+            <span class="cancelled lh-badge" v-if="proposal.cancelled_at && proposal.status === 'pending'">Cancelled</span></h5>
           <h6 class="d-flex align-items-center venue">Event Organizer
           <span class="material-symbols-rounded dot-icon">&#xe061;</span>{{ proposal.location }}</h6>
           <p class="d-flex align-items-center mb-0 star-ratings">

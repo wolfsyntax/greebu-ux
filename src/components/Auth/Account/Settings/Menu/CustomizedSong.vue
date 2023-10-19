@@ -1,6 +1,8 @@
 <template>
-  <div>
-    <customized-song />
+  <div class="customized-songs">
+    <div class="content">
+     <customized-song />
+    </div>
   </div>
 </template>
 
