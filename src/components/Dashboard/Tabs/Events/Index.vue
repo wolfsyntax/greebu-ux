@@ -1,9 +1,9 @@
 <template>
-  <section>
+  <section >
     <div>
       <h2>Ongoing Events</h2>
       <div class="row">
-        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-4">
+        <div class="">
           <ongoing-events/>
         </div>
       </div> 
@@ -11,7 +11,7 @@
       <h2>Upcoming Events</h2>
 
       <div class="row">
-        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-4">
+        <div class="">
           <upcoming-events/>
         </div>
       </div> 
@@ -19,7 +19,7 @@
       <h2>Past Events</h2>
 
       <div class="row">
-        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-4">
+        <div class="">
           <past-events/>
         </div>
       </div> 
