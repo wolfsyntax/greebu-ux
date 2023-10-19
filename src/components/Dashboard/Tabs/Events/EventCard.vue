@@ -27,7 +27,7 @@
       </div>
       
       <div>
-        <button class="mb-0 btn btn-primary view-details">View Details</button>
+        <button class="mb-0 btn btn-primary view-details" @click="$emit('show-detail', event)">View Details</button>
       </div>
     </div>
   </div>

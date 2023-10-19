@@ -1,7 +1,7 @@
 <template>
   <div class="row" v-if="events.length">
     <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-4"  v-for="(item, i) in events" :key="i" >
-      <event-card :event="item" />
+      <event-card :event="item" @show-detail="viewDetail" />
     </div>
   </div>
   <div class="text-center no-events-wrap" v-else>
@@ -29,16 +29,7 @@ export default {
     signupmodal: MustSignupModal,
   },
   props: {
-    pos: {
-      type: Number,
-      default: -1,
-      required: true
-    },
-    event: {
-      type: Object,
-      default: {},
-      required: true
-    },
+    
   },
   computed: {
     ...mapGetters(["isLoggedIn", 'userRole']),
@@ -50,30 +41,11 @@ export default {
     console.log('Upcoming Events[vue]: ', this.events)
   },
   methods: {
-    toggle(pos = -1) {
-      if (pos > -1) {
-        this.$store.commit('SET_EVENT', this.event);
-      } else {
-        this.$store.commit('SET_EVENT', {});
-      }
-
-      this.$emit('show', pos);
-
+    viewDetail(event) {
+      this.$store.commit('SET_EVENT', event);
+      this.$emit('modal');
+      console.log('Selected Upcoming Event: ', event)
     },
-    sendProposal() {
-      this.$store.commit('SET_EVENT', this.event);
-      this.$store.commit('SET_PROPOSAL', {
-        event_id: this.event.id || '',
-        artist_id: this.account.id || '',
-        artist_name: this.account.artist_name || '',
-        genres: this.account.genres || [],
-        total_member: this.members.length || 0,
-        cover_letter: '',
-        sample_song: '',
-      })
-
-      this.$router.push('/proposal')
-    }
   }
 }
 </script>

@@ -4,7 +4,7 @@
       <h2>Ongoing Events</h2>
       <div class="row">
         <div class="">
-          <ongoing-events/>
+          <ongoing-events @modal="toggle" />
         </div>
       </div> 
 
@@ -12,7 +12,7 @@
 
       <div class="row">
         <div class="">
-          <upcoming-events/>
+          <upcoming-events @modal="toggle" />
         </div>
       </div> 
       
@@ -20,11 +20,12 @@
 
       <div class="row">
         <div class="">
-          <past-events/>
+          <past-events @modal="toggle" />
         </div>
       </div> 
     </div>
 
+    <view-detail v-if="isLoggedIn" />
       <!-- SHOW THIS IF THERE IS NO EVENTS -->
 
         <!-- <div class="text-center no-events-wrap">
@@ -37,11 +38,14 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 import OngoingEvents from '/src/components/Organizer/OngoingEvents.vue';
 import PastEvents from '/src/components/Organizer/PastEvents.vue';
 import UpcomingEvents from '/src/components/Organizer/UpcomingEvents.vue';
+import ViewDetail from '/src/components/Events/ViewEventDetailsModal.vue';
+
+import { Modal } from 'bootstrap';
 
 export default {
   setup () {
@@ -52,12 +56,23 @@ export default {
   components: {
     PastEvents,
     OngoingEvents,
-    UpcomingEvents
+    UpcomingEvents,
+    ViewDetail
   },
   methods: {
     ...mapActions([
       'myOngoingEvents', 'myUpcomingEvents', 'myPastEvents',
     ]),
+    toggle() {
+      console.log('Show Modal')
+      new Modal(document.getElementById('eventDetailsModal'), {
+          keyboard: false,
+          // backdrop: 'static',
+        }).show()
+    }
+  },
+  computed: {
+    ...mapGetters(["isLoggedIn", 'userInfo', 'info', 'userRole']),
   },
   mounted() {
     console.log('My Ongoing Events:')

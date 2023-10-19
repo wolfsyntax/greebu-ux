@@ -1,7 +1,7 @@
 <template>
   <div class="row" v-if="events.length">
     <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-4"  v-for="(item, i) in events" :key="i" >
-      <event-card :event="item" />
+      <event-card :event="item" @show-detail="viewDetail" />
     </div>
   </div>
   <div class="text-center no-events-wrap" v-else>
@@ -31,16 +31,7 @@ export default {
     signupmodal: MustSignupModal,
   },
   props: {
-    pos: {
-      type: Number,
-      default: -1,
-      required: true
-    },
-    event: {
-      type: Object,
-      default: {},
-      required: true
-    },
+    
   },
   computed: {
     ...mapGetters(["isLoggedIn", 'userRole']),
@@ -52,7 +43,11 @@ export default {
     console.log('Past Events[vue]: ', this.events)
   },
   methods: {
-    
+    viewDetail(event) {
+      this.$store.commit('SET_EVENT', event);
+      this.$emit('modal');
+      console.log('Selected Past Event: ', event)
+    }
   }
 }
 </script>
