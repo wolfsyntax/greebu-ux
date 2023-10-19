@@ -26,33 +26,52 @@ export default {
   },
   setup()
   {
-    // useHead({
-    //   title: 'Home',
-    //   meta: [
-    //     {
-    //       name: `description`,
-    //       content: 'this about about page',
-    //     },
-    //     ],
-     
-    // })
+    useHead({
+      // Can be static or computed
+      title: 'Want to know how to find the perfect #GeebuArtist?',
+      meta: [
+        {
+          property: 'og:title', 
+          content: 'Geebu',
+        },
+        {
+          property: 'og:description', 
+          content: 'Experience the Ultimate Fusion of Creativity and Entertainment with Geebu Create Your Custom Song. Visit our website.',
+        },
+        // {
+        //   property: 'og:image',
+        //   content: 'https://develop.geebu.ph/assets/home/home-slider-1.webp',
+        // },
+        { name: 'description', 
+        content: 'Welcome to Geebu.' 
+        },
+        { name: 'keywords', 
+        content: 'Geebu, Artist, Create a song' 
+        }, 
+        {
+          name: 'twitter:card',
+          content: 'summary_large_image',
+        },
+        {
+          name: 'twitter:title',
+          content: 'Geebu',
+        },
+        {
+          name: 'twitter:description',
+          content: 'Experience the Ultimate Fusion of Creativity and Entertainment with Geebu Create Your Custom Song. Visit our website.',
+        },
+        {
+          name: 'twitter:image',
+          content: 'https://develop.geebu.ph/assets/geebu-logo.svg',
+        },
+      ],
+     script: [ { innerHTML: 'console.log(\'Welcome to Geebu\')' } ]
+    })
   },
   data()
   {
     return {
       plans: [{}]
-    }
-  },
-  head() {
-    return {
-      title: 'Welcome to Geebu',
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: 'Experience the Ultimate Fusion of Creativity and Entertainment with Geebu Create Your Custom Song.',
-        },
-      ],
     }
   },
 }
