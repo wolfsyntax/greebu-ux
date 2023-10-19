@@ -2,6 +2,37 @@
 
   <div class="card">
     <div class="bg-wrapper">
+
+
+      <div class="event-action-wrap">
+
+      <button class="btn p-0 more-wrap" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <span class="material-symbols-rounded">&#xe5d3;</span>
+      </button>
+
+      <ul class="dropdown-menu">
+        <li>
+          <button class="d-flex align-items-center btn">
+            <span class="material-symbols-rounded">
+            &#xe3c9;
+          </span>
+          Edit event 
+          </button>
+        </li>
+
+        <li>
+          <button class="d-flex align-items-center btn delete">
+            <span class="material-symbols-rounded">
+            &#xe872;
+          </span>
+          Delete
+          </button>
+        </li>
+        
+      </ul>
+    </div>
+
+
     <img src="/assets/organizer-account/post-img.webp" class="img-fluid card-bg" loading="lazy" alt="Event image">
     <div class="d-flex align-items-start organized-by">
         <img src="/assets/organizer-account/post-img.webp" class="float-start" alt="Organized by logo">
