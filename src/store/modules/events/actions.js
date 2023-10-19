@@ -314,3 +314,111 @@ export const fetchEvent = ({ commit, rootState, state }, payload) => {
     }
   });
 };
+
+export const myOngoingEvents = ({ commit, rootState, state }) => {
+  return new Promise(async (resolve, reject) => {
+    axios.defaults.headers.common["Authorization"] =
+      "Bearer " + (rootState.bearerToken || localStorage.api_token);
+
+    var url = "";
+    await axios
+      .get(
+        `${
+          import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+        }/api/events/ongoing`
+      )
+      .then((response) => {
+        console.log("Fetch Ongoing Events: ", response);
+
+        const { status: statusCode, data } = response;
+
+        if (statusCode === 200) {
+          const {
+            status,
+            message,
+            result: { events },
+          } = data;
+          commit("SET_ONGOING_EVENTS", events || []);
+          resolve(data);
+        }
+
+        reject(data);
+      })
+      .catch((err) => {
+        const { data } = err;
+        reject(data);
+      });
+  });
+};
+
+export const myUpcomingEvents = ({ commit, rootState, state }) => {
+  return new Promise(async (resolve, reject) => {
+    axios.defaults.headers.common["Authorization"] =
+      "Bearer " + (rootState.bearerToken || localStorage.api_token);
+
+    var url = "";
+    await axios
+      .get(
+        `${
+          import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+        }/api/events/upcoming`
+      )
+      .then((response) => {
+        console.log("Fetch Upcoming Events: ", response);
+
+        const { status: statusCode, data } = response;
+
+        if (statusCode === 200) {
+          const {
+            status,
+            message,
+            result: { events },
+          } = data;
+          commit("SET_UPCOMING_EVENTS", events || []);
+          resolve(data);
+        }
+
+        reject(data);
+      })
+      .catch((err) => {
+        const { data } = err;
+        reject(data);
+      });
+  });
+};
+
+export const myPastEvents = ({ commit, rootState, state }) => {
+  return new Promise(async (resolve, reject) => {
+    axios.defaults.headers.common["Authorization"] =
+      "Bearer " + (rootState.bearerToken || localStorage.api_token);
+
+    var url = "";
+    await axios
+      .get(
+        `${
+          import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+        }/api/events/past`
+      )
+      .then((response) => {
+        console.log("Fetch Patch Events: ", response);
+
+        const { status: statusCode, data } = response;
+
+        if (statusCode === 200) {
+          const {
+            status,
+            message,
+            result: { events },
+          } = data;
+          commit("SET_PAST_EVENTS", events || []);
+          resolve(data);
+        }
+
+        reject(data);
+      })
+      .catch((err) => {
+        const { data } = err;
+        reject(data);
+      });
+  });
+};
