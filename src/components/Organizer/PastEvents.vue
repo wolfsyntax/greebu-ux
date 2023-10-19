@@ -3,16 +3,18 @@
     <event-card v-for="(item, i) in events" :key="i" :event="item" />
   </div>
 </template>
+  
 <script>
 import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
 import ViewDetail from '/src/components/Events/ViewEventDetailsModal.vue';
 import MustSignupModal from '/src/components/Artist/MustSignupModal.vue';
+
 import EventCard from '/src/components/Dashboard/Tabs/Events/EventCard.vue';
 export default {
   setup()
   {
-
-
+  
+  
     return {}
   },
   components: {
@@ -35,39 +37,16 @@ export default {
   computed: {
     ...mapGetters(["isLoggedIn", 'userRole']),
     ...mapState({
-      events: state => state.events.upcomingEvents, 
+      events: state => state.events.pastEvents, 
     })
   },
   mounted() {
-    console.log('Upcoming Events[vue]: ', this.events)
+    console.log('Past Events[vue]: ', this.events)
   },
   methods: {
-    toggle(pos = -1) {
-      if (pos > -1) {
-        this.$store.commit('SET_EVENT', this.event);
-      } else {
-        this.$store.commit('SET_EVENT', {});
-      }
-
-      this.$emit('show', pos);
-
-    },
-    sendProposal() {
-      this.$store.commit('SET_EVENT', this.event);
-      this.$store.commit('SET_PROPOSAL', {
-        event_id: this.event.id || '',
-        artist_id: this.account.id || '',
-        artist_name: this.account.artist_name || '',
-        genres: this.account.genres || [],
-        total_member: this.members.length || 0,
-        cover_letter: '',
-        sample_song: '',
-      })
-
-      this.$router.push('/proposal')
-    }
+    
   }
 }
 </script>
-
-<style lang="scss" scoped></style>
+  
+  <style lang="scss" scoped></style>

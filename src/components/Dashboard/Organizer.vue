@@ -326,34 +326,7 @@
           </div>
 
           <div class="row events-tab" v-if="activeItem === 'Events'">
-            <div>
-              <h2>Ongoing Events</h2>
-              <div class="row">
-                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-4">
-                  <ongoing-events/>
-                </div>
-              </div> 
-
-              <h2>Upcoming Events</h2>
-
-              <div class="row">
-                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-4">
-                  <upcoming-events/>
-                </div>
-              </div> 
-            </div>
-
-             <!-- SHOW THIS IF THERE IS NO EVENTS -->
-
-                <!-- <div class="text-center no-events-wrap">
-                  <img src="/assets/events/no-events.svg" class="no-events-icon" alt="No events added icon">
-                  <h2 class="title">No Events Added</h2>
-                  <p class="description">It looks like you haven’t posted any events yet? Use the button below to create your first song to start your Geebu journey!</p>
-                  <button class="btn add-event">Add Event</button>
-                </div> -->
-              
-             
-
+            <event-tab />
           </div> <!-- end of Events tab -->
 
           <div v-if="activeItem === 'Reviews'">
@@ -377,8 +350,9 @@ import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
 import Post from '/src/components/Post/Index.vue';
 // import BannerModal from '/src/components/Organizer/BannerModal.vue';
 import BannerModal from './Modals/BannerModal.vue';
-import OngoingEvents from '/src/components/Organizer/OngoingEvents.vue';
-import UpcomingEvents from '/src/components/Organizer/UpcomingEvents.vue';
+// src\components\Dashboard\Tabs\Events\Index.vue
+import EventTab from '/src/components/Dashboard/Tabs/Events/Index.vue';
+
 import { Modal } from 'bootstrap';
 
 export default {
@@ -390,8 +364,9 @@ export default {
   components: {
     Post,
     BannerModal,
-    OngoingEvents,
-    UpcomingEvents
+    EventTab,
+    // OngoingEvents,
+    // UpcomingEvents
   },
   data: () => ({
     bannerImage: '/assets/organizer-account/default-cover-photo.webp',
