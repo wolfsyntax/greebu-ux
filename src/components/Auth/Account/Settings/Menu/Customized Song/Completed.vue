@@ -4,14 +4,22 @@
 
       <div class="d-flex align-items-center justify-content-between event-description">
 
-        <div class="d-flex align-items-center left-wrap fr-left">
-
-          <div>
+        <div class="d-flex align-items-center left-wrap expand-left-wrap">
+          <div class="song-cover-wrap">
             <img :src=request.song_cover class="song-cover" alt="Song album cover"> 
           </div>
 
-          <div>
-            <h5 class="event">{{ request.event }} <span class="completed lh-badge">Completed</span></h5>
+          <div class="song-details-wrap">
+
+            <div class="d-flex align-items-center event-wrap">
+              <h5 class="mb-0 event">Happy birthday to you. Happy birthday to you. Happy birthday to you. </h5>
+                <div>
+                  <button class="btn p-0 badge-wrap">
+                    <span class="completed lh-badge">Completed</span>
+                  </button>
+                </div>
+            </div>
+
             <div class="d-flex align-items-center requested-wrapper">
               <img :src=request.profile_image class="requested-by-image" alt="Requested by image"> 
               <a href="#" class="requested-by">Requested by <span class="name">{{ request.name }}</span></a> 
@@ -21,8 +29,10 @@
             <h6>Genre: <span>{{ request.genre }}</span></h6>
             <h6 class="mb-0">Lenght: <span>{{ request.duration }} minutes</span></h6>
           </div>
-
+          
         </div>
+
+
 
         <div class="details-wrapper">
         <div class="button-wrapper">

@@ -3,30 +3,36 @@
       <div class="customized-songs-wrapper" v-for="(request, index) in requestedSongs" :key="index">
   
         <div class="d-flex align-items-center justify-content-between event-description">
-  
-          <div class="d-flex align-items-center left-wrap fr-left">
-  
-            <div>
-              <h5 class="event">{{ request.event }} <span class="in-progress cancelled lh-badge">Request Denied</span></h5>
-              <div class="d-flex align-items-center requested-wrapper">
-                <img :src=request.profile_image class="requested-by-image" alt="Requested by image"> 
-                <a href="#" class="requested-by">Requested by <span class="name">{{ request.name }}</span></a> 
-                <span class="material-symbols-sharp dot-icon">&#xe061;</span>
-                <span class="time">{{ request.time }} hours ago</span>
-              </div>
+
+          <div class="left-wrap">
+          
+            <div class="d-flex align-items-center event-wrap">
+                <h5 class="mb-0 event">Happy birthday to you. Happy birthday to you. Happy birthday to you. </h5>
+                <div>
+                  <button class="btn p-0 badge-wrap">
+                    <span class="in-progress cancelled lh-badge">Request Denied</span>
+                  </button>
+                </div>
             </div>
-  
+        
+            <div class="d-flex align-items-center requested-wrapper">
+              <img :src=request.profile_image class="requested-by-image" alt="Requested by image"> 
+              <a href="#" class="requested-by">Requested by <span class="name">{{ request.name }}</span></a> 
+              <span class="material-symbols-sharp dot-icon">&#xe061;</span>
+              <span class="time">{{ request.time }} hours ago</span>
+            </div>
+
           </div>
   
           <div class="details-wrapper">
-          <div class="button-wrapper">
-            <button type="button" class="btn details" @click="showModal = true">View Details</button>
-            <requested-song-modal :show="showModal" 
-              @close-modal="closeModal" @accept-request="onModalAccepted" 
-            />
-            <button type="button" class="btn upload">Delete</button>
+            <div class="button-wrapper">
+              <button type="button" class="btn details" @click="showModal = true">View Details</button>
+              <requested-song-modal :show="showModal" 
+                @close-modal="closeModal" @accept-request="onModalAccepted" 
+              />
+              <button type="button" class="btn upload">Delete</button>
+            </div>
           </div>
-        </div>
   
         </div>
   

@@ -5,18 +5,15 @@
       <div class="d-flex align-items-center justify-content-between event-description">
 
         <div class="left-wrap">
-
-          <h5 class="event">
-            {{ request.event }}
-          <span class="in-progress lh-badge">In Progress</span>
-        </h5>
-
-       <!-- <div class="d-flex align-items-center">
-          <h5 class="event">{{ request.event }}</h5>
-          <div>
-            <span class="in-progress lh-badge">In Progress</span>
+          
+          <div class="d-flex align-items-center event-wrap">
+              <h5 class="mb-0 event">Happy birthday to you. Happy birthday to you. Happy birthday to you. </h5>
+              <div>
+                <button class="btn p-0 badge-wrap">
+                  <span class="in-progress lh-badge">In Progress</span>
+                </button>
+              </div>
           </div>
-       </div> -->
       
           <div class="d-flex align-items-center requested-wrapper">
             <img :src=request.profile_image class="requested-by-image" alt="Requested by image"> 
@@ -29,6 +26,7 @@
             <span class="material-symbols-rounded info-icon">&#xe88e;</span>
             <p class="note">Clients will only pay if the requested customized song is already been accepted by chosen Artist.</p>
           </div>
+
         </div>
 
         <div class="details-wrapper">
@@ -92,4 +90,5 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+</style>

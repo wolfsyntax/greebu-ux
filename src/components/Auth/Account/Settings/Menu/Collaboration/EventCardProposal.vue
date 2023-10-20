@@ -1,20 +1,36 @@
 <template>
   <div class="customized-songs-wrapper">
     <div class="d-flex align-items-center justify-content-between event-description">
-      <div class="d-flex align-items-center left-wrap organizer-offers-details-wrap">
-        <div>
-          <img src="/assets/artist-account/artist-profile-1.webp" class="offer-img" alt="Artist image"> 
+
+      <div class="d-flex align-items-center left-wrap expand-left-wrap">
+          <div class="song-cover-wrap">
+            <img src="/assets/organizer-account/profile-img.webp" class="offer-img" alt="Song album cover"> 
+          </div>
+
+          <div class="song-details-wrap">
+
+            <div class="d-flex align-items-center event-wrap">
+              <h5 class="mb-0 event"><span>To:</span> KYC Flores Event Organizer KYC Flores Event Organizer </h5>
+                <!-- <div>
+                  <button class="btn p-0 badge-wrap">
+                    <span class="in-progress cancelled lh-badge">Cancelled</span>
+                  </button>
+                </div> -->
+            </div>
+
+            <div>
+              <h6 class="d-flex align-items-center venue">Full band
+              <span class="material-symbols-rounded dot-icon">&#xe061;</span>Naga City, Camarines Sur</h6>
+              <p class="d-flex align-items-center mb-0 star-ratings">
+                <span class="material-symbols-rounded star-icon">&#xe838;</span>
+                4.95 <span class="reviews">(234 reviews)</span>
+              </p>
+            </div>
+
+          </div>
+          
         </div>
-        <div>
-          <h5 class="from"><span>To: </span> Idleapitch</h5>
-          <h6 class="d-flex align-items-center venue">Full band
-          <span class="material-symbols-rounded dot-icon">&#xe061;</span>Naga City, Camarines Sur</h6>
-          <p class="d-flex align-items-center mb-0 star-ratings">
-            <span class="material-symbols-rounded star-icon">&#xe838;</span>
-            4.95 <span class="reviews">(234 reviews)</span>
-          </p>
-        </div>
-      </div>
+
 
       <div class="details-wrapper">
         <div class="button-wrapper">
