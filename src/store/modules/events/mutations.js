@@ -3,7 +3,8 @@ export const SET_EVENT_OPTIONS = (state, payload) => {
 };
 
 export const SET_EVENT_FORM = (state, payload) => {
-  // state.form = payload;
+  console.log("SET_EVENT_FORM data: ", payload);
+  state.form = payload;
 };
 
 export const SET_LOOK_FORM = (
@@ -35,9 +36,10 @@ export const RESET_EVENT_FORM = (state) => {
     requirement: "",
     cover: "",
     venue_name: "",
+    mode: "store",
   };
 
-  state.form.event_type = "2123";
+  state.form.event_type = "";
   console.log("[RESET_EVENT_FORM] Event Form: ", state.form);
 };
 
@@ -56,6 +58,7 @@ export const RESET_EVENT_FILTER = (state) => {
 };
 
 export const SET_EVENT = (state, payload) => {
+  console.log("SET_EVENT data: ", payload);
   state.event = payload;
 };
 
@@ -66,7 +69,6 @@ export const SET_ONGOING_EVENTS = (state, payload = []) => {
 
 export const SET_UPCOMING_EVENTS = (state, payload = []) => {
   state.upcomingEvents = payload;
-  upcomingEvents;
 };
 
 export const SET_PAST_EVENTS = (state, payload = []) => {

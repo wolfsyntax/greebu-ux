@@ -13,7 +13,7 @@
 
       <div class="form-group">
         <label for="lookingFor">Type</label>
-
+       
         <transition-group name="fade" tag="div" v-if="look_for === 'artist'">
           <multiselect  v-model="look_type" mode="tags"
             :close-on-select="false"
@@ -31,7 +31,7 @@
             :disabled="!account.accept_proposal"
           >
             <template slot="singleLabel" slot-scope="{ option }" >
-              <span style="text-transform: capitalize;">{{ option.text }}12</span>
+              <span style="text-transform: capitalize;">{{ option.text }}</span>
             </template>
           </multiselect>	
         </transition-group>
@@ -87,6 +87,13 @@ import { mapActions, mapGetters, mapState } from 'vuex';
 import Multiselect from '@vueform/multiselect';
 
 export default {
+  props: {
+    accessType: {
+      type: String,
+      default: 'create',
+      required: false,
+    },
+  },
   setup () {
     
 
@@ -103,12 +110,29 @@ export default {
   }),
   mounted()
   {
-    this.look_for = 'artist';
-    this.lookTypes = this.artistType
-    document.getElementById('createEventModal').addEventListener('hide.bs.modal', () =>
+    this.look_type = this.lookTypes = [];
+    this.look_for = '';
+
+    if (this.accessType === 'create') {
+      this.look_for = 'artist';
+      this.lookTypes = this.artistType;
+    } else {
+      console.log('Form via LookModal: ', this.form)
+      this.look_for = this.form.look_for;
+      this.requirement = this.form.description;
+      console.log('Edit look form look type: ', this.form.look_types, this.look_for, this.requirement);
+      this.look_type = this.form.look_types; 
+      
+    }
+
+    document.getElementById(this.accessType === 'create' ? 'createEventModal' : 'editEventModal').addEventListener('hide.bs.modal', () =>
     {
+      console.log('Reset event form via LookModal')
       this.$store.commit('RESET_EVENT_FORM')
       this.step = 'detail';
+      this.lookTypes = [];
+      this.look_for = '';
+      this.look_type = [];
     });
   },
   components: {
@@ -129,7 +153,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(['createEvent', 'fetchEventOptions',]),
+    ...mapActions(['createEvent', 'fetchEventOptions', 'updateMyEvent', ]),
     onOpenOption()
     {
       
@@ -179,48 +203,73 @@ export default {
       var action = !this.canSkip ? 'skip' : '';
 
       if (action !== 'skip') {
+
         this.form.look_for = this.look_for;
         this.form.look_types = this.look_type;
         this.form.requirement = this.requirement;
+        console.log('Form to send: ', this.form);
       }
+      
+      if (this.accessType === 'create') {
+        
+        this.createEvent(action)
+          .then(res =>
+          {
+            console.log(`${action} - Look: `, res);
+            this.$emit('next-step', 'success')
+          }).catch(err =>
+          {
+            const { status, message, result} = err;
+            if (result?.errors) {
+              this.error = result.errors;
+            }
+          })
+      } else {
+        console.log('update event via LookModal.vue: ', this.form);
+        if (typeof this.form.cover_photo === 'string') delete this.form.cover_photo;
+        this.updateMyEvent(this.form.id)
+          .then(res =>
+          {
 
-      this.createEvent(action)
-        .then(res =>
-        {
-          console.log(`${action} - Look: `, res);
-          this.$emit('next-step', 'success')
-        }).catch(err =>
-        {
-          const { status, message, result} = err;
-          if (result?.errors) {
-            this.error = result.errors;
-          }
-        })
+            this.$emit('next-step', 'success')
+          }).catch(err =>
+          {
+            const { status, message, result} = err;
+            if (result?.errors) {
+              this.error = result.errors;
+            }
+          });
+      }
     }
   },
   watch: {
     look_for: {
       handler(val)
       { 
-        console.log('Look Type: ', val);
-        this.look_type = this.lookTypes = [];
+        
+        //this.look_type = this.lookTypes = [];
         if (val === 'artist') {
           this.lookTypes = this.artistType;
         } else if (val === 'service') {
           this.lookTypes = this.serviceType;
         }
-        this.lookTypes = this.lookTypes.map(function (obj)
-        {
-          var words = obj.split(" ")
 
-          return {
-            value: obj,
-            text: words.map((word) =>
-            {
-              return word[0].toUpperCase() + word.substring(1);
-            }).join(" "),
-          }
-        })
+        if (val !== null || val !== '') {
+          console.log(`Look ${val} Type: `, this.lookTypes);
+          this.lookTypes = this.lookTypes.map(function (obj)
+          {
+            var words = obj.split(" ")
+
+            return {
+              value: obj,
+              text: words.map((word) =>
+              {
+                return word[0].toUpperCase() + word.substring(1);
+              }).join(" "),
+            }
+          });
+
+        }
         console.log('LookTypes: ', this.lookTypes)
       },
       deep: true,
@@ -228,9 +277,12 @@ export default {
     form: {
       handler(val)
       {
-        if (val.look_for === 'artist') {
-          
-        }
+        console.log('Form via LookModal: ', this.form);
+        this.look_for = val.look_for ?? 'artist'; 
+        
+        this.requirement = val.description ?? '';
+        this.look_type = val.look_types ?? [];
+
       },
       deep: true,
     }

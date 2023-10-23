@@ -200,6 +200,8 @@ export const createEvent = (
       delete state.form.requirement;
     }
 
+    state.form.mode = "store";
+    console.log("Create Event form: ", state.form);
     await axios
       .post(
         `${
@@ -234,6 +236,48 @@ export const createEvent = (
         const { data } = err;
         reject(data);
       });
+  });
+};
+
+export const updateMyEvent = ({ commit, rootState, state }, payload) => {
+  return new Promise(async (resolve, reject) => {
+    axios.defaults.headers.common["Authorization"] =
+      "Bearer " + (rootState.bearerToken || localStorage.api_token);
+
+    if (!payload) reject({ status: 404, message: "", result: [] });
+    else {
+      var url = `${
+        import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+      }/api/events/${payload}/update`;
+
+      state.form.mode = "update";
+      console.log("Update Form:: ", state.form);
+      await axios
+        .post(url, state.form, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((response) => {
+          const { status: statusCode, data } = response;
+          console.log("Update Event info: ", response);
+          if (statusCode === 200) {
+            const { result } = data;
+            console.log("Update Event result: ", result);
+            commit("SET_EVENT_FORM", result?.event || {});
+            commit("SET_EVENT", result?.event || {});
+
+            resolve(data);
+          }
+
+          reject(data);
+        })
+        .catch((err) => {
+          console.log("Form Error: ", err);
+          const { data } = err;
+          reject(data);
+        });
+    }
   });
 };
 
@@ -282,6 +326,42 @@ export const updateEvent = ({ commit, rootState, state }) => {
   });
 };
 
+export const removeEvent = (
+  { dispatch, commit, rootState, state },
+  payload
+) => {
+  return new Promise(async (resolve, reject) => {
+    axios.defaults.headers.common["Authorization"] =
+      "Bearer " + (rootState.bearerToken || localStorage.api_token);
+
+    await axios
+      .post(
+        `${
+          import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+        }/api/events/${payload}`
+      )
+      .then((response) => {
+        console.log("Delete Event: ", response);
+        const { status: statusCode, data } = response;
+        if (statusCode === 200) {
+          const {
+            status,
+            message,
+            result: { event },
+          } = data;
+
+          resolve(data);
+        }
+
+        reject(data);
+      })
+      .catch((err) => {
+        const { data } = err;
+        reject(data);
+      });
+  });
+};
+
 export const fetchEvent = ({ commit, rootState, state }, payload) => {
   return new Promise(async (resolve, reject) => {
     axios.defaults.headers.common["Authorization"] =
@@ -297,11 +377,15 @@ export const fetchEvent = ({ commit, rootState, state }, payload) => {
       await axios
         .get(url)
         .then((response) => {
-          console.log("Fetch Event: ", response);
-
           const { status: statusCode, data } = response;
 
           if (statusCode === 200) {
+            console.log("Fetch Event info: ", response);
+            const { result } = data;
+            console.log("Fetch Event result: ", result);
+            commit("SET_EVENT_FORM", result?.event || {});
+            commit("SET_EVENT", result?.event || {});
+
             resolve(data);
           }
 
@@ -364,17 +448,17 @@ export const myUpcomingEvents = ({ commit, rootState, state }) => {
         }/api/events/upcoming`
       )
       .then((response) => {
-        console.log("Fetch Upcoming Events: ", response);
-
         const { status: statusCode, data } = response;
-
+        console.log("Fetch Upcoming Events: ", response);
         if (statusCode === 200) {
           const {
             status,
             message,
             result: { events },
           } = data;
+
           commit("SET_UPCOMING_EVENTS", events || []);
+          console.log("Upcoming Events: ", events);
           resolve(data);
         }
 
@@ -400,7 +484,7 @@ export const myPastEvents = ({ commit, rootState, state }) => {
         }/api/events/past`
       )
       .then((response) => {
-        console.log("Fetch Patch Events: ", response);
+        console.log("Fetch Past Events: ", response);
 
         const { status: statusCode, data } = response;
 

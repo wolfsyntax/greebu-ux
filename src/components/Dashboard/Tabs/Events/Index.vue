@@ -26,6 +26,8 @@
     </div>
 
     <view-detail v-if="isLoggedIn" />
+    <events-modal @close="dismiss" v-if="isLoggedIn" />
+    <event-success modalType="edit" />
       <!-- SHOW THIS IF THERE IS NO EVENTS -->
 
         <!-- <div class="text-center no-events-wrap">
@@ -44,6 +46,8 @@ import OngoingEvents from '/src/components/Organizer/OngoingEvents.vue';
 import PastEvents from '/src/components/Organizer/PastEvents.vue';
 import UpcomingEvents from '/src/components/Organizer/UpcomingEvents.vue';
 import ViewDetail from '/src/components/Events/ViewEventDetailsModal.vue';
+import EventsModal from '/src/components/Auth/Events/EditModal.vue';
+import EventSuccess from '/src/components/Auth/Events/SuccessModal.vue';
 
 import { Modal } from 'bootstrap';
 
@@ -54,6 +58,8 @@ export default {
     return {}
   },
   components: {
+    EventsModal,
+    EventSuccess,
     PastEvents,
     OngoingEvents,
     UpcomingEvents,
@@ -63,12 +69,30 @@ export default {
     ...mapActions([
       'myOngoingEvents', 'myUpcomingEvents', 'myPastEvents',
     ]),
-    toggle() {
+    dismiss(option) {
+      if (option === 'success') {
+        new Modal(document.getElementById('eventsCreatedModal'), {
+          keyboard: false,
+          backdrop: 'static',
+        }).show()
+      }
+    },
+    toggle(type) {
       console.log('Show Modal')
-      new Modal(document.getElementById('eventDetailsModal'), {
+      if (type === 'view') {
+        new Modal(document.getElementById('eventDetailsModal'), {
           keyboard: false,
           // backdrop: 'static',
-        }).show()
+        }).show();
+        
+      } else {
+      
+        new Modal(document.getElementById('editEventModal'), {
+          keyboard: false,
+          backdrop: 'static',
+        }).show();
+
+      }
     }
   },
   computed: {
@@ -76,6 +100,7 @@ export default {
   },
   mounted() {
     console.log('My Ongoing Events:')
+    this.$store.commit('SET_EVENT_FORM', {});
     this.myOngoingEvents();
     this.myUpcomingEvents();
     this.myPastEvents();
