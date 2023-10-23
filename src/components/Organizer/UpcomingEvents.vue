@@ -19,8 +19,6 @@ import EventCard from '/src/components/Dashboard/Tabs/Events/EventCard.vue';
 export default {
   setup()
   {
-
-
     return {}
   },
   components: {

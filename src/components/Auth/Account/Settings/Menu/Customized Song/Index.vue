@@ -29,27 +29,29 @@
       </li>
     </div>
 
-    <requested-song v-if="selectedCustomized === 'Requested'"/>
+    <requested v-if="selectedCustomized === 'Requested'"/>
     <submission v-if="selectedCustomized === 'For Submission'" />
     <revision v-if="selectedCustomized === 'For Revision'"/>
     <completed v-if="selectedCustomized === 'Completed'"/>
+    <denied v-if="selectedCustomized === 'Denied'"/>
     
   </div>
 </template>
   
 <script>
-
+import Denied from './Denied.vue';
 import Completed from './Completed.vue';
 import Revision from './ForRevision.vue';
 import Submission from './ForSubmission.vue';
-import RequestedSong from './RequestedSong.vue';
+import Requested from './Requested.vue';
 
 export default {
   components: {
+    Denied,
     Completed,
     Revision,
     Submission,
-    RequestedSong,
+    Requested,
   },
   props: {
 
@@ -61,6 +63,7 @@ export default {
         { name: 'For Submission'},
         { name: 'For Revision'},
         { name: 'Completed'},
+        { name: 'Denied'},
       ],
       selectedCustomized: 'Requested', // Default selected option
       showModal: false,

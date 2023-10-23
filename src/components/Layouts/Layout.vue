@@ -249,7 +249,7 @@
           <div class="col-4">
             <div class="footer-logo">
               <a href="/">
-                <img src="/assets/geebu-logo.svg" loading="lazy" alt="logo">
+                <img src="/assets/footer-logo-og.png" loading="lazy" alt="logo">
               </a>
             </div>
           </div>

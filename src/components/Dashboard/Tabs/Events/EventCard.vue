@@ -1,6 +1,8 @@
 <template>
+
   <div class="card">
-    <div class="bg-wrapper">
+
+    <!-- <div class="bg-wrapper">
       <img :src="event.cover_photo" class="img-fluid card-bg" loading="lazy" alt="Event image">
       <div class="d-flex align-items-start organized-by">
         <img :src="event.organizer_avatar" class="float-start" alt="Organized by logo">
@@ -10,7 +12,49 @@
         </div>
       </div>
 
-    </div> <!-- end of bg-wrapper -->
+    </div>  -->
+
+    <div class="bg-wrapper">
+
+      <div class="event-action-wrap">
+
+      <button class="btn p-0 more-wrap" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <span class="material-symbols-rounded">&#xe5d3;</span>
+      </button>
+
+        <ul class="dropdown-menu">
+          <li>
+            <button class="d-flex align-items-center btn">
+              <span class="material-symbols-rounded">
+              &#xe3c9;
+            </span>
+            Edit event 
+            </button>
+          </li>
+
+          <li>
+            <button class="d-flex align-items-center btn delete">
+              <span class="material-symbols-rounded">
+              &#xe872;
+            </span>
+            Delete
+            </button>
+          </li>
+          
+        </ul>
+      </div>
+
+      <img :src="event.cover_photo" class="img-fluid card-bg" loading="lazy" alt="Event image">
+      <div class="d-flex align-items-start organized-by">
+        <img :src="event.organizer_avatar" class="float-start" alt="Organized by logo">
+        <div class="organizer-wrap">
+        <h5>{{ event.organizer_name }}</h5>
+        <p class="mb-0">Organized by</p>
+        </div>
+      </div>
+
+      </div>
+
     <div class="card-body">
       <div class="d-flex align-items-center event-details-wrap">
         <div>
@@ -31,6 +75,10 @@
       </div>
     </div>
   </div>
+
+
+
+
 </template>
 
 <script>

@@ -26,6 +26,8 @@
   --warning: #DC2626;
   --warning-light: #FECACA;
   --accepted-light: #C7D2FE;
+  --completed: #1C9749;
+  --completed-light: #BBF7D0;
 }
 
 /* Material Symbols */
@@ -2388,7 +2390,7 @@ background-color: var(--orange);
 .create-song .content p{
   font-size: 1.5rem;
   font-weight: 500;
-  line-height: 1.75rem;
+  line-height: 2rem;
   color: var(--gray2);
   margin-bottom: 2.5rem;
 }
@@ -5451,6 +5453,27 @@ width: 100%;
 /* .account-settings .customized-songs-tabs .active-option{
   border-bottom: 3px solid var(--orange);
 } */
+
+.account-settings .customized-songs-wrapper .song-cover{
+  width: 7.5rem;
+  height: 7.5rem;
+  border-radius: 0.1875rem;
+}
+.account-settings .customized-songs-wrapper .song-details-wrap .requested-wrapper{
+  margin-bottom: 1rem;
+}
+.account-settings .customized-songs-wrapper .song-details-wrap h6{
+  color: var(--gray2);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.04rem;
+  margin-bottom: 0.25rem;
+}
+.account-settings .customized-songs-wrapper .song-details-wrap h6 span{
+  color: var(--black);
+  font-weight: 500;
+}
+
 .account-settings .title-wrapper .title,
 .account-settings .notifications-wrap .title{
   font-size: 1.5rem;
@@ -5484,6 +5507,10 @@ width: 100%;
 }
 .account-settings .customized-songs-wrapper .event-description .left-wrap{
   width: 60%;
+  gap: 1rem;
+}
+.account-settings .customized-songs-wrapper .event-description .expand-left-wrap{
+  width: 70%;
 }
 .account-settings .customized-songs-wrapper .details-wrapper{
   width: 40%;
@@ -5494,13 +5521,22 @@ width: 100%;
   font-size: 1.25rem;
   font-weight: 700;
   letter-spacing: -0.025rem;
-  margin-bottom: 0.62rem;
+  /* margin-bottom: 0.62rem; */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.account-settings .customized-songs-wrapper .event-description .event-wrap{
+  margin-bottom: 0.62rem;
+}
+.account-settings .customized-songs-wrapper .event-description .badge-wrap{
+  width: max-content;
+  cursor: default;
+}
 .account-settings .customized-songs-wrapper .event-description .in-progress,
-.account-settings .organizer-offers-details-wrap .from .cancelled{
+.account-settings .organizer-offers-details-wrap .cancelled,
+.account-settings .customized-songs-wrapper .event-description .for-revision,
+.account-settings .customized-songs-wrapper .event-description .completed{
   color: var(--indigo);
   font-size: 0.75rem;
   font-weight: 600!important;
@@ -5510,12 +5546,20 @@ width: 100%;
   background: var(--indigo-light);
   margin-left: 0.5rem;
 }
-.account-settings .customized-songs-wrapper .event-description .lh-cancelled{
+.account-settings .customized-songs-wrapper .event-description .lh-badge{
   line-height: 1.5rem;
 }
 .account-settings .customized-songs-wrapper .event-description .cancelled {
   background: var(--warning-light)!important;
   color: var(--warning) !important; 
+}
+.account-settings .customized-songs-wrapper .event-description .for-revision{
+  background: var(--light-orange)!important;
+  color: var(--orange) !important; 
+}
+.account-settings .customized-songs-wrapper .event-description .completed{
+  background: var(--completed-light)!important;
+  color: var(--completed) !important; 
 }
 .account-settings .customized-songs-wrapper .event-description .in-progress .event-icon{
   font-size: 14px;
@@ -5553,7 +5597,7 @@ width: 100%;
   letter-spacing: -0.0175rem;
   margin-left: 0.44rem;
 }
-.account-settings .customized-songs-wrapper .info-icon{
+.account-settings .customized-songs-wrapper .event-note-wrap .info-icon{
   color: var(--gray6);
   font-size: 1.25rem;
   font-variation-settings: 'FILL' 1,'wght' 800,'GRAD' 0,'opsz' 48;
@@ -5602,21 +5646,21 @@ width: 100%;
 }
 
 /* Account Settings - My Proposals */
-.account-settings .organizer-offers-details-wrap .offer-img,
-.account-settings .organizer-offers-details-wrap .offer-img {
+.account-settings .customized-songs-wrapper .left-wrap .song-details-wrap {
+  width: 89%;
+}
+.account-settings .customized-songs-wrapper .offer-img{
   width: 4.875rem;
   height: 4.875rem;
-  margin-right: 1rem;
-
+  /* margin-right: 1rem; */
   border-radius: 100%;
 }
 .account-settings .organizer-offers-details-wrap .offer-img{
-  width: 4.75rem;
-  height: 4.75rem;
-  margin-right: 1.12rem;
+  width: 4.875rem;
+  height: 4.875rem;
+  border-radius: 100%;
 }
-.account-settings .organizer-offers-details-wrap .from,
-.account-settings .organizer-offers-details-wrap .from {
+.account-settings .organizer-offers-details-wrap .from{
   color:var(--black);
   font-size: 1.25rem;
   font-weight: 700;
@@ -5627,16 +5671,17 @@ width: 100%;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-align: left;
 }
 .account-settings .organizer-offers-details-wrap .from{
   margin-bottom: 0.25rem;
   /* width: 90%; */
 }
-.account-settings .organizer-offers-details-wrap .from span,
+.account-settings .customized-songs-wrapper .event-description .event span,
 .account-settings .request-song-modal .organizer-offers-details-wrap .from span{
   font-weight: 500;
 }
-.account-settings .organizer-offers-details-wrap .venue,
+.account-settings .customized-songs-wrapper .event-description .venue,
 .account-settings .request-song-modal .organizer-offers-details-wrap .venue {
   color: var(--gray6);
   font-size: 1rem;
@@ -5648,13 +5693,15 @@ width: 100%;
   font-weight: 400;
   margin-bottom: 0.5rem;
 }
-.account-settings .organizer-offers-details-wrap .dot-icon{
+.account-settings .customized-songs-wrapper .event-description .dot-icon,
+.account-settings .organizer-offers-details-wrap .dot-icon
+{
   font-size: 10px;
   font-variation-settings: 'FILL' 1,'wght' 800,'GRAD' 0,'opsz' 48;
   color: var(--gray6);
   margin: 0 0.41rem;
 }
-.account-settings .organizer-offers-details-wrap .star-ratings,
+.account-settings .customized-songs-wrapper .event-description .star-ratings,
 .account-settings .request-song-modal .organizer-offers-details-wrap .star-ratings{
   color: #1E1E1E;
   font-size: 1rem;
@@ -5662,13 +5709,13 @@ width: 100%;
   line-height: 0.69381rem;
   gap: 0.25rem;
 }
-.account-settings .organizer-offers-details-wrap .star-ratings .star-icon,
+.account-settings .customized-songs-wrapper .event-description .star-ratings .star-icon,
 .account-settings .request-song-modal .organizer-offers-details-wrap .star-icon{
   font-variation-settings: 'FILL' 1,'wght' 800,'GRAD' 0,'opsz' 48;
   color: var(--orange);
   font-size: 20px;
 }
-.account-settings .organizer-offers-details-wrap .star-ratings .reviews,
+.account-settings .customized-songs-wrapper .event-description .star-ratings .reviews,
 .account-settings .request-song-modal .organizer-offers-details-wrap .review{
   color: #8C8C8C;
   font-weight: 400;
@@ -5843,9 +5890,63 @@ width: 100%;
   height: 4.75rem;
   flex-shrink: 0;
   border-radius: 48px;
-
   margin-right: 1.12rem;
 }
+.account-settings .req-song-wrap{
+  border-radius: 0.25rem;
+  gap: 1rem;
+  border: 1px solid var(--gray6);
+  padding: 1.13rem 1.25rem;
+  margin-bottom: 0.94rem;
+}
+.account-settings .req-song-wrap .song-cover-img{
+  width: 5.8125rem;
+  height: 5.8125rem;
+  border-radius: 0.1875rem;
+}
+.account-settings .req-song-wrap .song-info-wrap{
+  gap: 1rem;
+}
+.account-settings .req-song-wrap .title{
+  color: var(--black);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.025rem;
+  margin-bottom: 0.63rem;
+}
+.account-settings .req-song-wrap h6{
+  color: var(--gray2);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.04rem;
+  margin-bottom: 0.25rem;
+}
+.account-settings .req-song-wrap h6 span{
+  color: var(--black);
+  font-weight: 500;
+}
+.account-settings .req-song-wrap .action-wrap .for-revision-btn,
+.account-settings .req-song-wrap .action-wrap .completed-btn{
+  color: #EA580C;
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: -0.045rem;
+  border-radius: 0.625rem;
+  background: var(--light-orange);
+  padding: 0.88rem 1.5rem;
+  width: max-content;
+  gap: 0.4rem;
+  cursor: not-allowed;
+}
+.account-settings .req-song-wrap .action-wrap .completed-btn{
+  color: var(--completed);
+  background: var(--completed-light);
+}
+.account-settings .req-song-wrap .action-wrap .for-revision-btn span,
+.account-settings .req-song-wrap .action-wrap .completed-btn span{
+  font-size: 24px;
+}
+
 .account-settings .request-song-modal .action-wrapper .name{
   color: var(--black-color);
   font-size: 1.5rem;
@@ -5863,6 +5964,9 @@ width: 100%;
   text-overflow: ellipsis;
   /* height: 40px; */
 }
+.account-settings .request-song-modal .action-wrapper .name .req{
+  font-weight: 500;
+}
 .account-settings .request-song-modal .action-wrapper .username{
   color:  #637381;
   font-size: 1.25rem;
@@ -5878,6 +5982,11 @@ width: 100%;
   border-radius: 0.5rem;
   border: 1px solid var(--warning-light);
   padding: 0.75rem 2rem;
+}
+.account-settings .request-song-modal .action-wrapper .btn-denied {
+  background: var(--warning-light) !important;
+  color: var(--warning) !important;
+  cursor: not-allowed!important;
 }
 .account-settings .request-song-modal .action-wrapper .accept{
   border-radius: 0.5rem;
@@ -5895,11 +6004,17 @@ width: 100%;
   color: var(--warning);
   background: var(--warning-light);
   border: 1px solid var(--warning-light);
+  cursor: not-allowed;
 }
 .account-settings .request-song-modal .action-wrapper .approval{
   color: var(--indigo);
   background: var(--indigo-light);
   border: 1px solid var(--indigo-light);
+  cursor: not-allowed;
+}
+.account-settings .request-song-modal .action-wrapper .approval span{
+  font-size: 24px;
+  margin-right: 0.4rem;
 }
 .account-settings .request-song-modal .action-wrapper .accept:hover{
   background: var(--btn-hovered);
@@ -5921,7 +6036,9 @@ width: 100%;
   color: var(--orange);
   font-size: 24px;
   margin-right: 0.5rem;
+  font-variation-settings: 'FILL' 1,'wght' 800,'GRAD' 0,'opsz' 48;
 } 
+
 .account-settings .request-song-modal .story-wrapper{
   margin-bottom: 2.5rem;
   text-align: left;
@@ -6016,7 +6133,7 @@ width: 100%;
   color: var(--orange);
   font-variation-settings: 'FILL' 1,'wght' 800,'GRAD' 0,'opsz' 48;
 }
-.account-settings .request-application-wrap .requested-wrapper .dot-icon{
+.account-settings .requested-wrapper .dot-icon{
   font-size: 10px;
   color: var(--gray6);
   font-variation-settings: 'FILL' 1,'wght' 800,'GRAD' 0,'opsz' 48;
@@ -7579,6 +7696,47 @@ margin-bottom: 2.5rem;
   line-height: 1.125rem; 
   padding: 0.56rem 1.5rem;
 }
+.account-settings .request-song-modal .action-wrapper .approval span {
+  font-size: 18px;
+  margin-right: 0.2rem;
+}
+.account-settings .req-song-wrap {
+  border-radius: 0.1875rem;
+  border: 0.75px solid var(--gray6);
+  padding: 0.84rem 0.94rem;
+}
+.account-settings .req-song-wrap .song-cover-img {
+  width: 4.35938rem;
+  height: 4.35938rem;
+  border-radius: 0.14063rem;
+}
+.account-settings .req-song-wrap .song-info-wrap {
+  gap: 0.87rem;
+}
+.account-settings .req-song-wrap .title {
+  font-size: 0.9375rem;
+  letter-spacing: -0.01875rem;
+  margin-bottom: 0.47rem;
+}
+.account-settings .req-song-wrap h6 {
+  font-size: 0.75rem;
+  letter-spacing: -0.03rem;
+  margin-bottom: 0.25rem;
+}
+.account-settings .req-song-wrap .action-wrap .for-revision-btn,
+.account-settings .req-song-wrap .action-wrap .completed-btn {
+  font-size: 0.75rem;
+  letter-spacing: -0.03rem;
+  padding: 0.69rem 0.75rem;
+  border-radius: 0.625rem;
+  gap: 0.30rem;
+}
+.account-settings .req-song-wrap .action-wrap .for-revision-btn span,
+.account-settings .req-song-wrap .action-wrap .completed-btn span {
+  font-size: 18px;
+}
+
+
 .account-settings .note-wrapper .note {
   font-size: 0.875rem;
   letter-spacing: -0.035rem;
@@ -7587,7 +7745,8 @@ margin-bottom: 2.5rem;
   margin-bottom: 1.12rem;
   padding: 0.5rem;
 }
-.account-settings .note-wrapper span {
+.account-settings .note-wrapper span,
+.account-settings .customized-songs-wrapper .event-note-wrap .info-icon {
   font-size: 1.1rem;
   margin-right: 0.3rem;
 }
@@ -7745,11 +7904,11 @@ margin-bottom: 2.5rem;
 }
 .account-settings .customized-songs-tabs {
   gap: 0.5rem;
-  margin-bottom: 1.87rem;
+  margin-bottom: 1.27rem;
   border-bottom: 1px solid #C1C7DEB2;
 }
 .account-settings .customized-songs-wrapper .event-description .left-wrap {
-  width: 70%;
+  width: 60%;
 }
 .account-settings .customized-songs-wrapper .details-wrapper {
   width: 30%;
@@ -7762,9 +7921,32 @@ margin-bottom: 2.5rem;
 .account-settings .customized-songs-wrapper .event {
   font-size: 0.9375rem;
   letter-spacing: -0.01875rem;
+  /* margin-bottom: 0.4rem; */
 }
+.account-settings .customized-songs-wrapper .event-description .event-wrap {
+  margin-bottom: 0.4rem;
+}
+.account-settings .customized-songs-wrapper .left-wrap .song-details-wrap {
+  width: 75%;
+}
+.account-settings .customized-songs-wrapper .song-cover {
+  width: 5.875rem;
+  height: 5.875rem;
+  border-radius: 0.1875rem;
+}
+.account-settings .customized-songs-wrapper .song-details-wrap .requested-wrapper {
+  margin-bottom: 0.88rem;
+}
+.account-settings .customized-songs-wrapper .song-details-wrap h6 {
+  font-size: 0.75rem;
+  letter-spacing: -0.03rem;
+  margin-bottom: 0.25rem;
+}
+
 .account-settings .customized-songs-wrapper .event-description .in-progress,
-.account-settings .organizer-offers-details-wrap .from .cancelled {
+.account-settings .organizer-offers-details-wrap .from .cancelled,
+.account-settings .customized-songs-wrapper .event-description .for-revision,
+.account-settings .customized-songs-wrapper .event-description .completed {
   font-size: 0.60rem;
   margin-left: 0.40rem;
 }
@@ -7772,7 +7954,7 @@ margin-bottom: 2.5rem;
   font-size: 12px;
   margin: 0 0.2rem 0 0;
 }
-.account-settings .customized-songs-wrapper .event-description .lh-cancelled {
+.account-settings .customized-songs-wrapper .event-description .lh-badge{
   line-height: 1.2rem;
 }
 .account-settings .customized-songs-wrapper .requested-wrapper {
@@ -7804,8 +7986,8 @@ margin-bottom: 2.5rem;
   padding: 0.75rem 0.91rem;
 }
 .account-settings .customized-songs-wrapper .button-wrapper .upload svg {
-  width: 1rem;
-  height: 1rem;
+  width: 0.75rem;
+  height: 0.75rem;
   margin-right: 0.1rem;
 }
 .account-settings .request-application-wrap .event-wrap {
@@ -7815,41 +7997,48 @@ margin-bottom: 2.5rem;
 .account-settings .request-application-wrap .event-wrap .dot-icon {
   font-size: 10px;
 }
-.account-settings .request-application-wrap .requested-wrapper .dot-icon {
+.account-settings .requested-wrapper .dot-icon {
   font-size: 8px;
   margin-left: 0.33rem;
 }
 
-/* Account Settings - My Proposas tab */
+/* Account Settings - My Proposal tab */
 
-.account-settings .organizer-offers-details-wrap .offer-img{
+.account-settings .customized-songs-wrapper .event-description .left-wrap {
+  width: 60%;
+  gap: 0.7rem;
+}
+.account-settings .customized-songs-wrapper .event-description .expand-left-wrap {
+  width: 80%;
+}
+.account-settings .customized-songs-wrapper .offer-img{
   width: 3rem;
   height: 3rem;
-  margin-right: 0.5rem;
+  margin-right: 0;
 }
 .account-settings .organizer-offers-details-wrap .from {
   font-size: 1rem;
   font-weight: 700;
   margin-bottom: 0.3rem;
 }
-.account-settings .organizer-offers-details-wrap .venue {
+.account-settings .customized-songs-wrapper .event-description .venue {
   font-size: 0.875rem;
   margin-bottom: 0.61rem;
 }
-.account-settings .organizer-offers-details-wrap .dot-icon {
+.account-settings .customized-songs-wrapper .event-description .dot-icon {
   font-size: 8px;
   margin: 0 0.26rem;
 }
-.account-settings .organizer-offers-details-wrap .star-ratings {
+.account-settings .customized-songs-wrapper .event-description .star-ratings {
   font-size: 0.875rem;
   line-height: normal;
   gap: 0.18rem;
 }
-.account-settings .organizer-offers-details-wrap .star-ratings .star-icon {
+.account-settings .customized-songs-wrapper .event-description .star-ratings .star-icon {
   font-size: 16px;
   margin-top: -3px;
 }
-.account-settings .organizer-offers-details-wrap .star-ratings .reviews {
+.account-settings .customized-songs-wrapper .event-description .star-ratings .reviews {
   line-height: normal
 }
 
@@ -9413,7 +9602,7 @@ header nav {
   font-size: 1.1rem;
 }
 .main-nav .nav-button .dropdown .dropdown-menu li {
-  margin: 1rem 0.8rem;
+  margin: 1rem;
 }
 .main-nav .nav-button .dropdown .dropdown-menu li a,
 .main-nav .nav-button .dropdown .dropdown-menu  .logout-wrapper .logout {

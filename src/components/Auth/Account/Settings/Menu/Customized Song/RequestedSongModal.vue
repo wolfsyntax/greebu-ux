@@ -20,7 +20,10 @@
             <img src="/assets/artist-account/band-member-2.webp" class="customer-image" alt="Requester image">
             <div>
               <h5 class="name">Alvin Makahiya</h5>
-              <p class="username">User12345</p>
+              <!-- For Submission tab - View Details modal -->
+              <!-- <h5 class="name"><span class="req">Requested by: </span>Alvin Makahiya</h5> -->
+
+              <p class="username">alvinmakahiya@gmail.com</p>
             </div>
           </div>
 
@@ -33,7 +36,13 @@
             <!-- <button class="btn accepted">Decline</button> -->
 
             <!-- SHOW THIS IF THE ARTIST DENIED THE CUSTOMIZED SONG REQUEST  -->
-            <!-- <button class="btn cancelled">Cancelled</button> -->
+            <!-- <button class="btn cancelled">Request Denied</button> -->
+
+            <!-- For Submission tab - View Details modal -->
+            <!-- <button class="btn d-flex align-items-center approval">
+              <span class="material-symbols-rounded">&#xe8b5;</span>
+              Pending
+            </button> -->
 
           </div>
         </div> <!-- end of action-wrapper -->
@@ -42,6 +51,36 @@
           <span class="material-symbols-rounded info-icon">&#xe88e;</span>
           <p class="note">Clients will only pay if the requested customized song is accepted.</p>
         </div>
+
+        <!-- <div class="d-flex align-items-center justify-content-between req-song-wrap">
+          <div class="d-flex align-items-center text-start song-info-wrap">
+            <div>
+              <img src="/assets/organizers/organizers-banner-bg.webp" class="song-cover-img" alt="Song album cover"> 
+            </div>
+            <div>
+              <h5 class="two-lines title">Your Song Title Your Song Title Your Song Title Your Song Title Your Song Title Your Song Title</h5>
+              <h6>Genre: <span> Rock</span></h6>
+              <h6 class="mb-0">Lenght: <span> 3 minutes</span></h6>
+            </div>
+            </div>
+
+            <div class="action-wrap">
+                <button type="button" class="btn d-flex align-items-center float-end for-revision-btn">
+                  <span class="material-symbols-rounded">&#xe5d5;</span>
+                  For Revision
+                </button>
+
+                 Completed tab - View Details modal 
+                <button type="button" class="btn d-flex align-items-center float-end completed-btn">
+                  <span class="material-symbols-rounded">&#xe876;</span>
+                  Completed
+                </button>
+            </div>
+        </div> -->
+
+        <!-- <div class="d-flex align-items-center note-wrapper">
+          <p class="note">Alvin Makahiya is requesting a song revision</p>
+        </div> -->
 
         <div class="story-wrapper">
           <h4 class="title">Story Details</h4>

@@ -177,9 +177,5 @@
   
 <style>
 /* Styles for your modal */
-.btn-denied {
-  background: var(--warning-light) !important;
-  color: var(--warning) !important;
-}
 </style>
   

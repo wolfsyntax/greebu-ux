@@ -28,7 +28,7 @@ export default {
   {
     useHead({
       // Can be static or computed
-      title: 'Home',
+      title: 'Want to know how to find the perfect #GeebuArtist?',
       meta: [
         {
           property: 'og:title', 
@@ -36,12 +36,18 @@ export default {
         },
         {
           property: 'og:description', 
-          content: 'Experience the Ultimate Fusion of Creativity and Entertainment with Geebu Create Your Custom Song, Tailored Exclusively for Your Special Event or Party.',
+          content: 'Experience the Ultimate Fusion of Creativity and Entertainment with Geebu Create Your Custom Song. Visit our website.',
         },
         // {
         //   property: 'og:image',
         //   content: 'https://develop.geebu.ph/assets/home/home-slider-1.webp',
         // },
+        { name: 'description', 
+        content: 'Welcome to Geebu.' 
+        },
+        { name: 'keywords', 
+        content: 'Geebu, Artist, Create a song' 
+        }, 
         {
           name: 'twitter:card',
           content: 'summary_large_image',
@@ -52,14 +58,14 @@ export default {
         },
         {
           name: 'twitter:description',
-          content: 'Experience the Ultimate Fusion of Creativity and Entertainment with Geebu Create Your Custom Song, Tailored Exclusively for Your Special Event or Party.',
+          content: 'Experience the Ultimate Fusion of Creativity and Entertainment with Geebu Create Your Custom Song. Visit our website.',
         },
         {
           name: 'twitter:image',
           content: 'https://develop.geebu.ph/assets/geebu-logo.svg',
         },
       ],
-     
+     script: [ { innerHTML: 'console.log(\'Welcome to Geebu\')' } ]
     })
   },
   data()
@@ -67,7 +73,7 @@ export default {
     return {
       plans: [{}]
     }
-  }
+  },
 }
 </script>
 <style scoped></style>

@@ -1,21 +1,37 @@
 <template>
   <div class="customized-songs-wrapper">
     <div class="d-flex align-items-center justify-content-between event-description">
-      <div class="d-flex align-items-center left-wrap organizer-offers-details-wrap">
-        <div>
-          <img :src="proposal.cover_photo" class="offer-img" alt="Requested by image"> 
+
+      <div class="d-flex align-items-center left-wrap expand-left-wrap">
+          <div class="song-cover-wrap">
+            <img :src="proposal.cover_photo" class="offer-img" alt="User image"> 
+          </div>
+
+          <div class="song-details-wrap">
+
+            <div class="d-flex align-items-center event-wrap">
+              <h5 class="mb-0 event"><span>To:</span> {{ proposal.organizer_name }}</h5>
+                <div v-if="proposal.cancelled_at && proposal.status === 'pending'">
+                  <button class="btn p-0 badge-wrap">
+                    <span class="in-progress cancelled lh-badge">Cancelled</span>
+                  </button>
+                </div>
+            </div>
+
+            <div>
+              <h6 class="d-flex align-items-center venue">Event Organizer
+              <span class="material-symbols-rounded dot-icon">&#xe061;</span>{{ proposal.location }}</h6>
+              <p class="d-flex align-items-center mb-0 star-ratings">
+                <span class="material-symbols-rounded star-icon">&#xe838;</span>
+                4.95 <span class="reviews">(234 reviews)</span>
+              </p>
+            </div>
+
+          </div>
         </div>
-        <div>
-          <h5 class="from"><span>To:</span> {{ proposal.organizer_name }}&nbsp;
-            <span class="cancelled lh-cancelled" v-if="proposal.cancelled_at && proposal.status === 'pending'">Cancelled</span></h5>
-          <h6 class="d-flex align-items-center venue">Event Organizer
-          <span class="material-symbols-rounded dot-icon">&#xe061;</span>{{ proposal.location }}</h6>
-          <p class="d-flex align-items-center mb-0 star-ratings">
-            <span class="material-symbols-rounded star-icon">&#xe838;</span>
-            4.95 <span class="reviews">(234 reviews)</span>
-          </p>
-        </div>
-      </div>
+
+
+
 
       <div class="details-wrapper">
         <div class="button-wrapper">
