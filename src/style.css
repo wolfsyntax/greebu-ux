@@ -5570,9 +5570,6 @@ width: 100%;
   background: var(--warning-light);
   color: var(--warning);
 }
-.account-settings .customized-songs-wrapper .requested-wrapper{
-  margin-bottom: 1.5rem;
-}
 .account-settings .customized-songs-wrapper .requested-wrapper .requested-by-image{
   width: 1.5rem;
   height: 1.5rem;
@@ -5633,8 +5630,8 @@ width: 100%;
   align-items: center;
 }
 .account-settings .customized-songs-wrapper .button-wrapper .upload svg{
-  width: 1.2rem;
-  height: 1.2rem;
+  width: 1rem;
+  height: 1rem;
   margin-right: 0.2rem;
 }
 .account-settings .customized-songs-wrapper .button-wrapper .upload:hover{
@@ -6868,15 +6865,17 @@ width: 100%;
   background-color: var(--orange);
   color: var(--white);
 }
-#createEventModal .upload-file-wrapper{
+#createEventModal .upload-file-wrapper,
+#albumSongInfo .upload-file-wrapper{
   margin-bottom: 1.75rem;
 }
-#createEventModal .uploaded-image-wrapper .uploaded-image{
+#createEventModal .uploaded-image-wrapper .uploaded-image,
+#albumSongInfo .uploaded-image-wrapper .uploaded-image{
   height: 18.375rem;
   width: 100%;
-
 }
-#createEventModal .uploaded-image-wrapper .remove-image {
+#createEventModal .uploaded-image-wrapper .remove-image,
+#albumSongInfo .uploaded-image-wrapper .remove-image {
   margin: 0;
   position: absolute;
   top: 1.7%;
@@ -6884,7 +6883,8 @@ width: 100%;
   border: 0;
   background-color: transparent;
 }
-#createEventModal .uploaded-image-wrapper .remove-image span{
+#createEventModal .uploaded-image-wrapper .remove-image span,
+#albumSongInfo .uploaded-image-wrapper .remove-image span{
   cursor: pointer;
   color: var(--white);
   margin: 0;
@@ -7084,12 +7084,16 @@ width: 100%;
   border-radius: 100%;
   padding: 2px;
 }
+#albumSongInfo .form-group{
+  margin-bottom: 1.5rem;
+}
 #albumSongInfo .form-group label{
   color: #2D3748;
   font-size: 1.25rem;
   font-weight: 500;
   letter-spacing: -0.025rem;
   margin-bottom: 0.38rem;
+  /* float: start; */
 }
 #albumSongInfo .form-group input,
 #albumSongInfo .form-group select{
@@ -7122,6 +7126,9 @@ width: 100%;
   background: var(--white);
   color: #8E9CAB;
   margin-right: 0.75rem;
+}
+#albumSongInfo .add-space{
+  margin-top: 3rem;
 }
 #albumSongInfo .action-btn .next{
   background: var(--orange);
@@ -7209,6 +7216,27 @@ width: 100%;
   color: var(--btn-hovered);
 }
 
+#info-block-image .img-dimensions {
+  border-radius: 0.40375rem;
+  background: #efeffc;
+  padding: 0.38rem 1.21rem;
+  margin-bottom: 3rem;
+}
+#info-block-image .img-dimensions .info {
+  font-size: 24px;
+  margin-right: 0.32rem;
+  color: rgba(184, 187, 207, 1);
+  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 48;
+}
+#info-block-image .img-dimensions .description {
+  color: var(--gray2);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: -0.04375rem;
+  width: 95%;
+  margin-bottom: 0;
+}
+
 
                                                                     /* MEDIA QUERIES */
 
@@ -7225,6 +7253,82 @@ width: 100%;
   24 px	1.5 rem
   28px 1.75 rem
 */
+
+#info-block-image .img-dimensions {
+  padding: 0.81rem 1.21rem;
+  margin-bottom: 2.5rem;
+}
+#info-block-image .img-dimensions .description {
+  font-size: 0.75rem;
+  letter-spacing: -0.04375rem;
+  line-height: normal;
+}
+#info-block-image .img-dimensions .info {
+  font-size: 18px;
+  margin-right: 0.32rem;
+}
+
+/* Upload Song - Song Information */
+#albumSongInfo .modal-content{
+  border-radius: 0.48744rem;
+  background: var(--white);
+  box-shadow: 0px 19.49861px 38.99722px -9.35933px rgba(0, 0, 0, 0.25);
+  padding: 1.94988rem 2.29106rem;
+  width: 43.75rem;
+  margin: 0 auto;
+}
+#albumSongInfo .modal-header{
+  margin-bottom: 2rem;
+}
+#albumSongInfo .modal-content .modal-title{
+  font-size: 1.25rem;
+  letter-spacing: -0.0625rem;
+}
+#albumSongInfo .modal-header .close-btn .close-icon {
+  font-size: 16px;
+  border: 1px solid #DFDFE6;
+  padding: 2px;
+}
+#albumSongInfo .form-group{
+  margin-bottom: 1.17rem;
+}
+#albumSongInfo .form-group label{
+  font-size: 1rem;
+  letter-spacing: -0.02rem;
+  margin-bottom: 0.28rem;
+}
+#albumSongInfo .form-group input,
+#albumSongInfo .form-group select{
+  border-radius: 0.24375rem;
+  border: 0.78px solid var(--gray6);
+  height: 2.72981rem;
+}
+#albumSongInfo .form-group .badge{
+  font-size: 0.625rem;
+  line-height: 0.77994rem;
+  padding: 0.19rem 0.39rem;
+}
+#albumSongInfo .last-form-group{
+  margin-bottom: 3.41225rem!important;
+}
+#albumSongInfo .action-btn button{
+  padding: 0.66rem 2.66rem;
+  font-size: 0.87rem;
+  line-height: 113.2%; 
+}
+#albumSongInfo .action-btn .close{
+  border: 1px solid #DFE4EB;
+  margin-right: 0.56rem;
+}
+#albumSongInfo .action-btn .next{
+  border: 1px solid var(--orange);
+}
+#albumSongInfo .action-btn .next:hover{
+  border: 1px solid var(--btn-hovered);
+}
+#albumSongInfo .add-space {
+  margin-top: 1rem;
+}
 
 /* Organizer Account - Cancellation modal */
 
@@ -7956,9 +8060,6 @@ margin-bottom: 2.5rem;
 }
 .account-settings .customized-songs-wrapper .event-description .lh-badge{
   line-height: 1.2rem;
-}
-.account-settings .customized-songs-wrapper .requested-wrapper {
-  margin-bottom: 1.34rem;
 }
 .account-settings .customized-songs-wrapper .requested-wrapper .requested-by {
   font-size: 0.75rem;

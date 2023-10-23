@@ -22,10 +22,10 @@
             <span class="time">{{ request.time }} hours ago</span>
           </div>
 
-          <div class="d-flex event-note-wrap">
+          <!-- <div class="d-flex event-note-wrap">
             <span class="material-symbols-rounded info-icon">&#xe88e;</span>
             <p class="note">Clients will only pay if the requested customized song is already been accepted by chosen Artist.</p>
-          </div>
+          </div> -->
 
         </div>
 
@@ -35,14 +35,15 @@
           <requested-song-modal :show="showModal" 
             @close-modal="closeModal" @accept-request="onModalAccepted" 
           />
-          <button type="button" class="btn upload">
+          <button type="button" class="btn upload"  @click="showSongInfoModal">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
               <g clip-path="url(#clip0_5729_89038)"><path d="M7.49984 13.3333H12.4998V8.33333H15.8332L9.99984 2.5L4.1665 8.33333H7.49984V13.3333ZM4.1665 15H15.8332V16.6667H4.1665V15Z" fill="white"/>
               </g>
               <defs><clipPath id="clip0_5729_89038"><rect width="20" height="20" fill="white"/></clipPath></defs>
             </svg>
             Upload
-          </button>
+          </button>  
+          <info-modal> </info-modal>
         </div>
       </div>
 
@@ -54,9 +55,13 @@
 
 <script>
 import RequestedSongModal from './RequestedSongModal.vue';
+import InfoModal from '@/components/Upload Song/InfoModal.vue';
+import { Modal } from 'bootstrap';
+
 export default {
   components: {
     RequestedSongModal,
+    InfoModal
   },
   setup()
   {
@@ -77,6 +82,14 @@ export default {
     {
       this.showModal = false;
     },
+    showSongInfoModal()
+    {
+      new Modal(document.getElementById('albumSongInfo'), {
+        keyboard: false,
+        backdrop: 'static',
+      }).show();
+    },
+    
     onModalAccepted()
     {
       this.showToast = true;

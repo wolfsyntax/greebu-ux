@@ -3018,19 +3018,20 @@ img{
   font-weight: 600;
   line-height: 2rem;
 }
-#uploadArtistCoverPhoto .modal-body .img-dimensions {
+
+#info-block-image .img-dimensions {
   border-radius: 0.40375rem;
   background: #efeffc;
   padding: 0.38rem 1.21rem;
   margin-bottom: 3rem;
 }
-#uploadArtistCoverPhoto .modal-body .img-dimensions .info {
+#info-block-image .img-dimensions .info {
   font-size: 24px;
   margin-right: 0.32rem;
   color: rgba(184, 187, 207, 1);
   font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 48;
 }
-#uploadArtistCoverPhoto .modal-body .img-dimensions .description {
+#info-block-image .img-dimensions .description {
   color: var(--gray2);
   font-size: 0.875rem;
   font-weight: 500;
@@ -3038,6 +3039,7 @@ img{
   width: 95%;
   margin-bottom: 0;
 }
+
 #uploadArtistCoverPhoto .modal-body .upload-file-wrapper {
   border-radius: 0.625rem;
   border: 1px dashed var(--gray6);
@@ -3672,16 +3674,16 @@ img{
     letter-spacing: -0.02rem;
     padding: 0.88rem 7rem;
   }
-  #uploadArtistCoverPhoto .modal-body .img-dimensions {
+  #info-block-image .img-dimensions {
     padding: 0.81rem 1.21rem;
     margin-bottom: 2.5rem;
   }
-  #uploadArtistCoverPhoto .modal-body .img-dimensions .description {
+  #info-block-image .img-dimensions .description {
     font-size: 0.75rem;
     letter-spacing: -0.04375rem;
     line-height: normal;
   }
-  #uploadArtistCoverPhoto .modal-body .img-dimensions .info {
+  #info-block-image .img-dimensions .info {
     font-size: 18px;
     margin-right: 0.32rem;
   }
