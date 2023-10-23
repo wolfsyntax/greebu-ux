@@ -36,17 +36,17 @@ export default {
   computed: {
     ...mapGetters(["isLoggedIn", 'userRole']),
     ...mapState({
-      events: state => state.events.ongoingEvents, 
+      events: state => state.events.pastEvents, 
     })
   },
   mounted() {
-    console.log('Ongoing Events[vue]: ', this.events)
+    console.log('Past Events[vue]: ', this.events)
   },
   methods: {
     viewDetail(event) {
       this.$store.commit('SET_EVENT', event);
       this.$emit('modal');
-      console.log('Selected Ongoing Event: ', event)
+      console.log('Selected Past Event: ', event)
     }
   }
 }

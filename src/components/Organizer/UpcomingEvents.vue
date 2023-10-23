@@ -1,136 +1,51 @@
 <template>
-
-  <div class="card">
-    <div class="bg-wrapper">
-
-      <div class="event-action-wrap">
-
-      <button class="btn p-0 more-wrap" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        <span class="material-symbols-rounded">&#xe5d3;</span>
-      </button>
-
-      <ul class="dropdown-menu">
-        <li>
-          <button class="d-flex align-items-center btn">
-            <span class="material-symbols-rounded">
-            &#xe3c9;
-          </span>
-          Edit event 
-          </button>
-        </li>
-
-        <li>
-          <button class="d-flex align-items-center btn delete">
-            <span class="material-symbols-rounded">
-            &#xe872;
-          </span>
-          Delete
-          </button>
-        </li>
-        
-      </ul>
-      </div>
-
-    <img src="/assets/organizer-account/post-img.webp" class="img-fluid card-bg" loading="lazy" alt="Event image">
-    <div class="d-flex align-items-start organized-by">
-        <img src="/assets/organizer-account/post-img.webp" class="float-start" alt="Organized by logo">
-        <div class="organizer-wrap">
-        <h5>JJ Enterprises</h5>
-        <p class="mb-0">Organized by</p>
-        </div>
+  <div class="row" v-if="events.length">
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-4"  v-for="(item, i) in events" :key="i" >
+      <event-card :event="item" @show-detail="viewDetail" />
     </div>
+  </div>
+  <div class="text-center no-events-wrap" v-else>
+    <img src="/assets/events/no-events.svg" class="no-events-icon" alt="No events added icon">
+    <h2 class="title">No Events Added</h2>
+    <p class="description">It looks like you haven’t posted any events yet? Use the button below to create your first song to start your Geebu journey!</p>
+    <button class="btn add-event">Add Event</button>
+  </div>
+</template>
+<script>
+import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
+import ViewDetail from '/src/components/Events/ViewEventDetailsModal.vue';
+import MustSignupModal from '/src/components/Artist/MustSignupModal.vue';
+import EventCard from '/src/components/Dashboard/Tabs/Events/EventCard.vue';
+export default {
+  setup()
+  {
+    return {}
+  },
+  components: {
+    EventCard,
+    ViewDetail,
+    signupmodal: MustSignupModal,
+  },
+  props: {
+    
+  },
+  computed: {
+    ...mapGetters(["isLoggedIn", 'userRole']),
+    ...mapState({
+      events: state => state.events.upcomingEvents, 
+    })
+  },
+  mounted() {
+    console.log('Upcoming Events[vue]: ', this.events)
+  },
+  methods: {
+    viewDetail(event) {
+      this.$store.commit('SET_EVENT', event);
+      this.$emit('modal');
+      console.log('Selected Upcoming Event: ', event)
+    },
+  }
+}
+</script>
 
-    </div> <!-- end of bg-wrapper -->
-    <div class="card-body">
-      <div class="d-flex align-items-center event-details-wrap">
-        <div class="left">
-          <h6 class="mb-0 month">APR</h6>
-          <h3 class="mb-0 num">01</h3>
-        </div>
-        <div class="right">
-          <h4 class="event-name">IDLE PITCH PAUSE PLAY REWIN</h4>
-          <h5 class="event-place">Naga City, Cam. Sur Philippines</h5>
-          <h5 class="date-time upcoming">Saturday, 8:00 am - 12:00 pm</h5>
-        </div>
-    </div>
-    <div>
-        <button class="mb-0 btn btn-primary view-details">View Details</button>
-    </div>
-    </div>
-    </div>
-      
-  
-    </template>
-    
-    <script>
-    import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
-    import ViewDetail from '/src/components/Events/ViewEventDetailsModal.vue';
-    import MustSignupModal from '/src/components/Artist/MustSignupModal.vue';
-    export default {
-      setup()
-      {
-    
-    
-        return {}
-      },
-      components: {
-        ViewDetail,
-        signupmodal: MustSignupModal,
-      },
-      props: {
-        pos: {
-          type: Number,
-          default: -1,
-          required: true
-        },
-    
-        event: {
-          type: Object,
-          default: {},
-          required: true
-        },
-      },
-      computed: {
-        ...mapGetters(["isLoggedIn", 'userRole']),
-        ...mapState({
-          account: state => state.account,
-          members: (state) => state.artist.members,
-        })
-      },
-      mounted()
-      {
-        console.log('Card: ', this.event);
-      },
-      methods: {
-        toggle(pos = -1)
-        {
-          if (pos > -1) {
-            this.$store.commit('SET_EVENT', this.event);
-          } else {
-            this.$store.commit('SET_EVENT', {});
-          }
-    
-          this.$emit('show', pos);
-    
-        },
-        sendProposal()
-        {
-          
-          this.$store.commit('SET_EVENT', this.event);
-          this.$store.commit('SET_PROPOSAL', {
-            event_id: this.event.id || '',
-            artist_id: this.account.id || '',
-            artist_name: this.account.artist_name || '',
-            genres: this.account.genres || [],
-            total_member: this.members.length || 0,
-            cover_letter: '',
-            sample_song: '',
-          })
-    
-          this.$router.push('/proposal')
-        }
-      }
-    }
-    </script>
-    
-    <style lang="scss" scoped></style>
+<style lang="scss" scoped></style>
