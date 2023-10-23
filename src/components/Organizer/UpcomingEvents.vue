@@ -39,9 +39,8 @@ export default {
     console.log('Upcoming Events[vue]: ', this.events)
   },
   methods: {
-    viewDetail(event) {
-      this.$store.commit('SET_EVENT', event);
-      this.$emit('modal');
+    viewDetail(target, type) {
+      this.$emit('modal', target?.id, type, 'upcoming');
       console.log('Selected Upcoming Event: ', event)
     },
   }

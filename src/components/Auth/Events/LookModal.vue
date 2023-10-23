@@ -111,7 +111,7 @@ export default {
   mounted()
   {
     this.look_type = this.lookTypes = [];
-    this.look_for = '';
+    this.look_for = this.requirement = '';
 
     if (this.accessType === 'create') {
       this.look_for = 'artist';
@@ -119,7 +119,7 @@ export default {
     } else {
       console.log('Form via LookModal: ', this.form)
       this.look_for = this.form.look_for;
-      this.requirement = this.form.description;
+      this.requirement = this.form.requirement;
       console.log('Edit look form look type: ', this.form.look_types, this.look_for, this.requirement);
       this.look_type = this.form.look_types; 
       

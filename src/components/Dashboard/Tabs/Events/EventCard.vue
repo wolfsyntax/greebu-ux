@@ -23,7 +23,7 @@
       </button>
 
         <ul class="dropdown-menu">
-          <li>
+          <li v-if="editable === true">
             <button class="d-flex align-items-center btn" @click="editEvent">
               <span class="material-symbols-rounded">
               &#xe3c9;
@@ -91,32 +91,27 @@ export default {
     return {}
   },
   props: {
+    editable: { 
+      type: Boolean,
+      default: true,
+      required: false
+    },
     myEvent: Object,
     eventCategory: String,
   },
   methods: {
     ...mapActions([
-      'removeEvent', 'myOngoingEvents', 'myUpcomingEvents', 'myPastEvents', 'fetchEvent',
+      'myOngoingEvents', 'myUpcomingEvents', 'myPastEvents', 'fetchEvent',
     ]),
     editEvent() {
       this.$store.commit('RESET_EVENT_FORM')
       this.fetchEvent(this.myEvent.id)
-        .then(res => this.$emit('show-detail', event, 'edit'));
+        .then(res => this.$emit('show-detail', this.myEvent, 'edit'));
 
       
     },
     remove() {
-      this.removeEvent(this.myEvent.id)
-        .then(res => {
-          if (this.eventCategory === 'ongoing') this.myOngoingEvents();
-          else if (this.eventCategory === 'upcoming') this.myUpcomingEvents();
-          else if (this.eventCategory === 'past') this.myPastEvents();
-          else {
-            this.myOngoingEvents()
-            this.myUpcomingEvents();
-            this.myPastEvents();
-          }
-        })
+      this.$emit('show-detail', this.myEvent, 'remove')
     }
   },
   mounted() {

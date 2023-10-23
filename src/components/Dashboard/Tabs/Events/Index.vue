@@ -1,7 +1,7 @@
 <template>
   <section >
     <div>
-      <h2>Ongoing Events</h2>
+      <h2>This Week Events</h2>
       <div class="row">
         <div class="">
           <ongoing-events @modal="toggle" />
@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import { mapActions, mapGetters, mapState } from 'vuex';
 
 import OngoingEvents from '/src/components/Organizer/OngoingEvents.vue';
 import PastEvents from '/src/components/Organizer/PastEvents.vue';
@@ -67,7 +67,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      'myOngoingEvents', 'myUpcomingEvents', 'myPastEvents',
+      'myOngoingEvents', 'myUpcomingEvents', 'myPastEvents', 'removeEvent', 
     ]),
     dismiss(option) {
       if (option === 'success') {
@@ -77,14 +77,27 @@ export default {
         }).show()
       }
     },
-    toggle(type) {
+    toggle(eventId, type, origin) {
       console.log('Show Modal')
       if (type === 'view') {
         new Modal(document.getElementById('eventDetailsModal'), {
           keyboard: false,
           // backdrop: 'static',
         }).show();
-        
+      } else if (type === 'remove') {
+        console.log(`Remove this `, eventId)
+        this.removeEvent(eventId)
+        .then(res => {
+          if (origin === 'ongoing') this.myOngoingEvents();
+          else if (origin === 'upcoming') this.myUpcomingEvents();
+          else if (origin === 'past') this.myPastEvents();
+          else {
+            this.myOngoingEvents()
+            this.myUpcomingEvents();
+            this.myPastEvents();
+          }
+        })
+
       } else {
       
         new Modal(document.getElementById('editEventModal'), {
@@ -99,7 +112,7 @@ export default {
     ...mapGetters(["isLoggedIn", 'userInfo', 'info', 'userRole']),
   },
   mounted() {
-    console.log('My Ongoing Events:')
+
     this.$store.commit('SET_EVENT_FORM', {});
     this.myOngoingEvents();
     this.myUpcomingEvents();

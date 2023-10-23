@@ -335,7 +335,7 @@ export const removeEvent = (
       "Bearer " + (rootState.bearerToken || localStorage.api_token);
 
     await axios
-      .post(
+      .delete(
         `${
           import.meta.env.VITE_BASE_URL || "http://localhost:8000"
         }/api/events/${payload}`
