@@ -22,7 +22,7 @@
           <img :src=pending.artist_avatar class="requested-by-image" alt="Submitted by image"> 
           <a href="#" class="requested-by">Submitted by <span class="name">{{ pending.artist_name }}</span></a> 
           <span class="material-symbols-sharp dot-icon">&#xe061;</span>
-          <span class="time" v-if="cardType === 'pending'">{{ $filters.diffForHumans($moment(pending?.created_at).format('YYYY-MM-DD hh:mm:ss a')) }}</span>
+          <span class="time" v-if="cardType === 'pending'">{{ $filters.diffForHumans($moment(pending?.submitted_at).format('YYYY-MM-DD hh:mm:ss a')) }}</span>
           <span class="time" v-else-if="cardType === 'accepted'">{{ $filters.diffForHumans($moment(pending?.accepted_at).format('YYYY-MM-DD hh:mm:ss a')) }}</span>
           <span class="time" v-else-if="cardType === 'declined'">{{ $filters.diffForHumans($moment(pending?.declined_at).format('YYYY-MM-DD hh:mm:ss a')) }}</span>
         </div>
