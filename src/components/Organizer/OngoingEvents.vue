@@ -44,8 +44,6 @@ export default {
   },
   methods: {
     viewDetail(target, type) {
-      this.$store.commit('SET_EVENT_ID', target?.id || '');
-      
       this.$emit('modal', target?.id, type, 'ongoing');
       console.log('Selected Ongoing Event: ', target)
     }

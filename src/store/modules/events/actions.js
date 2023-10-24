@@ -326,20 +326,20 @@ export const updateEvent = ({ commit, rootState, state }) => {
   });
 };
 
-export const removeEvent = (
-  { dispatch, commit, rootState, state },
-  payload
-) => {
+export const removeEvent = ({ dispatch, commit, rootState, state }) => {
   return new Promise(async (resolve, reject) => {
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + (rootState.bearerToken || localStorage.api_token);
 
+    if (state.eventId === "" || state.eventId === null)
+      reject({ status: 404, message: "No Event selected", result: [] });
+
+    var url = `${
+      import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+    }/api/events/${state.eventId}`;
+    console.log("Delete event url: ", url);
     await axios
-      .delete(
-        `${
-          import.meta.env.VITE_BASE_URL || "http://localhost:8000"
-        }/api/events/${payload}`
-      )
+      .delete(url)
       .then((response) => {
         console.log("Delete Event: ", response);
         const { status: statusCode, data } = response;

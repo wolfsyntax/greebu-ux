@@ -111,6 +111,7 @@ export default {
       
     },
     remove() {
+      this.$store.commit('SET_EVENT_ID', this.myEvent.id);
       this.$emit('show-detail', this.myEvent, 'remove')
     }
   },

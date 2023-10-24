@@ -41,7 +41,7 @@ export default {
   methods: {
     viewDetail(target, type) {
       this.$emit('modal', target?.id, type, 'upcoming');
-      console.log('Selected Upcoming Event: ', event)
+      console.log('Selected Upcoming Event: ', target)
     },
   }
 }

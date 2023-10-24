@@ -53,6 +53,7 @@ const state = {
   ongoingEvents: [],
   upcomingEvents: [],
   pastEvents: [],
+  eventId: "",
 };
 
 export default state;
