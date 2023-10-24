@@ -74,3 +74,7 @@ export const SET_UPCOMING_EVENTS = (state, payload = []) => {
 export const SET_PAST_EVENTS = (state, payload = []) => {
   state.pastEvents = payload;
 };
+
+export const SET_EVENT_ID = (state, payload = "") => {
+  state.eventId = payload;
+};
