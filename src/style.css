@@ -7484,11 +7484,12 @@ header nav {
   background-color: var(--orange);
   color: var(--white);
 }
-#createEventModal .upload-file-wrapper{
+#createEventModal .upload-file-wrapper, #editEventModal .upload-file-wrapper{
   margin-bottom: 1.75rem;
 }
 #createEventModal .uploaded-image-wrapper .uploaded-image,
-#albumSongInfo .uploaded-image-wrapper .uploaded-image{
+#albumSongInfo .uploaded-image-wrapper .uploaded-image,
+#editEventModal .uploaded-image-wrapper .uploaded-image{
   height: 18.375rem;
   width: 100%;
 }
@@ -7496,7 +7497,8 @@ header nav {
   margin-bottom: 1.5rem;
 }
 #createEventModal .uploaded-image-wrapper .remove-image,
-#albumSongInfo .uploaded-image-wrapper .remove-image {
+#albumSongInfo .uploaded-image-wrapper .remove-image,
+#editEventModal .uploaded-image-wrapper .remove-image {
   margin: 0;
   position: absolute;
   top: 1.7%;
@@ -7505,7 +7507,8 @@ header nav {
   background-color: transparent;
 }
 #createEventModal .uploaded-image-wrapper .remove-image span,
-#albumSongInfo .uploaded-image-wrapper .remove-image span{
+#albumSongInfo .uploaded-image-wrapper .remove-image span,
+#editEventModal .uploaded-image-wrapper .remove-image span{
   cursor: pointer;
   color: var(--white);
   margin: 0;
@@ -7955,6 +7958,67 @@ header nav {
     width: 100%;
     height: 14.3rem;
 }
+
+/* Delete an event etc. */
+
+#deleteConfirmation .modal-content{
+  padding: 1rem 2rem 2rem;
+}
+#deleteConfirmation .modal-header,
+#deleteConfirmation .modal-body,
+#deleteConfirmation .modal-footer{
+  padding: 0;
+}
+#deleteConfirmation .modal-header{
+  border-bottom: none;
+}
+#deleteConfirmation .modal-footer{
+  border-top: none;
+}
+#deleteConfirmation .modal-header .cancel-btn{
+  text-align: right;
+}
+#deleteConfirmation .modal-header .cancel-btn .cancel-icon{
+  font-size: 24px;
+  color: var(--black);
+}
+#deleteConfirmation .message-wrap{
+  margin-bottom: 3rem;
+}
+#deleteConfirmation .message-wrap h3{
+  color: var(--black);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+#deleteConfirmation .message-wrap p{
+  color: var(--gray6);
+  font-weight: 500;
+}
+#deleteConfirmation .modal-footer button{
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  padding: 0.75rem 2rem;
+  border: 1px solid #FF6B00;
+  background-color: var(--white);
+}
+#deleteConfirmation .modal-footer .delete{
+  background: var(--orange)
+}
+#deleteConfirmation .modal-footer .cancel{
+  color: var(--orange);
+}
+#deleteConfirmation .modal-footer .delete:hover{
+  background-color: var(--btn-hovered);
+}
+/* #deleteConfirmation .message-wrap h3{
+  color: var(--orange);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 2rem; 
+} */
 
 /* Customized Songs - Upload Song */
 

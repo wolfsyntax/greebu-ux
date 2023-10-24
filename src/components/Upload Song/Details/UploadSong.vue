@@ -71,21 +71,29 @@
 </template>
 
 <script>
-import DragDrop from '/src/components/DragDrop.vue';
 import InfoBlock from '../../Dashboard/Modals/InfoBlock.vue';
 
 export default {
   components:
   {
-    DragDrop,
     InfoBlock
   },
   
   setup()
   {
     return {
-      ArtworkImageInfo: "Please upload an MP3 or MP4 audio file with a maximum size of 10MB.",
-
+    
+    }
+  },
+  
+  data: () => ({
+    form: {
+      cover_photo: '',
+    },
+    ArtworkImageInfo: "Please upload an MP3 or MP4 audio file with a maximum size of 10MB.",
+      error: {
+      song: []
+      },
       isLoading: false,
       uploadedMusic: null,
       uploadedSongWrapper: false,
@@ -111,14 +119,6 @@ export default {
       targetMagic: '',
       audioSize: 0,
       invalidAudio: false,
-    
-    }
-  },
-  
-  data: () => ({
-    form: {
-      cover_photo: '',
-    }
   }),
   methods: {
     fileCheck(file)

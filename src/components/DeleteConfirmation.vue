@@ -3,18 +3,27 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5">Delete event</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+          <button type="button" class="btn ms-auto p-0 cancel-btn" data-bs-dismiss="modal" aria-label="Close">
+            <span class="material-symbols-rounded cancel-icon">&#xe5c9;</span>
+          </button>
+
         </div>
 
         <div class="modal-body">
-          You are about to delete this event. Are you sure you want to delete?
+
+          <div class="text-start message-wrap">
+            <h3>Delete event</h3>
+            <p class="mb-0">You are about to delete this event. Are you sure you want to delete?</p>
+          </div>
+
         </div>
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" @click="confirm">Delete</button>
-          <button type="button" ref="cancelDelete" class="btn btn-primary" data-bs-dismiss="modal" @click="cancel">Cancel</button>
+          <button type="button" class="btn btn-secondary delete" @click="confirm">Delete</button>
+          <button type="button" ref="cancelDelete" class="btn btn-primary cancel" data-bs-dismiss="modal" @click="cancel">Cancel</button>
         </div>
+
       </div>
     </div>
   </div>
