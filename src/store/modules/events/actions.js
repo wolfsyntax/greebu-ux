@@ -403,7 +403,7 @@ export const myOngoingEvents = ({ commit, rootState, state }) => {
   return new Promise(async (resolve, reject) => {
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + (rootState.bearerToken || localStorage.api_token);
-
+    commit("SET_EVENT", {});
     var url = "";
     await axios
       .get(
@@ -439,6 +439,7 @@ export const myUpcomingEvents = ({ commit, rootState, state }) => {
   return new Promise(async (resolve, reject) => {
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + (rootState.bearerToken || localStorage.api_token);
+    commit("SET_EVENT", {});
 
     var url = "";
     await axios
@@ -475,6 +476,8 @@ export const myPastEvents = ({ commit, rootState, state }) => {
   return new Promise(async (resolve, reject) => {
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + (rootState.bearerToken || localStorage.api_token);
+
+    commit("SET_EVENT", {});
 
     var url = "";
     await axios
