@@ -91,20 +91,27 @@
         </div> <!-- end of row -->
 
         <!-- Upcoming Events -->
-        <div class="row" v-if="events.length">
-          <div class="col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3" v-for="(event, index) in events" :key="index">
+        <transition v-if="!isLoading" >
+          <keep-alive>
+            <div class="row" v-if="events.length">
+              <div class="col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3" v-for="(event, index) in events" :key="index">
+                <event-card :event="event" :pos="index" @show="toggleEvent" />
+              </div>
+            </div>     
 
-            <event-card :event="event" :pos="index" @show="toggleEvent" />
-
+            <div class="row" v-else>
+              <div class="col text-center">
+                <h3>No Events found!</h3>
+              </div>
+            </div>
+          </keep-alive>
+        </transition>
+        <transition v-else class="text-center">
+          <div>
+            <h3>Please wait!</h3>
+            <h5>Retrieving Events...</h5>
           </div>
-        </div>     
-
-        <div class="row" v-else>
-          <div class="col text-center">
-            <h3>No Events found!</h3>
-          </div>
-        </div>
-
+        </transition>
       </div>
     </section>
     
@@ -148,11 +155,9 @@ export default {
   {
 
   },
-  data()
-  {
-    return {
-    }
-  },
+  data: () => ({
+    isLoading: false,
+  }),
   computed: {
     ...mapGetters(["isLoggedIn", 'userInfo', 'info', 'userRole']),
     ...mapState({
@@ -180,10 +185,12 @@ export default {
     console.log('Window Hostname: ', window.location.hostname)
     this.fetchEventOptions().then(res => this.RESET_EVENT_FILTER())
     this.fetchCityList();
+    this.isLoading = true;
     this.fetchEventList()
       .then(res =>
       {
         console.log('Events: ', res);
+        this.isLoading = false;
       })
   },
   methods: {
@@ -254,7 +261,10 @@ export default {
     eventFilter: {
       handler(val)
       {
+        this.isLoading = true;
         this.fetchEventList()
+          .then(res => this.isLoading = false);
+        
       },
       deep: true,
     }

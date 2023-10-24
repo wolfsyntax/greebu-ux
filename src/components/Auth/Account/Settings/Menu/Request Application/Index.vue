@@ -30,11 +30,13 @@
         <h5 class="tab-title">{{ customize.name }}</h5>
       </li>
     </div>
-
-    <pending-application v-if="selectedCustomized === 'Pending Application'"/>
-    <accepted v-if="selectedCustomized === 'Accepted'" />
-    <denied v-if="selectedCustomized === 'Denied'"/>
-    
+    <transition>
+      <keep-alive>
+        <pending-application v-if="selectedCustomized === 'Pending Application'"/>
+        <accepted v-else-if="selectedCustomized === 'Accepted'" />
+        <denied v-else-if="selectedCustomized === 'Denied'"/>
+      </keep-alive>
+    </transition>
   </div>
 </template>
   
