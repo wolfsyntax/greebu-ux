@@ -92,19 +92,19 @@
 
         <!-- Upcoming Events -->
         <transition v-if="!isLoading" >
-          <keep-alive>
-            <div class="row" v-if="events.length">
-              <div class="col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3" v-for="(event, index) in events" :key="index">
-                <event-card :event="event" :pos="index" @show="toggleEvent" />
-              </div>
-            </div>     
 
-            <div class="row" v-else>
-              <div class="col text-center">
-                <h3>No Events found!</h3>
-              </div>
+          <div class="row" v-if="events.length">
+            <div class="col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3" v-for="(event, index) in events" :key="index">
+              <event-card :event="event" :pos="index" @show="toggleEvent" />
             </div>
-          </keep-alive>
+          </div>     
+
+          <div class="row" v-else>
+            <div class="col text-center">
+              <h3>No Events found!</h3>
+            </div>
+          </div>
+
         </transition>
         <transition v-else class="text-center">
           <div>
