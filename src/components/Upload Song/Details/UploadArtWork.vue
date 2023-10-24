@@ -16,12 +16,6 @@
 
       <drag-drop @dragCover="setCover" v-else/>
 
-      <!-- <div class="d-flex align-items-center img-dimensions">
-        <span class="material-symbols-rounded info">&#xe88e;</span>
-        <p class="description">Cover photo should be a rectangular .jpg, .jpeg, .png, or .webp file, 
-          with a minimum size of 400x150 pixels, clear, and under 2MB.</p>
-      </div> -->
-
       <InfoBlock :infoText="ArtworkImageInfo" />
 
       <div class="float-end action-btn add-space">
