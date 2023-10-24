@@ -2,19 +2,19 @@
   <div>
     <form @submit.prevent="submit">
       <div class="form-group">
-        <label for="songTitle" class="form-label">Title of Song</label>
+        <label for="songTitle" class="form-label float-start">Title of Song</label>
         <span class="badge float-end">Required</span>
         <input type="text" class="form-control" id="songTitle" v-model="form.song_title" required>
       </div>
 
       <div class="form-group">
-        <label for="songComposer" class="form-label">Composer</label>
+        <label for="songComposer" class="form-label float-start">Composer</label>
         <span class="badge float-end">Required</span>
         <input type="text" class="form-control" id="songComposer" v-model="form.composer" required>
       </div>
 
       <div class="form-group last-form-group">
-        <label for="songGenre" class="form-label">Genre</label>
+        <label for="songGenre" class="form-label float-start">Genre</label>
         <span class="badge float-end">Required</span>
         <select v-model="form.genre" required class="form-select">
           <option selected></option>
@@ -34,12 +34,8 @@
 
 <script>
 import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
-import DragDrop from '/src/components/DragDrop.vue';
 export default {
-  components:
-  {
-    DragDrop
-  },
+
   setup () {
     
 
@@ -53,10 +49,10 @@ export default {
     }
   }),
   methods: {
-    submit()
-    {
-      this.$emit('step', {})
+    submit() {
+      this.$emit('next-step');
     }
+
   },
   mounted()
   {

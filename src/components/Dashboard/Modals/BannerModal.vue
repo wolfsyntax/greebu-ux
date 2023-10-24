@@ -50,10 +50,14 @@
               </button>
           </div>
       </div> 
-      <div class="d-flex align-items-center img-dimensions">
+
+      <!-- <div class="d-flex align-items-center img-dimensions">
         <span class="material-symbols-rounded info">&#xe88e;</span> 
         <p class="description">Cover photo should be a rectangular .jpg, .jpeg, .png, or .webp file, with a minimum size of 400x150 pixels, clear, and under 2MB.</p>
-      </div>
+      </div> -->
+
+      <InfoBlock :infoText="songInfoText" />
+
       <!-- <div>
         <p>Image Width: {{ imageWidth }} pixels</p>
         <p>Image Height: {{ imageHeight }} pixels</p>
@@ -78,12 +82,17 @@
 
 <script>
 import { mapGetters, mapState, mapActions } from "vuex";
+import InfoBlock from "./InfoBlock.vue";
 
 export default {
-
+  components: {
+    InfoBlock
+  },  
   setup () {
 
-    return {}
+    return {
+      songInfoText: "Cover photo should be a rectangular .jpg, .jpeg, .png, or .webp file, with a minimum size of 400x150 pixels, clear, and under 2MB.",
+    }
   },
   data: () => ({
     banner: null,

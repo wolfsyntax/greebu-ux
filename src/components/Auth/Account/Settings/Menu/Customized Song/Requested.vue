@@ -13,10 +13,10 @@
             <span class="time">{{ request.time }} hours ago</span>
           </div>
 
-          <div class="d-flex align-items-start event-note-wrap">
+          <!-- <div class="d-flex align-items-start event-note-wrap">
             <span class="material-symbols-rounded info-icon">&#xe88e;</span>
             <p class="note">Clients will only pay if you accept the requested customized song.</p>
-          </div>
+          </div> -->
         </div>
 
         <div class="details-wrapper">
