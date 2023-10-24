@@ -1,7 +1,7 @@
 <template>
   <div class="row" v-if="events.length">
     <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-4"  v-for="(item, i) in events" :key="i" >
-      <event-card :event="item" @show-detail="viewDetail" />
+      <event-card :myEvent="item" @show-detail="viewDetail" />
     </div>
   </div>
   <div class="text-center no-events-wrap" v-else>
@@ -43,10 +43,11 @@ export default {
     console.log('Ongoing Events[vue]: ', this.events)
   },
   methods: {
-    viewDetail(event) {
-      this.$store.commit('SET_EVENT', event);
-      this.$emit('modal');
-      console.log('Selected Ongoing Event: ', event)
+    viewDetail(target, type) {
+      this.$store.commit('SET_EVENT_ID', target?.id || '');
+      
+      this.$emit('modal', target?.id, type, 'ongoing');
+      console.log('Selected Ongoing Event: ', target)
     }
   }
 }

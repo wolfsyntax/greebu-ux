@@ -1,10 +1,10 @@
 <template>
   <div>
     <form class="required-fields" @submit.prevent="submit">
-      <div class="upload-file-wrapper" v-if="form.cover">
+      <div class="upload-file-wrapper" v-if="cover">
         <div class="uploaded-image-wrapper" >
           <div>
-            <img ref="uploadedImage" class="uploaded-image" :src="form.cover" alt="banner-modal" />
+            <img ref="uploadedImage" class="uploaded-image" :src="cover" alt="banner-modal" />
           </div>
           
           <button class="remove-image" @click="removeBanner" >
@@ -145,6 +145,18 @@ import DragDrop from '/src/components/DragDrop.vue';
 import Multiselect from '@vueform/multiselect';
 
 export default {
+  props: {
+    // formData: { 
+    //   type: Object,
+    //   default: {},
+    //   required: false
+    // },
+    accessType: {
+      type: String,
+      default: 'create',
+      required: false,
+    },
+  },
   setup () {
     
 
@@ -155,7 +167,7 @@ export default {
   },
   data: () => ({
     error: [],
-    // cover: '',
+    cover: '',
     isLoading: false,
     isComplete: false,
     errorTime: '',
@@ -178,20 +190,31 @@ export default {
     ]),
     setCover(val)
     {
+      
       this.form.cover_photo = val;
       this.form.cover = URL.createObjectURL(val);
-      console.log('Set Cover:: ', val);
+      // this.cover = URL.createObjectURL(val);
+      console.log('Set Cover:: ', this.form.cover);
     },
     removeBanner()
     {
       this.form.cover = '';
       this.form.cover_photo = '';
+      this.cover = '';
+      // this.error.cover_photo = '';
     },
     submit()
     {
       this.isLoading = true;
       console.log('Emit: ', this.form);
-
+      if (this.accessType !== 'create') {
+        console.log('Form modal submit: ', (typeof this.form.cover_photo))
+        if (typeof this.form.cover_photo === 'string') delete this.form.cover_photo;
+        delete this.form.lat;
+        delete this.form.long;
+        this.form.mode = 'update';
+      }
+      
       this.verifyEvent()
         .then(res =>
         {
@@ -214,10 +237,15 @@ export default {
     },
     
   },
+  created() {
+    
+  },
   mounted()
   {
-    // this.cover = this.form.cover_photo ? URL.createObjectURL(this.form.cover_photo) : '';
 
+    // this.cover = this.form.cover_photo ? URL.createObjectURL(this.form.cover_photo) : '';
+    
+    console.log('Event Data: ', this.formData, this.form)
     if (
       this.form?.event_type !== '' && this.form?.event_name !== '' &&
       this.form?.street_address !== '' && this.form?.barangay !== '' &&
@@ -228,10 +256,9 @@ export default {
 
     this.fetchEventOptions();
 
-    document.getElementById('createEventModal').addEventListener('shown.bs.modal', () =>
+    document.getElementById(this.accessType === 'create' ? 'createEventModal' : 'editEventModal').addEventListener('shown.bs.modal', () =>
     {
-      
-      console.log('[FormModal.vue] Form data: ', this.form)
+      console.log('Event Form: ', this.form)
       this.step = 'detail';
 
     });
@@ -315,7 +342,22 @@ export default {
           this.form.end_date = this.$moment().add(5, 'days').format('YYYY-MM-DD');
         }
 
-        this.cover = val.cover_photo ? URL.createObjectURL(val.cover_photo) : '';
+        
+        if (this.accessType !== 'create') {
+          this.form.cover = val.cover_photo;
+          
+          this.cover = (typeof val.cover_photo === 'string') ? val.cover_photo : val?.cover_photo ? URL.createObjectURL(val.cover_photo): '';
+        } else {
+          this.cover = val.cover_photo ? URL.createObjectURL(val.cover_photo) : '';
+        }
+        // if (this.accessType === 'create') this.cover = val.cover_photo ? URL.createObjectURL(val.cover_photo) : '';
+        // else if (this.accessType === 'edit') { 
+        //   this.form.cover = val.cover_photo;
+        //   // this.form.cover_photo = val.cover_photo;
+
+        //   this.cover = val.cover_photo;
+        //   console.log('Event cover photo: ', val);
+        // }
 
       },
       deep:true,

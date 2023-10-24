@@ -21,6 +21,7 @@ const state = {
     requirement: "",
     cover: "",
     venue_name: "",
+    mode: "store",
   },
   event_types: [],
   event_artist_type: [

@@ -56,11 +56,11 @@ export default {
     targetFile: null,
   }),
   props: {
-    banner: { 
-      type: String,
-      default: '',
-      required: true
-    },
+    // banner: { 
+    //   type: String,
+    //   default: '',
+    //   required: true
+    // },
   },
   mounted()
   {
