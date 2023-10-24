@@ -173,11 +173,12 @@ export default {
     }
   },
   created() {
+    console.log('Event ID: ', this.$route.params.eventId);
     this.fetchEvent(this.$route.params.eventId)
       .catch(res => {
         const { status, message, result } = res;
         console.log(`Response ${this.$route.params.eventId}: `, status)
-        if (status === 404) {
+        if (status === 404 || status === 500) {
           this.$router.push({
             name: 'page-error-404'
           });
