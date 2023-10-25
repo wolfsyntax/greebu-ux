@@ -71,11 +71,12 @@
       <div class="text-end action-btn-wrap">
         <!-- <button type="button" class="btn btn-outline-geebu mx-1" @click="$emit('next-step', 'skip')" ref="eventSkip">Skip</button> -->
         <button type="button" class="btn cancel" @click="back">Back</button>
-        <button type="button" class="btn next" @click="submit">
-          <span >
-            <i class="busy-submitting" v-if="isLoading"></i>Submit
-          </span>
+
+        <button type="submit" class="btn next" @click="submit">
+            <LoadingVue :infoText="buttonName" v-if="isLoading"/>
+            <span v-else>{{ buttonName }}</span>
         </button>
+
       </div>
 
     </form>    
@@ -85,8 +86,12 @@
 <script>
 import { mapActions, mapGetters, mapState } from 'vuex';
 import Multiselect from '@vueform/multiselect';
+import Loading from '../../Loading.vue';
 
 export default {
+  components: {
+    Loading
+  },
   props: {
     accessType: {
       type: String,
@@ -100,6 +105,7 @@ export default {
     return {}
   },
   data: () => ({
+    buttonName: 'Submit',
     error: null,
     isLoading: false,
     lookTypes: [],

@@ -125,14 +125,19 @@
         <div class="text-end action-btn-wrap">
 
           <button type="button" class="btn cancel" data-bs-dismiss="modal">Cancel</button>
-          <button type="submit" class="btn next" :disabled="!validInput">
+          <!-- <button type="submit" class="btn next" :disabled="!validInput">
             <span >
               <i class="busy-submitting" v-if="isLoading"></i>Next
             </span>
+          </button> -->
+
+          <button type="submit" class="btn next" :disabled="!validInput">
+            <LoadingVue :infoText="buttonName" v-if="isLoading"/>
+            <span v-else>{{ buttonName }}</span>
           </button>
 
-        </div>
 
+        </div>
 
     </form>    
   </div>
@@ -143,6 +148,8 @@ import { mapActions, mapGetters, mapState } from 'vuex';
 
 import DragDrop from '/src/components/DragDrop.vue';
 import Multiselect from '@vueform/multiselect';
+import LoadingVue from '../../Loading.vue';
+
 
 export default {
   props: {
@@ -164,8 +171,10 @@ export default {
   },
   components: {
     DragDrop,
+    LoadingVue
   },
   data: () => ({
+    buttonName: 'Submit',
     error: [],
     cover: '',
     isLoading: false,
