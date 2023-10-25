@@ -281,6 +281,15 @@ export default {
       },
       deep: true
     },
+    search: {
+      handler(val) {
+        
+        this.$store.commit('SET_EVENT_FILTER', {search: val, city: '', event_type: this.event_type });
+        this.fetchEventList()
+        
+      },
+      deep: true
+    },
     event_type: {
       handler(val) {
         this.$store.commit('SET_EVENT_FILTER', {search: this.search, city: this.city, event_type: val });
