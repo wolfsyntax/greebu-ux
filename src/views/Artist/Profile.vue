@@ -1064,7 +1064,7 @@ export default {
       setTimeout(() => {
         this.clearErrorMessage();
         this.defaultFileFormat = true;
-      }, 10000); 
+      }, 10000000); // 10000
       this.defaultFileFormat = false;
     },
     removeMusic()

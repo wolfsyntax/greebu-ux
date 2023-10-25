@@ -50,6 +50,7 @@
     "laravel-echo": "^1.15.3",
     "postcss": "^8.4.24",
     "pusher-js": "^8.3.0",
+    "sass": "^1.69.4",
     "tailwindcss": "^3.3.2",
     "vite": "^4.3.9"
   }

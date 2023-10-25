@@ -48,7 +48,11 @@
           </div>
           
           <div class="text-center">
-            <button class="btn submit-proposal-btn" :disabled="!isValid">Submit</button>
+            <!-- <button class="btn submit-proposal-btn" :disabled="!isValid">Submit</button> -->
+            <button class="btn submit-proposal-btn" :disabled="!isValid">
+              <LoadingVue :infoText="buttonName" v-if="isLoading"/>
+              <span v-else>{{ buttonName }}</span>
+            </button>
           </div>
         </form>
       </div>
@@ -77,11 +81,13 @@ import Layout from '/src/components/Layouts/Layout.vue';
 import { mapActions, mapGetters, mapState } from "vuex";
 import SuccessProposalModal from '/src/components/Auth/Proposal/SuccessProposalModal.vue';
 import { Modal } from 'bootstrap';
+import LoadingVue from '../../../components/Loading.vue';
 
 export default {
   components: {
     layout: Layout,
     SuccessProposalModal,
+    LoadingVue
   },
   setup() {
     
@@ -98,6 +104,8 @@ export default {
       errors: [],
       errorMessage: '',
       modalObj: null,
+      buttonName: 'Submit',
+      isLoading: false,
     }
   },
   methods: {
@@ -111,7 +119,7 @@ export default {
     },
     submit()
     {
-
+      this.isLoading = true;
       this.$store.commit('SET_PROPOSAL', this.form);
       this.sendArtistProposal()
         .then(response =>

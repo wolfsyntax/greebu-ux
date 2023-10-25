@@ -20,7 +20,11 @@
         </div>
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary delete" @click="confirm">Delete</button>
+          <!-- <button type="button" class="btn btn-secondary delete" @click="confirm">Delete</button> -->
+          <button type="button" class="btn btn-secondary delete" @click="confirm">
+            <LoadingVue :infoText="buttonName" v-if="isLoading"/>
+            <span v-else>{{ buttonName }}</span>
+          </button>
           <button type="button" ref="cancelDelete" class="btn btn-primary cancel" data-bs-dismiss="modal" @click="cancel">Cancel</button>
         </div>
 
@@ -31,8 +35,12 @@
 
 <script >
 import { mapActions, mapState } from 'vuex';
+import LoadingVue from './Loading.vue';
 
 export default {
+  components: {
+    LoadingVue
+  },  
   created () {
   },
   watch: {
@@ -40,6 +48,8 @@ export default {
   props: {
   },
   data: () => ({
+    buttonName: 'Delete',
+    isLoading: false,
     modal: null,
   }),
   methods: {
@@ -51,7 +61,7 @@ export default {
           this.$refs.cancelDelete.click();
           this.$emit('confirm');
         });
-  
+        this.isLoading = true;
     },
     cancel() {
       // this.$emit('cancel')

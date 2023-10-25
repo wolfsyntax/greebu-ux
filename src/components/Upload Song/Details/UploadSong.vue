@@ -56,7 +56,7 @@
           <div v-for="err in error?.song" :key="err"
             class="d-flex align-items-center audio-file-format errorMessage">
               <span class="material-symbols-outlined info">&#xe88e;</span>
-            <p class="max-file-size"> {{ err }}</p>
+            <p class="mb-0 max-file-size"> {{ err }}</p>
           </div>
 
         <InfoBlock :infoText="ArtworkImageInfo" />
@@ -82,7 +82,6 @@ export default {
   setup()
   {
     return {
-    
     }
   },
   
@@ -257,7 +256,7 @@ export default {
     clearErrorMessageAfterDelay() {
       setTimeout(() => {
         this.clearErrorMessage();
-      }, 10000); 
+      }, 1000000); // 10000
     },
     removeMusic()
     {
@@ -369,5 +368,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 </style>

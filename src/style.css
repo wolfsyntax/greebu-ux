@@ -7403,7 +7403,7 @@ header nav {
 }
 #createEventModal .modal-body .action-btn-wrap button,
 #editEventModal .modal-body .action-btn-wrap button {
-  width: 10.125rem;
+  /* width: 10.125rem; */
   padding: 0.90625rem 3.5rem;
   border-radius: 0.375rem;
   border: 1px solid var(--orange);
@@ -7608,6 +7608,27 @@ header nav {
 #albumSongInfo .upload-audio .upload-file-content label:hover{
   background-color: var(--orange);
   color: var(--white);
+}
+#albumSongInfo .audio-file-format {
+    padding: 0.9rem 1.21rem;
+    border-radius: 0.40375rem;
+    background: #efeffc;
+    margin: 1rem 0;
+}
+#albumSongInfo .errorMessage {
+    background: #fecaca;
+}
+#albumSongInfo .audio-file-format .max-file-size {
+    color: var(--warning);
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: -0.04375rem;
+}
+#albumSongInfo .audio-file-format .info {
+    font-size: 20px;
+    color: var(--gray6);
+    margin-right: 0.32rem;
+    color: var(--warning);
 }
 
 /* LIBRARY PAGE */
@@ -8041,6 +8062,43 @@ header nav {
   24 px	1.5 rem
   28px 1.75 rem
 /* */
+
+/* Delete an event etc. */
+
+#deleteConfirmation .modal-content{
+  padding: 1rem 1.88rem 1.64rem;
+}
+#deleteConfirmation .modal-header .cancel-btn .cancel-icon{
+  font-size: 18px;
+}
+#deleteConfirmation .message-wrap{
+  margin-bottom: 2.5rem;
+}
+#deleteConfirmation .message-wrap h3{
+  font-size: 1.125rem;
+}
+#deleteConfirmation .message-wrap p{
+  font-size: 1rem;
+}
+#deleteConfirmation .modal-footer button{
+  font-size: 0.9375rem;
+  border-radius: 0.375rem;
+  padding: 0.75rem 1.84rem;
+  border: 0.75px solid #FF6B00;
+}
+
+#albumSongInfo .audio-file-format {
+  padding: 0.7rem 0.9rem;
+  margin: 0.5rem 0;
+}
+#albumSongInfo .audio-file-format .info {
+  font-size: 16px;
+  margin-right: 0.2rem;
+}
+#albumSongInfo .audio-file-format .max-file-size {
+  font-size: 0.79rem;
+  letter-spacing: -0.04375rem;
+}
 
 #albumSongInfo .upload-audio{
   border-radius: 0.625rem;
@@ -8480,8 +8538,8 @@ header nav {
   }
   #createEventModal .modal-body .action-btn-wrap button,
   #editEventModal .modal-body .action-btn-wrap button {
-    width: 7.59375rem;
-    padding: 0.69rem;
+    /* width: 7.59375rem; */
+    padding: 0.69rem 2.5rem;
     font-size: 0.75rem;
     border-radius: 0.28125rem;
   }
