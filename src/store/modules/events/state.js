@@ -44,7 +44,7 @@ const state = {
   eventFilter: {
     event_type: "",
     city: "",
-    cost: false,
+    cost: "both",
     search: "",
     sortBy: "DESC",
   },
