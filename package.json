@@ -28,6 +28,7 @@
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.43",
     "pusher-js": "^8.3.0",
+    "sass-loader": "^13.3.2",
     "secure-ls": "^1.2.6",
     "vue": "^3.3.4",
     "vue-advanced-cropper": "^2.8.8",
