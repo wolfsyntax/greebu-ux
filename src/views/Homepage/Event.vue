@@ -45,15 +45,15 @@
           </div>
           <div class="col-6">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search for Events" v-model="eventFilter.search" aria-label="Search for Events" aria-describedby="button-addon2">
-              <button class="btn btn-success border-rad" type="button" id="button-addon2" @click="fetchEventList">
+              <input type="text" class="form-control" placeholder="Search for Events" v-model="search" aria-label="Search for Events" aria-describedby="button-addon2">
+              <button class="btn btn-success border-rad" type="button" id="button-addon2" @click="filterEvent">
                 <span class="material-symbols-outlined next">search</span>
                 </button>
             </div>
           </div>
           <div class="col-4">
             <h5>Type of Event</h5>
-            <select class="form-select" aria-label="Default select example" v-model="eventFilter.event_type" >
+            <select class="form-select" aria-label="Default select example" v-model="event_type" >
               <option value="" selected>&emsp;</option>
               <option v-for="(event_type, index) in eventTypes" :key="index" :value="event_type.value">
                 {{ event_type.text }}
@@ -62,14 +62,16 @@
           </div>
           <div class="col-4">
             <h5>Location</h5>
-            <multiselect v-model="eventFilter.city" mode="single"
+            <multiselect v-model="city" mode="single"
               :close-on-select="false"
+              @select="filterByCity"
+              @deselect="filterByCity"
               :create-option="true" :options="async function (query) {
                 await fetchCityList(query)
                 return cities;
 
               }"
-              searchable="true"  
+              :searchable="true"  
               :delay="0" 
               autocomplete="off" 
               ref="multiselect" 
@@ -157,6 +159,9 @@ export default {
   },
   data: () => ({
     isLoading: false,
+    city: '',
+    event_type: '',
+    search: '',
   }),
   computed: {
     ...mapGetters(["isLoggedIn", 'userInfo', 'info', 'userRole']),
@@ -255,9 +260,34 @@ export default {
     openEventDetailsModal(data){
         this.$root.$emit("bv::show::modal", "#eventDetailsModal");
     },
-
+    filterEvent() {
+      this.$store.commit('SET_EVENT_FILTER', {search: this.search, city: this.city, event_type: this.event_type});
+      this.fetchEventList()
+    },
+    filterByCity() {      
+      this.$store.commit('SET_EVENT_FILTER', {search: this.search, city: this.city, event_type: this.event_type });
+      this.fetchEventList()
+    }
   },
   watch: {
+    city: {
+      handler(val) {
+        console.log(`Clear City ${val}`)
+        if (val === null || val === '') {
+
+          this.$store.commit('SET_EVENT_FILTER', {search: this.search, city: '', event_type: this.event_type });
+          this.fetchEventList()
+        }
+      },
+      deep: true
+    },
+    event_type: {
+      handler(val) {
+        this.$store.commit('SET_EVENT_FILTER', {search: this.search, city: this.city, event_type: val });
+        this.fetchEventList()
+      },
+      deep: true
+    },
     eventFilter: {
       handler(val)
       {
