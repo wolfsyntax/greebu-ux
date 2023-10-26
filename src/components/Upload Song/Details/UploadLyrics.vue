@@ -125,7 +125,7 @@ export default {
       if (file) {
         if (file.type === 'application/pdf' || file.type === 'application/msword' || file.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
           // Check if the file size is less than or equal to 10MB (10 * 1024 * 1024 bytes)
-          if (file.size <= 3 * 1024 * 1024) {
+          if (file.size <= 10 * 1024 * 1024) {
             this.uploadedFile = {
               name: file.name,
               sizeInKB: (file.size / 1024).toFixed(2)

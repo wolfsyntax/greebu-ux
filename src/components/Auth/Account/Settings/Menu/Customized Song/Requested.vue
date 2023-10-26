@@ -1,16 +1,16 @@
 <template>
   <div>
-    <div class="customized-songs-wrapper" v-for="(request, index) in requestedSongs" :key="index">
-
+    <div class="customized-songs-wrapper" v-for="(request, index) in customizedSongs" :key="index">
+      
       <div class="d-flex align-items-center justify-content-between event-description">
-
+        
         <div class="left-wrap">
-          <h5 class="text-truncate event">{{ request.event }}</h5>
+          <h5 class="text-truncate event">{{ request.purpose }} Song</h5>
           <div class="d-flex align-items-center requested-wrapper">
-            <img :src=request.profile_image class="requested-by-image" alt="Requested by image"> 
-            <a href="#" class="requested-by">Requested by <span class="name">{{ request.name }}</span></a> 
+            <img :src=request.creator?.avatar class="requested-by-image" alt="Requested by image"> 
+            <a href="#" class="requested-by">Requested by <span class="name">{{ request.creator.name }}</span></a> 
             <span class="material-symbols-sharp dot-icon">&#xe061;</span>
-            <span class="time">{{ request.time }} hours ago</span>
+            <span class="time">{{ $filters.diffForHumans($moment(request?.created_at).format('YYYY-MM-DD hh:mm:ss a')) }}</span>
           </div>
 
           <!-- <div class="d-flex align-items-start event-note-wrap">
@@ -33,7 +33,9 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex';
 import RequestedSongModal from './RequestedSongModal.vue';
+
 export default {
   setup()
   {
@@ -52,7 +54,18 @@ export default {
     showModal: false,
     showToast: false
   }),
+  mounted() {
+    this.fetchCustomizedSong();
+  },
+  computed: {
+    ...mapState({
+      customizedSongs: state => state.songs.customized_songs,
+    })
+  },
   methods: {
+    ...mapActions([
+      'fetchCustomizedSong',
+    ]),
     closeModal()
     {
       this.showModal = false;

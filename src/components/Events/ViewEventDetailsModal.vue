@@ -24,7 +24,7 @@
                 <span class="material-symbols-rounded dot">&#xe061;</span>
                  Posted {{ $filters.diffForHumans($moment(event?.created_at).format('YYYY-MM-DD hh:mm:ss a')) }}</p>
             </div>
-            <a :href="`/proposal/${event.id}/apply`" v-if="userRole === 'artists'" class="send" :disabled="!event.accept_proposal">Send Proposal</a>
+            <a :href="`/proposal/${event.id}/apply`" v-if="userRole === 'artists' && usage === 'view'" class="send" :disabled="!event.accept_proposal">Send Proposal</a>
           </div>
 
           <div class="event-background-img-wrap">
@@ -86,7 +86,7 @@
                 <img :src="event?.organizer_avatar || '/assets/organizer-account/profile-img.webp'" class="organizer-img" alt="Organizer profile image">
                 <div>
                   <h5 class="organizer-name">{{ event?.organizer_name }}</h5>
-                  <p class="company">{{ event?.company_name || 'N/A'}}</p>
+                  <p class="company">{{ event?.organizer_company || 'N/A'}}</p>
                 </div>
               </div>
 
@@ -120,6 +120,11 @@ export default {
    
   }),
   props: {
+    usage: { 
+      type: String,
+      default: 'view',
+      required: false
+    },
     
   },
   computed: {

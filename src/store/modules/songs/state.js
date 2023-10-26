@@ -16,7 +16,7 @@ var state = {
   song_mood: {},
   // song_artists: [],
   song_artists: {},
-  
-}
+  customized_songs: [],
+};
 
-export default state
+export default state;
