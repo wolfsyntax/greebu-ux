@@ -61,7 +61,7 @@ export const fetchEventList = ({ commit, rootState, state }) => {
     }
 
     if (state.eventFilter?.sortBy !== "") {
-      url = `${url}&sortBy=${state.eventFilter.sortBy || "ASC"}`;
+      url = `${url}&sortBy=${state.eventFilter.sortBy || "DESC"}`;
     }
 
     if (
