@@ -12,7 +12,7 @@
       </div>
     </div> <!-- end of bg-wrapper -->
 
-    <div class="card-body">
+    <div class="card-body" >
 
       <div class="event-title-wrap">
         <h5 class="card-title">{{ event?.event_name }} </h5>

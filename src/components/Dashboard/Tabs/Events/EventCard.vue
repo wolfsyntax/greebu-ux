@@ -70,7 +70,7 @@
         </div>
       </div>
       
-      <div>
+      <div >
         <button class="mb-0 btn btn-primary view-details" @click="$emit('show-detail', myEvent, 'view')">View Details</button>
       </div>
     </div>

@@ -456,7 +456,7 @@ export const myUpcomingEvents = ({ commit, rootState, state }) => {
       }/api/artist-proposal/accepted/upcoming`;
 
     await axios
-      .get()
+      .get(url)
       .then((response) => {
         const { status: statusCode, data } = response;
         console.log("Fetch Upcoming Events: ", response);

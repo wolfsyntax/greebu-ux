@@ -86,7 +86,7 @@
                 <img :src="event?.organizer_avatar || '/assets/organizer-account/profile-img.webp'" class="organizer-img" alt="Organizer profile image">
                 <div>
                   <h5 class="organizer-name">{{ event?.organizer_name }}</h5>
-                  <p class="company">{{ event?.company_name || 'N/A'}}</p>
+                  <p class="company">{{ event?.organizer_company || 'N/A'}}</p>
                 </div>
               </div>
 
