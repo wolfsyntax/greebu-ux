@@ -25,7 +25,7 @@
       </div> 
     </div>
 
-    <view-detail v-if="isLoggedIn" />
+    <view-detail usage="dashboard" v-if="isLoggedIn" />
     <events-modal @close="dismiss" v-if="isLoggedIn" />
     <event-success :modalType="modalType" />
     <delete-confirmation @confirm="confirmDelete" @cancel="cancelRequest" />
@@ -102,6 +102,7 @@ export default {
     },
     toggle(eventId, type, origin) {
       // this.$store.commit('SET_EVENT_ID', eventId);
+      this.$store.commit('SET_EVENT', eventId)
       if (type === 'view') {
         
         new Modal(document.getElementById('eventDetailsModal'), {
