@@ -18,11 +18,11 @@
 
       <div class="event-action-wrap">
 
-      <button class="btn p-0 more-wrap" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <button class="btn p-0 more-wrap" type="button" data-bs-toggle="dropdown" aria-expanded="false" v-if="userRole === 'organizer'">
         <span class="material-symbols-rounded">&#xe5d3;</span>
       </button>
 
-        <ul class="dropdown-menu">
+        <ul class="dropdown-menu" v-if="userRole === 'organizer'" >
           <li v-if="editable === true">
             <button class="d-flex align-items-center btn" @click="editEvent">
               <span class="material-symbols-rounded">
@@ -82,7 +82,7 @@
 </template>
 
 <script>
-import { mapActions, mapMutations } from 'vuex';
+import { mapActions, mapMutations, mapGetters } from 'vuex';
 
 export default {
   setup () {
@@ -119,6 +119,7 @@ export default {
     
   },
   computed: {
+    ...mapGetters(['userRole',]),
     startTime() {
       var d = this.$moment().format('YYYY-MM-DD');
       return this.$moment(`${d} ${this.myEvent.start_time}`).format('h:mm a');
