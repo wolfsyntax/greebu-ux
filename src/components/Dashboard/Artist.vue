@@ -333,7 +333,7 @@
             </div>
           </div> <!-- end of photos-tab -->
 
-          <div class="row profile-body" v-if="activeItem === 'Events'">
+          <div class="row profile-body events-tab" v-if="activeItem === 'Events'">
             <h2>Events</h2>
           </div>
 

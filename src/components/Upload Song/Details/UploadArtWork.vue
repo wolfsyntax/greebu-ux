@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="">
    <!-- <drag-drop></drag-drop> -->
    <form class="required-fields" @submit.prevent="submit">
       <div class="upload-file-wrapper" v-if="form.cover">
@@ -14,7 +14,7 @@
         </div>
       </div>
 
-      <drag-drop @dragCover="setCover" v-else/>
+      <drag-drop :fileTypeImage="true" :iconImage="true" @dragCover="setCover" v-else/>
 
       <InfoBlock :infoText="ArtworkImageInfo" />
 

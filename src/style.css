@@ -7974,6 +7974,68 @@ header nav {
   font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 48;
 }
 
+/* File Uploaded Output Box */
+
+#file-output-box {
+  border-radius: 0.20188rem;
+  padding: 1.46531rem 1.1025rem 1.40969rem 1.14475rem;
+  background-color: #fcfcff;
+  margin: 1.5rem 0;
+  border: 1px solid #cdd3d8;
+}
+#file-output-box .file-details-wrap{
+  gap: 0.57rem;
+}
+#file-output-box .file-icon{
+  font-size: 48px;
+  color: var(--gray6);
+}
+#file-output-box .file-name{
+  color: #121212;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.28rem;
+}
+#file-output-box .file-size span{
+  color: #242634;
+  font-size: 0.625rem;
+  font-weight: 600;
+  line-height: 0.4845rem;
+  border-radius: 0.08075rem;
+  border: 0.646px solid #CDD3D8;
+  padding: 0.1615rem 0.323rem;
+}
+#file-output-box .close-icon{
+  font-size: 24px;
+  color: var(--warning);
+}
+
+/* File Uploaded Output Box - Error Msg*/
+
+#file-output-box-error{
+  padding: 0.9rem 1.21rem;
+  border-radius: 0.40375rem;
+  background: var(--warning-light);
+  margin: 1rem 0;
+}
+#file-output-box-error .error-wrap{
+  gap: 0.32rem;
+}
+#file-output-box-error .info-class{
+  font-size: 24px;
+  color: var(--warning);
+}
+#file-output-box-error .error-msg{
+  color: var(--warning);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: -0.04375rem;
+}
+#file-output-box-error .close-icon{
+  font-size: 24px;
+  color: #fdfdfd;
+}
+
 #uploadArtistCoverPhoto .upload-file-wrapper .uploaded-image-wrapper {
     overflow: hidden;
     width: 100%;
@@ -8062,6 +8124,66 @@ header nav {
   24 px	1.5 rem
   28px 1.75 rem
 /* */
+
+/* File Uploaded Output Box - Error Msg*/
+
+#file-output-box-error{
+  padding: 0.7rem 0.9rem;
+}
+#file-output-box-error .error-wrap{
+  gap: 0.30rem;
+}
+#file-output-box-error .info-class{
+  font-size: 18px;
+}
+#file-output-box-error .error-msg{
+  font-size: 0.79rem;
+  letter-spacing: -0.04375rem;
+}
+#file-output-box-error .close-icon{
+  font-size: 18px;
+}
+
+/* File Uploaded Output Box */
+
+#file-output-box {
+  border-radius: 0.15719rem;
+  padding: 1.141rem 0.59725rem 1.09763rem 0.63025rem;
+  margin: 1rem 0;
+  border: 1px solid #cdd3d8;
+}
+#file-output-box .file-details-wrap{
+  gap: 0.44rem;
+}
+#file-output-box .file-icon{
+  font-size: 37px;
+}
+#file-output-box .file-name{
+  font-size: 0.8125rem;
+  margin-bottom: 0.22rem;
+}
+#file-output-box .file-size span{
+  font-size: 0.5rem;
+  line-height: 0.37725rem;
+  border-radius: 0.06288rem;
+  border: 0.503px solid  #CDD3D8;
+  padding: 0.12575rem 0.2515rem;
+}
+#file-output-box .close-icon{
+  font-size: 18px;
+}
+
+/* File Uploaded Output Box - Error Msg*/
+
+#file-output-box-error{
+
+}
+#file-output-box-error{
+  
+}
+#file-output-box-error{
+  
+}
 
 /* Delete an event etc. */
 

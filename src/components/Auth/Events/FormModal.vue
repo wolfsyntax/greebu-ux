@@ -12,7 +12,7 @@
           </button>
         </div>
       </div>
-      <drag-drop @dragCover="setCover" v-else/>
+      <drag-drop :fileTypeImage="true" :iconImage="true" @dragCover="setCover" v-else/>
       
       <div v-for="err in error?.cover_photo" :key="err" class="text-center text-danger">{{ err }}</div>
       
@@ -125,11 +125,6 @@
         <div class="text-end action-btn-wrap">
 
           <button type="button" class="btn cancel" data-bs-dismiss="modal">Cancel</button>
-          <!-- <button type="submit" class="btn next" :disabled="!validInput">
-            <span >
-              <i class="busy-submitting" v-if="isLoading"></i>Next
-            </span>
-          </button> -->
 
           <button type="submit" class="btn next" :disabled="!validInput">
             <LoadingVue :infoText="buttonName" v-if="isLoading"/>
