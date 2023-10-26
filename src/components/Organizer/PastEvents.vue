@@ -44,7 +44,7 @@ export default {
   },
   methods: {
     viewDetail(target, type) {
-      this.$emit('modal', target?.id, type, 'past');
+      this.$emit('modal', target, type, 'past');
       console.log('Selected Past Event: ', target)
     }
   }

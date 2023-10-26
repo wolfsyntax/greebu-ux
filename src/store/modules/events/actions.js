@@ -404,13 +404,18 @@ export const myOngoingEvents = ({ commit, rootState, state }) => {
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + (rootState.bearerToken || localStorage.api_token);
     commit("SET_EVENT", {});
-    var url = "";
+
+    var url = `${
+      import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+    }/api/events/ongoing`;
+
+    if (rootState.role === "artists")
+      url = `${
+        import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+      }/api/artist-proposal/accepted/ongoing`;
+
     await axios
-      .get(
-        `${
-          import.meta.env.VITE_BASE_URL || "http://localhost:8000"
-        }/api/events/ongoing`
-      )
+      .get(url)
       .then((response) => {
         console.log("Fetch Ongoing Events: ", response);
 
@@ -441,13 +446,17 @@ export const myUpcomingEvents = ({ commit, rootState, state }) => {
       "Bearer " + (rootState.bearerToken || localStorage.api_token);
     commit("SET_EVENT", {});
 
-    var url = "";
+    var url = `${
+      import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+    }/api/events/upcoming`;
+
+    if (rootState.role === "artists")
+      url = `${
+        import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+      }/api/artist-proposal/accepted/upcoming`;
+
     await axios
-      .get(
-        `${
-          import.meta.env.VITE_BASE_URL || "http://localhost:8000"
-        }/api/events/upcoming`
-      )
+      .get()
       .then((response) => {
         const { status: statusCode, data } = response;
         console.log("Fetch Upcoming Events: ", response);
@@ -479,13 +488,17 @@ export const myPastEvents = ({ commit, rootState, state }) => {
 
     commit("SET_EVENT", {});
 
-    var url = "";
+    var url = `${
+      import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+    }/api/events/past`;
+
+    if (rootState.role === "artists")
+      url = `${
+        import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+      }/api/artist-proposal/accepted/past`;
+
     await axios
-      .get(
-        `${
-          import.meta.env.VITE_BASE_URL || "http://localhost:8000"
-        }/api/events/past`
-      )
+      .get(url)
       .then((response) => {
         console.log("Fetch Past Events: ", response);
 
