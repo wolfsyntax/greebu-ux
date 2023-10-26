@@ -334,7 +334,7 @@
           </div> <!-- end of photos-tab -->
 
           <div class="row profile-body" v-if="activeItem === 'Events'">
-            <h2>Events</h2>
+            <event-tab />
           </div>
 
           <div class="row profile-body" v-if="activeItem === 'Reviews'">
@@ -359,6 +359,7 @@ import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
 import BannerModal from './Modals/BannerModal.vue';
 import Post from '/src/components/Post/Index.vue';
 import EditBandMembers from "../Artist/EditBandMembers.vue";
+import EventTab from '/src/components/Dashboard/Tabs/Events/Index.vue';
 import { Modal } from 'bootstrap';
 
 export default {
@@ -372,6 +373,7 @@ export default {
     EditBandMembers,
     BannerModal,
     Post,
+    EventTab,
   },
   data: () => ({
     bannerImage: '/assets/artist-account/default-cover-photo.webp',
