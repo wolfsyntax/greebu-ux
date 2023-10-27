@@ -14,7 +14,7 @@
         </div>
       </div>
 
-      <drag-drop :fileTypeImage="true" :iconImage="true" @dragCover="setCover" v-else/>
+      <drag-drop @dragCover="setCover" v-else/>
 
       <InfoBlock :infoText="ArtworkImageInfo" />
 

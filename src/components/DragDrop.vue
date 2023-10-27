@@ -10,9 +10,9 @@
     >
       <input type="file" ref="bannerInput" style="display: none;" accept=".png,.webp,.svg,.jpeg" @change="handleClick"/>
       <div class="text-center upload-file-content" v-if="uploadBox">
-        <span class="material-symbols-rounded" v-if="iconImage">&#xe3f4;</span>
+        <span class="material-symbols-rounded">&#xe3f4;</span>
         <h5 class="drag-file">Drag a file here</h5>
-        <p class="file-type" v-if="fileTypeImage">JPG, PNG file size no more than 10MB</p>
+        <p class="file-type">JPG, PNG file size no more than 10MB</p>
         <div class="select-files-wrapper">
           <label for="files" class="btn select-file-btn" @click="$refs.bannerInput.click()">Select a file</label>
         </div>
@@ -55,10 +55,6 @@ export default {
     magicCode: '',
     targetFile: null,
   }),
-  props: {
-    iconUpload: Boolean,
-    iconImage: Boolean,
-  },
   mounted()
   {
     console.log('\n\nBanner Content: ', this.banner);

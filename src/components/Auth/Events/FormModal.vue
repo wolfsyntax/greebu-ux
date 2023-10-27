@@ -12,7 +12,7 @@
           </button>
         </div>
       </div>
-      <drag-drop :fileTypeImage="true" :iconImage="true" @dragCover="setCover" v-else/>
+      <drag-drop @dragCover="setCover" v-else/>
       
       <div v-for="err in error?.cover_photo" :key="err" class="text-center text-danger">{{ err }}</div>
       

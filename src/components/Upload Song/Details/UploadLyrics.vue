@@ -54,34 +54,14 @@
 
       <div class="float-end action-btn add-space">
         <button type="button" class="btn btn-light close" @click="back">Back</button>
-        <button type="submit" class="btn btn-primary next" @click="openModal" ata-bs-toggle="modal" data-bs-target="#uploadModal">
+        <button type="submit" class="btn btn-primary next" @click="openModal" data-bs-target="showProgressBar">
           <LoadingVue :infoText="buttonName" v-if="isLoading"/>
             <span v-else>{{ buttonName }}</span>
         </button>
       </div>
     </form>
 
-      <!-- Progress Modal -->
-      <div class="modal" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="uploadModalLabel">Uploading your song...</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" @click="cancelUpload"></button>
-            </div>
-            <div class="modal-body">
-              <div class="progress mt-3">
-                <div class="progress-bar" role="progressbar" :style="{ width: uploadProgress + '%' }" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">{{ uploadProgress }}%</div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="cancelUpload">Cancel</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
+    <progress-bar-modal :uploadProgress="uploadProgress" @cancel-upload="cancelUpload"></progress-bar-modal>
 
   </div>
 </template>
@@ -89,12 +69,14 @@
 <script>
 import InfoBlock from '../../Dashboard/Modals/InfoBlock.vue';
 import Loading from '../../Loading.vue';
+import ProgressBarModal from '/src/components/Upload Song/ProgressBarModal.vue'
 import { Modal } from 'bootstrap';
 
 export default {
   components:{
     InfoBlock,
-    Loading
+    Loading,
+    ProgressBarModal
   },
   setup()
   {
@@ -153,17 +135,13 @@ export default {
       this.isUploading = true;
       this.simulateUpload();
 
-      new Modal(document.getElementById('uploadModal'), {
+      new Modal(document.getElementById('showProgressBar'), {
         keyboard: false,
         backdrop: 'static',
       }).show();
 
     },
     cancelUpload() {
-      new Modal(document.getElementById('uploadModal'), {
-        keyboard: false,
-        backdrop: 'static',
-      }).hide();
       this.isUploading = false;
     },
     simulateUpload() {
@@ -173,10 +151,6 @@ export default {
         } else {
           clearInterval(interval);
           this.isUploading = false;
-          new Modal(document.getElementById('uploadModal'), {
-        keyboard: false,
-        backdrop: 'static',
-      }).hide();
         }
       }, 1000);
     },
