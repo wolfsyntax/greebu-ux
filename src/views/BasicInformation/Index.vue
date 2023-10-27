@@ -236,6 +236,8 @@ export default {
   mounted() {
     var payload = {}
 
+    this.$store.commit('RESET_SONG_FILTER');
+    this.$store.commit('SET_SONG_REQUEST');
     if (this.artist_type) payload.artist_type = this.artist_type
     if (this.genre) payload.genre = this.genre
     if (this.search) payload.search = this.search

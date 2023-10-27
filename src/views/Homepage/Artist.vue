@@ -73,7 +73,7 @@
             <h5>Music Genre </h5>
             <select class="form-select" v-model="genre" aria-label="Default select example">
               <option value="" selected></option>
-              <option v-for="gen in genres" :key="gen.id" :value="gen.id">
+              <option v-for="gen in genres" :key="gen.id" :value="gen.title">
                 {{ gen.title }}
                 </option> 
             </select>

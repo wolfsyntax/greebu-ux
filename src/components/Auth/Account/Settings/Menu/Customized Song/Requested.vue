@@ -21,14 +21,14 @@
 
         <div class="details-wrapper">
           <div class="button-wrapper">
-            <button type="button" class="btn details" @click="showModal = true">View Details</button>
+            <button type="button" class="btn details" @click="viewDetail(request)">View Details</button>
           </div>
         </div> 
 
       </div>
       
     </div>
-    <requested-song-modal :show="showModal" @close-modal="closeModal" @accept-request="onModalAccepted" />
+    <requested-song-modal :song="customSong" :show="showModal" @close-modal="closeModal" @accept-request="onModalAccepted" />
   </div>
 </template>
 
@@ -52,7 +52,8 @@ export default {
       { event: 'Wedding Song', profile_image: 'https://lh3.googleusercontent.com/ogw/AGvuzYaE0rvo3xwVU3H4f2K3wcaEYqe9ht06pHbd9Lxh=s32-c-mo', name: 'Dante Magno', time: 12, },
     ],
     showModal: false,
-    showToast: false
+    showToast: false,
+    customSong: {}
   }),
   mounted() {
     this.fetchCustomizedSong();
@@ -66,6 +67,10 @@ export default {
     ...mapActions([
       'fetchCustomizedSong',
     ]),
+    viewDetail(song) {
+      this.showModal = true;
+      this.customSong = song;
+    },
     closeModal()
     {
       this.showModal = false;

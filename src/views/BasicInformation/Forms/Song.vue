@@ -3,6 +3,7 @@
   <div class="w-100">
     <div class="progress">
       <div class="progress-bar" :style="{ width: subProgressWidthSong }"></div>
+      
     </div>
 <!-- {{ language }}<br/><br/>
 {{ mood }}<br/><br/>
@@ -44,7 +45,7 @@
                 <h5>Type of Artist</h5>
                 <select class="form-select" v-model="artist_type" aria-label="Default select example">
                   <option value="" selected></option>
-                  <option v-for="artist_type in artist_types" :key="artist_type.id" :value="artist_type.id">{{ artist_type.title }}</option>
+                  <option v-for="artist_type in artist_types" :key="artist_type.id" :value="artist_type.title">{{ artist_type.title }}</option>
                 </select>
               </div>
 
@@ -52,7 +53,7 @@
                 <h5>Music Genre</h5>
                 <select class="form-select" v-model="genre" aria-label="Default select example">
                   <option value="" selected></option>
-                  <option v-for="{ title, id } in genres" :key="id" :value="id">{{ title }}</option> 
+                  <option v-for="( title, id ) in genres" :key="id" :value="title.toLowerCase()">{{ title }}</option> 
                 </select>
               </div>
 
@@ -105,7 +106,7 @@
                         </div>
                       </div>
                     </div>   
-                    <button class="btn btn-primary select" @click="selectArtist(artist)" :class="{ 'selected': artist === choosenArtist }" >
+                    <button class="btn btn-primary select" @click="selectArtist(artist)" :class="{ 'selected': artist === chosenArtist }" >
                       {{ changeSelectArtist(artist) }}
                     </button>                 
                   </div>
@@ -115,7 +116,7 @@
 
             <div class="button-wrapper">
               <button type="button" class="btn btn-primary back" @click="previousStep" :disabled="page === 0">Back</button>
-              <button type="button" class="btn btn-primary next" :disabled="!choosenArtist" @click="subNextStepSong">Next</button>
+              <button type="button" class="btn btn-primary next" :disabled="!chosenArtist" @click="subNextStepSong">Next</button>
             </div>
           </div>
         </div>
@@ -256,15 +257,15 @@ export default {
         { title: 'Select language' }
       ],
       showControls: false,
-      choosenArtist: null,
-      form: {
-        artists: null,
-        genre_id: null,
-        song_type_id: null,
-        language_id: null,
-        duration_id: null,
-        purpose_id: null,
-      }
+      chosenArtist: null,
+      // form: {
+      //   artists: null,
+      //   genre_id: null,
+      //   song_type_id: null,
+      //   language_id: null,
+      //   duration_id: null,
+      //   purpose_id: null,
+      // }
     }
   },
   props: {
@@ -306,11 +307,11 @@ export default {
       //   language_id: this.language,
       //   duration_id: this.duration,
       // })
-
+      this.$store.commit('SET_SONG_GENRE', this.genre);
       this.$emit('step', 2)
       // this.$emit('stepData', this.form)
       
-
+      console.log('Update song request')
       this.songStepTwo()
 
       this.submitted = true;
@@ -350,12 +351,12 @@ export default {
     },
     selectArtist(artist)
     {
-      this.choosenArtist = artist;
-      // this.selectedUser = artist === this.selectedUser ? null : artist;
+      this.$store.commit('selectSongArtist', artist);
+      this.chosenArtist = artist;
     },
     changeSelectArtist(artist)
     {
-      return this.choosenArtist === artist ? 'Selected' : 'Select';
+      return this.chosenArtist === artist ? 'Selected' : 'Select';
     },
     previousStep()
     {
@@ -372,11 +373,13 @@ export default {
     }, 
     selectLanguage(language)
     {
+      console.log('Selected Language: ', language)
       this.language = language;
       this.storeLanguage(language);
     },
     selectSongDuration(duration)
     {
+      console.log('Selected Language')
       this.duration = duration;
       this.storeDuration(duration)
     },
@@ -385,8 +388,17 @@ export default {
   {
     var payload = {}
     
-    if (this.artist_type) payload.artist_type = this.artist_type
-    if (this.genre) payload.genre = this.genre
+    this.rating = this.artist_filter.rating;
+    this.sort = this.artist_filter.sort;
+    this.chosenArtist = this.form.artists;
+
+    // if (this.form?.artists) this.chosenArtist = this.form?
+    if (this.artist_type) payload.artist_type = this.artist_type;
+    else this.artist_type = this.artist_filter.artist_type;
+
+    if (this.genre) payload.genre = this.genre;
+    else this.genre = this.artist_filter.genre;
+
     if (this.search) payload.search = this.search
     
     this.artistOptions()
@@ -418,7 +430,8 @@ export default {
       languages: state => state.songs.languages,
       durations: state => state.songs.durations,
       purposes: state => state.songs.purposes,
-      song: state => state.songs.song,
+      form: state => state.songs.song,
+      artist_filter: state => state.songs.artist_filter,
       // song_artists: state => state.songs.song_artists,
       // song_language: state => state.songs.song_language,
       // song_duration: state => state.songs.song_duration,
@@ -435,8 +448,8 @@ export default {
     {
 
       if (prev === 0) {
-        // this.$emit('stepData', { artists: this.choosenArtist })
-        this.storeArtist(this.choosenArtist)
+        // this.$emit('stepData', { artists: this.chosenArtist })
+        this.storeArtist(this.chosenArtist)
       } else if (prev === 1) {
         // console.log(`Current Watch[${prev}]: `,this.form)
         // this.form['song_type_id'] = this.mood
@@ -467,6 +480,13 @@ export default {
     },
     sort(newValue)
     {
+      this.$store.commit('RESET_SONG_FILTER', {
+        artist_type: this.artist_type,
+        artist_genre: this.genre,
+        rating: this.rating,
+        sort: this.sort,
+      })
+
       var payload = {}
       if (this.artist_type) payload.artist_type = this.artist_type;
       if (this.genre) payload.genre = this.genre;
@@ -479,6 +499,13 @@ export default {
     },
     artist_type(newValue)
     {
+      this.$store.commit('RESET_SONG_FILTER', {
+        artist_type: this.artist_type,
+        artist_genre: this.genre,
+        rating: this.rating,
+        sortBy: this.sort,
+      })
+
       var payload = {}
       if (newValue) payload.artist_type = newValue
       if (this.genre) payload.genre = this.genre
@@ -491,7 +518,16 @@ export default {
     },
     genre(newValue)
     {
+      this.$store.commit('RESET_SONG_FILTER', {
+        artist_type: this.artist_type,
+        artist_genre: this.genre,
+        rating: this.rating,
+        sortBy: this.sort,
+      })
+
+      console.log('Genre filter: ', newValue)
       var payload = {}
+      // this.$store.commit('setSongGenre', newValue)
       if (this.artist_type) payload.artist_type = this.artist_type
       if (newValue) payload.genre = newValue
       if (this.search) payload.search = this.search
