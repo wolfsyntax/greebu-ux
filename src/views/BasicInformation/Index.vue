@@ -3,7 +3,7 @@
 
     <section class="basic-information">
       <div class="container">
-        <div class="row">
+        <div class="row">{{ song }}
           <!-- <div class="col-md-6 offset-md-3"> -->
             <div class="col-6 m-auto">
             <div class="progress">
@@ -235,7 +235,9 @@ export default {
   },
   mounted() {
     var payload = {}
-
+    
+    this.$store.commit('RESET_SONG_FILTER');
+    this.$store.commit('SET_SONG_REQUEST');
     if (this.artist_type) payload.artist_type = this.artist_type
     if (this.genre) payload.genre = this.genre
     if (this.search) payload.search = this.search

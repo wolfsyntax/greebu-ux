@@ -24,7 +24,7 @@
                 <div class="dropdown">
                   <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
                     aria-expanded="false">
-                    <span :style="form.purpose ? { color: '#121212' } : {}">{{ form.purpose ? form.purpose?.name : 'Select Occasion' }}</span>
+                    <span :style="purpose ? { color: '#121212' } : {}">{{ purpose ? purpose?.name : 'Select Occasion' }}</span>
                     <img :src="expandMore.img" :alt="expandMore.altText">
                   </button>
 
@@ -51,7 +51,7 @@
                 <button type="button" class="btn btn-primary back" @click="previousStep"
                   :disabled="page === 0">Back</button>
                 <button type="button" class="btn btn-primary next" @click="subNextStepStory"
-                  :disabled="!form.purpose || (isButtonOccasion)">Next</button>
+                  :disabled="!purpose || (isButtonOccasion)">Next</button>
                 <!-- <button type="button" class="btn btn-primary next" @click="subNextStepStory">Next</button> -->
               </div>
             </form>
@@ -106,12 +106,12 @@ export default {
         { id: 2, name: 'Graduation' },
         { id: 3, name: 'Wedding' }
       ],
-      form: {
-        purpose: null,
-        receiver: null,
-        sender: null,
-        user_story: null,
-      }
+      // form: {
+      //   purpose: null,
+      //   receiver: null,
+      //   sender: null,
+      //   user_story: null,
+      // }
     }
   },
   props: {
@@ -126,15 +126,15 @@ export default {
       'songStepThree',
     ]),
     submit() {
-
-      this.songStepThree(this.form)
-        .then(response => {
-          const { status: statusCode } = response
-          console.log('Step Three response: ', response);
-          if (statusCode === 200) {
-            this.$emit('step', 3);
-          }
-        })
+      this.$emit('step', 3);
+      // this.songStepThree(this.form)
+      //   .then(response => {
+      //     const { status: statusCode } = response
+      //     console.log('Step Three response: ', response);
+      //     if (statusCode === 200) {
+      //       this.$emit('step', 3);
+      //     }
+      //   })
     },
     previousStep() {
       console.log('Story Previous Step')
@@ -151,7 +151,8 @@ export default {
       }
     },
     selectOccasion(occasion) {
-      this.form.purpose = occasion;
+      console.log('Song Purpose: ', occasion);
+      // this.form.purpose = occasion;
       this.$store.commit('SET_SONG_PURPOSE', occasion)
     },
   },
@@ -161,7 +162,9 @@ export default {
   computed: {
     ...mapGetters(["userInfo", "token"]),
     ...mapState({
+      purpose: state => state.songs.song_purpose,
       purposes: (state) => state.songs.purposes,
+      form: state => state.songs.song,
     }),
     subProgressWidthStory() {
       return ((this.currentSubStepStory + 1) / this.subStepsStory.length) * 100 + '%';
