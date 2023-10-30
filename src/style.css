@@ -7579,7 +7579,7 @@ header nav {
   margin-bottom: 1.94rem;
 }
 #albumSongInfo .upload-audio .upload-file-content {
-  padding: 1.3rem;
+  padding: 1.9375rem 0rem;
 }
 #albumSongInfo .upload-audio .upload-file-content svg {
   width: 2.5rem;
@@ -7974,6 +7974,68 @@ header nav {
   font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 48;
 }
 
+/* File Uploaded Output Box */
+
+#file-output-box {
+  border-radius: 0.20188rem;
+  padding: 1.46531rem 1.1025rem 1.40969rem 1.14475rem;
+  background-color: #fcfcff;
+  margin: 1.5rem 0;
+  border: 1px solid #cdd3d8;
+}
+#file-output-box .file-details-wrap{
+  gap: 0.57rem;
+}
+#file-output-box .file-icon{
+  font-size: 48px;
+  color: var(--gray6);
+}
+#file-output-box .file-name{
+  color: #121212;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.28rem;
+}
+#file-output-box .file-size span{
+  color: #242634;
+  font-size: 0.625rem;
+  font-weight: 600;
+  line-height: 0.4845rem;
+  border-radius: 0.08075rem;
+  border: 0.646px solid #CDD3D8;
+  padding: 0.1615rem 0.323rem;
+}
+#file-output-box .close-icon{
+  font-size: 24px;
+  color: var(--warning);
+}
+
+/* File Uploaded Output Box - Error Msg*/
+
+#file-output-box-error{
+  padding: 0.9rem 1.21rem;
+  border-radius: 0.40375rem;
+  background: var(--warning-light);
+  margin: 1rem 0;
+}
+#file-output-box-error .error-wrap{
+  gap: 0.32rem;
+}
+#file-output-box-error .info-class{
+  font-size: 24px;
+  color: var(--warning);
+}
+#file-output-box-error .error-msg{
+  color: var(--warning);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: -0.04375rem;
+}
+#file-output-box-error .close-icon{
+  font-size: 24px;
+  color: #fdfdfd;
+}
+
 #uploadArtistCoverPhoto .upload-file-wrapper .uploaded-image-wrapper {
     overflow: hidden;
     width: 100%;
@@ -8041,13 +8103,368 @@ header nav {
   line-height: 2rem; 
 } */
 
-/* Customized Songs - Upload Song */
+/* Progress bar modal */
+
+#showProgressBar .modal-content{
+  padding: 3rem 2rem 2rem;
+  border-radius: 0.625rem;
+  border: none;
+  width: auto!important;
+  /* margin: 0 auto; */
+}
+#showProgressBar .modal-header{
+  border-bottom: none;
+}
+#showProgressBar .modal-footer{
+  border-top: none;
+}
+#showProgressBar .progress-wrap{
+  margin-bottom: 2rem;
+}
+#showProgressBar .details-wrap{
+  margin-bottom: 1.5rem;
+}
+#showProgressBar .details-wrap h3{
+  color: #23262F;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 2rem; 
+  margin-bottom: 0.37rem;
+}
+#showProgressBar .details-wrap p{
+  color: var(--gray6);
+  font-size: 1.1rem;
+  font-weight: 500;
+  line-height: 2rem;
+}
+#showProgressBar .progress-wrap .progress{
+  height: 1rem;
+  background-color: var(--btn-focus);
+}
+#showProgressBar .progress-wrap .progress-bar{
+  background-color: var(--orange);
+  color: var(--white);
+  filter: drop-shadow(0px 4px 10px rgba(255, 107, 0, 0.30));
+}
+#showProgressBar .modal-footer .cancel{
+  color: #8E9CAB;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 113.2%; 
+  padding: 0.88rem 2.25rem;
+  border-radius: 0.5rem;
+  border: 2px solid #DFE4EB;
+  background: var(--white);
+}
+
+/* Account Settings - Managed Subscriptions */
+
+.account-settings .subscriptions-wrap{
+  border-radius: 0.25rem;
+  border: 1px solid var(--gray6);
+  background: var(--white);
+  padding: 1.5rem 2.5rem;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.account-settings .subscriptions-wrap .title{
+  color: var(--black);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.account-settings .subscriptions-wrap .orange-text{
+  color: var(--orange);
+}
+.account-settings .subscriptions-wrap .description{
+  color: var(--gray2);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+.account-settings .subscriptions-wrap .subs-type-wrap{
+  margin-bottom: 1.25rem;
+  gap: 0.25rem;
+  border-radius: 0.5rem;
+  background-color: #F4F1E6;
+  padding: 0.62rem;
+  width: 14.9375rem;
+}
+.account-settings .subscriptions-wrap .subs-type-wrap > *{
+  color: #EFC444;
+}
+.account-settings .subscriptions-wrap .subs-type-wrap .subs-type{
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.account-settings .subscriptions-wrap .warning-wrap{
+  background-color: var(--warning-light);
+}
+.account-settings .subscriptions-wrap .warning-wrap > *{
+  color: var(--warning);
+  background-color: var(--warning-light);
+}
+.account-settings .subscriptions-wrap .subs-type-wrap .timer-icon{
+  font-size: 20px;
+}
+.account-settings .subscriptions-wrap .billing{
+  color: var(--black);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.25rem; 
+}
+.account-settings .subscriptions-wrap .billing span{
+  font-weight: 500;
+}
+.account-settings .subscriptions-wrap .upgrade-btn,
+.account-settings .subscriptions-wrap .invoice-btn,
+.account-settings .subscriptions-wrap .cancel-btn{
+  color: var(--orange);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 100%; 
+  letter-spacing: 0.05rem;
+  padding: 1rem;
+  border-radius: 0.3125rem;
+  background-color: #FFF6EB;
+  border: 1px solid #FFF6EB;
+}
+.account-settings .subscriptions-wrap .invoice-btn{
+  background-color: var(--white);
+  border: 1px solid var(--orange);
+  margin-left: 0.25rem;
+}
+.account-settings .subscriptions-wrap .cancel-btn{
+  color: var(--warning);
+  background-color: var(--warning-light);
+  border: 1px solid var(--warning-light);
+}
+.account-settings .subscriptions-wrap .upgrade-btn:hover{
+  background-color: var(--orange);
+  color: var(--white);
+  border: 1px solid var(--orange);
+}
+.account-settings .subscriptions-wrap .invoice-btn:hover{
+  border: 1px solid var(--btn-hovered);
+  color: var(--btn-hovered);
+}
+.account-settings .subscriptions-wrap .payment-wrap{
+  gap: 0.75rem;
+  margin: 1.13rem 0 1rem;
+}
+.account-settings .subscriptions-wrap .payment-wrap .gcash-logo{
+  width: 2.9375rem;
+  height: 2.25rem;
+  border-radius: 0.25rem;
+}
+.account-settings .subscriptions-wrap .payment-wrap .phone-num{
+  color: var(--gray2);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.25rem; 
+}
+
+/* Cancel Subscription Modal */
+
+#cancelSubscription .modal-content{
+  padding: 1.88rem 2.5rem;
+}
+#cancelSubscription .modal-header,
+#cancelSubscription .modal-body,
+#cancelSubscription .modal-footer,
+#paymentHistory .modal-header,
+#paymentHistory .modal-body{
+  padding: 0;
+}
+#cancelSubscription .modal-body{
+  margin-bottom: 3rem;
+}
+#cancelSubscription .modal-header{
+  border-bottom: none;
+  margin-bottom: 1.5rem;
+}
+#cancelSubscription .modal-header .cancel-icon,
+#paymentHistory .modal-header .cancel-icon{
+  font-size: 24px;
+  color: var(--gray2);
+}
+#cancelSubscription .modal-header .cancel-icon:hover,
+#paymentHistory .modal-header .cancel-icon:hover{
+  color: var(--black);
+}
+#cancelSubscription .modal-footer{
+  border-top: none;
+}
+#cancelSubscription .modal-title{
+  color: var(--black-color);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+#cancelSubscription .cancel-content-wrap h4,
+#cancelSubscription .cancel-content-wrap p,
+#cancelSubscription .cancel-content-wrap li{
+  color: var(--gray2);
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+#cancelSubscription .cancel-content-wrap h4{
+  margin-bottom: 1.5rem;
+}
+#cancelSubscription .cancel-content-wrap p,
+#cancelSubscription .cancel-content-wrap li{
+  line-height: 2rem; 
+}
+#cancelSubscription .cancel-content-wrap ul{
+  list-style-type: none; 
+}
+#cancelSubscription .cancel-content-wrap ul li::before{
+  content: "-"; 
+  display: inline-block;
+  width: 1em; 
+  margin-left: -1.2em; 
+}
+#cancelSubscription .delete,
+#cancelSubscription .cancel{
+  color: var(--white);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.5rem; 
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--orange);
+  background-color: var(--orange);
+}
+#cancelSubscription .cancel{
+  color: var(--orange);
+  background-color: var(--white);
+  padding: 1rem 2rem;
+}
+#cancelSubscription .delete:hover{
+  background-color: var(--btn-hovered);
+  border: 1px solid var(--btn-hovered);
+}
+
+/* Account Settings - No message */
+.account-settings .no-message{
+  margin: 5rem auto 3rem;
+}
+.account-settings .no-message .empty-icon{
+  width: 3.625rem;
+  height: 3.625rem;
+  margin-bottom: 0.94rem;
+}
+.account-settings .no-message .msg-title{
+  color: var(--black);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.94rem;
+}
+.account-settings .no-message .msg-description{
+  color: var(--gray2);
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+/* Cancel Subscription Modal */
+
+#paymentHistory .modal-content{
+  padding: 2.58rem 2.68rem;
+}
+#paymentHistory .modal-body{
+  margin-bottom: 3rem;
+}
+#paymentHistory .modal-header{
+  border-bottom: none;
+  margin-bottom: 1rem;
+}
+#paymentHistory .modal-header .modal-title{
+  color: var(--black);
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+#paymentHistory .search-download-wrap{
+  margin-bottom: 0.75rem;
+}
+#paymentHistory .search-container button {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+#paymentHistory .search-container .search-input {
+  padding-left: 2.1rem;
+  border: 1px solid #FBFBFB;
+  height: 2.5rem;
+  width: 18.6rem;
+  outline: none;
+  border-radius: 0.5rem;
+  background-color: #FBFBFB;
+
+  color: var(--gray2);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 140%; 
+}
+#paymentHistory .search-container .search-icon {
+  font-size: 20px;
+  color: #959BA4;
+}
+#paymentHistory .download-btn{
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 140%;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #F0F2F4;
+  background-color: var(--orange);
+  gap: 0.5rem;
+}
+#paymentHistory .download-btn:hover{
+  border: 1px solid var(--btn-hovered);
+  background-color: var(--btn-hovered);
+}
+#paymentHistory .download-btn:hover .download-icon{
+  font-variation-settings: 'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 48;
+}
+#paymentHistory .download-btn .download-icon{
+  font-size: 20px;
+  color: var(--white);
+  font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 48;
+  transition: all 0.7s;
+}
+#paymentHistory table .tr-top-wrap{
+  border: 1px solid #E4E6E8;
+}
+#paymentHistory table thead th{
+  color: var(--black);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.25rem;
+  letter-spacing: 0.02125rem;
+  text-transform: uppercase;
+  background-color: #FBFBFB;
+  box-shadow: 0px -1px 0px 0px #E4E6E8 inset;
+}
+#paymentHistory table tbody td{
+  color: var(--gray2);
+  font-size: 1rem;
+  font-weight: 400;
+  background: #FBFBFB;
+  /* box-shadow: 0px -1px 0px 0px #E4E6E8 inset; */
+}
+#paymentHistory table .form-check{
+
+}
+#paymentHistory table .form-check input{
+  
+}
 
 
-
-
-
-/* MEDIA QUERIES */
+                                                    /* MEDIA QUERIES */
 
 /* Large (lg) and Extra large (xl) */
 @media (min-width: 992px) and (max-width: 1399.98px) {
@@ -8062,6 +8479,229 @@ header nav {
   24 px	1.5 rem
   28px 1.75 rem
 /* */
+
+/* Account Settings - No message */
+.account-settings .no-message .empty-icon{
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: 1.5rem;
+}
+.account-settings .no-message .msg-title{
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+.account-settings .no-message .msg-description{
+  font-size: 0.87rem;
+}
+
+/* Cancel Subscription Modal */
+
+#cancelSubscription .modal-content{
+  padding: 1.88rem 2.5rem;
+}
+#cancelSubscription .modal-body{
+  margin-bottom: 3rem;
+}
+#cancelSubscription .modal-header{
+  margin-bottom: 1.25rem;
+}
+#cancelSubscription .modal-header .cancel-icon{
+  font-size: 18px;
+}
+#cancelSubscription .modal-title{
+  font-size: 1.25rem;
+}
+#cancelSubscription .cancel-content-wrap h4,
+#cancelSubscription .cancel-content-wrap p,
+#cancelSubscription .cancel-content-wrap li{
+  font-size: 0.9375rem;
+}
+#cancelSubscription .cancel-content-wrap h4{
+  margin-bottom: 1.25rem;
+}
+#cancelSubscription .cancel-content-wrap p,
+#cancelSubscription .cancel-content-wrap li{
+  line-height: 1.54688rem; 
+}
+#cancelSubscription .cancel-content-wrap ul li::before{
+  content: "-";  
+}
+#cancelSubscription .delete,
+#cancelSubscription .cancel{
+  font-size: 0.9375rem;
+  line-height: 1.125rem; 
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  border: 0.75px solid var(--orange);
+}
+#cancelSubscription .cancel{
+  padding: 0.75rem 2rem;
+}
+#cancelSubscription .delete:hover{
+  border: 0.75px solid var(--btn-hovered);
+}
+
+/* Account Settings - Managed Subscriptions */
+
+.account-settings .subscriptions-wrap{
+  border-radius: 0.1875rem;
+  border: 0.75px solid var(--gray6);
+  padding: 1.25rem 2rem;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+.account-settings .subscriptions-wrap .title{
+  font-size: 0.9375rem;
+  margin-bottom: 0.37rem;
+}
+.account-settings .subscriptions-wrap .description{
+  font-size: 0.65625rem;
+  font-weight: 500;
+  line-height: 0.9375rem;
+  margin-bottom: 0.56rem;
+}
+.account-settings .subscriptions-wrap .subs-type-wrap{
+  margin-bottom: 0.94rem;
+  gap: 0.19rem;
+  border-radius: 0.375rem;
+  padding: 0.47rem;
+  width: 10.9375rem;
+}
+.account-settings .subscriptions-wrap .subs-type-wrap .subs-type{
+  font-size: 0.65625rem;
+}
+.account-settings .subscriptions-wrap .subs-type-wrap .timer-icon{
+  font-size: 14px;
+}
+.account-settings .subscriptions-wrap .billing{
+  font-size: 0.75rem;
+  line-height: 0.9375rem;
+}
+.account-settings .subscriptions-wrap .upgrade-btn,
+.account-settings .subscriptions-wrap .invoice-btn,
+.account-settings .subscriptions-wrap .cancel-btn{
+  font-size: 0.75rem;
+  padding: 0.69rem;
+  border-radius: 0.23438rem;
+  border: 0.75px solid #FFF6EB;
+}
+.account-settings .subscriptions-wrap .invoice-btn{
+  border: 0.75px solid var(--orange);
+  margin-left: 0.19rem;
+}
+.account-settings .subscriptions-wrap .cancel-btn{
+  border: 0.75px solid var(--warning-light);
+}
+.account-settings .subscriptions-wrap .upgrade-btn:hover{
+  border: 0.75px solid var(--orange);
+}
+.account-settings .subscriptions-wrap .invoice-btn:hover{
+  border: 0.75px solid var(--btn-hovered);
+}
+.account-settings .subscriptions-wrap .payment-wrap{
+  gap: 0.56rem;
+  margin: 0.75rem 0 0.75rem;
+}
+.account-settings .subscriptions-wrap .payment-wrap .gcash-logo{
+  width: 2.20313rem;
+  height: 1.6875rem;
+  border-radius: 0.1875rem;
+}
+.account-settings .subscriptions-wrap .payment-wrap .phone-num{
+  font-size: 0.75rem;
+  line-height: 0.9375rem;
+}
+
+/* Progress bar modal */
+
+#showProgressBar .modal-content{
+  padding: 2rem 1rem 1rem;
+}
+#showProgressBar .progress-wrap{
+  margin-bottom: 1.75rem;
+}
+#showProgressBar .details-wrap{
+  margin-bottom: 1rem;
+}
+#showProgressBar .details-wrap h3{
+  font-size: 1.1rem;
+  line-height: 2rem; 
+  margin-bottom: 0.30rem;
+}
+#showProgressBar .details-wrap p{
+  font-size: 1rem;
+  line-height: 2rem; 
+}
+#showProgressBar .progress-wrap .progress{
+  height: 1rem;
+}
+#showProgressBar .modal-footer .cancel{
+  font-size: 0.875rem;
+  line-height: 113.2%;
+  padding: 0.75rem 2rem;
+  border-radius: 0.5rem;
+}
+
+
+/* File Uploaded Output Box - Error Msg*/
+
+#file-output-box-error{
+  padding: 0.7rem 0.9rem;
+}
+#file-output-box-error .error-wrap{
+  gap: 0.30rem;
+}
+#file-output-box-error .info-class{
+  font-size: 18px;
+}
+#file-output-box-error .error-msg{
+  font-size: 0.79rem;
+  letter-spacing: -0.04375rem;
+}
+#file-output-box-error .close-icon{
+  font-size: 18px;
+}
+
+/* File Uploaded Output Box */
+
+#file-output-box {
+  border-radius: 0.15719rem;
+  padding: 1.141rem 0.59725rem 1.09763rem 0.63025rem;
+  margin: 1rem 0;
+  border: 1px solid #cdd3d8;
+}
+#file-output-box .file-details-wrap{
+  gap: 0.44rem;
+}
+#file-output-box .file-icon{
+  font-size: 37px;
+}
+#file-output-box .file-name{
+  font-size: 0.8125rem;
+  margin-bottom: 0.22rem;
+}
+#file-output-box .file-size span{
+  font-size: 0.5rem;
+  line-height: 0.37725rem;
+  border-radius: 0.06288rem;
+  border: 0.503px solid  #CDD3D8;
+  padding: 0.12575rem 0.2515rem;
+}
+#file-output-box .close-icon{
+  font-size: 18px;
+}
+
+/* File Uploaded Output Box - Error Msg*/
+
+#file-output-box-error{
+
+}
+#file-output-box-error{
+  
+}
+#file-output-box-error{
+  
+}
 
 /* Delete an event etc. */
 
@@ -8107,7 +8747,7 @@ header nav {
   margin-bottom: 1.94rem;
 }
 #albumSongInfo .upload-audio .upload-file-content {
-  padding: 0.9rem 0;
+  padding: 1.5rem 0;
 }
 #albumSongInfo .upload-audio .upload-file-content svg {
   margin-bottom: 0.62rem;

@@ -1,14 +1,19 @@
 <template>
-  <div>
+  <div class="my-bookings">
     <div class="content">
-      <h3>My Bookings</h3>
+      <my-bookings />
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapState, mapActions } from "vuex";
+import MyBookings from './My Bookings/Index.vue'
+
 export default {
+  components: {
+    MyBookings
+  },
   setup()
   {
 

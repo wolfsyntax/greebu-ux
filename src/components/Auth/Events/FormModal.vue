@@ -125,11 +125,6 @@
         <div class="text-end action-btn-wrap">
 
           <button type="button" class="btn cancel" data-bs-dismiss="modal">Cancel</button>
-          <!-- <button type="submit" class="btn next" :disabled="!validInput">
-            <span >
-              <i class="busy-submitting" v-if="isLoading"></i>Next
-            </span>
-          </button> -->
 
           <button type="submit" class="btn next" :disabled="!validInput">
             <LoadingVue :infoText="buttonName" v-if="isLoading"/>

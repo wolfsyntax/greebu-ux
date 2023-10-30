@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="">
    <!-- <drag-drop></drag-drop> -->
    <form class="required-fields" @submit.prevent="submit">
       <div class="upload-file-wrapper" v-if="form.cover">

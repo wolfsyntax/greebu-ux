@@ -55,13 +55,6 @@ export default {
     magicCode: '',
     targetFile: null,
   }),
-  props: {
-    // banner: { 
-    //   type: String,
-    //   default: '',
-    //   required: true
-    // },
-  },
   mounted()
   {
     console.log('\n\nBanner Content: ', this.banner);
