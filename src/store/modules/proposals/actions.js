@@ -10,38 +10,40 @@ export const sendArtistProposal = ({ commit, rootState, state }) => {
     }/api/artist-proposal`;
 
     console.log(`Proposal post data ${url}: `, state.proposal);
-    axios
-      .post(url, state.proposal, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
-      .then((response) => {
-        console.log("My Proposal [artist]: ", response);
+    setTimeout(() => {
+      axios
+        .post(url, state.proposal, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((response) => {
+          console.log("My Proposal [artist]: ", response);
 
-        const {
-          status: statusCode,
-          data,
-          data: { status },
-        } = response;
+          const {
+            status: statusCode,
+            data,
+            data: { status },
+          } = response;
 
-        if (statusCode === 200 && status === 201) {
-          console.log("[NEW] Proposal: ", data);
-          resolve(data);
-        }
+          if (statusCode === 200 && status === 201) {
+            console.log("[NEW] Proposal: ", data);
+            resolve(data);
+          }
 
-        reject(data);
-      })
-      .catch((err) => {
-        const { data } = err;
-        console.log("Send Artist Proposal Error: ", err);
-        reject(data);
-      });
+          reject(data);
+        })
+        .catch((err) => {
+          const { data } = err;
+          console.log("Send Artist Proposal Error: ", err);
+          reject(data);
+        });
+    }, 3000);
   });
 };
 
 export const getArtistProposal = ({ commit, rootState, state }, payload) => {
-  return new Promise(async (resolve, reject) => {
+  return new Promise((resolve, reject) => {
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + (rootState.bearerToken || localStorage.api_token);
 
@@ -49,30 +51,32 @@ export const getArtistProposal = ({ commit, rootState, state }, payload) => {
       import.meta.env.VITE_BASE_URL || "http://localhost:8000"
     }/api/artist-proposal/${payload}`;
 
-    await axios
-      .get(url, state.proposal)
-      .then((response) => {
-        console.log("My Proposal [artist]: ", response);
+    setTimeout(async () => {
+      await axios
+        .get(url, state.proposal)
+        .then((response) => {
+          console.log("My Proposal [artist]: ", response);
 
-        const { status: statusCode, data } = response;
+          const { status: statusCode, data } = response;
 
-        if (statusCode === 200) {
-          const {
-            result: { proposal },
-          } = data;
+          if (statusCode === 200) {
+            const {
+              result: { proposal },
+            } = data;
 
-          commit("setProposal", proposal || {});
+            commit("setProposal", proposal || {});
 
-          resolve(proposal || {});
-        }
+            resolve(proposal || {});
+          }
 
-        reject(data);
-      })
-      .catch((err) => {
-        const { data } = err;
+          reject(data);
+        })
+        .catch((err) => {
+          const { data } = err;
 
-        reject(data);
-      });
+          reject(data);
+        });
+    }, 3000);
   });
 };
 
@@ -81,7 +85,7 @@ export const fetchMyProposals = (
   { commit, rootState, state },
   payload = "pending"
 ) => {
-  return new Promise(async (resolve, reject) => {
+  return new Promise((resolve, reject) => {
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + (rootState.bearerToken || localStorage.api_token);
 
@@ -89,37 +93,39 @@ export const fetchMyProposals = (
       import.meta.env.VITE_BASE_URL || "http://localhost:8000"
     }/api/artist-proposal?role=${rootState.role}&filterBy=${payload}`;
 
-    await axios
-      .get(url)
-      .then((response) => {
-        console.log("Get All My proposal [artist]: ", response);
+    setTimeout(async () => {
+      await axios
+        .get(url)
+        .then((response) => {
+          console.log("Get All My proposal [artist]: ", response);
 
-        const { status: statusCode, data } = response;
+          const { status: statusCode, data } = response;
 
-        if (statusCode === 200) {
-          const {
-            result: { proposals },
-          } = data;
+          if (statusCode === 200) {
+            const {
+              result: { proposals },
+            } = data;
 
-          if (payload === "pending")
-            commit("SET_PENDING_PROPOSALS", proposals || []);
-          if (payload === "accepted")
-            commit("SET_ACCEPTED_PROPOSALS", proposals || []);
-          if (payload === "declined")
-            commit("SET_DECLINED_PROPOSALS", proposals || []);
+            if (payload === "pending")
+              commit("SET_PENDING_PROPOSALS", proposals || []);
+            if (payload === "accepted")
+              commit("SET_ACCEPTED_PROPOSALS", proposals || []);
+            if (payload === "declined")
+              commit("SET_DECLINED_PROPOSALS", proposals || []);
 
-          commit("SET_PROPOSALS", proposals || []);
+            commit("SET_PROPOSALS", proposals || []);
 
-          resolve(proposals || []);
-        }
+            resolve(proposals || []);
+          }
 
-        reject(data);
-      })
-      .catch((err) => {
-        const { data } = err;
+          reject(data);
+        })
+        .catch((err) => {
+          const { data } = err;
 
-        reject(data);
-      });
+          reject(data);
+        });
+    }, 3000);
   });
 };
 
@@ -133,47 +139,49 @@ export const cancelMyProposal = (
 
     if (!id) resolve();
 
-    axios
-      .post(
-        `${
-          import.meta.env.VITE_BASE_URL || "http://localhost:8000"
-        }/api/artist-proposal/${id}/cancel`,
-        { cancel_reason }
-      )
-      .then((response) => {
-        console.log(`Cancel Proposal [Response => ${id}]: `, response);
-        const {
-          data: { status, result },
-          status: statusCode,
-        } = response;
+    setTimeout(() => {
+      axios
+        .post(
+          `${
+            import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+          }/api/artist-proposal/${id}/cancel`,
+          { cancel_reason }
+        )
+        .then((response) => {
+          console.log(`Cancel Proposal [Response => ${id}]: `, response);
+          const {
+            data: { status, result },
+            status: statusCode,
+          } = response;
 
-        if (statusCode === 200 && status === 200) {
-          dispatch("fetchArtistProposal", {
-            search: "",
-            sortBy: "DESC",
-            filterBy: "pending",
-          });
+          if (statusCode === 200 && status === 200) {
+            dispatch("fetchArtistProposal", {
+              search: "",
+              sortBy: "DESC",
+              filterBy: "pending",
+            });
 
-          dispatch("fetchArtistProposal", {
-            search: "",
-            sortBy: "DESC",
-            filterBy: "accepted",
-          });
+            dispatch("fetchArtistProposal", {
+              search: "",
+              sortBy: "DESC",
+              filterBy: "accepted",
+            });
 
-          dispatch("fetchArtistProposal", {
-            search: "",
-            sortBy: "DESC",
-            filterBy: "declined",
-          });
+            dispatch("fetchArtistProposal", {
+              search: "",
+              sortBy: "DESC",
+              filterBy: "declined",
+            });
 
-          resolve(response?.data);
-        }
-        reject(response.data);
-      })
-      .catch((err) => {
-        const { data, status: statusCode } = err;
+            resolve(response?.data);
+          }
+          reject(response.data);
+        })
+        .catch((err) => {
+          const { data, status: statusCode } = err;
 
-        reject(data);
-      });
+          reject(data);
+        });
+    }, 3000);
   });
 };

@@ -39,6 +39,7 @@ library.add(
   faInstagram
 );
 
+import jQuery from "jquery";
 import moment from "moment";
 
 import "./style.css";
@@ -83,6 +84,11 @@ const app = createApp(App)
       // we will see other modules later on
       VueFireAuth(),
     ],
+  })
+  .use({
+    install: function (Vue, options) {
+      Vue.prototype.$jQuery = jQuery; // you'll have this.$jQuery anywhere in your vue project
+    },
   })
   // .use(BootstrapVueIcons)
   // .component('multiselect', Multiselect)
