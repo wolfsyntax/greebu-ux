@@ -41,11 +41,11 @@ export default {
   data()
   {
     return {
-      form: {
-        first_name: '',
-        last_name: '',
-        email: '',
-      },
+      // form: {
+      //   first_name: '',
+      //   last_name: '',
+      //   email: '',
+      // },
     }
   },
   props: {
@@ -61,20 +61,22 @@ export default {
     ]),
     submit()
     {
-      // console.log('Old Form: ', this.form)
-      this.storeSong(this.form);
-      // console.log('New Form: ', this.form)
+      // this.storeSong(this.form);
       
-      this.songStepOne(this.form)
-        .then(response =>
-        {
-          const { status: statusCode } = response;
-          if (statusCode === 200) {
-            this.$emit('step', 1)
-            this.$emit('stepData', this.form)
-          }
-          console.log('Step One: ', response)
-        });
+      this.$emit('step', 1)
+      this.$emit('stepData', this.form)
+
+      // this.songStepOne(this.form)
+      //   .then(response =>
+      //   {
+      //     const { status: statusCode } = response;
+      //     if (statusCode === 200) {
+      //       this.$emit('step', 1)
+      //       this.$emit('stepData', this.form)
+      //     }
+      //     console.log('Step One: ', response)
+      //   });
+      
     }, 
     previous()
     {
@@ -87,7 +89,7 @@ export default {
   },
   mounted()
   {
-    this.form = Object.assign(this.form, this.song);
+    // this.form = Object.assign(this.form, this.song);
   },
   computed: {
     ...mapGetters(["userInfo", "token"]),
@@ -95,7 +97,7 @@ export default {
       artists: (state) => state.artist.artists,
       artist_types: (state) => state.artist.artist_types,
       genres: (state) => state.artist.genres,
-      song: state => state.songs.song,
+      form: state => state.songs.song,
     }),
     isButtonInfo()
     {

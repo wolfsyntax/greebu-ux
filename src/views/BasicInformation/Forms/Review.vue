@@ -27,6 +27,7 @@
               Edit Info
             </button>
           </div>
+          
           <div class="d-flex justify-content-between group-item top-item">
             <h4>First Name</h4>
             <p>{{ song?.first_name }}</p>
@@ -58,25 +59,25 @@
               Edit Info
             </button>
           </div>
-          <div class="d-flex justify-content-between group-item top-item">
-            <h4>Genre</h4>
+          <!-- <div class="d-flex justify-content-between group-item top-item">
+            <h4>Genre</h4>{{ selectedArtist }}
             <p v-if="selectedArtist">{{ selectedArtist.genre }}</p>
           </div>
           <div class="d-flex justify-content-between group-item">
             <h4>Type of Artist</h4>
             <p v-if="selectedArtist">{{ selectedArtist.typeOfArtist }}</p>
-          </div>
+          </div> -->
           <div class="d-flex justify-content-between group-item">
             <h4>Type of Song (Moods)</h4>
-            <p>{{ song?.mood || 'No selected mood' }} </p>
+            <p>{{ mood?.name || 'No selected mood' }} </p>
           </div>
           <div class="d-flex justify-content-between group-item">
             <h4>Language</h4>
-            <p>{{ song?.language || 'No selected language' }}</p>
+            <p>{{ language?.name || 'No selected language' }}</p>
           </div>
           <div class="d-flex justify-content-between group-item last-item">
             <h4>Duration of Song</h4>
-            <p>{{ selectedSongDuration ? selectedSongDuration.time : 'No selected song' }}</p>
+            <p>{{ duration?.title || 'No selected duration' }}</p>
           </div>
 
           <div class="title">
@@ -99,7 +100,7 @@
           </div>
           <div class="d-flex justify-content-between group-item top-item">
             <h4>What is the song for?</h4>
-            <p>{{ selectedOccasion ? selectedOccasion.name : 'No selected occasion' }}</p>
+            <p>{{ purpose?.name || 'No selected occasion' }}</p>
           </div>
           <div class="d-flex justify-content-between group-item">
             <h4>To whom is the song for?</h4>
@@ -149,7 +150,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      'fetchSongRequest', 'songStepFinal',
+      'fetchSongRequest', 'songStepFinal', 'createSong',
     ]),
     submit() {
 
@@ -161,13 +162,18 @@ export default {
       this.$emit('step', 1)
     },
     editStory() {
-      this.$emit('step', 1)
+      this.$emit('step', 2)
     },
     previousStep() {
       this.$emit('step', 2)
     },
     submitSelectedArtist() {
-      this.$router.push('/deliveryform');
+      this.createSong()
+        .then(res => {
+          console.log('Song Request [response]: ', res);
+          this.$router.push('/deliveryform'); 
+        })
+      // this.$router.push('/deliveryform');
     },
   },
   mounted() {
@@ -179,6 +185,10 @@ export default {
       artists: (state) => state.artist.artists,
       artist_types: (state) => state.artist.artist_types,
       song: state => state.songs.song,
+      mood: state => state.songs.song_mood,
+      language: state => state.songs.song_language,
+      duration: state => state.songs.song_duration,
+      purpose: state => state.songs.song_purpose,
     }),
   },
   watch: {

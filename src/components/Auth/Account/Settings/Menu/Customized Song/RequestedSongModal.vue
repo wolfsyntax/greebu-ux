@@ -19,11 +19,11 @@
           <div class="d-flex align-items-center">
             <img src="/assets/artist-account/band-member-2.webp" class="customer-image" alt="Requester image">
             <div>
-              <h5 class="name">Alvin Makahiya</h5>
+              <h5 class="name">{{ song.creator?.name }}</h5>
               <!-- For Submission tab - View Details modal -->
               <!-- <h5 class="name"><span class="req">Requested by: </span>Alvin Makahiya</h5> -->
 
-              <p class="username">alvinmakahiya@gmail.com</p>
+              <p class="username">{{ song.creator?.email }}</p>
             </div>
           </div>
 
@@ -84,25 +84,18 @@
 
         <div class="story-wrapper">
           <h4 class="title">Story Details</h4>
-          <p class="message">I hope this letter finds you in good health and high spirits. I am writing to you as a passionate event 
-            organizer who has been captivated by your exceptional talent and musical prowess. It is with great excitement that 
-            I present to you a proposal for an upcoming event, [Event Name], where we would be honored to have you as the headline artist.
-          </p>
-          <p class="message">I hope this letter finds you in good health and high spirits. I am writing to you as a passionate event 
-            organizer who has been captivated by your exceptional talent and musical prowess. It is with great excitement that 
-            I present to you a proposal for an upcoming event, [Event Name], where we would be honored to have you as the headline artist.
-          </p>
+          <p class="message">{{ song.user_story }}</p>
         </div>
 
         <div class="d-flex justify-content-between action-wrapper song-info-wrapper">
           <div class="left">
             <h5>What is the song for?</h5>
-            <p>Birthday</p>
+            <p>{{ song.purpose }}</p>
           </div>
 
           <div class="right">
             <h5>To whom is the song for?</h5>
-            <p>Jane Cooper</p>
+            <p>{{ song.receiver }}</p>
           </div>
         </div>
 
@@ -114,26 +107,26 @@
 
           <div class="right">
             <h5>Type  of Song (Mood)</h5>
-            <p>Romance</p>
+            <p>{{ song.mood }}</p>
           </div>
         </div>
 
         <div class="d-flex justify-content-between action-wrapper song-info-wrapper">
           <div class="left">
             <h5>Language</h5>
-            <p>English</p>
+            <p>{{ song.language }}</p>
           </div>
 
           <div class="right">
             <h5>Duration of Song?</h5>
-            <p>5 minutes</p>
+            <p>{{ song.duration }}</p>
           </div>
         </div>
 
-        <div class="d-flex justify-content-between action-wrapper song-info-wrapper">
+        <div class="d-flex justify-content-between action-wrapper song-info-wrapper" v-if="song.delivery_date">
           <div class="left">
             <h5>Delivery Date</h5>
-            <p class="d-flex align-items-center"><span class="material-symbols-rounded date">&#xebcc;</span>June 12,2023</p>
+            <p class="d-flex align-items-center"><span class="material-symbols-rounded date">&#xebcc;</span>{{ song.delivery_date }}</p>
           </div>
 
           <div class="right hidden-song-info">
@@ -150,7 +143,8 @@
 
 export default {
   props: {
-    show: Boolean
+    show: Boolean,
+    song: Object
   },
   data() {
     return {

@@ -31,16 +31,48 @@ export const fetchSongForm = ({ commit, rootState, state }, payload) => {
   });
 };
 
-export const createSong = ({ commit, rootState, state }, payload) => {
+export const createSong = ({ commit, rootState, state }) => {
   return new Promise(async (resolve, reject) => {
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + (rootState.bearerToken || localStorage.api_token);
 
+    const {
+      first_name,
+      last_name,
+      email,
+      artists,
+      song_type_id,
+      language_id,
+      duration_id,
+      purpose_id,
+      sender,
+      receiver,
+      user_story,
+    } = state.song;
+    console.log("Artist Info: ", artists);
+    // var artist = {
+    //   id:
+    // };
+
+    var form = {
+      first_name,
+      last_name,
+      email,
+      artists: [{ id: artists.id }],
+      song_type_id,
+      language_id,
+      duration_id,
+      purpose_id,
+      sender,
+      receiver,
+      user_story,
+    };
     await axios
       .post(
         `${
           import.meta.env.VITE_BASE_URL || "http://localhost:8000"
-        }/api/song-requests`
+        }/api/song-requests/${rootState.role}`,
+        form
       )
       .then((response) => {
         const { data, status: statusCode } = response;
@@ -54,9 +86,10 @@ export const createSong = ({ commit, rootState, state }, payload) => {
             // commit('SET_SONG_DURATIONS', result?.durations)
             // commit('SET_SONG_PURPOSES', result?.purposes)
           }
+          resolve(data);
         }
 
-        resolve(response);
+        reject(data);
       })
       .catch((err) => {
         reject(err);
@@ -156,11 +189,13 @@ export const songStepTwo = ({ commit, rootState, state }) => {
     console.log("Duration: ", state.song_duration.id);
     console.log("Artists: ", state.song_artists);
 
+    // form.append("genre", state.song.genre);
     form.append("song_type_id", state.song_mood.id);
     form.append("language_id", state.song_language.id);
     form.append("duration_id", state.song_duration.id);
     form.append("artists[]", JSON.stringify(state.song_artists));
-
+    console.log("Song request: ", state.song);
+    console.log("Song form: ", form);
     await axios
       .post(
         `${
