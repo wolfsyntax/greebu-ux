@@ -9,14 +9,15 @@
         <div>
             <h4 class="title orange-text">Free Trial</h4>
             <p class="description">You are in a Free Plan, but your trial ends in 15 days. Explore subscription options now.</p>
-            <div class="d-flex align-items-center subs-type-wrap">
+            <div class="d-flex align-items-center subs-type-wrap"> <!-- warning-wrap-->
                 <span class="material-symbols-rounded timer-icon">&#xe425;</span>
-                <p class="mb-0 subs-type">Your free trial ends in 3 days.</p>
+                <p class="mb-0 subs-type">Your free trial ends in 15 days.</p>
+                <!-- <p class="mb-0 subs-type">Your free trial of has ended.</p> -->
             </div>
             <h5 class="mb-0 billing">Next Billing Date: <span>September 6,2023</span></h5>
         </div>
         <div>
-            <button class="btn upgrade-btn">Upgrade Plan </button>
+            <button class="btn upgrade-btn" @click="showSubscription">Upgrade Plan </button>
         </div>
     </div>
 
@@ -30,34 +31,64 @@
         </div>
         <div>
             <button class="btn upgrade-btn">Change payment method</button>
-            <button class="btn invoice-btn">Payment Invoice</button>
+            <button class="btn invoice-btn" @click="showPaymentHistory">Payment Invoice</button>
         </div>
     </div>
 
     <div class="subscriptions-wrap">
         <h4 class="title">Cancel Subscription</h4>
         <p class="description">If you choose to cancel the subscription will be cancelled at the end of the billing period (date subscribed)</p>
-        <button class="btn cancel-btn">Cancel Subscription</button>
-        
+        <button class="btn cancel-btn" @click="showCancelSubscription"
+       >Cancel Subscription</button>
     </div>
 
-
     </div>
+    <subscription-modal></subscription-modal>
+    <payment-history-modal></payment-history-modal>
+    <cancel-subscription-modal></cancel-subscription-modal>
   </template>
     
   <script>
   import { mapActions, mapState } from 'vuex';
-
+  import CancelSubscriptionModal from './CancelSubscriptionModal.vue';
+  import SubscriptionModal from '../../../../../Subscription/SubscriptionModal.vue';
+  import PaymentHistoryModal from './PaymentHistoryModal.vue';
+  import { Modal } from 'bootstrap';
   
   export default {
   components: {
-
+    CancelSubscriptionModal,
+    SubscriptionModal,
+    PaymentHistoryModal
   },
   setup()
   {
 
 
     return {}
+  },
+  methods: {
+    showCancelSubscription(){
+      new Modal(document.getElementById('cancelSubscription'), {
+        keyboard: false,
+        backdrop: 'static',
+      }).show();
+      console.log('Modal', Modal);
+    },
+    showSubscription(){
+      new Modal(document.getElementById('selectPlanModal'), {
+        keyboard: false,
+        backdrop: 'static',
+      }).show();
+      console.log('Modal', Modal);
+    },
+    showPaymentHistory(){
+      new Modal(document.getElementById('paymentHistory'), {
+        keyboard: false,
+        backdrop: 'static',
+      }).show();
+      console.log('Modal', Modal);
+    }
   }
 }
   </script>

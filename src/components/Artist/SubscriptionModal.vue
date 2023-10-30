@@ -11,7 +11,8 @@
           <div class="modal-content">
             <div class="modal-header">
               <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" @click="createProfile()"></button> -->
-              <button type="button" class="btn-close" @click="createProfile()"></button>
+              <button type="button" class="btn-close" @click="createProfile()" v-if="hasOnboardingQueryParameter"></button>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" v-else></button>
             </div>
             <div class="modal-body text-center">
               <h2 class="title">Upgrade to Subscription</h2>
@@ -23,12 +24,12 @@
                     <div class="d-flex justify-content-between group-item">
                     <h4><span class="peso">₱</span>0</h4> <p class="desc">15 days free trial</p>
                    </div>
-                   <p class="benefits"><span class="material-symbols-rounded">done</span>Accept Bookings</p>
-                   <p class="benefits"><span class="material-symbols-rounded">done</span>Create a custom Songs</p>
-                   <p class="benefits"><span class="material-symbols-rounded">done</span>Apply for Events</p>
-                   <p class="benefits"><span class="material-symbols-rounded">done</span>Accept Bookings</p>
-                   <p class="benefits"><span class="material-symbols-rounded">done</span>Create a custom Songs</p>
-                   <p class="benefits last"><span class="material-symbols-rounded">done</span>Apply for Events</p>
+                   <p class="benefits"><span class="material-symbols-rounded">&#xe876;</span>Accept Bookings</p>
+                   <p class="benefits"><span class="material-symbols-rounded">&#xe876;</span>Create a custom Songs</p>
+                   <p class="benefits"><span class="material-symbols-rounded">&#xe876;</span>Apply for Events</p>
+                   <p class="benefits"><span class="material-symbols-rounded">&#xe876;</span>Accept Bookings</p>
+                   <p class="benefits"><span class="material-symbols-rounded">&#xe876;</span>Create a custom Songs</p>
+                   <p class="benefits last"><span class="material-symbols-rounded">&#xe876;</span>Apply for Events</p>
                    <div class="flex-item">
                     <button type="button" class="current-plan btn" data-bs-dismiss="modal" disabled>Current Plan</button>
                    </div>
@@ -38,12 +39,12 @@
                     <div class="d-flex justify-content-between group-item">
                     <h4><span class="peso">₱</span>123/m</h4> <p class="desc">Limited Access</p>
                    </div>
-                   <p class="benefits"><span class="material-symbols-rounded">done</span>Accept Bookings</p>
-                   <p class="benefits"><span class="material-symbols-rounded">done</span>Create a custom Songs</p>
-                   <p class="benefits"><span class="material-symbols-rounded">done</span>Apply for Events</p>
-                   <p class="benefits"><span class="material-symbols-rounded">done</span>Accept Bookings</p>
-                   <p class="benefits"><span class="material-symbols-rounded">done</span>Create a custom Songs</p>
-                   <p class="benefits last"><span class="material-symbols-rounded">done</span>Apply for Events</p>
+                   <p class="benefits"><span class="material-symbols-rounded">&#xe876;</span>Accept Bookings</p>
+                   <p class="benefits"><span class="material-symbols-rounded">&#xe876;</span>Create a custom Songs</p>
+                   <p class="benefits"><span class="material-symbols-rounded">&#xe876;</span>Apply for Events</p>
+                   <p class="benefits"><span class="material-symbols-rounded">&#xe876;</span>Accept Bookings</p>
+                   <p class="benefits"><span class="material-symbols-rounded">&#xe876;</span>Create a custom Songs</p>
+                   <p class="benefits last"><span class="material-symbols-rounded">&#xe876;</span>Apply for Events</p>
                    <div class="flex-item">
                     <button type="button" class="monthly-plan btn" @click="selectedPlan()">Get Started</button>
                    </div>
@@ -55,19 +56,19 @@
                     <div class="d-flex justify-content-between group-item">
                     <h4><span class="peso">₱</span>123/m</h4> <p class="desc">Limited Access</p>
                    </div>
-                   <p class="benefits"><span class="material-symbols-rounded">done</span>Accept Bookings</p>
-                   <p class="benefits"><span class="material-symbols-rounded">done</span>Create a custom Songs</p>
-                   <p class="benefits"><span class="material-symbols-rounded">done</span>Apply for Events</p>
-                   <p class="benefits"><span class="material-symbols-rounded">done</span>Accept Bookings</p>
-                   <p class="benefits"><span class="material-symbols-rounded">done</span>Create a custom Songs</p>
-                   <p class="benefits last"><span class="material-symbols-rounded">done</span>Apply for Events</p>
+                   <p class="benefits"><span class="material-symbols-rounded">&#xe876;</span>Accept Bookings</p>
+                   <p class="benefits"><span class="material-symbols-rounded">&#xe876;</span>Create a custom Songs</p>
+                   <p class="benefits"><span class="material-symbols-rounded">&#xe876;</span>Apply for Events</p>
+                   <p class="benefits"><span class="material-symbols-rounded">&#xe876;</span>Accept Bookings</p>
+                   <p class="benefits"><span class="material-symbols-rounded">&#xe876;</span>Create a custom Songs</p>
+                   <p class="benefits last"><span class="material-symbols-rounded">&#xe876;</span>Apply for Events</p>
                    <div class="flex-item">
                     <button type="button" class="yearly-plan btn" @click="selectedPlan()">Get Started</button>
                    </div>
                   </div>
                 </div> <!-- end of select -->
 
-                <button type="button" class="btn create-profile" @click="createProfile()">Create your Profile</button>
+                <button type="button" class="btn create-profile" @click="createProfile()" v-if="hasOnboardingQueryParameter">Create your Profile</button>
 
             </div>
           </div>
@@ -89,7 +90,7 @@
     },
     data() {
           return {
-            
+            hasOnboardingQueryParameter: false,
          }
     },      
     computed: {
@@ -107,6 +108,11 @@
     },
       
     },
+    created(){
+      // check if the URL contains the onboarding query parameter
+      const urlParams = new URLSearchParams(window.location.search);
+      this.hasOnboardingQueryParameter = urlParams.has("onboarding") && urlParams.get("onboarding") === "true";
+    }
   };
   </script>
   
