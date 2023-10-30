@@ -127,7 +127,7 @@
 </template>
 <script>
 import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
-import { Modal } from 'bootstrap';
+import { Modal, Popover } from 'bootstrap';
 import Multiselect from '@vueform/multiselect';
 
 import Layout from '/src/components/Layouts/Layout.vue';
@@ -187,6 +187,10 @@ export default {
   },
   mounted()
   {
+
+    // const popoverTriggerList = document.querySelectorAll('span[data-bs-toggle="popover"]');
+    // const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new Popover(popoverTriggerEl));
+
     console.log('Window Hostname: ', window.location.hostname)
     this.fetchEventOptions().then(res => this.RESET_EVENT_FILTER())
     this.fetchCityList();

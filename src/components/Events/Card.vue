@@ -46,7 +46,34 @@
         <h6 class="title" style="opacity: 0;">Seeking for</h6>
         <span class="badge type-artist" style="opacity: 0;">acoustic band</span>
       </div>
-
+      <div class="seeking-for" v-if="event?.artist">
+        <h6 class="title" style="" >Performer</h6>
+        <p v-for="(artist, index) in event?.artist" :key="index" class="badge type-artist artist-popover">
+          <span :id="`event-${event.id}`"  data-bs-toggle="popover" data-bs-placement="right" 
+              data-bs-html="true" 
+              @mouseover="show(artist, index)"
+              data-bs-trigger="hover"
+              :data-bs-footer="`123`"
+              :data-bs-content='`
+                <div class="card card-popover mb-3 border-0" >
+                  <div class="row g-0">
+                    <div class="col-md-4">
+                      <img src="${artist.avatar}" class="img-fluid rounded-circle" alt="artist avatar">
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h5 class="card-title">${artist.name}</h5>
+                        <p class="card-text">${artist.artist_type}</p>
+                      </div> 
+                    </div>
+                  </div>
+                  <a class="btn view-profile bg-orange">View Profile</a>
+                </div>
+              `'
+    
+            >{{ artist?.name }}</span>
+        </p>
+      </div>
       <div v-if="isLoggedIn">
         <button class="btn btn-primary view-details" @click="toggle(pos)">View Details</button>
       </div>
@@ -63,6 +90,9 @@
 import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
 import ViewDetail from '/src/components/Events/ViewEventDetailsModal.vue';
 import MustSignupModal from '/src/components/Artist/MustSignupModal.vue';
+import { Popover } from 'bootstrap';
+import jQuery from 'jquery';
+
 export default {
   setup()
   {
@@ -94,9 +124,42 @@ export default {
       members: (state) => state.artist.members,
     })
   },
+  data: () => ({
+    myPopover: null,
+    selectedArtist: {},
+  }),
   mounted()
   {
+    // this.myPopover = Popover.getOrCreateInstance(`#event-${this.event?.id}`);
+    // Popover.getOrCreateInstance(`#event-${this.event?.id}`)
+    console.log('Event ID: ', `#event-${this.event?.id}`)
+    const self = this;
+    try {
+      new Popover(`#event-${this.event?.id}`, {
+        container: 'body',
+        trigger: 'hover',
+        placement: 'right',
+        delay: {
+          show: 0, hide: 134500,
+        },
+        template: `
+        <div class="popover" role="tooltip">
+          <div class="popover-arrow"></div>
+          <div class="popover-inner">
+            <div class="popover-body"></div>
+            <button>123</button>
+          </div>
+        </div>`,
+        
+      });
+
+    } catch (err) {
+
+    }
+
     console.log('Card: ', this.event);
+    // Array.from(document.querySelectorAll('span[data-bs-toggle="popover"]'))
+    // .forEach(popoverNode => new Popover(popoverNode))
   },
   methods: {
     toggle(pos = -1)
@@ -109,6 +172,23 @@ export default {
 
       this.$emit('show', pos);
 
+    },
+    show(artist, index) {
+      // const popUp = Popover.getOrCreateInstance(`#event-${this.event?.id}`);
+
+      //   popUp.setContent({
+      //     '.popover-body': 'another content'
+      //   });
+
+      // new Popover(`#artist${artist.artist_id}`, {
+      //   container: 'body',
+      //   delay: {
+      //     show: 0, hide: 1500,
+      //   },
+      //   trigger: 'hover',
+      // });
+      // console.log('Show Artist ', artist)
+        this.selectedArtist = artist;
     },
     sendProposal()
     {
@@ -130,4 +210,3 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
