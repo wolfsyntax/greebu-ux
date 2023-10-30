@@ -1,38 +1,40 @@
 import axios from "axios";
 
 export const fetchSongForm = ({ commit, rootState, state }, payload) => {
-  return new Promise(async (resolve, reject) => {
+  return new Promise((resolve, reject) => {
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + (rootState.bearerToken || localStorage.api_token);
 
-    await axios
-      .get(
-        `${
-          import.meta.env.VITE_BASE_URL || "http://localhost:8000"
-        }/api/song-requests/create`
-      )
-      .then((response) => {
-        const { data, status } = response;
-        if (status === 200 && data.status === 200) {
-          const { result } = data;
+    setTimeout(async () => {
+      await axios
+        .get(
+          `${
+            import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+          }/api/song-requests/create`
+        )
+        .then((response) => {
+          const { data, status } = response;
+          if (status === 200 && data.status === 200) {
+            const { result } = data;
 
-          commit("SET_SONG_ARTIST_TYPE", result?.artist_types);
-          commit("SET_SONG_MOODS", result?.mood);
-          commit("SET_SONG_LANGUAGES", result?.languages);
-          commit("SET_SONG_DURATIONS", result?.durations);
-          commit("SET_SONG_PURPOSES", result?.purposes);
-        }
+            commit("SET_SONG_ARTIST_TYPE", result?.artist_types);
+            commit("SET_SONG_MOODS", result?.mood);
+            commit("SET_SONG_LANGUAGES", result?.languages);
+            commit("SET_SONG_DURATIONS", result?.durations);
+            commit("SET_SONG_PURPOSES", result?.purposes);
+          }
 
-        resolve(response);
-      })
-      .catch((err) => {
-        reject(err);
-      });
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    }, 5000);
   });
 };
 
 export const createSong = ({ commit, rootState, state }) => {
-  return new Promise(async (resolve, reject) => {
+  return new Promise((resolve, reject) => {
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + (rootState.bearerToken || localStorage.api_token);
 
@@ -67,61 +69,65 @@ export const createSong = ({ commit, rootState, state }) => {
       receiver,
       user_story,
     };
-    await axios
-      .post(
-        `${
-          import.meta.env.VITE_BASE_URL || "http://localhost:8000"
-        }/api/song-requests/${rootState.role}`,
-        form
-      )
-      .then((response) => {
-        const { data, status: statusCode } = response;
-        if (statusCode === 200) {
-          const { result, status } = data;
+    setTimeout(async () => {
+      await axios
+        .post(
+          `${
+            import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+          }/api/song-requests/${rootState.role}`,
+          form
+        )
+        .then((response) => {
+          const { data, status: statusCode } = response;
+          if (statusCode === 200) {
+            const { result, status } = data;
 
-          if (status === 200) {
-            // commit('SET_SONG_ARTIST_TYPE', result?.artist_types)
-            // commit('SET_SONG_MOODS', result?.moods)
-            // commit('SET_SONG_LANGUAGES', result?.languages);
-            // commit('SET_SONG_DURATIONS', result?.durations)
-            // commit('SET_SONG_PURPOSES', result?.purposes)
+            if (status === 200) {
+              // commit('SET_SONG_ARTIST_TYPE', result?.artist_types)
+              // commit('SET_SONG_MOODS', result?.moods)
+              // commit('SET_SONG_LANGUAGES', result?.languages);
+              // commit('SET_SONG_DURATIONS', result?.durations)
+              // commit('SET_SONG_PURPOSES', result?.purposes)
+            }
+            resolve(data);
           }
-          resolve(data);
-        }
 
-        reject(data);
-      })
-      .catch((err) => {
-        reject(err);
-      });
+          reject(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    }, 5000);
   });
 };
 
 export const fetchCustomizedSong = ({ commit, rootState, state }) => {
-  return new Promise(async (resolve, reject) => {
+  return new Promise((resolve, reject) => {
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + (rootState.bearerToken || localStorage.api_token);
 
-    await axios
-      .get(
-        `${
-          import.meta.env.VITE_BASE_URL || "http://localhost:8000"
-        }/api/song-requests/artists`
-      )
-      .then((response) => {
-        const { data, status } = response;
-        console.log(`[Response:${status}] Fetch Customized Songs: `, data);
-        if (status === 200) {
-          const {
-            result: { song_requests },
-          } = data;
+    setTimeout(async () => {
+      await axios
+        .get(
+          `${
+            import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+          }/api/song-requests/artists`
+        )
+        .then((response) => {
+          const { data, status } = response;
+          console.log(`[Response:${status}] Fetch Customized Songs: `, data);
+          if (status === 200) {
+            const {
+              result: { song_requests },
+            } = data;
 
-          commit("SET_CUSTOMIZED_SONG", song_requests);
+            commit("SET_CUSTOMIZED_SONG", song_requests);
 
-          resolve(data);
-        }
-      })
-      .catch((err) => {});
+            resolve(data);
+          }
+        })
+        .catch((err) => {});
+    }, 5000);
   });
 };
 
@@ -138,7 +144,7 @@ export const storeArtist = ({ commit, rootState, state }, payload) => {
 };
 
 export const songStepOne = ({ commit, rootState, state }, payload) => {
-  return new Promise(async (resolve, reject) => {
+  return new Promise((resolve, reject) => {
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + (rootState.bearerToken || localStorage.api_token);
 
@@ -151,34 +157,36 @@ export const songStepOne = ({ commit, rootState, state }, payload) => {
     }
     console.log("Step One target: ", url);
     console.log("Step One Payload: ", payload);
-    await axios
-      .post(
-        `${
-          import.meta.env.VITE_BASE_URL || "http://localhost:8000"
-        }/${url}?role=${rootState.role}`,
-        payload
-      )
-      .then((response) => {
-        const { data, status: statusCode } = response;
+    setTimeout(async () => {
+      await axios
+        .post(
+          `${
+            import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+          }/${url}?role=${rootState.role}`,
+          payload
+        )
+        .then((response) => {
+          const { data, status: statusCode } = response;
 
-        if (statusCode === 200) {
-          const { result, status } = data;
+          if (statusCode === 200) {
+            const { result, status } = data;
 
-          if (status === 200) {
-            commit("SET_SONG", result?.song_request);
+            if (status === 200) {
+              commit("SET_SONG", result?.song_request);
+            }
           }
-        }
 
-        resolve(response);
-      })
-      .catch((err) => {
-        reject(err);
-      });
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    }, 1000);
   });
 };
 
 export const songStepTwo = ({ commit, rootState, state }) => {
-  return new Promise(async (resolve, reject) => {
+  return new Promise((resolve, reject) => {
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + (rootState.bearerToken || localStorage.api_token);
 
@@ -196,40 +204,42 @@ export const songStepTwo = ({ commit, rootState, state }) => {
     form.append("artists[]", JSON.stringify(state.song_artists));
     console.log("Song request: ", state.song);
     console.log("Song form: ", form);
-    await axios
-      .post(
-        `${
-          import.meta.env.VITE_BASE_URL || "http://localhost:8000"
-        }/api/song-requests/song/${state.song?.id}?role=${rootState.role}`,
-        form,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-        }
-      )
-      .then((response) => {
-        const { data, status: statusCode } = response;
-        console.log("Response Step Two", response);
-        if (statusCode === 200) {
-          const { result, status } = data;
-
-          if (status === 200) {
-            commit("SET_SONG", result?.song_request);
+    setTimeout(async () => {
+      await axios
+        .post(
+          `${
+            import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+          }/api/song-requests/song/${state.song?.id}?role=${rootState.role}`,
+          form,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
           }
-        }
+        )
+        .then((response) => {
+          const { data, status: statusCode } = response;
+          console.log("Response Step Two", response);
+          if (statusCode === 200) {
+            const { result, status } = data;
 
-        resolve(response);
-      })
-      .catch((err) => {
-        reject(err);
-      });
+            if (status === 200) {
+              commit("SET_SONG", result?.song_request);
+            }
+          }
+
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    }, 1000);
   });
 };
 
 export const songStepThree = ({ commit, rootState, state }, payload) => {
-  return new Promise(async (resolve, reject) => {
+  return new Promise((resolve, reject) => {
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + (rootState.bearerToken || localStorage.api_token);
 
@@ -239,61 +249,65 @@ export const songStepThree = ({ commit, rootState, state }, payload) => {
     form.append("receiver", payload?.receiver || "");
     form.append("user_story", payload?.user_story || "");
 
-    await axios
-      .post(
-        `${
-          import.meta.env.VITE_BASE_URL || "http://localhost:8000"
-        }/api/song-requests/story/${state.song?.id}?role=${rootState.role}`,
-        form
-      )
-      .then((response) => {
-        const { data, status: statusCode } = response;
-        console.log("Step Three API");
-        if (statusCode === 200) {
-          const { result, status } = data;
+    setTimeout(async () => {
+      await axios
+        .post(
+          `${
+            import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+          }/api/song-requests/story/${state.song?.id}?role=${rootState.role}`,
+          form
+        )
+        .then((response) => {
+          const { data, status: statusCode } = response;
+          console.log("Step Three API");
+          if (statusCode === 200) {
+            const { result, status } = data;
 
-          if (status === 200) {
-            commit("SET_SONG", result?.song_request);
+            if (status === 200) {
+              commit("SET_SONG", result?.song_request);
+            }
           }
-        }
 
-        resolve(response);
-      })
-      .catch((err) => {
-        reject(err);
-      });
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    }, 1000);
   });
 };
 
 export const songStepFinal = ({ commit, rootState, state }, payload) => {
-  return new Promise(async (resolve, reject) => {
+  return new Promise((resolve, reject) => {
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + (rootState.bearerToken || localStorage.api_token);
 
-    await axios
-      .post(
-        `${
-          import.meta.env.VITE_BASE_URL || "http://localhost:8000"
-        }/api/song-requests/review/${state.song?.id}?role=${rootState.role}`,
-        payload
-      )
-      .then((response) => {
-        const { data, status: statusCode } = response;
-        console.log("Song Request form: ", response);
+    setTimeout(async () => {
+      await axios
+        .post(
+          `${
+            import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+          }/api/song-requests/review/${state.song?.id}?role=${rootState.role}`,
+          payload
+        )
+        .then((response) => {
+          const { data, status: statusCode } = response;
+          console.log("Song Request form: ", response);
 
-        if (statusCode === 200) {
-          const { result, status } = data;
+          if (statusCode === 200) {
+            const { result, status } = data;
 
-          if (status === 200) {
-            commit("SET_SONG", result?.song_request);
+            if (status === 200) {
+              commit("SET_SONG", result?.song_request);
+            }
           }
-        }
 
-        resolve(response);
-      })
-      .catch((err) => {
-        reject(err);
-      });
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    }, 1000);
   });
 };
 
@@ -355,30 +369,34 @@ export const fetchSongRequest = (
   { commit, rootState, state },
   payload = null
 ) => {
-  return new Promise(async (resolve, reject) => {
+  return new Promise((resolve, reject) => {
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + (rootState.bearerToken || localStorage.api_token);
 
-    await axios
-      .post(
-        `${
-          import.meta.env.VITE_BASE_URL || "http://localhost:8000"
-        }/api/song-requests/${payload || state.song.id}?role=${rootState.role}`
-      )
-      .then((response) => {
-        const {
-          data: { status, result },
-          status: statusCode,
-        } = response;
+    setTimeout(async () => {
+      await axios
+        .post(
+          `${
+            import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+          }/api/song-requests/${payload || state.song.id}?role=${
+            rootState.role
+          }`
+        )
+        .then((response) => {
+          const {
+            data: { status, result },
+            status: statusCode,
+          } = response;
 
-        if (statusCode === 200 && status === 200) {
-          commit("SET_SONG", result?.song_request);
-        }
+          if (statusCode === 200 && status === 200) {
+            commit("SET_SONG", result?.song_request);
+          }
 
-        resolve(response);
-      })
-      .catch((err) => {
-        reject(err);
-      });
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    }, 5000);
   });
 };

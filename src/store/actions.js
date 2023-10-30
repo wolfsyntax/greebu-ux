@@ -13,7 +13,7 @@ import { useCurrentUser, useFirebaseAuth } from "vuefire";
 
 var actions = {
   signin({ commit, dispatch }, payload) {
-    return new Promise(async (resolve, reject) => {
+    return new Promise((resolve, reject) => {
       commit("SET_AUTH", {});
       commit("SET_ACCOUNT", {});
       commit("SET_TOKEN", "");
@@ -34,48 +34,50 @@ var actions = {
       });
 
       // axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
-      await axios
-        .post(
-          `${
-            import.meta.env.VITE_BASE_URL || "http://localhost:8000"
-          }/api/login`,
-          payload
-        )
-        .then((response) => {
-          const {
-            data: { message, status, result },
-            status: statusCode,
-          } = response;
+      setTimeout(async () => {
+        await axios
+          .post(
+            `${
+              import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+            }/api/login`,
+            payload
+          )
+          .then((response) => {
+            const {
+              data: { message, status, result },
+              status: statusCode,
+            } = response;
 
-          console.log("\n\nSign-In Response: ", response);
+            console.log("\n\nSign-In Response: ", response);
 
-          if (statusCode === 200) {
-            const { profile, user, token, roles, account } = result;
+            if (statusCode === 200) {
+              const { profile, user, token, roles, account } = result;
 
-            commit("SET_AUTH", user || {});
-            commit("SET_ACCOUNT", account || {});
-            commit("SET_TOKEN", token || "");
-            commit("SET_PROFILE", profile || {});
-            commit("SET_ROLE", profile?.role || "");
-            commit("SET_ROLES", roles || []);
+              commit("SET_AUTH", user || {});
+              commit("SET_ACCOUNT", account || {});
+              commit("SET_TOKEN", token || "");
+              commit("SET_PROFILE", profile || {});
+              commit("SET_ROLE", profile?.role || "");
+              commit("SET_ROLES", roles || []);
 
-            localStorage.api_token = token;
-            dispatch("fetchProfile");
-          } else if (statusCode === 203 && status === 403) {
-            const { profile, user, token } = result;
+              localStorage.api_token = token;
+              dispatch("fetchProfile");
+            } else if (statusCode === 203 && status === 403) {
+              const { profile, user, token } = result;
 
-            commit("SET_AUTH", user || {});
-            commit("SET_PROFILE", profile || {});
-            commit("SET_ROLE", profile?.role || "");
+              commit("SET_AUTH", user || {});
+              commit("SET_PROFILE", profile || {});
+              commit("SET_ROLE", profile?.role || "");
 
-            localStorage.api_token = token;
-          }
+              localStorage.api_token = token;
+            }
 
-          resolve(response);
-        })
-        .catch((err) => {
-          reject(err);
-        });
+            resolve(response);
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      }, 3000);
     });
   },
   signup({ commit, dispatch }, payload) {
@@ -250,7 +252,7 @@ var actions = {
     });
   },
   socialAuth({ commit }, { provider, formData }) {
-    return new Promise(async (resolve, reject) => {
+    return new Promise((resolve, reject) => {
       commit("SET_AUTH", {});
       commit("SET_TOKEN", "");
       commit("SET_PROFILE", {});
@@ -297,39 +299,41 @@ var actions = {
       commit("SET_SONG_ARTIST", {});
       commit("CLEAR_ARTIST");
 
-      await axios
-        .post(
-          `${
-            import.meta.env.VITE_BASE_URL || "http://localhost:8000"
-          }/api/auth/${provider}/firebase`,
-          formData
-        )
-        .then((response) => {
-          const {
-            status: statusCode,
-            data: {
-              message,
-              status,
-              result: { profile, user, token, account },
-            },
-          } = response;
-          console.log(`n\nSocial Auth [${provider}] Response: `, response);
+      setTimeout(async () => {
+        await axios
+          .post(
+            `${
+              import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+            }/api/auth/${provider}/firebase`,
+            formData
+          )
+          .then((response) => {
+            const {
+              status: statusCode,
+              data: {
+                message,
+                status,
+                result: { profile, user, token, account },
+              },
+            } = response;
+            console.log(`n\nSocial Auth [${provider}] Response: `, response);
 
-          if (statusCode === 200) {
-            commit("SET_AUTH", user);
-            commit("SET_TOKEN", token);
-            commit("SET_PROFILE", profile);
-            commit("SET_ROLE", profile?.role || "");
-            commit("SET_ACCOUNT", account);
+            if (statusCode === 200) {
+              commit("SET_AUTH", user);
+              commit("SET_TOKEN", token);
+              commit("SET_PROFILE", profile);
+              commit("SET_ROLE", profile?.role || "");
+              commit("SET_ACCOUNT", account);
 
-            localStorage.api_token = token;
-          }
+              localStorage.api_token = token;
+            }
 
-          resolve(response?.data);
-        })
-        .catch((err) => {
-          reject(err);
-        });
+            resolve(response?.data);
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      }, 3000);
     });
   },
   socialMediaAuth({ commit, state }, payload) {
@@ -358,302 +362,324 @@ var actions = {
     });
   },
   forgotPassword({ commit }, payload) {
-    return new Promise(async (resolve, reject) => {
-      await axios
-        .post(
-          `${
-            import.meta.env.VITE_BASE_URL || "http://localhost:8000"
-          }/api/password/email`,
-          payload
-        )
-        .then((response) => {
-          console.log("Forgot Password Response: ", response);
+    return new Promise((resolve, reject) => {
+      setTimeout(async () => {
+        await axios
+          .post(
+            `${
+              import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+            }/api/password/email`,
+            payload
+          )
+          .then((response) => {
+            console.log("Forgot Password Response: ", response);
 
-          const {
-            data: { message, status, result },
-          } = response;
+            const {
+              data: { message, status, result },
+            } = response;
 
-          if (status === 200) {
-          }
+            if (status === 200) {
+            }
 
-          resolve(response);
-        })
-        .catch((err) => {
-          console.error("Forgot Password Error ", err);
-          reject(err);
-        });
+            resolve(response);
+          })
+          .catch((err) => {
+            console.error("Forgot Password Error ", err);
+            reject(err);
+          });
+      }, 3000);
     });
   },
   resetPassword({ commit }, payload) {
-    return new Promise(async (resolve, reject) => {
-      await axios
-        .post(
-          `${
-            import.meta.env.VITE_BASE_URL || "http://localhost:8000"
-          }/api/password/reset`,
-          payload
-        )
-        .then((response) => {
-          console.log("Reset Password Response: ", response);
+    return new Promise((resolve, reject) => {
+      setTimeout(async () => {
+        await axios
+          .post(
+            `${
+              import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+            }/api/password/reset`,
+            payload
+          )
+          .then((response) => {
+            console.log("Reset Password Response: ", response);
 
-          const {
-            status: statusCode,
-            data: { message, status, result },
-          } = response;
+            const {
+              status: statusCode,
+              data: { message, status, result },
+            } = response;
 
-          if (statusCode === 200) {
-          }
-          console.log("Status: ", response);
-          resolve(response);
-        })
-        .catch((err) => {
-          reject(err);
-        });
+            if (statusCode === 200) {
+            }
+            console.log("Status: ", response);
+            resolve(response);
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      }, 3000);
     });
   },
   sendOTPCode({ commit, state }, payload) {
-    return new Promise(async (resolve, reject) => {
+    return new Promise((resolve, reject) => {
       axios.defaults.headers.common["Authorization"] =
         "Bearer " + (state.bearerToken || localStorage.api_token);
 
-      await axios
-        .post(
-          `${
-            import.meta.env.VITE_BASE_URL || "http://localhost:8000"
-          }/api/phone/send`,
-          payload
-        )
-        .then((response) => {
-          console.log("\n\nSend OTP Response: ", response);
+      setTimeout(async () => {
+        await axios
+          .post(
+            `${
+              import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+            }/api/phone/send`,
+            payload
+          )
+          .then((response) => {
+            console.log("\n\nSend OTP Response: ", response);
 
-          const {
-            data: { message, status, result },
-          } = response;
+            const {
+              data: { message, status, result },
+            } = response;
 
-          if (status === 200) {
-            const { user } = result;
-            commit("SET_AUTH", user || {});
-          }
+            if (status === 200) {
+              const { user } = result;
+              commit("SET_AUTH", user || {});
+            }
 
-          resolve(response);
-        })
-        .catch((err) => {
-          reject(err);
-        });
+            resolve(response);
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      }, 3000);
     });
   },
   resendOTPCode({ commit, state }, payload) {
-    return new Promise(async (resolve, reject) => {
-      await axios
-        .get(
-          `${
-            import.meta.env.VITE_BASE_URL || "http://localhost:8000"
-          }/api/phone/resend/${payload}`
-        )
-        .then((response) => {
-          console.log("\n\nResend OTP Response: ", response);
+    return new Promise((resolve, reject) => {
+      setTimeout(async () => {
+        await axios
+          .get(
+            `${
+              import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+            }/api/phone/resend/${payload}`
+          )
+          .then((response) => {
+            console.log("\n\nResend OTP Response: ", response);
 
-          resolve(response);
-        })
-        .catch((err) => {
-          reject(err);
-        });
+            resolve(response);
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      }, 3000);
     });
   },
   verifyOTP({ commit, state }, payload) {
-    return new Promise(async (resolve, reject) => {
-      await axios
-        .post(
-          `${
-            import.meta.env.VITE_BASE_URL || "http://localhost:8000"
-          }/api/phone/verify/${payload?.id}`,
-          {
-            code: payload?.code,
-          }
-        )
-        .then((response) => {
-          console.log("\n\nVerify OTP Response: ", response);
+    return new Promise((resolve, reject) => {
+      setTimeout(async () => {
+        await axios
+          .post(
+            `${
+              import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+            }/api/phone/verify/${payload?.id}`,
+            {
+              code: payload?.code,
+            }
+          )
+          .then((response) => {
+            console.log("\n\nVerify OTP Response: ", response);
 
-          resolve(response);
-        })
-        .catch((err) => {
-          reject(err);
-        });
+            resolve(response);
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      }, 3000);
     });
   },
   verifyOTPF({ commit, state }, payload) {
-    return new Promise(async (resolve, reject) => {
+    return new Promise((resolve, reject) => {
       axios.defaults.headers.common["Authorization"] =
         "Bearer " + (state.bearerToken || localStorage.api_token);
 
-      await axios
-        .post(
-          `${
-            import.meta.env.VITE_BASE_URL || "http://localhost:8000"
-          }/api/phone/verify?role=${state.role}`,
-          {
-            code: payload?.code,
-          }
-        )
-        .then((response) => {
-          console.log("Verify OTP-F Response: ", response);
+      setTimeout(async () => {
+        await axios
+          .post(
+            `${
+              import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+            }/api/phone/verify?role=${state.role}`,
+            {
+              code: payload?.code,
+            }
+          )
+          .then((response) => {
+            console.log("Verify OTP-F Response: ", response);
 
-          resolve(response);
-        })
-        .catch((err) => {
-          reject(err);
-        });
+            resolve(response);
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      }, 3000);
     });
   },
   phoneOTP({ commit }, payload) {
-    return new Promise(async (resolve, reject) => {
-      await axios
-        .post(
-          `${
-            import.meta.env.VITE_BASE_URL || "http://localhost:8000"
-          }/api/sms-otp/${payload}`
-        )
-        .then((response) => {
-          console.log("Phone OTP Response: ", response);
+    return new Promise((resolve, reject) => {
+      setTimeout(async () => {
+        await axios
+          .post(
+            `${
+              import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+            }/api/sms-otp/${payload}`
+          )
+          .then((response) => {
+            console.log("Phone OTP Response: ", response);
 
-          const {
-            status: statusCode,
-            data: { message, status, result },
-          } = response;
+            const {
+              status: statusCode,
+              data: { message, status, result },
+            } = response;
 
-          if (statusCode === 200) {
-          }
-          console.log("Status: ", response);
-          resolve(response);
-        })
-        .catch((err) => {
-          reject(err);
-        });
+            if (statusCode === 200) {
+            }
+            console.log("Status: ", response);
+            resolve(response);
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      }, 3000);
     });
   },
   // Version 2
   requestCode({ commit, state }, payload) {
-    return new Promise(async (resolve, reject) => {
+    return new Promise((resolve, reject) => {
       // axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
-      await axios
-        .post(
-          `${
-            import.meta.env.VITE_BASE_URL || "http://localhost:8000"
-          }/api/user/${state.user?.id}/send-otp`,
-          payload
-        )
-        .then((response) => {
-          console.log("\n\nRequest Code Response: ", response);
-          const {
-            status: statusCode,
-            data: { message, status, result },
-          } = response;
+      setTimeout(async () => {
+        await axios
+          .post(
+            `${
+              import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+            }/api/user/${state.user?.id}/send-otp`,
+            payload
+          )
+          .then((response) => {
+            console.log("\n\nRequest Code Response: ", response);
+            const {
+              status: statusCode,
+              data: { message, status, result },
+            } = response;
 
-          if (statusCode === 200) {
-            const { user } = result;
-            commit("SET_AUTH", user || {});
-          }
+            if (statusCode === 200) {
+              const { user } = result;
+              commit("SET_AUTH", user || {});
+            }
 
-          resolve(response);
-        })
-        .catch((err) => {
-          console.log("Error response: ", err);
-          reject(err);
-        });
+            resolve(response);
+          })
+          .catch((err) => {
+            console.log("Error response: ", err);
+            reject(err);
+          });
+      }, 3000);
     });
   },
   resendCode({ commit, state }, payload) {
-    return new Promise(async (resolve, reject) => {
+    return new Promise((resolve, reject) => {
       // axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
 
-      await axios
-        .get(
-          `${
-            import.meta.env.VITE_BASE_URL || "http://localhost:8000"
-          }/api/user/${state.user?.id}/resend-otp`
-        )
-        .then((response) => {
-          console.log("\n\nResend Code response: ", response);
-          const {
-            data: { message, status, result },
-          } = response;
+      setTimeout(async () => {
+        await axios
+          .get(
+            `${
+              import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+            }/api/user/${state.user?.id}/resend-otp`
+          )
+          .then((response) => {
+            console.log("\n\nResend Code response: ", response);
+            const {
+              data: { message, status, result },
+            } = response;
 
-          if (status === 200) {
-            const { user } = result;
-            commit("SET_AUTH", user || {});
-          }
+            if (status === 200) {
+              const { user } = result;
+              commit("SET_AUTH", user || {});
+            }
 
-          resolve(response);
-        })
-        .catch((err) => {
-          reject(err);
-        });
+            resolve(response);
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      }, 5000);
     });
   },
   validateCode({ commit, state }, payload) {
-    return new Promise(async (resolve, reject) => {
+    return new Promise((resolve, reject) => {
       // axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
 
-      await axios
-        .post(
-          `${
-            import.meta.env.VITE_BASE_URL || "http://localhost:8000"
-          }/api/user/${state.user?.id}/verify?role=${state.role}`,
-          {
-            code: payload?.code,
-          }
-        )
-        .then((response) => {
-          console.log("\n\n::Validate Code:: ", response);
+      setTimeout(async () => {
+        await axios
+          .post(
+            `${
+              import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+            }/api/user/${state.user?.id}/verify?role=${state.role}`,
+            {
+              code: payload?.code,
+            }
+          )
+          .then((response) => {
+            console.log("\n\n::Validate Code:: ", response);
 
-          const { status: statusCode, data } = response;
+            const { status: statusCode, data } = response;
 
-          if (statusCode === 201) {
-            const {
-              result: { user, profile, roles, token, account },
-            } = data;
+            if (statusCode === 201) {
+              const {
+                result: { user, profile, roles, token, account },
+              } = data;
 
-            commit("SET_AUTH", user || {});
-            commit("SET_TOKEN", token || "");
-            commit("SET_PROFILE", profile || {});
-            commit("SET_ACCOUNT", account || {});
-            commit("SET_ROLE", profile?.role || "");
-            commit("SET_ROLES", roles || null);
-          }
+              commit("SET_AUTH", user || {});
+              commit("SET_TOKEN", token || "");
+              commit("SET_PROFILE", profile || {});
+              commit("SET_ACCOUNT", account || {});
+              commit("SET_ROLE", profile?.role || "");
+              commit("SET_ROLES", roles || null);
+            }
 
-          resolve(response);
-        })
-        .catch((err) => {
-          reject(err);
-        });
+            resolve(response);
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      }, 5000);
     });
   },
 
   // Resend Email verification
   resendEmail({ commit, state }) {
-    return new Promise(async (resolve, reject) => {
+    return new Promise((resolve, reject) => {
       // axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
 
-      await axios
-        .post(
-          `${
-            import.meta.env.VITE_BASE_URL || "http://localhost:8000"
-          }/api/email/resend/${state.user?.id}`
-        )
-        .then((response) => {
-          console.log("\n\nResend Code Response: ", response);
-          const {
-            data: { message, status, result },
-          } = response;
-          console.log("Email Resend: ", response);
-          if (status === 200) {
-          }
+      setTimeout(async () => {
+        await axios
+          .post(
+            `${
+              import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+            }/api/email/resend/${state.user?.id}`
+          )
+          .then((response) => {
+            console.log("\n\nResend Code Response: ", response);
+            const {
+              data: { message, status, result },
+            } = response;
+            console.log("Email Resend: ", response);
+            if (status === 200) {
+            }
 
-          resolve(response);
-        })
-        .catch((err) => {
-          reject(err);
-        });
+            resolve(response);
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      }, 3000);
     });
   },
   test2({ commit, state }, payload) {
@@ -681,59 +707,63 @@ var actions = {
     });
   },
   fetchCityList({ commit, rootState }, payload = "") {
-    return new Promise(async (resolve, reject) => {
+    return new Promise((resolve, reject) => {
       // axios.defaults.headers.common['Authorization'] = 'Bearer ' + (rootState.bearerToken || localStorage.api_token);
-      await axios
-        .get(
-          `${
-            import.meta.env.VITE_BASE_URL || "http://localhost:8000"
-          }/api/events/create?city=${payload}`
-        )
-        .then((response) => {
-          const {
-            status: statusCode,
-            data: { status, message, result },
-          } = response;
-
-          if (statusCode === 200 && status === 200) {
-            const { city } = result;
-
-            if (city) commit("SET_CITY", city);
-
-            resolve({ status: statusCode, message, result: result });
-          }
-
-          reject({ message, status: statusCode, result });
-        });
-    });
-  },
-  fetchUserInfo({ commit, rootState, dispatch }) {
-    return new Promise(async (resolve, reject) => {
-      if (rootState.bearerToken !== "" && localStorage.api_token !== "") {
-        axios.defaults.headers.common["Authorization"] =
-          "Bearer " + (rootState.bearerToken || localStorage.api_token);
+      setTimeout(async () => {
         await axios
           .get(
             `${
               import.meta.env.VITE_BASE_URL || "http://localhost:8000"
-            }/api/user`
+            }/api/events/create?city=${payload}`
           )
           .then((response) => {
-            const { status: statusCode, data } = response;
+            const {
+              status: statusCode,
+              data: { status, message, result },
+            } = response;
 
-            if (statusCode === 203) {
-              commit("CLEAR_ORGANIZER_STATE");
-              commit("SET_AUTH", {});
-              commit("SET_TOKEN", "");
-              commit("SET_PROFILE", {});
-              commit("SET_ROLE", "");
-              commit("SET_ACCOUNT", {});
+            if (statusCode === 200 && status === 200) {
+              const { city } = result;
 
-              dispatch("signout");
-              reject(data);
+              if (city) commit("SET_CITY", city);
+
+              resolve({ status: statusCode, message, result: result });
             }
-            resolve(data);
+
+            reject({ message, status: statusCode, result });
           });
+      }, 5000);
+    });
+  },
+  fetchUserInfo({ commit, rootState, dispatch }) {
+    return new Promise((resolve, reject) => {
+      if (rootState.bearerToken !== "" && localStorage.api_token !== "") {
+        axios.defaults.headers.common["Authorization"] =
+          "Bearer " + (rootState.bearerToken || localStorage.api_token);
+        setTimeout(async () => {
+          await axios
+            .get(
+              `${
+                import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+              }/api/user`
+            )
+            .then((response) => {
+              const { status: statusCode, data } = response;
+
+              if (statusCode === 203) {
+                commit("CLEAR_ORGANIZER_STATE");
+                commit("SET_AUTH", {});
+                commit("SET_TOKEN", "");
+                commit("SET_PROFILE", {});
+                commit("SET_ROLE", "");
+                commit("SET_ACCOUNT", {});
+
+                dispatch("signout");
+                reject(data);
+              }
+              resolve(data);
+            });
+        }, 5000);
       }
     });
   },
