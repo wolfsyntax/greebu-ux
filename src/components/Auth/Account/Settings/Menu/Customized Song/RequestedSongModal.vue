@@ -89,8 +89,8 @@
 
         <div class="d-flex justify-content-between action-wrapper song-info-wrapper">
           <div class="left">
-            <h5>What is the song for?</h5>
-            <p>{{ song.purpose }}</p>
+            <h5>Where did the song come from?</h5>
+            <p>{{ song.sender }}</p>
           </div>
 
           <div class="right">
@@ -101,9 +101,10 @@
 
         <div class="d-flex justify-content-between action-wrapper song-info-wrapper">
           <div class="left">
-            <h5>Genre</h5>
-            <p>Rock</p>
+            <h5>What is the song for?</h5>
+            <p>{{ song.purpose }}</p>
           </div>
+
 
           <div class="right">
             <h5>Type  of Song (Mood)</h5>
