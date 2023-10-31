@@ -140,7 +140,7 @@ export default {
         trigger: 'hover',
         placement: 'right',
         delay: {
-          show: 0, hide: 134500,
+          show: 0, hide: 5000,
         },
         template: `
         <div class="popover" role="tooltip">
