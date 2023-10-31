@@ -3126,7 +3126,7 @@ header nav {
   text-overflow: ellipsis;
 }
 .events-showing .container .card .card-text {
-  color: var(--gray6);
+  color: var(--black-heading);
   font-size: 0.75rem;
   font-weight: 400;
   /* show only two lines of description */
