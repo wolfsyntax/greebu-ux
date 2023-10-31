@@ -127,6 +127,7 @@ export default {
     ]),
     submit() {
       this.$emit('step', 3);
+      this.$store.commit('setSongPageStatus', 'review');
       // this.songStepThree(this.form)
       //   .then(response => {
       //     const { status: statusCode } = response
@@ -157,7 +158,7 @@ export default {
     },
   },
   mounted() {
-
+    this.$store.commit('setSongPageStatus', 'story');
   },
   computed: {
     ...mapGetters(["userInfo", "token"]),

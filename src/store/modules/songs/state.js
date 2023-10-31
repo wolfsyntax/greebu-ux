@@ -21,6 +21,7 @@ var state = {
     language_id: null,
     duration_id: null,
     purpose_id: null,
+    page_status: "info", // enum('info', 'song', 'story', 'review')
   },
   artist_filter: {
     artist_type: null,

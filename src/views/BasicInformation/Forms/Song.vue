@@ -100,23 +100,23 @@
                               <i :class="{
                                 'bi bi-play-circle-fill play-icon': !showControls || (showControls && currentIndex !== itemIndex),
                                 'bi bi-pause-circle-fill play-icon': showControls && currentIndex === itemIndex
-                              }" @click="toggleControls(itemIndex)"></i>
+                              }" @click="toggleControls(artist, itemIndex)"></i>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>   
-                    <button class="btn btn-primary select" @click="selectArtist(artist)" :class="{ 'selected': artist === chosenArtist }" >
-                      {{ changeSelectArtist(artist) }}
-                    </button>                 
-                  </div>
+                    <button class="btn btn-primary select" @click="artist.selected = !artist.selected; selectArtist(artist)" :class="{ 'selected': artist.selected }" >
+                      {{ artist.selected ? 'Selected' : 'Select' }}
+                    </button>
+                  </div>              
                 </div>
               </div>
             </div>
 
             <div class="button-wrapper">
               <button type="button" class="btn btn-primary back" @click="previousStep" :disabled="page === 0">Back</button>
-              <button type="button" class="btn btn-primary next" :disabled="!chosenArtist" @click="subNextStepSong">Next</button>
+              <button type="button" class="btn btn-primary next" :disabled="!Object.keys(chosenArtist).length" @click="subNextStepSong">Next</button>
             </div>
           </div>
         </div>
@@ -194,13 +194,71 @@
         </div> <!-- end of currentSubStepSong -->
       </div> <!-- end of col-md-6 -->
     </div>
-    
+    <div class="audio-controls-fixed" v-show="showControls">
+      <div class="d-flex align-items-center audio-menu">
+        <div class="artist">
+          <div class="card">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img :src="filterArtist?.avatar" class="img-fluid" alt="Artist Image" />
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">{{ filterArtist?.artist_name }}</h5>
+                  <p class="card-text">{{ filterArtist?.artist_type }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="audio-controls">
+          <audio ref="audioPlayer" controls style="display: none;"></audio>
+          <div class="main-controls">
+            <button @click="playPrevious" class="btn btn-primary prev">
+            </button>
+            <button @click="togglePlayPause" class="btn btn-primary play">
+              <img :src="playIconClass" alt="play icon" />
+            </button>
+            <button @click="playNext" class="btn btn-primary next"></button>
+          </div>
+          <div class="song-timeline">
+            <div class="current-time">
+              {{ currentTime }}
+            </div>
+            <div class="timeline">
+              <div class="progress-bar" :style="{ width: progressBarWidth }"></div>
+            </div>
+            <div class="duration">
+              {{ duration }}
+            </div>
+          </div>
+        </div>
+
+        <div class="stop-song">
+          <div class="volume-wrapper">
+            <button @click="toggleMute" class="btn btn-primary volume">
+              <i :class="`bi ${volumeIcon}`"></i>
+            </button>
+            <div class="" style="display: none;">
+              <button @click="showVolumeSlider = !showVolumeSlider" class="btn btn-primary">
+                <i class="bi bi-volume-up"></i>
+              </button>
+            </div>
+            <div v-if="showVolumeSlider" class="volume-slider">
+              <input type="range" min="0" max="100" v-model="currentVolume" class="form-range" @input="updateVolume">
+            </div>
+          </div>
+          <i class="bi bi-x" @click="stopAudio"></i>
+        </div>
+      </div>
+    </div>     
   </div> <!-- end of index == 1 -->
 </template>
 
 <script>
 import { mapGetters, mapState, mapActions } from "vuex";
-import Card from '../../../components/Artist/Card.vue';
+import Card from '/src/components/Artist/Card.vue';
+
 export default {
   setup()
   {
@@ -213,6 +271,16 @@ export default {
   data()
   {
     return {
+      artist: {},
+      audioPlayer: null,
+      showVolumeSlider: false,
+      currentVolume: 100,
+      currentTime: '0:00',
+      duration: '0:00',
+      currentIndex: -1,
+      isPlaying: false,
+      isMuted: false,
+      progressBarWidth: '0%',
       // STEP 2 - SONG
       moodOptions: [
         { id: 1, name: 'Happy' },
@@ -256,8 +324,9 @@ export default {
         { title: 'Select mood' },
         { title: 'Select language' }
       ],
+      
       showControls: false,
-      chosenArtist: null,
+      chosenArtist: {},
       // form: {
       //   artists: null,
       //   genre_id: null,
@@ -278,7 +347,137 @@ export default {
   methods: {
     ...mapActions([
       'fetchArtists', 'artistOptions', 'fetchSongForm', 'storeArtist', 'songStepTwo', 'storeMood', 'storeLanguage', 'storeDuration',
-      ]),
+    ]),
+    updateProgressBar()
+    {
+      const progress = (this.audioPlayer.currentTime / this.audioPlayer.duration) * 100;
+      this.progressBarWidth = `${progress}%`;
+    },
+    formatTime(time)
+    {
+      const minutes = Math.floor(time / 60);
+      const seconds = Math.floor(time % 60).toString().padStart(2, '0');
+      return `${minutes}:${seconds}`;
+    },
+    playNext()
+    {
+      if (this.currentIndex < this.artists.length - 1) {
+        this.currentIndex++;
+      } else {
+        this.currentIndex = 0;
+      }
+      // this.activeSlide = Math.floor(this.currentIndex / 6);
+      this.$store.commit('SET_FILTERED_ARTIST',this.artists[this.currentIndex]);
+      this.playSong();
+    },
+    playSong()
+    {
+      
+      if (this.audioPlayer) {
+        console.log('Current Playing song: ', this.filterArtist?.song);
+        this.audioPlayer.src = this.filterArtist?.song;
+        this.audioPlayer.load();
+        var audioPlay = this.audioPlayer.play()
+          .then(res =>
+          {
+            
+          })
+          .catch(err =>
+          {
+            audioPlay;
+          })
+      }
+      // Update current time and duration when the metadata is loaded
+      this.audioPlayer.addEventListener('loadedmetadata', () =>
+      {
+        this.duration = this.formatTime(this.audioPlayer.duration);
+      });
+
+      // Update current time during playback
+      this.audioPlayer.addEventListener('timeupdate', () =>
+      {
+        this.currentTime = this.formatTime(this.audioPlayer.currentTime);
+        this.updateProgressBar();
+      });
+
+      console.log('Audio Player: ', this.audioPlayer);
+    },
+    stopAudio()
+    {
+      if (this.audioPlayer) {
+        this.audioPlayer.pause();
+        this.showControls = false;
+      }
+    },
+    updateVolume()
+    {
+      if (this.audioPlayer) {
+        this.audioPlayer.volume = this.currentVolume / 100;
+      }
+    },
+    toggleMute() {
+      
+      if (this.audioPlayer) {
+        this.audioPlayer.muted = !this.audioPlayer.muted;
+        this.isMuted = this.audioPlayer.muted;
+      }
+
+      if (this.currentVolume === 0) {
+        this.currentVolume = this.previousVolume;
+      } else {
+        this.previousVolume = this.currentVolume;
+        this.currentVolume = 0;
+      }
+    },
+    playPrevious()
+    {
+      if (this.currentIndex > 0) {
+        this.currentIndex--;
+      } else {
+        this.currentIndex = this.artists.length - 1;
+      }
+      // this.activeSlide = Math.floor(this.currentIndex / 6);
+      this.$store.commit('SET_FILTERED_ARTIST',this.artists[this.currentIndex]);
+
+      this.playSong();
+    },
+    playButton(val, cardIndex)
+    {
+      
+      if (this.audioPlayer) {
+        console.log('Audio Player is initialized')
+        if (this.showControls) {
+          if (this.audioPlayer.paused) {
+            this.audioPlayer.play();
+            this.isPlaying = true;
+          } else {
+            this.audioPlayer.pause();
+            this.isPlaying = false;
+          }
+        } else {
+          this.currentIndex = cardIndex;
+          this.playSong();
+          this.showControls = true;
+          this.isPlaying = true;
+        }
+      }
+    },
+    togglePlayPause()
+    {
+      if (this.audioPlayer) {
+        if (this.audioPlayer.paused) {
+          this.audioPlayer.play();
+        } else {
+          this.audioPlayer.pause();
+        }
+      }
+    },
+    toggleControls(artist, index = null)
+    {
+      console.log(`Toggle Controls ${index}: `, artist);
+      this.$store.commit('SET_FILTERED_ARTIST', artist);
+      this.playButton(artist, index);
+    },
     selectMood(value)
     {
       this.mood = value;
@@ -309,6 +508,7 @@ export default {
       // })
       this.$store.commit('SET_SONG_GENRE', this.genre);
       this.$emit('step', 2)
+      this.$store.commit('setSongPageStatus', 'story');
       // this.$emit('stepData', this.form)
       
       console.log('Update song request')
@@ -320,6 +520,7 @@ export default {
     {
       
       if (this.currentSubStepSong < this.subStepsSong.length - 1) {
+        this.stopAudio();
         this.currentSubStepSong++;
         // this.$emit('stepData', this.form)
       }
@@ -337,10 +538,6 @@ export default {
         // this.storeDuration(this.duration);
       }
     },
-    playButton()
-    {
-
-    },
     submit()
     {
 
@@ -352,12 +549,13 @@ export default {
     selectArtist(artist)
     {
       this.$store.commit('selectSongArtist', artist);
-      this.chosenArtist = artist;
+      this.chosenArtist = artist.selected ? artist : {};
+      console.log('Selected Artist: ', this.chosenArtist, artist);
     },
-    changeSelectArtist(artist)
-    {
-      return this.chosenArtist === artist ? 'Selected' : 'Select';
-    },
+    // changeSelectArtist(artist)
+    // {
+    //   return this.chosenArtist === artist ? 'Selected' : 'Select';
+    // },
     previousStep()
     {
       this.$emit('step', 0)
@@ -387,10 +585,12 @@ export default {
   mounted()
   {
     var payload = {}
-    
+    this.$store.commit('SET_FILTERED_ARTIST');
+
     this.rating = this.artist_filter.rating;
     this.sort = this.artist_filter.sort;
-    this.chosenArtist = this.form.artists;
+    this.chosenArtist = this.form.artists || {};
+    this.$store.commit('setSongPageStatus', 'song');
 
     // if (this.form?.artists) this.chosenArtist = this.form?
     if (this.artist_type) payload.artist_type = this.artist_type;
@@ -419,12 +619,41 @@ export default {
     this.mood = this._getSongMood;
     this.duration = this._getSongDuration;
     console.log('Song.vue mounted', this.mood);
+
+    this.audioPlayer = this.$refs.audioPlayer;
+    
+    this.audioPlayer.addEventListener('play', () =>
+    {
+      this.isPlaying = true;
+    });
+    
+    this.audioPlayer.addEventListener('pause', () =>
+    {
+      this.isPlaying = false;
+    });
   },
   computed: {
+    volumeIcon()
+    {
+      if (this.currentVolume === 0) {
+        return 'bi-volume-mute';
+      } else if (this.currentVolume < 1) {
+        return 'bi-volume-mute';
+      } else if (this.currentVolume < 50) {
+        return 'bi-volume-down';
+      } else {
+        return 'bi-volume-up';
+      }
+    },
+    playIconClass()
+    {
+      return this.isPlaying ? 'https://res.cloudinary.com/daorvtlls/image/upload/v1687321874/play-pause_ofcx4e.svg' : 'https://res.cloudinary.com/daorvtlls/image/upload/v1687321874/play-black_ftgyx3.svg';
+    },
     ...mapGetters(["userInfo", "token", "_getSongArtists", "_getSongLanguage", "_getSongDuration", "_getSongPurpose", "_getSongMood"]),
     ...mapState({
-      artists: (state) => state.artist.artists,
+      artists: (state) => state.artist.artists.map(val => ({...val, selected: false})),
       artist_types: (state) => state.artist.artist_types,
+      filterArtist: state => state.artist.filterArtist,
       genres: (state) => state.artist.genres,
       moods: state => state.songs.moods,
       languages: state => state.songs.languages,
@@ -444,6 +673,31 @@ export default {
     },
   },
   watch: {
+    filterArtist(val, prev)
+    {
+
+      if (val.id !== prev?.id) 
+      {
+        this.currentTime = '0:00';
+        this.duration = '0:00';
+        this.progressBarWidth = '0%';
+
+        if (this.audioPlayer) {
+          console.log('Current Playing song: ', val?.song);
+          this.playSong();
+        }
+      }
+
+    },
+    chosenArtist(cur, prev) {
+      if (Object.keys(prev).length) prev.selected = !prev.selected
+    },
+    showControls(val)
+    {
+      this.currentTime = '0:00';
+      this.duration = '0:00';
+      this.progressBarWidth = '0%';
+    },
     currentSubStepSong(value, prev)
     {
 

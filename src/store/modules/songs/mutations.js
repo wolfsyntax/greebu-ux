@@ -82,6 +82,10 @@ export const selectSongArtist = (state, payload = []) => {
   state.song.artists = payload;
 };
 
+export const setSongPageStatus = (state, payload = "info") => {
+  state.song.page_status = payload || "info";
+};
+
 export const RESET_SONG_FILTER = (
   state,
   payload = {
