@@ -199,8 +199,9 @@ export default {
       .then(res =>
       {
         console.log('Events: ', res);
-        this.isLoading = false;
+        
       })
+      .finally(onfinally => this.isLoading = false);
   },
   methods: {
     ...mapActions([
