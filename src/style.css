@@ -8366,7 +8366,7 @@ header nav {
   font-weight: 500;
 }
 
-/* Cancel Subscription Modal */
+/* Payment History Modal */
 
 #paymentHistory .modal-content{
   padding: 2.58rem 2.68rem;
@@ -8439,6 +8439,14 @@ header nav {
 #paymentHistory table .tr-top-wrap{
   border: 1px solid #E4E6E8;
 }
+#paymentHistory .payment-wrap{
+  gap: 0.5rem;
+}
+#paymentHistory .payment-wrap .payment-logo{
+  width: 1.875rem;
+  height: 1.375rem;
+  border-radius: 0.25rem;
+}
 #paymentHistory table thead th{
   color: var(--black);
   font-size: 0.875rem;
@@ -8447,21 +8455,229 @@ header nav {
   letter-spacing: 0.02125rem;
   text-transform: uppercase;
   background-color: #FBFBFB;
-  box-shadow: 0px -1px 0px 0px #E4E6E8 inset;
+  /* box-shadow: 0px -1px 0px 0px #E4E6E8 inset; */
 }
-#paymentHistory table tbody td{
+#paymentHistory .dropdown-action {
+  text-align: center;
+}
+#paymentHistory table tbody td,
+#paymentHistory table tbody th{
   color: var(--gray2);
   font-size: 1rem;
   font-weight: 400;
   background: #FBFBFB;
+  padding-bottom: 0.4rem;
   /* box-shadow: 0px -1px 0px 0px #E4E6E8 inset; */
 }
-#paymentHistory table .form-check{
+#paymentHistory .dropdown-action .dropdown-toggle::after{
+  display: none;
+}
+#paymentHistory .dropdown-action .more-icon{
+  font-size: 24px;
+  color: var(--black);
+}
+#paymentHistory .dropdown-action .dropdown-menu{
+  border-radius: 0.3125rem;
+  background-color: var(--white);
+  box-shadow: 0px 0px 17px 0px rgba(18, 18, 18, 0.15);
+  /* width: 10.9375rem; */
+  padding: 1rem 1.25rem;
+  border: none;
+}
+#paymentHistory .dropdown-action .dropdown-menu button{
+  color: #2D3748;
+  font-size: 1rem;
+  font-weight: 600;
+  width: 100%;
+  text-align: left;
+}
+#paymentHistory .dropdown-action .dropdown-menu .view-details,
+#paymentHistory .dropdown-action .dropdown-menu .download-pdf{
+  margin-bottom: 0.75rem;
+}
+#paymentHistory .dropdown-action .dropdown-menu button:hover{
+  color: var(--orange);
+}
+#paymentHistory table .status-wrap{
+  border-radius: 0.25rem;
+  background: #EDFFEA;
+  gap: 0.16rem;
+  padding: 0.38rem;
+  width: 5.25rem;
+}
+#paymentHistory table .status-wrap .check-icon{
+  font-size: 15px;
+  font-variation-settings: 'FILL' 1,'wght' 800,'GRAD' 0,'opsz' 48;
+  color: #165E3D;
+}
+#paymentHistory table .status-wrap p{
+  color: #165E3D;
+  font-size: 0.6875rem;
+  font-weight: 500;
+}
+#paymentHistory .form-check{
+  margin-bottom: 0;
+  min-height: 1.5rem;
+}
+#paymentHistory .form-check .form-check-input{
+  width: 1rem;
+  height: 1rem;
+  margin-bottom: 0;
+}
+#paymentHistory .form-check .form-check-input:checked{
+  background-color: var(--orange);
+  border-color: var(--orange);
+}
 
+/* Payment History Modal - Invoice details */
+
+#invoiceDetails .modal-content{
+  padding: 1.9375rem 2.5625rem;
+  border-radius: 0.625rem;
+  box-shadow: 0px 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border: none;
 }
-#paymentHistory table .form-check input{
-  
+#invoiceDetails .modal-header{
+  border-bottom: none;
+  margin-bottom: 1.81rem;
 }
+#invoiceDetails .modal-header,
+#invoiceDetails .modal-body,
+#invoiceDetails .modal-footer{
+  padding: 0;
+}
+#invoiceDetails .modal-footer{
+  border-top: none;
+}
+#invoiceDetails .modal-header .modal-title{
+  color: var(--black-color);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+#invoiceDetails .modal-header .cancel-btn .cancel-icon{
+  font-size: 24px;
+  color: var(--gray2);
+}
+#invoiceDetails .billed-wrap{
+  border-radius: 0.625rem;
+  background-color: var(--orange);
+  box-shadow: 0px 3px 12px 0px rgba(35, 136, 255, 0.33);
+  padding: 1.69rem 1.38rem;
+  margin-bottom: 1.5rem;
+}
+#invoiceDetails .billed-wrap h5{
+  color: var(--white);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-size: 0.875rem;
+  font-weight: 400;
+  /* margin-bottom: ; */
+}
+#invoiceDetails .billed-wrap .bold-text{
+  font-weight: 600;
+}
+#invoiceDetails .billed-wrap .group-item{
+  gap: 1rem;
+}
+#invoiceDetails .billed-wrap .group-item div:nth-child(1){
+  width: 70%;
+}
+#invoiceDetails .billed-wrap .group-item div:nth-child(2){
+  width: 30%;
+  text-align: right;
+}
+#invoiceDetails table {
+  margin-bottom: 1.88rem;
+}
+#invoiceDetails table th{
+  color: var(--gray2);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  border: none;
+}
+#invoiceDetails table td{
+  color: #868DA6;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: none;
+  padding: 1.1875rem 1.3125rem 1.1875rem 1.5625rem;
+  background-color: #FFF1E1;
+  /* border-radius: 0.625rem; */
+}
+#invoiceDetails table td:first-child{
+  border-radius: 0.625rem 0 0 0.625rem;
+  color: #19213D;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+#invoiceDetails table td:last-child{
+  border-radius: 0 0.625rem 0.625rem 0;
+  color: #19213D;
+}
+#invoiceDetails table .payment-wrap{
+  gap: 0.25rem;
+}
+#invoiceDetails table .payment-wrap .payment-logo{
+  width: 1.61931rem;
+  height: 1.1875rem;
+}
+#invoiceDetails .amount-wrap h5{
+  color: var(--gray2);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 0.625rem; 
+  letter-spacing: 0.035rem;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+#invoiceDetails .amount-wrap h2{
+  color: var(--black);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.75rem; 
+}
+
+/* Payment Method Modal */
+
+#paymentMethod .modal-content{
+  padding: 2.37rem 2.56rem;
+  border-radius: 0.46875rem;
+  box-shadow: 0px 18.75px 37.5px -9px rgba(0, 0, 0, 0.25);
+}
+#paymentMethod .modal-header{
+  align-items: start;
+}
+#paymentMethod .modal-header,
+#paymentMethod .modal-footer{
+  border: none;
+}
+#paymentMethod .modal-header,
+#paymentMethod .modal-body,
+#paymentMethod .modal-footer{
+  padding: 0;
+}
+#paymentMethod .modal-header{
+  margin-bottom: 1.75rem;
+}
+#paymentMethod .modal-header .modal-title{
+  color: var(--black-color);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.37rem;
+}
+#paymentMethod .modal-header .modal-sub-title{
+  color: var(--gray6);
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+
+
 
 
                                                     /* MEDIA QUERIES */
@@ -8479,6 +8695,167 @@ header nav {
   24 px	1.5 rem
   28px 1.75 rem
 /* */
+
+/* Payment History Modal - Invoice details */
+
+#invoiceDetails .modal-content{
+  padding: 1.44rem 1.69rem;
+  border-radius: 0.4375rem;
+  box-shadow: 0px 18.75px 37.5px -9px rgba(0, 0, 0, 0.25);
+}
+#invoiceDetails .modal-header{
+  margin-bottom: 1.25rem;
+}
+#invoiceDetails .modal-header .modal-title{
+  font-size: 1.25rem;
+}
+#invoiceDetails .modal-header .cancel-btn .cancel-icon{
+  font-size: 18px;
+}
+#invoiceDetails .billed-wrap{
+  border-radius: 0.46875rem;
+  box-shadow: 0px 2.25px 9px 0px rgba(35, 136, 255, 0.33);
+  padding: 1.25rem 1.25rem;
+  margin-bottom: 1.25rem;
+}
+#invoiceDetails .billed-wrap h5{
+  font-size: 0.625rem
+}
+#invoiceDetails .billed-wrap .group-item{
+  gap: 0.75rem;
+}
+#invoiceDetails table {
+  margin-bottom: 1.25rem;
+}
+#invoiceDetails table th{
+  font-size: 0.65625rem;
+}
+#invoiceDetails table td{
+  font-size: 0.65625rem;
+  padding: 1rem 1.3rem 1rem 1.3rem;
+}
+#invoiceDetails table td:first-child{
+  border-radius: 0.9375rem 0 0 0.9375rem;
+  font-size: 0.625rem;
+}
+#invoiceDetails table td:last-child{
+  border-radius: 0 0.9375rem 0.9375rem 0;
+}
+#invoiceDetails table .payment-wrap{
+  gap: 0.19rem;
+}
+#invoiceDetails table .payment-wrap .payment-logo{
+  width: 1.19319rem;
+  height: 0.875rem;
+}
+#invoiceDetails .amount-wrap h5{
+  font-size: 0.65625rem;
+  line-height: 0.46875rem;
+  letter-spacing: 0.02625rem;
+  margin-bottom: 0.19rem;
+}
+#invoiceDetails .amount-wrap h2{
+  font-size: 1.125rem;
+  line-height: 1.3125rem; 
+}
+
+/* Payment History Modal */
+
+#paymentHistory .modal-content{
+  padding: 1.95rem 1.95rem;
+}
+#paymentHistory .modal-header{
+  margin-bottom: 0.7rem;
+}
+#paymentHistory .modal-header .modal-title{
+  font-size: 1.25rem;
+}
+#paymentHistory .search-download-wrap{
+  margin-bottom: 0.62rem;
+}
+#paymentHistory .search-container button {
+  left: 8px;
+}
+#paymentHistory .search-container .search-input {
+  padding-left: 1.5rem;
+  border: 0.8px solid #FBFBFB;
+  height: 1.875rem;
+  width: 13.922rem;
+  border-radius: 0.375rem;
+  font-size: 0.625rem;
+  line-height: 140%; 
+}
+#paymentHistory .search-container .search-icon {
+  font-size: 14px;
+}
+#paymentHistory .download-btn{
+  font-size: 0.625rem;
+  line-height: 140%; 
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.375rem;
+  border: 0.75px solid #F0F2F4;
+  border: 0.8px solid #F0F2F4;
+  gap: 0.38rem;
+}
+#paymentHistory .download-btn .download-icon{
+  font-size: 14px;
+}
+#paymentHistory .payment-wrap{
+  gap: 0.538rem;
+}
+#paymentHistory .payment-wrap .payment-logo{
+  width: 1.40625rem;
+  height: 1.03125rem;
+  border-radius: 0.1875rem;
+}
+#paymentHistory table thead th{
+  font-size: 0.625rem;
+  line-height: 0.9375rem; 
+  letter-spacing: 0.01594rem;
+}
+#paymentHistory table tbody td, 
+#paymentHistory table tbody th {
+  font-size: 0.75rem;
+  padding-bottom: 0.3rem;
+}
+#paymentHistory .dropdown-action .more-icon{
+  font-size: 18px;
+}
+#paymentHistory .dropdown-action .dropdown-menu{
+  border-radius: 0.23438rem;
+  box-shadow: 0px 0px 12.75px 0px rgba(18, 18, 18, 0.15);
+  padding: 0.75rem 0.94rem;
+  /* width: 5rem; */
+}
+#paymentHistory .dropdown-action .dropdown-menu button{
+  font-size: 0.75rem;
+}
+#paymentHistory .dropdown-action .dropdown-menu .view-details,
+#paymentHistory .dropdown-action .dropdown-menu .download-pdf{
+  margin-bottom: 0.66rem;
+}
+#paymentHistory table .status-wrap{
+  padding: 0.1875rem 0.28125rem;
+  border-radius: 0.1875rem;
+  gap: 0.09rem;
+  width: 4.538rem;
+}
+#paymentHistory table .status-wrap .check-icon{
+  font-size: 12px;
+}
+#paymentHistory table .status-wrap p{
+  font-size: 0.61563rem;
+}
+#paymentHistory .form-check .form-check-input{
+  width: 0.75625rem;
+  height: 0.75625rem;
+}
+#paymentHistory .form-check {
+  min-height: 1.1rem;
+}
+#paymentHistory .dropdown-action {
+  text-align: left;
+}
 
 /* Account Settings - No message */
 .account-settings .no-message .empty-icon{
@@ -8505,7 +8882,8 @@ header nav {
 #cancelSubscription .modal-header{
   margin-bottom: 1.25rem;
 }
-#cancelSubscription .modal-header .cancel-icon{
+#cancelSubscription .modal-header .cancel-icon,
+#cancelSubscription .modal-header .cancel-icon, #paymentHistory .modal-header .cancel-icon{
   font-size: 18px;
 }
 #cancelSubscription .modal-title{

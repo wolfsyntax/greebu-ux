@@ -6,7 +6,7 @@
           <div class="modal-header">
             <h3 class="modal-title">Confirm Subscription Cancellation</h3>
             <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
-            <button type="button" class="btn ms-auto border-0 p-0 cancel-btn" data-bs-dismiss="modal" aria-label="Close">
+            <button type="button" class="btn ms-auto border-0 p-0 cancel-btn" id="close-modal-btn" data-bs-dismiss="modal" aria-label="Close">
               <span class="material-symbols-rounded cancel-icon">&#xe5c9;</span>
             </button>
   
