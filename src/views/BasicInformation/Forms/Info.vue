@@ -65,7 +65,7 @@ export default {
       
       this.$emit('step', 1)
       this.$emit('stepData', this.form)
-
+      this.$store.commit('setSongPageStatus', 'song');
       // this.songStepOne(this.form)
       //   .then(response =>
       //   {
@@ -89,6 +89,7 @@ export default {
   },
   mounted()
   {
+    this.$store.commit('setSongPageStatus');
     // this.form = Object.assign(this.form, this.song);
   },
   computed: {

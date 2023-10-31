@@ -308,6 +308,7 @@ export default {
       this.artist = val;
 
       if (this.audioPlayer) {
+        console.log('audioPlayer is initialized')
         if (this.showControls) {
           if (this.audioPlayer.paused) {
             this.audioPlayer.play();
@@ -324,29 +325,7 @@ export default {
         }
       }
     },
-    toggleControls(index)
-    {
-      if (this.audioPlayer) {
-        if (this.showControls && this.currentIndex === index) {
-          if (this.audioPlayer.paused) {
-            this.audioPlayer.play();
-            this.isPlaying = true;
-          } else {
-            this.audioPlayer.pause();
-            this.isPlaying = false;
-          }
-        } else {
-
-          this.currentIndex = index;
-          this.SET_FILTERED_ARTIST(this.artists[index]);
-
-          this.playSong();
-          this.showControls = true;
-          this.isPlaying = true;
-        }
-        this.activeSlide = Math.floor(index / 3);
-      }
-    },
+    
     togglePlayPause()
     {
       if (this.audioPlayer) {

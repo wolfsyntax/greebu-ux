@@ -17,7 +17,7 @@
       <div class="text-center modal-body">
         <div class="d-flex align-items-center justify-content-between action-wrapper">
           <div class="d-flex align-items-center">
-            <img src="/assets/artist-account/band-member-2.webp" class="customer-image" alt="Requester image">
+            <img :src="`${song?.creator?.avatar || '/assets/artist-account/band-member-2.webp'}`" class="customer-image" alt="Requester image">
             <div>
               <h5 class="name">{{ song.creator?.name }}</h5>
               <!-- For Submission tab - View Details modal -->
@@ -132,6 +132,22 @@
           <div class="right hidden-song-info">
             <h5>Delivery Date</h5>
             <p>June 12,2023</p>
+          </div>
+        </div>
+
+        <div class="story-wrapper">
+          <h4 class="title">Client Details</h4>
+          <div class="d-flex justify-content-between action-wrapper song-info-wrapper">
+            <div class="left">
+              <h5>Name</h5>
+              <p>{{ song.fullname }}</p>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between action-wrapper song-info-wrapper">
+            <div class="left">
+              <h5>Email Address</h5>
+              <p>{{ song.email }}</p>
+            </div>
           </div>
         </div>
       </div> <!-- end of modal-body -->

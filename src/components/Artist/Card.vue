@@ -24,6 +24,9 @@
         </div>
       </div>
     </div>
+    <button v-if="cardType !== 'page'" class="btn btn-primary select" @click="selectArtist(artist)" :class="{ 'selected': artist === chosenArtist }" >
+      {{ changeSelectArtist(artist) }}
+    </button>      
   </div>
   <artistdetails></artistdetails>
 </template>
@@ -45,8 +48,13 @@ export default {
     }
   },
   props: {
+    cardType: { 
+      type: String,
+      default: 'page',
+      required: true
+    },
     artist: Object,
-    cardIndex: Number
+    cardIndex: Number,
   },
   methods: {
     openModal(data){
