@@ -3126,7 +3126,7 @@ header nav {
   text-overflow: ellipsis;
 }
 .events-showing .container .card .card-text {
-  color: var(--gray6);
+  color: var(--black-heading);
   font-size: 0.75rem;
   font-weight: 400;
   /* show only two lines of description */
@@ -6039,10 +6039,13 @@ header nav {
   background: var(--warning-light);
   color: var(--warning);
 }
-.account-settings .customized-songs-wrapper .requested-wrapper{
+.account-settings .customized-songs-wrapper .requested-wrapper {
   margin-bottom: 1.5rem;
 }
-.account-settings .customized-songs-wrapper .requested-wrapper .requested-by-image{
+.account-settings
+  .customized-songs-wrapper
+  .requested-wrapper
+  .requested-by-image {
   width: 1.5rem;
   height: 1.5rem;
   border-radius: 100%;
@@ -6104,7 +6107,7 @@ header nav {
   display: inline-flex;
   align-items: center;
 }
-.account-settings .customized-songs-wrapper .button-wrapper .upload svg{
+.account-settings .customized-songs-wrapper .button-wrapper .upload svg {
   width: 1.2rem;
   height: 1.2rem;
   margin-right: 0.2rem;
@@ -7484,16 +7487,17 @@ header nav {
   background-color: var(--orange);
   color: var(--white);
 }
-#createEventModal .upload-file-wrapper, #editEventModal .upload-file-wrapper{
+#createEventModal .upload-file-wrapper,
+#editEventModal .upload-file-wrapper {
   margin-bottom: 1.75rem;
 }
 #createEventModal .uploaded-image-wrapper .uploaded-image,
 #albumSongInfo .uploaded-image-wrapper .uploaded-image,
-#editEventModal .uploaded-image-wrapper .uploaded-image{
+#editEventModal .uploaded-image-wrapper .uploaded-image {
   height: 18.375rem;
   width: 100%;
 }
-#albumSongInfo .uploaded-image-wrapper{
+#albumSongInfo .uploaded-image-wrapper {
   margin-bottom: 1.5rem;
 }
 #createEventModal .uploaded-image-wrapper .remove-image,
@@ -7508,7 +7512,7 @@ header nav {
 }
 #createEventModal .uploaded-image-wrapper .remove-image span,
 #albumSongInfo .uploaded-image-wrapper .remove-image span,
-#editEventModal .uploaded-image-wrapper .remove-image span{
+#editEventModal .uploaded-image-wrapper .remove-image span {
   cursor: pointer;
   color: var(--white);
   margin: 0;
@@ -7537,7 +7541,7 @@ header nav {
   height: 4rem;
   margin-right: 0.57rem;
 }
-#albumSongInfo .uploaded-song-wrapper .audio-controls-wrapper{
+#albumSongInfo .uploaded-song-wrapper .audio-controls-wrapper {
   display: none;
 }
 #albumSongInfo .uploaded-song-wrapper .song-wrapper .song-title {
@@ -7553,26 +7557,26 @@ header nav {
   max-height: 3.2rem;
 }
 #albumSongInfo .uploaded-song-wrapper .song-wrapper .preview .file-size {
-    color: #242634;
-    font-size: 0.7875rem;
-    font-weight: 700;
-    line-height: 0.75rem;
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.125rem;
-    background-color: transparent;
-    border: 1px solid #cdd3d8;
-    margin-right: 1rem;
+  color: #242634;
+  font-size: 0.7875rem;
+  font-weight: 700;
+  line-height: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.125rem;
+  background-color: transparent;
+  border: 1px solid #cdd3d8;
+  margin-right: 1rem;
 }
 #albumSongInfo .uploaded-song-wrapper .song-wrapper .remove-music-wrapper img {
-    width: 1.5rem;
-    height: 1.5rem;
-    cursor: pointer;
-    /* transition: all 0.5s ease; */
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+  /* transition: all 0.5s ease; */
 }
 
 /* Customized Songs - Upload Song */
 
-#albumSongInfo .upload-audio{
+#albumSongInfo .upload-audio {
   border-radius: 0.625rem;
   border: 1px dashed var(--gray6);
   padding: 0;
@@ -7605,30 +7609,30 @@ header nav {
   border: 0.646px solid var(--orange);
   background-color: transparent;
 }
-#albumSongInfo .upload-audio .upload-file-content label:hover{
+#albumSongInfo .upload-audio .upload-file-content label:hover {
   background-color: var(--orange);
   color: var(--white);
 }
 #albumSongInfo .audio-file-format {
-    padding: 0.9rem 1.21rem;
-    border-radius: 0.40375rem;
-    background: #efeffc;
-    margin: 1rem 0;
+  padding: 0.9rem 1.21rem;
+  border-radius: 0.40375rem;
+  background: #efeffc;
+  margin: 1rem 0;
 }
 #albumSongInfo .errorMessage {
-    background: #fecaca;
+  background: #fecaca;
 }
 #albumSongInfo .audio-file-format .max-file-size {
-    color: var(--warning);
-    font-size: 0.875rem;
-    font-weight: 500;
-    letter-spacing: -0.04375rem;
+  color: var(--warning);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: -0.04375rem;
 }
 #albumSongInfo .audio-file-format .info {
-    font-size: 20px;
-    color: var(--gray6);
-    margin-right: 0.32rem;
-    color: var(--warning);
+  font-size: 20px;
+  color: var(--gray6);
+  margin-right: 0.32rem;
+  color: var(--warning);
 }
 
 /* LIBRARY PAGE */
@@ -7825,8 +7829,8 @@ header nav {
 #albumSongInfo .form-group {
   margin-bottom: 1.5rem;
 }
-#albumSongInfo .form-group label{
-  color: #2D3748;
+#albumSongInfo .form-group label {
+  color: #2d3748;
   font-size: 1.25rem;
   font-weight: 500;
   letter-spacing: -0.025rem;
@@ -7865,7 +7869,7 @@ header nav {
   color: #8e9cab;
   margin-right: 0.75rem;
 }
-#albumSongInfo .action-btn .next{
+#albumSongInfo .action-btn .next {
   background: var(--orange);
   border: 2px solid var(--orange);
 }
@@ -7983,116 +7987,116 @@ header nav {
   margin: 1.5rem 0;
   border: 1px solid #cdd3d8;
 }
-#file-output-box .file-details-wrap{
+#file-output-box .file-details-wrap {
   gap: 0.57rem;
 }
-#file-output-box .file-icon{
+#file-output-box .file-icon {
   font-size: 48px;
   color: var(--gray6);
 }
-#file-output-box .file-name{
+#file-output-box .file-name {
   color: #121212;
   font-size: 1rem;
   font-weight: 600;
   margin-bottom: 0.28rem;
 }
-#file-output-box .file-size span{
+#file-output-box .file-size span {
   color: #242634;
   font-size: 0.625rem;
   font-weight: 600;
   line-height: 0.4845rem;
   border-radius: 0.08075rem;
-  border: 0.646px solid #CDD3D8;
+  border: 0.646px solid #cdd3d8;
   padding: 0.1615rem 0.323rem;
 }
-#file-output-box .close-icon{
+#file-output-box .close-icon {
   font-size: 24px;
   color: var(--warning);
 }
 
 /* File Uploaded Output Box - Error Msg*/
 
-#file-output-box-error{
+#file-output-box-error {
   padding: 0.9rem 1.21rem;
   border-radius: 0.40375rem;
   background: var(--warning-light);
   margin: 1rem 0;
 }
-#file-output-box-error .error-wrap{
+#file-output-box-error .error-wrap {
   gap: 0.32rem;
 }
-#file-output-box-error .info-class{
+#file-output-box-error .info-class {
   font-size: 24px;
   color: var(--warning);
 }
-#file-output-box-error .error-msg{
+#file-output-box-error .error-msg {
   color: var(--warning);
   font-size: 0.875rem;
   font-weight: 500;
   letter-spacing: -0.04375rem;
 }
-#file-output-box-error .close-icon{
+#file-output-box-error .close-icon {
   font-size: 24px;
   color: #fdfdfd;
 }
 
 #uploadArtistCoverPhoto .upload-file-wrapper .uploaded-image-wrapper {
-    overflow: hidden;
-    width: 100%;
-    height: 14.3rem;
+  overflow: hidden;
+  width: 100%;
+  height: 14.3rem;
 }
 
 /* Delete an event etc. */
 
-#deleteConfirmation .modal-content{
+#deleteConfirmation .modal-content {
   padding: 1rem 2rem 2rem;
 }
 #deleteConfirmation .modal-header,
 #deleteConfirmation .modal-body,
-#deleteConfirmation .modal-footer{
+#deleteConfirmation .modal-footer {
   padding: 0;
 }
-#deleteConfirmation .modal-header{
+#deleteConfirmation .modal-header {
   border-bottom: none;
 }
-#deleteConfirmation .modal-footer{
+#deleteConfirmation .modal-footer {
   border-top: none;
 }
-#deleteConfirmation .modal-header .cancel-btn{
+#deleteConfirmation .modal-header .cancel-btn {
   text-align: right;
 }
-#deleteConfirmation .modal-header .cancel-btn .cancel-icon{
+#deleteConfirmation .modal-header .cancel-btn .cancel-icon {
   font-size: 24px;
   color: var(--black);
 }
-#deleteConfirmation .message-wrap{
+#deleteConfirmation .message-wrap {
   margin-bottom: 3rem;
 }
-#deleteConfirmation .message-wrap h3{
+#deleteConfirmation .message-wrap h3 {
   color: var(--black);
   font-size: 1.5rem;
   font-weight: 700;
 }
-#deleteConfirmation .message-wrap p{
+#deleteConfirmation .message-wrap p {
   color: var(--gray6);
   font-weight: 500;
 }
-#deleteConfirmation .modal-footer button{
+#deleteConfirmation .modal-footer button {
   color: var(--white);
   font-size: 1rem;
   font-weight: 600;
   border-radius: 0.5rem;
   padding: 0.75rem 2rem;
-  border: 1px solid #FF6B00;
+  border: 1px solid #ff6b00;
   background-color: var(--white);
 }
-#deleteConfirmation .modal-footer .delete{
-  background: var(--orange)
+#deleteConfirmation .modal-footer .delete {
+  background: var(--orange);
 }
-#deleteConfirmation .modal-footer .cancel{
+#deleteConfirmation .modal-footer .cancel {
   color: var(--orange);
 }
-#deleteConfirmation .modal-footer .delete:hover{
+#deleteConfirmation .modal-footer .delete:hover {
   background-color: var(--btn-hovered);
 }
 /* #deleteConfirmation .message-wrap h3{
@@ -8105,61 +8109,61 @@ header nav {
 
 /* Progress bar modal */
 
-#showProgressBar .modal-content{
+#showProgressBar .modal-content {
   padding: 3rem 2rem 2rem;
   border-radius: 0.625rem;
   border: none;
-  width: auto!important;
+  width: auto !important;
   /* margin: 0 auto; */
 }
-#showProgressBar .modal-header{
+#showProgressBar .modal-header {
   border-bottom: none;
 }
-#showProgressBar .modal-footer{
+#showProgressBar .modal-footer {
   border-top: none;
 }
-#showProgressBar .progress-wrap{
+#showProgressBar .progress-wrap {
   margin-bottom: 2rem;
 }
-#showProgressBar .details-wrap{
+#showProgressBar .details-wrap {
   margin-bottom: 1.5rem;
 }
-#showProgressBar .details-wrap h3{
-  color: #23262F;
+#showProgressBar .details-wrap h3 {
+  color: #23262f;
   font-size: 1.5rem;
   font-weight: 700;
-  line-height: 2rem; 
+  line-height: 2rem;
   margin-bottom: 0.37rem;
 }
-#showProgressBar .details-wrap p{
+#showProgressBar .details-wrap p {
   color: var(--gray6);
   font-size: 1.1rem;
   font-weight: 500;
   line-height: 2rem;
 }
-#showProgressBar .progress-wrap .progress{
+#showProgressBar .progress-wrap .progress {
   height: 1rem;
   background-color: var(--btn-focus);
 }
-#showProgressBar .progress-wrap .progress-bar{
+#showProgressBar .progress-wrap .progress-bar {
   background-color: var(--orange);
   color: var(--white);
-  filter: drop-shadow(0px 4px 10px rgba(255, 107, 0, 0.30));
+  filter: drop-shadow(0px 4px 10px rgba(255, 107, 0, 0.3));
 }
-#showProgressBar .modal-footer .cancel{
-  color: #8E9CAB;
+#showProgressBar .modal-footer .cancel {
+  color: #8e9cab;
   font-size: 1rem;
   font-weight: 500;
-  line-height: 113.2%; 
+  line-height: 113.2%;
   padding: 0.88rem 2.25rem;
   border-radius: 0.5rem;
-  border: 2px solid #DFE4EB;
+  border: 2px solid #dfe4eb;
   background: var(--white);
 }
 
 /* Account Settings - Managed Subscriptions */
 
-.account-settings .subscriptions-wrap{
+.account-settings .subscriptions-wrap {
   border-radius: 0.25rem;
   border: 1px solid var(--gray6);
   background: var(--white);
@@ -8167,200 +8171,200 @@ header nav {
   gap: 1rem;
   margin-bottom: 1rem;
 }
-.account-settings .subscriptions-wrap .title{
+.account-settings .subscriptions-wrap .title {
   color: var(--black);
   font-size: 1.25rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
 }
-.account-settings .subscriptions-wrap .orange-text{
+.account-settings .subscriptions-wrap .orange-text {
   color: var(--orange);
 }
-.account-settings .subscriptions-wrap .description{
+.account-settings .subscriptions-wrap .description {
   color: var(--gray2);
   font-size: 0.875rem;
   font-weight: 500;
   line-height: 1.25rem;
   margin-bottom: 0.75rem;
 }
-.account-settings .subscriptions-wrap .subs-type-wrap{
+.account-settings .subscriptions-wrap .subs-type-wrap {
   margin-bottom: 1.25rem;
   gap: 0.25rem;
   border-radius: 0.5rem;
-  background-color: #F4F1E6;
+  background-color: #f4f1e6;
   padding: 0.62rem;
   width: 14.9375rem;
 }
-.account-settings .subscriptions-wrap .subs-type-wrap > *{
-  color: #EFC444;
+.account-settings .subscriptions-wrap .subs-type-wrap > * {
+  color: #efc444;
 }
-.account-settings .subscriptions-wrap .subs-type-wrap .subs-type{
+.account-settings .subscriptions-wrap .subs-type-wrap .subs-type {
   font-size: 0.875rem;
   font-weight: 500;
 }
-.account-settings .subscriptions-wrap .warning-wrap{
+.account-settings .subscriptions-wrap .warning-wrap {
   background-color: var(--warning-light);
 }
-.account-settings .subscriptions-wrap .warning-wrap > *{
+.account-settings .subscriptions-wrap .warning-wrap > * {
   color: var(--warning);
   background-color: var(--warning-light);
 }
-.account-settings .subscriptions-wrap .subs-type-wrap .timer-icon{
+.account-settings .subscriptions-wrap .subs-type-wrap .timer-icon {
   font-size: 20px;
 }
-.account-settings .subscriptions-wrap .billing{
+.account-settings .subscriptions-wrap .billing {
   color: var(--black);
   font-size: 1rem;
   font-weight: 600;
-  line-height: 1.25rem; 
+  line-height: 1.25rem;
 }
-.account-settings .subscriptions-wrap .billing span{
+.account-settings .subscriptions-wrap .billing span {
   font-weight: 500;
 }
 .account-settings .subscriptions-wrap .upgrade-btn,
 .account-settings .subscriptions-wrap .invoice-btn,
-.account-settings .subscriptions-wrap .cancel-btn{
+.account-settings .subscriptions-wrap .cancel-btn {
   color: var(--orange);
   font-size: 1rem;
   font-weight: 700;
-  line-height: 100%; 
+  line-height: 100%;
   letter-spacing: 0.05rem;
   padding: 1rem;
   border-radius: 0.3125rem;
-  background-color: #FFF6EB;
-  border: 1px solid #FFF6EB;
+  background-color: #fff6eb;
+  border: 1px solid #fff6eb;
 }
-.account-settings .subscriptions-wrap .invoice-btn{
+.account-settings .subscriptions-wrap .invoice-btn {
   background-color: var(--white);
   border: 1px solid var(--orange);
   margin-left: 0.25rem;
 }
-.account-settings .subscriptions-wrap .cancel-btn{
+.account-settings .subscriptions-wrap .cancel-btn {
   color: var(--warning);
   background-color: var(--warning-light);
   border: 1px solid var(--warning-light);
 }
-.account-settings .subscriptions-wrap .upgrade-btn:hover{
+.account-settings .subscriptions-wrap .upgrade-btn:hover {
   background-color: var(--orange);
   color: var(--white);
   border: 1px solid var(--orange);
 }
-.account-settings .subscriptions-wrap .invoice-btn:hover{
+.account-settings .subscriptions-wrap .invoice-btn:hover {
   border: 1px solid var(--btn-hovered);
   color: var(--btn-hovered);
 }
-.account-settings .subscriptions-wrap .payment-wrap{
+.account-settings .subscriptions-wrap .payment-wrap {
   gap: 0.75rem;
   margin: 1.13rem 0 1rem;
 }
-.account-settings .subscriptions-wrap .payment-wrap .gcash-logo{
+.account-settings .subscriptions-wrap .payment-wrap .gcash-logo {
   width: 2.9375rem;
   height: 2.25rem;
   border-radius: 0.25rem;
 }
-.account-settings .subscriptions-wrap .payment-wrap .phone-num{
+.account-settings .subscriptions-wrap .payment-wrap .phone-num {
   color: var(--gray2);
   font-size: 1rem;
   font-weight: 600;
-  line-height: 1.25rem; 
+  line-height: 1.25rem;
 }
 
 /* Cancel Subscription Modal */
 
-#cancelSubscription .modal-content{
+#cancelSubscription .modal-content {
   padding: 1.88rem 2.5rem;
 }
 #cancelSubscription .modal-header,
 #cancelSubscription .modal-body,
 #cancelSubscription .modal-footer,
 #paymentHistory .modal-header,
-#paymentHistory .modal-body{
+#paymentHistory .modal-body {
   padding: 0;
 }
-#cancelSubscription .modal-body{
+#cancelSubscription .modal-body {
   margin-bottom: 3rem;
 }
-#cancelSubscription .modal-header{
+#cancelSubscription .modal-header {
   border-bottom: none;
   margin-bottom: 1.5rem;
 }
 #cancelSubscription .modal-header .cancel-icon,
-#paymentHistory .modal-header .cancel-icon{
+#paymentHistory .modal-header .cancel-icon {
   font-size: 24px;
   color: var(--gray2);
 }
 #cancelSubscription .modal-header .cancel-icon:hover,
-#paymentHistory .modal-header .cancel-icon:hover{
+#paymentHistory .modal-header .cancel-icon:hover {
   color: var(--black);
 }
-#cancelSubscription .modal-footer{
+#cancelSubscription .modal-footer {
   border-top: none;
 }
-#cancelSubscription .modal-title{
+#cancelSubscription .modal-title {
   color: var(--black-color);
   font-size: 1.25rem;
   font-weight: 700;
 }
 #cancelSubscription .cancel-content-wrap h4,
 #cancelSubscription .cancel-content-wrap p,
-#cancelSubscription .cancel-content-wrap li{
+#cancelSubscription .cancel-content-wrap li {
   color: var(--gray2);
   font-size: 1.25rem;
   font-weight: 500;
 }
-#cancelSubscription .cancel-content-wrap h4{
+#cancelSubscription .cancel-content-wrap h4 {
   margin-bottom: 1.5rem;
 }
 #cancelSubscription .cancel-content-wrap p,
-#cancelSubscription .cancel-content-wrap li{
-  line-height: 2rem; 
+#cancelSubscription .cancel-content-wrap li {
+  line-height: 2rem;
 }
-#cancelSubscription .cancel-content-wrap ul{
-  list-style-type: none; 
+#cancelSubscription .cancel-content-wrap ul {
+  list-style-type: none;
 }
-#cancelSubscription .cancel-content-wrap ul li::before{
-  content: "-"; 
+#cancelSubscription .cancel-content-wrap ul li::before {
+  content: "-";
   display: inline-block;
-  width: 1em; 
-  margin-left: -1.2em; 
+  width: 1em;
+  margin-left: -1.2em;
 }
 #cancelSubscription .delete,
-#cancelSubscription .cancel{
+#cancelSubscription .cancel {
   color: var(--white);
   font-size: 1.25rem;
   font-weight: 600;
-  line-height: 1.5rem; 
+  line-height: 1.5rem;
   padding: 1rem;
   border-radius: 0.5rem;
   border: 1px solid var(--orange);
   background-color: var(--orange);
 }
-#cancelSubscription .cancel{
+#cancelSubscription .cancel {
   color: var(--orange);
   background-color: var(--white);
   padding: 1rem 2rem;
 }
-#cancelSubscription .delete:hover{
+#cancelSubscription .delete:hover {
   background-color: var(--btn-hovered);
   border: 1px solid var(--btn-hovered);
 }
 
 /* Account Settings - No message */
-.account-settings .no-message{
+.account-settings .no-message {
   margin: 5rem auto 3rem;
 }
-.account-settings .no-message .empty-icon{
+.account-settings .no-message .empty-icon {
   width: 3.625rem;
   height: 3.625rem;
   margin-bottom: 0.94rem;
 }
-.account-settings .no-message .msg-title{
+.account-settings .no-message .msg-title {
   color: var(--black);
   font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: 0.94rem;
 }
-.account-settings .no-message .msg-description{
+.account-settings .no-message .msg-description {
   color: var(--gray2);
   font-size: 1.25rem;
   font-weight: 500;
@@ -8368,24 +8372,24 @@ header nav {
 
 /* Payment History Modal */
 
-#paymentHistory .modal-content{
+#paymentHistory .modal-content {
   padding: 2.58rem 2.68rem;
 }
-#paymentHistory .modal-body{
+#paymentHistory .modal-body {
   margin-bottom: 3rem;
 }
-#paymentHistory .modal-header{
+#paymentHistory .modal-header {
   border-bottom: none;
   margin-bottom: 1rem;
 }
-#paymentHistory .modal-header .modal-title{
+#paymentHistory .modal-header .modal-title {
   color: var(--black);
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
 }
-#paymentHistory .search-download-wrap{
+#paymentHistory .search-download-wrap {
   margin-bottom: 0.75rem;
 }
 #paymentHistory .search-container button {
@@ -8396,87 +8400,87 @@ header nav {
 }
 #paymentHistory .search-container .search-input {
   padding-left: 2.1rem;
-  border: 1px solid #FBFBFB;
+  border: 1px solid #fbfbfb;
   height: 2.5rem;
   width: 18.6rem;
   outline: none;
   border-radius: 0.5rem;
-  background-color: #FBFBFB;
+  background-color: #fbfbfb;
 
   color: var(--gray2);
   font-size: 0.875rem;
   font-weight: 400;
-  line-height: 140%; 
+  line-height: 140%;
 }
 #paymentHistory .search-container .search-icon {
   font-size: 20px;
-  color: #959BA4;
+  color: #959ba4;
 }
-#paymentHistory .download-btn{
+#paymentHistory .download-btn {
   color: var(--white);
   font-size: 1rem;
   font-weight: 600;
   line-height: 140%;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
-  border: 1px solid #F0F2F4;
+  border: 1px solid #f0f2f4;
   background-color: var(--orange);
   gap: 0.5rem;
 }
-#paymentHistory .download-btn:hover{
+#paymentHistory .download-btn:hover {
   border: 1px solid var(--btn-hovered);
   background-color: var(--btn-hovered);
 }
-#paymentHistory .download-btn:hover .download-icon{
-  font-variation-settings: 'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 48;
+#paymentHistory .download-btn:hover .download-icon {
+  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 48;
 }
-#paymentHistory .download-btn .download-icon{
+#paymentHistory .download-btn .download-icon {
   font-size: 20px;
   color: var(--white);
-  font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 48;
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
   transition: all 0.7s;
 }
-#paymentHistory table .tr-top-wrap{
-  border: 1px solid #E4E6E8;
+#paymentHistory table .tr-top-wrap {
+  border: 1px solid #e4e6e8;
 }
-#paymentHistory .payment-wrap{
+#paymentHistory .payment-wrap {
   gap: 0.5rem;
 }
-#paymentHistory .payment-wrap .payment-logo{
+#paymentHistory .payment-wrap .payment-logo {
   width: 1.875rem;
   height: 1.375rem;
   border-radius: 0.25rem;
 }
-#paymentHistory table thead th{
+#paymentHistory table thead th {
   color: var(--black);
   font-size: 0.875rem;
   font-weight: 600;
   line-height: 1.25rem;
   letter-spacing: 0.02125rem;
   text-transform: uppercase;
-  background-color: #FBFBFB;
+  background-color: #fbfbfb;
   /* box-shadow: 0px -1px 0px 0px #E4E6E8 inset; */
 }
 #paymentHistory .dropdown-action {
   text-align: center;
 }
 #paymentHistory table tbody td,
-#paymentHistory table tbody th{
+#paymentHistory table tbody th {
   color: var(--gray2);
   font-size: 1rem;
   font-weight: 400;
-  background: #FBFBFB;
+  background: #fbfbfb;
   padding-bottom: 0.4rem;
   /* box-shadow: 0px -1px 0px 0px #E4E6E8 inset; */
 }
-#paymentHistory .dropdown-action .dropdown-toggle::after{
+#paymentHistory .dropdown-action .dropdown-toggle::after {
   display: none;
 }
-#paymentHistory .dropdown-action .more-icon{
+#paymentHistory .dropdown-action .more-icon {
   font-size: 24px;
   color: var(--black);
 }
-#paymentHistory .dropdown-action .dropdown-menu{
+#paymentHistory .dropdown-action .dropdown-menu {
   border-radius: 0.3125rem;
   background-color: var(--white);
   box-shadow: 0px 0px 17px 0px rgba(18, 18, 18, 0.15);
@@ -8484,203 +8488,199 @@ header nav {
   padding: 1rem 1.25rem;
   border: none;
 }
-#paymentHistory .dropdown-action .dropdown-menu button{
-  color: #2D3748;
+#paymentHistory .dropdown-action .dropdown-menu button {
+  color: #2d3748;
   font-size: 1rem;
   font-weight: 600;
   width: 100%;
   text-align: left;
 }
 #paymentHistory .dropdown-action .dropdown-menu .view-details,
-#paymentHistory .dropdown-action .dropdown-menu .download-pdf{
+#paymentHistory .dropdown-action .dropdown-menu .download-pdf {
   margin-bottom: 0.75rem;
 }
-#paymentHistory .dropdown-action .dropdown-menu button:hover{
+#paymentHistory .dropdown-action .dropdown-menu button:hover {
   color: var(--orange);
 }
-#paymentHistory table .status-wrap{
+#paymentHistory table .status-wrap {
   border-radius: 0.25rem;
-  background: #EDFFEA;
+  background: #edffea;
   gap: 0.16rem;
   padding: 0.38rem;
   width: 5.25rem;
 }
-#paymentHistory table .status-wrap .check-icon{
+#paymentHistory table .status-wrap .check-icon {
   font-size: 15px;
-  font-variation-settings: 'FILL' 1,'wght' 800,'GRAD' 0,'opsz' 48;
-  color: #165E3D;
+  font-variation-settings: "FILL" 1, "wght" 800, "GRAD" 0, "opsz" 48;
+  color: #165e3d;
 }
-#paymentHistory table .status-wrap p{
-  color: #165E3D;
+#paymentHistory table .status-wrap p {
+  color: #165e3d;
   font-size: 0.6875rem;
   font-weight: 500;
 }
-#paymentHistory .form-check{
+#paymentHistory .form-check {
   margin-bottom: 0;
   min-height: 1.5rem;
 }
-#paymentHistory .form-check .form-check-input{
+#paymentHistory .form-check .form-check-input {
   width: 1rem;
   height: 1rem;
   margin-bottom: 0;
 }
-#paymentHistory .form-check .form-check-input:checked{
+#paymentHistory .form-check .form-check-input:checked {
   background-color: var(--orange);
   border-color: var(--orange);
 }
 
 /* Payment History Modal - Invoice details */
 
-#invoiceDetails .modal-content{
+#invoiceDetails .modal-content {
   padding: 1.9375rem 2.5625rem;
   border-radius: 0.625rem;
   box-shadow: 0px 25px 50px -12px rgba(0, 0, 0, 0.25);
   border: none;
 }
-#invoiceDetails .modal-header{
+#invoiceDetails .modal-header {
   border-bottom: none;
   margin-bottom: 1.81rem;
 }
 #invoiceDetails .modal-header,
 #invoiceDetails .modal-body,
-#invoiceDetails .modal-footer{
+#invoiceDetails .modal-footer {
   padding: 0;
 }
-#invoiceDetails .modal-footer{
+#invoiceDetails .modal-footer {
   border-top: none;
 }
-#invoiceDetails .modal-header .modal-title{
+#invoiceDetails .modal-header .modal-title {
   color: var(--black-color);
   font-size: 1.5rem;
   font-weight: 700;
 }
-#invoiceDetails .modal-header .cancel-btn .cancel-icon{
+#invoiceDetails .modal-header .cancel-btn .cancel-icon {
   font-size: 24px;
   color: var(--gray2);
 }
-#invoiceDetails .billed-wrap{
+#invoiceDetails .billed-wrap {
   border-radius: 0.625rem;
   background-color: var(--orange);
   box-shadow: 0px 3px 12px 0px rgba(35, 136, 255, 0.33);
   padding: 1.69rem 1.38rem;
   margin-bottom: 1.5rem;
 }
-#invoiceDetails .billed-wrap h5{
+#invoiceDetails .billed-wrap h5 {
   color: var(--white);
-  font-feature-settings: 'clig' off, 'liga' off;
+  font-feature-settings: "clig" off, "liga" off;
   font-size: 0.875rem;
   font-weight: 400;
   /* margin-bottom: ; */
 }
-#invoiceDetails .billed-wrap .bold-text{
+#invoiceDetails .billed-wrap .bold-text {
   font-weight: 600;
 }
-#invoiceDetails .billed-wrap .group-item{
+#invoiceDetails .billed-wrap .group-item {
   gap: 1rem;
 }
-#invoiceDetails .billed-wrap .group-item div:nth-child(1){
+#invoiceDetails .billed-wrap .group-item div:nth-child(1) {
   width: 70%;
 }
-#invoiceDetails .billed-wrap .group-item div:nth-child(2){
+#invoiceDetails .billed-wrap .group-item div:nth-child(2) {
   width: 30%;
   text-align: right;
 }
 #invoiceDetails table {
   margin-bottom: 1.88rem;
 }
-#invoiceDetails table th{
+#invoiceDetails table th {
   color: var(--gray2);
-  font-feature-settings: 'clig' off, 'liga' off;
+  font-feature-settings: "clig" off, "liga" off;
   font-size: 0.875rem;
   font-weight: 500;
   text-transform: uppercase;
   border: none;
 }
-#invoiceDetails table td{
-  color: #868DA6;
-  font-feature-settings: 'clig' off, 'liga' off;
+#invoiceDetails table td {
+  color: #868da6;
+  font-feature-settings: "clig" off, "liga" off;
   font-size: 0.875rem;
   font-weight: 500;
   border: none;
   padding: 1.1875rem 1.3125rem 1.1875rem 1.5625rem;
-  background-color: #FFF1E1;
+  background-color: #fff1e1;
   /* border-radius: 0.625rem; */
 }
-#invoiceDetails table td:first-child{
+#invoiceDetails table td:first-child {
   border-radius: 0.625rem 0 0 0.625rem;
-  color: #19213D;
-  font-feature-settings: 'clig' off, 'liga' off;
+  color: #19213d;
+  font-feature-settings: "clig" off, "liga" off;
   font-size: 0.875rem;
   font-weight: 600;
 }
-#invoiceDetails table td:last-child{
+#invoiceDetails table td:last-child {
   border-radius: 0 0.625rem 0.625rem 0;
-  color: #19213D;
+  color: #19213d;
 }
-#invoiceDetails table .payment-wrap{
+#invoiceDetails table .payment-wrap {
   gap: 0.25rem;
 }
-#invoiceDetails table .payment-wrap .payment-logo{
+#invoiceDetails table .payment-wrap .payment-logo {
   width: 1.61931rem;
   height: 1.1875rem;
 }
-#invoiceDetails .amount-wrap h5{
+#invoiceDetails .amount-wrap h5 {
   color: var(--gray2);
-  font-feature-settings: 'clig' off, 'liga' off;
+  font-feature-settings: "clig" off, "liga" off;
   font-size: 0.875rem;
   font-weight: 400;
-  line-height: 0.625rem; 
+  line-height: 0.625rem;
   letter-spacing: 0.035rem;
   text-transform: uppercase;
   margin-bottom: 0.25rem;
 }
-#invoiceDetails .amount-wrap h2{
+#invoiceDetails .amount-wrap h2 {
   color: var(--black);
-  font-feature-settings: 'clig' off, 'liga' off;
+  font-feature-settings: "clig" off, "liga" off;
   font-size: 1.5rem;
   font-weight: 600;
-  line-height: 1.75rem; 
+  line-height: 1.75rem;
 }
 
 /* Payment Method Modal */
 
-#paymentMethod .modal-content{
+#paymentMethod .modal-content {
   padding: 2.37rem 2.56rem;
   border-radius: 0.46875rem;
   box-shadow: 0px 18.75px 37.5px -9px rgba(0, 0, 0, 0.25);
 }
-#paymentMethod .modal-header{
+#paymentMethod .modal-header {
   align-items: start;
 }
 #paymentMethod .modal-header,
-#paymentMethod .modal-footer{
+#paymentMethod .modal-footer {
   border: none;
 }
 #paymentMethod .modal-header,
 #paymentMethod .modal-body,
-#paymentMethod .modal-footer{
+#paymentMethod .modal-footer {
   padding: 0;
 }
-#paymentMethod .modal-header{
+#paymentMethod .modal-header {
   margin-bottom: 1.75rem;
 }
-#paymentMethod .modal-header .modal-title{
+#paymentMethod .modal-header .modal-title {
   color: var(--black-color);
   font-size: 1.25rem;
   font-weight: 700;
   margin-bottom: 0.37rem;
 }
-#paymentMethod .modal-header .modal-sub-title{
+#paymentMethod .modal-header .modal-sub-title {
   color: var(--gray6);
   font-size: 0.9375rem;
   font-weight: 600;
 }
 
-
-
-
-
-                                                    /* MEDIA QUERIES */
+/* MEDIA QUERIES */
 
 /* Large (lg) and Extra large (xl) */
 @media (min-width: 992px) and (max-width: 1399.98px) {
@@ -8696,552 +8696,553 @@ header nav {
   28px 1.75 rem
 /* */
 
-/* Payment History Modal - Invoice details */
+  /* Payment History Modal - Invoice details */
 
-#invoiceDetails .modal-content{
-  padding: 1.44rem 1.69rem;
-  border-radius: 0.4375rem;
-  box-shadow: 0px 18.75px 37.5px -9px rgba(0, 0, 0, 0.25);
-}
-#invoiceDetails .modal-header{
-  margin-bottom: 1.25rem;
-}
-#invoiceDetails .modal-header .modal-title{
-  font-size: 1.25rem;
-}
-#invoiceDetails .modal-header .cancel-btn .cancel-icon{
-  font-size: 18px;
-}
-#invoiceDetails .billed-wrap{
-  border-radius: 0.46875rem;
-  box-shadow: 0px 2.25px 9px 0px rgba(35, 136, 255, 0.33);
-  padding: 1.25rem 1.25rem;
-  margin-bottom: 1.25rem;
-}
-#invoiceDetails .billed-wrap h5{
-  font-size: 0.625rem
-}
-#invoiceDetails .billed-wrap .group-item{
-  gap: 0.75rem;
-}
-#invoiceDetails table {
-  margin-bottom: 1.25rem;
-}
-#invoiceDetails table th{
-  font-size: 0.65625rem;
-}
-#invoiceDetails table td{
-  font-size: 0.65625rem;
-  padding: 1rem 1.3rem 1rem 1.3rem;
-}
-#invoiceDetails table td:first-child{
-  border-radius: 0.9375rem 0 0 0.9375rem;
-  font-size: 0.625rem;
-}
-#invoiceDetails table td:last-child{
-  border-radius: 0 0.9375rem 0.9375rem 0;
-}
-#invoiceDetails table .payment-wrap{
-  gap: 0.19rem;
-}
-#invoiceDetails table .payment-wrap .payment-logo{
-  width: 1.19319rem;
-  height: 0.875rem;
-}
-#invoiceDetails .amount-wrap h5{
-  font-size: 0.65625rem;
-  line-height: 0.46875rem;
-  letter-spacing: 0.02625rem;
-  margin-bottom: 0.19rem;
-}
-#invoiceDetails .amount-wrap h2{
-  font-size: 1.125rem;
-  line-height: 1.3125rem; 
-}
+  #invoiceDetails .modal-content {
+    padding: 1.44rem 1.69rem;
+    border-radius: 0.4375rem;
+    box-shadow: 0px 18.75px 37.5px -9px rgba(0, 0, 0, 0.25);
+  }
+  #invoiceDetails .modal-header {
+    margin-bottom: 1.25rem;
+  }
+  #invoiceDetails .modal-header .modal-title {
+    font-size: 1.25rem;
+  }
+  #invoiceDetails .modal-header .cancel-btn .cancel-icon {
+    font-size: 18px;
+  }
+  #invoiceDetails .billed-wrap {
+    border-radius: 0.46875rem;
+    box-shadow: 0px 2.25px 9px 0px rgba(35, 136, 255, 0.33);
+    padding: 1.25rem 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+  #invoiceDetails .billed-wrap h5 {
+    font-size: 0.625rem;
+  }
+  #invoiceDetails .billed-wrap .group-item {
+    gap: 0.75rem;
+  }
+  #invoiceDetails table {
+    margin-bottom: 1.25rem;
+  }
+  #invoiceDetails table th {
+    font-size: 0.65625rem;
+  }
+  #invoiceDetails table td {
+    font-size: 0.65625rem;
+    padding: 1rem 1.3rem 1rem 1.3rem;
+  }
+  #invoiceDetails table td:first-child {
+    border-radius: 0.9375rem 0 0 0.9375rem;
+    font-size: 0.625rem;
+  }
+  #invoiceDetails table td:last-child {
+    border-radius: 0 0.9375rem 0.9375rem 0;
+  }
+  #invoiceDetails table .payment-wrap {
+    gap: 0.19rem;
+  }
+  #invoiceDetails table .payment-wrap .payment-logo {
+    width: 1.19319rem;
+    height: 0.875rem;
+  }
+  #invoiceDetails .amount-wrap h5 {
+    font-size: 0.65625rem;
+    line-height: 0.46875rem;
+    letter-spacing: 0.02625rem;
+    margin-bottom: 0.19rem;
+  }
+  #invoiceDetails .amount-wrap h2 {
+    font-size: 1.125rem;
+    line-height: 1.3125rem;
+  }
 
-/* Payment History Modal */
+  /* Payment History Modal */
 
-#paymentHistory .modal-content{
-  padding: 1.95rem 1.95rem;
-}
-#paymentHistory .modal-header{
-  margin-bottom: 0.7rem;
-}
-#paymentHistory .modal-header .modal-title{
-  font-size: 1.25rem;
-}
-#paymentHistory .search-download-wrap{
-  margin-bottom: 0.62rem;
-}
-#paymentHistory .search-container button {
-  left: 8px;
-}
-#paymentHistory .search-container .search-input {
-  padding-left: 1.5rem;
-  border: 0.8px solid #FBFBFB;
-  height: 1.875rem;
-  width: 13.922rem;
-  border-radius: 0.375rem;
-  font-size: 0.625rem;
-  line-height: 140%; 
-}
-#paymentHistory .search-container .search-icon {
-  font-size: 14px;
-}
-#paymentHistory .download-btn{
-  font-size: 0.625rem;
-  line-height: 140%; 
-  padding: 0.4rem 0.8rem;
-  border-radius: 0.375rem;
-  border: 0.75px solid #F0F2F4;
-  border: 0.8px solid #F0F2F4;
-  gap: 0.38rem;
-}
-#paymentHistory .download-btn .download-icon{
-  font-size: 14px;
-}
-#paymentHistory .payment-wrap{
-  gap: 0.538rem;
-}
-#paymentHistory .payment-wrap .payment-logo{
-  width: 1.40625rem;
-  height: 1.03125rem;
-  border-radius: 0.1875rem;
-}
-#paymentHistory table thead th{
-  font-size: 0.625rem;
-  line-height: 0.9375rem; 
-  letter-spacing: 0.01594rem;
-}
-#paymentHistory table tbody td, 
-#paymentHistory table tbody th {
-  font-size: 0.75rem;
-  padding-bottom: 0.3rem;
-}
-#paymentHistory .dropdown-action .more-icon{
-  font-size: 18px;
-}
-#paymentHistory .dropdown-action .dropdown-menu{
-  border-radius: 0.23438rem;
-  box-shadow: 0px 0px 12.75px 0px rgba(18, 18, 18, 0.15);
-  padding: 0.75rem 0.94rem;
-  /* width: 5rem; */
-}
-#paymentHistory .dropdown-action .dropdown-menu button{
-  font-size: 0.75rem;
-}
-#paymentHistory .dropdown-action .dropdown-menu .view-details,
-#paymentHistory .dropdown-action .dropdown-menu .download-pdf{
-  margin-bottom: 0.66rem;
-}
-#paymentHistory table .status-wrap{
-  padding: 0.1875rem 0.28125rem;
-  border-radius: 0.1875rem;
-  gap: 0.09rem;
-  width: 4.538rem;
-}
-#paymentHistory table .status-wrap .check-icon{
-  font-size: 12px;
-}
-#paymentHistory table .status-wrap p{
-  font-size: 0.61563rem;
-}
-#paymentHistory .form-check .form-check-input{
-  width: 0.75625rem;
-  height: 0.75625rem;
-}
-#paymentHistory .form-check {
-  min-height: 1.1rem;
-}
-#paymentHistory .dropdown-action {
-  text-align: left;
-}
+  #paymentHistory .modal-content {
+    padding: 1.95rem 1.95rem;
+  }
+  #paymentHistory .modal-header {
+    margin-bottom: 0.7rem;
+  }
+  #paymentHistory .modal-header .modal-title {
+    font-size: 1.25rem;
+  }
+  #paymentHistory .search-download-wrap {
+    margin-bottom: 0.62rem;
+  }
+  #paymentHistory .search-container button {
+    left: 8px;
+  }
+  #paymentHistory .search-container .search-input {
+    padding-left: 1.5rem;
+    border: 0.8px solid #fbfbfb;
+    height: 1.875rem;
+    width: 13.922rem;
+    border-radius: 0.375rem;
+    font-size: 0.625rem;
+    line-height: 140%;
+  }
+  #paymentHistory .search-container .search-icon {
+    font-size: 14px;
+  }
+  #paymentHistory .download-btn {
+    font-size: 0.625rem;
+    line-height: 140%;
+    padding: 0.4rem 0.8rem;
+    border-radius: 0.375rem;
+    border: 0.75px solid #f0f2f4;
+    border: 0.8px solid #f0f2f4;
+    gap: 0.38rem;
+  }
+  #paymentHistory .download-btn .download-icon {
+    font-size: 14px;
+  }
+  #paymentHistory .payment-wrap {
+    gap: 0.538rem;
+  }
+  #paymentHistory .payment-wrap .payment-logo {
+    width: 1.40625rem;
+    height: 1.03125rem;
+    border-radius: 0.1875rem;
+  }
+  #paymentHistory table thead th {
+    font-size: 0.625rem;
+    line-height: 0.9375rem;
+    letter-spacing: 0.01594rem;
+  }
+  #paymentHistory table tbody td,
+  #paymentHistory table tbody th {
+    font-size: 0.75rem;
+    padding-bottom: 0.3rem;
+  }
+  #paymentHistory .dropdown-action .more-icon {
+    font-size: 18px;
+  }
+  #paymentHistory .dropdown-action .dropdown-menu {
+    border-radius: 0.23438rem;
+    box-shadow: 0px 0px 12.75px 0px rgba(18, 18, 18, 0.15);
+    padding: 0.75rem 0.94rem;
+    /* width: 5rem; */
+  }
+  #paymentHistory .dropdown-action .dropdown-menu button {
+    font-size: 0.75rem;
+  }
+  #paymentHistory .dropdown-action .dropdown-menu .view-details,
+  #paymentHistory .dropdown-action .dropdown-menu .download-pdf {
+    margin-bottom: 0.66rem;
+  }
+  #paymentHistory table .status-wrap {
+    padding: 0.1875rem 0.28125rem;
+    border-radius: 0.1875rem;
+    gap: 0.09rem;
+    width: 4.538rem;
+  }
+  #paymentHistory table .status-wrap .check-icon {
+    font-size: 12px;
+  }
+  #paymentHistory table .status-wrap p {
+    font-size: 0.61563rem;
+  }
+  #paymentHistory .form-check .form-check-input {
+    width: 0.75625rem;
+    height: 0.75625rem;
+  }
+  #paymentHistory .form-check {
+    min-height: 1.1rem;
+  }
+  #paymentHistory .dropdown-action {
+    text-align: left;
+  }
 
-/* Account Settings - No message */
-.account-settings .no-message .empty-icon{
-  width: 3rem;
-  height: 3rem;
-  margin-bottom: 1.5rem;
-}
-.account-settings .no-message .msg-title{
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
-}
-.account-settings .no-message .msg-description{
-  font-size: 0.87rem;
-}
+  /* Account Settings - No message */
+  .account-settings .no-message .empty-icon {
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: 1.5rem;
+  }
+  .account-settings .no-message .msg-title {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  .account-settings .no-message .msg-description {
+    font-size: 0.87rem;
+  }
 
-/* Cancel Subscription Modal */
+  /* Cancel Subscription Modal */
 
-#cancelSubscription .modal-content{
-  padding: 1.88rem 2.5rem;
-}
-#cancelSubscription .modal-body{
-  margin-bottom: 3rem;
-}
-#cancelSubscription .modal-header{
-  margin-bottom: 1.25rem;
-}
-#cancelSubscription .modal-header .cancel-icon,
-#cancelSubscription .modal-header .cancel-icon, #paymentHistory .modal-header .cancel-icon{
-  font-size: 18px;
-}
-#cancelSubscription .modal-title{
-  font-size: 1.25rem;
-}
-#cancelSubscription .cancel-content-wrap h4,
-#cancelSubscription .cancel-content-wrap p,
-#cancelSubscription .cancel-content-wrap li{
-  font-size: 0.9375rem;
-}
-#cancelSubscription .cancel-content-wrap h4{
-  margin-bottom: 1.25rem;
-}
-#cancelSubscription .cancel-content-wrap p,
-#cancelSubscription .cancel-content-wrap li{
-  line-height: 1.54688rem; 
-}
-#cancelSubscription .cancel-content-wrap ul li::before{
-  content: "-";  
-}
-#cancelSubscription .delete,
-#cancelSubscription .cancel{
-  font-size: 0.9375rem;
-  line-height: 1.125rem; 
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.375rem;
-  border: 0.75px solid var(--orange);
-}
-#cancelSubscription .cancel{
-  padding: 0.75rem 2rem;
-}
-#cancelSubscription .delete:hover{
-  border: 0.75px solid var(--btn-hovered);
-}
+  #cancelSubscription .modal-content {
+    padding: 1.88rem 2.5rem;
+  }
+  #cancelSubscription .modal-body {
+    margin-bottom: 3rem;
+  }
+  #cancelSubscription .modal-header {
+    margin-bottom: 1.25rem;
+  }
+  #cancelSubscription .modal-header .cancel-icon,
+  #cancelSubscription .modal-header .cancel-icon,
+  #paymentHistory .modal-header .cancel-icon {
+    font-size: 18px;
+  }
+  #cancelSubscription .modal-title {
+    font-size: 1.25rem;
+  }
+  #cancelSubscription .cancel-content-wrap h4,
+  #cancelSubscription .cancel-content-wrap p,
+  #cancelSubscription .cancel-content-wrap li {
+    font-size: 0.9375rem;
+  }
+  #cancelSubscription .cancel-content-wrap h4 {
+    margin-bottom: 1.25rem;
+  }
+  #cancelSubscription .cancel-content-wrap p,
+  #cancelSubscription .cancel-content-wrap li {
+    line-height: 1.54688rem;
+  }
+  #cancelSubscription .cancel-content-wrap ul li::before {
+    content: "-";
+  }
+  #cancelSubscription .delete,
+  #cancelSubscription .cancel {
+    font-size: 0.9375rem;
+    line-height: 1.125rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.375rem;
+    border: 0.75px solid var(--orange);
+  }
+  #cancelSubscription .cancel {
+    padding: 0.75rem 2rem;
+  }
+  #cancelSubscription .delete:hover {
+    border: 0.75px solid var(--btn-hovered);
+  }
 
-/* Account Settings - Managed Subscriptions */
+  /* Account Settings - Managed Subscriptions */
 
-.account-settings .subscriptions-wrap{
-  border-radius: 0.1875rem;
-  border: 0.75px solid var(--gray6);
-  padding: 1.25rem 2rem;
-  gap: 0.75rem;
-  margin-bottom: 0.75rem;
-}
-.account-settings .subscriptions-wrap .title{
-  font-size: 0.9375rem;
-  margin-bottom: 0.37rem;
-}
-.account-settings .subscriptions-wrap .description{
-  font-size: 0.65625rem;
-  font-weight: 500;
-  line-height: 0.9375rem;
-  margin-bottom: 0.56rem;
-}
-.account-settings .subscriptions-wrap .subs-type-wrap{
-  margin-bottom: 0.94rem;
-  gap: 0.19rem;
-  border-radius: 0.375rem;
-  padding: 0.47rem;
-  width: 10.9375rem;
-}
-.account-settings .subscriptions-wrap .subs-type-wrap .subs-type{
-  font-size: 0.65625rem;
-}
-.account-settings .subscriptions-wrap .subs-type-wrap .timer-icon{
-  font-size: 14px;
-}
-.account-settings .subscriptions-wrap .billing{
-  font-size: 0.75rem;
-  line-height: 0.9375rem;
-}
-.account-settings .subscriptions-wrap .upgrade-btn,
-.account-settings .subscriptions-wrap .invoice-btn,
-.account-settings .subscriptions-wrap .cancel-btn{
-  font-size: 0.75rem;
-  padding: 0.69rem;
-  border-radius: 0.23438rem;
-  border: 0.75px solid #FFF6EB;
-}
-.account-settings .subscriptions-wrap .invoice-btn{
-  border: 0.75px solid var(--orange);
-  margin-left: 0.19rem;
-}
-.account-settings .subscriptions-wrap .cancel-btn{
-  border: 0.75px solid var(--warning-light);
-}
-.account-settings .subscriptions-wrap .upgrade-btn:hover{
-  border: 0.75px solid var(--orange);
-}
-.account-settings .subscriptions-wrap .invoice-btn:hover{
-  border: 0.75px solid var(--btn-hovered);
-}
-.account-settings .subscriptions-wrap .payment-wrap{
-  gap: 0.56rem;
-  margin: 0.75rem 0 0.75rem;
-}
-.account-settings .subscriptions-wrap .payment-wrap .gcash-logo{
-  width: 2.20313rem;
-  height: 1.6875rem;
-  border-radius: 0.1875rem;
-}
-.account-settings .subscriptions-wrap .payment-wrap .phone-num{
-  font-size: 0.75rem;
-  line-height: 0.9375rem;
-}
+  .account-settings .subscriptions-wrap {
+    border-radius: 0.1875rem;
+    border: 0.75px solid var(--gray6);
+    padding: 1.25rem 2rem;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+  .account-settings .subscriptions-wrap .title {
+    font-size: 0.9375rem;
+    margin-bottom: 0.37rem;
+  }
+  .account-settings .subscriptions-wrap .description {
+    font-size: 0.65625rem;
+    font-weight: 500;
+    line-height: 0.9375rem;
+    margin-bottom: 0.56rem;
+  }
+  .account-settings .subscriptions-wrap .subs-type-wrap {
+    margin-bottom: 0.94rem;
+    gap: 0.19rem;
+    border-radius: 0.375rem;
+    padding: 0.47rem;
+    width: 10.9375rem;
+  }
+  .account-settings .subscriptions-wrap .subs-type-wrap .subs-type {
+    font-size: 0.65625rem;
+  }
+  .account-settings .subscriptions-wrap .subs-type-wrap .timer-icon {
+    font-size: 14px;
+  }
+  .account-settings .subscriptions-wrap .billing {
+    font-size: 0.75rem;
+    line-height: 0.9375rem;
+  }
+  .account-settings .subscriptions-wrap .upgrade-btn,
+  .account-settings .subscriptions-wrap .invoice-btn,
+  .account-settings .subscriptions-wrap .cancel-btn {
+    font-size: 0.75rem;
+    padding: 0.69rem;
+    border-radius: 0.23438rem;
+    border: 0.75px solid #fff6eb;
+  }
+  .account-settings .subscriptions-wrap .invoice-btn {
+    border: 0.75px solid var(--orange);
+    margin-left: 0.19rem;
+  }
+  .account-settings .subscriptions-wrap .cancel-btn {
+    border: 0.75px solid var(--warning-light);
+  }
+  .account-settings .subscriptions-wrap .upgrade-btn:hover {
+    border: 0.75px solid var(--orange);
+  }
+  .account-settings .subscriptions-wrap .invoice-btn:hover {
+    border: 0.75px solid var(--btn-hovered);
+  }
+  .account-settings .subscriptions-wrap .payment-wrap {
+    gap: 0.56rem;
+    margin: 0.75rem 0 0.75rem;
+  }
+  .account-settings .subscriptions-wrap .payment-wrap .gcash-logo {
+    width: 2.20313rem;
+    height: 1.6875rem;
+    border-radius: 0.1875rem;
+  }
+  .account-settings .subscriptions-wrap .payment-wrap .phone-num {
+    font-size: 0.75rem;
+    line-height: 0.9375rem;
+  }
 
-/* Progress bar modal */
+  /* Progress bar modal */
 
-#showProgressBar .modal-content{
-  padding: 2rem 1rem 1rem;
-}
-#showProgressBar .progress-wrap{
-  margin-bottom: 1.75rem;
-}
-#showProgressBar .details-wrap{
-  margin-bottom: 1rem;
-}
-#showProgressBar .details-wrap h3{
-  font-size: 1.1rem;
-  line-height: 2rem; 
-  margin-bottom: 0.30rem;
-}
-#showProgressBar .details-wrap p{
-  font-size: 1rem;
-  line-height: 2rem; 
-}
-#showProgressBar .progress-wrap .progress{
-  height: 1rem;
-}
-#showProgressBar .modal-footer .cancel{
-  font-size: 0.875rem;
-  line-height: 113.2%;
-  padding: 0.75rem 2rem;
-  border-radius: 0.5rem;
-}
+  #showProgressBar .modal-content {
+    padding: 2rem 1rem 1rem;
+  }
+  #showProgressBar .progress-wrap {
+    margin-bottom: 1.75rem;
+  }
+  #showProgressBar .details-wrap {
+    margin-bottom: 1rem;
+  }
+  #showProgressBar .details-wrap h3 {
+    font-size: 1.1rem;
+    line-height: 2rem;
+    margin-bottom: 0.3rem;
+  }
+  #showProgressBar .details-wrap p {
+    font-size: 1rem;
+    line-height: 2rem;
+  }
+  #showProgressBar .progress-wrap .progress {
+    height: 1rem;
+  }
+  #showProgressBar .modal-footer .cancel {
+    font-size: 0.875rem;
+    line-height: 113.2%;
+    padding: 0.75rem 2rem;
+    border-radius: 0.5rem;
+  }
 
+  /* File Uploaded Output Box - Error Msg*/
 
-/* File Uploaded Output Box - Error Msg*/
+  #file-output-box-error {
+    padding: 0.7rem 0.9rem;
+  }
+  #file-output-box-error .error-wrap {
+    gap: 0.3rem;
+  }
+  #file-output-box-error .info-class {
+    font-size: 18px;
+  }
+  #file-output-box-error .error-msg {
+    font-size: 0.79rem;
+    letter-spacing: -0.04375rem;
+  }
+  #file-output-box-error .close-icon {
+    font-size: 18px;
+  }
 
-#file-output-box-error{
-  padding: 0.7rem 0.9rem;
-}
-#file-output-box-error .error-wrap{
-  gap: 0.30rem;
-}
-#file-output-box-error .info-class{
-  font-size: 18px;
-}
-#file-output-box-error .error-msg{
-  font-size: 0.79rem;
-  letter-spacing: -0.04375rem;
-}
-#file-output-box-error .close-icon{
-  font-size: 18px;
-}
+  /* File Uploaded Output Box */
 
-/* File Uploaded Output Box */
+  #file-output-box {
+    border-radius: 0.15719rem;
+    padding: 1.141rem 0.59725rem 1.09763rem 0.63025rem;
+    margin: 1rem 0;
+    border: 1px solid #cdd3d8;
+  }
+  #file-output-box .file-details-wrap {
+    gap: 0.44rem;
+  }
+  #file-output-box .file-icon {
+    font-size: 37px;
+  }
+  #file-output-box .file-name {
+    font-size: 0.8125rem;
+    margin-bottom: 0.22rem;
+  }
+  #file-output-box .file-size span {
+    font-size: 0.5rem;
+    line-height: 0.37725rem;
+    border-radius: 0.06288rem;
+    border: 0.503px solid #cdd3d8;
+    padding: 0.12575rem 0.2515rem;
+  }
+  #file-output-box .close-icon {
+    font-size: 18px;
+  }
 
-#file-output-box {
-  border-radius: 0.15719rem;
-  padding: 1.141rem 0.59725rem 1.09763rem 0.63025rem;
-  margin: 1rem 0;
-  border: 1px solid #cdd3d8;
-}
-#file-output-box .file-details-wrap{
-  gap: 0.44rem;
-}
-#file-output-box .file-icon{
-  font-size: 37px;
-}
-#file-output-box .file-name{
-  font-size: 0.8125rem;
-  margin-bottom: 0.22rem;
-}
-#file-output-box .file-size span{
-  font-size: 0.5rem;
-  line-height: 0.37725rem;
-  border-radius: 0.06288rem;
-  border: 0.503px solid  #CDD3D8;
-  padding: 0.12575rem 0.2515rem;
-}
-#file-output-box .close-icon{
-  font-size: 18px;
-}
+  /* File Uploaded Output Box - Error Msg*/
 
-/* File Uploaded Output Box - Error Msg*/
+  #file-output-box-error {
+  }
+  #file-output-box-error {
+  }
+  #file-output-box-error {
+  }
 
-#file-output-box-error{
+  /* Delete an event etc. */
 
-}
-#file-output-box-error{
-  
-}
-#file-output-box-error{
-  
-}
+  #deleteConfirmation .modal-content {
+    padding: 1rem 1.88rem 1.64rem;
+  }
+  #deleteConfirmation .modal-header .cancel-btn .cancel-icon {
+    font-size: 18px;
+  }
+  #deleteConfirmation .message-wrap {
+    margin-bottom: 2.5rem;
+  }
+  #deleteConfirmation .message-wrap h3 {
+    font-size: 1.125rem;
+  }
+  #deleteConfirmation .message-wrap p {
+    font-size: 1rem;
+  }
+  #deleteConfirmation .modal-footer button {
+    font-size: 0.9375rem;
+    border-radius: 0.375rem;
+    padding: 0.75rem 1.84rem;
+    border: 0.75px solid #ff6b00;
+  }
 
-/* Delete an event etc. */
+  #albumSongInfo .audio-file-format {
+    padding: 0.7rem 0.9rem;
+    margin: 0.5rem 0;
+  }
+  #albumSongInfo .audio-file-format .info {
+    font-size: 16px;
+    margin-right: 0.2rem;
+  }
+  #albumSongInfo .audio-file-format .max-file-size {
+    font-size: 0.79rem;
+    letter-spacing: -0.04375rem;
+  }
 
-#deleteConfirmation .modal-content{
-  padding: 1rem 1.88rem 1.64rem;
-}
-#deleteConfirmation .modal-header .cancel-btn .cancel-icon{
-  font-size: 18px;
-}
-#deleteConfirmation .message-wrap{
-  margin-bottom: 2.5rem;
-}
-#deleteConfirmation .message-wrap h3{
-  font-size: 1.125rem;
-}
-#deleteConfirmation .message-wrap p{
-  font-size: 1rem;
-}
-#deleteConfirmation .modal-footer button{
-  font-size: 0.9375rem;
-  border-radius: 0.375rem;
-  padding: 0.75rem 1.84rem;
-  border: 0.75px solid #FF6B00;
-}
+  #albumSongInfo .upload-audio {
+    border-radius: 0.625rem;
+    border: 1px dashed var(--gray6);
+    padding: 0;
+    margin-bottom: 1.94rem;
+  }
+  #albumSongInfo .upload-audio .upload-file-content {
+    padding: 1.5rem 0;
+  }
+  #albumSongInfo .upload-audio .upload-file-content svg {
+    margin-bottom: 0.62rem;
+    width: 1.8125rem;
+    height: 1.8125rem;
+  }
+  #albumSongInfo .upload-audio .upload-file-content .or,
+  #albumSongInfo .upload-audio .upload-file-content .drag-files {
+    font-size: 0.75rem;
+    margin-bottom: 0.25rem;
+  }
+  #albumSongInfo .upload-audio .upload-file-content label {
+    font-size: 0.625rem;
+    font-weight: 600;
+    padding: 0.75rem 1rem;
+  }
 
-#albumSongInfo .audio-file-format {
-  padding: 0.7rem 0.9rem;
-  margin: 0.5rem 0;
-}
-#albumSongInfo .audio-file-format .info {
-  font-size: 16px;
-  margin-right: 0.2rem;
-}
-#albumSongInfo .audio-file-format .max-file-size {
-  font-size: 0.79rem;
-  letter-spacing: -0.04375rem;
-}
+  #info-block-image .img-dimensions {
+    padding: 0.81rem 1.21rem;
+    margin-bottom: 2.5rem;
+  }
+  #info-block-image .img-dimensions .description {
+    font-size: 0.75rem;
+    letter-spacing: -0.04375rem;
+    line-height: normal;
+  }
+  #info-block-image .img-dimensions .info {
+    font-size: 18px;
+    margin-right: 0.32rem;
+  }
 
-#albumSongInfo .upload-audio{
-  border-radius: 0.625rem;
-  border: 1px dashed var(--gray6);
-  padding: 0;
-  margin-bottom: 1.94rem;
-}
-#albumSongInfo .upload-audio .upload-file-content {
-  padding: 1.5rem 0;
-}
-#albumSongInfo .upload-audio .upload-file-content svg {
-  margin-bottom: 0.62rem;
-  width: 1.8125rem;
-  height: 1.8125rem;
-}
-#albumSongInfo .upload-audio .upload-file-content .or,
-#albumSongInfo .upload-audio .upload-file-content .drag-files {
-  font-size: 0.75rem;
-  margin-bottom: 0.25rem;
-}
-#albumSongInfo .upload-audio .upload-file-content label {
-  font-size: 0.625rem;
-  font-weight: 600;
-  padding: 0.75rem 1rem;
-}
-
-#info-block-image .img-dimensions {
-  padding: 0.81rem 1.21rem;
-  margin-bottom: 2.5rem;
-}
-#info-block-image .img-dimensions .description {
-  font-size: 0.75rem;
-  letter-spacing: -0.04375rem;
-  line-height: normal;
-}
-#info-block-image .img-dimensions .info {
-  font-size: 18px;
-  margin-right: 0.32rem;
-}                                        
-
-/* Upload Song - Song Information */
-#albumSongInfo .modal-content{
-  border-radius: 0.48744rem;
-  background: var(--white);
-  box-shadow: 0px 19.49861px 38.99722px -9.35933px rgba(0, 0, 0, 0.25);
-  padding: 1.94988rem 2.29106rem;
-  width: 43.75rem;
-  margin: 0 auto;
-}
-#albumSongInfo .modal-header{
-  margin-bottom: 2rem;
-}
-#albumSongInfo .modal-content .modal-title{
-  font-size: 1.25rem;
-  letter-spacing: -0.0625rem;
-}
-#albumSongInfo .modal-header .close-btn .close-icon {
-  font-size: 16px;
-  border: 1px solid #DFDFE6;
-  padding: 2px;
-}
-#albumSongInfo .form-group{
-  margin-bottom: 1.17rem;
-}
-#albumSongInfo .form-group label{
-  font-size: 1rem;
-  letter-spacing: -0.02rem;
-  margin-bottom: 0.28rem;
-}
-#albumSongInfo .form-group input,
-#albumSongInfo .form-group select{
-  border-radius: 0.24375rem;
-  border: 0.78px solid var(--gray6);
-  height: 2.72981rem;
-}
-#albumSongInfo .form-group .badge{
-  font-size: 0.625rem;
-  line-height: 0.77994rem;
-  padding: 0.19rem 0.39rem;
-}
-#albumSongInfo .last-form-group{
-  margin-bottom: 3.41225rem!important;
-}
-#albumSongInfo .action-btn button{
-  padding: 0.66rem 2.66rem;
-  font-size: 0.87rem;
-  line-height: 113.2%; 
-}
-#albumSongInfo .action-btn .close{
-  border: 1px solid #DFE4EB;
-  margin-right: 0.56rem;
-}
-#albumSongInfo .action-btn .next{
-  border: 1px solid var(--orange);
-}
-#albumSongInfo .action-btn .next:hover{
-  border: 1px solid var(--btn-hovered);
-}
-#albumSongInfo .add-space {
-  margin-top: 1rem;
-}
-#albumSongInfo .uploaded-song-wrapper{
-  margin: 1.25rem 0 0.75rem;
-}
-#albumSongInfo .uploaded-song-wrapper .song-wrapper img {
-  width: 2.125rem;
-  height: 2.8125rem;
-}
-#albumSongInfo .uploaded-song-wrapper .song-wrapper .song-title{
-  font-size: 0.875rem;
-  margin-bottom: 0.25rem;
-  line-height: 1rem;
-  max-height: 3rem;
-}
-#albumSongInfo .uploaded-song-wrapper .song-wrapper .preview .file-size{
-  font-size: 0.625rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 0.75rem;
-  margin-right: 0.63rem;
-}
-#albumSongInfo .uploaded-song-wrapper .song-wrapper .remove-music-wrapper img {
-  width: 1.25rem;
-  height: 1.25rem;
-}
+  /* Upload Song - Song Information */
+  #albumSongInfo .modal-content {
+    border-radius: 0.48744rem;
+    background: var(--white);
+    box-shadow: 0px 19.49861px 38.99722px -9.35933px rgba(0, 0, 0, 0.25);
+    padding: 1.94988rem 2.29106rem;
+    width: 43.75rem;
+    margin: 0 auto;
+  }
+  #albumSongInfo .modal-header {
+    margin-bottom: 2rem;
+  }
+  #albumSongInfo .modal-content .modal-title {
+    font-size: 1.25rem;
+    letter-spacing: -0.0625rem;
+  }
+  #albumSongInfo .modal-header .close-btn .close-icon {
+    font-size: 16px;
+    border: 1px solid #dfdfe6;
+    padding: 2px;
+  }
+  #albumSongInfo .form-group {
+    margin-bottom: 1.17rem;
+  }
+  #albumSongInfo .form-group label {
+    font-size: 1rem;
+    letter-spacing: -0.02rem;
+    margin-bottom: 0.28rem;
+  }
+  #albumSongInfo .form-group input,
+  #albumSongInfo .form-group select {
+    border-radius: 0.24375rem;
+    border: 0.78px solid var(--gray6);
+    height: 2.72981rem;
+  }
+  #albumSongInfo .form-group .badge {
+    font-size: 0.625rem;
+    line-height: 0.77994rem;
+    padding: 0.19rem 0.39rem;
+  }
+  #albumSongInfo .last-form-group {
+    margin-bottom: 3.41225rem !important;
+  }
+  #albumSongInfo .action-btn button {
+    padding: 0.66rem 2.66rem;
+    font-size: 0.87rem;
+    line-height: 113.2%;
+  }
+  #albumSongInfo .action-btn .close {
+    border: 1px solid #dfe4eb;
+    margin-right: 0.56rem;
+  }
+  #albumSongInfo .action-btn .next {
+    border: 1px solid var(--orange);
+  }
+  #albumSongInfo .action-btn .next:hover {
+    border: 1px solid var(--btn-hovered);
+  }
+  #albumSongInfo .add-space {
+    margin-top: 1rem;
+  }
+  #albumSongInfo .uploaded-song-wrapper {
+    margin: 1.25rem 0 0.75rem;
+  }
+  #albumSongInfo .uploaded-song-wrapper .song-wrapper img {
+    width: 2.125rem;
+    height: 2.8125rem;
+  }
+  #albumSongInfo .uploaded-song-wrapper .song-wrapper .song-title {
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+    line-height: 1rem;
+    max-height: 3rem;
+  }
+  #albumSongInfo .uploaded-song-wrapper .song-wrapper .preview .file-size {
+    font-size: 0.625rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 0.75rem;
+    margin-right: 0.63rem;
+  }
+  #albumSongInfo
+    .uploaded-song-wrapper
+    .song-wrapper
+    .remove-music-wrapper
+    img {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
 
   /* Organizer Account - Cancellation modal */
 
@@ -10079,64 +10080,72 @@ header nav {
     margin-bottom: 0.25rem;
   }
 
-.account-settings .customized-songs-wrapper .event-description .in-progress,
-.account-settings .organizer-offers-details-wrap .from .cancelled,
-.account-settings .customized-songs-wrapper .event-description .for-revision,
-.account-settings .customized-songs-wrapper .event-description .completed {
-  font-size: 0.60rem;
-  margin-left: 0.40rem;
-}
-.account-settings .customized-songs-wrapper .event-description .in-progress .event-icon {
-  font-size: 12px;
-  margin: 0 0.2rem 0 0;
-}
-.account-settings .customized-songs-wrapper .event-description .lh-badge{
-  line-height: 1.2rem;
-}
-.account-settings .customized-songs-wrapper .requested-wrapper {
-  margin-bottom: 1.34rem;
-}
-.account-settings .customized-songs-wrapper .requested-wrapper .requested-by {
-  font-size: 0.75rem;
-  letter-spacing: -0.015rem;
-}
-.account-settings .customized-songs-wrapper .requested-wrapper .time {
-  font-size: 0.65625rem;
-  letter-spacing: -0.01313rem;
-  margin-left: 0.33rem;
-}
-.account-settings .customized-songs-wrapper .requested-wrapper .requested-by-image {
-  width: 1.25rem;
-  height: 1.25rem;
-  margin-right: 0.37rem;
-}
-.account-settings .customized-songs-wrapper .note {
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: -0.03rem;
-}
-.account-settings .customized-songs-wrapper .button-wrapper .details, .account-settings .customized-songs-wrapper .button-wrapper .upload {
-  font-size: 0.75rem;
-  line-height: 100%;
-  letter-spacing: 0.0375rem;
-  padding: 0.75rem 0.91rem;
-}
-.account-settings .customized-songs-wrapper .button-wrapper .upload svg {
-  width: 0.75rem;
-  height: 0.75rem;
-  margin-right: 0.1rem;
-}
-.account-settings .request-application-wrap .event-wrap {
-  margin-bottom: 0.74rem;
-  gap: 0.42rem;
-}
-.account-settings .request-application-wrap .event-wrap .dot-icon {
-  font-size: 10px;
-}
-.account-settings .requested-wrapper .dot-icon {
-  font-size: 8px;
-  margin-left: 0.33rem;
-}
+  .account-settings .customized-songs-wrapper .event-description .in-progress,
+  .account-settings .organizer-offers-details-wrap .from .cancelled,
+  .account-settings .customized-songs-wrapper .event-description .for-revision,
+  .account-settings .customized-songs-wrapper .event-description .completed {
+    font-size: 0.6rem;
+    margin-left: 0.4rem;
+  }
+  .account-settings
+    .customized-songs-wrapper
+    .event-description
+    .in-progress
+    .event-icon {
+    font-size: 12px;
+    margin: 0 0.2rem 0 0;
+  }
+  .account-settings .customized-songs-wrapper .event-description .lh-badge {
+    line-height: 1.2rem;
+  }
+  .account-settings .customized-songs-wrapper .requested-wrapper {
+    margin-bottom: 1.34rem;
+  }
+  .account-settings .customized-songs-wrapper .requested-wrapper .requested-by {
+    font-size: 0.75rem;
+    letter-spacing: -0.015rem;
+  }
+  .account-settings .customized-songs-wrapper .requested-wrapper .time {
+    font-size: 0.65625rem;
+    letter-spacing: -0.01313rem;
+    margin-left: 0.33rem;
+  }
+  .account-settings
+    .customized-songs-wrapper
+    .requested-wrapper
+    .requested-by-image {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-right: 0.37rem;
+  }
+  .account-settings .customized-songs-wrapper .note {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: -0.03rem;
+  }
+  .account-settings .customized-songs-wrapper .button-wrapper .details,
+  .account-settings .customized-songs-wrapper .button-wrapper .upload {
+    font-size: 0.75rem;
+    line-height: 100%;
+    letter-spacing: 0.0375rem;
+    padding: 0.75rem 0.91rem;
+  }
+  .account-settings .customized-songs-wrapper .button-wrapper .upload svg {
+    width: 0.75rem;
+    height: 0.75rem;
+    margin-right: 0.1rem;
+  }
+  .account-settings .request-application-wrap .event-wrap {
+    margin-bottom: 0.74rem;
+    gap: 0.42rem;
+  }
+  .account-settings .request-application-wrap .event-wrap .dot-icon {
+    font-size: 10px;
+  }
+  .account-settings .requested-wrapper .dot-icon {
+    font-size: 8px;
+    margin-left: 0.33rem;
+  }
 
   /* Account Settings - My Proposal tab */
 
