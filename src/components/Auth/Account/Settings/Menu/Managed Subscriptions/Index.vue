@@ -30,7 +30,7 @@
             </div>
         </div>
         <div>
-            <button class="btn upgrade-btn">Change payment method</button>
+            <button class="btn upgrade-btn" @click="showPaymentMethod">Change payment method</button>
             <button class="btn invoice-btn" @click="showPaymentHistory">Payment Invoice</button>
         </div>
     </div>
@@ -44,6 +44,7 @@
 
     </div>
     <subscription-modal></subscription-modal>
+    <payment-method-modal></payment-method-modal>
     <payment-history-modal></payment-history-modal>
     <cancel-subscription-modal></cancel-subscription-modal>
   </template>
@@ -53,18 +54,18 @@
   import CancelSubscriptionModal from './CancelSubscriptionModal.vue';
   import SubscriptionModal from '../../../../../Subscription/SubscriptionModal.vue';
   import PaymentHistoryModal from './PaymentHistoryModal.vue';
+  import PaymentMethodModal from './PaymentMethodModal.vue';
   import { Modal } from 'bootstrap';
   
   export default {
   components: {
     CancelSubscriptionModal,
     SubscriptionModal,
-    PaymentHistoryModal
+    PaymentHistoryModal,
+    PaymentMethodModal
   },
   setup()
   {
-
-
     return {}
   },
   methods: {
@@ -77,6 +78,13 @@
     },
     showSubscription(){
       new Modal(document.getElementById('selectPlanModal'), {
+        keyboard: false,
+        backdrop: 'static',
+      }).show();
+      console.log('Modal', Modal);
+    },
+    showPaymentMethod(){
+      new Modal(document.getElementById('paymentMethod'), {
         keyboard: false,
         backdrop: 'static',
       }).show();

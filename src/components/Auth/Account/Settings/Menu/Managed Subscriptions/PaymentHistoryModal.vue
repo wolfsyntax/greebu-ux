@@ -57,22 +57,42 @@
                             <label class="form-check-label" for="flexCheckDefault"></label>
                           </div>
                         </th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>Mark</td>
+                        <td>06c1774-7f3d...</td>
+                        <td>Monthly</td>
+                        <td>10/24/23</td>
+                        <td>₱2,500.00</td>
                         <td>
-                          <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle p-0 border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                              <span class="material-symbols-rounded">&#xe5d4;</span>
+
+                          <div class="d-flex align-items-center payment-wrap">
+                              <img src="/assets/subscription/gcash-logo.webp" class="payment-logo" alt="GCash logo">
+                              <p class="mb-0 payment-num">•••• 4242</p>
+                          </div>
+                          
+                        </td>
+                        <td>11/24/23</td>
+                        <td>
+                          <div class="d-flex align-items-center status-wrap">
+                            <span class="material-symbols-rounded check-icon">&#xe86c;</span>
+                            <p class="mb-0">Succeeded</p>
+                          </div>
+                        </td>
+                        <td>
+
+                          <div class="dropdown-center dropdown-action">
+                            <button class="btn dropdown-toggle p-0 border-0" 
+                            type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              <span class="material-symbols-rounded more-icon">&#xe5d4;</span>
                             </button>
                             <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#">Action</a></li>
-                              <li><a class="dropdown-item" href="#">Another action</a></li>
-                              <li><a class="dropdown-item" href="#">Something else here</a></li>
+                              <li>
+                                <button class="btn p-0 border-0 view-details" @click="invoiceDetails">View details</button>
+                              </li>
+                              <li>
+                                <button class="btn p-0 border-0 download-pdf">Download PDF</button>
+                              </li>
+                              <li>
+                                <button class="btn p-0 border-0">Print</button>
+                              </li>
                             </ul>
                           </div>
 
@@ -87,37 +107,45 @@
         </div>
       </div>
     </div>
+    <InvoiceDetailsModal />
   </template>
   
-  <script >
-  import { mapActions, mapState } from 'vuex';
+<script >
+import { mapActions, mapState } from 'vuex';
+import InvoiceDetailsModal from './InvoiceDetailsModal.vue';
+import { Modal } from 'bootstrap';
   
-  export default {
-    components: {
-      
-    },  
-    created () {
-    },
-    watch: {
-    },
-    props: {
-    },
-    data: () => ({
+export default {
+  components: {
+    InvoiceDetailsModal
+  },  
+  created () {
+  },
+  watch: {
+  },
+  props: {
+  },
+data: () => ({
 
-    }),
-    methods: {
-      
-    
-    },
-    mounted() {
+  }),
+methods: {
+  invoiceDetails(){
+    new Modal(document.getElementById('invoiceDetails'), {
+    keyboard: false,
+    backdrop: 'static',
+  }).show();
+}
   
-    },
-    computed: {
-    
-    }
+  },
+  mounted() {
+
+  },
+  computed: {
+  
   }
-  </script>
-  
-  <style lang="scss" scoped>
+  }
+</script>
 
-  </style>
+<style lang="scss" scoped>
+
+</style>
