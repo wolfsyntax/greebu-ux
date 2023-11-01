@@ -64,8 +64,8 @@
                         <td>
 
                           <div class="d-flex align-items-center payment-wrap">
-                              <img src="/assets/subscription/gcash-logo.webp" class="payment-logo" alt="GCash logo">
-                              <p class="mb-0 payment-num">•••• 4242</p>
+                              <img src="/assets/subscription/gcash-logo.webp" class="payment-logo" alt="Payment logo">
+                              <p class="mb-0 payment-num">{{ formattedPhoneNumber }}</p>
                           </div>
                           
                         </td>
@@ -126,7 +126,7 @@ export default {
   props: {
   },
 data: () => ({
-
+  phoneNumber: '+639272343323',
   }),
 methods: {
   invoiceDetails(){
@@ -141,7 +141,13 @@ methods: {
 
   },
   computed: {
-  
+    formattedPhoneNumber(){
+      const prefix = this.phoneNumber.slice(0, 4);
+      const suffix = this.phoneNumber.slice(-3);
+      const middle = '*'.repeat(this.phoneNumber.length -7);
+
+      return prefix + middle + suffix;
+    }
   }
   }
 </script>

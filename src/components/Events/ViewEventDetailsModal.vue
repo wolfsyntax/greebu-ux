@@ -16,7 +16,7 @@
         </div>
         <div class="modal-body">
           
-          <div class="d-flex align-items-center justify-content-between event-title-wrap">
+          <div class="d-flex align-items-start justify-content-between event-title-wrap">
 
             <div>
               <h3 class="title">{{ event.event_name }}</h3>
@@ -24,7 +24,10 @@
                 <span class="material-symbols-rounded dot">&#xe061;</span>
                  Posted {{ $filters.diffForHumans($moment(event?.created_at).format('YYYY-MM-DD hh:mm:ss a')) }}</p>
             </div>
-            <a :href="`/proposal/${event.id}/apply`" v-if="userRole === 'artists' && usage === 'view'" class="send" :disabled="!event.accept_proposal">Send Proposal</a>
+            <div>
+              <a :href="`/proposal/${event.id}/apply`" v-if="userRole === 'artists' && usage === 'view'" class="send" :disabled="!event.accept_proposal">Send Proposal</a>
+            </div>
+            
           </div>
 
           <div class="event-background-img-wrap">
@@ -34,17 +37,17 @@
           <div class="event-details-wrapper">
             <h5 class="event-details">Event details</h5>
 
-            <div class="d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-start justify-content-between">
 
-              <div class="d-flex">
-              <span class="material-symbols-rounded">&#xe935;</span>
-              <div>
-                <h6>{{ $moment(`${event?.start_date}`).format('MMMM Do, YYYY') }} - {{ $moment(`${event?.end_date}`).format('MMMM Do, YYYY') }}</h6>
-                <p>{{ $moment(`${$moment().format('YYYY-MM-DD')} ${event?.start_time}`).format('h:mm a') }} - {{ $moment(`${$moment().format('YYYY-MM-DD')} ${event?.end_time}`).format('h:mm a') }}</p>
+              <div class="d-flex w-50">
+                <span class="material-symbols-rounded">&#xe935;</span>
+                <div>
+                  <h6>{{ $moment(`${event?.start_date}`).format('MMMM Do, YYYY') }} - {{ $moment(`${event?.end_date}`).format('MMMM Do, YYYY') }}</h6>
+                  <p>{{ $moment(`${$moment().format('YYYY-MM-DD')} ${event?.start_time}`).format('h:mm a') }} - {{ $moment(`${$moment().format('YYYY-MM-DD')} ${event?.end_time}`).format('h:mm a') }}</p>
+                </div>
               </div>
-            </div>
 
-            <div class="d-flex">
+            <div class="d-flex w-50">
               <span class="material-symbols-rounded">&#xe0c8;</span>
               <div>
                 <h6>{{ event.venue_name }}</h6>

@@ -65,7 +65,7 @@
                         <td>
                             <div class="d-flex align-items-center payment-wrap">
                               <img src="/assets/subscription/gcash-logo.webp" class="payment-logo" alt="GCash logo">
-                              <p class="mb-0">•••• 4242</p>
+                              <p class="mb-0">{{ formattedPhoneNumber }}</p>
                           </div>
                         </td>
                         <td>₱ 2,500</td>
@@ -104,7 +104,7 @@
     props: {
     },
     data: () => ({
-      
+      phoneNumber: '+639272343323',
     }),
     methods: {
       
@@ -122,7 +122,13 @@
   
     },
     computed: {
-    
+      formattedPhoneNumber(){
+      const prefix = this.phoneNumber.slice(0, 4);
+      const suffix = this.phoneNumber.slice(-3);
+      const middle = '*'.repeat(this.phoneNumber.length -7);
+
+      return prefix + middle + suffix;
+    }
     }
   }
   </script>

@@ -6381,7 +6381,7 @@ header nav {
   height: 4.75rem;
   flex-shrink: 0;
   border-radius: 48px;
-  margin-right: 1.12rem;
+  margin-right: 1rem;
 }
 .account-settings .req-song-wrap {
   border-radius: 0.25rem;
@@ -6642,7 +6642,7 @@ header nav {
   margin-bottom: 1.5rem;
 }
 .account-settings .applied-event-wrap .event-img {
-  width: 18.5625rem;
+  width: 18.5625rem; /* 18.5625rem; */
   height: 14.375rem;
   border-radius: 0.25rem;
 }
@@ -7163,6 +7163,7 @@ header nav {
 }
 #eventDetailsModal .event-title-wrap {
   margin-bottom: 2rem;
+  gap: 1rem;
 }
 #eventDetailsModal .event-title-wrap .title {
   color: var(--black);
@@ -7189,8 +7190,11 @@ header nav {
   border-radius: 1.5rem;
   border: 1px solid var(--orange);
   background: var(--orange);
-  padding: 0.91rem 2.03rem;
+  padding: 0.91rem 0; /* 0.91rem 2.03rem; */
   text-decoration: none;
+  display: block;
+  text-align: center;
+  width: 11.0625rem;
 }
 #eventDetailsModal .event-title-wrap .send:hover {
   border: 1px solid var(--btn-hovered);
@@ -8649,7 +8653,7 @@ header nav {
 /* Payment Method Modal */
 
 #paymentMethod .modal-content {
-  padding: 2.37rem 2.56rem;
+  padding: 2.37rem 2.56rem 3rem;
   border-radius: 0.46875rem;
   box-shadow: 0px 18.75px 37.5px -9px rgba(0, 0, 0, 0.25);
 }
@@ -8679,8 +8683,206 @@ header nav {
   font-size: 0.9375rem;
   font-weight: 600;
 }
+#paymentMethod form .form-check {
+  padding: 0.94rem 1.55rem;
+  border-radius: 0.5625rem;
+  border: 1.5px solid #E4E7EC;
+  /* margin-bottom: 1.12rem; */
+  display: block;
+  margin-bottom: 0.75rem;
+}
+#paymentMethod form .form-check .form-check-input {
+  margin-left: -0.5em;
+  margin-right: 1.2rem;
+  width: 1.25em;
+  height: 1.25em;
+  margin-top: 0;
+  border-radius: 0.875rem;
+  border: 1px solid #e4e7ec;
+  background: transparent;
+}
+#paymentMethod form .form-check .form-check-input:checked[type="radio"] {
+  background-image: url("/assets/create-song/checked-input.svg");
+  border: 0;
+  background-color: transparent;
+}
+#paymentMethod form .form-check label {
+  width: 100%;
+}
+#paymentMethod form .form-check .option-wrapper {
+  float: left;
+  width: 60%;
+}
+#paymentMethod form .form-check .card-name{
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1rem;
+  letter-spacing: 0.03125rem;
+  margin-bottom: 0.37rem;
+}
+#paymentMethod form .form-check .sub-content{
+  color: rgba(71, 84, 103, 0.80);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  line-height: 1rem; 
+  letter-spacing: 0.03125rem;
+}
+#paymentMethod form .form-check .payment-wrapper {
+  float: right;
+  width: 40%;
+  text-align: right;
+}
+#paymentMethod form .payment-logo{
+  width: 3.5rem;
+  height: 2.6875rem;
+  border-radius: 0.25rem;
+}
+#paymentMethod form .first-image{
+  width: 11.688rem!important;
+  height: 1rem!important;
+}
+#paymentMethod form .card-wrap{
+  margin: 1.5rem auto;
+}
+#paymentMethod form .card-wrap .form-group {
+  position: relative;
+}
+#paymentMethod form .card-wrap .form-group:nth-child(2) {
+  gap: 1rem;
+  margin: 0.75rem 0;
+}
+#paymentMethod form .card-wrap .input-container {
+  padding: 0.81rem 1rem;
+  border-radius: 0.25rem;
+  border: 1px solid #F9F9F9;
+  background-color: #F9F9F9;
+}
+#paymentMethod form .card-wrap input {
+  flex: 1;
+  border: none;
+  outline: none;
+  color: #585858;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.25rem; 
+  background-color: #F9F9F9;
+}
+#paymentMethod form .card-wrap .card-num-icon {
+  margin-left: 10px;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+#paymentMethod form .button-wrapper{
+  margin-top: 5rem;
+}
+#paymentMethod form .button-wrapper button{
+  color: var(--white);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.125rem; 
+  padding: 1rem 10rem;
+  border-radius: 0.375rem;
+  background-color: var(--orange);
+  border: none;
+}
+#paymentMethod form .button-wrapper button:hover{
+  background-color: var(--btn-hovered);
+}
 
-/* MEDIA QUERIES */
+/* Subscription Renewal Modal */
+
+#subscriptionReminder .modal-content{
+  padding: 2.5rem 2.5rem 4rem;
+  border-radius: 0.375rem;
+  box-shadow: 0px 0px 17px 0px rgba(18, 18, 18, 0.15);
+  border: none;
+}
+#subscriptionReminder .modal-header{
+  border: none;
+}
+#subscriptionReminder .modal-header .cancel-icon{
+  font-size: 24px;
+  color: var(--gray6);
+}
+#subscriptionReminder .modal-header .cancel-icon:hover{
+  color: var(--black);
+}
+#subscriptionReminder .info-box-wrap{
+  margin-bottom: 1.5rem;
+}
+#subscriptionReminder .info-box-wrap h3{
+  color: var(--black);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+}
+#subscriptionReminder .info-box-wrap .msg-wrap,
+#subscriptionReminder .info-box-wrap .details-wrap {
+  border-radius: 0.3125rem;
+  background: #F3F5FF;
+  padding: 2.25rem 2.5rem;
+}
+#subscriptionReminder .info-box-wrap .details-wrap{
+  padding: 1.25rem 1.5rem;
+}
+#subscriptionReminder .info-box-wrap .msg-wrap .msg{
+  color: var(--black);
+  font-size: 1.25rem;
+  font-weight: 500;
+  width: 80%;
+  margin: 0 auto 1.88rem;
+}
+#subscriptionReminder .info-box-wrap .msg-wrap .date{
+  color: var(--orange);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+#subscriptionReminder .info-box-wrap .details-wrap div:nth-child(1){
+  border-bottom: 0.75px solid #BECDF8;
+  margin-bottom: 1.25rem;
+}
+#subscriptionReminder .info-box-wrap .details-wrap .title{
+  color: var(--black);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.63rem;
+}
+#subscriptionReminder .info-box-wrap .details-wrap h5{
+  color: #121212;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+#subscriptionReminder .info-box-wrap .details-wrap div:not(:nth-child(1)) {  /* for divs 2 and onwards go here */
+  margin-bottom: 1rem;
+}
+#subscriptionReminder .info-box-wrap .details-wrap div:last-child {
+  margin-bottom: 0rem;
+}
+#subscriptionReminder .info-box-wrap .details-wrap .payment-logo{
+  width: 4.6875rem;
+  height: 1.1875rem;
+  margin-right: 1.5rem;
+}
+#subscriptionReminder .info-box-wrap .details-wrap .phone-num{
+  color: #454F59;
+  font-family: Urbanist;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+#subscriptionReminder .info-box-wrap .details-wrap .update{
+  font-weight: 600;
+}
+#subscriptionReminder .modal-body .continue{
+  color: var(--black);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+
+
+                                                  /* MEDIA QUERIES */
 
 /* Large (lg) and Extra large (xl) */
 @media (min-width: 992px) and (max-width: 1399.98px) {
@@ -8695,6 +8897,82 @@ header nav {
   24 px	1.5 rem
   28px 1.75 rem
 /* */
+
+/* Payment Method Modal */
+
+#paymentMethod .modal-content {
+  padding: 2.375rem 2.5625rem 2.5rem;
+  border-radius: 0.46875rem;
+  box-shadow: 0px 18.75px 37.5px -9px rgba(0, 0, 0, 0.25);
+}
+#paymentMethod .modal-header .modal-title {
+  font-size: 1.25rem;
+  margin-bottom: 0.38rem;
+}
+#paymentMethod .modal-header .modal-sub-title {
+  font-size: 0.9375rem;
+}
+
+#paymentMethod form .form-check {
+  padding: 0.84375rem 1.3125rem 0.79688rem 1.5rem;
+  border-radius: 0.5625rem;
+  border: 1.5px solid #E4E7EC;
+}
+#paymentMethod form .form-check .form-check-input {
+  margin-left: -0.5em;
+  margin-right: 0.8rem;
+  /* width: 0.84375rem;
+  height: 0.84375rem; 
+  border-radius: 0.75rem; */
+}
+
+#paymentMethod form .form-check .card-name{
+  font-size: 0.9375rem;
+  line-height: 0.75rem; 
+  letter-spacing: 0.02344rem;
+  margin-bottom: 0.28rem;
+}
+#paymentMethod form .form-check .sub-content{
+  font-size: 0.60938rem;
+  line-height: 0.75rem; 
+  letter-spacing: 0.02344rem;
+}
+#paymentMethod form .payment-logo{
+  width: 2.625rem;
+  height: 2.01563rem;
+  border-radius: 0.1875rem;
+}
+#paymentMethod form .first-image{
+  width: 8.75rem!important;
+  height: 0.75rem!important;
+}
+#paymentMethod form .card-wrap .form-group:nth-child(2) {
+  gap: 0.75rem;
+  margin-top: 0.56rem;
+}
+#paymentMethod form .card-wrap .input-container {
+  padding: 0.5625rem 0.75rem;
+  border-radius: 0.375rem;
+  border: 0.75px solid #F9F9F9;
+}
+#paymentMethod form .card-wrap input {
+  font-size: 0.70313rem;
+  line-height: 0.9375rem; 
+}
+#paymentMethod form .card-wrap .card-num-icon {
+  margin-left: 8px;
+  width: 1.125rem;
+  height: 1.125rem;
+}
+#paymentMethod form .button-wrapper button{
+  font-size: 0.9375rem;
+  line-height: 1.125rem; 
+  padding: 0.75rem 10rem;
+  border-radius: 0.375rem;
+}
+#paymentMethod form .button-wrapper{
+  margin-top: 4rem;
+}
 
   /* Payment History Modal - Invoice details */
 
@@ -9642,7 +9920,8 @@ header nav {
   #eventDetailsModal .event-title-wrap .send {
     font-size: 0.875rem;
     letter-spacing: 0.04375rem;
-    padding: 0.625rem 1.66rem;
+    padding: 0.625rem 1.66rem; /* 0.625rem 1.66rem; */
+    width: 9.87rem;
   }
   #eventDetailsModal .event-title-wrap,
   #eventDetailsModal .event-background-img-wrap {
@@ -9761,7 +10040,7 @@ header nav {
   .account-settings .request-song-modal .action-wrapper .customer-image {
     width: 3.5625rem;
     height: 3.5625rem;
-    margin-right: 0.84rem;
+    margin-right: 0.75rem;
   }
   .account-settings .request-song-modal .action-wrapper .name,
   .account-settings .request-song-modal .organizer-offers-details-wrap .from {
@@ -9903,7 +10182,7 @@ header nav {
     margin-bottom: 1.12rem;
   }
   .account-settings .applied-event-wrap .event-img {
-    width: 13.92188rem;
+    width: 100%; /* 13.92188rem; */
     height: 10.78125rem;
     border-radius: 0.1875rem;
   }

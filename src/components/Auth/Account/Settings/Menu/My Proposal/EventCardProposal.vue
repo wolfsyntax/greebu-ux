@@ -19,8 +19,11 @@
             </div>
 
             <div>
-              <h6 class="d-flex align-items-center venue">Event Organizer
-              <span class="material-symbols-rounded dot-icon">&#xe061;</span>{{ proposal.location }}</h6>
+              <h6 class="d-flex align-items-center venue">
+              <span class="mb-0 venue">Event Organizer</span>
+              <span class="material-symbols-rounded dot-icon">&#xe061;</span>
+              <span class="text-truncate mb-0 venue">{{ proposal.location }}</span>
+            </h6>
               <p class="d-flex align-items-center mb-0 star-ratings">
                 <span class="material-symbols-rounded star-icon">&#xe838;</span>
                 4.95 <span class="reviews">(234 reviews)</span>

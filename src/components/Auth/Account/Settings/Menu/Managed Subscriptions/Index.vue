@@ -26,7 +26,7 @@
             <h4 class="title">Payment Method</h4>
             <div class="d-flex align-items-center payment-wrap">
                 <img src="/assets/subscription/gcash-logo.webp" class="gcash-logo" alt="GCash logo">
-                <p class="mb-0 phone-num">+639********</p>
+                <p class="mb-0 phone-num">{{ formattedPhoneNumber }}</p>
             </div>
         </div>
         <div>
@@ -42,11 +42,18 @@
        >Cancel Subscription</button>
     </div>
 
+    <!-- Display this information two days before the plan expires, but do not show it otherwise -->
+
+    <div class="subscriptions-wrap">
+        <button class="btn cancel-btn" @click="showSubscReminder">Subscription Renewal Reminder</button>
+    </div>
+
     </div>
     <subscription-modal></subscription-modal>
     <payment-method-modal></payment-method-modal>
     <payment-history-modal></payment-history-modal>
     <cancel-subscription-modal></cancel-subscription-modal>
+    <subscription-reminder></subscription-reminder>
   </template>
     
   <script>
@@ -55,6 +62,7 @@
   import SubscriptionModal from '../../../../../Subscription/SubscriptionModal.vue';
   import PaymentHistoryModal from './PaymentHistoryModal.vue';
   import PaymentMethodModal from './PaymentMethodModal.vue';
+  import SubscriptionReminder from '../../../../../SubscriptionReminder.vue'
   import { Modal } from 'bootstrap';
   
   export default {
@@ -62,11 +70,14 @@
     CancelSubscriptionModal,
     SubscriptionModal,
     PaymentHistoryModal,
-    PaymentMethodModal
+    PaymentMethodModal,
+    SubscriptionReminder
   },
   setup()
   {
-    return {}
+    return {
+      phoneNumber: '+639272343323'
+    }
   },
   methods: {
     showCancelSubscription(){
@@ -96,6 +107,22 @@
         backdrop: 'static',
       }).show();
       console.log('Modal', Modal);
+    },
+    showSubscReminder(){
+      new Modal(document.getElementById('subscriptionReminder'), {
+        keyboard: false,
+        backdrop: 'static',
+      }).show();
+      console.log('Modal', Modal);
+    }
+  },
+  computed: {
+    formattedPhoneNumber(){
+      const prefix = this.phoneNumber.slice(0, 4);
+      const suffix = this.phoneNumber.slice(-3);
+      const middle = '*'.repeat(this.phoneNumber.length -7);
+
+      return prefix + middle + suffix;
     }
   }
 }
