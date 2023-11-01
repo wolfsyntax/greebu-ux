@@ -43,13 +43,13 @@
             <h4 class="mb-0 reason">Financial Setback</h4>
           </div>
 
-          <div class="d-flex align-items-center applied-event-wrap">
+          <div class="d-flex align-items-start applied-event-wrap">
   
-            <div>
+            <div class="w-50">
               <img :src="proposal.cover_photo" class="event-img" alt="Event cover image">
             </div>
   
-            <div class="text-start event-details-wrap">
+            <div class="text-start w-50 event-details-wrap">
   
               <div class="event-title-wrap">
                 <h3 class="event-title">{{ proposal.event_name }}</h3>

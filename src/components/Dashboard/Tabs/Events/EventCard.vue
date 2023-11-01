@@ -50,9 +50,8 @@
         </div>
 
         <div>
-          <h4 class="event-name">{{ myEvent.event_name }}</h4>
-          <h5 class="event-place">{{ myEvent.location }}</h5>
-          <!-- <h5 class="event-place" style="text-transform: capitalize;">{{ myEvent.reason }}</h5> -->
+          <h4 class="event-name two-lines">{{ myEvent.event_name }}</h4>
+          <h5 class="event-place two-lines">{{ myEvent.location }}</h5>
           <h5 class="date-time" v-if="$moment(myEvent?.start_date).isSame(myEvent?.end_date)" >{{ $moment(myEvent.start_date).format('dddd') }}, {{ startTime }} - {{ endTime }}</h5>
           <h5 class="date-time" v-else >{{ $moment(myEvent.start_date).format('dddd') }}, {{ startTime }} - {{ $moment(myEvent.end_date).format('dddd') }}, {{ endTime }}</h5>
         </div>

@@ -17,21 +17,52 @@
           <div class="modal-body">
   
             <form @submit.prevent="submit">
-                <div v-for="option in paymentType" :key="option.id" 
-                    :class="['form-check', { 'selected': option.id === selectedOption }]"
-                    :style="{ marginBottom: isLastFormCheck(index) ? '6rem!important' : '1.12rem' }">
-                    <div class="payment-wrap">
+                <div v-for="(option, index) in paymentType" :key="option.id" 
+                    :class="['form-check', { 'selected': option.id === selectedOption }]">
+                    <!-- :style="{ marginBottom: isLastFormCheck(index) ? '6rem!important' : '1.12rem' }"> -->
+                    <div class="d-flex align-items-start payment-wrap">
                         <input class="form-check-input" type="radio" :name="'flexRadioDefault' + option.id" 
                         :id="'flexRadioDefault' + option.id" :checked="option.id === selectedOption" @change="selectOption(option.id)">
-                    <label class="d-flex align-items-center justify-content-between form-check-label" :for="'flexRadioDefault' + option.id">
+                    <label class="d-flex align-items-start justify-content-between form-check-label" :for="'flexRadioDefault' + option.id">
                         <div class="option-wrapper">
-                            <h4>{{ option.title }}</h4>
-                            <p class="sub-content" v-if="option.id === selectedOption">{{ option.subTitle }}</p>
+                            <h4 class="card-name">{{ option.title }}</h4>
+                            <p class="mb-0 sub-content">{{ option.subTitle }}</p>                          
                         </div>
-                        <div class="price-wrapper">
-                            <p class="price">+ ₱ {{ option.price }}</p>
+                        <div class="payment-wrapper">
+                             <img :src="option.paymentLogo"
+                                class="payment-logo" 
+                                :class="{ 'first-image': index === 0 }" alt="Payment logo"> 
                         </div>
                     </label>
+                    </div>
+                   
+                    <div class="card-wrap" v-if="option.id === selectedOption && index === 0">
+
+                        <div class="form-group">
+                            <div class="d-flex align-items-center input-container">
+                                <input type="text" name="card-num" placeholder="Card number" required />
+                                <img src="/assets/subscription/card-num-icon.svg" class="card-num-icon" alt="Card number icon">
+                            </div>
+                        </div>
+
+                        <div class="form-group d-flex align-items-center">
+                            <div class="w-50 d-flex align-items-center input-container">
+                                <input type="text" name="card-date" placeholder="MM / YY" required />
+                                <img src="/assets/subscription/card-date-icon.svg" class="card-num-icon" alt="Card date icon">
+                            </div>
+
+                            <div class="w-50 d-flex align-items-center input-container">
+                                <input type="text" name="card-cvv" placeholder="CVV" required />
+                                <img src="/assets/subscription/card-lock-icon.svg" class="card-num-icon" alt="Card lock icon">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="d-flex align-items-center input-container">
+                                <input type="text" name="card-holder" placeholder="Name of Card Holder" required />
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
@@ -72,13 +103,13 @@ data: () => ({
         id: 1,
         title: 'Credit/Debit Cards',
         subTitle: 'Pay with your Credit / Debit Card',
-        price: 0
+        paymentLogo: '/assets/subscription/credit-debit-logos.svg',
     },
     {
         id: 2,
         title: 'Gcash',
         subTitle: 'Pay with your Gcash Account',
-        price: 500
+        paymentLogo: '/assets/subscription/gcash-logo.webp',
     }
     ],
     selectedOption: 1
@@ -101,64 +132,6 @@ computed: {
   
 <style lang="scss" scoped>
 
-#paymentMethod form .form-check {
-    padding: 0.94rem 1.55rem;
-    border-radius: 0.5625rem;
-    border: 1.5px solid #E4E7EC;
-    /* margin-bottom: 1.12rem; */
-    display: block;
-}
-#paymentMethod form .form-check .payment-wrap {
-    display: flex;
-    align-items: center;
-}
-#paymentMethod form .form-check .form-check-input {
-    margin-left: -0.5em;
-    margin-right: 1.2rem;
-    width: 1.25em;
-    height: 1.25em;
-    margin-top: 0;
-    border-radius: 0.875rem;
-    border: 1px solid #e4e7ec;
-    background: transparent;
-}
-#paymentMethod form .form-check .form-check-input:checked[type="radio"] {
-    background-image: url("/assets/create-song/checked-input.svg");
-    border: 0;
-    background-color: transparent;
-}
-#paymentMethod form .form-check label {
-    width: 100%;
-}
-#paymentMethod form .form-check .option-wrapper {
-    float: left;
-    width: 80%;
-}
-#paymentMethod form .form-check label h4{
-    color: #475467;
-    font-size: 0.9375rem;
-    font-weight: 600;
-    line-height: 0.75rem; 
-    letter-spacing: 0.02344rem;
-}
-#paymentMethod form .form-check .price-wrapper {
-    float: right;
-    width: 20%;
-    text-align: right;
-}
-#paymentMethod form .button-wrapper{
-    margin-top: 4rem;
-}
-#paymentMethod form .button-wrapper button{
-    color: var(--white);
-    font-size: 0.9375rem;
-    font-weight: 600;
-    line-height: 1.125rem; 
-    padding: 1rem 10rem;
-    border-radius: 0.375rem;
-    background-color: var(--orange);
-    border: none;
-}
 // #paymentMethod form .form-check.selected {
 //     border: 2px solid var(--orange) !important;
 //     border-radius: 0.75rem;
