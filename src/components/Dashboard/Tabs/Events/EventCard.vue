@@ -24,7 +24,7 @@
               <span class="material-symbols-rounded">
                 &#xe872;
               </span>
-              Delete
+              Cancel Event
             </button>
           </li>
           
