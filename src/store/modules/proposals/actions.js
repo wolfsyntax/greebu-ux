@@ -38,7 +38,7 @@ export const sendArtistProposal = ({ commit, rootState, state }) => {
           console.log("Send Artist Proposal Error: ", err);
           reject(data);
         });
-    }, 3000);
+    }, 1000);
   });
 };
 
@@ -76,7 +76,7 @@ export const getArtistProposal = ({ commit, rootState, state }, payload) => {
 
           reject(data);
         });
-    }, 3000);
+    }, 1500);
   });
 };
 
@@ -125,7 +125,7 @@ export const fetchMyProposals = (
 
           reject(data);
         });
-    }, 3000);
+    }, 1500);
   });
 };
 
@@ -182,6 +182,6 @@ export const cancelMyProposal = (
 
           reject(data);
         });
-    }, 3000);
+    }, 1000);
   });
 };

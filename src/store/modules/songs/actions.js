@@ -29,7 +29,7 @@ export const fetchSongForm = ({ commit, rootState, state }, payload) => {
         .catch((err) => {
           reject(err);
         });
-    }, 5000);
+    }, 1500);
   });
 };
 
@@ -97,7 +97,7 @@ export const createSong = ({ commit, rootState, state }) => {
         .catch((err) => {
           reject(err);
         });
-    }, 5000);
+    }, 1000);
   });
 };
 
@@ -127,7 +127,7 @@ export const fetchCustomizedSong = ({ commit, rootState, state }) => {
           }
         })
         .catch((err) => {});
-    }, 5000);
+    }, 1500);
   });
 };
 
@@ -397,6 +397,6 @@ export const fetchSongRequest = (
         .catch((err) => {
           reject(err);
         });
-    }, 5000);
+    }, 1000);
   });
 };

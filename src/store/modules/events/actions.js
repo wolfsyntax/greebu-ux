@@ -34,7 +34,7 @@ export const fetchEventOptions = ({ commit, rootState }) => {
 
           reject({ message, status: statusCode, result });
         });
-    }, 3000);
+    }, 1500);
   });
 };
 
@@ -106,7 +106,7 @@ export const fetchEventList = ({ commit, rootState, state }) => {
           const { data } = err;
           reject(data);
         });
-    }, 3000);
+    }, 1500);
   });
 };
 
@@ -146,7 +146,7 @@ export const fetchEvents = ({ commit, rootState, state }) => {
           const { data } = err;
           reject(data);
         });
-    }, 3000);
+    }, 1000);
   });
 };
 
@@ -190,7 +190,7 @@ export const verifyEvent = ({ commit, rootState, state }) => {
           const { data } = err;
           reject(data);
         });
-    }, 3000);
+    }, 1000);
   });
 };
 
@@ -245,7 +245,7 @@ export const createEvent = (
           const { data } = err;
           reject(data);
         });
-    }, 3000);
+    }, 1000);
   });
 };
 
@@ -288,7 +288,7 @@ export const updateMyEvent = ({ commit, rootState, state }, payload) => {
             const { data } = err;
             reject(data);
           });
-      }, 3000);
+      }, 1000);
     }
   });
 };
@@ -336,11 +336,14 @@ export const updateEvent = ({ commit, rootState, state }) => {
           const { data } = err;
           reject(data);
         });
-    }, 3000);
+    }, 1000);
   });
 };
 
-export const removeEvent = ({ dispatch, commit, rootState, state }) => {
+export const removeEvent = (
+  { dispatch, commit, rootState, state },
+  payload
+) => {
   return new Promise((resolve, reject) => {
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + (rootState.bearerToken || localStorage.api_token);
@@ -351,12 +354,15 @@ export const removeEvent = ({ dispatch, commit, rootState, state }) => {
     var url = `${
       import.meta.env.VITE_BASE_URL || "http://localhost:8000"
     }/api/events/${state.eventId}`;
-    console.log("Delete event url: ", url);
+    console.log("Cancel event url: ", url);
     setTimeout(async () => {
       await axios
-        .delete(url)
+        .post(url, payload, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
         .then((response) => {
-          console.log("Delete Event: ", response);
           const { status: statusCode, data } = response;
           if (statusCode === 200) {
             const {
@@ -374,7 +380,7 @@ export const removeEvent = ({ dispatch, commit, rootState, state }) => {
           const { data } = err;
           reject(data);
         });
-    }, 3000);
+    }, 1000);
   });
 };
 
@@ -412,7 +418,7 @@ export const fetchEvent = ({ commit, rootState, state }, payload) => {
             const { data } = err;
             reject(data);
           });
-      }, 5000);
+      }, 1500);
     }
   });
 };
@@ -456,7 +462,7 @@ export const myOngoingEvents = ({ commit, rootState, state }) => {
           const { data } = err;
           reject(data);
         });
-    }, 3000);
+    }, 1500);
   });
 };
 
@@ -499,7 +505,7 @@ export const myUpcomingEvents = ({ commit, rootState, state }) => {
           const { data } = err;
           reject(data);
         });
-    }, 3000);
+    }, 1500);
   });
 };
 
@@ -543,6 +549,6 @@ export const myPastEvents = ({ commit, rootState, state }) => {
           const { data } = err;
           reject(data);
         });
-    }, 3000);
+    }, 1500);
   });
 };

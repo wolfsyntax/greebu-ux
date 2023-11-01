@@ -27,8 +27,9 @@
 
     <view-detail usage="dashboard" v-if="isLoggedIn" />
     <events-modal @close="dismiss" v-if="isLoggedIn" />
+    <cancel-modal :show="showCancel" @confirm="confirmDelete" @close="dismissCancel" />
     <event-success :modalType="modalType" />
-    <delete-confirmation @confirm="confirmDelete" @cancel="cancelRequest" />
+    <!-- <delete-confirmation @confirm="confirmDelete" @cancel="cancelRequest" /> -->
       <!-- SHOW THIS IF THERE IS NO EVENTS -->
 
         <!-- <div class="text-center no-events-wrap">
@@ -51,6 +52,7 @@ import EventsModal from '/src/components/Auth/Events/EditModal.vue';
 import EventSuccess from '/src/components/Auth/Events/SuccessModal.vue';
 // src\components\DeleteConfirmation.vue
 import DeleteConfirmation from '/src/components/DeleteConfirmation.vue';
+import CancelModal from './EventCancel.vue';
 
 import { Modal } from 'bootstrap';
 
@@ -62,6 +64,7 @@ export default {
   },
   components: {
     EventsModal,
+    CancelModal,
     EventSuccess,
     PastEvents,
     OngoingEvents,
@@ -72,15 +75,20 @@ export default {
   data: () => ({
     modal: null,
     modalType: 'edit',
+    showCancel: false,
   }),
   methods: {
     ...mapActions([
       'myOngoingEvents', 'myUpcomingEvents', 'myPastEvents', 'removeEvent', 
     ]),
+    dismissCancel() {
+      this.showCancel = false;
+      this.$store.commit('SET_EVENT_ID');
+    },
     confirmDelete() {
       
       this.modalType = 'remove';
-
+      
       new Modal(document.getElementById('eventsCreatedModal'), {
         keyboard: false,
         backdrop: 'static',
@@ -103,6 +111,7 @@ export default {
     toggle(eventId, type, origin) {
       // this.$store.commit('SET_EVENT_ID', eventId);
       this.$store.commit('SET_EVENT', eventId)
+      
       if (type === 'view') {
         
         new Modal(document.getElementById('eventDetailsModal'), {
@@ -111,12 +120,12 @@ export default {
         }).show();
 
       } else if (type === 'remove') {
-        
-        new Modal(this.modal, {
+        console.log('Remove show cancel')
+        this.showCancel = true;
+        new Modal(document.getElementById('eventCancellation'), {
           keyboard: false,
           backdrop: 'static',
         }).show();
-
       } else {
       
         new Modal(document.getElementById('editEventModal'), {
@@ -142,25 +151,23 @@ export default {
     this.myOngoingEvents();
     this.myUpcomingEvents();
     this.myPastEvents();
-    
-    this.modal = document.getElementById('deleteConfirmation');
-
-    this.modal.addEventListener('hide.bs.modal', () => {
-      this.myOngoingEvents();
-      this.myUpcomingEvents();
-      this.myPastEvents();
+  },
+  watch: {
+    showCancel(cur, prev) {
       
-      this.modalType = 'edit';
+      if (!cur) {
+        this.myOngoingEvents();
+        this.myUpcomingEvents();
+        this.myPastEvents();
+        
+        this.modalType = 'edit';
+      }
 
-    })
-    this.modal.addEventListener('shown.bs.modal', () => {
-      console.log('Show delete confirmation for event ', this.event_id);
-      
-    });
+    }
   }
 }
 </script>
 
-<style lang="scss" scoped>
-
+<style scoped>
+@import '@/assets/css/artist-ui.css';
 </style>

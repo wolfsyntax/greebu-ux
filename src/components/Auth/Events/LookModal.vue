@@ -72,7 +72,7 @@
         <!-- <button type="button" class="btn btn-outline-geebu mx-1" @click="$emit('next-step', 'skip')" ref="eventSkip">Skip</button> -->
         <button type="button" class="btn cancel" @click="back">Back</button>
 
-        <button type="submit" class="btn next" @click="submit">
+        <button type="submit" class="btn next" >
             <LoadingVue :infoText="buttonName" v-if="isLoading"/>
             <span v-else>{{ buttonName }}</span>
         </button>

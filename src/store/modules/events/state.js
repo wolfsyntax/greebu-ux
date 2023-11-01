@@ -48,6 +48,12 @@ const state = {
     search: "",
     sortBy: "DESC",
   },
+  cancelReason: [
+    "change of plan",
+    "financial issue",
+    "venue not available",
+    "change of date",
+  ],
   events: [],
   event: {},
   ongoingEvents: [],

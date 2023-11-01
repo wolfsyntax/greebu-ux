@@ -333,7 +333,7 @@ var actions = {
           .catch((err) => {
             reject(err);
           });
-      }, 3000);
+      }, 1000);
     });
   },
   socialMediaAuth({ commit, state }, payload) {
@@ -387,7 +387,7 @@ var actions = {
             console.error("Forgot Password Error ", err);
             reject(err);
           });
-      }, 3000);
+      }, 1000);
     });
   },
   resetPassword({ commit }, payload) {
@@ -416,7 +416,7 @@ var actions = {
           .catch((err) => {
             reject(err);
           });
-      }, 3000);
+      }, 1000);
     });
   },
   sendOTPCode({ commit, state }, payload) {
@@ -449,7 +449,7 @@ var actions = {
           .catch((err) => {
             reject(err);
           });
-      }, 3000);
+      }, 1000);
     });
   },
   resendOTPCode({ commit, state }, payload) {
@@ -469,7 +469,7 @@ var actions = {
           .catch((err) => {
             reject(err);
           });
-      }, 3000);
+      }, 1500);
     });
   },
   verifyOTP({ commit, state }, payload) {
@@ -492,7 +492,7 @@ var actions = {
           .catch((err) => {
             reject(err);
           });
-      }, 3000);
+      }, 1000);
     });
   },
   verifyOTPF({ commit, state }, payload) {
@@ -518,7 +518,7 @@ var actions = {
           .catch((err) => {
             reject(err);
           });
-      }, 3000);
+      }, 1000);
     });
   },
   phoneOTP({ commit }, payload) {
@@ -546,7 +546,7 @@ var actions = {
           .catch((err) => {
             reject(err);
           });
-      }, 3000);
+      }, 1000);
     });
   },
   // Version 2
@@ -579,7 +579,7 @@ var actions = {
             console.log("Error response: ", err);
             reject(err);
           });
-      }, 3000);
+      }, 1000);
     });
   },
   resendCode({ commit, state }, payload) {
@@ -609,7 +609,7 @@ var actions = {
           .catch((err) => {
             reject(err);
           });
-      }, 5000);
+      }, 1500);
     });
   },
   validateCode({ commit, state }, payload) {
@@ -649,7 +649,7 @@ var actions = {
           .catch((err) => {
             reject(err);
           });
-      }, 5000);
+      }, 1000);
     });
   },
 
@@ -679,7 +679,7 @@ var actions = {
           .catch((err) => {
             reject(err);
           });
-      }, 3000);
+      }, 1000);
     });
   },
   test2({ commit, state }, payload) {
@@ -732,7 +732,7 @@ var actions = {
 
             reject({ message, status: statusCode, result });
           });
-      }, 5000);
+      }, 1500);
     });
   },
   fetchUserInfo({ commit, rootState, dispatch }) {
@@ -763,7 +763,7 @@ var actions = {
               }
               resolve(data);
             });
-        }, 5000);
+        }, 1000);
       }
     });
   },
