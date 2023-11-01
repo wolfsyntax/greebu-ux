@@ -44,13 +44,13 @@
           <p class="note">{{ proposal.artist_name }} has submitted an application request for your event</p>
         </div>
 
-        <div class="d-flex align-items-center applied-event-wrap">
+        <div class="d-flex align-items-start applied-event-wrap">
 
-          <div>
+          <div class="w-50">
             <img :src="proposal?.cover_photo" class="event-img" alt="Event cover image">
           </div>
 
-          <div class="text-start event-details-wrap">
+          <div class="w-50 text-start event-details-wrap">
 
             <div class="event-title-wrap">
               <h3 class="event-title">{{ proposal.event_name }}</h3>
