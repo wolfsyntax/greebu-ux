@@ -1,30 +1,17 @@
 <template>
 
   <div class="card">
-
-    <!-- <div class="bg-wrapper">
-      <img :src="event.cover_photo" class="img-fluid card-bg" loading="lazy" alt="Event image">
-      <div class="d-flex align-items-start organized-by">
-        <img :src="event.organizer_avatar" class="float-start" alt="Organized by logo">
-        <div class="organizer-wrap">
-          <h5>{{ myEvent.organizer_name }}</h5>
-          <p class="mb-0">Organized by</p>
-        </div>
-      </div>
-
-    </div>  -->
-
     <div class="bg-wrapper">
 
       <div class="event-action-wrap">
 
-      <button class="btn p-0 more-wrap" type="button" data-bs-toggle="dropdown" aria-expanded="false" v-if="userRole === 'organizer'">
+      <button class="btn p-0 more-wrap" type="button" data-bs-toggle="dropdown" aria-expanded="false" v-if="userRole === 'organizer' && !myEvent.is_cancelled">
         <span class="material-symbols-rounded">&#xe5d3;</span>
       </button>
 
         <ul class="dropdown-menu" v-if="userRole === 'organizer'" >
-          <li v-if="editable === true && $moment($moment(myEvent.start_date).format('YYYY-MM-DD')).diff($moment().format('YYYY-MM-DD'), 'days') > 2">
-            <button class="d-flex align-items-center btn" @click="editEvent">
+          <li v-if="editable === true" >
+            <button :class="$moment($moment(myEvent.start_date).format('YYYY-MM-DD')).diff($moment().format('YYYY-MM-DD'), 'days') < 3 ? 'border-0': ''" class="d-flex align-items-center btn" @click="editEvent" :disabled="$moment($moment(myEvent.start_date).format('YYYY-MM-DD')).diff($moment().format('YYYY-MM-DD'), 'days') < 3">
               <span class="material-symbols-rounded">
               &#xe3c9;
             </span>
@@ -33,7 +20,7 @@
           </li>
 
           <li>
-            <button class="d-flex align-items-center btn delete" @click="remove">
+            <button :class="$moment($moment(myEvent.start_date).format('YYYY-MM-DD')).diff($moment().format('YYYY-MM-DD'), 'days') < 2 ? 'border-0' : ''" class="d-flex align-items-center btn delete" @click="remove" :disabled="$moment($moment(myEvent.start_date).format('YYYY-MM-DD')).diff($moment().format('YYYY-MM-DD'), 'days') < 2">
               <span class="material-symbols-rounded">
                 &#xe872;
               </span>
@@ -65,10 +52,11 @@
         <div>
           <h4 class="event-name">{{ myEvent.event_name }}</h4>
           <h5 class="event-place">{{ myEvent.location }}</h5>
+          <!-- <h5 class="event-place" style="text-transform: capitalize;">{{ myEvent.reason }}</h5> -->
           <h5 class="date-time" v-if="$moment(myEvent?.start_date).isSame(myEvent?.end_date)" >{{ $moment(myEvent.start_date).format('dddd') }}, {{ startTime }} - {{ endTime }}</h5>
           <h5 class="date-time" v-else >{{ $moment(myEvent.start_date).format('dddd') }}, {{ startTime }} - {{ $moment(myEvent.end_date).format('dddd') }}, {{ endTime }}</h5>
         </div>
-      </div>
+      </div>  
       
       <div >
         <button class="mb-0 btn btn-primary view-details" @click="$emit('show-detail', myEvent, 'view')">View Details</button>
@@ -104,10 +92,13 @@ export default {
       'myOngoingEvents', 'myUpcomingEvents', 'myPastEvents', 'fetchEvent',
     ]),
     editEvent() {
-      this.$store.commit('RESET_EVENT_FORM')
-      this.fetchEvent(this.myEvent.id)
-        .then(res => this.$emit('show-detail', this.myEvent, 'edit'));
+      // if (this.$moment($moment(myEvent.start_date).format('YYYY-MM-DD')).diff(this.$moment().format('YYYY-MM-DD'), 'days') > 2) {
+        this.$store.commit('RESET_EVENT_FORM')
+        
+        this.fetchEvent(this.myEvent.id)
+          .then(res => this.$emit('show-detail', this.myEvent, 'edit'));
 
+      // }
       
     },
     remove() {
