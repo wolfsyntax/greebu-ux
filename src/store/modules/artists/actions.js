@@ -47,7 +47,7 @@ export const fetchArtistOptions = ({ commit, rootState, state }, payload) => {
         .catch((err) => {
           reject(err);
         });
-    }, 3000);
+    }, 1500);
   });
 };
 
@@ -79,7 +79,7 @@ export const updateArtistProfile = ({ commit, rootState, state }, payload) => {
         .catch((err) => {
           reject(err);
         });
-    }, 3000);
+    }, 1000);
   });
 };
 
@@ -117,7 +117,7 @@ export const addMember = ({ commit, rootState, state }, payload) => {
         .catch((err) => {
           reject(err);
         });
-    }, 3000);
+    }, 1000);
   });
 };
 
@@ -150,7 +150,7 @@ export const addSocialMedia = ({ commit, rootState, state }, payload) => {
         .catch((err) => {
           reject(err);
         });
-    }, 3000);
+    }, 1000);
   });
 };
 export const removeSocialMedia = ({ commit, rootState, state }, payload) => {
@@ -180,7 +180,7 @@ export const removeSocialMedia = ({ commit, rootState, state }, payload) => {
         .catch((err) => {
           reject(err);
         });
-    }, 3000);
+    }, 1000);
   });
 };
 
@@ -214,7 +214,7 @@ export const removeMember = ({ commit, rootState, state }, payload) => {
         .catch((err) => {
           reject(err);
         });
-    }, 3000);
+    }, 1000);
   });
 };
 
@@ -257,7 +257,7 @@ export const updateMember = ({ commit, rootState, state }, payload) => {
         .catch((err) => {
           reject(err);
         });
-    }, 3000);
+    }, 1000);
   });
 };
 
@@ -310,7 +310,7 @@ export const fetchArtists = ({ commit, rootState, state }, payload) => {
         .catch((err) => {
           reject(err);
         });
-    }, 3000);
+    }, 1000);
   });
 };
 export const artistOptions = ({ commit, rootState, state }, payload) => {
@@ -352,7 +352,7 @@ export const artistOptions = ({ commit, rootState, state }, payload) => {
         .catch((err) => {
           reject(err);
         });
-    }, 5000);
+    }, 1500);
   });
 };
 
@@ -381,7 +381,7 @@ export const fetchArtist = ({ commit, rootState, state }, payload) => {
         .catch((err) => {
           reject(err);
         });
-    }, 3000);
+    }, 1500);
   });
 };
 
@@ -419,6 +419,6 @@ export const fetchMember = ({ commit, rootState, state }, payload) => {
         .catch((err) => {
           reject(err);
         });
-    }, 3000);
+    }, 1500);
   });
 };

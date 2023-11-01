@@ -23,12 +23,12 @@
       </button>
 
         <ul class="dropdown-menu" v-if="userRole === 'organizer'" >
-          <li v-if="editable === true">
+          <li v-if="editable === true && $moment($moment(myEvent.start_date).format('YYYY-MM-DD')).diff($moment().format('YYYY-MM-DD'), 'days') > 2">
             <button class="d-flex align-items-center btn" @click="editEvent">
               <span class="material-symbols-rounded">
               &#xe3c9;
             </span>
-            Edit event 
+            Edit event
             </button>
           </li>
 

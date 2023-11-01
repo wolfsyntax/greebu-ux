@@ -352,7 +352,24 @@ export default {
           
           this.cover = (typeof val.cover_photo === 'string') ? val.cover_photo : val?.cover_photo ? URL.createObjectURL(val.cover_photo): '';
         } else {
-          this.cover = val.cover_photo ? URL.createObjectURL(val.cover_photo) : '';
+          // this.cover = val.cover_photo ? URL.createObjectURL(val.cover_photo) : '';
+          const pattern = new RegExp(
+            '^([a-zA-Z]+:\\/\\/)?' + // protocol
+              '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+              '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR IP (v4) address
+              '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+              '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+              '(\\#[-a-z\\d_]*)?$', // fragment locator
+            'i'
+          );
+
+          if (pattern.test(val.cover_photo)) {
+            this.cover = val.cover_photo;
+          } else if (val.cover_photo === '') {
+            this.cover = '';
+          } else {
+            this.cover = URL.createObjectURL(val.cover_photo);
+          }
         }
         // if (this.accessType === 'create') this.cover = val.cover_photo ? URL.createObjectURL(val.cover_photo) : '';
         // else if (this.accessType === 'edit') { 

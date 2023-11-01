@@ -16,34 +16,37 @@ export const fetchNotifications = ({ commit, rootState, state }) => {
         import.meta.env.VITE_BASE_URL || "http://localhost:8000"
       }/api/notifications?role=${rootState.role}\n\n`
     );
-    axios
-      .get(
-        `${
-          import.meta.env.VITE_BASE_URL || "http://localhost:8000"
-        }/api/notifications?role=${rootState.role}`
-      )
-      .then((response) => {
-        const {
-          data,
-          data: { status },
-          status: statusCode,
-        } = response;
 
-        if (status === 200 && statusCode === 200) {
+    setTimeout(() => {
+      axios
+        .get(
+          `${
+            import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+          }/api/notifications?role=${rootState.role}`
+        )
+        .then((response) => {
           const {
-            result: { profile_notification },
-          } = data;
-          commit("SET_NOTIFICATIONS", profile_notification);
-          resolve(data);
-        }
+            data,
+            data: { status },
+            status: statusCode,
+          } = response;
 
-        reject(data);
-      })
-      .catch((err) => {
-        const { data, status: statusCode } = err;
+          if (status === 200 && statusCode === 200) {
+            const {
+              result: { profile_notification },
+            } = data;
+            commit("SET_NOTIFICATIONS", profile_notification);
+            resolve(data);
+          }
 
-        reject(data);
-      });
+          reject(data);
+        })
+        .catch((err) => {
+          const { data, status: statusCode } = err;
+
+          reject(data);
+        });
+    }, 1500);
   });
 };
 
@@ -64,33 +67,35 @@ export const markNotificationAsRead = (
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + (rootState.bearerToken || localStorage.api_token);
 
-    axios
-      .post(url)
-      .then((response) => {
-        console.log("Mark notif with ID: ", response);
-        const {
-          data,
-          data: { status, result },
-          status: statusCode,
-        } = response;
-
-        if (status === 200 && statusCode === 200) {
+    setTimeout(() => {
+      axios
+        .post(url)
+        .then((response) => {
+          console.log("Mark notif with ID: ", response);
           const {
-            result: { profile_notification },
-          } = data;
+            data,
+            data: { status, result },
+            status: statusCode,
+          } = response;
 
-          dispatch("fetchNotifications");
-          resolve(data);
-        }
+          if (status === 200 && statusCode === 200) {
+            const {
+              result: { profile_notification },
+            } = data;
 
-        reject(data);
-      })
-      .catch((err) => {
-        console.log("Mark as read error: ", err);
-        const { data, status: statusCode } = err;
+            dispatch("fetchNotifications");
+            resolve(data);
+          }
 
-        reject(data);
-      });
+          reject(data);
+        })
+        .catch((err) => {
+          console.log("Mark as read error: ", err);
+          const { data, status: statusCode } = err;
+
+          reject(data);
+        });
+    }, 1000);
   });
 };
 
@@ -103,37 +108,39 @@ export const markAllNotificationAsRead = (
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + (rootState.bearerToken || localStorage.api_token);
 
-    axios
-      .post(
-        `${
-          import.meta.env.VITE_BASE_URL || "http://localhost:8000"
-        }/api/notifications/mark-all-read?role=${
-          rootState.role
-        }&type=${payload}`
-      )
-      .then((response) => {
-        const {
-          data,
-          data: { status, result },
-          status: statusCode,
-        } = response;
-
-        if (status === 200 && statusCode === 200) {
+    setTimeout(() => {
+      axios
+        .post(
+          `${
+            import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+          }/api/notifications/mark-all-read?role=${
+            rootState.role
+          }&type=${payload}`
+        )
+        .then((response) => {
           const {
-            result: { profile_notification },
-          } = data;
+            data,
+            data: { status, result },
+            status: statusCode,
+          } = response;
 
-          dispatch("fetchNotifications");
+          if (status === 200 && statusCode === 200) {
+            const {
+              result: { profile_notification },
+            } = data;
 
-          resolve(data);
-        }
+            dispatch("fetchNotifications");
 
-        reject(data);
-      })
-      .catch((err) => {
-        const { data, status: statusCode } = err;
+            resolve(data);
+          }
 
-        reject(data);
-      });
+          reject(data);
+        })
+        .catch((err) => {
+          const { data, status: statusCode } = err;
+
+          reject(data);
+        });
+    }, 1000);
   });
 };

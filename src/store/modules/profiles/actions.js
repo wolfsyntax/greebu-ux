@@ -113,7 +113,7 @@ export const fetchProfile = (
         .catch((err) => {
           reject(err);
         });
-    }, 3000);
+    }, 1500);
   });
 };
 export const accountProfile = ({ commit, state, rootState }, payload) => {
@@ -164,7 +164,7 @@ export const accountProfile = ({ commit, state, rootState }, payload) => {
         .catch((err) => {
           reject(err);
         });
-    }, 3000);
+    }, 1000);
   });
 };
 
@@ -199,7 +199,7 @@ export const verifyCurrentEmail = ({ rootState }, payload) => {
         .catch((err) => {
           reject(err);
         });
-    }, 3000);
+    }, 1000);
   });
 };
 export const verifyCurrentPhone = ({ rootState }, payload) => {
@@ -232,7 +232,7 @@ export const verifyCurrentPhone = ({ rootState }, payload) => {
         .catch((err) => {
           reject(err);
         });
-    }, 3000);
+    }, 1000);
   });
 };
 
@@ -269,7 +269,7 @@ export const verifyCurrentPassword = ({ rootState }, payload) => {
         .catch((err) => {
           reject(err);
         });
-    }, 3000);
+    }, 1000);
   });
 };
 export const updateEmail = ({ commit, rootState }, payload) => {
@@ -312,7 +312,7 @@ export const updateEmail = ({ commit, rootState }, payload) => {
         .catch((err) => {
           reject(err);
         });
-    }, 3000);
+    }, 1000);
   });
 };
 
@@ -347,7 +347,7 @@ export const updatePhone = ({ commit, rootState }, payload) => {
         .catch((err) => {
           reject(err);
         });
-    }, 3000);
+    }, 1000);
   });
 };
 
@@ -388,7 +388,7 @@ export const updatePassword = ({ commit, rootState }, payload) => {
         .catch((err) => {
           reject(err);
         });
-    }, 3000);
+    }, 1000);
   });
 };
 
@@ -428,7 +428,7 @@ export const updateAvatar = ({ commit, rootState }, payload) => {
         .catch((err) => {
           reject(err);
         });
-    }, 3000);
+    }, 1000);
   });
 };
 
@@ -470,7 +470,7 @@ export const updateBanner = ({ commit, rootState }, payload) => {
         .catch((err) => {
           reject(err);
         });
-    }, 3000);
+    }, 1000);
   });
 };
 
@@ -514,6 +514,6 @@ export const otherSettings = ({ commit, state, rootState }, payload) => {
         .catch((err) => {
           reject(err);
         });
-    }, 3000);
+    }, 1000);
   });
 };

@@ -34,7 +34,7 @@ export const fetchEventOptions = ({ commit, rootState }) => {
 
           reject({ message, status: statusCode, result });
         });
-    }, 3000);
+    }, 1500);
   });
 };
 
@@ -106,7 +106,7 @@ export const fetchEventList = ({ commit, rootState, state }) => {
           const { data } = err;
           reject(data);
         });
-    }, 3000);
+    }, 1500);
   });
 };
 
@@ -146,7 +146,7 @@ export const fetchEvents = ({ commit, rootState, state }) => {
           const { data } = err;
           reject(data);
         });
-    }, 3000);
+    }, 1000);
   });
 };
 
@@ -190,7 +190,7 @@ export const verifyEvent = ({ commit, rootState, state }) => {
           const { data } = err;
           reject(data);
         });
-    }, 3000);
+    }, 1000);
   });
 };
 
@@ -245,7 +245,7 @@ export const createEvent = (
           const { data } = err;
           reject(data);
         });
-    }, 3000);
+    }, 1000);
   });
 };
 
@@ -288,7 +288,7 @@ export const updateMyEvent = ({ commit, rootState, state }, payload) => {
             const { data } = err;
             reject(data);
           });
-      }, 3000);
+      }, 1000);
     }
   });
 };
@@ -336,7 +336,7 @@ export const updateEvent = ({ commit, rootState, state }) => {
           const { data } = err;
           reject(data);
         });
-    }, 3000);
+    }, 1000);
   });
 };
 
@@ -374,7 +374,7 @@ export const removeEvent = ({ dispatch, commit, rootState, state }) => {
           const { data } = err;
           reject(data);
         });
-    }, 3000);
+    }, 1000);
   });
 };
 
@@ -412,7 +412,7 @@ export const fetchEvent = ({ commit, rootState, state }, payload) => {
             const { data } = err;
             reject(data);
           });
-      }, 5000);
+      }, 1500);
     }
   });
 };
@@ -456,7 +456,7 @@ export const myOngoingEvents = ({ commit, rootState, state }) => {
           const { data } = err;
           reject(data);
         });
-    }, 3000);
+    }, 1500);
   });
 };
 
@@ -499,7 +499,7 @@ export const myUpcomingEvents = ({ commit, rootState, state }) => {
           const { data } = err;
           reject(data);
         });
-    }, 3000);
+    }, 1500);
   });
 };
 
@@ -543,6 +543,6 @@ export const myPastEvents = ({ commit, rootState, state }) => {
           const { data } = err;
           reject(data);
         });
-    }, 3000);
+    }, 1500);
   });
 };
