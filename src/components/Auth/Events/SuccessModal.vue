@@ -5,8 +5,8 @@
 
         <div class="modal-body text-center p-0">
           <img src="/assets/artist-account/check-circle.svg" class="check-cirle" alt="check circle">
-          <h3 class="event-created">{{ modalType === 'create' ? 'Event created' : (modalType === 'remove' ? 'Delete Successfully': 'Successfully Saved') }}!</h3>
-          <p class="message">{{ modalType === 'create' ? 'Your event is successfully created': (modalType === 'remove' ? 'Event has already been deleted' : 'Event has already been saved and updated') }}.</p>
+          <h3 class="event-created">{{ modalType === 'create' ? 'Event created' : (modalType === 'remove' ? 'Cancelled Successfully': 'Successfully Saved') }}!</h3>
+          <p class="message">{{ modalType === 'create' ? 'Your event is successfully created': (modalType === 'remove' ? 'Event has already been cancelled' : 'Event has already been saved and updated') }}.</p>
           <button class="bnt close-modal-button" data-bs-dismiss="modal">Done</button>
         </div>
 
