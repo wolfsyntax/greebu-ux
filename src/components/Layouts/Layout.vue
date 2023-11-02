@@ -52,29 +52,48 @@
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start p-0" id="dropdownNotif" data-bs-autoClose="false">
                   <li class="title-wrap"><span class="title m-0">Notifications</span></li>
+
+                  <li class="sender-notif-wrap">
+                    <div class="d-flex align-items-start notif-wrap">
+                      <div class="img-wrap">
+                        <img src="/assets/notifications-icon.svg" class="border-0 sender-img" alt="Notifications bell">
+                      </div>
+                      <div class="notif-msg-wrap">
+                        <div class="msg-wrap">
+                          <p class="m-0 sender-msg">
+                            <span class="m-0 sender-name">REMINDER:</span>
+                            Your free trial ends in 3 days. To avoid any interruption in your access, Subscribe now!
+                            <!-- <span class="m-0 sender-name">Your Free Trial Has Expired.</span> -->
+                            <!-- Upgrade now to regain access to GEEBU as an Artist -->
+                          </p>
+                        </div>
+                        <div class="date-time-wrap">
+                            <p class="mb-0 d-flex align-items-center justify-content-between">
+                            <small>Yesterday at 9:42 AM</small>
+                            <small class="float-end">05/03/2023</small>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
                   
                   <li v-for="(content, index) in notifications" :key="index" class="sender-notif-wrap">
-
                     <div class="d-flex align-items-start notif-wrap">
-
                       <div class="img-wrap">
-                        <img :src="content?.data?.sender_avatar" class="sender-img" alt="Sender Avatar">
+                        <img :src="content?.data?.sender_avatar" class="border-0 sender-img" alt="Sender Avatar">
                       </div>
-
                       <div class="notif-msg-wrap">
                         <div class="msg-wrap">
                           <p class="m-0 sender-msg" v-if="content?.data?.notification_type === 'artist-proposal'">
                             <span class="m-0 sender-name">{{ content?.data?.sender_name }}</span>&nbsp;{{ `${ content?.data?.header } ${content?.data?.misc?.event_name}`}}!
                           </p>
                         </div>
-
                         <div class="date-time-wrap">
                             <p class="mb-0 d-flex align-items-center justify-content-between">
                             <small>{{ $filters.diffForHumans($moment(content?.data?.time).format('YYYY-MM-DD hh:mm:ss a')) }}</small>
                             <small class="float-end">{{ $moment(content?.data?.time).format('MM/DD/YYYY') }}</small>
                           </p>
                         </div>
-
                       </div>
 
                       <!-- <div class="card border-0">
@@ -96,9 +115,7 @@
                           </div>
                         </div>
                       </div>         -->
-                        
                     </div>
-
                   </li>
 
                

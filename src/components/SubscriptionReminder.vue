@@ -5,10 +5,7 @@
         <div class="modal-content">
           <div class="modal-header p-0">
             <h3 class="modal-title"></h3>
-            <button type="button" class="btn ms-auto border-0 p-0 cancel-btn" data-bs-dismiss="modal" aria-label="Close">
-              <span class="material-symbols-rounded cancel-icon">&#xe5c9;</span>
-            </button>
-  
+            <CloseModalButton />
           </div>
   
           <div class="modal-body p-0">
@@ -17,7 +14,17 @@
                 <h3>Subscription Renewal Reminder</h3>
                 <div class="text-center msg-wrap">
                     <p class="msg">We're sending this message to remind you that Artist subscription wil expire on</p>
+
+                    <!-- show this if the subscription has ended -->
+                    <!-- <p class="msg">We're sending this message to remind you that Artist Your Subscription Has Ended</p> -->
+
                     <h4 class="mb-0 date">MAY 22, 2023</h4>
+                    <button class="btn renew-btn" @click="showSubscription">UPGRADE NOW</button> 
+
+                    <!-- show the number of days since expiration -->
+                    <!-- <h4 class="mb-0 date">5 DAYS SINCE EXPIRATION</h4>
+                    <button class="btn renew-btn" @click="showSubscription">RENEW NOW</button> -->
+
                 </div>
             </div>
 
@@ -50,7 +57,9 @@
                 </div>
             </div>
 
-            <div class="info-box-wrap">
+            <!-- Display this if the artist is already a subscriber. -->
+
+            <!-- <div class="info-box-wrap">
                 <h3>Payment Details</h3>
                 <div class="details-wrap">
                     <div>
@@ -62,29 +71,34 @@
                             <p class="mb-0 phone-num">+639784561237</p>
                         </div>
                         <div>
-                            <h5 class="update">Update payment details</h5>
+                            <a href="/subscription" class="update">Update payment details</a>
                         </div>
 
                     </div>
                 </div>
-            </div>
+            </div> 
 
             <p class="mb-0 continue">To continue enjoying uninterrupted access to the features and benefits of our application, 
-                please renew your subscription before the expiration date.</p>
+                please renew your subscription before the expiration date.</p> -->
 
           </div>
   
         </div>
       </div>
     </div>
-
+    <subscription-modal></subscription-modal>
   </template>
   
 <script >
 import { mapActions, mapState } from 'vuex';
+import SubscriptionModal from './Subscription/SubscriptionModal.vue';
+import CloseModalButton from './CloseModalButton.vue';
+import { Modal } from 'bootstrap';
   
 export default {
   components: {
+    SubscriptionModal,
+    CloseModalButton
   },  
   created () {
   },
@@ -96,7 +110,13 @@ data: () => ({
  
   }),
 methods: {
-  
+  showSubscription(){
+      new Modal(document.getElementById('selectPlanModal'), {
+        keyboard: false,
+        backdrop: 'static',
+      }).show();
+      console.log('Modal', Modal);
+    },
   },
   mounted() {
 

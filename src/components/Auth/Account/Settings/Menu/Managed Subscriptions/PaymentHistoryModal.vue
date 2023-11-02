@@ -5,11 +5,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h3 class="modal-title">Payment History</h3>
-            <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
-            <button type="button" class="btn ms-auto border-0 p-0 cancel-btn" data-bs-dismiss="modal" aria-label="Close">
-              <span class="material-symbols-rounded cancel-icon">&#xe5c9;</span>
-            </button>
-  
+            <CloseModalButton />
           </div>
   
           <div class="modal-body">
@@ -113,11 +109,13 @@
 <script >
 import { mapActions, mapState } from 'vuex';
 import InvoiceDetailsModal from './InvoiceDetailsModal.vue';
+import CloseModalButton from '../../../../../CloseModalButton.vue';
 import { Modal } from 'bootstrap';
   
 export default {
   components: {
-    InvoiceDetailsModal
+    InvoiceDetailsModal,
+    CloseModalButton
   },  
   created () {
   },
@@ -132,7 +130,7 @@ methods: {
   invoiceDetails(){
     new Modal(document.getElementById('invoiceDetails'), {
     keyboard: false,
-    backdrop: 'static',
+    backdrop: 'false',
   }).show();
 }
   

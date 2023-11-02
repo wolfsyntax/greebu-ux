@@ -5070,9 +5070,6 @@ header nav {
   align-items: center;
   margin-bottom: 2.81rem;
 }
-.subscription .back .show-subscription-modal {
-  padding: 0;
-}
 .subscription .back .arrow-back {
   font-size: 2rem;
   color: var(--orange);
@@ -5080,6 +5077,9 @@ header nav {
   border-radius: 100px;
   padding: 0.6rem;
 }
+/* .subscription .back a:hover .arrow-back{
+  border: 3px solid var(--orange);
+} */
 .subscription .back .main-title {
   color: var(--black);
   font-size: 2rem;
@@ -8292,15 +8292,6 @@ header nav {
   border-bottom: none;
   margin-bottom: 1.5rem;
 }
-#cancelSubscription .modal-header .cancel-icon,
-#paymentHistory .modal-header .cancel-icon {
-  font-size: 24px;
-  color: var(--gray2);
-}
-#cancelSubscription .modal-header .cancel-icon:hover,
-#paymentHistory .modal-header .cancel-icon:hover {
-  color: var(--black);
-}
 #cancelSubscription .modal-footer {
   border-top: none;
 }
@@ -8562,10 +8553,6 @@ header nav {
   font-size: 1.5rem;
   font-weight: 700;
 }
-#invoiceDetails .modal-header .cancel-btn .cancel-icon {
-  font-size: 24px;
-  color: var(--gray2);
-}
 #invoiceDetails .billed-wrap {
   border-radius: 0.625rem;
   background-color: var(--orange);
@@ -8653,7 +8640,7 @@ header nav {
 /* Payment Method Modal */
 
 #paymentMethod .modal-content {
-  padding: 2.37rem 2.56rem 3rem;
+  padding: 2.375rem 2.5625rem 2.5rem;
   border-radius: 0.46875rem;
   box-shadow: 0px 18.75px 37.5px -9px rgba(0, 0, 0, 0.25);
 }
@@ -8801,13 +8788,6 @@ header nav {
 #subscriptionReminder .modal-header{
   border: none;
 }
-#subscriptionReminder .modal-header .cancel-icon{
-  font-size: 24px;
-  color: var(--gray6);
-}
-#subscriptionReminder .modal-header .cancel-icon:hover{
-  color: var(--black);
-}
 #subscriptionReminder .info-box-wrap{
   margin-bottom: 1.5rem;
 }
@@ -8838,6 +8818,21 @@ header nav {
   font-size: 1.5rem;
   font-weight: 700;
 }
+#subscriptionReminder .info-box-wrap .msg-wrap .renew-btn{
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 100%; 
+  letter-spacing: 0.05rem;
+  padding: 1rem 2.2rem;
+  border-radius: 0.375rem;
+  border: none;
+  background-color: var(--orange);
+  margin-top: 1.25rem;
+}
+#subscriptionReminder .info-box-wrap .msg-wrap .renew-btn:hover{
+  background-color: var(--btn-hovered);
+}
 #subscriptionReminder .info-box-wrap .details-wrap div:nth-child(1){
   border-bottom: 0.75px solid #BECDF8;
   margin-bottom: 1.25rem;
@@ -8858,7 +8853,7 @@ header nav {
   margin-bottom: 1rem;
 }
 #subscriptionReminder .info-box-wrap .details-wrap div:last-child {
-  margin-bottom: 0rem;
+  margin-bottom: 0rem!important;
 }
 #subscriptionReminder .info-box-wrap .details-wrap .payment-logo{
   width: 4.6875rem;
@@ -8867,17 +8862,115 @@ header nav {
 }
 #subscriptionReminder .info-box-wrap .details-wrap .phone-num{
   color: #454F59;
-  font-family: Urbanist;
   font-size: 0.875rem;
   font-weight: 500;
 }
 #subscriptionReminder .info-box-wrap .details-wrap .update{
+  color: #454F59;
+  font-size: 0.875rem;
   font-weight: 600;
+  text-decoration: none;
+}
+#subscriptionReminder .info-box-wrap .details-wrap .update:hover{
+  text-decoration: underline;
 }
 #subscriptionReminder .modal-body .continue{
   color: var(--black);
   font-size: 1rem;
   font-weight: 500;
+}
+
+/* Update Subscription modal */
+
+#updateSubscription .modal-content{
+  padding: 2.5rem 3.12rem;
+  border-radius: 0.625rem;
+  box-shadow: 0px 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+#updateSubscription .modal-header,
+#updateSubscription .plan-wrap{
+  margin-bottom: 2.5rem;
+}
+#updateSubscription .modal-header .modal-title{
+  color: var(--black-color);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+#updateSubscription .plan-wrap h4{
+  color: var(--gray2);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+}
+#updateSubscription .plan-wrap .subscription-wrap{
+  padding: 1.90625rem 2.5rem 1.84375rem 2.5rem;
+  border-radius: 0.25rem;
+  border: 1px solid var(--gray6);
+  margin-bottom: 0;
+}
+#updateSubscription .plan-wrap .subscription-wrap .account,
+#updateSubscription .plan-wrap .subscription-wrap .access{
+  color: var(--black);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+#updateSubscription .plan-wrap .subscription-wrap .access{
+  font-weight: 800;
+  line-height: 110%; 
+  text-transform: uppercase;
+}
+#updateSubscription .plan-wrap .subscription-wrap .description{
+  color: #808080;
+  font-size: 0.875rem;
+  font-style: italic;
+  font-weight: 600;
+  line-height: 150.5%; 
+}
+#updateSubscription .plan-wrap .subscription-wrap h3{
+  color: var(--orange);
+  font-size: 1.25rem;
+  font-style: italic;
+  font-weight: 600;
+}
+#updateSubscription .subscription-wrap .price-wrap{
+  margin: 0.75rem 0;
+  gap: 0.94rem
+}
+#updateSubscription .subscription-wrap .price-wrap .price{
+  color: #2F2F2F;
+  font-size: 1.25rem;
+  font-style: italic;
+  font-weight: 600;
+}
+#updateSubscription .subscription-wrap .price-wrap button{
+  color: var(--white);
+  font-size: 0.875rem;
+  font-weight: 800;
+  text-transform: capitalize;
+  padding: 0.5rem 1.4375rem;
+  border-radius: 1.875rem;
+  background-color: #2F2F2F;
+  cursor: default;
+}
+#updateSubscription .subscription-wrap .plan-btn,
+#updateSubscription .subscription-wrap .current-btn{
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 800;
+  padding: 0.9375rem 1.625rem 0.875rem 1.6875rem;
+  border-radius: 0.5rem;
+  background-color: var(--orange);
+}
+#updateSubscription .subscription-wrap .plan-btn:hover{
+  background-color: var(--btn-hovered);
+}
+#updateSubscription .subscription-wrap .current-btn{
+  background-color: var(--btn-focus);
+  cursor: not-allowed;
+}
+#updateSubscription .plan-wrap > div:nth-child(2){
+  margin-bottom: 1.25rem;
 }
 
 
@@ -8898,12 +8991,138 @@ header nav {
   28px 1.75 rem
 /* */
 
+/* Update Subscription modal */
+
+#updateSubscription .modal-content{
+  padding: 1.88rem 2.34rem;
+  border-radius: 0.46875rem;
+  box-shadow: 0px 18.75px 37.5px -9px rgba(0, 0, 0, 0.25);
+  width: 40rem;
+  margin: auto;
+}
+#updateSubscription .modal-header,
+#updateSubscription .plan-wrap{
+  margin-bottom: 1.88rem;
+}
+#updateSubscription .modal-header .modal-title{
+  font-size: 1.125rem;
+}
+#updateSubscription .plan-wrap h4{
+  font-size: 0.9375rem;
+  margin-bottom: 0.94rem;
+}
+#updateSubscription .plan-wrap .subscription-wrap{
+  padding: 1.59375rem 1.875rem;
+  border-radius: 0.1875rem;
+  border: 0.75px solid var(--gray6);
+}
+#updateSubscription .plan-wrap .subscription-wrap .account,
+#updateSubscription .plan-wrap .subscription-wrap .access{
+  font-size: 0.75rem;
+}
+#updateSubscription .plan-wrap .subscription-wrap .description{
+  font-size: 0.65625rem;
+}
+#updateSubscription .plan-wrap .subscription-wrap h3{
+  font-size: 0.9375rem;
+}
+#updateSubscription .subscription-wrap .price-wrap{
+  margin: 0.56rem 0;
+  gap: 0.7rem
+}
+#updateSubscription .subscription-wrap .price-wrap .price{
+  font-size: 0.9375rem;
+}
+#updateSubscription .subscription-wrap .price-wrap button{
+  font-size: 0.65625rem;
+  padding: 0.39rem 1.1rem;
+  border-radius: 1.40625rem;
+}
+#updateSubscription .subscription-wrap .plan-btn,
+#updateSubscription .subscription-wrap .current-btn{
+  font-size: 0.75rem;
+  padding: 0.7rem 1.12rem;
+  border-radius: 0.375rem;
+}
+#updateSubscription .plan-wrap > div:nth-child(2){
+  margin-bottom: 0.7rem;
+}
+
+/* Subscription Renewal Modal */
+
+#subscriptionReminder .modal-content {
+  padding: 1.88rem 1.88rem 2.5rem;
+  border-radius: 0.28125rem;
+  box-shadow: 0px 0px 12.75px 0px rgba(18, 18, 18, 0.15);
+  width: 40rem;
+  margin: auto;
+}
+#subscriptionReminder .info-box-wrap{
+  margin-bottom: 1.13rem;
+}
+#subscriptionReminder .info-box-wrap h3{
+  font-size: 0.9375rem;
+  margin-bottom: 0.94rem;
+}
+#subscriptionReminder .info-box-wrap .msg-wrap,
+#subscriptionReminder .info-box-wrap .details-wrap {
+  border-radius: 0.23438rem;
+  padding: 1.68rem 2rem;
+}
+#subscriptionReminder .info-box-wrap .details-wrap{
+  padding: 0.94rem 1.13rem;
+}
+#subscriptionReminder .info-box-wrap .msg-wrap .msg{
+  font-size: 0.9375rem;
+  width: 70%;
+  margin: 0 auto 1.41rem;
+}
+#subscriptionReminder .info-box-wrap .msg-wrap .date{
+  font-size: 1.125rem;
+}
+#subscriptionReminder .info-box-wrap .msg-wrap .renew-btn{
+  font-size: 0.75rem;
+  line-height: 100%;
+  letter-spacing: 0.0375rem;
+  padding: 0.75rem 2rem;
+  border-radius: 0.28125rem;
+}
+#subscriptionReminder .info-box-wrap .details-wrap div:nth-child(1){
+  margin-bottom: 0.94rem;
+}
+#subscriptionReminder .info-box-wrap .details-wrap .title{
+  font-size: 0.75rem;
+  margin-bottom: 0.47rem;
+}
+#subscriptionReminder .info-box-wrap .details-wrap h5{
+  font-size: 0.65625rem
+}
+#subscriptionReminder .info-box-wrap .details-wrap div:not(:nth-child(1)) { 
+  margin-bottom: 0.75rem;
+}
+#subscriptionReminder .info-box-wrap .details-wrap .payment-logo{
+  width: 3.51563rem;
+  height: 0.89063rem;
+  margin-right: 1.36rem;
+}
+#subscriptionReminder .info-box-wrap .details-wrap .phone-num{
+  font-size: 0.65625rem;
+}
+#subscriptionReminder .info-box-wrap .details-wrap .update{
+  font-size: 0.65625rem;
+}
+#subscriptionReminder .modal-body .continue{
+  font-size: 0.75rem;
+}
+
 /* Payment Method Modal */
 
 #paymentMethod .modal-content {
   padding: 2.375rem 2.5625rem 2.5rem;
   border-radius: 0.46875rem;
   box-shadow: 0px 18.75px 37.5px -9px rgba(0, 0, 0, 0.25);
+  width: 40rem;
+  margin: auto;
 }
 #paymentMethod .modal-header .modal-title {
   font-size: 1.25rem;
@@ -8986,9 +9205,6 @@ header nav {
   }
   #invoiceDetails .modal-header .modal-title {
     font-size: 1.25rem;
-  }
-  #invoiceDetails .modal-header .cancel-btn .cancel-icon {
-    font-size: 18px;
   }
   #invoiceDetails .billed-wrap {
     border-radius: 0.46875rem;
@@ -9151,19 +9367,16 @@ header nav {
 
   /* Cancel Subscription Modal */
 
-  #cancelSubscription .modal-content {
+#cancelSubscription .modal-content {
     padding: 1.88rem 2.5rem;
-  }
+    width: 40rem;
+    margin: auto;
+}
   #cancelSubscription .modal-body {
     margin-bottom: 3rem;
   }
   #cancelSubscription .modal-header {
     margin-bottom: 1.25rem;
-  }
-  #cancelSubscription .modal-header .cancel-icon,
-  #cancelSubscription .modal-header .cancel-icon,
-  #paymentHistory .modal-header .cancel-icon {
-    font-size: 18px;
   }
   #cancelSubscription .modal-title {
     font-size: 1.25rem;
@@ -9889,6 +10102,11 @@ header nav {
   }
 
   /* View Events Details modal */
+
+/* #eventDetailsModal .modal-content {
+    width: 40rem;
+    margin: auto;
+} */
   #eventDetailsModal .modal-content .modal-body {
     padding: 1.17rem 2rem 2rem;
   }

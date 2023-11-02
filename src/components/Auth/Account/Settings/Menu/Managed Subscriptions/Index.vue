@@ -17,7 +17,11 @@
             <h5 class="mb-0 billing">Next Billing Date: <span>September 6,2023</span></h5>
         </div>
         <div>
-            <button class="btn upgrade-btn" @click="showSubscription">Upgrade Plan </button>
+            <!-- Display this if the artist has a free plan. -->
+            <!-- <button class="btn upgrade-btn" @click="showSubscription">Upgrade Plan </button> -->
+
+            <!-- Display this if the artist already has a subscription. -->
+            <button class="btn upgrade-btn" @click="updateSubscription">Upgrade Plan </button>
         </div>
     </div>
 
@@ -38,12 +42,10 @@
     <div class="subscriptions-wrap">
         <h4 class="title">Cancel Subscription</h4>
         <p class="description">If you choose to cancel the subscription will be cancelled at the end of the billing period (date subscribed)</p>
-        <button class="btn cancel-btn" @click="showCancelSubscription"
-       >Cancel Subscription</button>
+        <button class="btn cancel-btn" @click="showCancelSubscription">Cancel Subscription</button>
     </div>
 
     <!-- Display this information two days before the plan expires, but do not show it otherwise -->
-
     <div class="subscriptions-wrap">
         <button class="btn cancel-btn" @click="showSubscReminder">Subscription Renewal Reminder</button>
     </div>
@@ -54,6 +56,7 @@
     <payment-history-modal></payment-history-modal>
     <cancel-subscription-modal></cancel-subscription-modal>
     <subscription-reminder></subscription-reminder>
+    <update-subscription-modal></update-subscription-modal>
   </template>
     
   <script>
@@ -63,6 +66,7 @@
   import PaymentHistoryModal from './PaymentHistoryModal.vue';
   import PaymentMethodModal from './PaymentMethodModal.vue';
   import SubscriptionReminder from '../../../../../SubscriptionReminder.vue'
+  import UpdateSubscriptionModal from './UpdateSubscriptionModal.vue';
   import { Modal } from 'bootstrap';
   
   export default {
@@ -71,7 +75,8 @@
     SubscriptionModal,
     PaymentHistoryModal,
     PaymentMethodModal,
-    SubscriptionReminder
+    SubscriptionReminder,
+    UpdateSubscriptionModal
   },
   setup()
   {
@@ -83,7 +88,7 @@
     showCancelSubscription(){
       new Modal(document.getElementById('cancelSubscription'), {
         keyboard: false,
-        backdrop: 'static',
+        backdrop: 'false',
       }).show();
       console.log('Modal', Modal);
     },
@@ -94,17 +99,24 @@
       }).show();
       console.log('Modal', Modal);
     },
+    updateSubscription(){
+      new Modal(document.getElementById('updateSubscription'), {
+        keyboard: false,
+        backdrop: 'false',
+      }).show();
+      console.log('Modal', Modal);
+    },
     showPaymentMethod(){
       new Modal(document.getElementById('paymentMethod'), {
         keyboard: false,
-        backdrop: 'static',
+        backdrop: 'false',
       }).show();
       console.log('Modal', Modal);
     },
     showPaymentHistory(){
       new Modal(document.getElementById('paymentHistory'), {
         keyboard: false,
-        backdrop: 'static',
+        backdrop: 'false',
       }).show();
       console.log('Modal', Modal);
     },
