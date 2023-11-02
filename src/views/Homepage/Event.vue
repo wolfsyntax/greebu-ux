@@ -216,7 +216,7 @@ export default {
 
         new Modal(document.getElementById('eventDetailsModal'), {
           keyboard: false,
-          backdrop: 'static',
+          backdrop: 'false',
         }).show();
 
       } else {

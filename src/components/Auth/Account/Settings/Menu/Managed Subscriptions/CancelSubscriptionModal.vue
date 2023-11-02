@@ -5,11 +5,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h3 class="modal-title">Confirm Subscription Cancellation</h3>
-            <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
-            <button type="button" class="btn ms-auto border-0 p-0 cancel-btn" id="close-modal-btn" data-bs-dismiss="modal" aria-label="Close">
-              <span class="material-symbols-rounded cancel-icon">&#xe5c9;</span>
-            </button>
-  
+            <CloseModalButton />
           </div>
   
           <div class="modal-body">
@@ -43,11 +39,13 @@
   
   <script >
   import { mapActions, mapState } from 'vuex';
+  import CloseModalButton from '../../../../../CloseModalButton.vue';
   import Loading from '../../../../../Loading.vue';
   
   export default {
     components: {
-      Loading
+      Loading,
+      CloseModalButton
     },  
     created () {
     },

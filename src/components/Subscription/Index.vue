@@ -1,6 +1,6 @@
 <template>
   <BlankHeader />
-  <SubscriptionModal />
+
     <!-- <div class="row">
       <div class="col">
         {{ form }}
@@ -74,9 +74,12 @@
     <section class="subscription">
       <div class="container" v-if="step === 1">
         <div class="back">
-          <button type="button" class="btn show-subscription-modal" @click="openSubscriptionModal"
-              data-bs-toggle="modal" data-bs-target="#selectPlanModal"><span class="material-symbols-outlined arrow-back">&#xe5c4;</span></button>
-          <h2 class="main-title">Subscription</h2>
+          <!-- <button type="button" class="btn show-subscription-modal" @click="openSubscriptionModal"
+              data-bs-toggle="modal" data-bs-target="#selectPlanModal"><span class="material-symbols-outlined arrow-back">&#xe5c4;</span></button> -->
+              <a href="/account/setting">
+                <span class="material-symbols-outlined arrow-back">&#xe5c4;</span>
+              </a>
+              <h2 class="main-title">Subscription</h2>
         </div>
         <div class="row">
           <div class="col-12 col-md-7">
@@ -404,12 +407,10 @@
 import { mapGetters, mapState, mapActions } from "vuex";
 // import Layout from '/src/components/Layouts/Layout.vue';
 import BlankHeader from "@/components/Home/BlankHeader.vue";
-import SubscriptionModal from '/src/components/Artist/SubscriptionModal.vue';
 
 export default {
   components: {
-    BlankHeader,
-    SubscriptionModal
+    BlankHeader
   },
   data()
   {
@@ -474,9 +475,6 @@ export default {
     {
 
     },
-    openSubscriptionModal(data){
-        this.$root.$emit("bv::show::modal", "#selectPlanModal");
-      },
     paymentMade(){
       this.step = 2;
     },
