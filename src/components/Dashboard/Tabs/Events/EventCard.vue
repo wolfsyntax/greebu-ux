@@ -11,7 +11,7 @@
 
         <ul class="dropdown-menu" v-if="userRole === 'organizer'" >
           <li v-if="editable === true" >
-            <button :class="$moment($moment(myEvent.start_date).format('YYYY-MM-DD')).diff($moment().format('YYYY-MM-DD'), 'days') < 3 ? 'border-0': ''" class="d-flex align-items-center btn" @click="editEvent" :disabled="$moment($moment(myEvent.start_date).format('YYYY-MM-DD')).diff($moment().format('YYYY-MM-DD'), 'days') < 3">
+            <button :id="`eventEdit-${myEvent.id}`" data-bs-toggle="tooltip" data-bs-title="..." data-s-trigger="hover focus" :class="canEdit ? 'border-0': ''" class="d-flex align-items-center btn" @click="editEvent" :disabled="canEdit">
               <span class="material-symbols-rounded">
               &#xe3c9;
             </span>
@@ -20,7 +20,7 @@
           </li>
 
           <li>
-            <button :class="$moment($moment(myEvent.start_date).format('YYYY-MM-DD')).diff($moment().format('YYYY-MM-DD'), 'days') < 2 ? 'border-0' : ''" class="d-flex align-items-center btn delete" @click="remove" :disabled="$moment($moment(myEvent.start_date).format('YYYY-MM-DD')).diff($moment().format('YYYY-MM-DD'), 'days') < 2">
+            <button :id="`eventCancel-${myEvent.id}`" data-bs-toggle="tooltip" data-bs-title="..." data-bs-trigger="hover focus" :class="canCancel ? 'border-0' : ''" class="d-flex align-items-center btn delete" @click="remove" :disabled="canCancel">
               <span class="material-symbols-rounded">
                 &#xe872;
               </span>
@@ -70,6 +70,7 @@
 
 <script>
 import { mapActions, mapMutations, mapGetters } from 'vuex';
+import { Tooltip } from 'bootstrap';
 
 export default {
   setup () {
@@ -106,10 +107,36 @@ export default {
     }
   },
   mounted() {
-    
+    try {
+      const editTtooltip = new Tooltip(`#eventEdit-${this.myEvent?.id}`, {
+        html: true,
+        placement: 'right',
+        trigger: 'hover focus',
+      })
+
+      editTtooltip.setContent({ '.tooltip-inner': 'You may only edit the event details up to 3 days before the scheduled date.' })
+
+      const cancelTooltip = new Tooltip(`#eventCancel-${this.myEvent?.id}`, {
+        html: true,
+        placement: 'right',
+        trigger: 'hover focus',
+      })
+
+      cancelTooltip.setContent({'.tooltip-inner': 'You may only cancel the event up to 2 days before the scheduled date.'});
+      
+    } catch (err) {
+
+    }
+
   },
   computed: {
     ...mapGetters(['userRole',]),
+    canEdit() {
+      return this.$moment(this.$moment(this.myEvent.start_date).format('YYYY-MM-DD')).diff(this.$moment().format('YYYY-MM-DD'), 'days') < 3;
+    },
+    canCancel() {
+      return this.$moment(this.$moment(this.myEvent.start_date).format('YYYY-MM-DD')).diff(this.$moment().format('YYYY-MM-DD'), 'days') < 2
+    },
     startTime() {
       var d = this.$moment().format('YYYY-MM-DD');
       return this.$moment(`${d} ${this.myEvent.start_time}`).format('h:mm a');
