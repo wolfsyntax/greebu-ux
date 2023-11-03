@@ -102,7 +102,8 @@
                 <div class="form-group">
                   <label for="artistName">Name of the Artist/Band</label>
                   <input type="text" v-model="form.artist_name" placeholder="Name of the Artist/Band" class="form-control artist-name" required autocomplete="off"/>
-                  <div v-if="error?.artist_name" class="artist-name-error text-danger"></div>
+                  <!-- <div v-if="error?.artist_name" class="artist-name-error text-danger"></div> -->
+                  <div v-for="err in error?.artist_name" :key="err" class="text-danger">{{ err }}</div>
                 </div>
 
                 <div class="form-group mb-0">
