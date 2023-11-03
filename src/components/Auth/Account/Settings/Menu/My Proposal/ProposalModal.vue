@@ -65,7 +65,7 @@
                   <span class="material-symbols-sharp calendar-icon">&#xe935;</span>
                 </div>
                 <div>
-                  <!-- <h5 class="date">{{ $moment(`${proposal?.start_date}`).format('MMMM DD, YYYY') }} - {{ $moment(`${proposal?.end_date}`).format('MMMM DD, YYYY') }}</h5> -->
+                  <h5 class="date">{{ $moment(`${proposal?.start_date}`).format('MMMM DD, YYYY') }} - {{ $moment(`${proposal?.end_date}`).format('MMMM DD, YYYY') }}</h5>
                   <h5 class="time" v-if="$moment(proposal?.start_date).isSame(proposal?.end_date)">
                     {{ $moment(`${proposal?.start_date}`).format('dddd') }}, {{ $moment(proposal?.start_time).format('h:mm a') }} - {{ $moment(proposal?.end_time).format('h:mm a') }}
                   </h5>

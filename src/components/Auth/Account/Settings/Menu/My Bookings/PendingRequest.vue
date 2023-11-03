@@ -1,52 +1,63 @@
 <template>
   <div>
 
-    <!-- <div class="customized-songs-wrapper">
-      <div class="d-flex align-items-center justify-content-between event-description">
+    <div class="customized-songs-wrapper">
+    <div class="d-flex align-items-center justify-content-between event-description">
 
-        <div class="d-flex align-items-center left-wrap expand-left-wrap">
-          <div class="song-cover-wrap">
-            <img src="/assets/organizer-account/profile-img.webp" class="offer-img" alt="Song album cover"> 
+      <div class="left-wrap">
+        <div class="d-flex align-items-center event-wrap">
+          <span class="material-symbols-sharp dot-icon">&#xe061;</span>
+          <h5 class="mb-0 event">Birthday Event</h5>
+          <div>
+       
+            <!-- <button class="btn border-0 badge-wrap expire-wrap">
+              <span class="material-symbols-rounded clock-icon">&#xe8b5;</span>
+              <span class="expire">Expire within 20 hours</span>
+            </button> -->
+
+            <!-- Cancelled Bookings -->
+            <button class="btn p-0 border-0 badge-wrap">
+              <span class="in-progress cancelled lh-badge">Cancelled</span>
+            </button>
+
+             <!-- Expired Bookings -->
+            <!-- <button class="btn border-0 badge-wrap expire-wrap">
+              <span class="material-symbols-rounded clock-icon">&#xe8b5;</span>
+              <span class="expire">Expired</span>
+            </button> -->
+
           </div>
-
-          <div class="song-details-wrap">
-
-            <div class="d-flex align-items-center event-wrap">
-              <h5 class="mb-0 event"><span>From:</span> KYC Flores Event Organizer KYC Flores Event Organizer </h5>
-            </div>
-
-            <div>
-              <h6 class="d-flex align-items-center venue">Full band
-              <span class="material-symbols-rounded dot-icon">&#xe061;</span>Naga City, Camarines Sur</h6>
-              <p class="d-flex align-items-center mb-0 star-ratings">
-                <span class="material-symbols-rounded star-icon">&#xe838;</span>
-                4.95 <span class="reviews">(234 reviews)</span>
-              </p>
-            </div>
-
-          </div>
-
         </div>
 
-        <div class="details-wrapper">
-          <div class="button-wrapper">
-            <button type="button" class="btn details" @click="showModal = true">View Proposal</button>
-          </div>
-        </div>  
-      
+        <div class="mb-0 d-flex align-items-center requested-wrapper">
+          <img src="https://lh3.googleusercontent.com/ogw/AKPQZvzlN2Mhph_WafyiahefQ1NCD98zcipm0ZSmrZMaVg=s32-c-mo" class="requested-by-image" alt="Submitted by image"> 
+          <a href="#" class="requested-by">Requested by <span class="name">Marvin McKinney</span></a> 
+          <span class="material-symbols-sharp dot-icon">&#xe061;</span>
+          <span class="time">8 hours ago</span>
+        </div>
       </div>
-    </div> -->
 
-    <!-- No message found -->
+      <div class="details-wrapper">
+        <div class="button-wrapper">
+          <button type="button" class="btn details" @click="showModal = true">View Details</button>
+        </div>
+      </div>  
 
-    <no-message :infoText="message" :infoTitle="title"></no-message>
-    <view-proposal-modal :show="showModal" @close-modal="closeModal" @accept-request="onModalAccepted" />
+      </div>
+      </div>
+
+    <!-- No bookings found! -->
+    <!-- <no-message :infoText="message" :infoTitle="title"></no-message> -->
+
+    <booking-request-modal :show="showModal" @close-modal="closeModal" @accept-request="onModalAccepted" />
+
   </div>
 </template>
 
 <script>
-import ViewProposalModal from './ViewProposalModal.vue';
+import BookingRequestModal from './BookingRequestModal.vue';
 import NoMessage from '../NoMessage.vue';
+
 export default {
   setup()
   {
@@ -55,7 +66,7 @@ export default {
     return {}
   },
   components: {
-    ViewProposalModal,
+    BookingRequestModal,
     NoMessage
   },
   data: () => ({
@@ -82,4 +93,5 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+</style>

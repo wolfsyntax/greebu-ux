@@ -26,6 +26,7 @@ mounted() {
     font-size: 24px;
     color: var(--gray6);
     font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 48;
+    transition: all .7s;
 }
 #closeModalButton:hover .cancel-icon {
     color: var(--orange);
