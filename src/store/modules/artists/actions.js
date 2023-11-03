@@ -275,11 +275,23 @@ export const fetchArtists = ({ commit, rootState, state }, payload) => {
       }/api/artists-filter`;
     }
 
-    url = `${url}?per_page=12`;
-
+    url = `${url}?per_page=${
+      payload?.per_page || 12
+    }&search=${encodeURIComponent(
+      payload?.search || ""
+    )}&genre=${encodeURIComponent(
+      payload?.genre || ""
+    )}&artist_type=${encodeURIComponent(
+      payload?.artist_type || ""
+    )}&language=${encodeURIComponent(payload?.language || "")}&city=${
+      encodeURIComponent(payload?.city) || ""
+    }&province=${encodeURIComponent(payload?.province || "")}&sortBy=${
+      payload?.sortBy || "DESC"
+    }`;
+    console.log(`\n\nArtist List url: ${url}`);
     setTimeout(() => {
       axios
-        .post(url, payload)
+        .get(url)
         .then((response) => {
           console.log("\n\nFetch Artists Response: ", response);
 

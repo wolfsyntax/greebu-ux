@@ -51,15 +51,19 @@ export const fetchEventList = ({ commit, rootState, state }) => {
 
       url = `${
         import.meta.env.VITE_BASE_URL || "http://localhost:8000"
-      }/api/events?search=${state.eventFilter.search || ""}`;
+      }/api/events?search=${
+        encodeURIComponent(state.eventFilter.search) || ""
+      }`;
     } else {
       url = `${
         import.meta.env.VITE_BASE_URL || "http://localhost:8000"
-      }/api/events-list?search=${state.eventFilter.search || ""}`;
+      }/api/events-list?search=${
+        encodeURIComponent(state.eventFilter.search) || ""
+      }`;
     }
 
     if (state.eventFilter?.city !== "") {
-      url = `${url}&city=${state.eventFilter.city || ""}`;
+      url = `${url}&city=${encodeURIComponent(state.eventFilter.city) || ""}`;
     }
 
     if (state.eventFilter?.sortBy !== "") {
@@ -76,7 +80,9 @@ export const fetchEventList = ({ commit, rootState, state }) => {
     }
 
     if (state.eventFilter?.event_type !== "") {
-      url = `${url}&event_type=${state.eventFilter.event_type || ""}`;
+      url = `${url}&event_type=${
+        encodeURIComponent(state.eventFilter.event_type) || ""
+      }`;
     }
 
     console.log("Event Request URL: ", url);
