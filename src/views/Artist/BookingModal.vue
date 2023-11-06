@@ -1,12 +1,12 @@
 <template>
-<div class="modal fade modal-lg" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade modal-lg" id="bookingModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="staticBackdropLabel">Create an Event</h2>
+      <div class="modal-header border-0">
+        <h4 class="modal-title" id="staticBackdropLabel">Request Booking</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ref="eventModalDismiss"></button>
       </div>
-      <div class="modal-body" >
+      <div class="modal-body border-0" >
         <form class="required-fields" @submit.prevent="submit">
           <div class="form-group">
             <label for="eventType">Event Type</label>
@@ -23,7 +23,7 @@
             <input type="text" v-model="form.event_name" class="form-control" placeholder="Name of Event" required autocomplete="off"/>
             <div v-for="err in error?.event_name" :key="err" class="text-danger">{{ err }}</div>
           </div>
-
+          
           <div class="form-group">
             <label for="eventType">Venue Name</label>
             <input type="text" v-model="form.venue_name" class="form-control" placeholder="Venue Name" required autocomplete="off"/>
@@ -65,13 +65,13 @@
           <div class="d-flex align-items-center start-end-wrap">
             <div class="form-group">
               <label for="eventType">Start Date</label>
-              <input type="date" v-model="form.start_date" placeholder="YYYY-MM-DD" class="form-control " required autocomplete="off" :min="$moment().add(5, 'days').format('YYYY-MM-DD')" />
+              <input type="date" v-model="form.start_date" placeholder="YYYY-MM-DD" class="form-control " required autocomplete="off" :min="$moment(eventDate).format('YYYY-MM-DD')" />
               <div v-for="err in error?.start_date" :key="err" class="text-danger">{{ err }}</div>
             </div>
 
             <div class="form-group">
               <label for="eventType">End Date</label>
-              <input type="date" v-model="form.end_date" placeholder="YYYY-MM-DD" class="form-control " required autocomplete="off" :min="$moment().add(5, 'days').format('YYYY-MM-DD')" />
+              <input type="date" v-model="form.end_date" placeholder="YYYY-MM-DD" class="form-control " required autocomplete="off" :min="$moment(form.start_date).format('YYYY-MM-DD')" :max="$moment(form.start_date).add(1, 'days').format('YYYY-MM-DD')" />
               <div v-for="err in error?.end_date" :key="err" class="text-danger">{{ err }}</div>
             </div>
           </div>
@@ -111,9 +111,8 @@
 
           <div class="text-end action-btn-wrap">
             <button type="button" class="btn cancel" data-bs-dismiss="modal">Cancel</button>
-
             <button type="submit" class="btn next" :disabled="!validInput">
-              <LoadingVue :infoText="buttonName" v-if="isLoading"/>
+              <loading :infoText="buttonName" v-if="isLoading" />
               <span v-else>{{ buttonName }}</span>
             </button>
           </div>
@@ -126,7 +125,22 @@
 
 <script>
 import { mapActions, mapState } from 'vuex';
+import Loading from '/src/components/Loading.vue';
+
 export default {
+  watch: {
+    "form.start_date": {
+      handler(cur, prev) {
+        console.log('Current Start Date => ', cur, prev)
+        this.form.end_date = cur;
+        
+      },
+      deep: true,
+    }
+  },
+  components: {
+    Loading,
+  },
   props: {
     eventDate: 'string',
   },
@@ -138,40 +152,77 @@ export default {
   data: () => ({
     buttonName: 'Submit',
     agreeFee: false,
+    error: null,
+    isLoading: false,
+    errorTime: null,
+    isComplete: false,
   }),
   computed: {
     ...mapState({
       form: state => state.booking.form,
       eventTypes: state => state.events.event_types,
     }),
-    startDate()
+    eventEnd()
     {
-      return this.$moment().add(5, 'days').format('DD-MM-YYYY');
+      var endTime = this.form.end_time ? ` ${this.form.end_time}`: '';
+      return `${this.form.end_date || this.form.start_date }${endTime}`;
+    },
+    eventStart()
+    {
+      var startTime = this.form.start_time ? ` ${this.form.start_time}`: '';
+      return `${this.form.start_date || this.eventDate}${startTime}`;
     },
     remainingChars(){
       return 500 - (this.form.description ? this.form.description.length : 0);
     },
+    validInput() {
+      
+      if (this.isComplete) {
+        if (this.$moment(this.eventEnd).isAfter(this.eventStart)) {
+          return true;
+        } else {
+          this.errorTime = `The end date and time must be a date after or equal to ${this.eventStart}.`;
+        }
+      } else {
+        if (this.form.start_date && this.form.end_date) {
+          console.log('::', this.$moment(this.eventEnd).isAfter(this.eventStart), this.$moment(this.eventEnd).isAfter(this.$moment(this.eventStart)));
+          if (this.$moment(this.eventEnd).isAfter(this.eventStart)) {
+            this.errorTime = '';
+            return true;
+          } else {
+            
+            this.errorTime = `The end date and time must be a date after or equal to ${this.eventStart}.`;
+          }
+        }
+        console.log('[Not Complete] Valid Input: ', this.eventEnd, this.eventStart)
+      }
+      
+      return false;
+    }
   },
   methods: {
     ...mapActions([
-      'createBooking',
+      'createBooking', 'fetchEventOptions',
     ]),
     submit() {
       this.createBooking()
     }
   },
   mounted() {
-    // const myModal = document.getElementById('bookingModal');
+    this.$store.commit('setBooking', {...this.form, start_date: this.eventDate});
+    this.fetchEventOptions();
+    const myModal = document.getElementById('bookingModal');
 
-    // myModal.addEventListener('shown.bs.modal', () =>
-    // {
-    //   this.$store.commit('resetBooking');
-    // });
-
-    // myModal.addEventListener('hide.bs.modal', () =>
-    // {
-    //   this.$store.commit('resetBooking');
-    // });
+    myModal.addEventListener('shown.bs.modal', () =>
+    {
+      
+      
+      this.form.start_time = this.$moment().format('hh:mm');
+      this.form.end_time = this.$moment().add(1, 'hour').format('hh:mm');
+      console.log('Start time: ', this.form.start_time);
+      this.form.start_date = this.$moment(this.eventDate).format('YYYY-MM-DD');
+      this.form.end_date = this.$moment(this.eventDate).format('YYYY-MM-DD');
+    });
   },
 }
 </script>

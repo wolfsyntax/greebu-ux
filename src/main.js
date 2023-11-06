@@ -57,6 +57,10 @@ import TreeItem from "./components/Organizer/TreeItem.vue";
 import { createHead } from "@vueuse/head";
 const head = createHead();
 
+import FullCalendar from "@fullcalendar/vue3";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import interactionPlugin from "@fullcalendar/interaction";
+
 const app = createApp(App)
   .use(i18n)
   .use(VueAxios, axios)
@@ -94,7 +98,8 @@ const app = createApp(App)
   // .component('multiselect', Multiselect)
   .component("cropper", Cropper)
   .component("font-awesome-icon", FontAwesomeIcon)
-  .component("tree-item", TreeItem);
+  .component("tree-item", TreeItem)
+  .component("v-calendar", FullCalendar);
 
 app.config.globalProperties.$moment = moment;
 app.config.globalProperties.$filters = {

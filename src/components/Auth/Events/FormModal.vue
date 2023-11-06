@@ -306,6 +306,7 @@ export default {
     {
       if (this.isComplete) {
         if (this.$moment(this.eventEnd).isAfter(this.eventStart)) {
+          this.errorTime = '';
           return true;
         } else {
           this.errorTime = `The end date and time must be a date after or equal to ${this.eventStart}.`;
