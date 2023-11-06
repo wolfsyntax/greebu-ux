@@ -4,7 +4,6 @@
       <div class="d-flex justify-content-between title-wrapper">
         <div>
           <h3 class="title">Request Application</h3>
-          <p class="sub-title">Lorem ipsum dolor sit amet consectetur.</p>
         </div>
         
         <div>
@@ -27,7 +26,6 @@
           <div class="d-flex align-items-center" v-if="proposal?.status === 'pending'">
             <button class="btn decline" :disabled="proposal?.cancelled_at" @click="decline">Decline</button>
             <button class="btn accept" :disabled="proposal?.cancelled_at" @click="accept">Acccept</button>
-
           </div>
 
           <div class="d-flex align-items-center" v-if="proposal?.status === 'accepted'">
@@ -170,7 +168,8 @@ export default {
         .then(res =>
         {
           console.log('Accepted Response: ', res)
-          this.$refs.closeReqApp.click()
+          this.$refs.closeReqApp.click();
+          $emit('accept-req');
         });
     },
     decline()

@@ -2,11 +2,12 @@
 
   <section class="account-settings">
     <div class="container">
+
       <div class="user-message">
         <h2 class="title">Welcome, {{ user.first_name }}!</h2>
         <p class="sub-title" v-if="userRole === 'artists'">You are on the Free Plan.</p>
         <p class="sub-title" v-if="userRole === 'organizer'">Manage your account as an Organizer.</p>
-        <p class="sub-title" v-if="userRole === 'customers'">Manage your account as an Organizer.</p>
+        <p class="sub-title" v-if="userRole === 'customers'">Manage your account as a Customer.</p>
       </div>
 
       <div class="row">
@@ -70,6 +71,7 @@ export default {
     MyAccount,
     Subscriptions,
     RequestApplication,
+    
   },
   setup () {
     return {

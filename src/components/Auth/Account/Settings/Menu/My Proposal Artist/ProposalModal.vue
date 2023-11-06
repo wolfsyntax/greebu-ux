@@ -4,7 +4,6 @@
         <div class="d-flex justify-content-between title-wrapper">
           <div>
             <h3 class="title">Proposal Details</h3>
-            <p class="sub-title">Lorem ipsum dolor sit amet consectetur.</p>
           </div>
           
           <div>
@@ -32,6 +31,11 @@
             </div>
 
           </div> 
+
+          <div class="d-flex align-items-center note-wrapper" v-if="proposal?.status === 'accepted' && proposal?.accepted_at">
+            <span class="material-symbols-rounded">&#xe86c;</span>
+            <p class="note">Organizer accepted your proposal</p>
+          </div>
   
           <div class="d-flex align-items-center note-wrapper" v-if="proposal?.status === 'pending' && proposal?.cancelled_at === null">
             <span class="material-symbols-rounded">&#xe28e;</span>
