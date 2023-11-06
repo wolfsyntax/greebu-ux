@@ -1,6 +1,6 @@
 <template>
     <div class="modal fade" id="updateSubscription" data-bs-backdrop="static" data-bs-keyboard="false" 
-    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
+    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header p-0 border-0">
@@ -38,7 +38,7 @@
                             <p class="mb-0 description">Per month, billed each year (123)</p>
                         </div>
                         <div>
-                            <button class="border-0 plan-btn">Change Plan</button>
+                            <button class="border-0 plan-btn" @click="showChangePlan">Change Plan</button>
                         </div>
                     </div>
 
@@ -64,17 +64,19 @@
         </div>
       </div>
     </div>
+    <change-plan-modal></change-plan-modal>
   </template>
   
   <script >
   import { mapActions, mapState } from 'vuex';
   import CloseModalButton from '../../../../../CloseModalButton.vue';
-  import Loading from '../../../../../Loading.vue';
-  
+  import ChangePlanModal from './ChangePlanModal.vue';
+  import { Modal } from 'bootstrap';
+
 export default {
 components: {
-    Loading,
-    CloseModalButton
+    CloseModalButton,
+    ChangePlanModal
 },  
 created () {
 },
@@ -83,12 +85,19 @@ watch: {
 props: {
 },
 data: () => ({
-    
+    showUpdate: true,
 }),
-methods: {
-
-},
 mounted() {
+},
+methods: {
+    showChangePlan(){
+      new Modal(document.getElementById('changePlanSubscription'), {
+        keyboard: false,
+        backdrop: 'false',
+      },).show();
+
+    },
+   
 },
 computed: {
 }
@@ -96,5 +105,4 @@ computed: {
 </script>
   
 <style lang="scss" scoped>
-
 </style>

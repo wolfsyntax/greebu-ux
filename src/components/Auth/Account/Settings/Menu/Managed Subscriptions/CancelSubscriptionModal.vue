@@ -29,7 +29,7 @@
               <Loading :infoText="buttonName" v-if="isLoading"/>
               <span v-else>{{ buttonName }}</span>
             </button>
-            <button type="button" class="btn btn-primary cancel" data-bs-dismiss="modal" @click="cancel">Cancel</button>
+            <button type="button" class="btn btn-primary cancel" data-bs-dismiss="modal">Cancel</button>
           </div>
   
         </div>
