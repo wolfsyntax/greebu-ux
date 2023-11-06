@@ -40,16 +40,16 @@
     </div>
   </div>
 
-  <view-proposal-modal :show="showModal" @close-modal="closeModal" @accept-request="onModalAccepted" />
+  <booking-request-modal :show="showModal" @close-modal="closeModal" @accept-request="onModalAccepted" />
 
 </template>
 
 <script>
-import ViewProposalModal from './ViewProposalModal.vue';
+import BookingRequestModal from './BookingRequestModal.vue';
 
 export default {
   components: {
-    ViewProposalModal,
+    BookingRequestModal,
   },
   data () {
     return {

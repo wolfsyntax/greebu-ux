@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="my-bookings">
     <div class="d-flex align-items-center justify-content-between title-wrapper">
       <h3 class="title">Bookings</h3>
 
@@ -30,7 +30,7 @@
     </div>
     
     <pending-request v-if="selectedCustomized === 'Pending Request'"/>
-    <pending-bookings v-if="selectedCustomized === 'Pending Bookings'" />
+    <accepted-bookings v-if="selectedCustomized === 'Accepted Bookings'" />
     <denied-bookings v-if="selectedCustomized === 'Denied Bookings'"/>
     <completed-bookings v-if="selectedCustomized === 'Completed Bookings'"/>
     
@@ -42,14 +42,14 @@
 import {mapActions, mapState} from 'vuex';
 import CompletedBookings from './CompletedBookings.vue';
 import DeniedBookings from './DeniedBookings.vue';
-import PendingBookings from './PendingBookings.vue';
+import AcceptedBookings from './AcceptedBookings.vue';
 import PendingRequest from './PendingRequest.vue';
 
 export default {
   components: {
     CompletedBookings,
     DeniedBookings,
-    PendingBookings, 
+    AcceptedBookings, 
     PendingRequest, 
   },
   props: {
@@ -59,7 +59,7 @@ export default {
     return {
       myProposal: [
         { name: 'Pending Request'},
-        { name: 'Pending Bookings'},
+        { name: 'Accepted Bookings'},
         { name: 'Denied Bookings'},
         { name: 'Completed Bookings'},
       ],
