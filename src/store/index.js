@@ -11,6 +11,7 @@ import getters from "./getters";
 import state from "./state";
 
 import artist from "./modules/artists";
+import booking from "./modules/booking";
 import userProfile from "./modules/profiles";
 import artistProposal from "./modules/proposals";
 import customer from "./modules/customers";
@@ -20,6 +21,7 @@ import notifications from "./modules/notifications";
 import services from "./modules/services";
 import events from "./modules/events";
 import songs from "./modules/songs";
+
 const ls = new SecureLS({ isCompression: false });
 
 export default new Vuex.Store({
@@ -72,6 +74,7 @@ export default new Vuex.Store({
   getters,
   modules: {
     artist,
+    booking,
     userProfile,
     events,
     customer,
