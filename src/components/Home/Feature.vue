@@ -457,17 +457,17 @@ export default {
       ],
       reviews: [
         {
-          video: 'https://video.wixstatic.com/video/8fd47a_61de9ebf0ad64f0fa93d72e4279551f7/1080p/mp4/file.mp4',
+          video: '/assets/videos/geebu-presentation.mp4',
           testimonial: '“Pellentesque maecenas vitae vehicula eget. Ultricies ac id massa maecenas nulla arcu lacus. Turpis porttitor.”',
           user: 'Courtney Henry - Our Client'
         },
         {
-          video: 'https://repitsocial.com/wp-content/uploads/2023/04/repitsocial-featured-video.mp4',
+          video: '/assets/videos/geebu-presentation.mp4',
           testimonial: '“Pellentesque maecenas vitae vehicula eget. Ultricies ac id massa maecenas nulla arcu lacus. Turpis porttitor.”',
           user: 'Courtney Henry - Our Client'
         },
         {
-          video: 'https://res.cloudinary.com/daorvtlls/video/upload/v1686648918/Figma_in_5__Auto_Layout_hddmey.mp4',
+          video: '/assets/videos/geebu-presentation.mp4',
           testimonial: '“Figma in Five: Auto-Layout”',
           user: 'Roger'
         }
