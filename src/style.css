@@ -6529,13 +6529,18 @@ header nav {
   letter-spacing: -0.045rem;
   margin-bottom: 0;
 }
+.account-settings .note-wrapper .sub-note{
+  color: var(--orange);
+  font-size: 0.87rem;
+  font-weight: 500;
+  margin-bottom: 0;
+}
 .account-settings .note-wrapper span {
   color: var(--orange);
   font-size: 24px;
   margin-right: 0.5rem;
-  font-variation-settings: "FILL" 1, "wght" 800, "GRAD" 0, "opsz" 48;
+  /* font-variation-settings: "FILL" 1, "wght" 800, "GRAD" 0, "opsz" 48; */
 }
-
 .account-settings .request-song-modal .story-wrapper {
   margin-bottom: 2.5rem;
   text-align: left;
@@ -7255,6 +7260,9 @@ header nav {
   font-size: 1rem;
   font-weight: 500;
   margin-bottom: 0.25rem;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 #eventDetailsModal .event-details-wrapper p {
   color: var(--orange);
@@ -9078,6 +9086,144 @@ header nav {
   margin-bottom: 0.94rem;
 }
 
+/* Events - Popover Card */
+
+.popover{
+  /* border-color: white!important; */
+  --bs-popover-border-color: white!important;
+}
+#card-performer{
+  /* width: 13.875rem; */
+  padding: 0.25rem 0.25rem 0.6rem 0.25rem;
+  border-radius: 0.3265rem;
+  background: var(--white);
+  box-shadow: 0px 16.32353px 32.64706px -7.83529px rgba(0, 0, 0, 0.25);
+}
+#card-performer .img-wrap{
+  position: relative;
+  width: 100%;
+}
+#card-performer .img-wrap .cover{
+  border-radius: 0.20406rem;
+  width: 100%;
+  height: 4.4375rem;
+}
+#card-performer .img-wrap .profile-wrap {
+  position: absolute;
+  margin: 0 0 0.5rem 0;
+  /* top: 100%;
+  left: 50%; */
+  top: 60%;
+  left: 5%;
+}
+#card-performer .img-wrap .profile-wrap .profile{
+  width: 3.50956rem;
+  height: 3.50956rem;
+}
+#card-performer .about-wrap,
+ #card-performer .details-wrap {
+  padding: 0 0.6rem;
+}
+#card-performer .details-wrap {
+  margin-top: 13%;
+  margin-bottom: 0.5rem;
+  gap: 0.5rem;
+}
+#card-performer .details-wrap .follow{
+  color: var(--white);
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.19rem 0.75rem;
+  border-radius: 6.1875rem;
+  background-color: var(--orange);
+  cursor: pointer;
+}
+#card-performer .details-wrap h4{
+  color: var(--black);
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 0.81619rem;
+  margin-bottom: 0.15rem;
+}
+#card-performer .details-wrap h5{
+  color: var(--gray2);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 0.81619rem; 
+}
+#card-performer .details-wrap button{
+  color: var(--white);
+  font-size: 0.5rem;
+  font-weight: 500;
+  padding: 0.19rem 0.75rem;
+  border-radius: 6.1875rem;
+  background-color: var(--orange);
+}
+#card-performer .about-wrap .bio{
+  color: var(--gray2);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 0.81619rem; 
+  margin-bottom: 0.5rem;
+}
+#card-performer .follow-wrap{
+  margin-bottom: 0.5rem;
+}
+#card-performer .follow-wrap div:nth-child(1){
+  margin-right: 1rem;
+}
+#card-performer .follow-wrap h5{
+  color: var(--black);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 0.81619rem; 
+  margin-bottom: 0;
+  margin-right: 0.25rem;
+}
+#card-performer .follow-wrap h6{
+  color: var(--gray2);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 0.81619rem;
+  margin-bottom: 0;
+}
+#card-performer .others-wrap{
+  margin-bottom: 0.8rem;
+}
+#card-performer .others-wrap div:nth-child(1){
+  margin-bottom: 0.25rem;
+}
+#card-performer .others-wrap img{
+  width: 0.7rem;
+  height: 0.7rem;
+  margin-right: 0.25rem;
+}
+#card-performer .others-wrap h6{
+  color: #0571ED;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 0.81619rem; 
+  margin-bottom: 0;
+}
+#card-performer .others-wrap .location{
+  color: var(--gray2);
+}
+#card-performer .btn-wrap a{
+  color: var(--black);
+  text-align: center;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.47rem 0;
+  width: 100%;
+  border-radius: 0.16325rem;
+  background-color: #F1F1F1;
+}
+#card-performer .btn-wrap a:hover{
+  background-color: var(--orange);
+  color: var(--white);
+}
+
 
 
 
@@ -10510,10 +10656,12 @@ header nav {
   .account-settings .req-song-wrap .action-wrap .completed-btn span {
     font-size: 18px;
   }
-
   .account-settings .note-wrapper .note {
     font-size: 0.875rem;
     letter-spacing: -0.035rem;
+  }
+  .account-settings .note-wrapper .sub-note {
+    font-size: 0.75rem;
   }
   .account-settings .note-wrapper {
     margin-bottom: 1.12rem;

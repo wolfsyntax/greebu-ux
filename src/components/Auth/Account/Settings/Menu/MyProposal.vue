@@ -14,8 +14,8 @@
 
 <script>
 import { mapGetters, mapState, mapActions } from "vuex";
-import MyProposalArtist from './My Proposal Artist/Index.vue';
-import MyProposalOrganizer from './My Proposal Organizer/Index.vue';
+import MyProposalArtist from './My Proposal/Artist/Index.vue';
+import MyProposalOrganizer from './My Proposal/Organizer/Index.vue';
 
 export default {
   components: {

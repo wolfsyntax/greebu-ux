@@ -20,19 +20,19 @@
 
     <div class="d-flex align-items-center customized-songs-tabs">
       <li class="d-flex align-items-center" 
-        v-for="proposal in myProposal" 
-        :key="proposal.name"
-        :class="{ 'active-option': selectedCustomized === proposal.name }"
-        @click="showCustomizeContent(proposal)"
+        v-for="booking in myBookings" 
+        :key="booking.name"
+        :class="{ 'active-option': selectedBooking === booking.name }"
+        @click="showCustomizeContent(booking)"
       >
-        <h5 class="tab-title">{{ proposal.name }}</h5>
+        <h5 class="tab-title">{{ booking.name }}</h5>
       </li>
     </div>
     
-    <pending-request v-if="selectedCustomized === 'Pending Request'"/>
-    <accepted-bookings v-if="selectedCustomized === 'Accepted Bookings'" />
-    <denied-bookings v-if="selectedCustomized === 'Denied Bookings'"/>
-    <completed-bookings v-if="selectedCustomized === 'Completed Bookings'"/>
+    <pending-request v-if="selectedBooking === 'Pending Request'"/>
+    <accepted-bookings v-if="selectedBooking === 'Accepted Bookings'" />
+    <denied-bookings v-if="selectedBooking === 'Denied Bookings'"/>
+    <completed-bookings v-if="selectedBooking === 'Completed Bookings'"/>
     
   </div>
 </template>
@@ -57,13 +57,13 @@ export default {
   },
   data() {
     return {
-      myProposal: [
+      myBookings: [
         { name: 'Pending Request'},
         { name: 'Accepted Bookings'},
         { name: 'Denied Bookings'},
         { name: 'Completed Bookings'},
       ],
-      selectedCustomized: 'Pending Request', // Default selected option
+      selectedBooking: 'Pending Request', // Default selected option
       showModal: false,
       showToast: false
     }
@@ -75,9 +75,9 @@ export default {
     ...mapActions([
       'fetchMyProposals'
     ]),
-    showCustomizeContent(option) {
-      console.log('showCustomizeContent: ', option)
-      this.selectedCustomized = option.name;
+    showCustomizeContent(booking) {
+      console.log('showCustomizeContent: ', booking)
+      this.selectedBooking = booking.name;
     },
     closeModal(){
       this.showModal = false;
