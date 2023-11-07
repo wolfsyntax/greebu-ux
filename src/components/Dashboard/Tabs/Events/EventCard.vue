@@ -95,9 +95,11 @@ export default {
       // if (this.$moment($moment(myEvent.start_date).format('YYYY-MM-DD')).diff(this.$moment().format('YYYY-MM-DD'), 'days') > 2) {
         this.$store.commit('RESET_EVENT_FORM')
         
+        // this.fetchEvent(this.myEvent.id)
+        //   .then(res => this.$emit('show-detail', this.myEvent, 'edit'));
+        this.$store.commit("SET_EVENT_FORM", this.myEvent);
+        this.$emit('show-detail', this.myEvent, 'edit');
         this.fetchEvent(this.myEvent.id)
-          .then(res => this.$emit('show-detail', this.myEvent, 'edit'));
-
       // }
       
     },
