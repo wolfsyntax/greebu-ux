@@ -11,9 +11,9 @@
 
       <event-card />
 
-      <booking-request-modal :show="showModal"
+      <!-- <booking-request-modal :show="showModal"
         @close-modal="closeModal" @show-toast-msg="showToastMessage"
-      />
+      /> -->
 
     </div> 
 
