@@ -375,7 +375,7 @@ export const fetchArtist = ({ commit, rootState, state }, payload) => {
         .get(
           `${
             import.meta.env.VITE_BASE_URL || "http://localhost:8000"
-          }/api/artist/${payload}`
+          }/api/artists/${payload}`
         )
         .then((response) => {
           console.log("\n\nFetch Artist Response: ", response);

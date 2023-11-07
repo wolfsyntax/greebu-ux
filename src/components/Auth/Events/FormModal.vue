@@ -22,57 +22,55 @@
           <option v-for="(event_type, index) in eventTypes" :key="index" :value="event_type">
             {{ event_type }}
           </option>
-      </select>
-      <div v-for="err in error?.event_type" :key="err" class="text-danger">{{ err }}</div>
-    </div>
+        </select>
+        <div v-for="err in error?.event_type" :key="err" class="text-danger">{{ err }}</div>
+      </div>
 
-    <div class="form-group">
+      <div class="form-group">
         <label for="eventType">Name of Event</label>
         <input type="text" v-model="form.event_name" class="form-control" placeholder="Name of Event" required autocomplete="off"/>
         <div v-for="err in error?.event_name" :key="err" class="text-danger">{{ err }}</div>
-    </div>
-
-    <div class="form-group">
-          <label for="eventType">Venue Name</label>
-          <input type="text" v-model="form.venue_name" class="form-control" placeholder="Venue Name" required autocomplete="off"/>
-          <div v-for="err in error?.venue_name" :key="err" class="text-danger">{{ err }}</div>
-    </div>
-
-      <div class="form-group">
-          <label for="eventType">Venue Address</label>
-            <input type="text" v-model="form.street_address" class="form-control location-input" 
-            placeholder="Unit/Floor No. Bldg.Name,House/Bldg.No.," required autocomplete="off"/>
-          <div v-for="err in error?.location" :key="err" class="text-danger">{{ err }}</div>
-
-          <div class="d-flex justify-content-between venue-sub-groups">
-
-            <div>
-              <input type="text" v-model="form.barangay" class="form-control location-input" placeholder="Village/Subdivision, Barangay" required autocomplete="off"/>
-            </div>
-
-            <div>
-              <input type="text" v-model="form.city" class="form-control location-input" placeholder="Town/City" required autocomplete="off"/>
-            </div>
-
-            <div>
-              <input type="text" v-model="form.province" class="form-control location-input" placeholder="Province" required autocomplete="off"/>
-            </div>
-
-           </div> 
-           <div v-for="err in error?.street_address" :key="err" class="text-danger">{{ err }}</div>
       </div>
 
       <div class="form-group">
-          <label for="eventType">Audience</label>
-          <select v-model="form.audience" class="form-select" >
-            <option value="false" selected>Private Event</option>
-              <option value="true">Public Event</option>
-          </select>
-          <div v-for="err in error?.audience" :key="err" class="text-danger">{{ err }}</div>
+        <label for="eventType">Venue Name</label>
+        <input type="text" v-model="form.venue_name" class="form-control" placeholder="Venue Name" required autocomplete="off"/>
+        <div v-for="err in error?.venue_name" :key="err" class="text-danger">{{ err }}</div>
+      </div>
+
+      <div class="form-group">
+        <label for="eventType">Venue Address</label>
+        <input type="text" v-model="form.street_address" class="form-control location-input" 
+          placeholder="Unit/Floor No. Bldg.Name,House/Bldg.No.," required autocomplete="off"/>
+        <div v-for="err in error?.location" :key="err" class="text-danger">{{ err }}</div>
+
+        <div class="d-flex justify-content-between venue-sub-groups">
+          <div>
+            <input type="text" v-model="form.barangay" class="form-control location-input" placeholder="Village/Subdivision, Barangay" required autocomplete="off"/>
+          </div>
+
+          <div>
+            <input type="text" v-model="form.city" class="form-control location-input" placeholder="Town/City" required autocomplete="off"/>
+          </div>
+
+          <div>
+            <input type="text" v-model="form.province" class="form-control location-input" placeholder="Province" required autocomplete="off"/>
+          </div>
+
+        </div> 
+        <div v-for="err in error?.street_address" :key="err" class="text-danger">{{ err }}</div>
+      </div>
+
+      <div class="form-group">
+        <label for="eventType">Audience</label>
+        <select v-model="form.audience" class="form-select" >
+          <option value="false" selected>Private Event</option>
+          <option value="true">Public Event</option>
+        </select>
+        <div v-for="err in error?.audience" :key="err" class="text-danger">{{ err }}</div>
       </div>
 
       <div class="d-flex align-items-center start-end-wrap">
-
         <div class="form-group">
           <label for="eventType">Start Date</label>
           
@@ -104,35 +102,32 @@
           <div v-for="err in error?.end_time" :key="err" class="text-danger">{{ err }}</div>
         </div>
 
-        </div>
+      </div>
         
-        <div class="row py-2" v-if="errorTime">
-          <div class="col text-danger">
-            {{ errorTime }}
-          </div>
+      <div class="row py-2" v-if="errorTime">
+        <div class="col text-danger">
+          {{ errorTime }}
         </div>
+      </div>
 
       
-        <div class="form-group">
-          <label for="eventDetails">Event Details</label>
-          <textarea v-model="form.description" maxlength="500" rows="7" class="form-control about-artist" placeholder="Write description" required>
-          </textarea>
-          <div v-for="err in error?.description" :key="err" class="text-danger">{{ err }}</div>
-          <p v-show="form.description" class="text-end char-count">Maximum 500 characters ( {{ remainingChars }} left)</p> 
-        </div>
+      <div class="form-group">
+        <label for="eventDetails">Event Details</label>
+        <textarea v-model="form.description" maxlength="500" rows="7" class="form-control about-artist" placeholder="Write description" required>
+        </textarea>
+        <div v-for="err in error?.description" :key="err" class="text-danger">{{ err }}</div>
+        <p v-show="form.description" class="text-end char-count">Maximum 500 characters ( {{ remainingChars }} left)</p> 
+      </div>
         
       
-        <div class="text-end action-btn-wrap">
+      <div class="text-end action-btn-wrap">
+        <button type="button" class="btn cancel" data-bs-dismiss="modal">Cancel</button>
 
-          <button type="button" class="btn cancel" data-bs-dismiss="modal">Cancel</button>
-
-          <button type="submit" class="btn next" :disabled="!validInput">
-            <LoadingVue :infoText="buttonName" v-if="isLoading"/>
-            <span v-else>{{ buttonName }}</span>
-          </button>
-
-
-        </div>
+        <button type="submit" class="btn next" :disabled="!validInput">
+          <LoadingVue :infoText="buttonName" v-if="isLoading"/>
+          <span v-else>{{ buttonName }}</span>
+        </button>
+      </div>
 
     </form>    
   </div>
@@ -311,6 +306,7 @@ export default {
     {
       if (this.isComplete) {
         if (this.$moment(this.eventEnd).isAfter(this.eventStart)) {
+          this.errorTime = '';
           return true;
         } else {
           this.errorTime = `The end date and time must be a date after or equal to ${this.eventStart}.`;

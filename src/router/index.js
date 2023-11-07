@@ -70,6 +70,18 @@ const router = createRouter({
           },
         },
         {
+          path: "/artists/:id/booking",
+          name: "artists-booking",
+          component: () => import("/src/views/Artist/Booking.vue"),
+          meta: {
+            requiresLogin: false,
+            title: "Artists - Booking",
+            role: "",
+            parent: "artists",
+            breadcrumb: [{ title: "", url: "" }],
+          },
+        },
+        {
           path: "/create-song",
           name: "create-song",
           component: () => import("/src/views/Homepage/CreateSong.vue"),
