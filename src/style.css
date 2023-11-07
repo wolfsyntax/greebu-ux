@@ -9057,6 +9057,7 @@ header nav {
   border: 1px solid var(--gray6);
   padding: 1.25rem;
   margin-bottom: 2.5rem;
+  gap: 1rem;
 }
 .account-settings .my-bookings .booking-box-wrap .event-name{
   color: var(--black);
@@ -9084,6 +9085,18 @@ header nav {
 }
 .account-settings .my-bookings .cancelled-proposal-wrap {
   margin-bottom: 0.94rem;
+}
+.account-settings .my-bookings .booking-box-wrap .accepted-booking-btn{
+  border-radius: 0.5rem;
+  padding: 0.75rem 0;
+  width: 10.3125rem;
+  border: 1px solid var(--indigo-light);
+  background: var(--indigo-light);
+  color: var(--indigo);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5rem;
+  cursor: not-allowed;
 }
 
 /* Events - Popover Card */
@@ -9293,6 +9306,12 @@ header nav {
 }
 .account-settings .my-bookings .cancelled-proposal-wrap {
   margin-bottom: 0.75rem;
+}
+.account-settings .my-bookings .booking-box-wrap .accepted-booking-btn{
+  font-size: 0.75rem;
+  line-height: 1.125rem;
+  padding: 0.56rem 0;
+  width: 7.3125rem;
 }
 
 /* Account Settings - My Bookings  */

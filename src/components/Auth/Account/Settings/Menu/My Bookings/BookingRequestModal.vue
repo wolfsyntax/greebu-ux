@@ -24,10 +24,13 @@
             </div>
           </div>
           <!-- Pending Request -->
-          <div class="d-flex align-items-center">
+          <!-- <div class="d-flex align-items-center">
             <button class="btn decline">Decline</button>
             <button class="btn accept" @click="$emit('show-toast-msg')">Acccept</button>
-          </div>
+          </div> -->
+
+          <!-- Accepted Booking -->
+          <!-- No button -->
 
            <!-- Cancelled Booking -->
           <!-- <div class="d-flex align-items-center">
@@ -50,17 +53,22 @@
               <button class="btn cancelled">Cancelled</button>
             </div> -->
 
+            <!-- Declined button -->
+            <div class="d-flex align-items-center">
+              <button class="btn cancelled">Declined</button>
+            </div>
+
 
         </div> <!-- end of action-wrapper -->
 
          <!-- Cancelled Booking -->
-        <div class="d-flex align-items-start note-wrapper">
+        <!-- <div class="d-flex align-items-start note-wrapper">
           <span class="material-symbols-rounded">&#xe8b5;</span>
           <div class="text-start">
             <p class="note">Expired within 20 hours</p>
             <p class="sub-note">Please be aware that this request will expire within the next 20 hours.</p>
           </div>
-        </div>
+        </div> -->
 
             <!-- Expired Booking -->
         <!-- <div class="d-flex align-items-center note-wrapper expired-wrap">
@@ -78,16 +86,37 @@
           <h4 class="mb-0 reason">Financial Setback</h4>
         </div> -->
 
-        <div class="text-start booking-box-wrap">
-          <h4 class="event-name">Bubbly & Brunch Birthday Bash 2023</h4>
-          <div class="d-flex align-items-center">
-            <span class="material-symbols-rounded">&#xf233;</span>
-            <p>Private event</p>
+          <!-- Accepted Booking -->
+        <!-- <div class="d-flex align-items-center note-wrapper">
+          <span class="material-symbols-rounded">&#xe86c;</span>
+          <p class="note">You’ve accepted this booking</p>
+        </div> -->
+
+         <!-- Declined button -->
+         <div class="d-flex align-items-center note-wrapper">
+          <span class="material-symbols-rounded">&#xe14b;</span>
+          <p class="note">You’ve declined this booking</p>
+        </div>
+        
+
+        <div class="d-flex align-items-start justify-content-between text-start booking-box-wrap">
+          <div>
+            <h4 class="event-name">Bubbly & Brunch Birthday Bash 2023</h4>
+            <div class="d-flex align-items-center">
+              <span class="material-symbols-rounded">&#xf233;</span>
+              <p>Private event</p>
+            </div>
+            <div class="d-flex align-items-center">
+              <span class="material-symbols-rounded">&#xebcc;</span>
+              <p>June 12,2023</p>
+            </div>
           </div>
-          <div class="d-flex align-items-center">
-            <span class="material-symbols-rounded">&#xebcc;</span>
-            <p>June 12,2023</p>
+
+          <div>
+            <!-- Accepted Booking -->
+            <!-- <button class="btn accepted-booking-btn">10 days to go</button> -->
           </div>
+
         </div>
 
         <div class="d-flex justify-content-between action-wrapper song-info-wrapper">

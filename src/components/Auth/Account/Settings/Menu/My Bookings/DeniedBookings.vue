@@ -1,96 +1,57 @@
 <template>
-  <div class="customized-songs-wrapper">
-      <div class="d-flex align-items-center justify-content-between event-description">
 
-        <div class="d-flex align-items-center left-wrap expand-left-wrap">
-          <div class="song-cover-wrap">
-            <img src="/assets/organizer-account/profile-img.webp" class="offer-img" alt="Song album cover"> 
-          </div>
+  <!-- No bookings found! -->
+  <!-- <no-message :infoText="message" :infoTitle="title"></no-message> -->
 
-          <div class="song-details-wrap">
+  <div>
 
-            <div class="d-flex align-items-center event-wrap">
-              <h5 class="mb-0 event"><span>From:</span> KYC Flores Event Organizer KYC Flores Event Organizer </h5>
-                <div>
-                  <button class="btn p-0 badge-wrap">
-                    <!-- <span class="in-progress cancelled lh-badge">Cancelled</span> -->
-                    <span class="d-flex align-items-center in-progress event-accepted">
-                      <span class="material-symbols-rounded event-icon">&#xf238;</span>
-                      October 15,2023
-                    </span>
-                  </button>
-                </div>
-            </div>
+    <event-card />
 
-            <div>
-              <h6 class="d-flex align-items-center venue">Full band
-              <span class="material-symbols-rounded dot-icon">&#xe061;</span>Naga City, Camarines Sur</h6>
-              <p class="d-flex align-items-center mb-0 star-ratings">
-                <span class="material-symbols-rounded star-icon">&#xe838;</span>
-                4.95 <span class="reviews">(234 reviews)</span>
-              </p>
-            </div>
+    <!-- <booking-request-modal :show="showModal"
+      @close-modal="closeModal" @show-toast-msg="showToastMessage"
+    /> -->
 
-          </div>
-          
-        </div>
-
-        <div class="details-wrapper">
-          <div class="button-wrapper">
-            <button type="button" class="btn details" @click="showModal = true">View Proposal</button>
-          </div>
-        </div>  
-      
-      </div>
-    </div>
-
-    <booking-request-modal :show="showModal" @close-modal="closeModal" @accept-request="onModalAccepted" />
+  </div> 
 
 </template>
 
 <script>
-
-import { mapState, mapActions } from 'vuex';
+// import BookingRequestModal from './BookingRequestModal.vue';
+import NoMessage from '../NoMessage.vue';
 import BookingRequestModal from './BookingRequestModal.vue';
+import EventCard from './EventCardProposal.vue';
 
 export default {
-  setup()
+setup()
+{
+
+  return {}
+},
+components: {
+ BookingRequestModal,
+ EventCard,
+  NoMessage
+},
+data: () => ({
+  optionType: 'denied',
+}),
+methods: {
+  closeModal()
   {
-
-
-    return {}
+    this.showModal = false;
   },
-  components: {
-    BookingRequestModal
-  },
-  data: () => ({
-    
-    showModal: false,
-  }),
-  methods: {
-
-    closeModal()
+  onModalAccepted()
+  {
+    this.showToast = true;
+    setTimeout(() =>
     {
-      this.showModal = false;
-    },
-
-    onModalAccepted()
-    {
-      this.showToast = true;
-      setTimeout(() =>
-      {
-        this.showToast = false;
-      }, 7000);
-      this.showModal = false;
-    },    
-  },
-  mounted() {
-  
-  },
-  computed: { 
-  
-  },
+      this.showToast = false;
+    }, 7000);
+    this.showModal = false;
+  },   
+}
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+</style>

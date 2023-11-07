@@ -8,15 +8,25 @@
           <h5 class="mb-0 event">Birthday Event</h5>
           <div>
        
-            <button class="btn border-0 badge-wrap expire-wrap">
+            <!-- <button class="btn border-0 badge-wrap expire-wrap">
               <span class="material-symbols-rounded clock-icon">&#xe8b5;</span>
               <span class="expire">Expire within 20 hours</span>
-            </button>
+            </button> -->
 
             <!-- Cancelled Booking -->
             <!-- <button class="btn p-0 border-0 badge-wrap">
               <span class="in-progress cancelled lh-badge">Cancelled</span>
             </button> -->
+
+              <!-- Accepted Booking -->
+            <!-- <button class="btn p-0 border-0 badge-wrap">
+              <span class="in-progress in-progress lh-badge">10 days to go</span>
+            </button> -->
+
+             <!-- Denied Booking -->
+            <button class="btn p-0 border-0 badge-wrap">
+              <span class="in-progress cancelled lh-badge">Denied</span>
+            </button>
 
              <!-- Expired Booking -->
             <!-- <button class="btn border-0 badge-wrap expire-wrap">
