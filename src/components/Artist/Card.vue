@@ -57,16 +57,11 @@ export default {
     cardIndex: Number,
   },
   methods: {
-    // openModal(data){
-    //     this.$root.$emit("bv::show::modal", "#artistModal");
-
-    //   },
     openModal(){
-      new Modal(document.getElementById('artistModal'), {
-        keyboard: false,
-        backdrop: 'static',
-      }).show();
-      console.log('Modal', Modal);
+      
+      this.$store.commit('SET_ARTIST', this.artist);
+
+      // this.$root.$emit("bv::show::modal", "#artistModal");
     },
     imageUrlAlt(event)
     {
