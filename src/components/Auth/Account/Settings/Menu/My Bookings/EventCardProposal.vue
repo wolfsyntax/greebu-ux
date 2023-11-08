@@ -24,8 +24,13 @@
             </button> -->
 
              <!-- Denied Booking -->
-            <button class="btn p-0 border-0 badge-wrap">
+            <!-- <button class="btn p-0 border-0 badge-wrap">
               <span class="in-progress cancelled lh-badge">Denied</span>
+            </button> -->
+
+            <!-- Completed Booking -->
+            <button class="btn p-0 border-0 badge-wrap">
+              <span class="in-progress completed lh-badge">Completed</span>
             </button>
 
              <!-- Expired Booking -->

@@ -28,7 +28,7 @@
       {{ changeSelectArtist(artist) }}
     </button>      
   </div>
-  <artistdetails></artistdetails>
+  <artistdetails :selectedArtist="artist"></artistdetails>
 </template>
 <script>
 import Layout from '/src/components/Layouts/Layout.vue';
@@ -57,9 +57,17 @@ export default {
     cardIndex: Number,
   },
   methods: {
-    openModal(data){
-        this.$root.$emit("bv::show::modal", "#artistModal");
-      },
+    // openModal(data){
+    //     this.$root.$emit("bv::show::modal", "#artistModal");
+
+    //   },
+    openModal(){
+      new Modal(document.getElementById('artistModal'), {
+        keyboard: false,
+        backdrop: 'static',
+      }).show();
+      console.log('Modal', Modal);
+    },
     imageUrlAlt(event)
     {
       event.target.src = "https://res.cloudinary.com/daorvtlls/image/upload/v1686649067/trending-bicolano-artist-2_ljhog8.png"

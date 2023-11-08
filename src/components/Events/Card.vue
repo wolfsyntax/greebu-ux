@@ -84,7 +84,7 @@
               :data-bs-content='`
                 <div class="border-0" id="card-performer">
                     <div class="img-wrap">
-                      <img src="https://develop.geebu.ph/assets/home/available-artist-slider-1.webp" class="cover" alt="artist cover image">
+                      <img src="/assets/artist-account/default-cover-photo.webp" class="cover" alt="artist cover image">
 
                       <div class="profile-wrap">
                         <img src="${artist.avatar}" class="img-fluid rounded-circle profile" alt="artist avatar">

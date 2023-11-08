@@ -16,7 +16,6 @@
 </template>
 
 <script>
-// import BookingRequestModal from './BookingRequestModal.vue';
 import NoMessage from '../NoMessage.vue';
 import BookingRequestModal from './BookingRequestModal.vue';
 import EventCard from './EventCardProposal.vue';

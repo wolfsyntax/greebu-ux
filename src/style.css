@@ -6246,7 +6246,8 @@ header nav {
   overflow-y: auto; */
 }
 
-.account-settings .reason-wrap .form-group {
+.account-settings .reason-wrap .form-group,
+#eventCancellation .reason-wrap .form-group {
   border-radius: 0.75rem;
   border: 1px solid #e4e7ec;
   background: var(--white);
@@ -6258,13 +6259,15 @@ header nav {
 /* .account-settings .reason-wrap .form-group:last-child{
   margin-bottom: 4rem;
 } */
-.account-settings .reason-wrap label {
+.account-settings .reason-wrap label,
+#eventCancellation .reason-wrap label {
   color: var(--gray2);
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.25rem;
 }
-.account-settings .reason-wrap .form-check-input {
+.account-settings .reason-wrap .form-check-input,
+#eventCancellation .reason-wrap .form-check-input {
   width: 1rem;
   height: 1rem;
   border-radius: 0.5rem;
@@ -6272,14 +6275,17 @@ header nav {
   margin-right: 0.62rem;
   margin-top: 0;
 }
-.account-settings .reason-wrap .form-check-input:checked {
+.account-settings .reason-wrap .form-check-input:checked,
+#eventCancellation .reason-wrap .form-check-input:checked {
   background-color: var(--orange);
   border-color: var(--orange);
 }
-.account-settings .reason-wrap .group-btn-wrap {
+.account-settings .reason-wrap .group-btn-wrap,
+#eventCancellation .reason-wrap .group-btn-wrap {
   margin-top: 4rem;
 }
-.account-settings .reason-wrap .group-btn-wrap button {
+.account-settings .reason-wrap .group-btn-wrap button,
+#eventCancellation .reason-wrap .group-btn-wrap button {
   border-radius: 0.5rem;
   background: var(--orange);
   border: 1px solid var(--orange);
@@ -6290,16 +6296,19 @@ header nav {
   line-height: normal;
   padding: 1rem 2rem;
 }
-.account-settings .reason-wrap .group-btn-wrap .cancel {
+.account-settings .reason-wrap .group-btn-wrap .cancel,
+#eventCancellation .reason-wrap .group-btn-wrap .cancel {
   color: var(--orange);
   background: var(--white);
   margin-right: 0.5rem;
 }
-.account-settings .reason-wrap .group-btn-wrap .confirm:hover {
+.account-settings .reason-wrap .group-btn-wrap .confirm:hover,
+#eventCancellation .reason-wrap .group-btn-wrap .confirm:hover {
   background-color: var(--btn-hovered);
   border-color: var(--btn-hovered);
 }
-.account-settings .reason-wrap .group-btn-wrap .cancel {
+.account-settings .reason-wrap .group-btn-wrap .cancel,
+#eventCancellation .reason-wrap .group-btn-wrap .cancel {
   color: var(--btn-hovered);
   border-color: var(--btn-hovered);
 }
@@ -6315,17 +6324,20 @@ header nav {
   border: 1px solid var(--gray6);
   border-radius: 100px;
 }
-.account-settings .request-song-modal .title-wrapper {
+.account-settings .request-song-modal .title-wrapper,
+#eventCancellation .title-wrapper {
   text-align: left;
   margin-bottom: 2.5rem;
 }
-.account-settings .request-song-modal .title-wrapper .title {
+.account-settings .request-song-modal .title-wrapper .title,
+#eventCancellation .title {
   color: var(--black-color);
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 0;
 }
-.account-settings .request-song-modal .title-wrapper .sub-title {
+.account-settings .request-song-modal .title-wrapper .sub-title,
+#eventCancellation .sub-title {
   color: var(--gray6);
   font-size: 1rem;
   font-weight: 500;
@@ -9086,7 +9098,8 @@ header nav {
 .account-settings .my-bookings .cancelled-proposal-wrap {
   margin-bottom: 0.94rem;
 }
-.account-settings .my-bookings .booking-box-wrap .accepted-booking-btn{
+.account-settings .my-bookings .booking-box-wrap .accepted-booking-btn,
+.account-settings .my-bookings .booking-box-wrap .completed-booking-btn{
   border-radius: 0.5rem;
   padding: 0.75rem 0;
   width: 10.3125rem;
@@ -9098,7 +9111,16 @@ header nav {
   line-height: 1.5rem;
   cursor: not-allowed;
 }
-
+.account-settings .my-bookings .booking-box-wrap .completed-booking-btn{
+  border: 1px solid var(--completed-light);
+  background: var(--completed-light);
+  color: var(--completed);
+  gap: 0.5rem;
+}
+.account-settings .my-bookings .booking-box-wrap .completed-booking-btn .check-icon{
+  font-size: 24px;
+  color: var(--completed);
+}
 /* Events - Popover Card */
 
 .popover{
@@ -9150,6 +9172,9 @@ header nav {
   border-radius: 6.1875rem;
   background-color: var(--orange);
   cursor: pointer;
+}
+#card-performer .details-wrap .follow:hover{
+  background-color: var(--btn-hovered);
 }
 #card-performer .details-wrap h4{
   color: var(--black);
@@ -9237,7 +9262,163 @@ header nav {
   color: var(--white);
 }
 
+/* Cancellation reason - Delete an event */
 
+#eventCancellation .modal-content{
+  padding: 2.625rem 2.1875rem;
+  border-radius: 0.625rem;
+  box-shadow: 0px 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+#eventCancellation .close-btn{
+  background-color: var(--white);
+}
+#eventCancellation .close-btn .close-icon{
+ font-size: 24px;
+ color: var(--gray2);
+ transition: all 0.7s;
+ font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 48;
+}
+#eventCancellation .close-btn:hover .close-icon{
+  color: var(--orange);
+  transition: all 0.7s;
+  font-variation-settings: 'FILL' 1,'wght' 800,'GRAD' 0,'opsz' 48;
+ }
+
+ /* Library - Album tab */
+ .library .row-album{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1%;
+ }
+ .library .card-album{
+  border-radius: 0.25rem;
+  background: var(--white-100, #FFF);
+  box-shadow: 0px 4px 18px 0px rgba(56, 29, 219, 0.10);
+  padding: 1.5rem;
+  width: 19%;
+  margin-bottom: 1.75rem;
+  cursor: pointer;
+ }
+ .library .card-album:hover{
+  box-shadow: 0px 4px 18px 0px rgb(238 121 10 / 10%);
+ }
+ .library .card-album .album-img{
+  width: 100%;
+  height: 15.625rem;
+  border-radius: 0.0625rem;
+  margin-bottom: 1.5rem;
+ }
+ .library .card-album .album-title{
+  color: var(--black);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.02rem;
+  margin-bottom: 0.31rem;
+ }
+ .library .card-album .album-year{
+  color: #AAA;
+  font-size: 0.875rem;
+  font-weight: 400;
+ }
+ .library .card-album .album-year .dot-icon{
+  font-size: 8px;
+  margin: 0 0.31rem;
+  color: #AAA;
+  font-variation-settings: 'FILL' 1,'wght' 800,'GRAD' 0,'opsz' 48;
+ }
+
+ /* Album - Song List */
+
+ .library .song-list-wrap .active-song-wrap {
+  border-radius: 0.625rem;
+  border: 1px solid var(--gray6);
+  padding: 1.94rem 2.75rem;
+  gap: 1rem;
+  margin-bottom: 2.81rem;
+ }
+ .library .song-list-wrap .song-details-wrap{
+  gap: 2.4rem;
+ }
+ .library .song-list-wrap .song-details-wrap .title-wrap{
+  margin-bottom: 3rem;
+ }
+ .library .song-list-wrap .active-song-wrap .album-img{
+  width: 21.8125rem;
+  height: 21.8125rem;
+  border-radius: 1.25rem;
+ }
+ .library .song-list-wrap .active-song-wrap .song-title{
+  color: #212B36;
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+ }
+ .library .song-list-wrap .active-song-wrap .artist-name{
+  color: #637381;
+  font-size: 2rem;
+  font-weight: 400;
+ }
+ .library .song-list-wrap .active-song-wrap .description{
+  color: #637381;
+  font-size: 1.25rem;
+  font-weight: 400;
+  margin-bottom: 2.5rem;
+}
+.library .song-list-wrap .song-action-btn{
+  gap: 1rem;
+}
+.library .song-list-wrap .song-action-btn .play-btn,
+.library .song-list-wrap .song-action-btn .add-btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 100%; 
+  letter-spacing: 0.0625rem;
+  padding: 1.25rem 0;
+  border-radius: 0.625rem;
+  background-color: var(--orange);
+  gap: 0.62rem;
+  width: 11.125rem;
+}
+.library .song-list-wrap .song-action-btn .add-btn{
+  background-color: #F8A541;
+  width: 13.6875rem;
+}
+.library .song-list-wrap .song-action-btn .play-btn:hover{
+  background-color: var(--btn-hovered);
+}
+.library .song-list-wrap .song-action-btn .add-btn:hover{
+  background-color: var(--orange)
+}
+.library .song-list-wrap .song-action-btn button span{
+  font-size: 24px;
+  color: var(--white);
+  font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 48;
+  transition: all 0.7s;
+}
+.library .song-list-wrap .song-action-btn .play-btn:hover span,
+.library .song-list-wrap .song-action-btn .add-btn:hover span{
+  font-variation-settings: 'FILL' 1,'wght' 800,'GRAD' 0,'opsz' 48;
+  transition: all 0.7s;
+}
+.library .song-list-wrap .more-btn{
+  border-radius: 0.625rem;
+  border: 1px solid var(--gray6);
+  padding: 0.625rem;
+}
+.library .song-list-wrap .more-btn .more-icon{
+  font-size: 24px;
+  color: var(--gray6);
+}
+.library .song-list-wrap .more-btn:hover{
+  border: 1px solid var(--gray2);
+}
+.library .song-list-wrap .more-btn:hover .more-icon{
+  color: var(--gray2);
+}
 
 
                                                   /* MEDIA QUERIES */
@@ -9256,6 +9437,110 @@ header nav {
   28px 1.75 rem
 /* */
 
+/* Album - Song List */
+
+.library .song-list-wrap .active-song-wrap {
+  border-radius: 0.46875rem;
+  border: 0.75px solid var(--gray6);
+  margin-bottom: 1.92rem;
+ }
+ .library .song-list-wrap .song-details-wrap{
+  gap: 1.12rem;
+ }
+ .library .song-list-wrap .song-details-wrap .title-wrap{
+  margin-bottom: 0.94rem;
+ }
+ .library .song-list-wrap .active-song-wrap .album-img{
+  width: 11.85938rem;
+  height: 11.85938rem;
+  border-radius: 0.46875rem;
+ }
+ .library .song-list-wrap .active-song-wrap .song-title{
+  font-size: 1.5rem;
+  margin-bottom: 0.38rem;
+ }
+ .library .song-list-wrap .active-song-wrap .artist-name{
+  font-size: 1.125rem;
+  font-weight: 400;
+ }
+ .library .song-list-wrap .active-song-wrap .description{
+  font-size: 0.9375rem;
+  margin-bottom: 1.87rem;
+}
+.library .song-list-wrap .song-action-btn{
+  gap: 0.23rem;
+}
+.library .song-list-wrap .song-action-btn .play-btn,
+.library .song-list-wrap .song-action-btn .add-btn{
+  font-size: 0.75rem;
+  line-height: 100%;
+  letter-spacing: 0.0375rem;
+  padding: 0.75rem 0;
+  border-radius: 0.28125rem;
+  gap: 0.47rem;
+  width: 5.4375rem;
+}
+.library .song-list-wrap .song-action-btn .add-btn{
+  width: 7.5rem;
+}
+.library .song-list-wrap .song-action-btn button span{
+  font-size: 18px;
+}
+.library .song-list-wrap .more-btn{
+  border-radius: 0.46875rem;
+  border: 0.75px solid #B8BBCF;
+  padding: 0.47rem;
+}
+.library .song-list-wrap .more-btn .more-icon{
+  font-size: 18px;
+}
+.library .song-list-wrap .more-btn:hover{
+  border:0.75px solid var(--gray2);
+}
+
+/* Library - Album tab */
+.library .row-album{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1%;
+ }
+ .library .card-album{
+  border-radius: 0.1875rem;
+  background: var(--white-100, #FFF);
+  box-shadow: 0px 3px 13.5px 0px rgba(56, 29, 219, 0.04);
+  padding: 1.12rem;
+  margin-bottom: 1.31rem;
+ }
+ .library .card-album .album-img{
+  height: 11.71875rem;
+  border-radius: 0.04688rem;
+  margin-bottom: 1.13rem;
+ }
+ .library .card-album .album-title{
+  font-size: 0.875rem;
+  letter-spacing: -0.0175rem;
+  margin-bottom: 0.22rem;
+ }
+ .library .card-album .album-year{
+  font-size: 0.65625rem;
+ }
+ .library .card-album .album-year .dot-icon{
+  font-size: 6px;
+  margin: 0 0.23rem;
+ }
+
+/* Cancellation reason - Delete an event */
+
+#eventCancellation .modal-content{
+  width: 40rem;
+  margin: auto;
+  padding: 1.96875rem 1.64063rem;
+  border-radius: 0.46875rem;
+  box-shadow: 0px 18.75px 37.5px -9px rgba(0, 0, 0, 0.25);
+}
+#eventCancellation .close-btn .close-icon{
+  font-size: 18px;
+ }
 /* Toast message */ 
 
 #showToastMsg {
@@ -9307,11 +9592,18 @@ header nav {
 .account-settings .my-bookings .cancelled-proposal-wrap {
   margin-bottom: 0.75rem;
 }
-.account-settings .my-bookings .booking-box-wrap .accepted-booking-btn{
+.account-settings .my-bookings .booking-box-wrap .accepted-booking-btn,
+.account-settings .my-bookings .booking-box-wrap .completed-booking-btn{
   font-size: 0.75rem;
   line-height: 1.125rem;
   padding: 0.56rem 0;
   width: 7.3125rem;
+}
+.account-settings .my-bookings .booking-box-wrap .completed-booking-btn{
+  gap: 0.29rem;
+}
+.account-settings .my-bookings .booking-box-wrap .completed-booking-btn .check-icon{
+  font-size: 18px;
 }
 
 /* Account Settings - My Bookings  */
@@ -10099,28 +10391,33 @@ header nav {
 
   /* Organizer Account - Cancellation modal */
 
-  .account-settings .reason-wrap .form-group {
+  .account-settings .reason-wrap .form-group,
+  #eventCancellation .reason-wrap .form-group {
     padding: 0.75rem;
     border-radius: 0.5625rem;
     margin-bottom: 0.56rem;
   }
-  .account-settings .reason-wrap label {
+  .account-settings .reason-wrap label,
+  #eventCancellation .reason-wrap label {
     font-size: 0.75rem;
     line-height: 0.9375rem;
   }
-  .account-settings .reason-wrap .form-check-input {
+  .account-settings .reason-wrap .form-check-input,
+  #eventCancellation .reason-wrap .form-check-input {
     width: 0.75rem;
     height: 0.75rem;
     border-radius: 0.375rem;
     border: 0.75px solid #d0d5dd;
     margin-right: 0.47rem;
   }
-  .account-settings .reason-wrap .group-btn-wrap {
+  .account-settings .reason-wrap .group-btn-wrap,
+  #eventCancellation .reason-wrap .group-btn-wrap {
     margin-top: 3rem;
   }
-  .account-settings .reason-wrap .group-btn-wrap button {
-    font-size: 0.9375rem;
-    padding: 0.75rem 1.5rem;
+  .account-settings .reason-wrap .group-btn-wrap button,
+  #eventCancellation .reason-wrap .group-btn-wrap button {
+    font-size: 0.87rem;
+    padding: 0.70rem 1.2rem;
   }
 
   /* Organizer Account - Others */
@@ -10598,17 +10895,20 @@ header nav {
     width: 8px;
     height: 8px;
   }
-  .account-settings .request-song-modal .title-wrapper .title {
+  .account-settings .request-song-modal .title-wrapper .title,
+  #eventCancellation .title {
     font-size: 1.25rem;
   }
   .account-settings .request-song-modal .close-button span {
     font-size: 1rem;
     padding: 0.13rem;
   }
-  .account-settings .request-song-modal .title-wrapper .sub-title {
+  .account-settings .request-song-modal .title-wrapper .sub-title,
+  #eventCancellation .sub-title {
     font-size: 0.9375rem;
   }
-  .account-settings .request-song-modal .title-wrapper {
+  .account-settings .request-song-modal .title-wrapper,
+  #eventCancellation .title-wrapper {
     margin-bottom: 1.88rem;
   }
   .account-settings .collaboration .request-song-modal .action-wrapper {

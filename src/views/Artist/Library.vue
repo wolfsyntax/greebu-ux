@@ -23,7 +23,6 @@
         </li>
       </ul>
 
-    <div class="tab-content">
 
       <div v-if="activeItem === 'Original Songs'" class="tab-pane active">
 
@@ -83,22 +82,92 @@
 
             </div>
           </div>
-
         </div>
-        <div>
-    </div>
 
-      </div>
+      </div> <!-- end of Original Songs tab-->
 
       <div v-else-if="activeItem === 'Album'" class="tab-pane">
-        <h3>Album</h3>
+        <!-- No Song Uploaded -->
+        <!-- <div class="text-center no-song-uploaded-wrap">
+          <div class="no-song-uploaded">
+            <svg class="empty" xmlns="http://www.w3.org/2000/svg" width="100" height="99" viewBox="0 0 100 99" fill="none">
+            <path d="M80.9085 35.7125H19.2172L6.6875 58.2002V86.2663H93.4285V58.2002L80.9085 35.7125ZM61.0795 58.4516C61.0795 64.5327 56.1488 69.4634 50.058 69.4634C43.9672 69.4634 39.0365 64.5327 39.0365 58.4516H11.8599L21.8952 39.309H78.2111L88.2465 58.4516H61.0795ZM49.0525 12.6641H52.8327V26.2572H49.0525V12.6641ZM23.3991 19.4125L26.072 16.7396L35.6838 26.3513L33.0108 29.0243L23.3991 19.4125ZM65.0382 26.3575L74.6499 16.7457L77.3229 19.4187L67.7112 29.0304L65.0382 26.3575Z" fill="#ABADC6"/>
+          </svg>
+          <h5>No Song Uploaded</h5>
+          <button class="d-flex align-items-center upload-song" @click="toggle()">
+            <span class="material-symbols-outlined upload-icon">&#xf09b;</span>
+            Upload Song</button>
+          </div>
+        </div> -->
+
+        <div class="row-album" v-if="showAlbums">
+
+            <div class="card-album" @click="showSongList">
+              <img src="/assets/artist-account/album-default-cover.webp" class="album-img" alt="album cover image">
+              <div class="album-wrap">
+                <h4 class="album-title two-lines">Album Title</h4>
+                  <p class="mb-0 d-flex align-items-center album-year">2014<span class="material-symbols-rounded dot-icon">&#xe061;</span>Album</p>
+              </div>
+            </div>
+            <div class="card-album" @click="showSongList">
+              <img src="/assets/artist-account/album-default-cover.webp" class="album-img" alt="album cover image">
+              <div class="album-wrap">
+                <h4 class="album-title two-lines">Album Title</h4>
+                  <p class="mb-0 d-flex align-items-center album-year">2014<span class="material-symbols-rounded dot-icon">&#xe061;</span>Album</p>
+              </div>
+            </div>
+
+        </div>
+
+        <div class="song-list-wrap" v-else>
+
+          <div class="d-flex align-items-start justify-content-between active-song-wrap">
+
+              <div class="d-flex align-items-start song-details-wrap">
+                <div>
+                  <img src="/assets/artist-account/song-cover-img.webp" class="album-img" alt="song cover image">
+                </div>
+
+                <div class="text-start">
+                    <div class="title-wrap">
+                      <h3 class="song-title">Music Garden</h3>
+                      <h4 class="mb-0 band-name">Idlepitch</h4>
+                    </div>
+
+                    <div>
+                      <p class="description">Lorem ipsum dolor sit amet consectetur. Egestas mattis lectus ut nunc id fringilla. Nunc est aliquet lorem augue 
+                        accumsan massa neque elementum. Urna bibendum sed in odio purus laoreet velit pellentesque malesuada. </p>
+                        
+                      <div class="d-flex align-items-center song-action-btn">
+                        <button class="btn play-btn"><span class="material-symbols-sharp">&#xe1c4;</span>Play</button>
+                        <button class="btn add-btn"><span class="material-symbols-sharp">&#xe145;</span>Add Song</button>
+                      </div>
+
+                    </div>
+                </div>
+
+              </div>
+
+              <div>
+                <button class="btn d-flex align-items-center more-btn">
+                  <span class="material-symbols-rounded more-icon">&#xe5d3;</span>
+                </button>
+              </div>
+
+          </div>
+
+        </div>
+        
+        
+        
       </div>
 
       <div v-else-if="activeItem === 'Covered Songs'" class="tab-pane">
         <h3>Covered Songs</h3>
+  
       </div>
 
-    </div>
+   
 
     </div>
     </section>
@@ -148,6 +217,8 @@ export default {
     audioPlayers: {}, // Object to store audio players for each song
     playingSongId: null, // Store the currently playing song ID
     showPlayButton: {}, // Object to store the visibility of the play button
+
+    showAlbums: true,
    
     }
   },
@@ -219,6 +290,9 @@ export default {
         [songId]: false,
       };
     },
+    showSongList(){
+      this.showAlbums = false;
+    }
 
     
   },

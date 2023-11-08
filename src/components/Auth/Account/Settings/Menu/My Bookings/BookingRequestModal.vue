@@ -54,9 +54,9 @@
             </div> -->
 
             <!-- Declined button -->
-            <div class="d-flex align-items-center">
+            <!-- <div class="d-flex align-items-center">
               <button class="btn cancelled">Declined</button>
-            </div>
+            </div> -->
 
 
         </div> <!-- end of action-wrapper -->
@@ -115,6 +115,13 @@
           <div>
             <!-- Accepted Booking -->
             <!-- <button class="btn accepted-booking-btn">10 days to go</button> -->
+
+            <!-- Completed Booking -->
+            <button class="btn d-flex align-items-center justify-content-center completed-booking-btn">
+              <span class="material-symbols-rounded check-icon">&#xe876;</span>
+              Completed
+            </button>
+
           </div>
 
         </div>

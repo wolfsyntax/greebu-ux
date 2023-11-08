@@ -30,7 +30,7 @@
                     <div class="col-9">
                       <div class="profile-info">
                         <div class="position-relative">
-                          <img class="profile-pic" :src="`${myAvatar || 'https://res.cloudinary.com/daorvtlls/image/upload/v1686465790/cld-sample.jpg'}`" alt="profile">
+                          <img class="profile-pic" :src="`${myAvatar || '/assets/artist-account/song-cover1.webp'}`" alt="profile">
                         </div>
 
                         <div class="profile-wrapper">
