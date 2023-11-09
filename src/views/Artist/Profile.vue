@@ -74,7 +74,9 @@
                       
                       
                       <!-- <input type="file" @input="form.avatar = $event.target.files[0]" accept="image/png, image/webp, image/svg, image/jpeg" /> -->
-                      <input type="file" @input="changeImage" accept="image/png, image/webp, image/svg, image/jpeg" />
+                      <!-- <input type="file" @input="changeImage" accept="image/png, image/webp, image/svg, image/jpeg" /> -->
+
+                      <input type="file" @input="changeImage" accept="image/*" />
                       <!-- <div v-if="error?.avatar" class="text-danger">{{ error.avatar }}</div> -->
                       <div v-for="err in error?.avatar" :key="err" class="text-danger">{{ err }}</div>
                       <progress v-if="form.progress" :value="form.progress.percentage" max="100">{{ form.progress.percentage }}%</progress>

@@ -127,7 +127,7 @@
                          <div class="others-wrap">
                             <div class="d-flex align-items-center">
                               <img src="/assets/events/link.svg" class="img-fluid rounded-circle profile" alt="artist avatar">
-                              <h6>spotify.com</h6>
+                              <a href="https://open.spotify.com/" target="_blank">spotify.com</a>
                             </div>
 
                             <div class="d-flex align-items-center">

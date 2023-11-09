@@ -225,6 +225,16 @@ body {
   font-family: "Urbanist", sans-serif;
   background-color: var(--white);
 }
+h1, h2, h3, h4, h5, h6, p{
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+/* .no-word-break{
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  word-break: break-word;
+} */
 img {
   position: relative;
   -o-object-fit: cover;
@@ -1483,9 +1493,9 @@ header nav {
   max-width: 100%;
   margin-bottom: 60px;
 }
-.artists .container .row div:first-child {
+/* .artists .container .row div:first-child {
   margin-bottom: 1rem;
-}
+} */
 .artists .container .card {
   margin-bottom: 0px;
 }
@@ -2810,7 +2820,7 @@ header nav {
 .artists .container {
   margin-bottom: 150px;
 }
-.artists .container h3,
+.artists .container .top-level-tite,
 .events-showing .container .events-showing-title {
   font-style: normal;
   font-weight: 700;
@@ -2820,7 +2830,7 @@ header nav {
   text-align: center;
   margin-bottom: 32px;
 }
-.artists .container p,
+.artists .container .sub-heading,
 .events-showing .container .sub-heading {
   font-style: normal;
   font-weight: 500;
@@ -2829,6 +2839,9 @@ header nav {
   color: var(--p-color2);
   text-align: center;
   margin-bottom: 90px;
+}
+.artists .container .top-level-wrap{
+  margin-bottom: 5rem;
 }
 .artists .container .top-row {
   margin-bottom: 40px;
@@ -2923,7 +2936,7 @@ header nav {
   transition: font-variation-setings 0.25s;
   font-variation-settings: "FILL" 1, "wght" 800, "GRAD" 0, "opsz" 48;
 }
-.artists .container .top-row h5,
+.artists .container .top-row .artist-dropdown-filter,
 .events-showing .container .top-row h5,
 .basic-information .container .step2 .top-row h5 {
   font-style: normal;
@@ -9236,12 +9249,19 @@ header nav {
   height: 0.7rem;
   margin-right: 0.25rem;
 }
-#card-performer .others-wrap h6{
+#card-performer .others-wrap h6,
+#card-performer .others-wrap a{
   color: #0571ED;
   font-size: 0.75rem;
   font-weight: 500;
   line-height: 0.81619rem; 
   margin-bottom: 0;
+}
+#card-performer .others-wrap a{
+  text-decoration: none;
+}
+#card-performer .others-wrap a:hover{
+  text-decoration: underline;
 }
 #card-performer .others-wrap .location{
   color: var(--gray2);
@@ -9420,6 +9440,181 @@ header nav {
   color: var(--gray2);
 }
 
+.library table{
+  border-radius: 0.625rem;
+  border: 1px solid var(--gray6);
+  background-color: var(--white);
+}
+.library table tr{
+  
+}
+.library table th{
+  
+}
+
+/* Artist page - View Details */
+
+#artistModal .modal-content{
+  padding: 1.75rem 3rem 3rem;
+  border-radius: 0.625rem;
+  box-shadow: 0px 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+#artistModal .modal-header{
+  margin-bottom: 0;
+}
+#artistModal .modal-header,
+#artistModal .modal-body,
+#artistModal .modal-footer{
+  padding: 0;
+}
+#artistModal .artist-wrap{
+  gap: 1.5rem;
+  margin-bottom: 2.13rem;
+}
+#artistModal .artist-image-wrap .artist-image{
+  width: 16.3125rem;
+  height: 16.4375rem;
+  border-radius: 0.625rem;
+}
+#artistModal .about-artist-wrap .name-wrap,
+#artistModal .genres-wrap{
+  margin-bottom: 0.88rem;
+}
+#artistModal .artist-wrap .artist-name{
+  color: #23262F;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.37rem;
+}
+#artistModal .artist-wrap .artist-type{
+  color: var(--gray6);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-size: 1rem;
+  font-weight: 500;
+}
+#artistModal .rating-reviews-wrap{
+  margin-bottom: 0.88rem;
+  /* gap: 0.25rem; */
+}
+#artistModal .rating-reviews-wrap p .star-icon{
+  font-size: 16px;
+  color: var(--orange);
+  font-variation-settings: 'FILL' 1,'wght' 800,'GRAD' 0,'opsz' 48;
+}
+#artistModal .rating-reviews-wrap p .ratings{
+  color: #1E1E1E;
+  font-size: 0.875rem;
+  font-weight: 800;
+  line-height: 0.69381rem; 
+  margin: 0 0.25rem;
+}
+#artistModal .rating-reviews-wrap p .reviews{
+  color: #8C8C8C;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: normal; 
+}
+#artistModal .genres-wrap button{
+  border-radius: 2rem;
+  background: #FED7AA;
+  padding: 0rem 0.5rem;
+  border: 0;
+  line-height: normal;
+  cursor: default;
+  margin: 0 0.25rem 0.25rem 0;
+}
+#artistModal .genres-wrap button span{
+  color: var(--orange);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  line-height: 1rem; 
+  padding: 0;
+}
+#artistModal .follow-wrap{
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+#artistModal .follow-wrap h6{
+  color: #212B36;
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.5rem; 
+  margin-bottom: 0.06rem;
+}
+#artistModal .follow-wrap p{
+  color: #637381;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.25rem;
+  margin-bottom: 0;
+}
+#artistModal .artist-bio .view-profile{
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.66rem 1.78rem;
+  border-radius: 0.25rem;
+  background-color: var(--orange);
+  text-decoration: none;
+}
+#artistModal .artist-bio .view-profile:hover{
+  background-color: var(--btn-hovered);
+}
+#artistModal .sample-song-wrap .sample-songs{
+  color: var(--black);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+}
+#artistModal .sample-song-wrap .artist-song-cover{
+  width: 3.9375rem;
+  height: 3.9375rem;
+  border-radius: 0.625rem;
+}
+#artistModal .songs-list-wrap{
+  margin-bottom: 0.94rem;
+  padding: 0.87rem 1rem;
+  border-radius: 0.625rem;
+  box-shadow: 0px 0px 10px 0px rgba(56, 29, 219, 0.04);
+  gap: 1rem;
+}
+#artistModal .songs-list-wrap .song-details-wrap{
+  gap: 0.37rem;
+}
+#artistModal .songs-list-wrap .song-details-wrap .artist-song{
+  color: var(--black);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.31rem;
+}
+#artistModal .songs-list-wrap .song-details-wrap .artist-band{
+  color: var(--black);
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+#artistModal .songs-list-wrap .play-wrap{
+  gap: 2rem;
+}
+#artistModal .songs-list-wrap .play-wrap .play-btn .play-icon{
+  font-size: 24px;
+  color: var(--orange);
+  font-variation-settings: 'FILL' 1,'wght' 800,'GRAD' 0,'opsz' 48;
+}
+#artistModal .songs-list-wrap .play-wrap .play-btn:hover .play-icon{
+  color: var(--btn-hovered);
+}
+#artistModal .songs-list-wrap .play-wrap .heart-icon{
+  font-size: 24px;
+  color: var(--gray2);
+}
+#artistModal .songs-list-wrap .play-wrap .likes{
+  font-size: 0.875rem;
+  font-weight: 400;
+  gap: 0.25rem;
+}
+
 
                                                   /* MEDIA QUERIES */
 
@@ -9528,6 +9723,117 @@ header nav {
   font-size: 6px;
   margin: 0 0.23rem;
  }
+
+ /* Artist page - View Details */
+
+#artistModal .modal-content{
+  padding: 1.31rem 1.41rem 1.41rem;
+  border-radius: 0.375rem;
+  box-shadow: 0px 18.75px 37.5px -9px rgba(0, 0, 0, 0.25);
+  width: 40rem;
+  margin: auto;
+}
+#artistModal .artist-wrap{
+  gap: 0.94rem;
+  margin-bottom: 1.59rem;
+}
+#artistModal .artist-image-wrap .artist-image{
+  width: 12.04688rem;
+  height: 12.14063rem;
+  border-radius: 0.46875rem;
+}
+#artistModal .about-artist-wrap .name-wrap,
+#artistModal .genres-wrap{
+  margin-bottom: 0.88rem;
+}
+/* #artistModal .about-artist-wrap .artist-wrap{
+  margin-bottom: 1.25rem;
+} */
+#artistModal .artist-wrap .artist-name{
+  font-size: 1.6875rem;
+  margin-bottom: 0.28rem;
+}
+#artistModal .artist-wrap .artist-type{
+  font-size: 0.75rem;
+}
+#artistModal .rating-reviews-wrap{
+  margin-bottom: 0.66rem;
+}
+#artistModal .rating-reviews-wrap p .star-icon{
+  font-size: 12px;
+}
+#artistModal .rating-reviews-wrap p .ratings{
+  font-size: 0.625rem;
+  margin: 0 0.20rem;
+}
+#artistModal .rating-reviews-wrap p .reviews{
+  font-size: 0.625rem;
+}
+#artistModal .genres-wrap button{
+  border-radius: 1.5rem;
+  padding: 0 0.375rem 0.19rem;
+  margin: 0 0.19rem 0.19rem 0;
+}
+#artistModal .genres-wrap button span{
+  font-size: 0.5625rem;
+  line-height: 0.75rem; 
+}
+#artistModal .follow-wrap{
+  gap: 0.75rem;
+  margin-bottom: 1.12rem;
+}
+#artistModal .follow-wrap h6{
+  font-size: 0.625rem;
+  line-height: 1.125rem; 
+  margin-bottom: 0.05rem;
+}
+#artistModal .follow-wrap p{
+  font-size: 0.625rem;
+  line-height: 0.9375rem; 
+}
+#artistModal .artist-bio .view-profile{
+  font-size: 0.75rem;
+  padding: 0.5rem 1.33rem;
+  border-radius: 0.1875rem;
+}
+#artistModal .sample-song-wrap .sample-songs{
+  font-size: 0.75rem;
+  margin-bottom: 0.94rem;
+}
+#artistModal .sample-song-wrap .artist-song-cover{
+  width: 2.95313rem;
+  height: 2.95313rem;
+  border-radius: 0.46875rem;
+}
+#artistModal .songs-list-wrap{
+  margin-bottom: 0.7rem;
+  padding: 0.66rem 0.94rem;
+  border-radius: 0.46875rem;
+  box-shadow: 0px 0px 7.5px 0px rgba(56, 29, 219, 0.04);
+}
+#artistModal .songs-list-wrap .song-details-wrap{
+  gap: 0.66rem;
+}
+#artistModal .songs-list-wrap .song-details-wrap .artist-song{
+  font-size: 0.75rem;
+  margin-bottom: 0.23rem;
+}
+#artistModal .songs-list-wrap .song-details-wrap .artist-band{
+  font-size: 0.625rem;;
+}
+#artistModal .songs-list-wrap .play-wrap{
+  gap: 1.5rem;
+}
+#artistModal .songs-list-wrap .play-wrap .play-btn .play-icon{
+  font-size: 18px;
+}
+#artistModal .songs-list-wrap .play-wrap .heart-icon{
+  font-size: 18px;
+}
+#artistModal .songs-list-wrap .play-wrap .likes{
+  font-size: 0.625rem;
+  gap: 0.19rem;
+}
 
 /* Cancellation reason - Delete an event */
 
@@ -12262,7 +12568,7 @@ header nav {
   .featured-artists .card .middle a,
   .artists .card .middle button,
   .basic-information .container .step2 .select-artist .middle button {
-    font-size: 1.1rem;
+    font-size: 0.87rem;
     line-height: 1rem;
   }
   .basic-information .container .step2 .select-artist .middle button {
@@ -12425,7 +12731,10 @@ header nav {
     .form-control::placeholder {
     font-size: 0.9375rem;
   }
-  .artists .container .top-row h5,
+  .artists .container .top-row {
+    margin-bottom: 1.1rem;
+}
+  .artists .container .top-row .artist-dropdown-filter,
   .events-showing .container .top-row h5,
   .basic-information .container .step2 .top-row h5 {
     font-size: 0.93rem;
@@ -12909,20 +13218,23 @@ header nav {
 
   /* ARTIST PAGE */
   /* BANNER CAROUSEL SECTION */
-  .artists .container h3,
+  .artists .container .top-level-tite,
   .events-showing .container .events-showing-title {
     font-size: 2.5rem;
     font-weight: 700;
     line-height: normal;
     margin-bottom: 1.2rem;
   }
-  .artists .container p,
+  .artists .container .sub-heading,
   .events-showing .container .sub-heading {
     font-style: normal;
     font-weight: 500;
     font-size: 1rem;
     line-height: normal;
     margin-bottom: 5.625rem;
+  }
+  .artists .container .top-level-wrap{
+    margin-bottom: 3rem;
   }
   .artist-banner .container-fluid {
     margin: 0;
@@ -13413,9 +13725,9 @@ header nav {
     height: 13.625rem;
     margin-bottom: 10px;
   }
-  .artists .container .row div:first-child {
+  /* .artists .container .row div:first-child {
     margin-bottom: 0.75rem;
-  }
+  } */
   .featured-artists .card {
     padding: 1rem 1rem 0.5rem;
   }

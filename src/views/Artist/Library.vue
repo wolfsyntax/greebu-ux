@@ -153,8 +153,29 @@
                   <span class="material-symbols-rounded more-icon">&#xe5d3;</span>
                 </button>
               </div>
+          </div> <!-- end of active song wrap -->
 
-          </div>
+          <table class="table">
+                <thead class="tr-top-wrap">
+                    <tr>
+                    <th scope="col">Title of Song</th>
+                    <th scope="col">Album</th>
+                    <th scope="col">Genre</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Likes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>06c1774-7f3d...</td>
+                        <td>Monthly</td>
+                        <td>10/24/23</td>
+                        <td>₱2,500.00</td>
+                        <td>₱2,500.00</td>
+                       
+                    </tr>
+                </tbody>
+            </table>
 
         </div>
         
