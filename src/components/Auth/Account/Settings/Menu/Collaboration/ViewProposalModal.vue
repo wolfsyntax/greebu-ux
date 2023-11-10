@@ -4,7 +4,6 @@
       <div class="d-flex justify-content-between title-wrapper">
         <div>
           <h3 class="mb-0 title">Collaboration Details</h3>
-          <p class="sub-title">Lorem ipsum dolor sit amet consectetur.</p>
         </div>
 
         <div>
@@ -82,11 +81,11 @@
         <div class="d-flex justify-content-between action-wrapper song-info-wrapper">
           <div class="left">
             <h5>Collaboration Date & Time</h5>
-            <p class="d-flex align-items-center">
+            <p class="d-flex align-items-center date-wrap">
               <span class="material-symbols-rounded date">&#xebcc;</span>
               June 12, 2023
             </p>
-            <p class="d-flex align-items-center time-wrap">
+            <p class="d-flex align-items-center">
               <span class="material-symbols-rounded time">&#xe8b5;</span>
               2: 00 PM - 8:00 PM
             </p>

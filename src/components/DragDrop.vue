@@ -8,7 +8,7 @@
       @drop="handleDropCover"
       :class="{ 'drag-over': isDragOver }"
     >
-      <input type="file" ref="bannerInput" style="display: none;" accept=".png,.webp,.svg,.jpeg" @change="handleClick"/>
+      <input type="file" ref="bannerInput" style="display: none;" accept="image/*" @change="handleClick"/>
       <div class="text-center upload-file-content" v-if="uploadBox">
         <span class="material-symbols-rounded">&#xe3f4;</span>
         <h5 class="drag-file">Drag a file here</h5>

@@ -86,7 +86,7 @@
 <script>
 import { mapActions, mapGetters, mapState } from 'vuex';
 import Multiselect from '@vueform/multiselect';
-import Loading from '../../Loading.vue';
+import Loading from '/src/components/Loading.vue';
 
 export default {
   components: {

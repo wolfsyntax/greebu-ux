@@ -4,7 +4,6 @@
       <div class="d-flex justify-content-between title-wrapper">
         <div>
           <h3 class="title">Requested Song</h3>
-          <p class="sub-title">Lorem ipsum dolor sit amet consectetur.</p>
         </div>
 
         <div>

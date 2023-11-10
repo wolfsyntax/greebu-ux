@@ -46,8 +46,11 @@
     <section class="artists" id="artists">
       <div class="container">
 
-        <h3>Artists</h3>
-        <p>Collaborate with a professional independent artist to turn your story into one-of-a-kind custom song</p>
+        <div class="top-level-wrap">
+          <h3 class="top-level-tite">Artists</h3>
+          <p class="mb-0 sub-heading">Collaborate with a professional independent artist to turn your story into one-of-a-kind custom song</p>
+        </div>
+
         <div class="row top-row">
           <div class="col-6">
             <a href="#" class="btn btn-primary filter"><i class="material-icons"><span class="material-symbols-outlined next">sort</span></i>Filter</a>
@@ -61,7 +64,7 @@
             </div>
           </div>
           <div class="col-3">
-            <h5>Type of Artist</h5>
+            <h5 class="artist-dropdown-filter">Type of Artist</h5>
             <select class="form-select" v-model="artist_type" aria-label="Default select example">
               <option value="" selected></option>
               <option v-for="artist_type in artist_types" :key="artist_type.id" :value="artist_type.id">
@@ -70,7 +73,7 @@
             </select>
           </div>
           <div class="col-3">
-            <h5>Music Genre </h5>
+            <h5 class="artist-dropdown-filter">Music Genre </h5>
             <select class="form-select" v-model="genre" aria-label="Default select example">
               <option value="" selected></option>
               <option v-for="gen in genres" :key="gen.id" :value="gen.title">

@@ -40,9 +40,12 @@
 
       <div class="form-group">
         <label for="eventType">Venue Address</label>
-        <input type="text" v-model="form.street_address" class="form-control location-input" 
+        <div class="filter-location-wrap">
+          <input type="text" v-model="form.street_address" class="form-control location-input" 
           placeholder="Unit/Floor No. Bldg.Name,House/Bldg.No.," required autocomplete="off"/>
-        <div v-for="err in error?.location" :key="err" class="text-danger">{{ err }}</div>
+          <div v-for="err in error?.location" :key="err" class="text-danger">{{ err }}</div>
+          <span class="material-symbols-rounded location-icon">&#xe0c8;</span>
+        </div>
 
         <div class="d-flex justify-content-between venue-sub-groups">
           <div>
@@ -138,7 +141,7 @@ import { mapActions, mapGetters, mapState } from 'vuex';
 
 import DragDrop from '/src/components/DragDrop.vue';
 import Multiselect from '@vueform/multiselect';
-import LoadingVue from '../../Loading.vue';
+import LoadingVue from '/src/components/Loading.vue';
 
 
 export default {

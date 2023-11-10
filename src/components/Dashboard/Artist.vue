@@ -12,7 +12,7 @@
                 <div class="cover" >
                   <div class="gray-shade" ></div>
                   <figure >
-                    <img :src="bannerImage" class="img-fluid" alt="profile cover" >
+                    <img :src="bannerImage" class="img-fluid" loading="lazy" alt="profile cover" >
                   </figure>
 
                   <!-- <div class="cover-photo-camera" @click="$refs.bannerInput.click()">
@@ -30,7 +30,7 @@
                     <div class="col-9">
                       <div class="profile-info">
                         <div class="position-relative">
-                          <img class="profile-pic" :src="`${myAvatar || 'https://res.cloudinary.com/daorvtlls/image/upload/v1686465790/cld-sample.jpg'}`" alt="profile">
+                          <img class="profile-pic" :src="`${myAvatar || '/assets/artist-account/song-cover1.webp'}`" loading="lazy" alt="profile">
                         </div>
 
                         <div class="profile-wrapper">

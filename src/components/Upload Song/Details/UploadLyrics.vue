@@ -67,8 +67,8 @@
 </template>
 
 <script>
-import InfoBlock from '../../Dashboard/Modals/InfoBlock.vue';
-import Loading from '../../Loading.vue';
+import InfoBlock from '/src/components/Dashboard/Modals/InfoBlock.vue';
+import Loading from '/src/components/Loading.vue';
 import ProgressBarModal from '/src/components/Upload Song/ProgressBarModal.vue'
 import { Modal } from 'bootstrap';
 

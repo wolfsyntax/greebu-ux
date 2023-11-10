@@ -71,7 +71,7 @@
 </template>
 
 <script>
-import InfoBlock from '../../Dashboard/Modals/InfoBlock.vue';
+import InfoBlock from '/src/components/Dashboard/Modals/InfoBlock.vue';
 
 export default {
   components:

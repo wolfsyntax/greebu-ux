@@ -1,7 +1,7 @@
 <template>
   <div class="modal fade" id="eventCancellation" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content p-5">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content border-0">
         <div class="d-flex justify-content-between title-wrapper">
           <div>
             <h3 class="title">Select cancellation Reason</h3>
@@ -9,13 +9,14 @@
           </div>
 
           <div>
-            <button @click="$emit('close-modal')" class="btn-close" data-bs-dismiss="modal" ref="cancelReason">
-            <!-- <span class="material-symbols-rounded">&#xe5cd;</span> -->
+            <button @click="$emit('close-modal')" class="p-0 border-0 close-btn" data-bs-dismiss="modal" ref="cancelReason">
+              <span class="material-symbols-rounded close-icon">&#xe5c9;</span>
             </button>
           </div>
         </div> <!-- end of title-wrapper -->
 
-        <div class="text-center modal-body">
+        <div class="modal-body text-center p-0">
+
           <div class="text-start reason-wrap">
             <div class="form-group" v-for="(cancelReason, i) in reasons" :key="i" @click="reason = cancelReason">
               <input class="form-check-input" type="radio" v-model="reason" :value="cancelReason" id="flexCheckDefault">
@@ -32,6 +33,7 @@
               <button class="btn confirm" @click="submit">Confirm</button>
             </div>
           </div>
+
         </div> <!-- end of modal-body -->
       </div>
     </div>

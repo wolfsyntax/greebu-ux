@@ -93,7 +93,7 @@
         </div> <!-- end of row -->
 
         <!-- Upcoming Events -->
-        <transition v-if="!isLoading" >
+       
 
           <div class="row" v-if="events.length">
             <div class="col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3" v-for="(event, index) in events" :key="index">
@@ -107,7 +107,7 @@
             </div>
           </div>
 
-        </transition>
+       
         <transition v-else class="text-center">
           <div>
             <h3>Please wait!</h3>

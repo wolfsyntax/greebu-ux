@@ -1,7 +1,7 @@
 <template>
   <div class="">
     <div class="d-flex align-items-center justify-content-between title-wrapper">
-      <h3 class="title">My Proposal</h3>
+      <h3 class="title">My Proposal Artist</h3>
 
       <div v-if="showToast" class="d-flex justify-content-between toast-accepted-request">
         <div class="d-flex accepted-wrapper">
