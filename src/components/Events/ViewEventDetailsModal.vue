@@ -37,7 +37,7 @@
           <div class="event-details-wrapper">
             <h5 class="event-details">Event details</h5>
 
-            <div class="d-flex align-items-start justify-content-between">
+            <div class="d-flex align-items-start justify-content-between date-venue-wrap">
 
               <div class="d-flex w-50">
                 <span class="material-symbols-rounded">&#xe935;</span>

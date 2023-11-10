@@ -155,27 +155,93 @@
               </div>
           </div> <!-- end of active song wrap -->
 
-          <table class="table">
-                <thead class="tr-top-wrap">
-                    <tr>
-                    <th scope="col">Title of Song</th>
-                    <th scope="col">Album</th>
-                    <th scope="col">Genre</th>
-                    <th scope="col">Time</th>
-                    <th scope="col">Likes</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>06c1774-7f3d...</td>
-                        <td>Monthly</td>
-                        <td>10/24/23</td>
-                        <td>₱2,500.00</td>
-                        <td>₱2,500.00</td>
-                       
-                    </tr>
-                </tbody>
-            </table>
+          <div class="song-wrap-tbl">
+
+            <div class="row-title-tbl">
+              <div>Title of Song</div>
+              <div class="">Album</div>
+              <div class="">Genre</div>
+              <div class="">Time</div>
+              <div class="">Likes</div>
+            </div>
+
+            <div class="row-content-tbl">
+              
+                <div class="d-flex align-items-center song-details-wrap-col">
+                  <div>
+                    <img src="/assets/artist-account/song-cover1.webp" class="artist-song-cover" alt="artist image">
+                  </div>
+                  <div class="text-start">
+                    <h5 class="two-lines artist-song">You are the one</h5>
+                    <p class="mb-0 two-lines artist-band">Idlepitch</p>
+                  </div>
+                </div>
+              
+                <div>
+                  <h5 class="mb-0 album-name">Golden age of 80s</h5>
+                </div>
+              
+                <div>
+                  <button type="button" class="btn btn-primary p-0 border-0 genre-btn">
+                    <span class="badge song-genre">Country Rock</span>
+                  </button>
+                </div>
+              
+                <div>
+                  <h6 class="mb-0 song-duration">2:45</h6>
+                </div>
+             
+                <div>
+                  <div class="tbl-likes-wrap">
+                    <button class="btn d-flex align-items-center p-0 border-0 likes-btn">
+                      <span class="material-symbols-sharp heart-icon">&#xe87d;</span>
+                      238
+                    </button>
+                  </div>
+                </div>
+              
+            </div> <!--end of row-content-tbl -->
+
+            <div class="row-content-tbl">
+              
+              <div class="d-flex align-items-center song-details-wrap-col">
+                <div>
+                  <img src="/assets/artist-account/song-cover1.webp" class="artist-song-cover" alt="artist image">
+                </div>
+                <div class="text-start">
+                  <h5 class="two-lines artist-song">You are the one</h5>
+                  <p class="mb-0 two-lines artist-band">Idlepitch</p>
+                </div>
+              </div>
+            
+              <div>
+                <h5 class="mb-0 album-name">Golden age of 80s</h5>
+              </div>
+            
+              <div>
+                <button type="button" class="btn btn-primary p-0 border-0 genre-btn">
+                  <span class="badge song-genre">Country Rock</span>
+                </button>
+              </div>
+            
+              <div>
+                <h6 class="mb-0 song-duration">2:45</h6>
+              </div>
+           
+              <div>
+                <div class="tbl-likes-wrap">
+                  <button class="btn d-flex align-items-center p-0 border-0 likes-btn">
+                    <span class="material-symbols-sharp heart-icon">&#xe87d;</span>
+                    238
+                  </button>
+                </div>
+              </div>
+            
+          </div> <!--end of row-content-tbl -->
+
+         
+
+          </div>
 
         </div>
         
