@@ -169,7 +169,7 @@ export default {
         {
           console.log('Accepted Response: ', res)
           this.$refs.closeReqApp.click();
-          $emit('accept-req');
+          // this.$emit('accept-req');
         });
     },
     decline()

@@ -81,7 +81,7 @@ import Layout from '/src/components/Layouts/Layout.vue';
 import { mapActions, mapGetters, mapState } from "vuex";
 import SuccessProposalModal from '/src/components/Auth/Proposal/SuccessProposalModal.vue';
 import { Modal } from 'bootstrap';
-import LoadingVue from '/src/components/components/Loading.vue';
+import LoadingVue from '/src/components/Loading.vue';
 
 export default {
   components: {
