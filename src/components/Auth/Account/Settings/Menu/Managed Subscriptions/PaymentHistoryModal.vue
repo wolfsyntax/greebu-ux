@@ -109,7 +109,7 @@
 <script >
 import { mapActions, mapState } from 'vuex';
 import InvoiceDetailsModal from './InvoiceDetailsModal.vue';
-import CloseModalButton from '../../../../../CloseModalButton.vue';
+import CloseModalButton from '/src/components/CloseModalButton.vue';
 import { Modal } from 'bootstrap';
   
 export default {

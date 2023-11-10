@@ -52,7 +52,7 @@ import { mapState, mapActions } from 'vuex';
 
 import EventCard from './EventCardProposal.vue';
 import ProposalModal from './ProposalModal.vue';
-import CancelReason from './../../CancelReason.vue';
+import CancelReason from '/src/components/Auth/Account/Settings/Menu/CancelReason.vue';
 import SuccessModal from '/src/components/Auth/Proposal/SuccessProposalModal.vue';
 
 import { Modal } from 'bootstrap';

@@ -30,7 +30,7 @@
 
 <script>
 import DragDrop from '/src/components/DragDrop.vue';
-import InfoBlock from '../../Dashboard/Modals/InfoBlock.vue';
+import InfoBlock from '/src/components/Dashboard/Modals/InfoBlock.vue';
 
 export default {
   components:

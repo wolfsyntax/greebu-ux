@@ -25,14 +25,14 @@
           </div>
 
           <!-- Accepted Proposal -->
-          <!-- <div class="d-flex align-items-center">
+          <div class="d-flex align-items-center">
             <button class="btn accept" @click="$emit('show-toast-msg')">Message</button>
-          </div> -->
+          </div>
 
             <!-- NEW PROPOSAL -->
-            <div class="d-flex align-items-center">
+            <!-- <div class="d-flex align-items-center">
               <button class="btn decline" @click="showCancellation = true">Cancel Proposal</button>
-            </div>
+            </div> -->
 
             <!-- DECLINED PROPOSAL -->
             <!-- <div class="d-flex align-items-center">

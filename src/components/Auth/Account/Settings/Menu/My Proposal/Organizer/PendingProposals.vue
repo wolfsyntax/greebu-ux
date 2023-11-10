@@ -18,7 +18,7 @@ import { mapState, mapActions } from 'vuex';
 
 import EventCard from './EventCardProposal.vue';
 import ProposalModal from './ProposalModal.vue';
-import ShowToastMsg from '../../../../../../ShowToastMsg.vue';
+import ShowToastMsg from '/src/components/ShowToastMsg.vue';
 
 export default {
   setup()

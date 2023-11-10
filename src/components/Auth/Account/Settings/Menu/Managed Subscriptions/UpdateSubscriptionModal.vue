@@ -69,7 +69,7 @@
   
   <script >
   import { mapActions, mapState } from 'vuex';
-  import CloseModalButton from '../../../../../CloseModalButton.vue';
+  import CloseModalButton from '/src/components/CloseModalButton.vue';
   import ChangePlanModal from './ChangePlanModal.vue';
   import { Modal } from 'bootstrap';
 

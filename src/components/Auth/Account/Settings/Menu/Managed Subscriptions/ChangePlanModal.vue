@@ -31,8 +31,8 @@
   
   <script >
   import { mapActions, mapState } from 'vuex';
-  import CloseModalButton from '../../../../../CloseModalButton.vue';
-  import Loading from '../../../../../Loading.vue';
+  import CloseModalButton from '/src/components/CloseModalButton.vue';
+  import Loading from '/src/components/Loading.vue';
 
 export default {
 components: {

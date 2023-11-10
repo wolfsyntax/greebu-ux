@@ -141,7 +141,7 @@ import { mapActions, mapGetters, mapState } from 'vuex';
 
 import DragDrop from '/src/components/DragDrop.vue';
 import Multiselect from '@vueform/multiselect';
-import LoadingVue from '../../Loading.vue';
+import LoadingVue from '/src/components/Loading.vue';
 
 
 export default {

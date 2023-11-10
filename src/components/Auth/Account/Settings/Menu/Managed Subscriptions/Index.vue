@@ -62,10 +62,10 @@
   <script>
   import { mapActions, mapState } from 'vuex';
   import CancelSubscriptionModal from './CancelSubscriptionModal.vue';
-  import SubscriptionModal from '../../../../../Subscription/SubscriptionModal.vue';
+  import SubscriptionModal from '/src/components/Subscription/SubscriptionModal.vue';
   import PaymentHistoryModal from './PaymentHistoryModal.vue';
   import PaymentMethodModal from './PaymentMethodModal.vue';
-  import SubscriptionReminder from '../../../../../SubscriptionReminder.vue'
+  import SubscriptionReminder from '/src/components/SubscriptionReminder.vue'
   import UpdateSubscriptionModal from './UpdateSubscriptionModal.vue';
   import { Modal } from 'bootstrap';
   

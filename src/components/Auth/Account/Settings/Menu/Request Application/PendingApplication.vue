@@ -20,7 +20,7 @@ import { mapActions, mapState } from 'vuex';
 
 import RequestApplicationModal from './RequestApplicationModal.vue';
 import RequestCard from './Card.vue';
-import ShowToastMsg from '../../../../../ShowToastMsg.vue';
+import ShowToastMsg from '/src/components/ShowToastMsg.vue';
 
 export default {
   setup()
