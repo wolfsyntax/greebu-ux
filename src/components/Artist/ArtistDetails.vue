@@ -29,13 +29,8 @@
                   </div>
 
                   <div class="d-flex d-flex align-items-center genres-wrap">
-                    <!-- <button type="button" class="btn btn-primary">
-                      <span class="badge">{{ artist?.genre }}</span>
-                    </button> -->
-                            
-                    <button type="button" class="btn btn-primary" v-for="genre in account?.genres?.filter(val => val !== 'Others')" :key="genre">
+                    <button type="button" class="btn btn-primary" v-for="genre in artist?.genres" :key="genre">
                       <span class="badge">{{ genre }}</span>
-                      <span class="badge" v-if="custom_genre">{{ custom_genre }}</span>
                     </button>
                   </div>
 
