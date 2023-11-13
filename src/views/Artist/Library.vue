@@ -101,25 +101,16 @@
         </div> -->
 
         <div class="row-album" v-if="showAlbums">
-
-            <div class="card-album" @click="showSongList">
-              <img src="/assets/artist-account/album-default-cover.webp" class="album-img" alt="album cover image">
+            <div class="card-album" @click="showSongList" v-for="album in MyAlbum">
+              <img :src="album.image" class="album-img" alt="album cover image">
               <div class="album-wrap">
-                <h4 class="album-title two-lines">Album Title</h4>
-                  <p class="mb-0 d-flex align-items-center album-year">2014<span class="material-symbols-rounded dot-icon">&#xe061;</span>Album</p>
+                <h4 class="album-title two-lines">{{ album.album_name }}</h4>
+                  <p class="mb-0 d-flex align-items-center album-year">{{ album.date_released }}<span class="material-symbols-rounded dot-icon">&#xe061;</span>Album</p>
               </div>
             </div>
-            <div class="card-album" @click="showSongList">
-              <img src="/assets/artist-account/album-default-cover.webp" class="album-img" alt="album cover image">
-              <div class="album-wrap">
-                <h4 class="album-title two-lines">Album Title</h4>
-                  <p class="mb-0 d-flex align-items-center album-year">2014<span class="material-symbols-rounded dot-icon">&#xe061;</span>Album</p>
-              </div>
-            </div>
-
         </div>
 
-        <div class="song-list-wrap" v-else>
+        <div class="song-list-wrap" v-if="showSongAlbums">
 
           <div class="d-flex align-items-start justify-content-between active-song-wrap">
 
@@ -239,13 +230,37 @@
             
           </div> <!--end of row-content-tbl -->
 
-         
-
           </div>
 
+          <div id="carouselOtherAlbums" class="carousel slide">
+            <div class="carousel-inner">
+              <div class="d-flex align-items-center justify-content-between top-wrap">
+                <div>
+                  <h3 class="mb-0 other-albums">Other Albums</h3>
+                </div>
+                <div>
+                  <button class="prev-btn" type="button" data-bs-target="#carouselOtherAlbums" data-bs-slide="prev">
+                    <span class="material-symbols-sharp prev-icon">&#xe8e4;</span>
+                  </button>
+                  <button class="next-btn" type="button" data-bs-target="#carouselOtherAlbums" data-bs-slide="next">
+                    <span class="material-symbols-sharp next-icon">&#xe8e4;</span>
+                  </button>
+                </div>
+              </div>
+              <div class="carousel-item" v-for="(album, index) in Math.ceil(MyAlbum.length / 5)" :key="index"
+              :class="{ active: index === activeSlide }">
+                <div class="card-album" v-for="(album, itemIndex) in getSlideItems(index)" :key="itemIndex">
+                  <img :src="album.image" class="album-img" alt="album cover image">
+                  <div class="album-wrap">
+                    <h4 class="album-title two-lines">{{ album.album_name }}</h4>
+                      <p class="mb-0 d-flex align-items-center album-year">{{ album.date_released }}<span class="material-symbols-rounded dot-icon">&#xe061;</span>Album</p>
+                  </div>
+              </div>
+              </div>
+            </div>
+          </div> <!-- end of carousel slide -->
+
         </div>
-        
-        
         
       </div>
 
@@ -306,6 +321,21 @@ export default {
     showPlayButton: {}, // Object to store the visibility of the play button
 
     showAlbums: true,
+    showSongAlbums: false,
+
+    MyAlbum: [
+      {id: 1, image: '/assets/artist-account/album-default-cover.webp', album_name: 'Album Title', date_released: 2014},
+      {id: 2, image: '/assets/artist-account/album-default-cover.webp', album_name: '2000s Hits', date_released: 2004},
+      {id: 3, image: '/assets/artist-account/album-default-cover.webp', album_name: '2010s Hits', date_released: 2010},
+      {id: 4, image: '/assets/artist-account/album-default-cover.webp', album_name: 'Album Title', date_released: 2014},
+      {id: 5, image: '/assets/artist-account/album-default-cover.webp', album_name: '2000s Hits', date_released: 2004},
+      {id: 6, image: '/assets/artist-account/album-default-cover.webp', album_name: '2010s Hits', date_released: 2010},
+      {id: 7, image: '/assets/artist-account/album-default-cover.webp', album_name: 'Album Title', date_released: 2014},
+      {id: 8, image: '/assets/artist-account/album-default-cover.webp', album_name: '2000s Hits', date_released: 2004},
+      {id: 9, image: '/assets/artist-account/album-default-cover.webp', album_name: '2010s Hits', date_released: 2010},
+      {id: 10, image: '/assets/artist-account/album-default-cover.webp', album_name: '1990s Hits', date_released: 1999},
+    ],
+    activeSlide: 0
    
     }
   },
@@ -379,7 +409,16 @@ export default {
     },
     showSongList(){
       this.showAlbums = false;
-    }
+      this.showSongAlbums = true;
+    },
+    getSlideItems(index)
+    {
+      const slideStartIndex = index * 5;
+      const slideEndIndex = slideStartIndex + 5;
+      const slideItems = this.MyAlbum.slice(slideStartIndex, slideEndIndex);
+
+      return slideItems;
+    },
 
     
   },

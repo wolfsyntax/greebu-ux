@@ -8,8 +8,10 @@
       <div class="artist">
         <h5 class="card-title">{{ artist.artist_name }}</h5>
         <h6 class="card-text">{{ artist.artist_type }}</h6>
-        <p><img src="https://res.cloudinary.com/daorvtlls/image/upload/v1687321042/rating-star-small_axozjd.svg" alt="rating-star">
-           {{ artist.ratings }} <span>({{ artist.reviews }} reviews)</span></p>
+        <p class="d-flex align-items-center artist-reviews-wrap">
+          <span class="material-symbols-sharp star-icon">&#xe838;</span>
+           {{ artist.ratings }} <span class="reviews">({{ artist.reviews }} reviews)</span>
+          </p>
       </div>
       <div class="audio-btn">
         <div class="play-btn">
@@ -76,3 +78,16 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+#ShowArtists .card{
+  margin-bottom: 2rem;
+}
+/* Large (lg) and Extra large (xl) */
+@media (min-width: 992px) and (max-width: 1399.98px) {
+  #ShowArtists .card{
+  margin-bottom: 1.5rem;
+}
+}
+
+</style>

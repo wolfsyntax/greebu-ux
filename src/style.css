@@ -28,6 +28,7 @@
   --accepted-light: #c7d2fe;
   --completed: #1c9749;
   --completed-light: #bbf7d0;
+  --filter-text-color: #160042;
 }
 
 /* Material Symbols */
@@ -257,6 +258,40 @@ img {
 }
 .form-select:focus:focus {
   box-shadow: 0 0 0 0.1px var(--orange) !important;
+}
+
+/* Multi-select searc */
+
+.multiselect .multiselect-dropdown{
+  /* overflow-y: hidden; 
+  overflow-x: hidden;  */
+}
+.multiselect .multiselect-option:hover{
+  /* background-color: rgb(253, 253, 253); */
+  background-color: rgb(255, 252, 251);
+  color: var(--orange);
+}
+ .multiselect .multiselect-dropdown{
+  border-radius: 0.3125rem;
+  background: var(--white);
+  border: none;
+  box-shadow: 0px 0px 12.69425px 0px rgba(18, 18, 18, 0.15);
+}
+.multiselect .multiselect-option {
+  font-weight: 600;
+  font-size: 1rem;
+}
+.multiselect .noOptionsText{
+  font-size: 1rem;
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+.multiselect .multiselect-dropdown::-webkit-scrollbar {
+  display: none;
+}
+/* Hide scrollbar for IE, Edge and Firefox */
+.multiselect .multiselect-dropdown {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 /* HOME PAGE - HEADER section */
@@ -1063,7 +1098,7 @@ header nav {
 }
 .songs-for-occasion .button-wrapper a,
 .featured-artists .button-wrapper a,
-.artists .container .button-wrapper a {
+.artists .container .button-wrapper .see-more-btn {
   border: 1px solid var(--orange);
   border-radius: 10px;
   color: var(--white);
@@ -1076,7 +1111,10 @@ header nav {
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
-
+.artists .container .button-wrapper .see-more-btn:hover{
+  border: 1px solid var(--btn-hovered);
+  background-color: var(--btn-hovered);
+}
 /* ARTIST DETAILS modal */
 .artist-details-modal .artist-modal .modal-content {
   border-radius: 0.625rem;
@@ -1506,7 +1544,6 @@ header nav {
   /* border-radius: 10px; */
   width: 19.375rem;
   height: 18.08744rem;
-  object-fit: cover;
   margin-bottom: 23px;
   left: 0;
   transition: 0.5s ease;
@@ -1590,7 +1627,7 @@ header nav {
   margin-bottom: 14px;
 }
 .featured-artists .card-body p,
-.artists .container .card-body p,
+.artists .container .card-body .artist-reviews-wrap,
 .basic-information .container .step2 .select-artist .card-body p {
   font-style: normal;
   font-weight: 800;
@@ -1600,8 +1637,11 @@ header nav {
   margin-bottom: 0rem;
   text-align: left;
 }
+.artists .container .card-body .artist-reviews-wrap{
+  gap: 0.40rem;
+}
 .featured-artists .card-body p span,
-.artists #ShowArtists .card-body p span,
+.artists #ShowArtists .card-body .artist-reviews-wrap .reviews,
 .basic-information .container .step2 .select-artist .card-body p span {
   font-style: normal;
   font-weight: 400;
@@ -1610,12 +1650,16 @@ header nav {
   color: var(--gray6);
 }
 .featured-artists .card-body p img,
-.artists #ShowArtists .card-body p img,
 .basic-information .container .step2 .select-artist .card-body p img {
   width: 24px;
   height: 24px;
   margin-bottom: 0px;
   padding-bottom: 3px;
+}
+.artists #ShowArtists .card-body p .star-icon{
+  font-size: 24px;
+  color: var(--orange);
+  font-variation-settings: 'FILL' 1,'wght' 800,'GRAD' 0,'opsz' 48;
 }
 .featured-artists .audio-controls-fixed .card,
 .artists .audio-controls-fixed .card,
@@ -1641,7 +1685,6 @@ header nav {
 .basic-information .audio-controls-fixed .card .artist-img {
   height: 56px;
   width: 56px;
-  object-fit: cover;
 }
 .featured-artists .audio-controls-fixed .card .card-body,
 .artists .audio-controls-fixed .card .card-body,
@@ -3046,11 +3089,14 @@ header nav {
 }
 .events-showing .create-event-wrapper .create-event:hover .add-circle {
   transition: font-variation-setings 0.25s;
-  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 48;
+  font-variation-settings: "FILL" 1, "wght" 800, "GRAD" 0, "opsz" 48;
+  transition: all 0.7s;
 }
 .events-showing .create-event-wrapper .add-circle {
   font-size: 24px;
   color: var(--white);
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
+  transition: all 0.7s;
 }
 .events-showing .container .card {
   background: var(--white);
@@ -3069,10 +3115,8 @@ header nav {
   width: 100%;
   height: inherit;
   position: relative;
-  object-fit: cover;
   left: 0;
   transition: 0.6s ease;
-  backface-visibility: hidden;
 }
 
 .events-showing .container .card .card-bg:hover {
@@ -3323,9 +3367,7 @@ header nav {
   height: 363px;
   border-radius: 10px;
   position: relative;
-  object-fit: cover;
   left: 0;
-  backface-visibility: hidden;
 }
 .event-organizers .organizers-row .card .card-body {
   padding-top: 20px;
@@ -3848,12 +3890,9 @@ header nav {
 .basic-information .audio-controls-fixed .card img {
   position: relative;
   border-radius: 10px;
-  -o-object-fit: cover;
-  object-fit: cover;
   margin-bottom: 23px;
   left: 0;
   transition: 0.5s ease;
-  backface-visibility: hidden;
 }
 .basic-information .container .step3 textarea {
   border-radius: 0.5rem;
@@ -5404,10 +5443,7 @@ header nav {
   width: 3.813rem;
   height: 3.813rem;
   position: relative;
-  -o-object-fit: cover;
-  object-fit: cover;
   left: 0;
-  backface-visibility: hidden;
   border-radius: 100px;
   margin-right: 1rem;
 }
@@ -7418,6 +7454,9 @@ header nav {
 #createEventModal .filter-location-wrap{
   position: relative;
   width: 100%;
+}
+#createEventModal .modal-body .form-group #number-of-artist{
+  padding: 0 0.75rem;
 }
 #createEventModal .filter-location-wrap .location-icon {
   font-size: 24px;
@@ -9462,6 +9501,7 @@ header nav {
   border: 1px solid var(--gray6);
   background-color: var(--white);
   border-radius: 0.625rem 0.625rem 0rem 0rem;
+  margin-bottom: 3rem;
 }
 .library .song-wrap-tbl .row-title-tbl,
 .library .song-wrap-tbl .row-content-tbl{
@@ -9714,6 +9754,130 @@ header nav {
   gap: 0.25rem;
 }
 
+/* Filter Results of Artists / Events */
+
+#filter-results{
+  margin-bottom: 4.38rem;
+}
+#filter-results .top-filter{
+  margin-bottom: 2.5rem;
+}
+#filter-results .top-filter .filter-btn{
+  color: var(--white);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: normal;
+  padding: 1rem 1.31rem;
+  border-radius: 0.5rem;
+  background-color: var(--orange);
+  gap: 0.5rem;
+}
+#filter-results .top-filter .filter-btn:hover,
+#filter-results .top-filter .search .search-btn:hover{
+  background-color: var(--btn-hovered);
+}
+#filter-results .top-filter .filter-btn .sort-icon{
+  font-size: 24px;
+  color: var(--white);
+  font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 48;
+  transition: all 0.7s;
+}
+#filter-results .top-filter .filter-btn:hover .sort-icon,
+#filter-results .top-filter .search .search-btn:hover .search-icon{
+  font-variation-settings: 'FILL' 1,'wght' 800,'GRAD' 0,'opsz' 48;
+  transition: all 0.7s;
+}
+#filter-results .top-filter .search{
+  position: relative;
+}
+#filter-results .top-filter .search input{
+  border-radius: 0.625rem;
+  border: 1px solid var(--gray6);
+  color: var(--gray6);
+  font-size: 1.25rem;
+  font-weight: 500;
+  height: 3.75rem;
+  width: 30.0625rem;
+}
+#filter-results .top-filter .search .search-btn{
+  padding: 0.56rem;
+  border-radius: 0.5rem;
+  background-color: var(--orange);
+  line-height: normal;
+  margin: 0;
+  position: absolute;
+  top: 5%;
+  left: 89.1%;
+}
+#filter-results .top-filter .search .search-icon{
+  font-size: 32px;
+  color: var(--white);
+  transition: all 0.7s;
+}
+#filter-results .bottom-filter{
+  width: 100%;
+  gap: 1%;
+}
+#filter-results .bottom-filter .form-group{
+  width: 32.5%;
+}
+#filter-results .bottom-filter label{
+  color: var(--filter-text-color);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.88rem;
+}
+#filter-results .bottom-filter .form-select{
+  height: 3.375rem;
+  color: var(--filter-text-color);
+  font-size: 1.25rem;
+  font-weight: 500;
+  border-radius: 0.625rem;
+  border: 1px solid #EDF1FD;
+}
+#filter-results .bottom-filter .multiselect{
+  height: 3.375rem;
+  border-radius: 0.625rem;
+  border: 1px solid #EDF1FD;
+}
+#filter-results .bottom-filter .multiselect{
+  box-shadow: none;
+  padding: 0;
+}
+
+/* Library page - Other Album slider */
+
+#carouselOtherAlbums .carousel-item {
+  display: flex;
+  gap: 1%;
+}
+#carouselOtherAlbums .top-wrap{
+  margin-bottom: 3rem;
+}
+#carouselOtherAlbums .top-wrap .other-albums{
+  color: var(--black);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+#carouselOtherAlbums .prev-btn{
+  margin-right: 1rem;
+}
+#carouselOtherAlbums .prev-btn,
+ #carouselOtherAlbums .next-btn{
+  border: none;
+  padding: 0;
+  line-height: normal;
+  background-color: var(--white);
+}
+#carouselOtherAlbums .prev-btn .prev-icon{
+  transform: rotate(180deg);
+}
+#carouselOtherAlbums .prev-btn .prev-icon,
+#carouselOtherAlbums .next-btn .next-icon{
+  font-size: 48px;
+  color: var(--gray6);
+}
+
 
                                                   /* MEDIA QUERIES */
 
@@ -9731,11 +9895,85 @@ header nav {
   28px 1.75 rem
 /* */
 
+/* Library page - Other Album slider */
+
+#carouselOtherAlbums .top-wrap{
+  margin-bottom: 1.5rem;
+}
+#carouselOtherAlbums .top-wrap .other-albums{
+  font-size: 1.2rem;
+}
+#carouselOtherAlbums .prev-btn{
+  margin-right: 1rem;
+}
+#carouselOtherAlbums .prev-btn .prev-icon,
+#carouselOtherAlbums .next-btn .next-icon{
+  font-size: 40px;
+}
+
+
+/* Filter Results of Artists / Events */
+
+#filter-results{
+  margin-bottom: 2.5rem;
+}
+#filter-results .top-filter{
+  margin-bottom: 2rem;
+}
+#filter-results .top-filter .filter-btn{
+  font-size: 0.875rem; 
+  letter-spacing: 0.05rem;
+  padding: 0.75rem 1.06rem;
+  border-radius: 0.375rem;
+  gap: 0.62rem;
+}
+#filter-results .top-filter .filter-btn .sort-icon{
+  font-size: 20px;
+}
+#filter-results .top-filter .search input{
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  width: 21.5rem;
+  height: 2.5rem;
+}
+#filter-results .top-filter .search .search-btn {
+  border-radius: 0.1875rem;
+  padding: 0.30rem;
+  line-height: 100%;
+  top: 8%;
+  left: 91%;
+}
+#filter-results .top-filter .search .search-icon{
+  font-size: 20px;
+}
+#filter-results .bottom-filter label{
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+}
+#filter-results .bottom-filter .form-select{
+  height: 2.625rem;
+  font-size: 0.93rem;
+  line-height: 0.98438rem;
+  border-radius: 0.375rem;
+  border: 0.75px solid #e4ebff;
+}
+#filter-results .bottom-filter .multiselect{
+  height: 2.625rem;
+  border-radius: 0.375rem;
+  border: 0.75px solid #e4ebff;
+}
+.multiselect .multiselect-option {
+  font-size: 0.87rem;
+}
+
+
+
 /* Song list table */
 
 .library .song-wrap-tbl{
   border-radius: 0.46875rem;
   border: 0.75px solid #B8BBCF;
+  margin-bottom: 2rem;
 }
 .library .song-wrap-tbl .row-title-tbl > div{
   font-size: 0.75rem;
@@ -12720,12 +12958,14 @@ header nav {
     margin-bottom: 1.12rem;
   }
   .featured-artists .card-body p img,
-  .artists #ShowArtists .card-body p img,
   .basic-information .container .step2 .select-artist .card-body p img {
     width: 16px;
     height: 16px;
     margin-bottom: 0px;
     padding-bottom: 2px;
+  }
+  .artists #ShowArtists .card-body .artist-reviews-wrap .star-icon{
+    font-size: 16px;
   }
   .basic-information .container .step2 .select-artist .card {
     padding: 1rem !important;
@@ -13977,7 +14217,7 @@ header nav {
     margin-top: 3rem;
   }
   .featured-artists .card-body p span,
-  .artists #ShowArtists .card-body p span,
+  .artists #ShowArtists .card-body .artist-reviews-wrap .reviews,
   .basic-information .container .step2 .select-artist .card-body p span {
     font-size: 12px;
     line-height: 12px;
@@ -14027,7 +14267,7 @@ header nav {
   .featured-artists .button-wrapper a,
   .artists .button-wrapper a,
   .artists .container .button-wrapper a,
-  .artists .container .button-wrapper a {
+  .artists .container .button-wrapper .see-more-btn {
     border: 1px solid var(--orange);
     border-radius: 10px;
     color: var(--white);
@@ -14038,6 +14278,7 @@ header nav {
     font-weight: 700;
     line-height: normal;
   }
+
   /* AUDIO CONTROLS */
   .featured-artists .audio-menu .stop-song .volume-wrapper,
   .artists .audio-menu .stop-song .volume-wrapper,

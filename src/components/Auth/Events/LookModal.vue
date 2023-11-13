@@ -61,6 +61,11 @@
         <div v-for="err in error?.look_type" :key="err" class="text-danger">{{ err }}</div>
       </div>
 
+      <div class="form-group">
+        <label for="lookingFor">Number of artist</label>
+        <input type="number" id="number-of-artist" name="number_of_artist" min="1" max="50" />
+      </div>
+
       <div class="form-group event-details-wrap">
         <label for="eventRequirement">Description / Requirement</label>
         <textarea :disabled="!account.accept_proposal" id="eventRequirement" v-model="requirement" maxlength="500" rows="7" class="form-control about-artist" placeholder="Write description" required>
