@@ -39,7 +39,7 @@
         </div>
 
 
-        <div class="row top-row">
+        <!-- <div class="row top-row">
           <div class="col-6">
             <a href="#" class="btn btn-primary filter"><span class="material-symbols-outlined next">sort</span>Filter</a>
           </div>
@@ -82,19 +82,82 @@
             />
             
           </div>
-          <!-- <div class="col-4">
+          <div class="col-4">
             <h5>Cost</h5>
             <select class="form-select" aria-label="Default select example" v-model="eventFilter.cost" @change="fetchEventList">
               <option value="both" selected>&emsp;</option>
               <option value="free">Free</option>
               <option value="paid">Paid</option>
             </select>
-          </div> -->
-        </div> <!-- end of row -->
+          </div>
+        </div>  -->
+
+        <FilterResults>
+
+          <template #top-filter>
+              <div>
+                <button class="border-0 d-flex align-items-center btn filter-btn">
+                  <span class="material-symbols-rounded sort-icon">&#xe164;</span>
+                  Filter
+                </button>
+              </div>
+
+              <div class="search">
+                <input type="text" class="form-control" placeholder="Search events" v-model="search" aria-label="Search events" aria-describedby="button-addon2">
+                <button class="btn border-0 search-btn">
+                  <span class="material-symbols-rounded search-icon">&#xe8b6;</span>
+                </button>
+              </div>
+          </template>
+
+          <template #bottom-filter>
+            <div class="form-group">
+              <label>Type of Event</label>
+              <select class="form-select" aria-label="Default select example" v-model="event_type" >
+                <option value="" selected>&emsp;</option>
+                <option v-for="(event_type, index) in eventTypes" :key="index" :value="event_type.value">
+                  {{ event_type.text }}
+                </option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Location</label>
+              <multiselect v-model="city" mode="single"
+              :close-on-select="false"
+              @select="filterByCity"
+              @deselect="filterByCity"
+              :create-option="true" :options="async function (query) {
+                await fetchCityList(query)
+                return cities;
+              }"
+              :searchable="true"  
+              :delay="0" 
+              autocomplete="off" 
+              ref="multiselect" 
+              :filter-results="false"
+              label="text"
+              noOptionsText="Please input town/city name"
+              class="form-select"
+            />
+            </div>
+
+            <div class="form-group">
+              <label>Event date</label>
+              <select class="form-select" aria-label="Default select example">
+                <option value="" selected>&emsp;</option>
+                <option>This week Events</option>
+                <option>Upcoming Events</option>
+                <option>Past Events</option>
+              </select>
+            </div>
+
+          </template>
+
+        </FilterResults>
 
         <!-- Upcoming Events -->
        
-
           <div class="row" v-if="events.length">
             <div class="col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3" v-for="(event, index) in events" :key="index">
               <event-card :event="event" :pos="index" @show="toggleEvent" />
@@ -137,6 +200,7 @@ import EventsModal from '/src/components/Auth/Events/Modal.vue';
 import ViewDetail from '/src/components/Events/ViewEventDetailsModal.vue';
 import EventSuccess from '/src/components/Auth/Events/SuccessModal.vue';
 import EventCard from '/src/components/Events/Card.vue';
+import FilterResults from "/src/components/FilterResults.vue";
 
 export default {
   metaInfo: {
@@ -152,6 +216,7 @@ export default {
     EventSuccess,
     Multiselect,
     EventCard,
+    FilterResults
   },
   setup()
   {
