@@ -119,7 +119,7 @@
         </div> 
 
         <div class="button-wrapper">
-          <a href="/artist" class="btn btn-primary btn-lg">SEE MORE ARTIST</a>
+          <button type="button" @click="page++" class="btn btn-primary btn-lg">SEE MORE ARTIST</button>
         </div>
                                                           
       </div> <!-- end of container  -->   
@@ -244,6 +244,8 @@ export default {
       search: '',
       artist: null,
       artistIndex: 0,
+      // per_page: 16,
+      page: 1,
     };
   },
   mounted()
@@ -479,7 +481,10 @@ export default {
     },
     artist_type(newValue)
     {
-      var payload = {}
+      var payload = {
+        per_page: 16 * this.page,
+      };
+
       if (newValue) payload.artist_type = newValue
       if (this.genre) payload.genre = this.genre
       if (this.search) payload.search = this.search
@@ -487,7 +492,10 @@ export default {
     },
     genre(newValue)
     {
-      var payload = {}
+      var payload = {
+        per_page: 16 * this.page,
+      };
+      
       if (this.artist_type) payload.artist_type = this.artist_type
       if (newValue) payload.genre = newValue
       if (this.search) payload.search = this.search
