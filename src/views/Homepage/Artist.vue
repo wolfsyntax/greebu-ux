@@ -450,7 +450,7 @@ export default {
       
       if (this.artist_type) payload.artist_type = this.artist_type
       if (this.genre) payload.genre = this.genre
-      if (newValue) payload.search = this.search
+      if (this.search) payload.search = this.search
 
       this.fetchArtists(payload)
     },
