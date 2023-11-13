@@ -445,7 +445,14 @@ export default {
 
   watch: {
     page(val) {
-      console.log('Current Page: ', val);
+      var payload = {}
+      payload.per_page = 12 * val;
+      
+      if (this.artist_type) payload.artist_type = this.artist_type
+      if (this.genre) payload.genre = this.genre
+      if (newValue) payload.search = this.search
+
+      this.fetchArtists(payload)
     },
     showControls(val)
     {
