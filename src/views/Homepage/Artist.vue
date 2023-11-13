@@ -253,7 +253,7 @@ export default {
     this.SET_FILTERED_ARTIST({});
     //this.$store.commit('CLEAR_ARTIST')
     this.artistOptions()
-
+    this.page = 1;
     var payload = {}
     if (this.artist_type) payload.artist_type = this.artist_type
     if (this.genre) payload.genre = this.genre
@@ -444,6 +444,9 @@ export default {
   },
 
   watch: {
+    page(val) {
+      console.log('Current Page: ', val);
+    },
     showControls(val)
     {
       this.currentTime = '0:00';
@@ -473,6 +476,7 @@ export default {
     search(newValue)
     {
       var payload = {}
+      payload.per_page = 12 * this.page;
       if (this.artist_type) payload.artist_type = this.artist_type
       if (this.genre) payload.genre = this.genre
       if (newValue) payload.search = newValue
@@ -481,9 +485,8 @@ export default {
     },
     artist_type(newValue)
     {
-      var payload = {
-        per_page: 16 * this.page,
-      };
+      var payload = {};
+      payload.per_page = 12 * this.page;
 
       if (newValue) payload.artist_type = newValue
       if (this.genre) payload.genre = this.genre
@@ -492,10 +495,9 @@ export default {
     },
     genre(newValue)
     {
-      var payload = {
-        per_page: 16 * this.page,
-      };
-      
+      var payload = {};
+      payload.per_page = 12 * this.page;
+
       if (this.artist_type) payload.artist_type = this.artist_type
       if (newValue) payload.genre = newValue
       if (this.search) payload.search = this.search
