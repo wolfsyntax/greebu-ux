@@ -171,7 +171,12 @@
         <!-- Show this button if there are more than 12 entries -->
 
         <div class="button-wrapper">
-          <button class="btn btn-primary see-more-btn">SEE MORE ARTIST</button>
+          <!-- <button class="btn btn-primary see-more-btn">SEE MORE ARTIST</button> -->
+          
+          <button type="button" @click="page++" class="btn btn-primary see-more-btn">
+            <LoadingVue :infoText="buttonName" v-if="isLoading" />
+            <span v-else>{{ buttonName }}</span>
+          </button>
         </div>
                                                           
       </div> <!-- end of container  -->   
@@ -248,6 +253,7 @@ import Reminder from '/src/components/Home/Reminder.vue';
 import Card from '/src/components/Artist/Card.vue';
 import Faq from '/src/components/Home/FAQ.vue';
 import FilterResults from "/src/components/FilterResults.vue";
+import LoadingVue from '/src/components/Loading.vue';
 import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
 
 export default {
@@ -256,7 +262,8 @@ export default {
     faq: Faq,
     reminder: Reminder,
     card: Card,
-    FilterResults
+    FilterResults,
+    LoadingVue
   },
   setup()
   {
@@ -298,6 +305,10 @@ export default {
       search: '',
       artist: null,
       artistIndex: 0,
+      // per_page: 16,
+      page: 1,
+      isLoading: false,
+      buttonName: 'SEE MORE ARTIST'
     };
   },
   mounted()
@@ -305,7 +316,7 @@ export default {
     this.SET_FILTERED_ARTIST({});
     //this.$store.commit('CLEAR_ARTIST')
     this.artistOptions()
-
+    this.page = 1;
     var payload = {}
     if (this.artist_type) payload.artist_type = this.artist_type
     if (this.genre) payload.genre = this.genre
@@ -497,6 +508,15 @@ export default {
   },
 
   watch: {
+    page(val) {
+      var payload = {}
+      payload.per_page = 12 * val;
+      
+      if (this.artist_type) payload.artist_type = this.artist_type
+      if (this.genre) payload.genre = this.genre
+      if (this.search) payload.search = this.search
+      this.fetchArtists(payload)
+    },
     showControls(val)
     {
       this.currentTime = '0:00';
@@ -526,6 +546,7 @@ export default {
     search(newValue)
     {
       var payload = {}
+      payload.per_page = 12 * this.page;
       if (this.artist_type) payload.artist_type = this.artist_type
       if (this.genre) payload.genre = this.genre
       if (newValue) payload.search = newValue
@@ -534,7 +555,9 @@ export default {
     },
     artist_type(newValue)
     {
-      var payload = {}
+      var payload = {};
+      payload.per_page = 12 * this.page;
+
       if (newValue) payload.artist_type = newValue
       if (this.genre) payload.genre = this.genre
       if (this.search) payload.search = this.search
@@ -542,7 +565,9 @@ export default {
     },
     genre(newValue)
     {
-      var payload = {}
+      var payload = {};
+      payload.per_page = 12 * this.page;
+
       if (this.artist_type) payload.artist_type = this.artist_type
       if (newValue) payload.genre = newValue
       if (this.search) payload.search = this.search
