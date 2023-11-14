@@ -25,6 +25,7 @@ export const RESET_EVENT_FORM = (state) => {
     province: "",
     // audience
     audience: false,
+    total_participants: 0,
     start_date: "",
     end_date: "",
     start_time: "",
