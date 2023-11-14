@@ -558,3 +558,183 @@ export const myPastEvents = ({ commit, rootState, state }) => {
     }, 1500);
   });
 };
+
+export const ongoingEvents = ({ commit, rootState, state }) => {
+  return new Promise((resolve, reject) => {
+    var url = `${
+      import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+    }/api/events-ongoing?search=${
+      encodeURIComponent(state.eventFilter.search) || ""
+    }`;
+
+    if (state.eventFilter?.city !== "") {
+      url = `${url}&city=${encodeURIComponent(state.eventFilter.city) || ""}`;
+    }
+
+    if (state.eventFilter?.sortBy !== "") {
+      url = `${url}&sortBy=${state.eventFilter.sortBy || "DESC"}`;
+    }
+
+    if (
+      state.eventFilter?.cost === "free" ||
+      state.eventFilter?.cost === "paid"
+    ) {
+      url = `${url}&cost=${state.eventFilter.cost || "both"}`;
+    } else {
+      url = `${url}&cost=both`;
+    }
+
+    if (state.eventFilter?.event_type !== "") {
+      url = `${url}&event_type=${
+        encodeURIComponent(state.eventFilter.event_type) || ""
+      }`;
+    }
+    console.log("Event page [ongoing]: ", url);
+    setTimeout(async () => {
+      await axios
+        .get(url)
+        .then((response) => {
+          console.log("Fetch Ongoing Events: ", response);
+
+          const { status: statusCode, data } = response;
+
+          if (statusCode === 200) {
+            const {
+              status,
+              message,
+              result: { events },
+            } = data;
+            commit("setOngoingEvents", events || []);
+            resolve(data);
+          }
+
+          reject(data);
+        })
+        .catch((err) => {
+          const { data } = err;
+          reject(data);
+        });
+    }, 1500);
+  });
+};
+
+export const upcomingEvents = ({ commit, rootState, state }) => {
+  return new Promise((resolve, reject) => {
+    var url = `${
+      import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+    }/api/events-upcoming?search=${
+      encodeURIComponent(state.eventFilter.search) || ""
+    }`;
+
+    if (state.eventFilter?.city !== "") {
+      url = `${url}&city=${encodeURIComponent(state.eventFilter.city) || ""}`;
+    }
+
+    if (state.eventFilter?.sortBy !== "") {
+      url = `${url}&sortBy=${state.eventFilter.sortBy || "DESC"}`;
+    }
+
+    if (
+      state.eventFilter?.cost === "free" ||
+      state.eventFilter?.cost === "paid"
+    ) {
+      url = `${url}&cost=${state.eventFilter.cost || "both"}`;
+    } else {
+      url = `${url}&cost=both`;
+    }
+
+    if (state.eventFilter?.event_type !== "") {
+      url = `${url}&event_type=${
+        encodeURIComponent(state.eventFilter.event_type) || ""
+      }`;
+    }
+
+    console.log("Event page [upcoming]: ", url);
+
+    setTimeout(async () => {
+      await axios
+        .get(url)
+        .then((response) => {
+          const { status: statusCode, data } = response;
+          console.log("Fetch Upcoming Events: ", response);
+          if (statusCode === 200) {
+            const {
+              status,
+              message,
+              result: { events },
+            } = data;
+
+            commit("setUpcomingEvents", events || []);
+            console.log("Upcoming Events: ", events);
+            resolve(data);
+          }
+
+          reject(data);
+        })
+        .catch((err) => {
+          const { data } = err;
+          reject(data);
+        });
+    }, 1500);
+  });
+};
+
+export const pastEvents = ({ commit, rootState, state }) => {
+  return new Promise((resolve, reject) => {
+    var url = `${
+      import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+    }/api/events-past?search=${
+      encodeURIComponent(state.eventFilter.search) || ""
+    }`;
+
+    if (state.eventFilter?.city !== "") {
+      url = `${url}&city=${encodeURIComponent(state.eventFilter.city) || ""}`;
+    }
+
+    if (state.eventFilter?.sortBy !== "") {
+      url = `${url}&sortBy=${state.eventFilter.sortBy || "DESC"}`;
+    }
+
+    if (
+      state.eventFilter?.cost === "free" ||
+      state.eventFilter?.cost === "paid"
+    ) {
+      url = `${url}&cost=${state.eventFilter.cost || "both"}`;
+    } else {
+      url = `${url}&cost=both`;
+    }
+
+    if (state.eventFilter?.event_type !== "") {
+      url = `${url}&event_type=${
+        encodeURIComponent(state.eventFilter.event_type) || ""
+      }`;
+    }
+
+    console.log("Event page [past]: ", url);
+    setTimeout(async () => {
+      await axios
+        .get(url)
+        .then((response) => {
+          console.log("Fetch Past Events: ", response);
+
+          const { status: statusCode, data } = response;
+
+          if (statusCode === 200) {
+            const {
+              status,
+              message,
+              result: { events },
+            } = data;
+            commit("setPastEvents", events || []);
+            resolve(data);
+          }
+
+          reject(data);
+        })
+        .catch((err) => {
+          const { data } = err;
+          reject(data);
+        });
+    }, 1500);
+  });
+};

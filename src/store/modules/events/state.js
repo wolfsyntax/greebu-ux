@@ -60,6 +60,9 @@ const state = {
   ongoingEvents: [],
   upcomingEvents: [],
   pastEvents: [],
+  ongoingListEvents: [],
+  upcomingListEvents: [],
+  pastListEvents: [],
   eventId: "",
 };
 

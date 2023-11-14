@@ -86,6 +86,18 @@ export const SET_PAST_EVENTS = (state, payload = []) => {
   state.pastEvents = payload;
 };
 
+export const setOngoingEvents = (state, payload = []) => {
+  state.ongoingListEvents = payload;
+};
+
+export const setUpcomingEvents = (state, payload = []) => {
+  state.upcomingListEvents = payload;
+};
+
+export const setPastEvents = (state, payload = []) => {
+  state.pastListEvents = payload;
+};
+
 export const SET_EVENT_ID = (state, payload = "") => {
   state.eventId = payload;
 };
