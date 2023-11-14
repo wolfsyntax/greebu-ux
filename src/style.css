@@ -2886,11 +2886,6 @@ header nav {
 .artists .container .top-level-wrap{
   margin-bottom: 5rem;
 }
-.artists .container .top-row {
-  margin-bottom: 40px;
-}
-.artists .container .row .filter,
-.events-showing .container .row .filter,
 .event-organizers .container .top-row .filter,
 .basic-information .container .step2 .top-row .filter {
   font-style: normal;
@@ -2905,8 +2900,6 @@ header nav {
   display: inline-flex;
   margin-bottom: 60px;
 }
-.artists .container .row .filter span,
-.events-showing .container .row .filter span,
 .event-organizers .container .top-row .filter span,
 .basic-information .container .step2 .top-row .filter span {
   margin-right: 10px;
@@ -2915,7 +2908,6 @@ header nav {
   font-variation-settings: "FILL" 1, "wght" 800, "GRAD" 0, "opsz" 48;
 }
 .artists .container .row .input-group,
-.events-showing .container .row .input-group,
 .event-organizers .container .top-row .input-group,
 .basic-information .container .step2 .top-row .input-group {
   width: 480px;
@@ -2925,8 +2917,6 @@ header nav {
   display: flex;
   align-items: center;
 }
-.artists .container .row .input-group .form-control,
-.events-showing .container .row .input-group .form-control,
 .event-organizers .container .top-row .input-group .form-control,
 .basic-information .container .step2 .top-row .input-group .form-control {
   height: 68px;
@@ -2940,7 +2930,7 @@ header nav {
   border-color: var(--orange) !important;
   box-shadow: none !important;
 }
-.artists .container .row .input-group .form-control::placeholder,
+/* .artists .container .row .input-group .form-control::placeholder,
 .events-showing .container .row .input-group .form-control::placeholder,
 .event-organizers .container .top-row .input-group .form-control::placeholder,
 .basic-information
@@ -2954,9 +2944,7 @@ header nav {
   font-size: 24px;
   line-height: 46px;
   color: #b8bbcf;
-}
-.artists .container .row .input-group button,
-.events-showing .container .row .input-group button,
+} */
 .event-organizers .container .top-row .input-group button,
 .basic-information .container .step2 .top-row .input-group button {
   background-color: var(--white);
@@ -2964,8 +2952,6 @@ header nav {
   border-left: none;
   margin-top: 5px;
 }
-.artists .container .row .input-group button span,
-.events-showing .container .row .input-group button span,
 .event-organizers .container .top-row .input-group button span,
 .basic-information .container .step2 .top-row .input-group button span {
   font-size: 32px;
@@ -2979,8 +2965,6 @@ header nav {
   transition: font-variation-setings 0.25s;
   font-variation-settings: "FILL" 1, "wght" 800, "GRAD" 0, "opsz" 48;
 }
-.artists .container .top-row .artist-dropdown-filter,
-.events-showing .container .top-row h5,
 .basic-information .container .step2 .top-row h5 {
   font-style: normal;
   font-weight: 600;
@@ -2989,8 +2973,6 @@ header nav {
   color: #160042;
   margin-bottom: 14px;
 }
-.artists .container .row .form-select,
-.events-showing .container .row .form-select,
 .basic-information .container .step2 .form-select {
   width: 99%;
   height: 54px;
@@ -3068,9 +3050,6 @@ header nav {
 }
 
 /* UPCOMING EVENTS */
-.events-showing .container .top-row {
-  margin-bottom: 70px;
-}
 .events-showing .create-event-wrapper {
   margin-bottom: 3rem;
 }
@@ -7451,14 +7430,16 @@ header nav {
   border-radius: 0.3125rem;
   border: 1px solid var(--gray6);
 }
-#createEventModal .filter-location-wrap{
+#createEventModal .filter-location-wrap,
+#editEventModal .filter-location-wrap{
   position: relative;
   width: 100%;
 }
 #createEventModal .modal-body .form-group #number-of-artist{
   padding: 0 0.75rem;
 }
-#createEventModal .filter-location-wrap .location-icon {
+#createEventModal .filter-location-wrap .location-icon,
+#editEventModal .filter-location-wrap .location-icon {
   font-size: 24px;
   color: var(--gray2);
   margin: 0;
@@ -11350,6 +11331,8 @@ header nav {
     padding: 1.875rem 2.10938rem 2.0625rem 2.125rem;
     border-radius: 0.5rem;
     box-shadow: 0px 18.75px 37.5px -9px rgba(0, 0, 0, 0.25);
+    width: 40rem;
+    margin: auto;
   }
   #createEventModal .modal-header,
   #editEventModal .modal-header {
@@ -11389,7 +11372,8 @@ header nav {
     line-height: 140%;
     letter-spacing: -0.0175rem;
   }
-  #createEventModal .filter-location-wrap .location-icon {
+  #createEventModal .filter-location-wrap .location-icon,
+  #editEventModal .filter-location-wrap .location-icon {
     font-size: 18px;
     top: 25%;
     left: 95%;
@@ -11400,7 +11384,7 @@ header nav {
   }
   #createEventModal .modal-body .venue-sub-groups input,
   #editEventModal .modal-body .venue-sub-groups input {
-    width: 15rem;
+    width: 11.5rem;
   }
   #createEventModal .modal-body .event-details-wrap,
   #editEventModal .modal-body .event-details-wrap {
@@ -11475,6 +11459,10 @@ header nav {
     width: 40rem;
     margin: auto;
 } */
+#eventDetailsModal .modal-content{
+  width: 40rem;
+  margin: auto;
+}
   #eventDetailsModal .modal-content .modal-body {
     padding: 1.17rem 2rem 2rem;
   }
@@ -13066,9 +13054,7 @@ header nav {
     padding: 3.03rem 4.8rem 6.5rem;
     margin-top: 1.5rem;
   }
-  .artists .container .row .filter,
   .events-showing .create-event-wrapper .create-event,
-  .events-showing .container .row .filter,
   .event-organizers .container .top-row .filter,
   .basic-information .container .step2 .top-row .filter {
     font-size: 0.9375rem;
@@ -13082,10 +13068,6 @@ header nav {
     gap: 0.3rem;
     margin-bottom: 0;
   }
-  .events-showing .container .row .filter span {
-    padding-top: -0.3rem;
-  }
-  .artists .container .row .filter span,
   .event-organizers .container .top-row .filter span,
   .basic-information .container .step2 .top-row .filter span {
     margin-right: 0.47rem;
@@ -13095,31 +13077,20 @@ header nav {
   .events-showing .create-event-wrapper {
     margin-bottom: 2rem;
   }
-  .events-showing .container .row .filter span {
-    margin-right: 0.47rem;
-    font-size: 16px;
-  }
   .events-showing .create-event-wrapper .add-circle {
     margin-right: 0;
     font-size: 18px;
   }
-  .artists .container .row .input-group .form-control,
-  .events-showing .container .row .input-group .form-control,
   .event-organizers .container .top-row .input-group .form-control,
   .basic-information .container .step2 .top-row .input-group .form-control {
     height: 2.625rem;
     font-size: 0.9375rem;
     padding-right: 0 0 0 1rem;
   }
-  .artists .container .row .input-group button,
-  .events-showing .container .row .input-group button,
   .event-organizers .container .top-row .input-group button,
   .basic-information .container .step2 .top-row .input-group button {
     margin-top: 0.19rem;
   }
-
-  .artists .container .row .input-group button span,
-  .events-showing .container .row .input-group button span,
   .event-organizers .container .top-row .input-group button span,
   .basic-information .container .step2 .top-row .input-group button span {
     font-size: 20px;
@@ -13131,7 +13102,7 @@ header nav {
   .basic-information .container .step2 .top-row .input-group {
     width: 19.3125rem;
   }
-  .artists .container .row .input-group .form-control::placeholder,
+  /* .artists .container .row .input-group .form-control::placeholder,
   .events-showing .container .row .input-group .form-control::placeholder,
   .event-organizers .container .top-row .input-group .form-control::placeholder,
   .basic-information
@@ -13141,19 +13112,12 @@ header nav {
     .input-group
     .form-control::placeholder {
     font-size: 0.9375rem;
-  }
-  .artists .container .top-row {
-    margin-bottom: 1.1rem;
-}
-  .artists .container .top-row .artist-dropdown-filter,
-  .events-showing .container .top-row h5,
+  } */
   .basic-information .container .step2 .top-row h5 {
     font-size: 0.93rem;
     line-height: 0.98438rem;
     margin-bottom: 0.37rem;
   }
-  .artists .container .row .form-select,
-  .events-showing .container .row .form-select,
   .basic-information .container .step2 .form-select {
     height: 2.625rem;
     font-size: 0.93rem;
@@ -13600,9 +13564,6 @@ header nav {
   }
   .events-showing .container .card .card-body {
     padding: 0.94rem;
-  }
-  .events-showing .container .top-row {
-    margin-bottom: 2.5rem;
   }
   .events-showing .container .card {
     margin-bottom: 2rem;

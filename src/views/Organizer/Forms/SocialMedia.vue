@@ -2,22 +2,14 @@
   <div class="modal fade" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog" >
       <div class="modal-content">
-        <div class="modal-header border-bottom-0">
-          <div class="container">
-            <div class="row">
-              <div class="col">
-                <h5 class="modal-title">Add Social Media Account</h5>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col">
-                <span class="sub-heading">Lorem ipsum dolor sit amet consectetur. Nam lacus viverra nec orci arcu id fringilla ultrices.</span>
-              </div>
-            </div>
+        <div class="modal-header border-bottom-0 align-items-start">
+          <div>
+            <h5 class="modal-title">Add Social Media Accounts</h5>             
+            <p class="mb-0 sub-heading">Lorem ipsum dolor sit amet consectetur. Nam lacus viverra nec orci arcu id fringilla ultrices.</p>
           </div>
-
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ref="modalClose"></button>
+          <div>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ref="modalClose"></button>
+          </div>
         </div>
 
         <div class="modal-body modal-add-social-media">

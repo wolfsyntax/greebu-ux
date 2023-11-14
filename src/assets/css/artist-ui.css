@@ -248,14 +248,9 @@ img{
   margin-bottom: 20px;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
 }
-.profile-page
-  .profile-header
-  .cover
-  .cover-body
-  .profile-info
-  .music-genre
-  .title {
+.profile-page .profile-header .cover .cover-body .profile-info .music-genre .title {
   color: var(--tail-grids-text-color, #637381);
   text-align: left;
   font-size: 16px;
@@ -264,13 +259,7 @@ img{
   margin-right: 10px;
   margin-bottom: 0;
 }
-.profile-page
-  .profile-header
-  .cover
-  .cover-body
-  .profile-info
-  .music-genre
-  .badge {
+.profile-page .profile-header .cover .cover-body .profile-info .music-genre .badge {
   color: #ea580c;
   font-size: 12px;
   font-weight: 600;
@@ -278,7 +267,7 @@ img{
   border-radius: 32px;
   background: #fed7aa;
   padding: 4px 8px;
-  margin: 0 2px;
+  margin: 0 2px 4px;
 }
 .profile-page .profile-header .cover .cover-body .edit a {
   color: #fff;
@@ -1288,6 +1277,7 @@ img{
   gap: 0.5rem;
   padding: 0.75rem 1rem 0.44rem 1.19rem; 
   width: 100%;
+  /* cursor: grab; */
   /* padding: 0; */
 }
 .profile-page .events-tab .event-action-wrap .dropdown-menu li .delete{
@@ -1343,10 +1333,16 @@ img{
 }
 .profile-page .events-tab .event-details-wrap {
   margin-bottom: 1.56rem;
-  gap: 1.25rem;
+  gap: 1.1rem;
   /* margin-left: 0.5rem; */
   width: 100%;
 }
+.profile-page .events-tab .event-details-wrap .date-wrap > *{
+  white-space: nowrap;
+}
+/* .profile-page .events-tab .event-details-wrap .desc-wrap{
+  width: 90%;
+} */
 .profile-page .events-tab .event-details-wrap .month {
   color: var(--orange);
   font-size: 0.75rem;
@@ -3977,7 +3973,7 @@ img{
   font-size: 0.625rem;
   line-height: 0.80813rem;
   padding: 0.2rem 0.4rem;
-  margin: 0 0.2rem;
+  margin: 0 0.2rem 0.25rem;
   border-radius: 1.61619rem;
 }
   .profile-page .profile-header .cover .cover-body .edit a {
