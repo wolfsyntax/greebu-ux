@@ -239,7 +239,7 @@ export const createEvent = (
               result: { event },
             } = data;
 
-            commit("SET_EVENT_FORM", event);
+            commit("RESET_EVENT_FORM", event);
             dispatch("fetchEventList");
 
             resolve(data);

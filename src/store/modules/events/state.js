@@ -22,6 +22,7 @@ const state = {
     cover: "",
     venue_name: "",
     mode: "store",
+    total_participants: 0,
   },
   event_types: [],
   event_artist_type: [

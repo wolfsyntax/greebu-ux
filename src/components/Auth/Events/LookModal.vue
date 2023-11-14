@@ -63,12 +63,12 @@
 
       <div class="form-group">
         <label for="lookingFor">Number of artist</label>
-        <input type="number" id="number-of-artist" name="number_of_artist" min="1" max="50" />
+        <input type="number" id="number-of-artist" name="number_of_artist" v-model="total_participants" min="1" max="50" />
       </div>
 
       <div class="form-group event-details-wrap">
         <label for="eventRequirement">Description / Requirement</label>
-        <textarea :disabled="!account.accept_proposal" id="eventRequirement" v-model="requirement" maxlength="500" rows="7" class="form-control about-artist" placeholder="Write description" required>
+        <textarea :disabled="!account.accept_proposal" id="eventRequirement" v-model="requirement" maxlength="500" rows="7" class="form-control about-artist" placeholder="Write description" required autocomplete="off">
         </textarea>
         <div v-for="err in error?.requirement" :key="err" class="text-danger">{{ err }}</div>
       </div>
@@ -77,7 +77,7 @@
         <!-- <button type="button" class="btn btn-outline-geebu mx-1" @click="$emit('next-step', 'skip')" ref="eventSkip">Skip</button> -->
         <button type="button" class="btn cancel" @click="back">Back</button>
 
-        <button type="submit" class="btn next" >
+        <button type="submit" class="btn next" :disabled="!canProceed" >
             <LoadingVue :infoText="buttonName" v-if="isLoading"/>
             <span v-else>{{ buttonName }}</span>
         </button>
@@ -118,6 +118,7 @@ export default {
     look_for: '',
     look_type: [],
     requirement: '',
+    total_participants: 0,
   }),
   mounted()
   {
@@ -143,6 +144,7 @@ export default {
       this.step = 'detail';
       this.lookTypes = [];
       this.look_for = '';
+      this.total_participants = 0;
       this.look_type = [];
     });
   },
@@ -158,6 +160,9 @@ export default {
       serviceType: state => state.events.event_service_type,
       account: state => state.account
     }),
+    canProceed() {
+      return ((this.look_for !== '' && this.requirement !== '' && this.look_type.length > 0 && this.total_participants > 0) || (this.requirement === '' && this.total_participants === 0 && this.look_type.length === 0))
+    },
     canSkip()
     {
       return !( this.look_type == '' || this.requirement == '');
@@ -218,6 +223,8 @@ export default {
         this.form.look_for = this.look_for;
         this.form.look_types = this.look_type;
         this.form.requirement = this.requirement;
+        this.form.total_participants = this.total_participants || 1;
+
         console.log('Form to send: ', this.form);
       }
       
@@ -269,7 +276,7 @@ export default {
           console.log(`Look ${val} Type: `, this.lookTypes);
           this.lookTypes = this.lookTypes.map(function (obj)
           {
-            var words = obj.split(" ")
+            var words = obj?.split(" ") || [];
 
             return {
               value: obj,
@@ -291,7 +298,7 @@ export default {
         console.log('Form via LookModal: ', this.form);
         this.look_for = val.look_for ?? 'artist'; 
         
-        this.requirement = val.description ?? '';
+        this.requirement = val.requirement ?? '';
         this.look_type = val.look_types ?? [];
 
       },

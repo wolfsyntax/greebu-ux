@@ -157,7 +157,7 @@
       <div v-else>
         <button class="btn btn-primary view-details" @click="toggle">View Details</button>
       </div>
-      <button class="btn btn-primary send-proposal" @click="sendProposal" v-if="userRole === 'artists'" :disabled="canSendProposal">Send Proposal</button>
+      <button class="btn btn-primary send-proposal" @click="sendProposal" v-if="userRole === 'artists' && !event?.is_visible" :disabled="canSendProposal">Send Proposal</button>
     </div>
   </div>
 </template>
