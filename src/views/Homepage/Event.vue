@@ -156,27 +156,65 @@
 
         </FilterResults>
 
-        <!-- Upcoming Events -->
-       
-          <div class="row" v-if="events.length">
-            <div class="col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3" v-for="(event, index) in events" :key="index">
-              <event-card :event="event" :pos="index" @show="toggleEvent" />
-            </div>
-          </div>     
-
-          <div class="row" v-else>
-            <div class="col text-center">
-              <h3>No Events found!</h3>
-            </div>
-          </div>
-
-       
-        <transition v-else class="text-center">
+        <transition v-if="isOngoingLoading && isUpcomingLoading && isPastLoading" class="text-center">
           <div>
             <h3>Please wait!</h3>
             <h5>Retrieving Events...</h5>
           </div>
         </transition>
+        <section v-else>
+
+          <h2 class="my-2">This Week Events</h2>
+          <transition v-if="!isOngoingLoading">
+          <!-- Upcoming Events -->
+            <div class="row" v-if="events_ongoing.length">
+              <div class="col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3" v-for="(event, index) in events_ongoing" :key="index">
+                <event-card :event="event" :pos="index" @show="toggleEvent" />
+              </div>
+            </div>     
+
+            <div class="row" v-else>
+              <div class="col text-center">
+                <h3>No Events found!</h3>
+              </div>
+            </div>
+          </transition>
+
+          <h2 class="my-2">Upcoming Events</h2>
+          <transition v-if="!isUpcomingLoading">
+          <!-- Upcoming Events -->
+
+            <div class="row" v-if="events_upcoming.length">
+              <div class="col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3" v-for="(event, index) in events_upcoming" :key="index">
+                <event-card :event="event" :pos="index" @show="toggleEvent" />
+              </div>
+            </div>     
+
+            <div class="row" v-else>
+              <div class="col text-center">
+                <h3>No Events found!</h3>
+              </div>
+            </div>
+          </transition>
+
+          <h2 class="my-2">Past Events</h2>
+          <transition v-if="!isPastLoading">
+          <!-- Past Events -->
+
+            <div class="row" v-if="events_past.length">
+              <div class="col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3" v-for="(event, index) in events_past" :key="index">
+                <event-card :event="event" :pos="index" @show="toggleEvent" />
+              </div>
+            </div>     
+
+            <div class="row" v-else>
+              <div class="col text-center">
+                <h3>No Events found!</h3>
+              </div>
+            </div>
+          </transition>        
+
+        </section>
       </div>
     </section>
     
@@ -224,6 +262,9 @@ export default {
   },
   data: () => ({
     isLoading: false,
+    isOngoingLoading: false,
+    isUpcomingLoading: false,
+    isPastLoading: false,
     city: '',
     event_type: '',
     search: '',
@@ -231,7 +272,9 @@ export default {
   computed: {
     ...mapGetters(["isLoggedIn", 'userInfo', 'info', 'userRole']),
     ...mapState({
-      events: state => state.events.events,
+      events_past: state => state.events.pastListEvents,
+      events_ongoing: state => state.events.ongoingListEvents,
+      events_upcoming: state => state.events.upcomingListEvents,
       eventFilter: state => state.events.eventFilter,
       cities: state => state.cities.map(function (city)
       {
@@ -259,18 +302,31 @@ export default {
     console.log('Window Hostname: ', window.location.hostname)
     this.fetchEventOptions().then(res => this.RESET_EVENT_FILTER())
     this.fetchCityList();
+
+    var counter = 0;
     this.isLoading = true;
-    this.fetchEventList()
-      .then(res =>
-      {
-        console.log('Events: ', res);
+
+    this.isOngoingLoading = true;
+    this.isUpcomingLoading = true;
+    this.isPastLoading = true;
+
+    this.pastEvents().finally(onfinally => this.isPastLoading = false);
+    this.upcomingEvents().finally(onfinally => this.isUpcomingLoading = false);    
+    this.ongoingEvents().finally(onfinally => this.isOngoingLoading = false);
+    console.log('Ongoing [DONE]: ', this.isOngoingLoading);
+    console.log('Past [DONE]: ', this.isPastLoading);
+    console.log('Upcoming [DONE]: ', this.isUpcomingLoading);
+    // this.fetchEventList()
+    //   .then(res =>
+    //   {
+    //     console.log('Events: ', res);
         
-      })
-      .finally(onfinally => this.isLoading = false);
+    //   })
+    //   .finally(onfinally => this.isLoading = false);
   },
   methods: {
     ...mapActions([
-      'fetchEventOptions', 'fetchEventList', 'fetchCityList',
+      'fetchEventOptions', 'fetchEventList', 'fetchCityList', 'pastEvents', 'upcomingEvents', 'ongoingEvents',
     ]),
     ...mapMutations([
       'RESET_EVENT_FILTER'
@@ -346,7 +402,15 @@ export default {
         if (val === null || val === '') {
 
           this.$store.commit('SET_EVENT_FILTER', {search: this.search, city: '', event_type: this.event_type });
-          this.fetchEventList()
+          // this.fetchEventList()
+          this.isOngoingLoading = true;
+          this.isUpcomingLoading = true;
+          this.isPastLoading = true;
+
+          this.pastEvents().finally(onfinally => this.isPastLoading = false);
+          this.upcomingEvents().finally(onfinally => this.isUpcomingLoading = false);    
+          this.ongoingEvents().finally(onfinally => this.isOngoingLoading = false);
+
         }
       },
       deep: true
@@ -355,7 +419,15 @@ export default {
       handler(val) {
         
         this.$store.commit('SET_EVENT_FILTER', {search: val, city: '', event_type: this.event_type });
-        this.fetchEventList()
+        // this.fetchEventList()
+        this.isOngoingLoading = true;
+        this.isUpcomingLoading = true;
+        this.isPastLoading = true;
+
+        this.pastEvents().finally(onfinally => this.isPastLoading = false);
+        this.upcomingEvents().finally(onfinally => this.isUpcomingLoading = false);    
+        this.ongoingEvents().finally(onfinally => this.isOngoingLoading = false);
+
         
       },
       deep: true
@@ -363,17 +435,33 @@ export default {
     event_type: {
       handler(val) {
         this.$store.commit('SET_EVENT_FILTER', {search: this.search, city: this.city, event_type: val });
-        this.fetchEventList()
+        // this.fetchEventList()
+        this.isOngoingLoading = true;
+        this.isUpcomingLoading = true;
+        this.isPastLoading = true;
+
+        this.pastEvents().finally(onfinally => this.isPastLoading = false);
+        this.upcomingEvents().finally(onfinally => this.isUpcomingLoading = false);    
+        this.ongoingEvents().finally(onfinally => this.isOngoingLoading = false);
+
       },
       deep: true
     },
     eventFilter: {
       handler(val)
       {
-        this.isLoading = true;
-        this.fetchEventList()
-          .then(res => this.isLoading = false);
+        // this.isLoading = true;
+        // this.fetchEventList()
+        //   .then(res => this.isLoading = false);
         
+        this.isOngoingLoading = true;
+        this.isUpcomingLoading = true;
+        this.isPastLoading = true;
+
+        // this.pastEvents().finally(onfinally => this.isPastLoading = false);
+        // this.upcomingEvents().finally(onfinally => this.isUpcomingLoading = false);    
+        // this.ongoingEvents().finally(onfinally => this.isOngoingLoading = false);
+
       },
       deep: true,
     }
