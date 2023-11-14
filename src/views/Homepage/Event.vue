@@ -38,60 +38,6 @@
           
         </div>
 
-
-        <!-- <div class="row top-row">
-          <div class="col-6">
-            <a href="#" class="btn btn-primary filter"><span class="material-symbols-outlined next">sort</span>Filter</a>
-          </div>
-          <div class="col-6">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search for Events" v-model="search" aria-label="Search for Events" aria-describedby="button-addon2">
-              <button class="btn btn-success border-rad" type="button" id="button-addon2" @click="filterEvent">
-                <span class="material-symbols-outlined next">search</span>
-                </button>
-            </div>
-          </div>
-          <div class="col-4">
-            <h5>Type of Event</h5>
-            <select class="form-select" aria-label="Default select example" v-model="event_type" >
-              <option value="" selected>&emsp;</option>
-              <option v-for="(event_type, index) in eventTypes" :key="index" :value="event_type.value">
-                {{ event_type.text }}
-              </option>
-            </select>
-          </div>
-          <div class="col-4">
-            <h5>Location</h5>
-            <multiselect v-model="city" mode="single"
-              :close-on-select="false"
-              @select="filterByCity"
-              @deselect="filterByCity"
-              :create-option="true" :options="async function (query) {
-                await fetchCityList(query)
-                return cities;
-
-              }"
-              :searchable="true"  
-              :delay="0" 
-              autocomplete="off" 
-              ref="multiselect" 
-              :filter-results="false"
-              label="text"
-              noOptionsText="Please input town/city name"
-              class="form-select"
-            />
-            
-          </div>
-          <div class="col-4">
-            <h5>Cost</h5>
-            <select class="form-select" aria-label="Default select example" v-model="eventFilter.cost" @change="fetchEventList">
-              <option value="both" selected>&emsp;</option>
-              <option value="free">Free</option>
-              <option value="paid">Paid</option>
-            </select>
-          </div>
-        </div>  -->
-
         <FilterResults>
 
           <template #top-filter>

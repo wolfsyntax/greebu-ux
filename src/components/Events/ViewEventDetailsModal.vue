@@ -42,7 +42,7 @@
               <div class="d-flex w-50">
                 <span class="material-symbols-rounded">&#xe935;</span>
                 <div>
-                  <h6>{{ $moment(`${event?.start_date}`).format('MMMM Do, YYYY') }} - {{ $moment(`${event?.end_date}`).format('MMMM Do, YYYY') }}</h6>
+                  <h6>{{ $moment(`${event?.start_date}`).format('MMMM D, YYYY') }} - {{ $moment(`${event?.end_date}`).format('MMMM D, YYYY') }}</h6>
                   <p>{{ $moment(`${$moment().format('YYYY-MM-DD')} ${event?.start_time}`).format('h:mm a') }} - {{ $moment(`${$moment().format('YYYY-MM-DD')} ${event?.end_time}`).format('h:mm a') }}</p>
                 </div>
               </div>

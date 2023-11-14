@@ -44,12 +44,12 @@
 
     <div class="card-body">
       <div class="d-flex align-items-center event-details-wrap">
-        <div>
+        <div class="date-wrap">
           <h6 class="mb-0 month text-uppercase">{{ $moment(myEvent.start_date).format('MMM')}}</h6>
           <h3 class="mb-0 num">{{ $moment(myEvent.start_date).format('DD')}}</h3>
         </div>
 
-        <div>
+        <div class="desc-wrap">
           <h4 class="event-name two-lines">{{ myEvent.event_name }}</h4>
           <h5 class="event-place two-lines">{{ myEvent.location }}</h5>
           <h5 class="date-time" v-if="$moment(myEvent?.start_date).isSame(myEvent?.end_date)" >{{ $moment(myEvent.start_date).format('dddd') }}, {{ startTime }} - {{ endTime }}</h5>
@@ -62,9 +62,6 @@
       </div>
     </div>
   </div>
-
-
-
 
 </template>
 

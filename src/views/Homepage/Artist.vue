@@ -51,56 +51,6 @@
           <p class="mb-0 sub-heading">Collaborate with a professional independent artist to turn your story into one-of-a-kind custom song</p>
         </div>
 
-        <!-- <div class="row top-row">
-          <div class="col-6">
-            <a href="#" class="btn btn-primary filter"><i class="material-icons"><span class="material-symbols-outlined next">sort</span></i>Filter</a>
-          </div>
-          <div class="col-6">
-            <div class="input-group">
-              <input type="text" class="form-control" v-model="search" placeholder="Search artist by Name" aria-label="Search artist by Name" aria-describedby="button-addon2">
-              <button class="btn btn-success border-rad" type="button" id="button-addon2">
-                <i class="material-icons"><span class="material-symbols-outlined next">search</span></i>
-              </button>
-            </div>
-          </div>
-          <div class="col-3">
-            <h5 class="artist-dropdown-filter">Type of Artist</h5>
-            <select class="form-select" v-model="artist_type" aria-label="Default select example">
-              <option value="" selected></option>
-              <option v-for="artist_type in artist_types" :key="artist_type.id" :value="artist_type.id">
-              {{  artist_type.title }}
-              </option>
-            </select>
-          </div>
-          <div class="col-3">
-            <h5 class="artist-dropdown-filter">Music Genre </h5>
-            <select class="form-select" v-model="genre" aria-label="Default select example">
-              <option value="" selected></option>
-              <option v-for="gen in genres" :key="gen.id" :value="gen.title">
-                {{ gen.title }}
-                </option> 
-            </select>
-          </div>
-          <div class="col-3">
-            <h5>Gender</h5>
-            <select class="form-select" aria-label="Default select example">
-              <option selected>Male</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-            </select>
-          </div>
-          <div class="col-3">
-            <h5>Availability</h5>
-            <select class="form-select" aria-label="Default select example">
-              <option selected>Available</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-            </select>
-          </div>
-        </div> -->
-
         <FilterResults>
           <template #top-filter>
               <div>
