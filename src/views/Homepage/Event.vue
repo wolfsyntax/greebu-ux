@@ -280,9 +280,24 @@ export default {
     this.isUpcomingLoading = true;
     this.isPastLoading = true;
 
-    this.pastEvents().finally(onfinally => this.isPastLoading = false);
-    this.upcomingEvents().finally(onfinally => this.isUpcomingLoading = false);    
-    this.ongoingEvents().finally(onfinally => this.isOngoingLoading = false);
+    this.pastEvents().then(res => {
+      this.isPastLoading = false;
+    })
+    .catch(onError => {console.log('Past Events [error]: ', onError)})
+    .finally(onfinally => { this.isPastLoading = false });
+
+    this.upcomingEvents().then(res => {
+      this.isUpcomingLoading = false;
+    })
+    .catch(onError => { console.log('Upcoming Events [error]: ', onError)})
+    .finally(onfinally => { this.isUpcomingLoading = false });    
+    
+    this.ongoingEvents().then(res => {
+      this.isOngoingLoading = false;
+    })
+    .catch(onError => console.log('Ongoing Events [error]: ', onError))
+    .finally(onfinally => { this.isOngoingLoading = false });
+    
     console.log('Ongoing [DONE]: ', this.isOngoingLoading);
     console.log('Past [DONE]: ', this.isPastLoading);
     console.log('Upcoming [DONE]: ', this.isUpcomingLoading);
@@ -341,6 +356,29 @@ export default {
           backdrop: 'static',
         }).show()
       }
+
+      this.isOngoingLoading = true;
+      this.isUpcomingLoading = true;
+      this.isPastLoading = true;
+
+      this.pastEvents().then(res => {
+        this.isPastLoading = false;
+      })
+      .catch(onError => {console.log('Past Events [error]: ', onError)})
+      .finally(onfinally => { this.isPastLoading = false });
+
+      this.upcomingEvents().then(res => {
+        this.isUpcomingLoading = false;
+      })
+      .catch(onError => { console.log('Upcoming Events [error]: ', onError)})
+      .finally(onfinally => { this.isUpcomingLoading = false });    
+      
+      this.ongoingEvents().then(res => {
+        this.isOngoingLoading = false;
+      })
+      .catch(onError => console.log('Ongoing Events [error]: ', onError))
+      .finally(onfinally => { this.isOngoingLoading = false });
+
       // console.log('Dismiss option: ', option);
       // if (option === 'skip')
       // {
@@ -358,11 +396,55 @@ export default {
     },
     filterEvent() {
       this.$store.commit('SET_EVENT_FILTER', {search: this.search, city: this.city, event_type: this.event_type});
-      this.fetchEventList()
+      // this.fetchEventList()
+      this.isOngoingLoading = true;
+      this.isUpcomingLoading = true;
+      this.isPastLoading = true;
+
+      this.pastEvents().then(res => {
+        this.isPastLoading = false;
+      })
+      .catch(onError => {console.log('Past Events [error]: ', onError)})
+      .finally(onfinally => { this.isPastLoading = false });
+
+      this.upcomingEvents().then(res => {
+        this.isUpcomingLoading = false;
+      })
+      .catch(onError => { console.log('Upcoming Events [error]: ', onError)})
+      .finally(onfinally => { this.isUpcomingLoading = false });    
+      
+      this.ongoingEvents().then(res => {
+        this.isOngoingLoading = false;
+      })
+      .catch(onError => console.log('Ongoing Events [error]: ', onError))
+      .finally(onfinally => { this.isOngoingLoading = false });
+      
     },
     filterByCity() {      
       this.$store.commit('SET_EVENT_FILTER', {search: this.search, city: this.city, event_type: this.event_type });
-      this.fetchEventList()
+      // this.fetchEventList()
+      this.isOngoingLoading = true;
+      this.isUpcomingLoading = true;
+      this.isPastLoading = true;
+
+      this.pastEvents().then(res => {
+        this.isPastLoading = false;
+      })
+      .catch(onError => {console.log('Past Events [error]: ', onError)})
+      .finally(onfinally => { this.isPastLoading = false });
+
+      this.upcomingEvents().then(res => {
+        this.isUpcomingLoading = false;
+      })
+      .catch(onError => { console.log('Upcoming Events [error]: ', onError)})
+      .finally(onfinally => { this.isUpcomingLoading = false });    
+      
+      this.ongoingEvents().then(res => {
+        this.isOngoingLoading = false;
+      })
+      .catch(onError => console.log('Ongoing Events [error]: ', onError))
+      .finally(onfinally => { this.isOngoingLoading = false });
+      
     }
   },
   watch: {
@@ -424,9 +506,9 @@ export default {
         // this.fetchEventList()
         //   .then(res => this.isLoading = false);
         
-        this.isOngoingLoading = true;
-        this.isUpcomingLoading = true;
-        this.isPastLoading = true;
+        // this.isOngoingLoading = true;
+        // this.isUpcomingLoading = true;
+        // this.isPastLoading = true;
 
         // this.pastEvents().finally(onfinally => this.isPastLoading = false);
         // this.upcomingEvents().finally(onfinally => this.isUpcomingLoading = false);    
