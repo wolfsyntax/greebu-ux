@@ -455,7 +455,7 @@ export default {
 
           this.$store.commit('SET_EVENT_FILTER', {search: this.search, city: '', event_type: this.event_type });
           // this.fetchEventList()
-          this.isOngoingLoading = false;
+          this.isOngoingLoading = true;
           this.isUpcomingLoading = true;
           this.isPastLoading = true;
 
