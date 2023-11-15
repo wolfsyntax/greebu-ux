@@ -1,34 +1,23 @@
 <template>
   <div>
     <form @submit.prevent="submit()" class="modal-add-social-media">
-      <div class="container">
-        <div class="row py-2">
-          <div class="col">
-            <div class="form-group">
-              <label for="social-media">Select Social Media Account</label>
-              <select v-model="media_type" class="form-select">
-              <option value="" selected>Please Select</option>
-              <option v-for="media in social_media" :key="media.id" :value="media.value">{{ media.label }}</option>
-            </select>
-            <span v-if="errors?.media_type" class="text-danger">{{ errors.media_type }}</span>
-            </div>
-          </div>
+        <div class="form-group">
+          <label for="social-media">Select Social Media Account</label>
+          <select v-model="media_type" class="form-select">
+          <option value="" selected>Please Select</option>
+          <option v-for="media in social_media" :key="media.id" :value="media.value">{{ media.label }}</option>
+        </select>
+        <span v-if="errors?.media_type" class="text-danger">{{ errors.media_type }}</span>
         </div>
+      
+        <div class="form-group form-group-last">
+          <label for="social-media">URL</label>
+        <input type="text" v-model="url" :disabled="media_flag" class="form-control"/>
+        <span v-if="errors?.url" class="text-danger">{{ errors.url}}</span>
+      </div>
 
-        <div class="row py-2">
-          <div class="col">
-            <div class="form-group">
-              <label for="social-media">URL</label>
-            <input type="text" v-model="url" :disabled="media_flag" class="form-control"/>
-            <span v-if="errors?.url" class="text-danger">{{ errors.url}}</span>
-          </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col text-center">
-            <button type="submit" :disabled="!(validType && validUrl)" class="btn btn-success add-social-media">Add</button>
-          </div>
-        </div>
+      <div class="text-center">
+        <button type="submit" :disabled="!(validType && validUrl)" class="btn btn-success add-social-media">Add</button>
       </div>
     </form>
   </div>

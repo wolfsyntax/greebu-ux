@@ -2,16 +2,20 @@
   <div class="modal fade" id="organizerStaff" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header border-bottom-0">
-          <h1 class="modal-title fs-5" id="staticBackdropLabel">Organizer Staff</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ref="staffFormDismiss"></button>
+        <div class="modal-header border-bottom-0 p-0 d-flex align-items-start justify-content-between">
+          <div>
+            <h3 class="modal-title" id="staticBackdropLabel">Add Organizer Staff</h3>
+            <p class="mb-0 sub-title">Lorem ipsum dolor sit amet consectetur. Nam lacus viverra nec orci arcu id fringilla ultrices.</p>
+          </div>
+          <div>
+            <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ref="staffFormDismiss"></button> -->
+            <CloseModalButton />
+          </div>
         </div>
-        <div class="modal-body">
+        <div class="modal-body p-0">
 
           <form @submit.prevent="submit" class="modal-add-member">
-            <div class="container">
-              <div class="row py-2">
-                <div class="col">
+                
                   <div class="form-group text-center upload-img">
                     <label class="label-img">
                       <span class="material-symbols-outlined camera-inner" v-if="!avatar">&#xe412;</span>
@@ -26,11 +30,7 @@
                   </div>
 
                   <div v-for="err in errors?.member_avatar" :key="err" class="text-danger">{{ err }}</div>
-                </div>
-              </div>
-
-              <div class="row py-2">
-                <div class="col">
+                
                   <div class="form-group">
                     <label for="fileUpload">Name of the Member</label>
                     <input type="text" v-model="form.member_name" placeholder="Name of the member" 
@@ -38,12 +38,8 @@
                     />
                     <div v-for="err in errors?.member_name" :key="err" class="member-name text-danger">{{ err }}</div>
                   </div>
-                </div>
-              </div>
-
-              <div class="row py-2">
-                <div class="col">
-                  <div class="form-group">
+                
+                  <div class="form-group form-group-last">
                     <label for="fileUpload">Role of Member</label>
                     <select v-model="form.role" class="form-select" required>
                       <option value="" selected> - Please Select Role - </option>
@@ -57,10 +53,7 @@
 
                     <div v-for="err in errors?.role" :key="err" class="text-danger">{{ err }}</div>
                   </div>
-                </div>
-              </div>
-
-              <div class="row py-2">
+              
                 <div class="col text-center">
                   <button type="submit" class="btn btn-warning add-member">
                     <span>
@@ -68,8 +61,7 @@
                     </span>
                   </button>
                 </div>
-              </div>
-            </div>            
+                      
           </form>
         </div>
       </div>
@@ -79,7 +71,12 @@
 
 <script>
 import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
+import CloseModalButton from '/src/components/CloseModalButton.vue';
+
 export default {
+  components: {
+    CloseModalButton
+  },
   setup () {
     
 

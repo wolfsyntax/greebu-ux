@@ -1,9 +1,7 @@
 <template>
   <div>
     <form @submit.prevent="submit" class="modal-add-member">
-      <div class="container">
-        <div class="row py-2">
-          <div class="col">
+       
             <div class="form-group text-center upload-img">
               <label class="label-img">
                 <span class="material-symbols-outlined camera-inner" v-if="!avatar">&#xe412;</span>
@@ -18,22 +16,15 @@
               <!-- see https://stackoverflow.com/questions/2855589/replace-input-type-file-by-an-image#answer-18803568 -->
             </div>
             <div v-for="err in errors?.member_avatar" :key="err" class="text-danger">{{ err }}</div>
-          </div>
-        </div>
-
-        <div class="row py-2">
-          <div class="col">
+       
             <div class="form-group">
               <label for="fileUpload">Name of the Member</label>
               <input type="text" v-model="form.member_name" placeholder="Name of the member"
                 class="form-control member-name" required />
               <div v-for="err in error?.member_name" :key="err" class="member-name text-danger">{{ err }}</div>
             </div>
-          </div>
-        </div>
-        <div class="row py-2">
-          <div class="col">
-            <div class="form-group">
+        
+            <div class="form-group form-group-last">
               <label for="fileUpload">Role of Member</label>
               <select v-model="form.role" class="form-select" required>
                 <option value="" selected> - Please Select Role - </option>
@@ -46,10 +37,8 @@
                 v-if="form.role === 'others'" required />
               <div v-for="err in errors?.role" :key="err" class="text-danger">{{ err }}</div>
             </div>
-          </div>
-        </div>
-        <div class="row py-2">
-          <div class="col text-center">
+      
+          <div class="text-center">
             <button type="submit" class="btn btn-warning add-member">
               <span v-if="isLoading">
                 <i class="busy-add-member"></i>Add Member
@@ -59,8 +48,7 @@
               </span>
             </button>
           </div>
-        </div>
-      </div>
+      
     </form>
   </div>
 </template>
