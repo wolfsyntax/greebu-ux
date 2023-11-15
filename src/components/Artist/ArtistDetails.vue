@@ -60,6 +60,7 @@
                   <!-- <p class="content">{{ artist?.bio }}</p> -->
                   <div>
                     <a :href="`/artists/${artist?.id}`" class="view-profile">View Profile</a>
+                    <!-- <a :href="`/dashboard/`" class="view-profile">View Profile</a> -->
                   </div>
 
                 </div> <!-- end of artist-bio -->

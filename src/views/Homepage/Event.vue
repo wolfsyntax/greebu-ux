@@ -101,66 +101,90 @@
           </template>
 
         </FilterResults>
-        
-        <transition v-if="!(!isOngoingLoading && !isUpcomingLoading && !isPastLoading)" class="text-center">
-          <div>
+
+          <div v-if="isOngoingLoading && isUpcomingLoading && isPastLoading" class="text-center">
             <h3>Please wait!</h3>
             <h5>Retrieving Events...</h5>
           </div>
-        </transition>
-        <section v-else>
+        
+        <div v-else class="events-section">
 
-          <h2 class="my-2">This Week Events</h2>
-          <transition v-if="!isOngoingLoading">
-          <!-- Upcoming Events -->
+          <h3 class="even-type-title">This Week Events</h3>
+          <div v-if="!isOngoingLoading">
             <div class="row" v-if="events_ongoing.length">
               <div class="col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3" v-for="(event, index) in events_ongoing" :key="index">
                 <event-card :event="event" :pos="index" @show="toggleEvent" />
               </div>
             </div>     
 
-            <div class="row" v-else>
-              <div class="col text-center">
-                <h3>No Events found!</h3>
-              </div>
+            <div class="text-center" v-else>
+              <h3 class="mb-0 no-events-found">No Events found 
+                  <!-- <span class="material-symbols-rounded sad-icon">&#xe811;</span> -->
+              </h3>
             </div>
-          </transition>
+          </div>
 
-          <h2 class="my-2">Upcoming Events</h2>
-          <transition v-if="!isUpcomingLoading">
-          <!-- Upcoming Events -->
-
+          <h3 class="even-type-title">Upcoming Events</h3>
+          <div v-if="!isUpcomingLoading">
             <div class="row" v-if="events_upcoming.length">
               <div class="col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3" v-for="(event, index) in events_upcoming" :key="index">
                 <event-card :event="event" :pos="index" @show="toggleEvent" />
               </div>
             </div>     
 
-            <div class="row" v-else>
-              <div class="col text-center">
-                <h3>No Events found!</h3>
-              </div>
+            <div class="text-center" v-else>
+              <h3 class="mb-0 no-events-found">No Events found 
+              </h3>
             </div>
-          </transition>
 
-          <h2 class="my-2">Past Events</h2>
-          <transition v-if="!isPastLoading">
-          <!-- Past Events -->
+            <div class="float-end pagination-wrap">
 
+              <nav aria-label="...">
+                <ul class="pagination">
+                  <li class="page-item back-wrap">
+                    <a class="page-link" href="#">
+                      <span class="page-link material-symbols-rounded back-icon">&#xe5cb;</span>
+                    </a>
+                  </li>
+                  <li class="page-item left-num-wrap">
+                    <a class="page-link left-num" href="#">1</a>
+                  </li>
+                  <li class="page-item active of-wrap" aria-current="page">
+                    <span class="page-link of">of</span>
+                  </li>
+                  <li class="page-item right-num-wrap">
+                    <a class="page-link right-num" href="#">3</a>
+                  </li>
+                  <li class="page-item next-wrap">
+                    <a class="page-link" href="#">
+                      <span class="page-link material-symbols-rounded next-icon">&#xe5cc;</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+
+            </div>
+
+          </div>
+
+          <h3 class="even-type-title">Past Events</h3>
+          <div v-if="!isPastLoading">
             <div class="row" v-if="events_past.length">
               <div class="col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3" v-for="(event, index) in events_past" :key="index">
                 <event-card :event="event" :pos="index" @show="toggleEvent" />
               </div>
             </div>     
 
-            <div class="row" v-else>
-              <div class="col text-center">
-                <h3>No Events found!</h3>
-              </div>
+            <div class="text-center" v-else>
+              <h3 class="mb-0 no-events-found">No Events found 
+              </h3>
             </div>
-          </transition>        
+          </div>        
 
-        </section>
+        </div>
+ 
+             
+        
       </div>
     </section>
     
