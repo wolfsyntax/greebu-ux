@@ -9859,6 +9859,116 @@ header nav {
   color: var(--gray6);
 }
 
+/* Events page - show events section */
+
+.events-showing .events-section{
+
+}
+.events-showing .events-section .even-type-title,
+.events-showing .events-section .no-events-found{
+  color: #160042;
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 2.5rem;
+}
+.events-showing .events-section .sad-icon{
+  font-size: 32px;
+  color: var(--orange);
+}
+.events-showing .events-section .no-events-wrap{
+text-align: center;
+}
+.events-showing .events-section .pagination-wrap{
+  margin-bottom: 5rem;
+}
+.events-showing .events-section .pagination {
+  gap: 1.25rem;
+}
+.events-showing .events-section .page-item {
+  display: flex;
+  width: 4rem;
+  height: 4rem;
+  /* padding: 1.25rem; */
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.375rem;
+  border: 1px solid var(--gray6);
+}
+.events-showing .events-section .back-wrap a,
+.events-showing .events-section .next-wrap a {
+  border: none;
+  background-color: var(--white);
+  padding: 0;
+  align-items: center;
+  display: flex;
+  box-shadow: none;
+}
+.events-showing .events-section .page-item .back-icon, 
+.events-showing .events-section .page-item .next-icon {
+  font-size: 24px;
+  border-radius: 0.375rem;
+  padding: 1.1rem;
+  border: none;
+  background-color: var(--white);
+}
+.events-showing .events-section .page-item .back-icon{
+  color: var(--gray6)!important;
+  background-color: var(--white)!important;
+  transition: none;
+  color: inherit;  /* Use the default text color */
+  background-color: transparent;  /* Make the background transparent */
+  border: none;  /* Remove any border that may be applied */
+  text-decoration: none;  /* Remove any text decoration, such as underline */
+}
+.events-showing .events-section .page-item .next-icon{
+  color: var(--orange);
+}
+.events-showing .events-section .left-num-wrap{
+  border: 1px solid var(--orange);
+  background-color: var(--orange);
+  transition: 0.1s all;
+}
+.events-showing .events-section .left-num-wrap .left-num,
+.events-showing .events-section .page-item .right-num{
+  color: var(--white);
+  font-size: 1.125rem;
+  font-weight: 800;
+  background-color: var(--orange);
+  border: none;
+  box-shadow: none;
+  transition: 0.1s all;
+}
+.events-showing .events-section .left-num-wrap:hover{
+  border: 1px solid var(--btn-hovered);
+  background-color: var(--btn-hovered);
+  transition: 0.1s all;
+}
+.events-showing .events-section .left-num-wrap:hover .left-num{
+  background-color: var(--btn-hovered);
+  transition: 0.1s all;
+}
+.events-showing .events-section .right-num-wrap{
+  border: 1px solid var(--orange);
+}
+.events-showing .events-section .page-item .right-num{
+  color: var(--orange);
+  background-color: var(--white);
+  border: none;
+}
+.events-showing .events-section .of-wrap{
+  border: 1px solid var(--white);
+}
+.events-showing .events-section .of-wrap .of{
+  color: var(--gray6);
+  font-size: 1.125rem;
+  font-weight: 800;
+  border: none;
+  background-color: var(--white);
+}
+
+
+
+
 
                                                   /* MEDIA QUERIES */
 

@@ -15,37 +15,28 @@
             <p class="sub-heading">Let customers and other co-artists know you better!</p>
             <h3 class="profile-details">Profile Details</h3>
               
-              <!-- DISPLAY MODAL -->
-            <div ref="modal" class="modal fade" :class="{ show: active, 'd-block': active }"
-              tabindex="-1" role="dialog"
-            >
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <div class="container">
-                      <div class="row">
-                        <div class="col">
-                          <h5 class="modal-title">{{ formHeader }}</h5>
-                        </div>
+              <!-- DISPLAY MODAL for Add Member and Add Social Media Accounts -->
+              <div ref="modal" class="modal fade" id="add-artist-details" :class="{ show: active, 'd-block': active }" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header d-flex align-items-start justify-content-between p-0">
+                      <div>
+                        <h5 class="modal-title">{{ formHeader }}</h5>
+                        <p class="mb-0 modal-sub-heading">{{ formSubHeading }}</p>
                       </div>
-
-                      <div class="row">
-                        <div class="col">
-                          <span class="modal-sub-heading">{{ formSubHeading }}</span>
-                        </div>
+                      <div>
+                        <button class="btn p-0 border-0">
+                          <span class="material-symbols-rounded close-modal-icon" data-dismiss="modal" @click="toggle">&#xe5c9;</span>
+                        </button>
                       </div>
                     </div>
-
-                    <span class="material-symbols-rounded close-modal-icon" data-dismiss="modal" @click="toggle">close</span>
-                  </div>
-
-                  <div class="modal-body">
-                    <member-form @modalClose="dismiss" @form="updateMember" v-if="formType === 'members'"/>
-                    <social-media @modalClose="dismiss" @form="updateSocial" :media="social" v-if="formType === 'links'" />
+                    <div class="modal-body p-0">
+                      <member-form @modalClose="dismiss" @form="updateMember" v-if="formType === 'members'"/>
+                      <social-media @modalClose="dismiss" @form="updateSocial" :media="social" v-if="formType === 'links'" />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
             
             <div v-if="active" class="modal-backdrop fade show"></div>
 
@@ -179,7 +170,9 @@
               <div class="band-and-social">                           
                 <div class="form-group">
                   <label for="members">Band Members</label><br>
-                  <button type="button" class="btn btn-primary add-member" @click="toggle('members', false, -1)"><span class="material-symbols-rounded">add_box</span>Add Member</button>
+                  <button type="button" class="btn btn-primary add-member" @click="toggle('members', false, -1)">
+                    <span class="material-symbols-rounded">add_box</span>
+                    Add Member</button>
                 </div>    
 
                 <div class="col">

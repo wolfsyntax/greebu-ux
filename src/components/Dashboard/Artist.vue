@@ -49,9 +49,25 @@
                     </div>
 
                     <div class="col-3">
+
+                      <!-- Display these buttons when the organizer is viewing the artist profile.  -->
+
+                      <!-- <div class="d-flex align-items-center organizer-view-wrap">
+                        <button class="btn follow-btn">
+                          <span class="material-symbols-rounded add-icon">&#xe145;</span>
+                          Follow
+                        </button>
+                        <button class="btn book-now-btn">
+                          <span class="material-symbols-rounded event-icon">&#xe878;</span>
+                          Book Now
+                        </button>
+                      </div> -->
+
+                      <!-- Display if the artist is logged in -->
                       <div class="d-none d-md-block text-end edit">
                         <router-link to="/account/profile" class="btn btn-primary btn-lg">Edit Profile</router-link>
                       </div>
+
                     </div>
                   </div>
                 </div>
