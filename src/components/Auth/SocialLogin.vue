@@ -18,11 +18,11 @@
       <p><span>Or Continue with</span></p>
     </div>
     <button @click="login('google')" class="google btn" v-if="$route.name === 'login'"><img src="/assets/sign-in-with-google.svg" width="20" height="20" alt="Sign up with Google">Sign in with Google</button>
-    <button @click="login('facebook')" class="facebook" v-if="$route.name === 'login'"><img src="/assets/sign-in-with-facebook.svg" width="20" height="20" alt="Sign up with Facebook">Sign in with Facebook</button>
+    <!-- <button @click="login('facebook')" class="facebook" v-if="$route.name === 'login'"><img src="/assets/sign-in-with-facebook.svg" width="20" height="20" alt="Sign up with Facebook">Sign in with Facebook</button> -->
   
     <div v-if="$route.name === 'register'">
       <button @click="login('google')" class="google btn"><img src="/assets/sign-in-with-google.svg" width="20" height="20" alt="Sign up with Google">Sign up with Google</button>
-    <button @click="login('facebook')" class="facebook"><img src="/assets/sign-in-with-facebook.svg" width="20" height="20" alt="Sign up with Facebook">Sign up with Facebook</button>
+    <!-- <button @click="login('facebook')" class="facebook"><img src="/assets/sign-in-with-facebook.svg" width="20" height="20" alt="Sign up with Facebook">Sign up with Facebook</button> -->
     </div>
 
     <div class="forgot-password" v-if="$route.name === 'login'">
