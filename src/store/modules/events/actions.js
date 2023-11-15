@@ -589,6 +589,11 @@ export const ongoingEvents = ({ commit, rootState, state }) => {
         encodeURIComponent(state.eventFilter.event_type) || ""
       }`;
     }
+
+    url = `${url}&per_page=${state.ongoingPagination?.per_page || 6}&page=${
+      state.ongoingPagination?.page || 1
+    }`;
+
     console.log("Event page [ongoing]: ", url);
     setTimeout(async () => {
       await axios
@@ -602,9 +607,18 @@ export const ongoingEvents = ({ commit, rootState, state }) => {
             const {
               status,
               message,
-              result: { events },
+              result: { events, pagination },
             } = data;
             commit("setOngoingEvents", events || []);
+            commit(
+              "setOngoingPagination",
+              pagination || {
+                total: 0,
+                last_page: 1,
+                per_page: 6,
+                offset: 6,
+              }
+            );
             resolve(data);
           }
 
@@ -649,6 +663,10 @@ export const upcomingEvents = ({ commit, rootState, state }) => {
       }`;
     }
 
+    url = `${url}&per_page=${state.upcomingPagination?.per_page || 6}&page=${
+      state.upcomingPagination?.page || 1
+    }`;
+
     console.log("Event page [upcoming]: ", url);
 
     setTimeout(async () => {
@@ -661,10 +679,19 @@ export const upcomingEvents = ({ commit, rootState, state }) => {
             const {
               status,
               message,
-              result: { events },
+              result: { events, pagination },
             } = data;
 
             commit("setUpcomingEvents", events || []);
+            commit(
+              "setUpcomingPagination",
+              pagination || {
+                total: 0,
+                last_page: 1,
+                per_page: 6,
+                offset: 6,
+              }
+            );
             console.log("Upcoming Events: ", events);
             resolve(data);
           }
@@ -710,6 +737,10 @@ export const pastEvents = ({ commit, rootState, state }) => {
       }`;
     }
 
+    url = `${url}&per_page=${state.pastPagination?.per_page || 6}&page=${
+      state.pastPagination?.page || 1
+    }`;
+
     console.log("Event page [past]: ", url);
     setTimeout(async () => {
       await axios
@@ -723,9 +754,18 @@ export const pastEvents = ({ commit, rootState, state }) => {
             const {
               status,
               message,
-              result: { events },
+              result: { events, pagination },
             } = data;
             commit("setPastEvents", events || []);
+            commit(
+              "setPastPagination",
+              pagination || {
+                total: 0,
+                last_page: 1,
+                per_page: 6,
+                offset: 6,
+              }
+            );
             resolve(data);
           }
 

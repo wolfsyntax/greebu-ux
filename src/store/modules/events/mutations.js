@@ -101,3 +101,85 @@ export const setPastEvents = (state, payload = []) => {
 export const SET_EVENT_ID = (state, payload = "") => {
   state.eventId = payload;
 };
+
+export const setOngoingPagination = (
+  state,
+  payload = {
+    total: 0,
+    last_page: 1,
+    per_page: 6,
+    offset: 6,
+    page: 1,
+  }
+) => {
+  state.ongoingPagination = payload;
+};
+
+export const setUpcomingPagination = (
+  state,
+  payload = {
+    total: 0,
+    last_page: 1,
+    per_page: 6,
+    offset: 6,
+    page: 1,
+  }
+) => {
+  state.upcomingPagination = payload;
+};
+
+export const setPastPagination = (
+  state,
+  payload = {
+    total: 1,
+    last_page: 1,
+    per_page: 6,
+    offset: 6,
+    page: 1,
+  }
+) => {
+  state.pastPagination = payload;
+};
+
+export const setPastPage = (state, payload) => {
+  console.log("Past Event [Current Page]: ", payload);
+  state.pastPagination.page = payload || 1;
+};
+
+export const setUpcomingPage = (state, payload) => {
+  console.log("Upcoming Event [Current Page]: ", payload);
+  state.upcomingPagination.page = payload || 1;
+};
+
+export const setOngoingPage = (state, payload) => {
+  console.log("Ongoing Event [Current Page]: ", payload);
+  state.ongoingPagination.page = payload || 1;
+};
+
+// +++
+export const nextPastPage = (state) => {
+  if (state.pastPagination.page < state.pastPagination.last_page)
+    state.pastPagination.page++;
+};
+
+export const nextUpcomingPage = (state) => {
+  if (state.upcomingPagination.page < state.upcomingPagination.last_page)
+    state.upcomingPagination.page++;
+};
+
+export const nextOngoingPage = (state, payload) => {
+  if (state.ongoingPagination.page < state.ongoingPagination.last_page)
+    state.ongoingPagination.page++;
+};
+
+export const prevPastPage = (state) => {
+  if (state.pastPagination.page > 1) state.pastPagination.page--;
+};
+
+export const prevUpcomingPage = (state) => {
+  if (state.upcomingPagination.page > 1) state.upcomingPagination.page--;
+};
+
+export const prevOngoingPage = (state, payload) => {
+  if (state.ongoingPagination.page > 1) state.ongoingPagination.page--;
+};
