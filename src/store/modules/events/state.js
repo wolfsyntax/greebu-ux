@@ -63,6 +63,27 @@ const state = {
   ongoingListEvents: [],
   upcomingListEvents: [],
   pastListEvents: [],
+  ongoingPagination: {
+    total: 0,
+    last_page: 1,
+    per_page: 6,
+    offset: 6,
+    page: 1,
+  },
+  upcomingPagination: {
+    total: 0,
+    last_page: 1,
+    per_page: 6,
+    offset: 6,
+    page: 1,
+  },
+  pastPagination: {
+    total: 0,
+    last_page: 1,
+    per_page: 6,
+    offset: 6,
+    page: 1,
+  },
   eventId: "",
 };
 
