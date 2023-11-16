@@ -404,7 +404,7 @@ export const fetchArtistBySlug = ({ commit, rootState, state }, payload) => {
         .get(
           `${
             import.meta.env.VITE_BASE_URL || "http://localhost:8000"
-          }/api/artists/${payload}/slug`
+          }/api/artists/${payload}/details`
         )
         .then((response) => {
           console.log("\n\nFetch Artist Response: ", response);

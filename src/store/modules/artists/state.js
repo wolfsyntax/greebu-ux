@@ -17,14 +17,26 @@ var state = {
   member: {},
   memIndex: -1,
   proposal: {
-    event_id: '',
-    artist_id: '',
-    artist_name: '',
+    event_id: "",
+    artist_id: "",
+    artist_name: "",
     genres: [],
     total_member: 0,
-    cover_letter: '',
-    sample_song: '',
-  }
-}
+    cover_letter: "",
+    sample_song: "",
+  },
+  artistMembers: [],
+  artistInfo: {},
+  artistSchedules: [],
+  artistSongs: [],
+  artistOngoingEvents: [],
+  artistUpcomingEvents: [],
+  artistPastEvents: [],
+  artistVideos: [],
+  artistPhotos: [],
+  artistReviews: [],
+  artistBookings: [],
+  artistPosts: [],
+};
 
-export default state
+export default state;

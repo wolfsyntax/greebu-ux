@@ -567,6 +567,17 @@ export const ongoingEvents = ({ commit, rootState, state }) => {
       encodeURIComponent(state.eventFilter.search) || ""
     }`;
 
+    if (rootState.bearerToken) {
+      axios.defaults.headers.common["Authorization"] =
+        "Bearer " + (rootState.bearerToken || localStorage.api_token);
+
+      url = `${
+        import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+      }/api/events-ongoing/auth?search=${
+        encodeURIComponent(state.eventFilter.search) || ""
+      }`;
+    }
+
     if (state.eventFilter?.city !== "") {
       url = `${url}&city=${encodeURIComponent(state.eventFilter.city) || ""}`;
     }
@@ -639,6 +650,17 @@ export const upcomingEvents = ({ commit, rootState, state }) => {
     }/api/events-upcoming?search=${
       encodeURIComponent(state.eventFilter.search) || ""
     }`;
+
+    if (rootState.bearerToken) {
+      axios.defaults.headers.common["Authorization"] =
+        "Bearer " + (rootState.bearerToken || localStorage.api_token);
+
+      url = `${
+        import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+      }/api/events-upcoming/auth?search=${
+        encodeURIComponent(state.eventFilter.search) || ""
+      }`;
+    }
 
     if (state.eventFilter?.city !== "") {
       url = `${url}&city=${encodeURIComponent(state.eventFilter.city) || ""}`;
@@ -713,6 +735,17 @@ export const pastEvents = ({ commit, rootState, state }) => {
     }/api/events-past?search=${
       encodeURIComponent(state.eventFilter.search) || ""
     }`;
+
+    if (rootState.bearerToken) {
+      axios.defaults.headers.common["Authorization"] =
+        "Bearer " + (rootState.bearerToken || localStorage.api_token);
+
+      url = `${
+        import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+      }/api/events-past/auth?search=${
+        encodeURIComponent(state.eventFilter.search) || ""
+      }`;
+    }
 
     if (state.eventFilter?.city !== "") {
       url = `${url}&city=${encodeURIComponent(state.eventFilter.city) || ""}`;

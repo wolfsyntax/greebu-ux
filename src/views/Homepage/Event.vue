@@ -113,7 +113,7 @@
           <div v-if="!isOngoingLoading">
             <div class="row" v-if="events_ongoing.length">
               <div class="col-sm-12 col-md-6 col-lg-4" v-for="(event, index) in events_ongoing" :key="index">
-                <event-card :event="event" :pos="index" @show="toggleEvent" />
+                <event-card :event="event" :pos="index" @show="toggleEvent" group="ongoing" />
               </div>
               <div class="float-end pagination-wrap">
               <nav aria-label="...">
@@ -124,13 +124,13 @@
                     </button>
                   </li>
                   <li class="page-item left-num-wrap">
-                    <button class="page-link left-num" @click="setOngoingPage(ongoingPagination.page)">{{ ongoingPagination?.page }}</button>
+                    <button class="page-link left-num" @click="selectPage(ongoingPagination.page)">{{ ongoingPagination?.page }}</button>
                   </li>
                   <li class="page-item active of-wrap" aria-current="page">
                     <span class="page-link of">of</span>
                   </li>
                   <li class="page-item right-num-wrap">
-                    <button class="page-link right-num" @click="setOngoingPage(ongoingPagination.last_page)">{{ ongoingPagination?.last_page }}</button>
+                    <button class="page-link right-num" @click="selectPage(ongoingPagination.last_page)">{{ ongoingPagination?.last_page }}</button>
                   </li>
                   <li class="page-item next-wrap">
                     <button class="page-link" :disabled="ongoingPagination.last_page === ongoingPagination.page" @click="nextOngoingEvent()">
@@ -154,7 +154,7 @@
           <div v-if="!isUpcomingLoading">
             <div class="row" v-if="events_upcoming.length">
               <div class="col-sm-12 col-md-6 col-lg-4" v-for="(event, index) in events_upcoming" :key="index">
-                <event-card :event="event" :pos="index" @show="toggleEvent" />
+                <event-card :event="event" :pos="index" @show="toggleEvent" group="upcoming"/>
               </div>
               <div class="float-end pagination-wrap">
               <nav aria-label="...">
@@ -165,13 +165,13 @@
                     </button>
                   </li>
                   <li class="page-item left-num-wrap">
-                    <button class="page-link left-num" @click="setUpcomingPage(upcomingPagination.page)">{{ upcomingPagination?.page }}</button>
+                    <button class="page-link left-num" @click="selectPage(upcomingPagination.page, 'upcoming')">{{ upcomingPagination?.page }}</button>
                   </li>
                   <li class="page-item active of-wrap" aria-current="page">
                     <span class="page-link of">of</span>
                   </li>
                   <li class="page-item right-num-wrap">
-                    <button class="page-link right-num" @click="setUpcomingPage(upcomingPagination.last_page)">{{ upcomingPagination?.last_page }}</button>
+                    <button class="page-link right-num" @click="selectPage(upcomingPagination.last_page, 'upcoming')">{{ upcomingPagination?.last_page }}</button>
                   </li>
                   <li class="page-item next-wrap">
                     <button class="page-link" :disabled="upcomingPagination.last_page === upcomingPagination.page" @click="nextUpcomingEvent()">
@@ -194,24 +194,24 @@
           <div v-if="!isPastLoading">
             <div class="row" v-if="events_past.length">
               <div class="col-sm-12 col-md-6 col-lg-4" v-for="(event, index) in events_past" :key="index">
-                <event-card :event="event" :pos="index" @show="toggleEvent" />
+                <event-card :event="event" :pos="index" @show="toggleEvent" group="past"/>
               </div>
               <div class="float-end pagination-wrap">
               <nav aria-label="...">
                 <ul class="pagination">
                   <li class="page-item back-wrap" >
-                    <button class="page-link" :disabled="pastPagination.page === 1" @click="setPastPage(pastPagination.page--)">
+                    <button class="page-link" :disabled="pastPagination.page === 1" @click="prevPastPage(pastPagination.page--)">
                       <span class="page-link material-symbols-rounded back-icon">&#xe5cb;</span>
                     </button>
                   </li>
                   <li class="page-item left-num-wrap">
-                    <button class="page-link left-num" @click="setPastPage(pastPagination.page)">{{ pastPagination?.page }}</button>
+                    <button class="page-link left-num" @click="selectPage(pastPagination.page, 'past')">{{ pastPagination?.page }}</button>
                   </li>
                   <li class="page-item active of-wrap" aria-current="page">
                     <span class="page-link of">of</span>
                   </li>
                   <li class="page-item right-num-wrap">
-                    <button class="page-link right-num" @click="setPastPage(pastPagination.last_page)">{{ pastPagination?.last_page }}</button>
+                    <button class="page-link right-num" @click="selectPage(pastPagination.last_page, 'past')">{{ pastPagination?.last_page }}</button>
                   </li>
                   <li class="page-item next-wrap">
                     <button class="page-link" :disabled="pastPagination.last_page === pastPagination.page" @click="nextPastEvent()">
@@ -368,11 +368,46 @@ export default {
     ]),
     ...mapMutations([
       'RESET_EVENT_FILTER', 
-      // 'setPastPage', 'setOngoingPage', 'setUpcomingPage',
+      'setPastPage', 'setOngoingPage', 'setUpcomingPage',
       'setUpcomingPagination', 'setOngoingPagination', 'setPastPagination',
       'prevUpcomingPage', 'prevOngoingPage', 'prevPastPage',
       'nextUpcomingPage', 'nextOngoingPage', 'nextPastPage',
     ]),
+    selectPage(page, type='ongoing') {
+      if (type === 'ongoing') {
+        console.log('Specify Ongoing Event: ', page);
+        this.setOngoingPage(page);
+
+        this.ongoingEvents().then(res => {
+          this.isOngoingLoading = false;
+        })
+        .catch(onError => {console.log('Ongoing Events [error]: ', onError)})
+        .finally(onfinally => { this.isOngoingLoading = false });
+      }
+      
+      if (type === 'upcoming') {
+        console.log('Specify Upcoming Event: ', page);
+        this.setUpcomingPage(page);
+        
+        this.upcomingEvents().then(res => {
+          this.isUpcomingLoading = false;
+        })
+        .catch(onError => {console.log('Upcoming Events [error]: ', onError)})
+        .finally(onfinally => { this.isUpcomingLoading = false });
+      }
+
+      if (type === 'past') {
+        console.log('Specify Past Event: ', page);
+        this.setOngoingPage(page);
+
+        this.pastEvents().then(res => {
+          this.isPastLoading = false;
+        })
+        .catch(onError => {console.log('Past Events [error]: ', onError)})
+        .finally(onfinally => { this.isPastLoading = false });
+      }
+
+    },
     toggleEvent(pos)
     {
       if (this.isLoggedIn) {

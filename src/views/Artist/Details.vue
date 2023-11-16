@@ -437,7 +437,7 @@ export default {
 
     const regexExp = /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi;
     
-    if (regexExp.test(str)) this.fetchArtistById(this.$route.params?.id);
+    if (regexExp.test(this.$route.params?.id)) this.fetchArtistById(this.$route.params?.id);
     else this.fetchArtistBySlug(this.$route.params?.id)
 
     // this.fetchProfile()
