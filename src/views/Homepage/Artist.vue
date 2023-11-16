@@ -204,7 +204,7 @@ import Card from '/src/components/Artist/Card.vue';
 import Faq from '/src/components/Home/FAQ.vue';
 import FilterResults from "/src/components/FilterResults.vue";
 import LoadingVue from '/src/components/Loading.vue';
-import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
+import { mapGetters, mapState, mapActions, mapMutations, storeKey } from "vuex";
 
 export default {
   components: {
@@ -311,7 +311,6 @@ export default {
         return 'bi-volume-up';
       }
     },
-
   },
   methods: {
     ...mapActions([
