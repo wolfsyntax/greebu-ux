@@ -102,9 +102,9 @@
 
         </FilterResults>
 
-          <div v-if="isOngoingLoading && isUpcomingLoading && isPastLoading" class="text-center">
-            <h3>Please wait!</h3>
-            <h5>Retrieving Events...</h5>
+          <div v-if="isOngoingLoading && isUpcomingLoading && isPastLoading" class="text-center" id="fetching-data">
+            <img src="/assets/fetching-data.gif" class="fetching-gif" alt="Fetching data gif">
+            <h5 class="loading">Loading Events...</h5>
           </div>
         
         <div v-else class="events-section">
@@ -115,16 +115,7 @@
               <div class="col-sm-12 col-md-6 col-lg-4" v-for="(event, index) in events_ongoing" :key="index">
                 <event-card :event="event" :pos="index" @show="toggleEvent" />
               </div>
-            </div>     
-
-            <div class="text-center" v-else>
-              <h3 class="mb-0 no-events-found">No Events found 
-                  <!-- <span class="material-symbols-rounded sad-icon">&#xe811;</span> -->
-              </h3>
-            </div>
-
-            <div class="float-end pagination-wrap my-2">
-
+              <div class="float-end pagination-wrap">
               <nav aria-label="...">
                 <ul class="pagination">
                   <li class="page-item back-wrap" >
@@ -148,8 +139,15 @@
                   </li>
                 </ul>
               </nav>
+            </div> <!-- end of pagination-wrap -->
+            </div>     
 
+            <div class="text-center" v-else>
+              <h3 class="mb-0 no-events-found">No Events found 
+                  <!-- <span class="material-symbols-rounded sad-icon">&#xe811;</span> -->
+              </h3>
             </div>
+
           </div>
 
           <h3 class="even-type-title">Upcoming Events</h3>
@@ -158,15 +156,7 @@
               <div class="col-sm-12 col-md-6 col-lg-4" v-for="(event, index) in events_upcoming" :key="index">
                 <event-card :event="event" :pos="index" @show="toggleEvent" />
               </div>
-            </div>     
-
-            <div class="text-center" v-else>
-              <h3 class="mb-0 no-events-found">No Events found 
-              </h3>
-            </div>
-
-            <div class="float-end pagination-wrap my-2">
-
+              <div class="float-end pagination-wrap">
               <nav aria-label="...">
                 <ul class="pagination">
                   <li class="page-item back-wrap" >
@@ -190,7 +180,12 @@
                   </li>
                 </ul>
               </nav>
+            </div> <!-- end of pagination-wrap -->
+            </div>     
 
+            <div class="text-center" v-else>
+              <h3 class="mb-0 no-events-found">No Events found 
+              </h3>
             </div>
 
           </div>
@@ -201,14 +196,7 @@
               <div class="col-sm-12 col-md-6 col-lg-4" v-for="(event, index) in events_past" :key="index">
                 <event-card :event="event" :pos="index" @show="toggleEvent" />
               </div>
-            </div>     
-
-            <div class="text-center" v-else>
-              <h3 class="mb-0 no-events-found">No Events found 
-              </h3>
-            </div>
-            <div class="float-end pagination-wrap my-2">
-
+              <div class="float-end pagination-wrap">
               <nav aria-label="...">
                 <ul class="pagination">
                   <li class="page-item back-wrap" >
@@ -232,13 +220,16 @@
                   </li>
                 </ul>
               </nav>
+            </div> <!-- end of pagination-wrap -->
+            </div>     
 
+            <div class="text-center" v-else>
+              <h3 class="mb-0 no-events-found">No Events found 
+              </h3>
             </div>
           </div>        
 
-        </div>
- 
-             
+        </div> 
         
       </div>
     </section>

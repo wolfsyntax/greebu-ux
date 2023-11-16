@@ -184,7 +184,7 @@
                     <div class="card-body">
                       <div class="d-flex align-items-center justify-content-between header">
                         <div class="d-flex title">
-                          <span class="material-symbols-outlined">event_available</span>
+                          <span class="material-symbols-outlined">&#xe614;</span>
                           <h5 class="card-title mb-0">Past Events</h5>
                         </div>
 
@@ -212,7 +212,7 @@
                     <div class="card-body">
                       <div class="d-flex align-items-center justify-content-between header">
                         <div class="d-flex title">
-                          <span class="material-symbols-outlined">album</span>
+                          <span class="material-symbols-outlined">&#xe019;</span>
                           <h5 class="card-title mb-0">Original Songs</h5>
                         </div>
 
