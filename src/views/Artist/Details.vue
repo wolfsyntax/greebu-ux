@@ -433,29 +433,35 @@ export default {
   }),
   mounted()
   {
-    this.fetchArtist(this.$route.params?.id); // view artist profile
+    // this.fetchArtist(this.$route.params?.id); // view artist profile
 
-    this.fetchProfile()
-      .then(res =>
-      {
-        console.log('Fetch Profile [ArtistLayout]: ', res)
-      }).catch(err =>
-      {
-        console.log('Fetch Profile Error [ArtistLayout]: ', err)
-      })
+    const regexExp = /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi;
+    
+    if (regexExp.test(this.$route.params?.id)) this.fetchArtistById(this.$route.params?.id);
+    else this.fetchArtistBySlug(this.$route.params?.id)
 
-    this.artistOptions()
-      .then(res =>
-      {
-        console.log('Artist Options [ArtistLayout] ', res)
-      });
+    // this.fetchProfile()
+    //   .then(res =>
+    //   {
+    //     console.log('Fetch Profile [ArtistLayout]: ', res)
+    //   }).catch(err =>
+    //   {
+    //     console.log('Fetch Profile Error [ArtistLayout]: ', err)
+    //   })
 
-    this.bannerImage = this.profile.cover_photo || this.account?.cover_photo || '/assets/artist-account/default-cover-photo.webp';
+    // this.artistOptions()
+    //   .then(res =>
+    //   {
+    //     console.log('Artist Options [ArtistLayout] ', res)
+    //   });
+
+    // this.bannerImage = this.profile.cover_photo || this.account?.cover_photo || '/assets/artist-account/default-cover-photo.webp';
 
   },
   methods: {
     ...mapActions([
-      'fetchArtistOptions', 'fetchProfile', 'artistOptions', 'fetchArtist'
+      'fetchArtistOptions', 'fetchArtistById', 'fetchArtistBySlug',
+      'fetchProfile', 'artistOptions', 'fetchArtist'
     ]),
     toggle()
     {

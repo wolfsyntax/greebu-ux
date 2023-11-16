@@ -368,7 +368,7 @@ export const artistOptions = ({ commit, rootState, state }, payload) => {
   });
 };
 
-export const fetchArtist = ({ commit, rootState, state }, payload) => {
+export const fetchArtistById = ({ commit, rootState, state }, payload) => {
   return new Promise((resolve, reject) => {
     setTimeout(async () => {
       await axios
@@ -376,6 +376,35 @@ export const fetchArtist = ({ commit, rootState, state }, payload) => {
           `${
             import.meta.env.VITE_BASE_URL || "http://localhost:8000"
           }/api/artists/${payload}`
+        )
+        .then((response) => {
+          console.log("\n\nFetch Artist Response: ", response);
+
+          const {
+            data: {
+              status,
+              message,
+              result: { artist },
+            },
+          } = response;
+          commit("SET_ARTIST_PROFILE", artist);
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    }, 1500);
+  });
+};
+
+export const fetchArtistBySlug = ({ commit, rootState, state }, payload) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(async () => {
+      await axios
+        .get(
+          `${
+            import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+          }/api/artists/${payload}/details`
         )
         .then((response) => {
           console.log("\n\nFetch Artist Response: ", response);

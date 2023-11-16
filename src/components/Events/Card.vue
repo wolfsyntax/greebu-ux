@@ -150,6 +150,7 @@
 
 
       </div>
+    
       <div v-if="isLoggedIn">
         <button class="btn btn-primary view-details" @click="toggle(pos)">View Details</button>
       </div>
@@ -157,7 +158,8 @@
       <div v-else>
         <button class="btn btn-primary view-details" @click="toggle">View Details</button>
       </div>
-      <button class="btn btn-primary send-proposal" @click="sendProposal" v-if="userRole === 'artists' && !event?.is_visible" :disabled="canSendProposal">Send Proposal</button>
+
+      <button class="btn btn-primary send-proposal" @click="sendProposal" v-if="userRole === 'artists' && !event?.is_visible && group != 'past'" :disabled="!canSendProposal">Send Proposal</button>
     </div>
   </div>
 </template>
@@ -192,6 +194,11 @@ export default {
       default: {},
       required: true
     },
+    group: {
+      type: String,
+      default: 'ongoing',
+      required: true,
+    }
   },
   computed: {
     ...mapGetters(["isLoggedIn", 'userRole']),
@@ -200,9 +207,14 @@ export default {
       members: (state) => state.artist.members,
     }),
     canSendProposal() {
-      if (!this.event.accept_proposal) return true;
-      if(this.event?.can_send) return false;
-      return true; 
+      console.log(`Can Send Proposal for ${this.event.id}: `, this.event.accept_proposal);
+      if (this.event.can_send) {
+        
+        return this.event.accept_proposal;
+      } else {
+        return false;
+      }
+      return this.event.can_send
     }
   },
   data: () => ({

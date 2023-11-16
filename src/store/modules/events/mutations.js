@@ -143,17 +143,17 @@ export const setPastPagination = (
 
 export const setPastPage = (state, payload) => {
   console.log("Past Event [Current Page]: ", payload);
-  state.pastPagination.page = payload || 1;
+  state.pastPagination.page = payload;
 };
 
 export const setUpcomingPage = (state, payload) => {
   console.log("Upcoming Event [Current Page]: ", payload);
-  state.upcomingPagination.page = payload || 1;
+  state.upcomingPagination.page = payload;
 };
 
 export const setOngoingPage = (state, payload) => {
   console.log("Ongoing Event [Current Page]: ", payload);
-  state.ongoingPagination.page = payload || 1;
+  state.ongoingPagination.page = payload;
 };
 
 // +++
