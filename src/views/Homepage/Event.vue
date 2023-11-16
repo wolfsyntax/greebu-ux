@@ -104,7 +104,7 @@
 
           <div v-if="isOngoingLoading && isUpcomingLoading && isPastLoading" class="text-center" id="fetching-data">
             <img src="/assets/fetching-data.gif" class="fetching-gif" alt="Fetching data gif">
-            <h5 class="loading">Loading Events...</h5>
+            <h5 class="loading">Loading Events</h5>
           </div>
         
         <div v-else class="events-section">
@@ -143,9 +143,7 @@
             </div>     
 
             <div class="text-center" v-else>
-              <h3 class="mb-0 no-events-found">No Events found 
-                  <!-- <span class="material-symbols-rounded sad-icon">&#xe811;</span> -->
-              </h3>
+              <NoEvent />
             </div>
 
           </div>
@@ -184,8 +182,7 @@
             </div>     
 
             <div class="text-center" v-else>
-              <h3 class="mb-0 no-events-found">No Events found 
-              </h3>
+              <NoEvent />
             </div>
 
           </div>
@@ -224,8 +221,7 @@
             </div>     
 
             <div class="text-center" v-else>
-              <h3 class="mb-0 no-events-found">No Events found 
-              </h3>
+              <NoEvent />
             </div>
           </div>        
 
@@ -255,6 +251,7 @@ import ViewDetail from '/src/components/Events/ViewEventDetailsModal.vue';
 import EventSuccess from '/src/components/Auth/Events/SuccessModal.vue';
 import EventCard from '/src/components/Events/Card.vue';
 import FilterResults from "/src/components/FilterResults.vue";
+import NoEvent from '/src/components/Events/NoEvent.vue';
 
 export default {
   metaInfo: {
@@ -270,7 +267,8 @@ export default {
     EventSuccess,
     Multiselect,
     EventCard,
-    FilterResults
+    FilterResults,
+    NoEvent
   },
   setup()
   {
