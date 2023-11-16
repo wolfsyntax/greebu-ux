@@ -282,11 +282,12 @@ img{
 .profile-page .profile-header .cover .cover-body .edit a:hover {
   background-color: var(--btn-hovered);
 }
-.profile-page .profile-header .organizer-view-wrap{
+.profile-page .profile-header .view-artist-btn-wrap{
   gap: 0.56rem;
 }
-.profile-page .profile-header .organizer-view-wrap .follow-btn,
-.profile-page .profile-header .organizer-view-wrap .book-now-btn{
+.profile-page .profile-header .view-artist-btn-wrap .follow-btn,
+.profile-page .profile-header .view-artist-btn-wrap .book-now-btn,
+.profile-page .profile-header .view-artist-btn-wrap .collab-btn{
   color: var(--white);
   font-size: 1.125rem;
   font-weight: 600;
@@ -297,33 +298,53 @@ img{
   border: 1px solid var(--orange);
   display: flex;
   align-items: center;
-  padding: 0.75rem 1.25rem;
+  justify-content: center;
+  padding: 0.75rem 0;
+  width: 7.5rem;
 }
-.profile-page .profile-header .organizer-view-wrap .book-now-btn{
+.profile-page .profile-header .view-artist-btn-wrap .book-now-btn,
+.profile-page .profile-header .view-artist-btn-wrap .collab-btn{
   color: var(--orange);
   border: 1px solid var(--orange);
   background-color: var(--white);
+  width: 9.8125rem;
 }
-.profile-page .profile-header .organizer-view-wrap .follow-btn:hover{
+.profile-page .profile-header .view-artist-btn-wrap .follow-btn:hover{
   background-color: var(--btn-hovered);
   border: 1px solid var(--btn-hovered);
 }
-.profile-page .profile-header .organizer-view-wrap .book-now-btn:hover{
+.profile-page .profile-header .view-artist-btn-wrap .book-now-btn:hover,
+.profile-page .profile-header .view-artist-btn-wrap .collab-btn{
   border: 1px solid var(--btn-hovered);
 }
-.profile-page .profile-header .organizer-view-wrap .book-now-btn:hover > *{
+.profile-page .profile-header .view-artist-btn-wrap .book-now-btn:hover > *,
+.profile-page .profile-header .view-artist-btn-wrap .collab-btn:hover > *{
   color: var(--btn-hovered);
 }
-.profile-page .profile-header .organizer-view-wrap .follow-btn .add-icon,
-.profile-page .profile-header .organizer-view-wrap .book-now-btn .event-icon{
+.profile-page .profile-header .view-artist-btn-wrap .follow-btn .add-icon,
+.profile-page .profile-header .view-artist-btn-wrap .book-now-btn .event-icon,
+.profile-page .profile-header .view-artist-btn-wrap .collab-btn .group-icon{
   font-size: 24px;
   color: var(--white);
+  transition: 0.7s all;
+  font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 48;
 }
-.profile-page .profile-header .organizer-view-wrap .book-now-btn .event-icon{
+.profile-page .profile-header .view-artist-btn-wrap .collab-btn .group-icon{
+  font-variation-settings: 'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 48;
+}
+.profile-page .profile-header .view-artist-btn-wrap .book-now-btn:hover .event-icon,
+.profile-page .profile-header .view-artist-btn-wrap .follow-btn:hover .add-icon{
+  transition: 0.7s all;
+  font-variation-settings: 'FILL' 1,'wght' 800,'GRAD' 0,'opsz' 48;
+}
+.profile-page .profile-header .view-artist-btn-wrap .collab-btn:hover .group-icon{
+  transition: 0.7s all;
+  font-variation-settings: 'FILL' 0,'wght' 800,'GRAD' 0,'opsz' 48;
+}
+.profile-page .profile-header .view-artist-btn-wrap .book-now-btn .event-icon,
+.profile-page .profile-header .view-artist-btn-wrap .collab-btn .group-icon{
   color: var(--orange);
 }
-
-
 .profile-page .profile-header .header-links {
   padding: 15px;
   display: -webkit-flex;
@@ -3392,6 +3413,31 @@ img{
   28px 1.75 rem
 */
 
+/* Follow and Book now button */
+.profile-page .profile-header .view-artist-btn-wrap{
+  gap: 0.42rem;
+}
+.profile-page .profile-header .view-artist-btn-wrap .follow-btn,
+.profile-page .profile-header .view-artist-btn-wrap .book-now-btn,
+.profile-page .profile-header .view-artist-btn-wrap .collab-btn{
+  font-size: 1rem;
+  gap: 0.24rem;
+  padding: 0.76rem 0;
+  width: 6.5rem;
+}
+.profile-page .profile-header .view-artist-btn-wrap .book-now-btn{
+  width: 8.9125rem;
+}
+.profile-page .profile-header .view-artist-btn-wrap .collab-btn{
+  width: 9.2125rem;
+}
+.profile-page .profile-header .view-artist-btn-wrap .follow-btn .add-icon,
+.profile-page .profile-header .view-artist-btn-wrap .book-now-btn .event-icon{
+  font-size: 20px;
+}
+.profile-page .left-wrapper .artist-info {
+  margin-bottom: 1rem;
+}
 /* Add member / Add social media accounts modal / Organizer - add member modal  */
 
 .profile-details #add-artist-details .modal-content,
