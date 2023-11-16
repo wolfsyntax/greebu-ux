@@ -9864,16 +9864,11 @@ header nav {
 .events-showing .events-section nav{
   float: inline-end;
 }
-.events-showing .events-section .even-type-title,
-.events-showing .events-section .no-events-found{
+.events-showing .events-section .even-type-title{
   color: #160042;
   font-size: 1.75rem;
   font-weight: 600;
   margin-bottom: 2.5rem;
-}
-.events-showing .events-section .sad-icon{
-  font-size: 32px;
-  color: var(--orange);
 }
 .events-showing .events-section .no-events-wrap{
 text-align: center;
@@ -9994,6 +9989,26 @@ text-align: center;
   font-weight: 400;
 }
 
+/* No event posted */
+
+#no-event-posted{
+  text-align: center;
+  border-radius: 0.625rem;
+  background: rgba(235, 238, 255, 0.25);
+  padding: 7rem 0 7rem;
+  margin-bottom: 5rem;
+}
+#no-event-posted .no-event-wrap .no-event-icon{
+  width: 3.625rem;
+  height: 4rem;
+  margin-bottom: 0.62rem;
+}
+#no-event-posted .no-event-wrap .no-event{
+  color: var(--gray6);
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
 
 
 
@@ -10013,6 +10028,21 @@ text-align: center;
   28px 1.75 rem
 /* */
 
+/* No event posted */
+
+#no-event-posted{
+  padding: 5rem 0 5rem;
+  margin-bottom: 3rem;
+}
+#no-event-posted .no-event-wrap .no-event-icon{
+  width: 2.6rem;
+  height: 3rem;
+  margin-bottom: 0.42rem;
+}
+#no-event-posted .no-event-wrap .no-event{
+  font-size: 1rem;
+}
+
 /* Fetching data  */
 #fetching-data .fetching-gif{
   width: 3rem;
@@ -10027,8 +10057,7 @@ text-align: center;
 
 /* Events page - show events section */
 
-.events-showing .events-section .even-type-title,
-.events-showing .events-section .no-events-found{
+.events-showing .events-section .even-type-title{
   font-size: 1.5rem;
   margin-bottom: 1.88rem;
 }
