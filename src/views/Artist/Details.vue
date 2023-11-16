@@ -354,14 +354,14 @@
   </div>
     
           <!-- test -->
-          <div>
+          <!-- <div>
             <div><b>Selected option:</b><pre>{{ getProfile }}</pre></div>
             <div><b>Selected option:</b> {{ getProfile.business_email }}</div>
             <div><b>Selected option:</b> {{ getProfile.bio }}</div>
             <div><b>Get Artist type:</b> {{ getArtistTypes }}</div>
             <div><b>Get Artist Profile:</b> {{ artistProfile  }} - {{ artist }}</div>
             <div><b>Params:</b>  {{ $route.params?.id }}</div>
-            <div><b>Artist Genres:</b>  {{ formArtistGenres }}</div>
+            <div><b>Artist Genres:</b>  {{ formArtistGenres }}</div> -->
 
         </div>
   </layout>
