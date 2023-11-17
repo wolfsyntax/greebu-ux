@@ -1,7 +1,7 @@
 <template>
   <layout>
 
-    <section class="artist-proposal-form">
+    <section class="submit-proposal-form">
       <div class="container">
         <div class="justify-content-start back-wrapper">
           <button class="btn d-flex align-items-center back" @click="$router.push('/events')">
@@ -17,7 +17,8 @@
 
         <form @submit.prevent="submit" autocomplete="off">
           <div class="artist-details-wrap">
-            <h3 class="title">Artist Details</h3>
+            <h3 class="details">Artist Details</h3>
+            
             <div class="form-group">
               <label for="name">Name of the artist/Band</label>
               <p class="artist-name" v-html="account.artist_name"></p>
@@ -225,9 +226,8 @@ export default {
   border-radius: 0.3125rem;
   background: var(--orange);
   border: 0;
-  /* margin: 3.5rem auto; */
   margin: 0 2px;
-  --bs-badge-padding-x: 0.65em;
+  /* --bs-badge-padding-x: 0.65em;
     --bs-badge-padding-y: 0.35em;
     --bs-badge-font-size: 0.75em;
     --bs-badge-font-weight: 700;
@@ -242,6 +242,6 @@ export default {
     text-align: center;
     white-space: nowrap;
     vertical-align: baseline;
-    border-radius: var(--bs-badge-border-radius);
+    border-radius: var(--bs-badge-border-radius); */
 }
 </style>

@@ -68,7 +68,8 @@
 
       <div class="form-group event-details-wrap">
         <label for="eventRequirement">Description / Requirement</label>
-        <textarea :disabled="!account.accept_proposal" id="eventRequirement" v-model="requirement" maxlength="500" rows="7" class="form-control about-artist" placeholder="Write description" autocomplete="off">
+        <textarea :disabled="!account.accept_proposal" id="eventRequirement" v-model="requirement" maxlength="500" rows="7" 
+        class="form-control about-artist" placeholder="Write description" autocomplete="off">
         </textarea>
         <div v-for="err in error?.requirement" :key="err" class="text-danger">{{ err }}</div>
       </div>

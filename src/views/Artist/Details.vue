@@ -39,18 +39,22 @@
 
                       <div class="d-flex align-items-center view-artist-btn-wrap">
 
-                        <!-- Display these buttons when the organizer is viewing the artist profile.  -->
-
-                        <button class="btn follow-btn">
+                        <button class="btn follow-btn" v-if="isLoggedIn">
                           <span class="material-symbols-rounded add-icon">&#xe145;</span>
                           Follow
                         </button>
-                        <button class="btn book-now-btn" v-if="userRole === 'organizer'" @click="$router.push({name: 'artists-booking', params: {id: $route.params?.id }})">
+
+                        <button class="btn proposal-btn" v-if="userRole === 'organizer'" @click="$router.push({name: 'proposal-to-artist'})">
+                          <span class="material-symbols-rounded proposal-icon">&#xef42;</span>
+                          Send Proposal
+                        </button>
+
+                        <button class="btn book-now-btn" v-if="userRole === 'customer'" @click="$router.push({name: 'artists-booking', params: {id: $route.params?.id }})">
                           <span class="material-symbols-rounded event-icon">&#xe878;</span>
                           Book Now
                         </button>
 
-                        <button class="btn collab-btn" v-if="userRole === 'artists'" @click="$router.push({name: 'artists-booking', params: {id: $route.params?.id }})">
+                        <button class="btn collab-btn" v-if="userRole === 'artists'">
                           <span class="material-symbols-rounded group-icon">&#xf233;</span>
                           Collaborate
                         </button>
@@ -519,7 +523,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["userInfo", "token", 'myAvatar', 'instagram', 'youtube', 'twitter', 'spotify', 'facebook', 'threadsNET', 'isComplete', 'formArtistGenres', 'userRole']),
+    ...mapGetters(["isLoggedIn", "userInfo", "token", 'myAvatar', 'instagram', 'youtube', 'twitter', 'spotify', 'facebook', 'threadsNET', 'isComplete', 'formArtistGenres', 'userRole']),
     ...mapState({
       users: (state) => state.user,
       profile: (state) => state.profile,

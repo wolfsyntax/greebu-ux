@@ -115,12 +115,22 @@
                 <div v-for="error in errors?.username" :key="error" class="text-danger">{{ error }}</div>
               </div>
 
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <label for="phone">Mobile number</label>
                 <input id="phone" type="text" class="form-control" name="phone" v-model="form.phone" required autocomplete="phone" placeholder="+63">
                 <div v-for="error in errors?.phone" :key="error" class="text-danger">{{ error }}</div>
+              </div> -->
+
+              <!-- Twillio phone verify  -->
+
+              <div class="form-group">
+                <label for="phone">Mobile number</label>
+                <input ref="phoneInputField" id="phone" type="tel" class="form-control" name="phone" 
+                v-model="form.phone" required autocomplete="phone" placeholder="none">
+                <div v-for="error in errors?.phone" :key="error" class="text-danger">{{ error }}</div>
               </div>
 
+             
               <div class="form-group">
                 <label for="password">Password</label>
                 <input id="password" type="password" class="form-control" name="password" v-model="form.password" required autocomplete="new-password">

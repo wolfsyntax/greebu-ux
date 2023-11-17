@@ -138,7 +138,7 @@
                           </div> 
 
                          <div class="btn-wrap">
-                            <a class="btn view-profile bg-orange">View Profile</a>
+                          <a href="/artists/${artist?.id}" class="btn view-profile bg-orange">View Profile</a>
                           </div> 
 
                        </div> 
@@ -205,6 +205,7 @@ export default {
     ...mapState({
       account: state => state.account,
       members: (state) => state.artist.members,
+      artist: state => state.artist.artist,
     }),
     canSendProposal() {
       console.log(`Can Send Proposal for ${this.event.id}: `, this.event.accept_proposal);
@@ -297,7 +298,7 @@ export default {
       })
 
       this.$router.push(`/proposal/${this.event.id}/apply`)
-    }
+    },
   }
 }
 </script>
