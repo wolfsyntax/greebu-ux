@@ -387,7 +387,7 @@ export const fetchArtistById = (
             data: {
               status,
               message,
-              result: { artist, events, members },
+              result: { artist, members },
             },
           } = response;
 
