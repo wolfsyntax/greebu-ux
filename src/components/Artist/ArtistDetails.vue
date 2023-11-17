@@ -59,7 +59,7 @@
 
                   <!-- <p class="content">{{ artist?.bio }}</p> -->
                   <div>
-                    <a :href="`/artists/${artist?.id}`" class="view-profile">View Profile</a>
+                    <a :href="`/artists/${artist?.id}`" class="view-profile" @click="fetchProfile()" >View Profile</a>
                   </div>
 
                 </div> <!-- end of artist-bio -->
@@ -108,7 +108,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 import CloseModalButton from '../CloseModalButton.vue';
 
 export default {
@@ -133,7 +133,18 @@ export default {
     })
   },
   methods: {
-
+    ...mapMutations(['setArtistProfile', ]),
+    fetchProfile() {
+      this.setArtistProfile(this.artist);
+      this.fetchArtistById(this.$route.params?.id)
+        .then(res => {
+          const { status: statusCode, data: { status } } = res
+          if (statusCode === 203) {
+            if (status === 404) this.$router.push({name: 'page-error-404'})
+            else this.$router.push({name: 'page-error-500'});
+          }
+        });
+    }
   },
   
 };

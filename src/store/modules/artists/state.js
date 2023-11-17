@@ -37,6 +37,7 @@ var state = {
   artistReviews: [],
   artistBookings: [],
   artistPosts: [],
+  artistId: "",
 };
 
 export default state;

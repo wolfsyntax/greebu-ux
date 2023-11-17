@@ -263,6 +263,8 @@ export default {
   },
   mounted()
   {
+    this.$store.commit('setArtistProfile');
+
     this.SET_FILTERED_ARTIST({});
     //this.$store.commit('CLEAR_ARTIST')
     this.artistOptions()

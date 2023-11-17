@@ -1,7 +1,7 @@
 <template>
   <div class="row" v-if="events.length">
     <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-4"  v-for="(item, i) in events" :key="i" >
-      <event-card :myEvent="item" @show-detail="viewDetail" editable="false" />
+      <event-card :myEvent="item" @show-detail="viewDetail" :editable="false" />
     </div>
   </div>
   <div class="text-center no-events-wrap" v-else>
@@ -30,17 +30,26 @@ export default {
     ViewDetail,
     signupmodal: MustSignupModal,
   },
-  props: {
+    props: {
+    accessType: { 
+      type: String,
+      default: 'dashboard',
+      required: false
+    },
     
   },
+  data: () => ({
+    events: [],
+  }),
   computed: {
     ...mapGetters(["isLoggedIn", 'userRole']),
     ...mapState({
-      events: state => state.events.pastEvents, 
+      myEvents: state => state.events.pastEvents,
+      past: state => state.artist.artistPastEvents,
     })
   },
   mounted() {
-    console.log('Past Events[vue]: ', this.events)
+    this.events = this.accessType === 'dashboard' ? this.myEvents : this.past; 
   },
   methods: {
     viewDetail(target, type) {

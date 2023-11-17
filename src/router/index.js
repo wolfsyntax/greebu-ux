@@ -459,11 +459,23 @@ router.afterEach(() => {
 
 router.beforeEach((to, from, next) => {
   const { role } = to.meta;
-  const { path: toPath } = to.fullPath;
-  const { path: fromPath } = from.fullPath;
+  // const { path: toPath } = to.fullPath;
+  // const { path: fromPath } = from.fullPath;
 
   const reqSession = to.matched.some((route) => route.meta.requiresLogin);
   const isAuth = store.getters.isLoggedIn;
+
+  if (to?.name === "artists-profile") {
+    const regexExp =
+      /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi;
+
+    if (regexExp.test(to.params?.id)) {
+      store.dispatch("fetchArtistById", to.params?.id).then((res) => next());
+    } else {
+      console.log("Fetch by slug: ", to.params?.id);
+      store.dispatch("fetchArtistBySlug", to.params?.id).then((res) => next());
+    }
+  }
 
   if (!reqSession) {
     next();

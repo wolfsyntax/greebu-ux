@@ -91,3 +91,52 @@ export const SET_FILTERED_ARTIST = (state, payload = {}) => {
   console.log("Setting Filter artist to play");
   state.filterArtist = payload;
 };
+
+export const setArtistProfile = (state, payload = {}) => {
+  console.log("Set Artist Info: ", payload);
+  state.artistInfo = payload;
+};
+
+export const setArtistMembers = (state, payload = []) => {
+  state.artistMembers = payload;
+};
+
+export const setArtistSchedules = (state, payload = []) => {
+  state.artistSongs = payload;
+};
+
+export const setArtistSongs = (state, payload = []) => {
+  state.artistSongs = payload;
+};
+
+export const setArtistOngoingEvents = (state, payload = []) => {
+  state.artistOngoingEvents = payload;
+};
+
+export const setArtistUpcomingEvents = (state, payload = []) => {
+  state.artistUpcomingEvents = payload;
+};
+
+export const setArtistPastEvents = (state, payload = []) => {
+  state.artistPastEvents = payload;
+};
+
+export const setArtistVideos = (state, payload = []) => {
+  state.artistVideos = payload;
+};
+
+export const setArtistPhotos = (state, payload = []) => {
+  state.artistPhotos = payload;
+};
+
+export const setArtistReviews = (state, payload = []) => {
+  state.artistReviews = payload;
+};
+
+export const setArtistBookings = (state, payload = []) => {
+  state.artistBookings = payload;
+};
+
+export const setArtistPosts = (state, payload = []) => {
+  state.artistPosts = payload;
+};
