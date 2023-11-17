@@ -368,26 +368,39 @@ export const artistOptions = ({ commit, rootState, state }, payload) => {
   });
 };
 
-export const fetchArtistById = ({ commit, rootState, state }, payload) => {
+export const fetchArtistById = (
+  { commit, rootState, state, dispatch },
+  payload
+) => {
   return new Promise((resolve, reject) => {
     setTimeout(async () => {
       await axios
         .get(
           `${
             import.meta.env.VITE_BASE_URL || "http://localhost:8000"
-          }/api/artists/${payload}`
+          }/api/artists/${payload}/info`
         )
         .then((response) => {
-          console.log("\n\nFetch Artist Response: ", response);
+          console.log("\n\nFetch Artist By Name Response: ", response);
 
           const {
             data: {
               status,
               message,
-              result: { artist },
+              result: { artist, members },
             },
           } = response;
-          commit("SET_ARTIST_PROFILE", artist);
+
+          if (status === 200) {
+            commit("setArtistProfile", artist);
+            commit("setArtistMembers", members);
+
+            dispatch("fetchArtistOngoingEvents", artist.id);
+            dispatch("fetchArtistUpcomingEvents", artist.id);
+            dispatch("fetchArtistPastEvents", artist.id);
+          }
+
+          // commit("SET_ARTIST_PROFILE", artist);
           resolve(response);
         })
         .catch((err) => {
@@ -397,7 +410,10 @@ export const fetchArtistById = ({ commit, rootState, state }, payload) => {
   });
 };
 
-export const fetchArtistBySlug = ({ commit, rootState, state }, payload) => {
+export const fetchArtistBySlug = (
+  { commit, rootState, state, dispatch },
+  payload
+) => {
   return new Promise((resolve, reject) => {
     setTimeout(async () => {
       await axios
@@ -407,16 +423,121 @@ export const fetchArtistBySlug = ({ commit, rootState, state }, payload) => {
           }/api/artists/${payload}/details`
         )
         .then((response) => {
-          console.log("\n\nFetch Artist Response: ", response);
+          console.log("\n\nFetch Artist By Slug Response: ", response);
 
           const {
             data: {
               status,
               message,
-              result: { artist },
+              result: { artist, members },
             },
           } = response;
-          commit("SET_ARTIST_PROFILE", artist);
+
+          if (status === 200) {
+            commit("setArtistProfile", artist);
+            commit("setArtistMembers", members);
+
+            dispatch("fetchArtistOngoingEvents", artist.id);
+            dispatch("fetchArtistUpcomingEvents", artist.id);
+            dispatch("fetchArtistPastEvents", artist.id);
+          }
+
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    }, 1500);
+  });
+};
+
+export const fetchArtistOngoingEvents = (
+  { commit, rootState, state },
+  payload
+) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(async () => {
+      await axios
+        .get(
+          `${
+            import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+          }/api/artists/${payload}/ongoing-events`
+        )
+        .then((response) => {
+          console.log("\n\nFetch Artist Ongoing Response: ", response);
+
+          const {
+            data: {
+              status,
+              message,
+              result: { events },
+            },
+          } = response;
+          commit("setArtistOngoingEvents", events);
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    }, 1500);
+  });
+};
+
+export const fetchArtistUpcomingEvents = (
+  { commit, rootState, state },
+  payload
+) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(async () => {
+      await axios
+        .get(
+          `${
+            import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+          }/api/artists/${payload}/upcoming-events`
+        )
+        .then((response) => {
+          console.log("\n\nFetch Artist Upcoming Response: ", response);
+
+          const {
+            data: {
+              status,
+              message,
+              result: { events },
+            },
+          } = response;
+          commit("setArtistUpcomingEvents", events);
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    }, 1500);
+  });
+};
+
+export const fetchArtistPastEvents = (
+  { commit, rootState, state },
+  payload
+) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(async () => {
+      await axios
+        .get(
+          `${
+            import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+          }/api/artists/${payload}/past-events`
+        )
+        .then((response) => {
+          console.log("\n\nFetch Artist Past Events Response: ", response);
+
+          const {
+            data: {
+              status,
+              message,
+              result: { events },
+            },
+          } = response;
+          commit("setArtistPastEvents", events);
           resolve(response);
         })
         .catch((err) => {

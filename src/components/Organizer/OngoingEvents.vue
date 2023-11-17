@@ -31,16 +31,26 @@ export default {
     signupmodal: MustSignupModal,
   },
   props: {
+    accessType: { 
+      type: String,
+      default: 'dashboard',
+      required: false
+    },
     
   },
+  data: () => ({
+    events: [],
+  }),
   computed: {
     ...mapGetters(["isLoggedIn", 'userRole']),
     ...mapState({
-      events: state => state.events.ongoingEvents, 
+      myEvents: state => state.events.ongoingEvents,
+      ongoing: state => state.artist.artistOngoingEvents,
     })
   },
   mounted() {
     console.log('Ongoing Events[vue]: ', this.events)
+    this.events = this.accessType === 'dashboard' ? this.myEvents : this.ongoing; 
   },
   methods: {
     viewDetail(target, type) {
