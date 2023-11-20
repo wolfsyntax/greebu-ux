@@ -112,6 +112,9 @@ import { mapState, mapMutations } from 'vuex';
 import CloseModalButton from '../CloseModalButton.vue';
 
 export default {
+  created () {
+    this.setArtistProfile();
+  },
   components: { CloseModalButton },
   props: {
     // selectedArtist: {
@@ -136,14 +139,14 @@ export default {
     ...mapMutations(['setArtistProfile', ]),
     fetchProfile() {
       this.setArtistProfile(this.artist);
-      this.fetchArtistById(this.$route.params?.id)
-        .then(res => {
-          const { status: statusCode, data: { status } } = res
-          if (statusCode === 203) {
-            if (status === 404) this.$router.push({name: 'page-error-404'})
-            else this.$router.push({name: 'page-error-500'});
-          }
-        });
+      // this.fetchArtistById(this.$route.params?.id)
+      //   .then(res => {
+      //     const { status: statusCode, data: { status } } = res
+      //     if (statusCode === 203) {
+      //       if (status === 404) this.$router.push({name: 'page-error-404'})
+      //       else this.$router.push({name: 'page-error-500'});
+      //     }
+      //   });
     }
   },
   

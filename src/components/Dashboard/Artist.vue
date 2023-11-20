@@ -350,7 +350,7 @@
           </div> <!-- end of photos-tab -->
 
           <div class="row profile-body events-tab" v-if="activeItem === 'Events'">
-            <event-tab />
+            <event-tab :previewAs="'dashboard'"/>
           </div>
 
           <div class="row profile-body" v-if="activeItem === 'Reviews'">
@@ -464,6 +464,7 @@ export default {
   methods: {
     ...mapActions([
       'fetchArtistOptions', 'fetchProfile', 'artistOptions',
+      'myOngoingEvents', 'myUpcomingEvents', 'myPastEvents',
     ]),
     toggle()
     {
@@ -602,6 +603,14 @@ export default {
     // },
   },
   watch: {
+    activeItem (cur) {
+      if (cur === 'Events') {
+        this.myOngoingEvents();
+        this.myUpcomingEvents();
+        this.myPastEvents();
+        console.log('Fetch Events')
+      }
+    },
     profile: {
       handler(res)
       {
