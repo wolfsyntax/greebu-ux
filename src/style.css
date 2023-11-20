@@ -260,6 +260,8 @@ img {
   box-shadow: 0 0 0 0.1px var(--orange) !important;
 }
 
+/*  */
+
 /* Multi-select searc */
 
 .multiselect .multiselect-dropdown{
@@ -7476,6 +7478,44 @@ header nav {
 #editEventModal .modal-body .start-end-wrap .form-group {
   width: 50%;
 }
+
+#createEventModal .modal-body .start-end-wrap input[type="date" i],
+#createEventModal .modal-body .start-end-wrap input[type="time" i],
+#editEventModal .modal-body .start-end-wrap input[type="date" i],
+#editEventModal .modal-body .start-end-wrap input[type="time" i]
+ {
+  flex-direction: row-reverse;
+  color: #2D3748;
+  font-family: Urbanist;
+  gap: 0.5rem;
+}
+#createEventModal .modal-body .start-end-wrap input[type="time" i],
+#editEventModal .modal-body .start-end-wrap input[type="time" i]{
+  gap: 0.4rem;
+}
+#createEventModal .modal-body .start-end-wrap input[type="date" i]::-webkit-calendar-picker-indicator,
+#createEventModal .modal-body .start-end-wrap input[type="time" i]::-webkit-calendar-picker-indicator,
+#editEventModal .modal-body .start-end-wrap input[type="date" i]::-webkit-calendar-picker-indicator,
+#editEventModal .modal-body .start-end-wrap input[type="time" i]::-webkit-calendar-picker-indicator
+{
+  background-image: url("/assets/calendar-month-icon.svg");
+  block-size: 1.5em;
+  inline-size: 1.5em;
+}
+#createEventModal .modal-body .start-end-wrap input[type="time" i]::-webkit-calendar-picker-indicator,
+#editEventModal .modal-body .start-end-wrap input[type="time" i]::-webkit-calendar-picker-indicator{
+  background-image: url("/assets/clock-icon.svg");
+  margin-inline-start: 0;
+}
+#createEventModal .modal-body .start-end-wrap .form-group:hover input[type="date" i]::-webkit-calendar-picker-indicator,
+#editEventModal .modal-body .start-end-wrap .form-group:hover input[type="date" i]::-webkit-calendar-picker-indicator{
+  background-image: url("/assets/calendar-month-icon-hovered.svg");
+}
+#createEventModal .modal-body .start-end-wrap .form-group:hover input[type="time" i]::-webkit-calendar-picker-indicator,
+#editEventModal .modal-body .start-end-wrap .form-group:hover input[type="time" i]::-webkit-calendar-picker-indicator{
+  background-image: url("/assets/clock-icon-hovered.svg");
+}
+
 #createEventModal .modal-body textarea,
 #editEventModal .modal-body textarea {
   height: 12.1875rem;
@@ -7516,6 +7556,7 @@ header nav {
 #editEventModal .modal-body .action-btn-wrap .next:hover {
   background: var(--btn-hovered);
 }
+
 
 /* Event created modal and Success Proposal form modal*/
 #eventsCreatedModal .modal-content,
@@ -11600,6 +11641,47 @@ text-align: center;
     top: 25%;
     left: 95%;
   }
+  #createEventModal .modal-body .start-end-wrap, 
+  #editEventModal .modal-body .start-end-wrap {
+    gap: 0.8rem;
+}
+#createEventModal .modal-body .start-end-wrap input[type="date" i],
+#createEventModal .modal-body .start-end-wrap input[type="time" i],
+#editEventModal .modal-body .start-end-wrap input[type="date" i],
+#editEventModal .modal-body .start-end-wrap input[type="time" i]
+ {
+  flex-direction: row-reverse;
+  color: #2D3748;
+  font-family: Urbanist;
+  gap: 0.5rem;
+}
+#createEventModal .modal-body .start-end-wrap input[type="time" i],
+#editEventModal .modal-body .start-end-wrap input[type="time" i]{
+  gap: 0.4rem;
+}
+#createEventModal .modal-body .start-end-wrap input[type="date" i]::-webkit-calendar-picker-indicator,
+#createEventModal .modal-body .start-end-wrap input[type="time" i]::-webkit-calendar-picker-indicator,
+#editEventModal .modal-body .start-end-wrap input[type="date" i]::-webkit-calendar-picker-indicator,
+#editEventModal .modal-body .start-end-wrap input[type="time" i]::-webkit-calendar-picker-indicator
+{
+  background-image: url("/assets/calendar-month-icon.svg");
+  block-size: 1.25em;
+  inline-size: 1.25em;
+}
+#createEventModal .modal-body .start-end-wrap input[type="time" i]::-webkit-calendar-picker-indicator,
+#editEventModal .modal-body .start-end-wrap input[type="time" i]::-webkit-calendar-picker-indicator{
+  background-image: url("/assets/clock-icon.svg");
+  margin-inline-start: 0;
+}
+#createEventModal .modal-body .start-end-wrap .form-group:hover input[type="date" i]::-webkit-calendar-picker-indicator,
+#editEventModal .modal-body .start-end-wrap .form-group:hover input[type="date" i]::-webkit-calendar-picker-indicator{
+  background-image: url("/assets/calendar-month-icon-hovered.svg");
+}
+#createEventModal .modal-body .start-end-wrap .form-group:hover input[type="time" i]::-webkit-calendar-picker-indicator,
+#editEventModal .modal-body .start-end-wrap .form-group:hover input[type="time" i]::-webkit-calendar-picker-indicator{
+  background-image: url("/assets/clock-icon-hovered.svg");
+}
+
   #createEventModal .modal-body .venue-sub-groups,
   #editEventModal .modal-body .venue-sub-groups {
     margin-top: 0.75rem;
