@@ -29,7 +29,7 @@
                           
                           <div class="music-genre">
                             <h5 class="title">Genres:</h5>
-                            <span class="badge" v-for="artist_type in artist?.genres">{{ artist_type }}</span>                       
+                            <span class="badge" v-for="(artist_type, index) in artist?.genres" :key="index">{{ artist_type }}</span>                       
                           </div>
                         </div>
                       </div>
@@ -245,7 +245,7 @@
               <div class="genres">
                 <h4>Genres</h4>
                 <div class="genres-list">
-                  <span class="badge" v-for="genre in artist?.genres">{{ genre }}</span>
+                  <span class="badge" v-for="(genre, index) in artist?.genres" :key="index">{{ genre }}</span>
                 </div>
               </div>
             </div>
@@ -345,7 +345,7 @@
           </div> <!-- end of photos-tab -->
 
           <div class="row profile-body events-tab" v-if="activeItem === 'Events'">
-            
+            <event-tab previewAs="guest" />
           </div>
 
           <div class="row profile-body" v-if="activeItem === 'Reviews'">
@@ -378,13 +378,16 @@ import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
 // import Post from '/src/components/Post/Index.vue';
 import { Modal } from 'bootstrap';
 
+import EventTab from '/src/components/Dashboard/Tabs/Events/Index.vue';
+
 export default {
   setup () {
     return {}
   },
   components: {
     // Post,
-    layout: Layout
+    layout: Layout,
+    EventTab,
   },
   data: () => ({
     bannerImage: '/assets/artist-account/default-cover-photo.webp',
@@ -437,13 +440,21 @@ export default {
   }),
   mounted()
   {
-    // this.fetchArtist(this.$route.params?.id); // view artist profile
-
-    const regexExp = /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi;
+    console.log('Mounted Artist Details: ', this.artist)
     
-    if (regexExp.test(this.$route.params?.id)) this.fetchArtistById(this.$route.params?.id);
-    else this.fetchArtistBySlug(this.$route.params?.id)
+    // const regexExp = /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi;
+      
+    // if (regexExp.test(this.$route.params?.id)) 
+    //   this.fetchArtistById(this.$route.params?.id)
+    //     .then(res => {
+    //       console.log('Fetch Artist By ID: ', res);
+    //     });
 
+    // else this.fetchArtistBySlug(this.$route.params?.id)
+    //       .then(res => {
+    //         console.log('Fetch Artist By Name: ', res);
+    //       });
+          
     // this.fetchProfile()
     //   .then(res =>
     //   {
@@ -466,6 +477,9 @@ export default {
     ...mapActions([
       'fetchArtistOptions', 'fetchArtistById', 'fetchArtistBySlug',
       'fetchProfile', 'artistOptions', 'fetchArtist'
+    ]),
+    ...mapMutations([
+      'setArtistProfile',
     ]),
     toggle()
     {
@@ -503,6 +517,25 @@ export default {
     
   },
   watch: {
+    '$route' :{
+      async handler(to, from) {
+
+        // const regexExp = /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi;
+      
+        // if (regexExp.test(to.params?.id)) 
+        //   await this.fetchArtistById(to.params?.id)
+        //     .then(res => {
+        //       console.log('Fetch Artist By ID: ', res);
+        //     });
+
+        // else await this.fetchArtistBySlug(to.params?.id)
+        //     .then(res => {
+        //       console.log('Fetch Artist By Name: ', res);
+        //     });
+      },
+      deep: true,
+      immediate: true,
+    },
     profile: {
       handler(res)
       {
@@ -525,22 +558,13 @@ export default {
   computed: {
     ...mapGetters(["isLoggedIn", "userInfo", "token", 'myAvatar', 'instagram', 'youtube', 'twitter', 'spotify', 'facebook', 'threadsNET', 'isComplete', 'formArtistGenres', 'userRole']),
     ...mapState({
-      users: (state) => state.user,
-      profile: (state) => state.profile,
-      role: (state) => state.role,
-      artist: (state) => state.artist.artist,
-      members: (state) => state.artist.members,
-      account: (state) => state.account,
-      custom_genre: (state) => state.custom_genre,
-      genres: (state) => state.artist.genres,
-      artistProfile: (state) => state.artist.artist_profile,  // view artist profile
-      getProfile: state => state.profile, // test
-      getArtistTypes:(state) => state.artist.artist_types, //test
+      artist: (state) => state.artist.artistInfo,
+      members: (state) => state.artist.artistMembers,
     }),
   
   },
   created() {
-    console.log("userRole:", this.userRole);
+    
   },
 }
 </script>

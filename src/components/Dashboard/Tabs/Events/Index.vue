@@ -4,7 +4,7 @@
       <h2>This Week Events</h2>
       <div class="row">
         <div class="">
-          <ongoing-events @modal="toggle" />
+          <ongoing-events @modal="toggle" :accessType="previewAs" />
         </div>
       </div> 
 
@@ -12,7 +12,7 @@
 
       <div class="row">
         <div class="">
-          <upcoming-events @modal="toggle" />
+          <upcoming-events @modal="toggle" :accessType="previewAs" />
         </div>
       </div> 
       
@@ -20,7 +20,7 @@
 
       <div class="row">
         <div class="">
-          <past-events @modal="toggle" />
+          <past-events @modal="toggle" :accessType="previewAs" />
         </div>
       </div> 
     </div>
@@ -71,6 +71,13 @@ export default {
     UpcomingEvents,
     ViewDetail,
     DeleteConfirmation,
+  },
+  props: {
+    previewAs: { 
+      type: String,
+      default: 'dashboard',
+      required: true
+    },
   },
   data: () => ({
     modal: null,
@@ -148,9 +155,15 @@ export default {
   mounted() {
 
     this.$store.commit('SET_EVENT_FORM', {});
-    this.myOngoingEvents();
-    this.myUpcomingEvents();
-    this.myPastEvents();
+    console.log('Event Tab preview as ', this.previewAs)
+    if (this.previewAs === 'dashboard') {
+      
+      this.myOngoingEvents();
+      this.myUpcomingEvents();
+      this.myPastEvents();
+
+    } 
+
   },
   watch: {
     showCancel(cur, prev) {

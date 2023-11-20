@@ -26,17 +26,26 @@ export default {
     ViewDetail,
     signupmodal: MustSignupModal,
   },
-  props: {
+    props: {
+    accessType: { 
+      type: String,
+      default: 'dashboard',
+      required: false
+    },
     
   },
+  data: () => ({
+    events: [],
+  }),
   computed: {
     ...mapGetters(["isLoggedIn", 'userRole']),
     ...mapState({
-      events: state => state.events.upcomingEvents, 
+      myEvents: state => state.events.upcomingEvents,
+      upcoming: state => state.artist.artistUpcomingEvents,
     })
   },
   mounted() {
-    console.log('Upcoming Events[vue]: ', this.events)
+    this.events = this.accessType === 'dashboard' ? this.myEvents : this.upcoming; 
   },
   methods: {
     viewDetail(target, type) {
