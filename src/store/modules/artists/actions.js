@@ -406,7 +406,7 @@ export const fetchArtistById = (
         .catch((err) => {
           reject(err);
         });
-    }, 1500);
+    }, 500); //1500
   });
 };
 
@@ -447,7 +447,7 @@ export const fetchArtistBySlug = (
         .catch((err) => {
           reject(err);
         });
-    }, 1500);
+    }, 500); //1500
   });
 };
 

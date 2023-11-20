@@ -54,7 +54,7 @@
                           Book Now
                         </button>
 
-                        <button class="btn collab-btn" v-if="userRole === 'artists'">
+                        <button class="btn collab-btn" v-if="userRole === 'artists'" @click="$router.push({name: 'collaboration'})">
                           <span class="material-symbols-rounded group-icon">&#xf233;</span>
                           Collaborate
                         </button>
@@ -360,8 +360,6 @@
           <!-- test -->
           <!-- <div>
             <div><b>Selected option:</b><pre>{{ getProfile }}</pre></div>
-            <div><b>Selected option:</b> {{ getProfile.business_email }}</div>
-            <div><b>Selected option:</b> {{ getProfile.bio }}</div>
             <div><b>Get Artist type:</b> {{ getArtistTypes }}</div>
             <div><b>Get Artist Profile:</b> {{ artistProfile  }} - {{ artist }}</div>
             <div><b>Params:</b>  {{ $route.params?.id }}</div>

@@ -99,6 +99,7 @@
                   <div v-for="err in error?.artist_name" :key="err" class="text-danger">{{ err }}</div>
                 </div>
 
+                
                 <div class="form-group mb-0">
                   <label for="genre">Genre</label>
                   <multiselect v-model="formGenres" mode="tags"

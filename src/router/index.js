@@ -271,6 +271,18 @@ const router = createRouter({
           },
         },
         {
+          path: "/collaboration",
+          name: "collaboration",
+          component: () => import("/src/views/Artist/Form/CollaborationForm.vue"),
+          meta: {
+            requiresLogin: true, // true
+            title: "Collaboration to Artist",
+            role: "artists",
+            parent: "dashboard",
+            breadcrumb: [{ title: "", url: "" }],
+          },
+        },
+        {
           path: "/verify",
           name: "verify",
           component: () => import("/src/views/Auth/Verify.vue"),

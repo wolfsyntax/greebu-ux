@@ -111,7 +111,7 @@
               <!-- <div class="carousel-item"> -->
               <div class="row">
                 <div class="col-3" v-for="(artist, itemIndex) in artists" :key="itemIndex">
-                  <card :artist="artist" @play="playButton" :cardIndex="itemIndex"/>
+                  <card :artist="artist" @play="playButton" :cardIndex="itemIndex" :switchIcon="isPlaying" />
                 </div>
               </div> 
             </div>
@@ -258,7 +258,8 @@ export default {
       // per_page: 16,
       page: 1,
       isLoading: false,
-      buttonName: 'SEE MORE ARTIST'
+      buttonName: 'SEE MORE ARTIST',
+      someIcon: 'play' 
     };
   },
   mounted()
@@ -301,6 +302,9 @@ export default {
     {
       return this.isPlaying ? 'https://res.cloudinary.com/daorvtlls/image/upload/v1687321874/play-pause_ofcx4e.svg' : 'https://res.cloudinary.com/daorvtlls/image/upload/v1687321874/play-black_ftgyx3.svg';
     },
+    // isPlaying(){
+    //   return this.isPlaying !== null;
+    // },
     volumeIcon()
     {
       if (this.currentVolume === 0) {
@@ -321,6 +325,7 @@ export default {
     ...mapMutations([
       'SET_FILTERED_ARTIST'
     ]),
+
     playButton(val, cardIndex)
     {
 
@@ -332,13 +337,16 @@ export default {
           if (this.audioPlayer.paused) {
             this.audioPlayer.play();
             this.isPlaying = true;
+            this.icon = 'play';
           } else {
             this.audioPlayer.pause();
             this.isPlaying = false;
+            this.icon = 'pause';
           }
         } else {
           this.currentIndex = cardIndex;
           this.playSong();
+          this.icon = 'pause';
           this.showControls = true;
           this.isPlaying = true;
         }
