@@ -261,7 +261,8 @@ const router = createRouter({
         {
           path: "/proposal-to-artist",
           name: "proposal-to-artist",
-          component: () => import("/src/views/Organizer/Forms/ProposalForm.vue"),
+          component: () =>
+            import("/src/views/Organizer/Forms/ProposalForm.vue"),
           meta: {
             requiresLogin: true, // true
             title: "Proposal Form to Artist",
@@ -478,15 +479,18 @@ router.beforeEach((to, from, next) => {
   const isAuth = store.getters.isLoggedIn;
 
   if (to?.name === "artists-profile") {
-    const regexExp =
-      /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi;
+    setTimeout(() => {
+      const regexExp =
+        /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi;
 
-    if (regexExp.test(to.params?.id)) {
-      store.dispatch("fetchArtistById", to.params?.id).then((res) => next());
-    } else {
-      console.log("Fetch by slug: ", to.params?.id);
-      store.dispatch("fetchArtistBySlug", to.params?.id).then((res) => next());
-    }
+      if (regexExp.test(to.params?.id)) {
+        store.dispatch("fetchArtistById", to.params?.id).then((res) => next());
+      } else {
+        store
+          .dispatch("fetchArtistBySlug", to.params?.id)
+          .then((res) => next());
+      }
+    }, 100);
   }
 
   if (!reqSession) {

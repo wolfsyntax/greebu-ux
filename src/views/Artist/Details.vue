@@ -345,7 +345,7 @@
           </div> <!-- end of photos-tab -->
 
           <div class="row profile-body events-tab" v-if="activeItem === 'Events'">
-            <event-tab previewAs="guest" />
+            <event-tab :previewAs="'guest'" />
           </div>
 
           <div class="row profile-body" v-if="activeItem === 'Reviews'">
@@ -442,6 +442,15 @@ export default {
   {
     console.log('Mounted Artist Details: ', this.artist)
     
+    if (this.artist.hasOwnProperty('id')) {
+      console.log('Fetch Ongoing Events: ');
+      this.fetchArtistOngoingEvents(this.artist.id);
+      this.fetchArtistUpcomingEvents(this.artist.id);
+      this.fetchArtistPastEvents(this.artist.id);
+
+    }
+
+
     // const regexExp = /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi;
       
     // if (regexExp.test(this.$route.params?.id)) 
@@ -476,7 +485,8 @@ export default {
   methods: {
     ...mapActions([
       'fetchArtistOptions', 'fetchArtistById', 'fetchArtistBySlug',
-      'fetchProfile', 'artistOptions', 'fetchArtist'
+      'fetchProfile', 'artistOptions', 'fetchArtist',
+      'fetchArtistOngoingEvents', 'fetchArtistUpcomingEvents', 'fetchArtistPastEvents',
     ]),
     ...mapMutations([
       'setArtistProfile',
@@ -517,6 +527,22 @@ export default {
     
   },
   watch: {
+    activeItem (cur) {
+      if (cur === 'Events') {
+        if ('id' in this.artist) {
+          
+          console.log('Fetch Artist Events here: ', this.artist);
+          setTimeout(() => {
+            this.fetchArtistOngoingEvents(this.artist.id);
+            this.fetchArtistUpcomingEvents(this.artist.id);
+            this.fetchArtistPastEvents(this.artist.id);            
+          }, 1000);
+  
+        }
+
+        console.log('Fetch Artist Info: ', this.artist)
+      }
+    },
     '$route' :{
       async handler(to, from) {
 
