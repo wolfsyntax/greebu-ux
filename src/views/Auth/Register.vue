@@ -241,7 +241,6 @@ export default {
 
   },
   mounted() {
-
   },
   computed: {
     ...mapGetters(["userInfo", "info", "token", "isLoggedIn"]),
@@ -254,9 +253,6 @@ export default {
   //   console.log(this.form.account_type);
   // },
   methods: {
-    // toggleRadioButtons() {
-    //   this.showRadioButtons = false;
-    // },
     submitAccountType() {
       if (this.form.account_type) {
         this.showRadioButtons = false;

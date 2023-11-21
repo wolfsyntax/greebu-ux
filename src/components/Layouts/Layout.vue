@@ -32,9 +32,9 @@
               <li class="nav-item" v-if="['','customers',].includes(userRole)" >
                 <router-link to="/services">Services</router-link>                 
               </li>
-              <li class="nav-item" v-if="userRole === 'organizer'">
+              <!-- <li class="nav-item" v-if="userRole === 'organizer'">
                 <router-link to="/reports">Reports</router-link>                
-              </li>
+              </li> -->
             </ul>
 
             <div class="float-end nav-button" v-if="!isLoggedIn">

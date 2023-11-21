@@ -40,8 +40,6 @@
 <script>
 export default {
   setup () {
-    
-
     return {}
   },
   data: () => ({
