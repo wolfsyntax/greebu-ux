@@ -1,9 +1,9 @@
 <template>
-  <div class="modal fade artist-modal" id="artistModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade artist-modal" id="artistModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header border-0">
-          <CloseModalButton />
+          <CloseModalButton @pause-song="pauseSong" />
         </div>
         <div class="modal-body">
 
@@ -74,32 +74,38 @@
                 <div class="d-flex align-items-center song-details-wrap">
                   <div>
                     <!-- <img :src="artist?.avatar" class="artist-song-cover" alt="artist image"> -->
-                    <img src="/assets/artist-account/song-cover1.webp" class="artist-song-cover" alt="artist image">
+                    <img src="/assets/artist-account/song-cover1.webp" class="mb-0 artist-song-cover" alt="artist image">
                   </div>
                   <div class="text-start">
                     <!-- <h5 class="artist-song" >{{ artist?.songName }}</h5>
                     <p class="artist-band" >{{ artist?.name }}</p> -->
-                    <h5 class="two-lines artist-song">Golden age of 80s</h5>
-                    <p class="two-lines artist-band">Idlepitch</p>
+                    <h5 class="two-lines artist-song">{{ artist?.song_title || 'song title' }}</h5>
+                    <p class="two-lines artist-band">{{ artist?.artist_name }}</p>
                   </div>
                 </div>
 
                 <div class="d-flex align-items-center play-wrap">
                   <div>
-                    <button class="btn p-0 border-0 d-flex align-items-center justfy-content-center play-btn">
-                      <span class="material-symbols-sharp play-icon">&#xe037;</span>
+                    <button class="btn p-0 border-0 d-flex align-items-center justfy-content-center play-btn" @click="togglePlay(artist)">
+                      <!-- <span class="material-symbols-sharp play-icon">&#xe037;</span> -->
+                      <span class="material-symbols-sharp play-icon" v-if="!isPlaying">&#xe037;</span>
+                      <span class="material-symbols-sharp play-icon" v-else>&#xe034;</span>
+                      <!-- {{ artist?.song }} -->
                     </button>
                   </div>
                   <div class="like">
                     <button class="btn d-flex align-items-center p-0 border-0 likes">
                       <span class="material-symbols-sharp heart-icon">&#xe87d;</span>
-                      238
+                      0
                     </button>
                   </div>
                 </div>
 
               </div> <!-- end of sample-songs-list -->
             </div> <!-- sample-song-wrap -->
+  
+            <!-- <h4><b>Artist</b> - {{ artist }}</h4> -->
+            
 
         </div>
       </div>
@@ -125,6 +131,8 @@ export default {
   data()
   {
     return {
+      audioPlayer: null,
+      playingSongId: null
     }
   },
   computed: {
@@ -133,22 +141,48 @@ export default {
       account: (state) => state.account,
       custom_genre: (state) => state.custom_genre,
       genres: (state) => state.artist.genres,
-    })
+    }),
+    isPlaying(){
+      return this.playingSongId !== null;
+    }
   },
   methods: {
     ...mapMutations(['setArtistProfile', ]),
     fetchProfile() {
       this.setArtistProfile(this.artist);
-      // this.fetchArtistById(this.$route.params?.id)
-      //   .then(res => {
-      //     const { status: statusCode, data: { status } } = res
-      //     if (statusCode === 203) {
-      //       if (status === 404) this.$router.push({name: 'page-error-404'})
-      //       else this.$router.push({name: 'page-error-500'});
-      //     }
-      //   });
+      this.fetchArtistById(this.$route.params?.id)
+        .then(res => {
+          const { status: statusCode, data: { status } } = res
+          if (statusCode === 203) {
+            if (status === 404) this.$router.push({name: 'page-error-404'})
+            else this.$router.push({name: 'page-error-500'});
+          }
+        });
+    },
+    togglePlay(artist) {
+    if (this.playingSongId !== artist.song) {
+      if (this.audioPlayer) {
+        this.audioPlayer.pause();
+      }
+
+      this.audioPlayer = new Audio(artist.song); 
+      this.audioPlayer.play();
+      this.playingSongId = artist.song;
+
+    } else {
+      this.audioPlayer.pause();
+      this.playingSongId = null;
     }
   },
+  pauseSong(){
+    this.audioPlayer.pause();
+    this.playingSongId = null;
+  }
+  },
+  mounted()
+  {
+    console.log('Mounted Artist Details: ', this.artist)
+  }
   
 };
 </script>

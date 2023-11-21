@@ -12,6 +12,14 @@
           <span class="material-symbols-sharp star-icon">&#xe838;</span>
            {{ artist.ratings }} <span class="reviews">({{ artist.reviews }} reviews)</span>
           </p>
+
+          <!-- <button type="button" class="btn" @click="togglePlay(artist)">
+            <span class="material-symbols-sharp play-icon" v-if="!isPlaying">&#xe037;</span>
+            <span class="material-symbols-sharp play-icon" v-else>&#xe034;</span>
+          </button> -->
+
+          <!-- <pre>{{ artist }}</pre> -->
+
       </div>
       <div class="audio-btn">
         <div class="play-btn">
@@ -28,9 +36,10 @@
     </div>
     <button v-if="cardType !== 'page'" class="btn btn-primary select" @click="selectArtist(artist)" :class="{ 'selected': artist === chosenArtist }" >
       {{ changeSelectArtist(artist) }}
-    </button>      
+    </button>    
+    <ArtistDetails/>
   </div>
-  <artistdetails :selectedArtist="artist"></artistdetails>
+ 
 </template>
 <script>
 import Layout from '/src/components/Layouts/Layout.vue';
@@ -38,14 +47,17 @@ import ArtistDetails from '/src/components/Artist/ArtistDetails.vue';
 
 export default {
  components: {
-    artistdetails: ArtistDetails
+  ArtistDetails
   },
   setup() {
     
   },
   data() {
     return {
-      showControls: false,
+      // audioPlayer: null,
+      // playingSongId: null,
+     // showControls: false,
+
       defaultImage: "https://res.cloudinary.com/daorvtlls/image/upload/v1686649067/trending-bicolano-artist-2_ljhog8.png",
     }
   },
@@ -57,6 +69,15 @@ export default {
     },
     artist: Object,
     cardIndex: Number,
+    switchIcon: {
+      type: Boolean,
+      required: true,
+    }
+  },
+  computed: {
+    // isPlaying(){
+    //   return this.playingSongId !== null;
+    // }
   },
   methods: {
     openModal(){
@@ -74,8 +95,24 @@ export default {
       this.$store.commit('SET_FILTERED_ARTIST', this.artist);
       console.log('Toggle Play: ', this.artist);
       this.$emit('play', index, this.cardIndex);
-    }
   },
+
+  // togglePlay(artist) {
+  //   if (this.playingSongId !== artist.song) {
+  //     if (this.audioPlayer) {
+  //       this.audioPlayer.pause();
+  //     }
+
+  //     this.audioPlayer = new Audio(artist.song); 
+  //     this.audioPlayer.play();
+  //     this.playingSongId = artist.song;
+
+  //   } else {
+  //     this.audioPlayer.pause();
+  //     this.playingSongId = null;
+  //   }
+  // },
+}
 }
 </script>
 

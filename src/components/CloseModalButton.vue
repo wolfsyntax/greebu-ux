@@ -1,5 +1,8 @@
 <template>
-    <button type="button" class="btn ms-auto border-0 p-0" id="closeModalButton" data-bs-dismiss="modal" aria-label="Close">
+    <button type="button" class="btn ms-auto border-0 p-0" id="closeModalButton" 
+    data-bs-dismiss="modal" aria-label="Close"
+    @click="$emit('pause-song')"
+    >
         <span class="material-symbols-rounded cancel-icon">&#xe5c9;</span>
     </button>
   </template>
