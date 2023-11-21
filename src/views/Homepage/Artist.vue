@@ -111,7 +111,8 @@
               <!-- <div class="carousel-item"> -->
               <div class="row">
                 <div class="col-3" v-for="(artist, itemIndex) in artists" :key="itemIndex">
-                  <card :artist="artist" @play="playButton" :cardIndex="itemIndex" :switchIcon="isPlaying" />
+                  <!-- <card :artist="artist" @play="playButton" :cardIndex="itemIndex" :switchIcon="audioPlayer" /> -->
+                  <card :artist="artist" @play="playButton" :cardIndex="itemIndex" />
                 </div>
               </div> 
             </div>
@@ -190,6 +191,23 @@
           </div>
         </div>
       </div> 
+
+      <!-- <AudioMenu 
+      :artist="artist"
+      @play-previous="playPrevious" 
+      @toggle-play-pause="togglePlayPause"
+      @play-next="playNext"
+      :currentTime="currentTime"
+      :duration="duration"
+      @toggle-mute="toggleMute"
+      :currentVolume="volumeIcon"
+      :showVolumeSlider="showVolumeSlider"
+      @update:currentVolume="updateVolume"
+      @stop-audio="stopAudio"
+      :showControls="showControls"
+      >
+      </AudioMenu> -->
+
     </section>
     <reminder />
     <faq />
@@ -204,6 +222,7 @@ import Card from '/src/components/Artist/Card.vue';
 import Faq from '/src/components/Home/FAQ.vue';
 import FilterResults from "/src/components/FilterResults.vue";
 import LoadingVue from '/src/components/Loading.vue';
+//import AudioMenu from '/src/components/Artist/Audiomenu.vue';
 import { mapGetters, mapState, mapActions, mapMutations, storeKey } from "vuex";
 
 export default {
@@ -213,7 +232,8 @@ export default {
     reminder: Reminder,
     card: Card,
     FilterResults,
-    LoadingVue
+    LoadingVue,
+   // AudioMenu
   },
   setup()
   {
@@ -300,11 +320,11 @@ export default {
     }),
     playIconClass()
     {
-      return this.isPlaying ? 'https://res.cloudinary.com/daorvtlls/image/upload/v1687321874/play-pause_ofcx4e.svg' : 'https://res.cloudinary.com/daorvtlls/image/upload/v1687321874/play-black_ftgyx3.svg';
+      return this.isPlaying ? '/assets/play-pause.svg' : '/assets/play-black.svg';
     },
-    // isPlaying(){
-    //   return this.isPlaying !== null;
-    // },
+    isPlayingSong(){
+      return this.audioPlayer !== null;
+    },
     volumeIcon()
     {
       if (this.currentVolume === 0) {
@@ -325,7 +345,6 @@ export default {
     ...mapMutations([
       'SET_FILTERED_ARTIST'
     ]),
-
     playButton(val, cardIndex)
     {
 

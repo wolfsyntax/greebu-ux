@@ -10451,7 +10451,7 @@ text-align: center;
 }
 #artistModal .sample-song-wrap .artist-song-cover{
   width: 2.95313rem;
-  height: 2.95313rem;
+  height: 2.95313rem!important;
   border-radius: 0.46875rem;
 }
 #artistModal .songs-list-wrap{

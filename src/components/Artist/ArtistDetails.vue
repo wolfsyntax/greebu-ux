@@ -74,7 +74,7 @@
                 <div class="d-flex align-items-center song-details-wrap">
                   <div>
                     <!-- <img :src="artist?.avatar" class="artist-song-cover" alt="artist image"> -->
-                    <img src="/assets/artist-account/song-cover1.webp" class="artist-song-cover" alt="artist image">
+                    <img src="/assets/artist-account/song-cover1.webp" class="mb-0 artist-song-cover" alt="artist image">
                   </div>
                   <div class="text-start">
                     <!-- <h5 class="artist-song" >{{ artist?.songName }}</h5>
