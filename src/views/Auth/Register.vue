@@ -297,7 +297,7 @@ export default {
             // this.$router.push("/");
           // this.$store.commit('setShowOnboardingMessage', true);
 
-          this.$router.push({ path: '/', query: { onboarding: true } });
+          // this.$router.push({ path: '/', query: { onboarding: true } });
           //window.location.href = '/accounts?modal=true';
             
             //this.$router.push("/login");
