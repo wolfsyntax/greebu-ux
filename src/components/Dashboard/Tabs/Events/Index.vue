@@ -24,11 +24,11 @@
         </div>
       </div> 
     </div>
-
-    <view-detail usage="dashboard" v-if="isLoggedIn" />
+    
+    <view-detail usage="dashboard" />
     <events-modal @close="dismiss" v-if="isLoggedIn" />
-    <cancel-modal :show="showCancel" @confirm="confirmDelete" @close="dismissCancel" />
-    <event-success :modalType="modalType" />
+    <cancel-modal v-if="userRole === 'organizer'" :show="showCancel" @confirm="confirmDelete" @close="dismissCancel" />
+    <event-success v-if="userRole === 'organizer'" :modalType="modalType" />
     <!-- <delete-confirmation @confirm="confirmDelete" @cancel="cancelRequest" /> -->
       <!-- SHOW THIS IF THERE IS NO EVENTS -->
 
