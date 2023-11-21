@@ -4,6 +4,7 @@
       <event-card :myEvent="item" @show-detail="viewDetail" />
     </div>
   </div>
+  
   <div class="text-center no-events-wrap" v-else>
     <img src="/assets/events/no-events.svg" class="no-events-icon" alt="No events added icon">
     <h2 class="title">No Upcoming Events</h2>

@@ -448,7 +448,7 @@ export const myOngoingEvents = ({ commit, rootState, state }) => {
       await axios
         .get(url)
         .then((response) => {
-          console.log("Fetch Ongoing Events: ", response);
+          console.log("Fetch My Ongoing Events: ", response);
 
           const { status: statusCode, data } = response;
 
@@ -492,7 +492,7 @@ export const myUpcomingEvents = ({ commit, rootState, state }) => {
         .get(url)
         .then((response) => {
           const { status: statusCode, data } = response;
-          console.log("Fetch Upcoming Events: ", response);
+          console.log("Fetch My Upcoming Events: ", response);
           if (statusCode === 200) {
             const {
               status,
@@ -535,7 +535,7 @@ export const myPastEvents = ({ commit, rootState, state }) => {
       await axios
         .get(url)
         .then((response) => {
-          console.log("Fetch Past Events: ", response);
+          console.log("Fetch My Past Events: ", response);
 
           const { status: statusCode, data } = response;
 

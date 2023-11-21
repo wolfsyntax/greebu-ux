@@ -88,6 +88,10 @@ export const fetchProfile = (
                 commit("SET_MEMBERS", members || []);
                 // commit('SET_CUSTOM_GENRE', custom_genre);
 
+                dispatch("myOngoingEvents");
+                dispatch("myUpcomingEvents");
+                dispatch("myPastEvents");
+
                 dispatch("artistOptions");
               } else if (rootState.role === "organizer") {
                 const { members, account } = result;
@@ -97,6 +101,11 @@ export const fetchProfile = (
 
                 commit("SET_ORGANIZER_FORM", account);
                 commit("SET_STAFF", members);
+
+                dispatch("myOngoingEvents");
+                dispatch("myUpcomingEvents");
+                dispatch("myPastEvents");
+
                 dispatch("fetchOrganizerOptions");
               }
 

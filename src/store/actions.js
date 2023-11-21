@@ -33,6 +33,17 @@ var actions = {
         total: 1,
       });
 
+      commit("SET_PROPOSALS");
+      commit("SET_PROPOSALS");
+
+      commit("SET_PENDING_PROPOSALS");
+      commit("SET_ACCEPTED_PROPOSALS");
+      commit("SET_DECLINED_PROPOSALS");
+
+      commit("SET_PAST_EVENTS");
+      commit("SET_ONGOING_EVENTS");
+      commit("SET_UPCOMING_EVENTS");
+
       // axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
       setTimeout(async () => {
         await axios
@@ -82,6 +93,17 @@ var actions = {
   },
   signup({ commit, dispatch }, payload) {
     commit("CLEAR_STATE");
+
+    commit("SET_PROPOSALS");
+    commit("SET_PROPOSALS");
+
+    commit("SET_PENDING_PROPOSALS");
+    commit("SET_ACCEPTED_PROPOSALS");
+    commit("SET_DECLINED_PROPOSALS");
+
+    commit("SET_PAST_EVENTS");
+    commit("SET_ONGOING_EVENTS");
+    commit("SET_UPCOMING_EVENTS");
     return new Promise(async (resolve, reject) => {
       await axios
         .post(

@@ -110,14 +110,17 @@ export const setArtistSongs = (state, payload = []) => {
 };
 
 export const setArtistOngoingEvents = (state, payload = []) => {
+  console.log("Set Ongoing Events [artist]: ", payload);
   state.artistOngoingEvents = payload;
 };
 
 export const setArtistUpcomingEvents = (state, payload = []) => {
+  console.log("Set Upcoming Events [artist]: ", payload);
   state.artistUpcomingEvents = payload;
 };
 
 export const setArtistPastEvents = (state, payload = []) => {
+  console.log("Set Past Events [artist]: ", payload);
   state.artistPastEvents = payload;
 };
 

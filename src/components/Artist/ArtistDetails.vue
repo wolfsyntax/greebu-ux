@@ -118,6 +118,9 @@ import { mapState, mapMutations } from 'vuex';
 import CloseModalButton from '../CloseModalButton.vue';
 
 export default {
+  created () {
+    this.setArtistProfile();
+  },
   components: { CloseModalButton },
   props: {
     // selectedArtist: {
