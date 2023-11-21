@@ -526,3 +526,31 @@ export const otherSettings = ({ commit, state, rootState }, payload) => {
     }, 1000);
   });
 };
+
+export const switchProfile = ({ commit, state, rootState }, payload) => {
+  return new Promise(async (resolve, reject) => {
+    axios.defaults.headers.common["Authorization"] =
+      "Bearer " + (rootState.bearerToken || localStorage.api_token);
+
+    await axios
+      .get(
+        `${
+          import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+        }/api/users/${payload}/switch`,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      )
+      .then((res) => {
+        const { status: statusCode, data } = res;
+
+        if (statusCode === 200) {
+          const {
+            result: { user, profile, account },
+          } = data;
+        }
+      });
+  });
+};

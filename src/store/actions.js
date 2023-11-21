@@ -233,6 +233,7 @@ var actions = {
         });
     });
   },
+
   plansOptions({ commit }, payload = "artists") {
     return new Promise(async (resolve, reject) => {
       await axios
