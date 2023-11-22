@@ -129,17 +129,26 @@ var actions = {
             commit("SET_AUTH", user || {});
             commit("SET_PHONE", user?.phone);
             commit("SET_ROLE", profile?.role || "");
-            commit("SET_ROLES", roles || []);
+            commit("SET_ROLES", []);
 
-            commit("SET_TOKEN", token || "");
-            commit("SET_PROFILE", profile || {});
+            commit("SET_TOKEN", "");
+            commit("SET_PROFILE", {});
 
             if (profile?.role === "customers" && user?.phone_verified_at) {
               commit("SET_TOKEN", token || "");
               commit("SET_PROFILE", profile || {});
-            }
+              dispatch("fetchProfile");
+            } else if (user?.phone_verified_at) {
+              commit("SET_AUTH", user || {});
+              commit("SET_PHONE", user?.phone);
+              commit("SET_ROLE", profile?.role || "");
+              commit("SET_ROLES", roles || []);
 
-            dispatch("fetchProfile");
+              commit("SET_TOKEN", token || "");
+              commit("SET_PROFILE", profile || {});
+
+              dispatch("fetchProfile");
+            }
           }
           resolve(response);
         })
@@ -614,7 +623,7 @@ var actions = {
           .get(
             `${
               import.meta.env.VITE_BASE_URL || "http://localhost:8000"
-            }/api/user/${state.user?.id}/resend-otp`
+            }/api/user/${payload?.userId || state.user?.id}/resend-otp`
           )
           .then((response) => {
             console.log("\n\nResend Code response: ", response);
@@ -638,13 +647,20 @@ var actions = {
   validateCode({ commit, state }, payload) {
     return new Promise((resolve, reject) => {
       // axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
-
+      console.log(
+        "Validate Code url: ",
+        `${import.meta.env.VITE_BASE_URL || "http://localhost:8000"}/api/user/${
+          payload?.userId
+        }/verify?role=${state.role}`
+      );
       setTimeout(async () => {
         await axios
           .post(
             `${
               import.meta.env.VITE_BASE_URL || "http://localhost:8000"
-            }/api/user/${state.user?.id}/verify?role=${state.role}`,
+            }/api/user/${payload?.userId || state.user?.id}/verify?role=${
+              state.role
+            }`,
             {
               code: payload?.code,
             }
