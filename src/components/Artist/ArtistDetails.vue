@@ -67,7 +67,7 @@
             </div> <!-- end of artist-wrap -->
 
             <div class="sample-song-wrap">
-              <h3 class="text-start sample-songs">Sample Songss</h3>
+              <h3 class="text-start sample-songs">Sample Songs</h3>
 
               <div class="d-flex align-items-center justify-content-between songs-list-wrap">
 
