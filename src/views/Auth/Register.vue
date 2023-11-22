@@ -241,7 +241,6 @@ export default {
 
   },
   mounted() {
-
   },
   computed: {
     ...mapGetters(["userInfo", "info", "token", "isLoggedIn"]),
@@ -254,9 +253,6 @@ export default {
   //   console.log(this.form.account_type);
   // },
   methods: {
-    // toggleRadioButtons() {
-    //   this.showRadioButtons = false;
-    // },
     submitAccountType() {
       if (this.form.account_type) {
         this.showRadioButtons = false;
@@ -293,7 +289,9 @@ export default {
 
             this.step = '';
             // setTimeout(() => this.countdown--, 100);
+
             this.$router.push({ path: this.$route.path, query: { id: result?.user_id } });
+
             // this.$router.push("/");
           // this.$store.commit('setShowOnboardingMessage', true);
 

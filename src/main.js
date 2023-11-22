@@ -14,7 +14,6 @@ import "@vueform/multiselect/themes/default.css";
 import router from "./router";
 import i18n from "./plugins/i18n";
 import store from "./store";
-
 import "bootstrap";
 
 import App from "./App.vue";
@@ -61,6 +60,8 @@ import FullCalendar from "@fullcalendar/vue3";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 
+import Compressor from 'compressorjs';
+
 const app = createApp(App)
   .use(i18n)
   .use(VueAxios, axios)
@@ -96,6 +97,7 @@ const app = createApp(App)
   })
   // .use(BootstrapVueIcons)
   // .component('multiselect', Multiselect)
+  .component("compressor", Compressor)
   .component("cropper", Cropper)
   .component("font-awesome-icon", FontAwesomeIcon)
   .component("tree-item", TreeItem)

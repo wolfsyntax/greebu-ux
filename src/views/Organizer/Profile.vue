@@ -29,16 +29,31 @@
                   </div>
                 </div>
             </div> 
+                        <!-- test compress img -->
+                <!-- <div>
+
+                  <input type="file" id="file" @change="onChange" accept="image/png, image/webp, image/svg, image/jpeg" />
+                  <img v-if="compressedImageDataUrl" :src="compressedImageDataUrl"
+                    style="width: 4rem; height: 4rem; border-radius: 100%"
+                    alt="compressed Image">
+                  <button class="btn" @click="upload()">Upload</button>
+
+                  <button class="btn" @click="remove()">Remove</button>
+                </div> -->
 
               <form @submit.prevent="submit" class="fill-details" autocomplete="off">
                 <div class="form-group upload-img">
                   <label class="label-img">
+
                     <img :src="avatar" class="img-fluid default-avatar" alt="default user avatar">
                     <div class="camera">
+
                       <input type="file" @input="changeImage" accept="image/png, image/webp, image/svg, image/jpeg" />
+
                       <div v-for="err in error?.avatar" :key="err" class="text-danger">{{ err }}</div>
                         <progress v-if="form.progress" :value="form.progress.percentage" max="100">{{ form.progress.percentage }}%</progress>
                       </div>
+
                       <span class="material-symbols-outlined camera-outer" >&#xE412;</span>
                   </label>
 
@@ -46,7 +61,8 @@
                 </div>
 
                 <div v-for="err in error?.avatar" :key="err" class="text-danger">{{ err }}</div>
-                
+
+
                 <div class="required-fields">
                   <div class="form-group">
                     <label for="organizerName">Name of Organizer</label>
@@ -347,6 +363,7 @@ import Multiselect from '@vueform/multiselect';
 import StaffForm from './Forms/StaffForm.vue';
 import SocialMedia from "./Forms/SocialMedia.vue";
 import { Modal } from 'bootstrap';
+import Compressor from 'compressorjs';
 
 export default {
   setup()
@@ -391,6 +408,9 @@ export default {
     targetMagic: '',
     isLoading: false,
     triggerType: '',
+
+    file: null,
+    compressedImageDataUrl: null
   }),
   props: {
     hasNoError: {
@@ -605,19 +625,92 @@ export default {
       };
 
     },
-    changeImage(event)
-    {
-      const file = event.target.files[0];
-      this.targetMagic = 'image';
-      this.avatarMagic = file;
+    changeImage(e) {
+      const file = e.target.files[0];
 
-      if (file) {
-        this.fileCheck(file);
-      }
-      // return this.validImage;
-      console.log('Change Image: ', event.target.files[0])
-
+      new Compressor(file, { 
+        quality: 0.2, // Compression ratio 83.90%
+        success: (result) => {
+          const compressedFile = new File([result], result.name, {
+            type: result.type,
+          });
+          this.targetMagic = 'image';
+          this.avatarMagic = file;
+          if (file) {
+            this.fileCheck(file);
+          }
+        },
+      });
     },
+
+//     onChange(e) {
+//   this.file = e.target.files[0];
+//   console.log('file', this.file);
+
+//   console.log('original file: ', this.file);
+
+//   new Compressor(this.file, {
+//     quality: 0.2, // Compression ratio 83.90%
+//     success(result) {
+//       const compressedFile = new File([result], result.name, {
+//         type: result.type,
+//       });
+
+//       // Convert the compressed image to a data URL
+//       const reader = new FileReader();
+//       reader.onload = () => {
+//         this.compressedImageDataUrl = reader.result;
+//         console.log('compressed image: ', this.compressedImageDataUrl);
+
+//         const img = new Image();
+//         img.onload = () => {
+//           console.log('Image is loaded successfully.');
+//         };
+//         img.onerror = (error) => {
+//           console.error('Error loading image:', error);
+//         };
+//         img.src = this.compressedImageDataUrl;
+//       };
+//       reader.readAsDataURL(compressedFile);
+//     },
+//     error(err) {
+//       console.error('Compression error:', err.message);
+//     },
+//   });
+// },
+
+
+    upload(){
+
+      // console.log('original file: ', this.file);
+
+      // if(this.isLt2MB(this.file)){
+      //   this.uploadWithoutCompressing(this.file);
+      //   return;
+      // }
+      // new Compressor(this.file, {
+      //   quality: 0.2, //Compression ratio 83.90%
+      //   success(result){
+      //     const myFile = new File([result], result.name, {
+      //       type: result.type
+      //     })
+      //     console.log('compressed: ', myFile);
+
+      //     let fd = new FormData();
+      //     fd.append('file', myFile)
+      //   }
+      // })
+    },
+    // remove(){
+
+    // },
+    // uploadWithoutCompressing(file){
+    //   console.log('original: ', file);
+    // },
+    // isLt2MB(file){
+    //   return file.size / 1024 / 1024 < 2; // if less than 2mb
+    // }
+
   },
   computed: {
     ...mapGetters(['profileForm', 'myAccount', 'myAvatar', 'userRole',]),

@@ -101,10 +101,9 @@
           </template>
 
         </FilterResults>
-
-          <div v-if="isOngoingLoading && isUpcomingLoading && isPastLoading" class="text-center" id="fetching-data">
-            <img src="/assets/fetching-data.gif" class="fetching-gif" alt="Fetching data gif">
-            <h5 class="loading">Loading Events</h5>
+       
+          <div v-if="isOngoingLoading && isUpcomingLoading && isPastLoading" class="text-center">
+            <BirdLoader />
           </div>
         
         <div v-else class="events-section">
@@ -252,6 +251,7 @@ import EventSuccess from '/src/components/Auth/Events/SuccessModal.vue';
 import EventCard from '/src/components/Events/Card.vue';
 import FilterResults from "/src/components/FilterResults.vue";
 import NoEvent from '/src/components/Events/NoEvent.vue';
+import BirdLoader from '/src/components/BirdLoader.vue';
 
 export default {
   metaInfo: {
@@ -268,7 +268,8 @@ export default {
     Multiselect,
     EventCard,
     FilterResults,
-    NoEvent
+    NoEvent,
+    BirdLoader
   },
   setup()
   {

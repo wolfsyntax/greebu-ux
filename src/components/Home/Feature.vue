@@ -21,23 +21,23 @@
     </div>
 
       <div class="" v-if="userRole === 'artists'">
-      <div class="onboarding-message" v-if="showOnboardingMessage">
-      <input type="checkbox" id="modal-toggle" class="modal-toggle" checked style="display: none;">
+        <div class="onboarding-message" v-if="showOnboardingMessage">
+        <input type="checkbox" id="modal-toggle" class="modal-toggle" checked style="display: none;">
 
-        <div class="modal">
-          <div class="modal-content">
-            <h2 class="title">Welcome Aboard!</h2>
-            <p class="description">In order to access the full range of features within the app, it is necessary to subscribe to the artist plan. 
-              You can still browse the app and explore its interface, but your access to certain features will be limited until you 
-              upgrade to the subscription.</p>
-              <label for="modal-toggle" class="close-modal-button" 
-              @click="openSubscriptionModal"
-              data-bs-toggle="modal" data-bs-target="#selectPlanModal"> 
-              View Subscription</label>
+          <div class="modal">
+            <div class="modal-content">
+              <h2 class="title">Welcome Aboard!</h2>
+              <p class="description">In order to access the full range of features within the app, it is necessary to subscribe to the artist plan. 
+                You can still browse the app and explore its interface, but your access to certain features will be limited until you 
+                upgrade to the subscription.</p>
+                <label for="modal-toggle" class="close-modal-button" 
+                @click="openSubscriptionModal"
+                data-bs-toggle="modal" data-bs-target="#selectPlanModal"> 
+                View Subscription</label>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
     <div class="onboarding-message" v-if="userRole === 'organizer'" >
         <div v-if="showOnboardingMessage">
@@ -492,6 +492,7 @@ export default {
     // this.showOnboardingMessage = true;
   },
   created() {
+    
    // this.checkAndShowModal();
        // Show the modal after a delay if the flag is set
     //    if (this.$store.state.showOnboardingMessage) {

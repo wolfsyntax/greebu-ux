@@ -18,25 +18,26 @@
                       <div class="col-9">
                         <div class="profile-info">
                           <div class="position-relative">
-                            <img class="profile-pic" :src="artist.avatar" loading="lazy" alt="profile">
+                            <img class="profile-pic" :src="event.organizer_avatar" loading="lazy" alt="profile">
                           </div>
 
                           <div class="profile-wrapper">
                             <div class="name-artist">
-                              <h3 class="profile-name">{{ artist.artist_name || 'Geebu Artist' }}</h3>
-                              <h5 class="type-of-artist">{{ artist.artist_type || 'Full Band' }}</h5>
+                              <h3 class="profile-name">{{ event.organizer_name }}</h3>
+                            <h5 class="type-of-artist">{{ event.organizer_company }}</h5>
                             </div>
 
                             <div class="music-genre">
-                              <h5 class="title">Genres:</h5>
-                              <span class="badge" v-for="(artist_type, index) in artist?.genres" :key="index">{{ artist_type }}</span>
+                              <h5 class="title">Event Types:</h5>
+                              <span class="badge">{{ event.event_type }}</span>
+                              <!-- <span class="badge" v-for="(event_type, index) in event.event_type" :key="index">{{ event.event_type }}</span> -->
                             </div>
                           </div>
                         </div>
                       </div>
 
                       <div class="col-3">
-                        <div class="d-flex align-items-center view-artist-btn-wrap">
+                        <!-- <div class="d-flex align-items-center view-artist-btn-wrap">
 
                           <button class="btn follow-btn" v-if="isLoggedIn">
                             <span class="material-symbols-rounded add-icon">&#xe145;</span>
@@ -58,8 +59,9 @@
                             Collaborate
                           </button>
                           
-                        </div>
+                        </div> -->
                       </div>
+
                     </div>
                   </div>
 
@@ -135,7 +137,7 @@
                     <div class="d-flex align-items-center justify-content-between header">
                       <div class="d-flex title">
                         <img src="/assets/artist-account/band-members-icon.svg" loading="lazy" alt="band members icon">
-                        <h5 class="card-title mb-0">Band Members</h5>
+                        <h5 class="card-title mb-0">Organizer Members</h5>
                       </div>
 
                       <div class="see-all">
@@ -348,6 +350,9 @@
         </div>
       </section>
     </div>
+
+    <!-- <p><b>Event</b> - {{ event }}</p> -->
+
   </layout>
 </template>
 
@@ -566,6 +571,8 @@ export default {
     ...mapState({
       artist: (state) => state.artist.artistInfo,
       members: (state) => state.artist.artistMembers,
+      account: (state) => state.account,
+      event: state => state.events.event,
     }),
   
   },
