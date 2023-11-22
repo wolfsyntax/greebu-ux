@@ -158,7 +158,7 @@ export default {
         this.countdown_enabled = true;
         // resend request
         // await this.resendOTPCode(this.$route.query.id)
-        await this.resendCode()
+        await this.resendCode({userId:  this.$route.query.id})
           .then(response =>
           {
             const { status } = response;
@@ -176,7 +176,7 @@ export default {
 
       this.verifyMessage = '';
       const enteredCode = this.verifyCode.join('');
-      this.validateCode({ code: enteredCode })
+      this.validateCode({ code: enteredCode, userId:  this.$route.query.id})
         .then(response =>
         {
           const { status: statusCode, data: { status, message, result } } = response
