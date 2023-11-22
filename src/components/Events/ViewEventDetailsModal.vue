@@ -93,11 +93,13 @@
                 </div>
               </div>
 
-              <a href="/dashboard" class="view-profile">View Profile</a>
+              <a :href="`/events/${event?.id}`" class="view-profile" @click="fetchProfile()">View Profile</a>
 
             </div>
 
           </div>
+          <!-- <p><b>Organizer</b> - {{ account }}</p>
+          <p><b>Event</b> - {{ event }}</p> -->
 
         </div> <!-- end of modal-body -->
       </div>
@@ -109,7 +111,7 @@
 </template>
 
 <script>
-import { mapGetters, mapState, mapActions } from "vuex";
+import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
 
 export default {
   components: {
@@ -134,13 +136,32 @@ export default {
     ...mapGetters(["isLoggedIn", 'userInfo', 'info', 'userRole']),
     ...mapState({
       event: state => state.events.event,
+      users: (state) => state.user,
+      profile: (state) => state.profile,
+      //account: state => state.account,
     })
   },
+  created () {
+   // this.setArtistProfile();
+  },
+
   mounted()
   {
     console.log('Selected Event: ', this.event)
   },
   methods: {
+ //   ...mapMutations(['setArtistProfile', ]),
+    fetchProfile() {
+     // this.setArtistProfile(this.account);
+      this.fetchArtistById(this.$route.params?.id)
+        .then(res => {
+          const { status: statusCode, data: { status } } = res
+          if (statusCode === 203) {
+            if (status === 404) this.$router.push({name: 'page-error-404'})
+            else this.$router.push({name: 'page-error-500'});
+          }
+        });
+    },
 	},
 
 }

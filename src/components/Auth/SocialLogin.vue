@@ -121,6 +121,8 @@ export default {
                   {
                     // this.$router.push({ name: 'verify' })
                     this.$router.push({ name: 'home' })
+
+                  //this.$router.push({ path: this.$route.path, query: { id: result?.user_id } });
                   } else {
                     this.$router.push({ name: 'home' });
                   }

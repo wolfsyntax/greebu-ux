@@ -460,6 +460,7 @@ export default {
   },
   computed: {
     ...mapGetters(["userInfo", "token", 'myAvatar', 'instagram', 'threadsNET', 'twitter', 'facebook', 'isComplete',]),
+    
     ...mapState({
       users: (state) => state.user,
       profile: (state) => state.profile,

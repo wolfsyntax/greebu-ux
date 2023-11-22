@@ -106,6 +106,18 @@ const router = createRouter({
           },
         },
         {
+          path: "/events/:id",
+          name: "organizer-profile",
+          component: () => import("/src/views/Organizer/Details.vue"),
+          meta: {
+            requiresLogin: false,
+            title: "Organizer",
+            role: "",
+            parent: "events",
+            breadcrumb: [{ title: "", url: "" }],
+          },
+        },
+        {
           path: "/partners",
           name: "partners",
           component: () => import("/src/views/Homepage/Partner.vue"),

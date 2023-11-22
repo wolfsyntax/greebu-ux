@@ -183,8 +183,19 @@ export default {
           console.log('\n\nValidate Response: ', response)
           if (statusCode === 201) {
             if (status === 200) {
-              console.log('Redirect to home');
-              this.$router.push({name: 'home'});
+
+              //console.log('Redirect to home');
+             // this.$router.push({name: 'home'});
+
+              this.$router.push({ path: '/', query: { onboarding: 'true' } });
+
+
+              //this.$router.push({ name: 'home', query: { id: result?.user_id } });
+
+             // this.$router.push({ path: this.$route.path === '', query: { id: result?.user_id } });
+
+              //this.$router.push({ path: this.$route.path, query: { id: result?.user_id } });
+              
               // if (this.userRole === 'customers') {
               //   this.$router.push("/");
               // } else {

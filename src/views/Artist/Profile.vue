@@ -415,6 +415,8 @@
                       <img src="/assets/artist-account/mp3-icon.svg" alt="Music icon">
                     <div>
                       <h5 class="song-title">{{ songTitle }}</h5>
+                      <!-- <h5 class="song-title">{{ form.song_title }}</h5> -->
+                      
                       <p class="preview"><span class="badge file-size">{{ fileSize }}KB</span></p>
                     </div>
                     </div>
@@ -965,7 +967,8 @@ export default {
       {
         this.validAudio = true;
         this.invalidAudio = false;
-      } else {
+      } 
+      else {
         this.invalidAudio = true;
 
         this.uploadedMusic = URL.createObjectURL(file);
@@ -1004,43 +1007,45 @@ export default {
             this.uploadedSongWrapper = true;
             this.defaultFileFormat = false;
 
-            const fileReader = new FileReader();
-        fileReader.onloadend = (e) => {
-          const arr = new Uint8Array(e.target.result).subarray(0, 4);
+            // check if metadata exists
 
-          const buffer = fileReader.result;
-          const view = new DataView(buffer);
-            // Check for ID3v2 tag (common for MP3 files)
-          if (
-            view.getUint8(0) === 73 &&  // I
-            view.getUint8(1) === 68 &&  // D
-            view.getUint8(2) === 51     // 3
-          ) {
-            // Extract metadata (this is a simplified example)
-            const title = String.fromCharCode(view.getUint8(6), view.getUint8(7));
-            const artist = String.fromCharCode(view.getUint8(30), view.getUint8(31));
-            const album = String.fromCharCode(view.getUint8(63), view.getUint8(64));
-            const genre = String.fromCharCode(view.getUint8(90));
-            const date = String.fromCharCode(view.getUint8(93), view.getUint8(94));
+        //     const fileReader = new FileReader();
+        // fileReader.onloadend = (e) => {
+        //   const arr = new Uint8Array(e.target.result).subarray(0, 4);
 
-            // Store metadata
-            this.metadata.title = title;
-            this.metadata.artist = artist;
-            this.metadata.album = album;
-            this.metadata.genre = genre;
-            this.metadata.date = date;
+        //   const buffer = fileReader.result;
+        //   const view = new DataView(buffer);
+        //     // Check for ID3v2 tag (common for MP3 files)
+        //   if (
+        //     view.getUint8(0) === 73 &&  // I
+        //     view.getUint8(1) === 68 &&  // D
+        //     view.getUint8(2) === 51     // 3
+        //   ) {
+        //     // Extract metadata (this is a simplified example)
+        //     const title = String.fromCharCode(view.getUint8(6), view.getUint8(7));
+        //     const artist = String.fromCharCode(view.getUint8(30), view.getUint8(31));
+        //     const album = String.fromCharCode(view.getUint8(63), view.getUint8(64));
+        //     const genre = String.fromCharCode(view.getUint8(90));
+        //     const date = String.fromCharCode(view.getUint8(93), view.getUint8(94));
 
-            if (!this.hasCompleteMetadata) {
-              this.error.song = ['Missing metadata fields. Please check the file.'];
-              event.target.value = null;
-              this.clearErrorMessageAfterDelay();
-            }} else {
-              this.error.song = ['File format not supported or no metadata found.'];
-            event.target.value = null;
-            this.clearErrorMessageAfterDelay();
-          }
-        }
-        fileReader.readAsArrayBuffer(file);
+        //     // Store metadata
+        //     this.metadata.title = title;
+        //     this.metadata.artist = artist;
+        //     this.metadata.album = album;
+        //     this.metadata.genre = genre;
+        //     this.metadata.date = date;
+
+        //     if (!this.hasCompleteMetadata) {
+        //       this.error.song = ['Missing metadata fields. Please check the file.'];
+        //       event.target.value = null;
+        //       this.clearErrorMessageAfterDelay();
+        //     }} else {
+        //       this.error.song = ['File format not supported or no metadata found.'];
+        //     event.target.value = null;
+        //     this.clearErrorMessageAfterDelay();
+        //   }
+        // }
+        // fileReader.readAsArrayBuffer(file);
 
           }else{
             this.error.song = ['File size exceeds 10MB. Please upload a smaller MP3 or MP4 file.'];
