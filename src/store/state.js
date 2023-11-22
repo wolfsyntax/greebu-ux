@@ -19,6 +19,7 @@ var state = {
   artist_genre: [],
   proposal: {},
   selectedOption: "My Account",
+  userId: "",
   cancelReasons: [
     "Sudden Scheduling Conflict",
     "Personal Emergency",
