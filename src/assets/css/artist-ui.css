@@ -3048,22 +3048,27 @@ img{
 /* Upload Cover photo / Edit band Members*/
 
 #uploadArtistCoverPhoto .modal-content,
-#editBandMembers .modal-content {
+#editBandMembers .modal-content,
+#uploadProfilePhoto .modal-content {
   padding: 2.38rem 2.5rem 3rem;
 }
 #uploadArtistCoverPhoto .modal-content .modal-header,
 #uploadArtistCoverPhoto .modal-body,
 #editBandMembers .modal-content .modal-header,
-#editBandMembers .modal-body {
+#editBandMembers .modal-body,
+#uploadProfilePhoto .modal-content .modal-header,
+#uploadProfilePhoto .modal-body {
   border: 0;
   padding: 0;
 }
 #uploadArtistCoverPhoto .modal-content .modal-header,
-#editBandMembers .modal-content .modal-header {
+#editBandMembers .modal-content .modal-header,
+#uploadProfilePhoto .modal-content .modal-header {
   margin-bottom: 2.5rem;
 }
 #uploadArtistCoverPhoto .modal-content .modal-header .btn-close,
-#editBandMembers .modal-content .modal-header .btn-close {
+#editBandMembers .modal-content .modal-header .btn-close,
+#uploadProfilePhoto .modal-content .modal-header .btn-close {
   font-size: 0.6rem;
   padding: 0.4rem;
   border: 1px solid #23262f;
@@ -3071,7 +3076,8 @@ img{
   color: #23262f;
 }
 #uploadArtistCoverPhoto .modal-title,
-#editBandMembers .modal-header .modal-title {
+#editBandMembers .modal-header .modal-title,
+#uploadProfilePhoto .modal-title {
   color: #23262f;
   font-feature-settings: "clig" off, "liga" off;
   font-size: 1.5rem;
@@ -3100,43 +3106,51 @@ img{
   margin-bottom: 0;
 }
 
-#uploadArtistCoverPhoto .modal-body .upload-file-wrapper {
+#uploadArtistCoverPhoto .modal-body .upload-file-wrapper,
+#uploadProfilePhoto  .modal-body .upload-file-wrapper {
   border-radius: 0.625rem;
   border: 1px dashed var(--gray6);
   padding: 0.75rem;
   margin-bottom: 1.25rem;
 }
-#uploadArtistCoverPhoto .upload-file-wrapper .uploaded-image-wrapper {
+#uploadArtistCoverPhoto .upload-file-wrapper .uploaded-image-wrapper,
+#uploadProfilePhoto .upload-file-wrapper .uploaded-image-wrapper{
   overflow: hidden;
   width: 100%; /* 92.5rem */
   height: 14.3rem;
 }
-#uploadArtistCoverPhoto .croppa-container {
+#uploadArtistCoverPhoto .croppa-container,
+#uploadProfilePhoto .croppa-container {
   display: block;
   opacity: 1;
   position: relative;
 }
-#uploadArtistCoverPhoto .upload-file-wrapper .upload-file-content {
+#uploadArtistCoverPhoto .upload-file-wrapper .upload-file-content,
+#uploadProfilePhoto .upload-file-wrapper .upload-file-content {
   border-radius: 0.25rem;
   background: #efeffc;
   padding: 2rem 0;
 }
-#uploadArtistCoverPhoto .upload-file-wrapper .upload-file-content svg {
+#uploadArtistCoverPhoto .upload-file-wrapper .upload-file-content svg,
+#uploadProfilePhoto .upload-file-wrapper .upload-file-content svg {
   margin-bottom: 1.5rem;
 }
-#uploadArtistCoverPhoto .upload-file-wrapper .upload-file-content .drag-files {
+#uploadArtistCoverPhoto .upload-file-wrapper .upload-file-content .drag-files,
+#uploadProfilePhoto .upload-file-wrapper .upload-file-content .drag-files {
   color: var(--black-color);
   font-size: 0.875rem;
   font-weight: 600;
   margin-bottom: 0.75rem;
 }
-#uploadArtistCoverPhoto .upload-file-wrapper .upload-file-content .image-type {
+#uploadArtistCoverPhoto .upload-file-wrapper .upload-file-content .image-type,
+#uploadProfilePhoto .upload-file-wrapper .upload-file-content .image-type {
   color: rgba(0, 0, 0, 0.4);
   font-size: 0.75rem;
   font-weight: 400;
   margin-bottom: 1.25rem;
 }
-#uploadArtistCoverPhoto .upload-file-content .select-files-wrapper label {
+#uploadArtistCoverPhoto .upload-file-content .select-files-wrapper label,
+#uploadProfilePhoto .upload-file-content .select-files-wrapper label {
   color: var(--orange);
   font-size: 0.7rem;
   font-weight: 600;
@@ -3146,22 +3160,19 @@ img{
   border-radius: 0.3125rem;
   border: 1px solid var(--orange);
 }
-#uploadArtistCoverPhoto .upload-file-content .select-files-wrapper label:hover {
+#uploadArtistCoverPhoto .upload-file-content .select-files-wrapper label:hover,
+#uploadProfilePhoto .upload-file-content .select-files-wrapper label:hover {
   background-color: var(--orange);
   color: var(--white);
 }
-#uploadArtistCoverPhoto
-  .upload-file-wrapper
-  .uploaded-image-wrapper
-  .uploaded-image {
+#uploadArtistCoverPhoto .upload-file-wrapper .uploaded-image-wrapper .uploaded-image,
+#uploadProfilePhoto .upload-file-wrapper .uploaded-image-wrapper .uploaded-image {
   height: 21.313rem;
   width: 100%;
   border-radius: 0.25rem;
 }
-#uploadArtistCoverPhoto
-  .upload-file-wrapper
-  .uploaded-image-wrapper
-  .remove-image {
+#uploadArtistCoverPhoto .upload-file-wrapper .uploaded-image-wrapper .remove-image,
+#uploadProfilePhoto .upload-file-wrapper .uploaded-image-wrapper .remove-image {
   margin: 0;
   position: absolute;
   top: 7%;
@@ -3169,11 +3180,8 @@ img{
   border: 0;
   background-color: transparent;
 }
-#uploadArtistCoverPhoto
-  .upload-file-wrapper
-  .uploaded-image-wrapper
-  .remove-image
-  span {
+#uploadArtistCoverPhoto .upload-file-wrapper .uploaded-image-wrapper .remove-image span,
+#uploadProfilePhoto .upload-file-wrapper .uploaded-image-wrapper .remove-image span {
   cursor: pointer;
   color: var(--white);
   margin: 0;
@@ -3186,19 +3194,18 @@ img{
   font-size: 16px;
   border: 0.1px solid #ffffff91;
 }
-#uploadArtistCoverPhoto
-  .upload-file-wrapper
-  .uploaded-image-wrapper
-  .remove-image:hover
-  span {
+#uploadArtistCoverPhoto .upload-file-wrapper .uploaded-image-wrapper .remove-image:hover span,
+#uploadProfilePhoto .upload-file-wrapper .uploaded-image-wrapper .remove-image:hover span{
   border: 0.1px solid var(--white);
 }
 #uploadArtistCoverPhoto .modal-footer,
-#editBandMembers .modal-footer {
+#editBandMembers .modal-footer,
+#uploadProfilePhoto .modal-footer{
   border: 0;
 }
 #uploadArtistCoverPhoto .modal-footer .upload-cover-photo,
-#editBandMembers .modal-footer .save {
+#editBandMembers .modal-footer .save,
+#uploadProfilePhoto .modal-footer .upload-cover-photo{
   color: var(--white);
   font-size: 1.25rem;
   font-weight: 700;
@@ -3207,7 +3214,8 @@ img{
   background-color: var(--orange);
 }
 #uploadArtistCoverPhoto .modal-footer .upload-cover-photo:hover,
-#editBandMembers .modal-footer .save:hover {
+#editBandMembers .modal-footer .save:hover,
+#uploadProfilePhoto .modal-footer .upload-cover-photo:hover {
   background-color: var(--btn-hovered);
 }
 

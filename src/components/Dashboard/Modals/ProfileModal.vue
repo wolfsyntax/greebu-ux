@@ -1,9 +1,9 @@
 <template>
-  <div class="modal fade" id="uploadArtistCoverPhoto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+  <div class="modal fade" id="uploadProfilePhoto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Upload Cover Photo</h5>
+          <h5 class="modal-title">Upload Profile Picture</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ref="bannerClose" ></button>
         </div>
         <div class="modal-body">
@@ -30,7 +30,7 @@
 
             <div class="uploaded-image-wrapper" v-else>
               <div  v-if="showImage">
-                <img ref="uploadedImage" class="uploaded-image" :src="banner" alt="banner-modal" />
+                <img ref="uploadedImage" class="uploaded-image" :src="avatar" alt="banner-modal" />
               </div>
                   <!-- <cropper class="cropper" ref="cropper" 
                   :src="preview"
@@ -54,7 +54,7 @@
                   }"
                   image-restriction="fill-area"
                   @change="change" 
-                  v-if="banner"
+                  v-if="avatar"
                 />
 
                 <!-- aspectRatio: 10/12 (profile pic) -->
@@ -105,9 +105,9 @@ export default {
     }
   },
   data: () => ({
-    banner: null,
+    avatar: null,
     form: {
-      cover_photo: '',
+      avatar: '',
     },
     uploadBox: true,
     cropImage: null,
@@ -125,7 +125,7 @@ export default {
       type: Boolean,
       default: false,
       required: true
-    },
+    }
   },
   computed: {
     ...mapGetters(['userRole',]),
@@ -135,29 +135,30 @@ export default {
   },
   mounted()
   {
-    const myModal = document.getElementById('uploadArtistCoverPhoto');
+    const myModal = document.getElementById('uploadProfilePhoto');
 
-    myModal.addEventListener('hide.bs.modal', () =>
-    {
-      this.form.cover_photo = '';
-      this.banner = null;
+    // myModal.addEventListener('hide.bs.modal', () =>
+    // {
+    //   this.form.avatar = '';
+    //   this.avatar = null;
 
-      this.preview = null;
-      this.cropImage = null;
+    //   this.preview = null;
+    //   this.cropImage = null;
 
-      this.isLoading = false;
-      this.isDragOver = false;
-      this.imageWidth = null;
-      this.imageHeight = null;
-      this.imageUrl = null;
+    //   this.isLoading = false;
+    //   this.isDragOver = false;
+    //   this.imageWidth = null;
+    //   this.imageHeight = null;
+    //   this.imageUrl = null;
 
-      this.filename = null;
+    //   this.filename = null;
 
-    });
+    // });
   },
   methods: {
     ...mapActions([
-      'updateBanner',
+     // 'updateBanner',
+     'updateAvatar'
     ]),
     fillArea({ boundaries }) {
       return {
@@ -182,26 +183,24 @@ export default {
       
       this.cropImage.toBlob(async blob =>
       {
-        this.form.cover_photo = blob;
+        this.form.avatar = blob;
+
+        // this.$emit('formDataUpdated', formData);
+        this.$emit('formDataUpdated', this.form.avatar);
 
         this.isLoading = true;
         var formData = new FormData();
-        formData.append('cover_photo', this.form.cover_photo, this.filename);
-        this.updateBanner(formData)
-        // this.updateBanner(this.form, this.generateImage)
-          .then(response =>
-          {
-            this.$refs.bannerClose.click();
-            this.removeBanner();
+
+        formData.append('avatar', this.form.avatar, this.filename);
+
+        this.$refs.bannerClose.click();
+
+        this.removeBanner();
             
-            console.log(`Closing Banner`);
-          })
-          .catch(error => {
-            console.error('Error uploading cover:', error);
-          });
+        console.log(`Closing Banner`);
 
       });
-
+     // this.$emit('avatarUpdated', this.form.avatar)
 
     },
     handleDragOverCover(e)
@@ -278,13 +277,14 @@ export default {
         this.filename = name;
         
         this.form.cover_photo = rawFile;
-        this.banner = this.preview = URL.createObjectURL(rawFile);
+        this.avatar = this.preview = URL.createObjectURL(rawFile);
+      //  this.$emit('formDataUpdated', this.avatar);
         // console.log(`top banner image`, this.banner)
 
         this.uploadBox = false;
         // check the image width and height
         const img = new Image();
-        img.src = this.banner;
+        img.src = this.avatar;
 
         img.onload = () => {
           this.imageWidth = img.width;
@@ -298,7 +298,7 @@ export default {
     removeBanner()
     {
       this.form.cover_photo = null;
-      this.banner = null;
+      this.avatar = null;
       this.cropImage = null;
       this.$refs['bannerInput'].value = null;
       this.uploadBox = true;

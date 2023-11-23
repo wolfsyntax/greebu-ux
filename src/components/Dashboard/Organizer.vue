@@ -9,7 +9,7 @@
                 <div class="cover" >
                   <div class="gray-shade" ></div>
                   <figure >
-                    <!-- <img :src="bannerImage" class="img-fluid" alt="profile cover" > -->
+                    
                     <img :src="bannerImage" class="img-fluid" loading="lazy" alt="profile cover" >
                   </figure>
                   <div class="cover-photo-camera" >
