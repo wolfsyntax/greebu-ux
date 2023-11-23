@@ -35,7 +35,7 @@
                   <p class="account-description">Please choose your Account Type to create an account.</p>
                 </div>
 
-                <div class="col-md-12">{{ form.account_type }}
+                <div class="col-md-12">
                   <div class="form-check" @click="form.account_type = 'customers'">
                     <input class="form-check-input" type="radio" name="accountType" id="accountType" v-model="form.account_type" value="customers" >
                     <label @click="form.account_type = 'customers'" :class="{ 'selected': form.account_type === 'customers' }" class="form-check-label" for="accountType">
