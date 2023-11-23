@@ -226,7 +226,13 @@ body {
   font-family: "Urbanist", sans-serif;
   background-color: var(--white);
 }
-h1, h2, h3, h4, h5, h6, p{
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
   word-wrap: break-word;
   white-space: pre-wrap;
   word-break: break-word;
@@ -264,16 +270,16 @@ img {
 
 /* Multi-select searc */
 
-.multiselect .multiselect-dropdown{
+.multiselect .multiselect-dropdown {
   /* overflow-y: hidden; 
   overflow-x: hidden;  */
 }
-.multiselect .multiselect-option:hover{
+.multiselect .multiselect-option:hover {
   /* background-color: rgb(253, 253, 253); */
   background-color: rgb(255, 252, 251);
   color: var(--orange);
 }
- .multiselect .multiselect-dropdown{
+.multiselect .multiselect-dropdown {
   border-radius: 0.3125rem;
   background: var(--white);
   border: none;
@@ -283,7 +289,7 @@ img {
   font-weight: 600;
   font-size: 1rem;
 }
-.multiselect .noOptionsText{
+.multiselect .noOptionsText {
   font-size: 1rem;
 }
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -1115,7 +1121,7 @@ header nav {
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
-.artists .container .button-wrapper .see-more-btn:hover{
+.artists .container .button-wrapper .see-more-btn:hover {
   border: 1px solid var(--btn-hovered);
   background-color: var(--btn-hovered);
 }
@@ -1641,8 +1647,8 @@ header nav {
   margin-bottom: 0rem;
   text-align: left;
 }
-.artists .container .card-body .artist-reviews-wrap{
-  gap: 0.40rem;
+.artists .container .card-body .artist-reviews-wrap {
+  gap: 0.4rem;
 }
 .featured-artists .card-body p span,
 .artists #ShowArtists .card-body .artist-reviews-wrap .reviews,
@@ -1660,10 +1666,10 @@ header nav {
   margin-bottom: 0px;
   padding-bottom: 3px;
 }
-.artists #ShowArtists .card-body p .star-icon{
+.artists #ShowArtists .card-body p .star-icon {
   font-size: 24px;
   color: var(--orange);
-  font-variation-settings: 'FILL' 1,'wght' 800,'GRAD' 0,'opsz' 48;
+  font-variation-settings: "FILL" 1, "wght" 800, "GRAD" 0, "opsz" 48;
 }
 .featured-artists .audio-controls-fixed .card,
 .artists .audio-controls-fixed .card,
@@ -2347,6 +2353,10 @@ header nav {
   border-radius: 5px;
   margin-bottom: 20px;
 }
+
+.register form .form-group .input-group .input-group-text {
+  height: 48px !important;
+}
 .login form .form-check,
 .register form .form-check {
   margin-bottom: 24px;
@@ -2887,7 +2897,7 @@ header nav {
   text-align: center;
   margin-bottom: 90px;
 }
-.artists .container .top-level-wrap{
+.artists .container .top-level-wrap {
   margin-bottom: 5rem;
 }
 .event-organizers .container .top-row .filter,
@@ -6376,7 +6386,7 @@ header nav {
   margin-bottom: 0;
 }
 
-/* Toast message */ 
+/* Toast message */
 
 #showToastMsg {
   border-radius: 0.75rem;
@@ -6393,7 +6403,7 @@ header nav {
   right: 1%;
 }
 #showToastMsg .accepted {
-  color: #22C55E;
+  color: #22c55e;
   font-size: 1rem;
   font-weight: 600;
   line-height: 1.25rem;
@@ -6408,7 +6418,7 @@ header nav {
 }
 #showToastMsg .accepted-wrapper .check-circle {
   margin-right: 0.5rem;
-  color: #22C55E;
+  color: #22c55e;
   font-size: 24px;
 }
 #showToastMsg .close-toast .close-icon {
@@ -6573,7 +6583,7 @@ header nav {
   letter-spacing: -0.045rem;
   margin-bottom: 0;
 }
-.account-settings .note-wrapper .sub-note{
+.account-settings .note-wrapper .sub-note {
   color: var(--orange);
   font-size: 0.87rem;
   font-weight: 500;
@@ -7290,7 +7300,7 @@ header nav {
 /* #eventDetailsModal .event-details-wrapper > div:first-of-type{
   margin-bottom: 1.25rem;
 } */
-#eventDetailsModal .event-details-wrapper .date-venue-wrap{
+#eventDetailsModal .event-details-wrapper .date-venue-wrap {
   gap: 1.1rem;
 }
 #eventDetailsModal .event-details-wrapper span {
@@ -7435,11 +7445,11 @@ header nav {
   border: 1px solid var(--gray6);
 }
 #createEventModal .filter-location-wrap,
-#editEventModal .filter-location-wrap{
+#editEventModal .filter-location-wrap {
   position: relative;
   width: 100%;
 }
-#createEventModal .modal-body .form-group #number-of-artist{
+#createEventModal .modal-body .form-group #number-of-artist {
   padding: 0 0.75rem;
 }
 #createEventModal .filter-location-wrap .location-icon,
@@ -7484,37 +7494,69 @@ header nav {
 #createEventModal .modal-body .start-end-wrap input[type="date" i],
 #createEventModal .modal-body .start-end-wrap input[type="time" i],
 #editEventModal .modal-body .start-end-wrap input[type="date" i],
-#editEventModal .modal-body .start-end-wrap input[type="time" i]
- {
+#editEventModal .modal-body .start-end-wrap input[type="time" i] {
   flex-direction: row-reverse;
-  color: #2D3748;
+  color: #2d3748;
   font-family: Urbanist;
   gap: 0.5rem;
 }
 #createEventModal .modal-body .start-end-wrap input[type="time" i],
-#editEventModal .modal-body .start-end-wrap input[type="time" i]{
+#editEventModal .modal-body .start-end-wrap input[type="time" i] {
   gap: 0.4rem;
 }
-#createEventModal .modal-body .start-end-wrap input[type="date" i]::-webkit-calendar-picker-indicator,
-#createEventModal .modal-body .start-end-wrap input[type="time" i]::-webkit-calendar-picker-indicator,
-#editEventModal .modal-body .start-end-wrap input[type="date" i]::-webkit-calendar-picker-indicator,
-#editEventModal .modal-body .start-end-wrap input[type="time" i]::-webkit-calendar-picker-indicator
-{
+#createEventModal
+  .modal-body
+  .start-end-wrap
+  input[type="date" i]::-webkit-calendar-picker-indicator,
+#createEventModal
+  .modal-body
+  .start-end-wrap
+  input[type="time" i]::-webkit-calendar-picker-indicator,
+#editEventModal
+  .modal-body
+  .start-end-wrap
+  input[type="date" i]::-webkit-calendar-picker-indicator,
+#editEventModal
+  .modal-body
+  .start-end-wrap
+  input[type="time" i]::-webkit-calendar-picker-indicator {
   background-image: url("/assets/calendar-month-icon.svg");
   block-size: 1.5em;
   inline-size: 1.5em;
 }
-#createEventModal .modal-body .start-end-wrap input[type="time" i]::-webkit-calendar-picker-indicator,
-#editEventModal .modal-body .start-end-wrap input[type="time" i]::-webkit-calendar-picker-indicator{
+#createEventModal
+  .modal-body
+  .start-end-wrap
+  input[type="time" i]::-webkit-calendar-picker-indicator,
+#editEventModal
+  .modal-body
+  .start-end-wrap
+  input[type="time" i]::-webkit-calendar-picker-indicator {
   background-image: url("/assets/clock-icon.svg");
   margin-inline-start: 0;
 }
-#createEventModal .modal-body .start-end-wrap .form-group:hover input[type="date" i]::-webkit-calendar-picker-indicator,
-#editEventModal .modal-body .start-end-wrap .form-group:hover input[type="date" i]::-webkit-calendar-picker-indicator{
+#createEventModal
+  .modal-body
+  .start-end-wrap
+  .form-group:hover
+  input[type="date" i]::-webkit-calendar-picker-indicator,
+#editEventModal
+  .modal-body
+  .start-end-wrap
+  .form-group:hover
+  input[type="date" i]::-webkit-calendar-picker-indicator {
   background-image: url("/assets/calendar-month-icon-hovered.svg");
 }
-#createEventModal .modal-body .start-end-wrap .form-group:hover input[type="time" i]::-webkit-calendar-picker-indicator,
-#editEventModal .modal-body .start-end-wrap .form-group:hover input[type="time" i]::-webkit-calendar-picker-indicator{
+#createEventModal
+  .modal-body
+  .start-end-wrap
+  .form-group:hover
+  input[type="time" i]::-webkit-calendar-picker-indicator,
+#editEventModal
+  .modal-body
+  .start-end-wrap
+  .form-group:hover
+  input[type="time" i]::-webkit-calendar-picker-indicator {
   background-image: url("/assets/clock-icon-hovered.svg");
 }
 
@@ -7558,7 +7600,6 @@ header nav {
 #editEventModal .modal-body .action-btn-wrap .next:hover {
   background: var(--btn-hovered);
 }
-
 
 /* Event created modal and Success Proposal form modal*/
 #eventsCreatedModal .modal-content,
@@ -8446,8 +8487,10 @@ header nav {
   width: 1em;
   margin-left: -1.2em;
 }
-#cancelSubscription .delete, #cancelSubscription .cancel,
-#changePlanSubscription .confirm, #changePlanSubscription .cancel {
+#cancelSubscription .delete,
+#cancelSubscription .cancel,
+#changePlanSubscription .confirm,
+#changePlanSubscription .cancel {
   color: var(--white);
   font-size: 1.25rem;
   font-weight: 600;
@@ -8458,7 +8501,7 @@ header nav {
   background-color: var(--orange);
 }
 #cancelSubscription .cancel,
-#changePlanSubscription .cancel  {
+#changePlanSubscription .cancel {
   color: var(--orange);
   background-color: var(--white);
   padding: 1rem 2rem;
@@ -8798,7 +8841,7 @@ header nav {
 #paymentMethod form .form-check {
   padding: 0.94rem 1.55rem;
   border-radius: 0.5625rem;
-  border: 1.5px solid #E4E7EC;
+  border: 1.5px solid #e4e7ec;
   /* margin-bottom: 1.12rem; */
   display: block;
   margin-bottom: 0.75rem;
@@ -8825,18 +8868,18 @@ header nav {
   float: left;
   width: 60%;
 }
-#paymentMethod form .form-check .card-name{
+#paymentMethod form .form-check .card-name {
   font-size: 1.25rem;
   font-weight: 600;
   line-height: 1rem;
   letter-spacing: 0.03125rem;
   margin-bottom: 0.37rem;
 }
-#paymentMethod form .form-check .sub-content{
-  color: rgba(71, 84, 103, 0.80);
+#paymentMethod form .form-check .sub-content {
+  color: rgba(71, 84, 103, 0.8);
   font-size: 0.8125rem;
   font-weight: 400;
-  line-height: 1rem; 
+  line-height: 1rem;
   letter-spacing: 0.03125rem;
 }
 #paymentMethod form .form-check .payment-wrapper {
@@ -8844,16 +8887,16 @@ header nav {
   width: 40%;
   text-align: right;
 }
-#paymentMethod form .payment-logo{
+#paymentMethod form .payment-logo {
   width: 3.5rem;
   height: 2.6875rem;
   border-radius: 0.25rem;
 }
-#paymentMethod form .first-image{
-  width: 11.688rem!important;
-  height: 1rem!important;
+#paymentMethod form .first-image {
+  width: 11.688rem !important;
+  height: 1rem !important;
 }
-#paymentMethod form .card-wrap{
+#paymentMethod form .card-wrap {
   margin: 1.5rem auto;
 }
 #paymentMethod form .card-wrap .form-group {
@@ -8866,57 +8909,57 @@ header nav {
 #paymentMethod form .card-wrap .input-container {
   padding: 0.81rem 1rem;
   border-radius: 0.25rem;
-  border: 1px solid #F9F9F9;
-  background-color: #F9F9F9;
+  border: 1px solid #f9f9f9;
+  background-color: #f9f9f9;
 }
 #paymentMethod form .card-wrap input {
   flex: 1;
   border: none;
   outline: none;
   color: #585858;
-  font-feature-settings: 'clig' off, 'liga' off;
+  font-feature-settings: "clig" off, "liga" off;
   font-size: 0.9375rem;
   font-weight: 400;
-  line-height: 1.25rem; 
-  background-color: #F9F9F9;
+  line-height: 1.25rem;
+  background-color: #f9f9f9;
 }
 #paymentMethod form .card-wrap .card-num-icon {
   margin-left: 10px;
   width: 1.5rem;
   height: 1.5rem;
 }
-#paymentMethod form .button-wrapper{
+#paymentMethod form .button-wrapper {
   margin-top: 5rem;
 }
-#paymentMethod form .button-wrapper button{
+#paymentMethod form .button-wrapper button {
   color: var(--white);
   font-size: 0.9375rem;
   font-weight: 600;
-  line-height: 1.125rem; 
+  line-height: 1.125rem;
   padding: 1rem 10rem;
   border-radius: 0.375rem;
   background-color: var(--orange);
   border: none;
 }
-#paymentMethod form .button-wrapper button:hover{
+#paymentMethod form .button-wrapper button:hover {
   background-color: var(--btn-hovered);
 }
 
 /* Subscription Renewal Modal */
 
-#subscriptionReminder .modal-content{
+#subscriptionReminder .modal-content {
   padding: 2.5rem 2.5rem 4rem;
   border-radius: 0.375rem;
   box-shadow: 0px 0px 17px 0px rgba(18, 18, 18, 0.15);
   border: none;
 }
-#subscriptionReminder .modal-header{
+#subscriptionReminder .modal-header {
   border: none;
 }
-#subscriptionReminder .info-box-wrap{
+#subscriptionReminder .info-box-wrap {
   margin-bottom: 1.5rem;
 }
-#subscriptionReminder .info-box-wrap h3{
+#subscriptionReminder .info-box-wrap h3 {
   color: var(--black);
   font-size: 1.25rem;
   font-weight: 700;
@@ -8925,29 +8968,29 @@ header nav {
 #subscriptionReminder .info-box-wrap .msg-wrap,
 #subscriptionReminder .info-box-wrap .details-wrap {
   border-radius: 0.3125rem;
-  background: #F3F5FF;
+  background: #f3f5ff;
   padding: 2.25rem 2.5rem;
 }
-#subscriptionReminder .info-box-wrap .details-wrap{
+#subscriptionReminder .info-box-wrap .details-wrap {
   padding: 1.25rem 1.5rem;
 }
-#subscriptionReminder .info-box-wrap .msg-wrap .msg{
+#subscriptionReminder .info-box-wrap .msg-wrap .msg {
   color: var(--black);
   font-size: 1.25rem;
   font-weight: 500;
   width: 80%;
   margin: 0 auto 1.88rem;
 }
-#subscriptionReminder .info-box-wrap .msg-wrap .date{
+#subscriptionReminder .info-box-wrap .msg-wrap .date {
   color: var(--orange);
   font-size: 1.5rem;
   font-weight: 700;
 }
-#subscriptionReminder .info-box-wrap .msg-wrap .renew-btn{
+#subscriptionReminder .info-box-wrap .msg-wrap .renew-btn {
   color: var(--white);
   font-size: 1rem;
   font-weight: 700;
-  line-height: 100%; 
+  line-height: 100%;
   letter-spacing: 0.05rem;
   padding: 1rem 2.2rem;
   border-radius: 0.375rem;
@@ -8955,51 +8998,52 @@ header nav {
   background-color: var(--orange);
   margin-top: 1.25rem;
 }
-#subscriptionReminder .info-box-wrap .msg-wrap .renew-btn:hover{
+#subscriptionReminder .info-box-wrap .msg-wrap .renew-btn:hover {
   background-color: var(--btn-hovered);
 }
-#subscriptionReminder .info-box-wrap .details-wrap div:nth-child(1){
-  border-bottom: 0.75px solid #BECDF8;
+#subscriptionReminder .info-box-wrap .details-wrap div:nth-child(1) {
+  border-bottom: 0.75px solid #becdf8;
   margin-bottom: 1.25rem;
 }
-#subscriptionReminder .info-box-wrap .details-wrap .title{
+#subscriptionReminder .info-box-wrap .details-wrap .title {
   color: var(--black);
   font-size: 1rem;
   font-weight: 600;
   margin-bottom: 0.63rem;
 }
-#subscriptionReminder .info-box-wrap .details-wrap h5{
+#subscriptionReminder .info-box-wrap .details-wrap h5 {
   color: #121212;
   font-size: 0.875rem;
   font-weight: 500;
   margin-bottom: 0;
 }
-#subscriptionReminder .info-box-wrap .details-wrap div:not(:nth-child(1)) {  /* for divs 2 and onwards go here */
+#subscriptionReminder .info-box-wrap .details-wrap div:not(:nth-child(1)) {
+  /* for divs 2 and onwards go here */
   margin-bottom: 1rem;
 }
 #subscriptionReminder .info-box-wrap .details-wrap div:last-child {
-  margin-bottom: 0rem!important;
+  margin-bottom: 0rem !important;
 }
-#subscriptionReminder .info-box-wrap .details-wrap .payment-logo{
+#subscriptionReminder .info-box-wrap .details-wrap .payment-logo {
   width: 4.6875rem;
   height: 1.1875rem;
   margin-right: 1.5rem;
 }
-#subscriptionReminder .info-box-wrap .details-wrap .phone-num{
-  color: #454F59;
+#subscriptionReminder .info-box-wrap .details-wrap .phone-num {
+  color: #454f59;
   font-size: 0.875rem;
   font-weight: 500;
 }
-#subscriptionReminder .info-box-wrap .details-wrap .update{
-  color: #454F59;
+#subscriptionReminder .info-box-wrap .details-wrap .update {
+  color: #454f59;
   font-size: 0.875rem;
   font-weight: 600;
   text-decoration: none;
 }
-#subscriptionReminder .info-box-wrap .details-wrap .update:hover{
+#subscriptionReminder .info-box-wrap .details-wrap .update:hover {
   text-decoration: underline;
 }
-#subscriptionReminder .modal-body .continue{
+#subscriptionReminder .modal-body .continue {
   color: var(--black);
   font-size: 1rem;
   font-weight: 500;
@@ -9007,79 +9051,79 @@ header nav {
 
 /* Update Subscription modal */
 
-#updateSubscription .modal-content{
+#updateSubscription .modal-content {
   padding: 2.5rem 3.12rem;
   border-radius: 0.625rem;
   box-shadow: 0px 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
 #updateSubscription .modal-header,
-#updateSubscription .plan-wrap{
+#updateSubscription .plan-wrap {
   margin-bottom: 2.5rem;
 }
-#updateSubscription .modal-header .modal-title{
+#updateSubscription .modal-header .modal-title {
   color: var(--black-color);
   font-size: 1.5rem;
   font-weight: 700;
 }
-#updateSubscription .plan-wrap h4{
+#updateSubscription .plan-wrap h4 {
   color: var(--gray2);
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 1.25rem;
 }
-#updateSubscription .plan-wrap .subscription-wrap{
+#updateSubscription .plan-wrap .subscription-wrap {
   padding: 1.90625rem 2.5rem 1.84375rem 2.5rem;
   border-radius: 0.25rem;
   border: 1px solid var(--gray6);
   margin-bottom: 0;
 }
 #updateSubscription .plan-wrap .subscription-wrap .account,
-#updateSubscription .plan-wrap .subscription-wrap .access{
+#updateSubscription .plan-wrap .subscription-wrap .access {
   color: var(--black);
   font-size: 1rem;
   font-weight: 700;
   margin-bottom: 0;
 }
-#updateSubscription .plan-wrap .subscription-wrap .access{
+#updateSubscription .plan-wrap .subscription-wrap .access {
   font-weight: 800;
-  line-height: 110%; 
+  line-height: 110%;
   text-transform: uppercase;
 }
-#updateSubscription .plan-wrap .subscription-wrap .description{
+#updateSubscription .plan-wrap .subscription-wrap .description {
   color: #808080;
   font-size: 0.875rem;
   font-style: italic;
   font-weight: 600;
-  line-height: 150.5%; 
+  line-height: 150.5%;
 }
-#updateSubscription .plan-wrap .subscription-wrap h3{
+#updateSubscription .plan-wrap .subscription-wrap h3 {
   color: var(--orange);
   font-size: 1.25rem;
   font-style: italic;
   font-weight: 600;
 }
-#updateSubscription .subscription-wrap .price-wrap{
+#updateSubscription .subscription-wrap .price-wrap {
   margin: 0.75rem 0;
-  gap: 0.94rem
+  gap: 0.94rem;
 }
-#updateSubscription .subscription-wrap .price-wrap .price{
-  color: #2F2F2F;
+#updateSubscription .subscription-wrap .price-wrap .price {
+  color: #2f2f2f;
   font-size: 1.25rem;
   font-style: italic;
   font-weight: 600;
 }
-#updateSubscription .subscription-wrap .price-wrap button{
+#updateSubscription .subscription-wrap .price-wrap button {
   color: var(--white);
   font-size: 0.875rem;
   font-weight: 800;
   text-transform: capitalize;
   padding: 0.5rem 1.4375rem;
   border-radius: 1.875rem;
-  background-color: #2F2F2F;
+  background-color: #2f2f2f;
   cursor: default;
 }
 #updateSubscription .subscription-wrap .plan-btn,
-#updateSubscription .subscription-wrap .current-btn{
+#updateSubscription .subscription-wrap .current-btn {
   color: var(--white);
   font-size: 1rem;
   font-weight: 800;
@@ -9087,61 +9131,61 @@ header nav {
   border-radius: 0.5rem;
   background-color: var(--orange);
 }
-#updateSubscription .subscription-wrap .plan-btn:hover{
+#updateSubscription .subscription-wrap .plan-btn:hover {
   background-color: var(--btn-hovered);
 }
-#updateSubscription .subscription-wrap .current-btn{
+#updateSubscription .subscription-wrap .current-btn {
   background-color: var(--btn-focus);
   cursor: not-allowed;
 }
-#updateSubscription .plan-wrap > div:nth-child(2){
+#updateSubscription .plan-wrap > div:nth-child(2) {
   margin-bottom: 1.25rem;
 }
 
 /* Change Plan Modal */
 
-#changePlanSubscription .modal-content{
+#changePlanSubscription .modal-content {
   padding: 1.88rem 2.5rem;
   border-radius: 0.625rem;
   box-shadow: 0px 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
 #changePlanSubscription .modal-header,
-#changePlanSubscription .upgrade-wrap .question{
+#changePlanSubscription .upgrade-wrap .question {
   margin-bottom: 1.5rem;
 }
-#changePlanSubscription .modal-header .modal-title{
+#changePlanSubscription .modal-header .modal-title {
   color: var(--black-color);
   font-size: 1.25rem;
   font-weight: 700;
 }
-#changePlanSubscription .upgrade-wrap{
+#changePlanSubscription .upgrade-wrap {
   margin-bottom: 4rem;
 }
-#changePlanSubscription .upgrade-wrap p{
-  color: #8690A2;
+#changePlanSubscription .upgrade-wrap p {
+  color: #8690a2;
   font-size: 1.25rem;
   font-weight: 500;
 }
-#changePlanSubscription .upgrade-wrap .note{
+#changePlanSubscription .upgrade-wrap .note {
   margin-bottom: 0;
   font-style: italic;
 }
 
 /* Account Settings - My Bookings  */
 
-.account-settings .my-bookings .expire-wrap{
+.account-settings .my-bookings .expire-wrap {
   border-radius: 2rem;
-  background-color: #FED7AA;
+  background-color: #fed7aa;
   display: flex;
   align-items: center;
   padding: 0.25rem 0.5rem;
   gap: 0.25rem;
 }
-.account-settings .my-bookings .expire-wrap .clock-icon{
+.account-settings .my-bookings .expire-wrap .clock-icon {
   font-size: 16px;
   color: var(--orange);
 }
-.account-settings .my-bookings .expire-wrap .expire{
+.account-settings .my-bookings .expire-wrap .expire {
   color: var(--orange);
   font-size: 0.75rem;
   font-weight: 600;
@@ -9149,38 +9193,38 @@ header nav {
 .account-settings .my-bookings .expired-wrap {
   background: var(--warning-light);
 }
-.account-settings .my-bookings .expired-wrap > *{
+.account-settings .my-bookings .expired-wrap > * {
   color: var(--warning);
 }
-.account-settings .my-bookings .expired-wrap span{
-  font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 48;
+.account-settings .my-bookings .expired-wrap span {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
 }
-.account-settings .my-bookings .booking-box-wrap{
+.account-settings .my-bookings .booking-box-wrap {
   border-radius: 0.25rem;
   border: 1px solid var(--gray6);
   padding: 1.25rem;
   margin-bottom: 2.5rem;
   gap: 1rem;
 }
-.account-settings .my-bookings .booking-box-wrap .event-name{
+.account-settings .my-bookings .booking-box-wrap .event-name {
   color: var(--black);
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 1.41rem;
 }
-.account-settings .my-bookings .booking-box-wrap div{
+.account-settings .my-bookings .booking-box-wrap div {
   gap: 0.56rem;
   margin-bottom: 0.62rem;
 }
-.account-settings .my-bookings .booking-box-wrap div:nth-child(3){
+.account-settings .my-bookings .booking-box-wrap div:nth-child(3) {
   margin-bottom: 0;
 }
-.account-settings .my-bookings .booking-box-wrap span{
+.account-settings .my-bookings .booking-box-wrap span {
   font-size: 24px;
   color: var(--gray2);
-  font-variation-settings: 'FILL' 1,'wght' 800,'GRAD' 0,'opsz' 48;
+  font-variation-settings: "FILL" 1, "wght" 800, "GRAD" 0, "opsz" 48;
 }
-.account-settings .my-bookings .booking-box-wrap p{
+.account-settings .my-bookings .booking-box-wrap p {
   color: var(--gray2);
   font-size: 1rem;
   font-weight: 400;
@@ -9190,7 +9234,7 @@ header nav {
   margin-bottom: 0.94rem;
 }
 .account-settings .my-bookings .booking-box-wrap .accepted-booking-btn,
-.account-settings .my-bookings .booking-box-wrap .completed-booking-btn{
+.account-settings .my-bookings .booking-box-wrap .completed-booking-btn {
   border-radius: 0.5rem;
   padding: 0.75rem 0;
   width: 10.3125rem;
@@ -9202,34 +9246,38 @@ header nav {
   line-height: 1.5rem;
   cursor: not-allowed;
 }
-.account-settings .my-bookings .booking-box-wrap .completed-booking-btn{
+.account-settings .my-bookings .booking-box-wrap .completed-booking-btn {
   border: 1px solid var(--completed-light);
   background: var(--completed-light);
   color: var(--completed);
   gap: 0.5rem;
 }
-.account-settings .my-bookings .booking-box-wrap .completed-booking-btn .check-icon{
+.account-settings
+  .my-bookings
+  .booking-box-wrap
+  .completed-booking-btn
+  .check-icon {
   font-size: 24px;
   color: var(--completed);
 }
 /* Events - Popover Card */
 
-.popover{
+.popover {
   /* border-color: white!important; */
-  --bs-popover-border-color: white!important;
+  --bs-popover-border-color: white !important;
 }
-#card-performer{
+#card-performer {
   /* width: 13.875rem; */
   padding: 0.25rem 0.25rem 0.6rem 0.25rem;
   border-radius: 0.3265rem;
   background: var(--white);
   box-shadow: 0px 16.32353px 32.64706px -7.83529px rgba(0, 0, 0, 0.25);
 }
-#card-performer .img-wrap{
+#card-performer .img-wrap {
   position: relative;
   width: 100%;
 }
-#card-performer .img-wrap .cover{
+#card-performer .img-wrap .cover {
   border-radius: 0.20406rem;
   width: 100%;
   height: 4.4375rem;
@@ -9242,12 +9290,12 @@ header nav {
   top: 60%;
   left: 5%;
 }
-#card-performer .img-wrap .profile-wrap .profile{
+#card-performer .img-wrap .profile-wrap .profile {
   width: 3.50956rem;
   height: 3.50956rem;
 }
 #card-performer .about-wrap,
- #card-performer .details-wrap {
+#card-performer .details-wrap {
   padding: 0 0.6rem;
 }
 #card-performer .details-wrap {
@@ -9255,7 +9303,7 @@ header nav {
   margin-bottom: 0.5rem;
   gap: 0.5rem;
 }
-#card-performer .details-wrap .follow{
+#card-performer .details-wrap .follow {
   color: var(--white);
   font-size: 0.8rem;
   font-weight: 500;
@@ -9264,23 +9312,23 @@ header nav {
   background-color: var(--orange);
   cursor: pointer;
 }
-#card-performer .details-wrap .follow:hover{
+#card-performer .details-wrap .follow:hover {
   background-color: var(--btn-hovered);
 }
-#card-performer .details-wrap h4{
+#card-performer .details-wrap h4 {
   color: var(--black);
   font-size: 0.8rem;
   font-weight: 600;
   line-height: 0.81619rem;
   margin-bottom: 0.15rem;
 }
-#card-performer .details-wrap h5{
+#card-performer .details-wrap h5 {
   color: var(--gray2);
   font-size: 0.75rem;
   font-weight: 500;
-  line-height: 0.81619rem; 
+  line-height: 0.81619rem;
 }
-#card-performer .details-wrap button{
+#card-performer .details-wrap button {
   color: var(--white);
   font-size: 0.5rem;
   font-weight: 500;
@@ -9288,192 +9336,192 @@ header nav {
   border-radius: 6.1875rem;
   background-color: var(--orange);
 }
-#card-performer .about-wrap .bio{
+#card-performer .about-wrap .bio {
   color: var(--gray2);
   font-size: 0.75rem;
   font-weight: 500;
-  line-height: 0.81619rem; 
+  line-height: 0.81619rem;
   margin-bottom: 0.5rem;
 }
-#card-performer .follow-wrap{
+#card-performer .follow-wrap {
   margin-bottom: 0.5rem;
 }
-#card-performer .follow-wrap div:nth-child(1){
+#card-performer .follow-wrap div:nth-child(1) {
   margin-right: 1rem;
 }
-#card-performer .follow-wrap h5{
+#card-performer .follow-wrap h5 {
   color: var(--black);
   font-size: 0.75rem;
   font-weight: 700;
-  line-height: 0.81619rem; 
+  line-height: 0.81619rem;
   margin-bottom: 0;
   margin-right: 0.25rem;
 }
-#card-performer .follow-wrap h6{
+#card-performer .follow-wrap h6 {
   color: var(--gray2);
   font-size: 0.75rem;
   font-weight: 500;
   line-height: 0.81619rem;
   margin-bottom: 0;
 }
-#card-performer .others-wrap{
+#card-performer .others-wrap {
   margin-bottom: 0.8rem;
 }
-#card-performer .others-wrap div:nth-child(1){
+#card-performer .others-wrap div:nth-child(1) {
   margin-bottom: 0.25rem;
 }
-#card-performer .others-wrap img{
+#card-performer .others-wrap img {
   width: 0.7rem;
   height: 0.7rem;
   margin-right: 0.25rem;
 }
 #card-performer .others-wrap h6,
-#card-performer .others-wrap a{
-  color: #0571ED;
+#card-performer .others-wrap a {
+  color: #0571ed;
   font-size: 0.75rem;
   font-weight: 500;
-  line-height: 0.81619rem; 
+  line-height: 0.81619rem;
   margin-bottom: 0;
 }
-#card-performer .others-wrap a{
+#card-performer .others-wrap a {
   text-decoration: none;
 }
-#card-performer .others-wrap a:hover{
+#card-performer .others-wrap a:hover {
   text-decoration: underline;
 }
-#card-performer .others-wrap .location{
+#card-performer .others-wrap .location {
   color: var(--gray2);
 }
-#card-performer .btn-wrap a{
+#card-performer .btn-wrap a {
   color: var(--black);
   text-align: center;
-  font-feature-settings: 'clig' off, 'liga' off;
+  font-feature-settings: "clig" off, "liga" off;
   font-size: 0.8rem;
   font-weight: 600;
   padding: 0.47rem 0;
   width: 100%;
   border-radius: 0.16325rem;
-  background-color: #F1F1F1;
+  background-color: #f1f1f1;
 }
-#card-performer .btn-wrap a:hover{
+#card-performer .btn-wrap a:hover {
   background-color: var(--orange);
   color: var(--white);
 }
 
 /* Cancellation reason - Delete an event */
 
-#eventCancellation .modal-content{
+#eventCancellation .modal-content {
   padding: 2.625rem 2.1875rem;
   border-radius: 0.625rem;
   box-shadow: 0px 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
-#eventCancellation .close-btn{
+#eventCancellation .close-btn {
   background-color: var(--white);
 }
-#eventCancellation .close-btn .close-icon{
- font-size: 24px;
- color: var(--gray2);
- transition: all 0.7s;
- font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 48;
+#eventCancellation .close-btn .close-icon {
+  font-size: 24px;
+  color: var(--gray2);
+  transition: all 0.7s;
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
 }
-#eventCancellation .close-btn:hover .close-icon{
+#eventCancellation .close-btn:hover .close-icon {
   color: var(--orange);
   transition: all 0.7s;
-  font-variation-settings: 'FILL' 1,'wght' 800,'GRAD' 0,'opsz' 48;
- }
+  font-variation-settings: "FILL" 1, "wght" 800, "GRAD" 0, "opsz" 48;
+}
 
- /* Library - Album tab */
- .library .row-album{
+/* Library - Album tab */
+.library .row-album {
   display: flex;
   flex-wrap: wrap;
   gap: 1%;
- }
- .library .card-album{
+}
+.library .card-album {
   border-radius: 0.25rem;
-  background: var(--white-100, #FFF);
-  box-shadow: 0px 4px 18px 0px rgba(56, 29, 219, 0.10);
+  background: var(--white-100, #fff);
+  box-shadow: 0px 4px 18px 0px rgba(56, 29, 219, 0.1);
   padding: 1.5rem;
   width: 19%;
   margin-bottom: 1.75rem;
   cursor: pointer;
- }
- .library .card-album:hover{
+}
+.library .card-album:hover {
   box-shadow: 0px 4px 18px 0px rgb(238 121 10 / 10%);
- }
- .library .card-album .album-img{
+}
+.library .card-album .album-img {
   width: 100%;
   height: 15.625rem;
   border-radius: 0.0625rem;
   margin-bottom: 1.5rem;
- }
- .library .card-album .album-title{
+}
+.library .card-album .album-title {
   color: var(--black);
   font-size: 1rem;
   font-weight: 600;
   letter-spacing: -0.02rem;
   margin-bottom: 0.31rem;
- }
- .library .card-album .album-year{
-  color: #AAA;
+}
+.library .card-album .album-year {
+  color: #aaa;
   font-size: 0.875rem;
   font-weight: 400;
- }
- .library .card-album .album-year .dot-icon{
+}
+.library .card-album .album-year .dot-icon {
   font-size: 8px;
   margin: 0 0.31rem;
-  color: #AAA;
-  font-variation-settings: 'FILL' 1,'wght' 800,'GRAD' 0,'opsz' 48;
- }
+  color: #aaa;
+  font-variation-settings: "FILL" 1, "wght" 800, "GRAD" 0, "opsz" 48;
+}
 
- /* Album - Song List */
+/* Album - Song List */
 
- .library .song-list-wrap .active-song-wrap {
+.library .song-list-wrap .active-song-wrap {
   border-radius: 0.625rem;
   border: 1px solid var(--gray6);
   padding: 1.94rem 2.75rem;
   gap: 1rem;
   margin-bottom: 2.81rem;
- }
- .library .song-list-wrap .song-details-wrap{
+}
+.library .song-list-wrap .song-details-wrap {
   gap: 2.4rem;
- }
- .library .song-list-wrap .song-details-wrap .title-wrap{
+}
+.library .song-list-wrap .song-details-wrap .title-wrap {
   margin-bottom: 3rem;
- }
- .library .song-list-wrap .active-song-wrap .album-img{
+}
+.library .song-list-wrap .active-song-wrap .album-img {
   width: 21.8125rem;
   height: 21.8125rem;
   border-radius: 1.25rem;
- }
- .library .song-list-wrap .active-song-wrap .song-title{
-  color: #212B36;
+}
+.library .song-list-wrap .active-song-wrap .song-title {
+  color: #212b36;
   font-size: 3rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
- }
- .library .song-list-wrap .active-song-wrap .artist-name{
+}
+.library .song-list-wrap .active-song-wrap .artist-name {
   color: #637381;
   font-size: 2rem;
   font-weight: 400;
- }
- .library .song-list-wrap .active-song-wrap .description{
+}
+.library .song-list-wrap .active-song-wrap .description {
   color: #637381;
   font-size: 1.25rem;
   font-weight: 400;
   margin-bottom: 2.5rem;
 }
-.library .song-list-wrap .song-action-btn{
+.library .song-list-wrap .song-action-btn {
   gap: 1rem;
 }
 .library .song-list-wrap .song-action-btn .play-btn,
-.library .song-list-wrap .song-action-btn .add-btn{
+.library .song-list-wrap .song-action-btn .add-btn {
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--white);
   font-size: 1.25rem;
   font-weight: 700;
-  line-height: 100%; 
+  line-height: 100%;
   letter-spacing: 0.0625rem;
   padding: 1.25rem 0;
   border-radius: 0.625rem;
@@ -9481,46 +9529,46 @@ header nav {
   gap: 0.62rem;
   width: 11.125rem;
 }
-.library .song-list-wrap .song-action-btn .add-btn{
-  background-color: #F8A541;
+.library .song-list-wrap .song-action-btn .add-btn {
+  background-color: #f8a541;
   width: 13.6875rem;
 }
-.library .song-list-wrap .song-action-btn .play-btn:hover{
+.library .song-list-wrap .song-action-btn .play-btn:hover {
   background-color: var(--btn-hovered);
 }
-.library .song-list-wrap .song-action-btn .add-btn:hover{
-  background-color: var(--orange)
+.library .song-list-wrap .song-action-btn .add-btn:hover {
+  background-color: var(--orange);
 }
-.library .song-list-wrap .song-action-btn button span{
+.library .song-list-wrap .song-action-btn button span {
   font-size: 24px;
   color: var(--white);
-  font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 48;
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
   transition: all 0.7s;
 }
 .library .song-list-wrap .song-action-btn .play-btn:hover span,
-.library .song-list-wrap .song-action-btn .add-btn:hover span{
-  font-variation-settings: 'FILL' 1,'wght' 800,'GRAD' 0,'opsz' 48;
+.library .song-list-wrap .song-action-btn .add-btn:hover span {
+  font-variation-settings: "FILL" 1, "wght" 800, "GRAD" 0, "opsz" 48;
   transition: all 0.7s;
 }
-.library .song-list-wrap .more-btn{
+.library .song-list-wrap .more-btn {
   border-radius: 0.625rem;
   border: 1px solid var(--gray6);
   padding: 0.625rem;
 }
-.library .song-list-wrap .more-btn .more-icon{
+.library .song-list-wrap .more-btn .more-icon {
   font-size: 24px;
   color: var(--gray6);
 }
-.library .song-list-wrap .more-btn:hover{
+.library .song-list-wrap .more-btn:hover {
   border: 1px solid var(--gray2);
 }
-.library .song-list-wrap .more-btn:hover .more-icon{
+.library .song-list-wrap .more-btn:hover .more-icon {
   color: var(--gray2);
 }
 
 /* Song list table */
 
-.library .song-wrap-tbl{
+.library .song-wrap-tbl {
   border-radius: 0.625rem;
   border: 1px solid var(--gray6);
   background-color: var(--white);
@@ -9528,191 +9576,191 @@ header nav {
   margin-bottom: 3rem;
 }
 .library .song-wrap-tbl .row-title-tbl,
-.library .song-wrap-tbl .row-content-tbl{
+.library .song-wrap-tbl .row-content-tbl {
   display: flex;
   flex-wrap: wrap;
 }
 .library .song-wrap-tbl .row-title-tbl > div,
-.library .song-wrap-tbl .row-content-tbl > div{
+.library .song-wrap-tbl .row-content-tbl > div {
   flex: 1 0 0%;
   display: flex;
   align-items: center;
 }
-.library .song-wrap-tbl .row-title-tbl > div{
-  color: #8690A2;
+.library .song-wrap-tbl .row-title-tbl > div {
+  color: #8690a2;
   font-size: 1rem;
   font-weight: 500;
-  line-height: 120%; 
-  background-color: rgba(184, 187, 207, 0.20);
+  line-height: 120%;
+  background-color: rgba(184, 187, 207, 0.2);
   padding: 1.63rem;
   margin-bottom: 1.5rem;
 }
-.library .song-wrap-tbl .row-title-tbl > div:first-child{
+.library .song-wrap-tbl .row-title-tbl > div:first-child {
   border-radius: 0.625rem 0 0rem 0rem;
 }
-.library .song-wrap-tbl .row-title-tbl > div:last-child{
+.library .song-wrap-tbl .row-title-tbl > div:last-child {
   border-radius: 0rem 0.625rem 0rem 0rem;
 }
-.library .song-wrap-tbl .row-content-tbl{
+.library .song-wrap-tbl .row-content-tbl {
   margin: 0 0.94rem 0.94rem 0.94rem;
   padding: 0.87rem 1rem;
   border-radius: 0.625rem;
   box-shadow: 0px 0px 10px 0px rgba(56, 29, 219, 0.04);
   gap: 1rem;
 }
-.library .song-wrap-tbl .row-content-tbl:last-child{
+.library .song-wrap-tbl .row-content-tbl:last-child {
   margin-bottom: 1.5rem;
 }
-.library .song-wrap-tbl .song-details-wrap-col{
+.library .song-wrap-tbl .song-details-wrap-col {
   gap: 0.88rem;
 }
-.library .song-wrap-tbl .song-details-wrap-col .artist-song-cover{
+.library .song-wrap-tbl .song-details-wrap-col .artist-song-cover {
   width: 3.9375rem;
   height: 3.9375rem;
   border-radius: 0.625rem;
 }
 .library .song-wrap-tbl .song-details-wrap-col .artist-song,
-.library .song-wrap-tbl .album-name{
+.library .song-wrap-tbl .album-name {
   color: var(--black);
   font-size: 1rem;
   font-weight: 700;
   margin-bottom: 0.31rem;
 }
-.library .song-wrap-tbl .song-details-wrap-col .artist-band{
+.library .song-wrap-tbl .song-details-wrap-col .artist-band {
   color: var(--black);
   font-size: 0.875rem;
   font-weight: 500;
 }
-.library .song-wrap-tbl .album-name{
+.library .song-wrap-tbl .album-name {
   font-weight: 500;
 }
-.library .song-wrap-tbl .genre-btn{
+.library .song-wrap-tbl .genre-btn {
   border-radius: 2rem;
-  background: #FED7AA;
+  background: #fed7aa;
   padding: 0.25rem 0.5rem;
   cursor: default;
 }
-.library .song-wrap-tbl .song-genre{
+.library .song-wrap-tbl .song-genre {
   color: var(--orange);
   font-size: 0.75rem;
   font-weight: 600;
-  line-height: 1rem; 
+  line-height: 1rem;
 }
-.library .song-wrap-tbl .song-duration{
+.library .song-wrap-tbl .song-duration {
   color: var(--black);
   font-size: 0.875rem;
   font-weight: 400;
   letter-spacing: -0.0175rem;
 }
-.library .song-wrap-tbl .likes-btn{
+.library .song-wrap-tbl .likes-btn {
   color: var(--black);
   font-size: 0.875rem;
   font-weight: 400;
   gap: 0.25rem;
 }
-.library .song-wrap-tbl .heart-icon{
+.library .song-wrap-tbl .heart-icon {
   font-size: 24px;
   color: var(--gray2);
 }
 
 /* Artist page - View Details */
 
-#artistModal .modal-content{
+#artistModal .modal-content {
   padding: 1.75rem 3rem 3rem;
   border-radius: 0.625rem;
   box-shadow: 0px 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
-#artistModal .modal-header{
+#artistModal .modal-header {
   margin-bottom: 0;
 }
 #artistModal .modal-header,
 #artistModal .modal-body,
-#artistModal .modal-footer{
+#artistModal .modal-footer {
   padding: 0;
 }
-#artistModal .artist-wrap{
+#artistModal .artist-wrap {
   gap: 1.5rem;
   margin-bottom: 2.13rem;
 }
-#artistModal .artist-image-wrap .artist-image{
+#artistModal .artist-image-wrap .artist-image {
   width: 16.3125rem;
   height: 16.4375rem;
   border-radius: 0.625rem;
 }
 #artistModal .about-artist-wrap .name-wrap,
-#artistModal .genres-wrap{
+#artistModal .genres-wrap {
   margin-bottom: 0.88rem;
 }
-#artistModal .artist-wrap .artist-name{
-  color: #23262F;
-  font-feature-settings: 'clig' off, 'liga' off;
+#artistModal .artist-wrap .artist-name {
+  color: #23262f;
+  font-feature-settings: "clig" off, "liga" off;
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 0.37rem;
 }
-#artistModal .artist-wrap .artist-type{
+#artistModal .artist-wrap .artist-type {
   color: var(--gray6);
-  font-feature-settings: 'clig' off, 'liga' off;
+  font-feature-settings: "clig" off, "liga" off;
   font-size: 1rem;
   font-weight: 500;
 }
-#artistModal .rating-reviews-wrap{
+#artistModal .rating-reviews-wrap {
   margin-bottom: 0.88rem;
   /* gap: 0.25rem; */
 }
-#artistModal .rating-reviews-wrap p .star-icon{
+#artistModal .rating-reviews-wrap p .star-icon {
   font-size: 16px;
   color: var(--orange);
-  font-variation-settings: 'FILL' 1,'wght' 800,'GRAD' 0,'opsz' 48;
+  font-variation-settings: "FILL" 1, "wght" 800, "GRAD" 0, "opsz" 48;
 }
-#artistModal .rating-reviews-wrap p .ratings{
-  color: #1E1E1E;
+#artistModal .rating-reviews-wrap p .ratings {
+  color: #1e1e1e;
   font-size: 0.875rem;
   font-weight: 800;
-  line-height: 0.69381rem; 
+  line-height: 0.69381rem;
   margin: 0 0.25rem;
 }
-#artistModal .rating-reviews-wrap p .reviews{
-  color: #8C8C8C;
+#artistModal .rating-reviews-wrap p .reviews {
+  color: #8c8c8c;
   font-size: 0.875rem;
   font-weight: 400;
-  line-height: normal; 
+  line-height: normal;
 }
-#artistModal .genres-wrap button{
+#artistModal .genres-wrap button {
   border-radius: 2rem;
-  background: #FED7AA;
+  background: #fed7aa;
   padding: 0rem 0.5rem;
   border: 0;
   line-height: normal;
   cursor: default;
   margin: 0 0.25rem 0.25rem 0;
 }
-#artistModal .genres-wrap button span{
+#artistModal .genres-wrap button span {
   color: var(--orange);
   font-size: 0.6875rem;
   font-weight: 600;
-  line-height: 1rem; 
+  line-height: 1rem;
   padding: 0;
 }
-#artistModal .follow-wrap{
+#artistModal .follow-wrap {
   gap: 1rem;
   margin-bottom: 1.5rem;
 }
-#artistModal .follow-wrap h6{
-  color: #212B36;
+#artistModal .follow-wrap h6 {
+  color: #212b36;
   font-size: 0.875rem;
   font-weight: 700;
-  line-height: 1.5rem; 
+  line-height: 1.5rem;
   margin-bottom: 0.06rem;
 }
-#artistModal .follow-wrap p{
+#artistModal .follow-wrap p {
   color: #637381;
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.25rem;
   margin-bottom: 0;
 }
-#artistModal .artist-bio .view-profile{
+#artistModal .artist-bio .view-profile {
   color: var(--white);
   font-size: 1rem;
   font-weight: 600;
@@ -9721,58 +9769,58 @@ header nav {
   background-color: var(--orange);
   text-decoration: none;
 }
-#artistModal .artist-bio .view-profile:hover{
+#artistModal .artist-bio .view-profile:hover {
   background-color: var(--btn-hovered);
 }
-#artistModal .sample-song-wrap .sample-songs{
+#artistModal .sample-song-wrap .sample-songs {
   color: var(--black);
   font-size: 1rem;
   font-weight: 600;
   margin-bottom: 1.25rem;
 }
-#artistModal .sample-song-wrap .artist-song-cover{
+#artistModal .sample-song-wrap .artist-song-cover {
   width: 3.9375rem;
   height: 3.9375rem;
   border-radius: 0.625rem;
 }
-#artistModal .songs-list-wrap{
+#artistModal .songs-list-wrap {
   margin-bottom: 0.94rem;
   padding: 0.87rem 1rem;
   border-radius: 0.625rem;
   box-shadow: 0px 0px 10px 0px rgba(56, 29, 219, 0.04);
   gap: 1rem;
 }
-#artistModal .songs-list-wrap .song-details-wrap{
+#artistModal .songs-list-wrap .song-details-wrap {
   gap: 0.6rem;
 }
-#artistModal .songs-list-wrap .song-details-wrap .artist-song{
+#artistModal .songs-list-wrap .song-details-wrap .artist-song {
   color: var(--black);
   font-size: 1rem;
   font-weight: 600;
   margin-bottom: 0.31rem;
 }
-#artistModal .songs-list-wrap .song-details-wrap .artist-band{
+#artistModal .songs-list-wrap .song-details-wrap .artist-band {
   color: var(--black);
   font-size: 0.875rem;
   font-weight: 500;
   margin-bottom: 0;
 }
-#artistModal .songs-list-wrap .play-wrap{
+#artistModal .songs-list-wrap .play-wrap {
   gap: 2rem;
 }
-#artistModal .songs-list-wrap .play-wrap .play-btn .play-icon{
+#artistModal .songs-list-wrap .play-wrap .play-btn .play-icon {
   font-size: 24px;
   color: var(--orange);
-  font-variation-settings: 'FILL' 1,'wght' 800,'GRAD' 0,'opsz' 48;
+  font-variation-settings: "FILL" 1, "wght" 800, "GRAD" 0, "opsz" 48;
 }
-#artistModal .songs-list-wrap .play-wrap .play-btn:hover .play-icon{
+#artistModal .songs-list-wrap .play-wrap .play-btn:hover .play-icon {
   color: var(--btn-hovered);
 }
-#artistModal .songs-list-wrap .play-wrap .heart-icon{
+#artistModal .songs-list-wrap .play-wrap .heart-icon {
   font-size: 24px;
   color: var(--gray2);
 }
-#artistModal .songs-list-wrap .play-wrap .likes{
+#artistModal .songs-list-wrap .play-wrap .likes {
   font-size: 0.875rem;
   font-weight: 400;
   gap: 0.25rem;
@@ -9780,13 +9828,13 @@ header nav {
 
 /* Filter Results of Artists / Events */
 
-#filter-results{
+#filter-results {
   margin-bottom: 4.38rem;
 }
-#filter-results .top-filter{
+#filter-results .top-filter {
   margin-bottom: 2.5rem;
 }
-#filter-results .top-filter .filter-btn{
+#filter-results .top-filter .filter-btn {
   color: var(--white);
   font-size: 1.25rem;
   font-weight: 700;
@@ -9797,24 +9845,24 @@ header nav {
   gap: 0.5rem;
 }
 #filter-results .top-filter .filter-btn:hover,
-#filter-results .top-filter .search .search-btn:hover{
+#filter-results .top-filter .search .search-btn:hover {
   background-color: var(--btn-hovered);
 }
-#filter-results .top-filter .filter-btn .sort-icon{
+#filter-results .top-filter .filter-btn .sort-icon {
   font-size: 24px;
   color: var(--white);
-  font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 48;
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
   transition: all 0.7s;
 }
 #filter-results .top-filter .filter-btn:hover .sort-icon,
-#filter-results .top-filter .search .search-btn:hover .search-icon{
-  font-variation-settings: 'FILL' 1,'wght' 800,'GRAD' 0,'opsz' 48;
+#filter-results .top-filter .search .search-btn:hover .search-icon {
+  font-variation-settings: "FILL" 1, "wght" 800, "GRAD" 0, "opsz" 48;
   transition: all 0.7s;
 }
-#filter-results .top-filter .search{
+#filter-results .top-filter .search {
   position: relative;
 }
-#filter-results .top-filter .search input{
+#filter-results .top-filter .search input {
   border-radius: 0.625rem;
   border: 1px solid var(--gray6);
   color: var(--gray6);
@@ -9823,7 +9871,7 @@ header nav {
   height: 3.75rem;
   width: 30.0625rem;
 }
-#filter-results .top-filter .search .search-btn{
+#filter-results .top-filter .search .search-btn {
   padding: 0.56rem;
   border-radius: 0.5rem;
   background-color: var(--orange);
@@ -9833,38 +9881,38 @@ header nav {
   top: 5%;
   left: 89.1%;
 }
-#filter-results .top-filter .search .search-icon{
+#filter-results .top-filter .search .search-icon {
   font-size: 32px;
   color: var(--white);
   transition: all 0.7s;
 }
-#filter-results .bottom-filter{
+#filter-results .bottom-filter {
   width: 100%;
   gap: 1%;
 }
-#filter-results .bottom-filter .form-group{
+#filter-results .bottom-filter .form-group {
   width: 32.5%;
 }
-#filter-results .bottom-filter label{
+#filter-results .bottom-filter label {
   color: var(--filter-text-color);
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 0.88rem;
 }
-#filter-results .bottom-filter .form-select{
+#filter-results .bottom-filter .form-select {
   height: 3.375rem;
   color: var(--filter-text-color);
   font-size: 1.25rem;
   font-weight: 500;
   border-radius: 0.625rem;
-  border: 1px solid #EDF1FD;
+  border: 1px solid #edf1fd;
 }
-#filter-results .bottom-filter .multiselect{
+#filter-results .bottom-filter .multiselect {
   height: 3.375rem;
   border-radius: 0.625rem;
-  border: 1px solid #EDF1FD;
+  border: 1px solid #edf1fd;
 }
-#filter-results .bottom-filter .multiselect{
+#filter-results .bottom-filter .multiselect {
   box-shadow: none;
   padding: 0;
 }
@@ -9875,48 +9923,48 @@ header nav {
   display: flex;
   gap: 1%;
 }
-#carouselOtherAlbums .top-wrap{
+#carouselOtherAlbums .top-wrap {
   margin-bottom: 3rem;
 }
-#carouselOtherAlbums .top-wrap .other-albums{
+#carouselOtherAlbums .top-wrap .other-albums {
   color: var(--black);
   font-size: 1.5rem;
   font-weight: 700;
 }
-#carouselOtherAlbums .prev-btn{
+#carouselOtherAlbums .prev-btn {
   margin-right: 1rem;
 }
 #carouselOtherAlbums .prev-btn,
- #carouselOtherAlbums .next-btn{
+#carouselOtherAlbums .next-btn {
   border: none;
   padding: 0;
   line-height: normal;
   background-color: var(--white);
 }
-#carouselOtherAlbums .prev-btn .prev-icon{
+#carouselOtherAlbums .prev-btn .prev-icon {
   transform: rotate(180deg);
 }
 #carouselOtherAlbums .prev-btn .prev-icon,
-#carouselOtherAlbums .next-btn .next-icon{
+#carouselOtherAlbums .next-btn .next-icon {
   font-size: 48px;
   color: var(--gray6);
 }
 
 /* Events page - show events section */
 
-.events-showing .events-section nav{
+.events-showing .events-section nav {
   float: inline-end;
 }
-.events-showing .events-section .even-type-title{
+.events-showing .events-section .even-type-title {
   color: #160042;
   font-size: 1.75rem;
   font-weight: 600;
   margin-bottom: 2.5rem;
 }
-.events-showing .events-section .no-events-wrap{
-text-align: center;
+.events-showing .events-section .no-events-wrap {
+  text-align: center;
 }
-.events-showing .events-section .pagination-wrap{
+.events-showing .events-section .pagination-wrap {
   margin-bottom: 5rem;
 }
 .events-showing .events-section .pagination {
@@ -9943,21 +9991,21 @@ text-align: center;
   box-shadow: none;
 }
 .events-showing .events-section .page-item:last-child .page-link,
-.events-showing .events-section .page-item:first-child .page-link{
+.events-showing .events-section .page-item:first-child .page-link {
   border: none;
   box-shadow: none;
 }
 .events-showing .events-section .page-item:last-child .page-link:focus,
 .events-showing .events-section .page-item:first-child .page-link:focus,
 .events-showing .events-section .page-item:last-child .page-link:pressed,
-.events-showing .events-section .page-item:first-child .page-link:pressed{
+.events-showing .events-section .page-item:first-child .page-link:pressed {
   border: none;
   box-shadow: none;
 }
-.events-showing .events-section button{
+.events-showing .events-section button {
   padding: 0;
 }
-.events-showing .events-section .page-item .back-icon, 
+.events-showing .events-section .page-item .back-icon,
 .events-showing .events-section .page-item .next-icon {
   font-size: 24px;
   border-radius: 0.375rem;
@@ -9965,25 +10013,25 @@ text-align: center;
   border: none;
   background-color: var(--white);
 }
-.events-showing .events-section .page-item .back-icon{
-  color: var(--gray6)!important;
-  background-color: var(--white)!important;
+.events-showing .events-section .page-item .back-icon {
+  color: var(--gray6) !important;
+  background-color: var(--white) !important;
   transition: none;
-  color: inherit;  
-  background-color: transparent;  
-  border: none;  
-  text-decoration: none;  
+  color: inherit;
+  background-color: transparent;
+  border: none;
+  text-decoration: none;
 }
-.events-showing .events-section .page-item .next-icon{
+.events-showing .events-section .page-item .next-icon {
   color: var(--orange);
 }
-.events-showing .events-section .left-num-wrap{
+.events-showing .events-section .left-num-wrap {
   border: 1px solid var(--orange);
   background-color: var(--orange);
   transition: 0.1s all;
 }
 .events-showing .events-section .left-num-wrap .left-num,
-.events-showing .events-section .page-item .right-num{
+.events-showing .events-section .page-item .right-num {
   color: var(--white);
   font-size: 1.125rem;
   font-weight: 800;
@@ -9993,27 +10041,27 @@ text-align: center;
   transition: 0.1s all;
   padding: 0.7rem 1.4rem;
 }
-.events-showing .events-section .left-num-wrap:hover{
+.events-showing .events-section .left-num-wrap:hover {
   border: 1px solid var(--btn-hovered);
   background-color: var(--btn-hovered);
   transition: 0.1s all;
 }
-.events-showing .events-section .left-num-wrap:hover .left-num{
+.events-showing .events-section .left-num-wrap:hover .left-num {
   background-color: var(--btn-hovered);
   transition: 0.1s all;
 }
-.events-showing .events-section .right-num-wrap{
+.events-showing .events-section .right-num-wrap {
   border: 1px solid var(--orange);
 }
-.events-showing .events-section .page-item .right-num{
+.events-showing .events-section .page-item .right-num {
   color: var(--orange);
   background-color: var(--white);
   border: none;
 }
-.events-showing .events-section .of-wrap{
+.events-showing .events-section .of-wrap {
   border: 1px solid var(--white);
 }
-.events-showing .events-section .of-wrap .of{
+.events-showing .events-section .of-wrap .of {
   color: var(--gray6);
   font-size: 1.125rem;
   font-weight: 800;
@@ -10023,7 +10071,7 @@ text-align: center;
 
 /* Bird loader - Fetching data  */
 
-#bird-wrap{
+#bird-wrap {
   height: 80vh;
   display: grid;
   place-items: center;
@@ -10072,7 +10120,7 @@ text-align: center;
   height: 65px;
   width: 65px;
   border-radius: 0 65px 0 0;
-  background-color: #EF453F;
+  background-color: #ef453f;
   transform-origin: left bottom;
   animation: yellow 3s ease-in-out infinite;
   z-index: 1;
@@ -10083,7 +10131,7 @@ text-align: center;
   height: 35px;
   width: 35px;
   border-radius: 0 0 30px 0;
-  background-color: #FFC80B;
+  background-color: #ffc80b;
   transform-origin: left top;
   animation: orange 3s ease-in-out infinite;
   z-index: -1;
@@ -10098,90 +10146,99 @@ text-align: center;
   background-color: #223644;
   animation: blue 3s ease-in-out infinite;
 }
- #bird-wrap .eye::after{
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height: 10px;
-    width: 10px;
-    border-radius: 50%;
-    background-color: #fff;
- }
+#bird-wrap .eye::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  background-color: #fff;
+}
 @keyframes red {
-  25%, 50% {
+  25%,
+  50% {
     transform: rotate(180deg);
   }
-  75%, 100% {
+  75%,
+  100% {
     transform: rotate(360deg);
   }
 }
 @keyframes white {
-  25%, 50% {
+  25%,
+  50% {
     transform: rotate(-180deg);
   }
-  75%, 100% {
+  75%,
+  100% {
     transform: rotate(-360deg);
   }
 }
 @keyframes grey {
-  25%, 50% {
+  25%,
+  50% {
     transform: rotate(-90deg);
   }
-  75%, 100% {
+  75%,
+  100% {
     transform: rotate(0);
   }
 }
 @keyframes yellow {
-  25%, 50% {
+  25%,
+  50% {
     transform: rotate(-90deg);
   }
-  75%, 100% {
+  75%,
+  100% {
     transform: rotate(0);
   }
 }
 @keyframes orange {
-  25%, 50% {
+  25%,
+  50% {
     transform: rotate(90deg);
   }
-  75%, 100% {
+  75%,
+  100% {
     transform: rotate(0);
   }
 }
 @keyframes blue {
-  25%, 50% {
+  25%,
+  50% {
     transform: translateX(100%);
   }
-  75%, 100% {
+  75%,
+  100% {
     transform: translateX(0);
   }
 }
 
 /* No event posted */
 
-#no-event-posted{
+#no-event-posted {
   text-align: center;
   border-radius: 0.625rem;
   background: rgba(235, 238, 255, 0.25);
   padding: 7rem 0 7rem;
   margin-bottom: 5rem;
 }
-#no-event-posted .no-event-wrap .no-event-icon{
+#no-event-posted .no-event-wrap .no-event-icon {
   width: 3.625rem;
   height: 4rem;
   margin-bottom: 0.62rem;
 }
-#no-event-posted .no-event-wrap .no-event{
+#no-event-posted .no-event-wrap .no-event {
   color: var(--gray6);
   font-size: 1.25rem;
   font-weight: 500;
 }
 
-
-
-
-                                                  /* MEDIA QUERIES */
+/* MEDIA QUERIES */
 
 /* Large (lg) and Extra large (xl) */
 @media (min-width: 992px) and (max-width: 1399.98px) {
@@ -10197,723 +10254,722 @@ text-align: center;
   28px 1.75 rem
 /* */
 
-/* Hide scrollbar for Chrome, Safari and Opera */
-.multiselect .multiselect-dropdown::-webkit-scrollbar {
-  width: 0.75rem;
-}
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .multiselect .multiselect-dropdown::-webkit-scrollbar {
+    width: 0.75rem;
+  }
 
-/* No event posted */
+  /* No event posted */
 
-#no-event-posted{
-  padding: 5rem 0 5rem;
-  margin-bottom: 3rem;
-}
-#no-event-posted .no-event-wrap .no-event-icon{
-  width: 2.6rem;
-  height: 3rem;
-  margin-bottom: 0.42rem;
-}
-#no-event-posted .no-event-wrap .no-event{
-  font-size: 1rem;
-}
+  #no-event-posted {
+    padding: 5rem 0 5rem;
+    margin-bottom: 3rem;
+  }
+  #no-event-posted .no-event-wrap .no-event-icon {
+    width: 2.6rem;
+    height: 3rem;
+    margin-bottom: 0.42rem;
+  }
+  #no-event-posted .no-event-wrap .no-event {
+    font-size: 1rem;
+  }
 
-/* Events page - show events section */
+  /* Events page - show events section */
 
-.events-showing .events-section .even-type-title{
-  font-size: 1.5rem;
-  margin-bottom: 1.88rem;
-}
-.events-showing .events-section .pagination-wrap{
-  margin-bottom: 4rem;
-}
-.events-showing .events-section .pagination {
-  gap: 0.94rem;
-}
-.events-showing .events-section .page-item {
-  width: 2.75rem;
-  height: 2.75rem;
-  border-radius: 0.28125rem;
-  border: 0.75px solid var(--gray6);
-}
-.events-showing .events-section .page-item .back-icon, 
-.events-showing .events-section .page-item .next-icon {
-  font-size: 20px;
-  padding: 0;
-  display: flex;
-}
-.events-showing .events-section .left-num-wrap{
-  border: 0.75px solid var(--orange);
-}
-.events-showing .events-section .left-num-wrap .left-num,
-.events-showing .events-section .page-item .right-num,
-.events-showing .events-section .of-wrap .of{
-  font-size: 0.84375rem;
-  padding: 0.5rem 1.1rem;
-}
-.events-showing .events-section .left-num-wrap:hover{
-  border: 0.75px solid var(--btn-hovered);
-}
-.events-showing .events-section .right-num-wrap{
-  border: 0.75px solid var(--orange);
-}
-.events-showing .events-section .of-wrap{
-  border: 0.75px solid var(--white);
-}
+  .events-showing .events-section .even-type-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.88rem;
+  }
+  .events-showing .events-section .pagination-wrap {
+    margin-bottom: 4rem;
+  }
+  .events-showing .events-section .pagination {
+    gap: 0.94rem;
+  }
+  .events-showing .events-section .page-item {
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 0.28125rem;
+    border: 0.75px solid var(--gray6);
+  }
+  .events-showing .events-section .page-item .back-icon,
+  .events-showing .events-section .page-item .next-icon {
+    font-size: 20px;
+    padding: 0;
+    display: flex;
+  }
+  .events-showing .events-section .left-num-wrap {
+    border: 0.75px solid var(--orange);
+  }
+  .events-showing .events-section .left-num-wrap .left-num,
+  .events-showing .events-section .page-item .right-num,
+  .events-showing .events-section .of-wrap .of {
+    font-size: 0.84375rem;
+    padding: 0.5rem 1.1rem;
+  }
+  .events-showing .events-section .left-num-wrap:hover {
+    border: 0.75px solid var(--btn-hovered);
+  }
+  .events-showing .events-section .right-num-wrap {
+    border: 0.75px solid var(--orange);
+  }
+  .events-showing .events-section .of-wrap {
+    border: 0.75px solid var(--white);
+  }
 
+  /* Library page - Other Album slider */
 
-/* Library page - Other Album slider */
+  #carouselOtherAlbums .top-wrap {
+    margin-bottom: 1.5rem;
+  }
+  #carouselOtherAlbums .top-wrap .other-albums {
+    font-size: 1.2rem;
+  }
+  #carouselOtherAlbums .prev-btn {
+    margin-right: 1rem;
+  }
+  #carouselOtherAlbums .prev-btn .prev-icon,
+  #carouselOtherAlbums .next-btn .next-icon {
+    font-size: 40px;
+  }
 
-#carouselOtherAlbums .top-wrap{
-  margin-bottom: 1.5rem;
-}
-#carouselOtherAlbums .top-wrap .other-albums{
-  font-size: 1.2rem;
-}
-#carouselOtherAlbums .prev-btn{
-  margin-right: 1rem;
-}
-#carouselOtherAlbums .prev-btn .prev-icon,
-#carouselOtherAlbums .next-btn .next-icon{
-  font-size: 40px;
-}
+  /* Filter Results of Artists / Events */
 
+  #filter-results {
+    margin-bottom: 2.5rem;
+  }
+  #filter-results .top-filter {
+    margin-bottom: 2rem;
+  }
+  #filter-results .top-filter .filter-btn {
+    font-size: 0.875rem;
+    letter-spacing: 0.05rem;
+    padding: 0.75rem 1.06rem;
+    border-radius: 0.375rem;
+    gap: 0.62rem;
+  }
+  #filter-results .top-filter .filter-btn .sort-icon {
+    font-size: 20px;
+  }
+  #filter-results .top-filter .search input {
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    width: 21.5rem;
+    height: 2.5rem;
+  }
+  #filter-results .top-filter .search .search-btn {
+    border-radius: 0.1875rem;
+    padding: 0.3rem;
+    line-height: 100%;
+    top: 8%;
+    left: 91%;
+  }
+  #filter-results .top-filter .search .search-icon {
+    font-size: 20px;
+  }
+  #filter-results .bottom-filter label {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+  }
+  #filter-results .bottom-filter .form-select {
+    height: 2.625rem;
+    font-size: 0.93rem;
+    line-height: 0.98438rem;
+    border-radius: 0.375rem;
+    border: 0.75px solid #e4ebff;
+  }
+  #filter-results .bottom-filter .multiselect {
+    height: 2.625rem;
+    border-radius: 0.375rem;
+    border: 0.75px solid #e4ebff;
+  }
+  .multiselect .multiselect-option {
+    font-size: 0.87rem;
+  }
 
-/* Filter Results of Artists / Events */
+  /* Song list table */
 
-#filter-results{
-  margin-bottom: 2.5rem;
-}
-#filter-results .top-filter{
-  margin-bottom: 2rem;
-}
-#filter-results .top-filter .filter-btn{
-  font-size: 0.875rem; 
-  letter-spacing: 0.05rem;
-  padding: 0.75rem 1.06rem;
-  border-radius: 0.375rem;
-  gap: 0.62rem;
-}
-#filter-results .top-filter .filter-btn .sort-icon{
-  font-size: 20px;
-}
-#filter-results .top-filter .search input{
-  border-radius: 0.375rem;
-  font-size: 0.875rem;
-  width: 21.5rem;
-  height: 2.5rem;
-}
-#filter-results .top-filter .search .search-btn {
-  border-radius: 0.1875rem;
-  padding: 0.30rem;
-  line-height: 100%;
-  top: 8%;
-  left: 91%;
-}
-#filter-results .top-filter .search .search-icon{
-  font-size: 20px;
-}
-#filter-results .bottom-filter label{
-  font-size: 1rem;
-  margin-bottom: 0.75rem;
-}
-#filter-results .bottom-filter .form-select{
-  height: 2.625rem;
-  font-size: 0.93rem;
-  line-height: 0.98438rem;
-  border-radius: 0.375rem;
-  border: 0.75px solid #e4ebff;
-}
-#filter-results .bottom-filter .multiselect{
-  height: 2.625rem;
-  border-radius: 0.375rem;
-  border: 0.75px solid #e4ebff;
-}
-.multiselect .multiselect-option {
-  font-size: 0.87rem;
-}
+  .library .song-wrap-tbl {
+    border-radius: 0.46875rem;
+    border: 0.75px solid #b8bbcf;
+    margin-bottom: 2rem;
+  }
+  .library .song-wrap-tbl .row-title-tbl > div {
+    font-size: 0.75rem;
+    line-height: 120%;
+    padding: 1.27rem;
+    margin-bottom: 1.13rem;
+  }
+  .library .song-wrap-tbl .row-title-tbl > div:first-child {
+    border-radius: 0.625rem 0 0rem 0rem;
+  }
+  .library .song-wrap-tbl .row-title-tbl > div:last-child {
+    border-radius: 0rem 0.625rem 0rem 0rem;
+  }
+  .library .song-wrap-tbl .row-content-tbl {
+    margin: 0 0.74rem 0.74rem 0.74rem;
+    padding: 0.66rem 0.88rem;
+    border-radius: 0.46875rem;
+    gap: 0.75rem;
+  }
+  .library .song-wrap-tbl .song-details-wrap-col {
+    gap: 0.66rem;
+  }
+  .library .song-wrap-tbl .song-details-wrap-col .artist-song-cover {
+    width: 2.95313rem;
+    height: 2.95313rem;
+    border-radius: 0.625rem;
+  }
+  .library .song-wrap-tbl .song-details-wrap-col .artist-song,
+  .library .song-wrap-tbl .album-name {
+    font-size: 0.75rem;
+    margin-bottom: 0.23rem;
+  }
+  .library .song-wrap-tbl .song-details-wrap-col .artist-band {
+    font-size: 0.625rem;
+  }
+  .library .song-wrap-tbl .genre-btn {
+    border-radius: 1.5rem;
+    padding: 0.19rem 0.38rem;
+    line-height: normal;
+  }
+  .library .song-wrap-tbl .song-genre {
+    font-size: 0.5625rem;
+    line-height: 0.75rem;
+  }
+  .library .song-wrap-tbl .song-duration {
+    font-size: 0.65625rem;
+    letter-spacing: -0.01313rem;
+  }
+  .library .song-wrap-tbl .likes-btn {
+    font-size: 0.65625rem;
+    gap: 0.19rem;
+  }
+  .library .song-wrap-tbl .heart-icon {
+    font-size: 18px;
+  }
 
+  /* Album - Song List */
 
+  .library .song-list-wrap .active-song-wrap {
+    border-radius: 0.46875rem;
+    border: 0.75px solid var(--gray6);
+    margin-bottom: 1.92rem;
+  }
+  .library .song-list-wrap .song-details-wrap {
+    gap: 1.12rem;
+  }
+  .library .song-list-wrap .song-details-wrap .title-wrap {
+    margin-bottom: 0.94rem;
+  }
+  .library .song-list-wrap .active-song-wrap .album-img {
+    width: 11.85938rem;
+    height: 11.85938rem;
+    border-radius: 0.46875rem;
+  }
+  .library .song-list-wrap .active-song-wrap .song-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.38rem;
+  }
+  .library .song-list-wrap .active-song-wrap .artist-name {
+    font-size: 1.125rem;
+    font-weight: 400;
+  }
+  .library .song-list-wrap .active-song-wrap .description {
+    font-size: 0.9375rem;
+    margin-bottom: 1.87rem;
+  }
+  .library .song-list-wrap .song-action-btn {
+    gap: 0.23rem;
+  }
+  .library .song-list-wrap .song-action-btn .play-btn,
+  .library .song-list-wrap .song-action-btn .add-btn {
+    font-size: 0.75rem;
+    line-height: 100%;
+    letter-spacing: 0.0375rem;
+    padding: 0.75rem 0;
+    border-radius: 0.28125rem;
+    gap: 0.47rem;
+    width: 5.4375rem;
+  }
+  .library .song-list-wrap .song-action-btn .add-btn {
+    width: 7.5rem;
+  }
+  .library .song-list-wrap .song-action-btn button span {
+    font-size: 18px;
+  }
+  .library .song-list-wrap .more-btn {
+    border-radius: 0.46875rem;
+    border: 0.75px solid #b8bbcf;
+    padding: 0.47rem;
+  }
+  .library .song-list-wrap .more-btn .more-icon {
+    font-size: 18px;
+  }
+  .library .song-list-wrap .more-btn:hover {
+    border: 0.75px solid var(--gray2);
+  }
 
-/* Song list table */
+  /* Library - Album tab */
+  .library .row-album {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1%;
+  }
+  .library .card-album {
+    border-radius: 0.1875rem;
+    background: var(--white-100, #fff);
+    box-shadow: 0px 3px 13.5px 0px rgba(56, 29, 219, 0.04);
+    padding: 1.12rem;
+    margin-bottom: 1.31rem;
+  }
+  .library .card-album .album-img {
+    height: 11.71875rem;
+    border-radius: 0.04688rem;
+    margin-bottom: 1.13rem;
+  }
+  .library .card-album .album-title {
+    font-size: 0.875rem;
+    letter-spacing: -0.0175rem;
+    margin-bottom: 0.22rem;
+  }
+  .library .card-album .album-year {
+    font-size: 0.65625rem;
+  }
+  .library .card-album .album-year .dot-icon {
+    font-size: 6px;
+    margin: 0 0.23rem;
+  }
 
-.library .song-wrap-tbl{
-  border-radius: 0.46875rem;
-  border: 0.75px solid #B8BBCF;
-  margin-bottom: 2rem;
-}
-.library .song-wrap-tbl .row-title-tbl > div{
-  font-size: 0.75rem;
-  line-height: 120%; 
-  padding: 1.27rem;
-  margin-bottom: 1.13rem;
-}
-.library .song-wrap-tbl .row-title-tbl > div:first-child{
-  border-radius: 0.625rem 0 0rem 0rem;
-}
-.library .song-wrap-tbl .row-title-tbl > div:last-child{
-  border-radius: 0rem 0.625rem 0rem 0rem;
-}
-.library .song-wrap-tbl .row-content-tbl{
-  margin: 0 0.74rem 0.74rem 0.74rem;
-  padding: 0.66rem 0.88rem;
-  border-radius: 0.46875rem;
-  gap: 0.75rem;
-}
-.library .song-wrap-tbl .song-details-wrap-col{
-  gap: 0.66rem;
-}
-.library .song-wrap-tbl .song-details-wrap-col .artist-song-cover{
-  width: 2.95313rem;
-  height: 2.95313rem;
-  border-radius: 0.625rem;
-}
-.library .song-wrap-tbl .song-details-wrap-col .artist-song,
-.library .song-wrap-tbl .album-name{
-  font-size: 0.75rem;
-  margin-bottom: 0.23rem;
-}
-.library .song-wrap-tbl .song-details-wrap-col .artist-band{
-  font-size: 0.625rem;
-}
-.library .song-wrap-tbl .genre-btn{
-  border-radius: 1.5rem;
-  padding: 0.19rem 0.38rem;
-  line-height: normal;
-}
-.library .song-wrap-tbl .song-genre{
-  font-size: 0.5625rem;
-  line-height: 0.75rem; 
-}
-.library .song-wrap-tbl .song-duration{
-  font-size: 0.65625rem;
-  letter-spacing: -0.01313rem;
-}
-.library .song-wrap-tbl .likes-btn{
-  font-size: 0.65625rem;
-  gap: 0.19rem;
-}
-.library .song-wrap-tbl .heart-icon{
-  font-size: 18px;
-}
+  /* Artist page - View Details */
 
-/* Album - Song List */
-
-.library .song-list-wrap .active-song-wrap {
-  border-radius: 0.46875rem;
-  border: 0.75px solid var(--gray6);
-  margin-bottom: 1.92rem;
- }
- .library .song-list-wrap .song-details-wrap{
-  gap: 1.12rem;
- }
- .library .song-list-wrap .song-details-wrap .title-wrap{
-  margin-bottom: 0.94rem;
- }
- .library .song-list-wrap .active-song-wrap .album-img{
-  width: 11.85938rem;
-  height: 11.85938rem;
-  border-radius: 0.46875rem;
- }
- .library .song-list-wrap .active-song-wrap .song-title{
-  font-size: 1.5rem;
-  margin-bottom: 0.38rem;
- }
- .library .song-list-wrap .active-song-wrap .artist-name{
-  font-size: 1.125rem;
-  font-weight: 400;
- }
- .library .song-list-wrap .active-song-wrap .description{
-  font-size: 0.9375rem;
-  margin-bottom: 1.87rem;
-}
-.library .song-list-wrap .song-action-btn{
-  gap: 0.23rem;
-}
-.library .song-list-wrap .song-action-btn .play-btn,
-.library .song-list-wrap .song-action-btn .add-btn{
-  font-size: 0.75rem;
-  line-height: 100%;
-  letter-spacing: 0.0375rem;
-  padding: 0.75rem 0;
-  border-radius: 0.28125rem;
-  gap: 0.47rem;
-  width: 5.4375rem;
-}
-.library .song-list-wrap .song-action-btn .add-btn{
-  width: 7.5rem;
-}
-.library .song-list-wrap .song-action-btn button span{
-  font-size: 18px;
-}
-.library .song-list-wrap .more-btn{
-  border-radius: 0.46875rem;
-  border: 0.75px solid #B8BBCF;
-  padding: 0.47rem;
-}
-.library .song-list-wrap .more-btn .more-icon{
-  font-size: 18px;
-}
-.library .song-list-wrap .more-btn:hover{
-  border:0.75px solid var(--gray2);
-}
-
-/* Library - Album tab */
-.library .row-album{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1%;
- }
- .library .card-album{
-  border-radius: 0.1875rem;
-  background: var(--white-100, #FFF);
-  box-shadow: 0px 3px 13.5px 0px rgba(56, 29, 219, 0.04);
-  padding: 1.12rem;
-  margin-bottom: 1.31rem;
- }
- .library .card-album .album-img{
-  height: 11.71875rem;
-  border-radius: 0.04688rem;
-  margin-bottom: 1.13rem;
- }
- .library .card-album .album-title{
-  font-size: 0.875rem;
-  letter-spacing: -0.0175rem;
-  margin-bottom: 0.22rem;
- }
- .library .card-album .album-year{
-  font-size: 0.65625rem;
- }
- .library .card-album .album-year .dot-icon{
-  font-size: 6px;
-  margin: 0 0.23rem;
- }
-
- /* Artist page - View Details */
-
-#artistModal .modal-content{
-  padding: 1.31rem 1.41rem 1.41rem;
-  border-radius: 0.375rem;
-  box-shadow: 0px 18.75px 37.5px -9px rgba(0, 0, 0, 0.25);
-  width: 40rem;
-  margin: auto;
-}
-#artistModal .artist-wrap{
-  gap: 0.94rem;
-  margin-bottom: 1.59rem;
-}
-#artistModal .artist-image-wrap .artist-image{
-  width: 12.04688rem;
-  height: 12.14063rem;
-  border-radius: 0.46875rem;
-}
-#artistModal .about-artist-wrap .name-wrap,
-#artistModal .genres-wrap{
-  margin-bottom: 0.88rem;
-}
-/* #artistModal .about-artist-wrap .artist-wrap{
+  #artistModal .modal-content {
+    padding: 1.31rem 1.41rem 1.41rem;
+    border-radius: 0.375rem;
+    box-shadow: 0px 18.75px 37.5px -9px rgba(0, 0, 0, 0.25);
+    width: 40rem;
+    margin: auto;
+  }
+  #artistModal .artist-wrap {
+    gap: 0.94rem;
+    margin-bottom: 1.59rem;
+  }
+  #artistModal .artist-image-wrap .artist-image {
+    width: 12.04688rem;
+    height: 12.14063rem;
+    border-radius: 0.46875rem;
+  }
+  #artistModal .about-artist-wrap .name-wrap,
+  #artistModal .genres-wrap {
+    margin-bottom: 0.88rem;
+  }
+  /* #artistModal .about-artist-wrap .artist-wrap{
   margin-bottom: 1.25rem;
 } */
-#artistModal .artist-wrap .artist-name{
-  font-size: 1.6875rem;
-  margin-bottom: 0.28rem;
-}
-#artistModal .artist-wrap .artist-type{
-  font-size: 0.75rem;
-}
-#artistModal .rating-reviews-wrap{
-  margin-bottom: 0.66rem;
-}
-#artistModal .rating-reviews-wrap p .star-icon{
-  font-size: 12px;
-}
-#artistModal .rating-reviews-wrap p .ratings{
-  font-size: 0.625rem;
-  margin: 0 0.20rem;
-}
-#artistModal .rating-reviews-wrap p .reviews{
-  font-size: 0.625rem;
-}
-#artistModal .genres-wrap button{
-  border-radius: 1.5rem;
-  padding: 0 0.375rem 0.19rem;
-  margin: 0 0.19rem 0.19rem 0;
-}
-#artistModal .genres-wrap button span{
-  font-size: 0.5625rem;
-  line-height: 0.75rem; 
-}
-#artistModal .follow-wrap{
-  gap: 0.75rem;
-  margin-bottom: 1.12rem;
-}
-#artistModal .follow-wrap h6{
-  font-size: 0.625rem;
-  line-height: 1.125rem; 
-  margin-bottom: 0.05rem;
-}
-#artistModal .follow-wrap p{
-  font-size: 0.625rem;
-  line-height: 0.9375rem; 
-}
-#artistModal .artist-bio .view-profile{
-  font-size: 0.75rem;
-  padding: 0.5rem 1.33rem;
-  border-radius: 0.1875rem;
-}
-#artistModal .sample-song-wrap .sample-songs{
-  font-size: 0.75rem;
-  margin-bottom: 0.94rem;
-}
-#artistModal .sample-song-wrap .artist-song-cover{
-  width: 2.95313rem;
-  height: 2.95313rem!important;
-  border-radius: 0.46875rem;
-}
-#artistModal .songs-list-wrap{
-  margin-bottom: 0.7rem;
-  padding: 0.66rem 0.94rem;
-  border-radius: 0.46875rem;
-  box-shadow: 0px 0px 7.5px 0px rgba(56, 29, 219, 0.04);
-}
-#artistModal .songs-list-wrap .song-details-wrap{
-  gap: 0.66rem;
-}
-#artistModal .songs-list-wrap .song-details-wrap .artist-song{
-  font-size: 0.75rem;
-  margin-bottom: 0.23rem;
-}
-#artistModal .songs-list-wrap .song-details-wrap .artist-band{
-  font-size: 0.625rem;;
-}
-#artistModal .songs-list-wrap .play-wrap{
-  gap: 1.5rem;
-}
-#artistModal .songs-list-wrap .play-wrap .play-btn .play-icon{
-  font-size: 18px;
-}
-#artistModal .songs-list-wrap .play-wrap .heart-icon{
-  font-size: 18px;
-}
-#artistModal .songs-list-wrap .play-wrap .likes{
-  font-size: 0.625rem;
-  gap: 0.19rem;
-}
+  #artistModal .artist-wrap .artist-name {
+    font-size: 1.6875rem;
+    margin-bottom: 0.28rem;
+  }
+  #artistModal .artist-wrap .artist-type {
+    font-size: 0.75rem;
+  }
+  #artistModal .rating-reviews-wrap {
+    margin-bottom: 0.66rem;
+  }
+  #artistModal .rating-reviews-wrap p .star-icon {
+    font-size: 12px;
+  }
+  #artistModal .rating-reviews-wrap p .ratings {
+    font-size: 0.625rem;
+    margin: 0 0.2rem;
+  }
+  #artistModal .rating-reviews-wrap p .reviews {
+    font-size: 0.625rem;
+  }
+  #artistModal .genres-wrap button {
+    border-radius: 1.5rem;
+    padding: 0 0.375rem 0.19rem;
+    margin: 0 0.19rem 0.19rem 0;
+  }
+  #artistModal .genres-wrap button span {
+    font-size: 0.5625rem;
+    line-height: 0.75rem;
+  }
+  #artistModal .follow-wrap {
+    gap: 0.75rem;
+    margin-bottom: 1.12rem;
+  }
+  #artistModal .follow-wrap h6 {
+    font-size: 0.625rem;
+    line-height: 1.125rem;
+    margin-bottom: 0.05rem;
+  }
+  #artistModal .follow-wrap p {
+    font-size: 0.625rem;
+    line-height: 0.9375rem;
+  }
+  #artistModal .artist-bio .view-profile {
+    font-size: 0.75rem;
+    padding: 0.5rem 1.33rem;
+    border-radius: 0.1875rem;
+  }
+  #artistModal .sample-song-wrap .sample-songs {
+    font-size: 0.75rem;
+    margin-bottom: 0.94rem;
+  }
+  #artistModal .sample-song-wrap .artist-song-cover {
+    width: 2.95313rem;
+    height: 2.95313rem !important;
+    border-radius: 0.46875rem;
+  }
+  #artistModal .songs-list-wrap {
+    margin-bottom: 0.7rem;
+    padding: 0.66rem 0.94rem;
+    border-radius: 0.46875rem;
+    box-shadow: 0px 0px 7.5px 0px rgba(56, 29, 219, 0.04);
+  }
+  #artistModal .songs-list-wrap .song-details-wrap {
+    gap: 0.66rem;
+  }
+  #artistModal .songs-list-wrap .song-details-wrap .artist-song {
+    font-size: 0.75rem;
+    margin-bottom: 0.23rem;
+  }
+  #artistModal .songs-list-wrap .song-details-wrap .artist-band {
+    font-size: 0.625rem;
+  }
+  #artistModal .songs-list-wrap .play-wrap {
+    gap: 1.5rem;
+  }
+  #artistModal .songs-list-wrap .play-wrap .play-btn .play-icon {
+    font-size: 18px;
+  }
+  #artistModal .songs-list-wrap .play-wrap .heart-icon {
+    font-size: 18px;
+  }
+  #artistModal .songs-list-wrap .play-wrap .likes {
+    font-size: 0.625rem;
+    gap: 0.19rem;
+  }
 
-/* Cancellation reason - Delete an event */
+  /* Cancellation reason - Delete an event */
 
-#eventCancellation .modal-content{
-  width: 40rem;
-  margin: auto;
-  padding: 1.96875rem 1.64063rem;
-  border-radius: 0.46875rem;
-  box-shadow: 0px 18.75px 37.5px -9px rgba(0, 0, 0, 0.25);
-}
-#eventCancellation .close-btn .close-icon{
-  font-size: 18px;
- }
-/* Toast message */ 
+  #eventCancellation .modal-content {
+    width: 40rem;
+    margin: auto;
+    padding: 1.96875rem 1.64063rem;
+    border-radius: 0.46875rem;
+    box-shadow: 0px 18.75px 37.5px -9px rgba(0, 0, 0, 0.25);
+  }
+  #eventCancellation .close-btn .close-icon {
+    font-size: 18px;
+  }
+  /* Toast message */
 
-#showToastMsg {
-  border-radius: 0.5625rem;
-  box-shadow: 0px 3px 15px 0px rgba(0, 0, 0, 0.15);
-  padding: 0.75rem;
-  width: 22.125rem;
-  top: 15%;
-}
-#showToastMsg .accepted {
-  font-size: 0.75rem;
-  line-height: 0.9375rem; 
-  margin-bottom: 0.37rem;
-}
-#showToastMsg .description {
-  font-size: 0.65625rem;
-  line-height: 0.75rem; /* 114.286% */
-}
-#showToastMsg .accepted-wrapper .check-circle {
-  margin-right: 0.37rem;
-  font-size: 18px;
-}
-#showToastMsg .close-toast .close-icon {
-  font-size: 20px;
-}
+  #showToastMsg {
+    border-radius: 0.5625rem;
+    box-shadow: 0px 3px 15px 0px rgba(0, 0, 0, 0.15);
+    padding: 0.75rem;
+    width: 22.125rem;
+    top: 15%;
+  }
+  #showToastMsg .accepted {
+    font-size: 0.75rem;
+    line-height: 0.9375rem;
+    margin-bottom: 0.37rem;
+  }
+  #showToastMsg .description {
+    font-size: 0.65625rem;
+    line-height: 0.75rem; /* 114.286% */
+  }
+  #showToastMsg .accepted-wrapper .check-circle {
+    margin-right: 0.37rem;
+    font-size: 18px;
+  }
+  #showToastMsg .close-toast .close-icon {
+    font-size: 20px;
+  }
 
+  /* Account Settings - My Bookings  */
 
-/* Account Settings - My Bookings  */
+  .account-settings .my-bookings .booking-box-wrap {
+    border-radius: 0.1875rem;
+    border: 0.75px solid var(--gray6);
+    padding: 0.94rem;
+    margin-bottom: 1.5rem;
+  }
+  .account-settings .my-bookings .booking-box-wrap .event-name {
+    font-size: 0.9375rem;
+    margin-bottom: 0.94rem;
+  }
+  .account-settings .my-bookings .booking-box-wrap div {
+    margin-bottom: 0.47rem;
+  }
+  .account-settings .my-bookings .booking-box-wrap span {
+    font-size: 18px;
+  }
+  .account-settings .my-bookings .booking-box-wrap p {
+    font-size: 0.75rem;
+  }
+  .account-settings .my-bookings .cancelled-proposal-wrap {
+    margin-bottom: 0.75rem;
+  }
+  .account-settings .my-bookings .booking-box-wrap .accepted-booking-btn,
+  .account-settings .my-bookings .booking-box-wrap .completed-booking-btn {
+    font-size: 0.75rem;
+    line-height: 1.125rem;
+    padding: 0.56rem 0;
+    width: 7.3125rem;
+  }
+  .account-settings .my-bookings .booking-box-wrap .completed-booking-btn {
+    gap: 0.29rem;
+  }
+  .account-settings
+    .my-bookings
+    .booking-box-wrap
+    .completed-booking-btn
+    .check-icon {
+    font-size: 18px;
+  }
 
-.account-settings .my-bookings .booking-box-wrap{
-  border-radius: 0.1875rem;
-  border: 0.75px solid var(--gray6);
-  padding: 0.94rem;
-  margin-bottom: 1.5rem;
-}
-.account-settings .my-bookings .booking-box-wrap .event-name{
-  font-size: 0.9375rem;
-  margin-bottom: 0.94rem;
-}
-.account-settings .my-bookings .booking-box-wrap div{
-  margin-bottom: 0.47rem;
-}
-.account-settings .my-bookings .booking-box-wrap span{
-  font-size: 18px;
-}
-.account-settings .my-bookings .booking-box-wrap p{
-  font-size: 0.75rem;
-}
-.account-settings .my-bookings .cancelled-proposal-wrap {
-  margin-bottom: 0.75rem;
-}
-.account-settings .my-bookings .booking-box-wrap .accepted-booking-btn,
-.account-settings .my-bookings .booking-box-wrap .completed-booking-btn{
-  font-size: 0.75rem;
-  line-height: 1.125rem;
-  padding: 0.56rem 0;
-  width: 7.3125rem;
-}
-.account-settings .my-bookings .booking-box-wrap .completed-booking-btn{
-  gap: 0.29rem;
-}
-.account-settings .my-bookings .booking-box-wrap .completed-booking-btn .check-icon{
-  font-size: 18px;
-}
+  /* Account Settings - My Bookings  */
 
-/* Account Settings - My Bookings  */
+  .account-settings .my-bookings .expire-wrap {
+    padding: 0.1rem 0.38rem;
+    gap: 0.25rem;
+  }
+  .account-settings .my-bookings .expire-wrap .clock-icon {
+    font-size: 12px;
+  }
+  .account-settings .my-bookings .expire-wrap .expire {
+    font-size: 0.5625rem;
+    line-height: 1.125rem;
+  }
 
-.account-settings .my-bookings .expire-wrap{
-  padding: 0.1rem 0.38rem;
-  gap: 0.25rem;
-}
-.account-settings .my-bookings .expire-wrap .clock-icon{
-  font-size: 12px;
-}
-.account-settings .my-bookings .expire-wrap .expire{
-  font-size: 0.5625rem;
-  line-height: 1.125rem; 
-}
+  /* Change Plan Modal */
 
-/* Change Plan Modal */
+  #changePlanSubscription .modal-content {
+    padding: 1.41rem 1.88rem;
+    border-radius: 0.46875rem;
+    box-shadow: 0px 18.75px 37.5px -9px rgba(0, 0, 0, 0.25);
+    width: 40rem;
+    margin: auto;
+  }
+  #changePlanSubscription .modal-header,
+  #changePlanSubscription .upgrade-wrap .question {
+    margin-bottom: 1.12rem;
+  }
+  #changePlanSubscription .modal-header .modal-title {
+    font-size: 0.9375rem;
+  }
+  #changePlanSubscription .upgrade-wrap {
+    margin-bottom: 3rem;
+  }
+  #changePlanSubscription .upgrade-wrap p {
+    font-size: 0.9375rem;
+  }
 
-#changePlanSubscription .modal-content{
-  padding: 1.41rem 1.88rem;
-  border-radius: 0.46875rem;
-  box-shadow: 0px 18.75px 37.5px -9px rgba(0, 0, 0, 0.25);
-  width: 40rem;
-  margin: auto;
-}
-#changePlanSubscription .modal-header,
-#changePlanSubscription .upgrade-wrap .question{
-  margin-bottom: 1.12rem;
-}
-#changePlanSubscription .modal-header .modal-title{
-  font-size: 0.9375rem;
-}
-#changePlanSubscription .upgrade-wrap{
-  margin-bottom: 3rem;
-}
-#changePlanSubscription .upgrade-wrap p{
-  font-size: 0.9375rem;
-}
+  /* Update Subscription modal */
 
-/* Update Subscription modal */
+  #updateSubscription .modal-content {
+    padding: 1.88rem 2.34rem;
+    border-radius: 0.46875rem;
+    box-shadow: 0px 18.75px 37.5px -9px rgba(0, 0, 0, 0.25);
+    width: 40rem;
+    margin: auto;
+  }
+  #updateSubscription .modal-header,
+  #updateSubscription .plan-wrap {
+    margin-bottom: 1.88rem;
+  }
+  #updateSubscription .modal-header .modal-title {
+    font-size: 1.125rem;
+  }
+  #updateSubscription .plan-wrap h4 {
+    font-size: 0.9375rem;
+    margin-bottom: 0.94rem;
+  }
+  #updateSubscription .plan-wrap .subscription-wrap {
+    padding: 1.59375rem 1.875rem;
+    border-radius: 0.1875rem;
+    border: 0.75px solid var(--gray6);
+  }
+  #updateSubscription .plan-wrap .subscription-wrap .account,
+  #updateSubscription .plan-wrap .subscription-wrap .access {
+    font-size: 0.75rem;
+  }
+  #updateSubscription .plan-wrap .subscription-wrap .description {
+    font-size: 0.65625rem;
+  }
+  #updateSubscription .plan-wrap .subscription-wrap h3 {
+    font-size: 0.9375rem;
+  }
+  #updateSubscription .subscription-wrap .price-wrap {
+    margin: 0.56rem 0;
+    gap: 0.7rem;
+  }
+  #updateSubscription .subscription-wrap .price-wrap .price {
+    font-size: 0.9375rem;
+  }
+  #updateSubscription .subscription-wrap .price-wrap button {
+    font-size: 0.65625rem;
+    padding: 0.39rem 1.1rem;
+    border-radius: 1.40625rem;
+  }
+  #updateSubscription .subscription-wrap .plan-btn,
+  #updateSubscription .subscription-wrap .current-btn {
+    font-size: 0.75rem;
+    padding: 0.7rem 1.12rem;
+    border-radius: 0.375rem;
+  }
+  #updateSubscription .plan-wrap > div:nth-child(2) {
+    margin-bottom: 0.7rem;
+  }
 
-#updateSubscription .modal-content{
-  padding: 1.88rem 2.34rem;
-  border-radius: 0.46875rem;
-  box-shadow: 0px 18.75px 37.5px -9px rgba(0, 0, 0, 0.25);
-  width: 40rem;
-  margin: auto;
-}
-#updateSubscription .modal-header,
-#updateSubscription .plan-wrap{
-  margin-bottom: 1.88rem;
-}
-#updateSubscription .modal-header .modal-title{
-  font-size: 1.125rem;
-}
-#updateSubscription .plan-wrap h4{
-  font-size: 0.9375rem;
-  margin-bottom: 0.94rem;
-}
-#updateSubscription .plan-wrap .subscription-wrap{
-  padding: 1.59375rem 1.875rem;
-  border-radius: 0.1875rem;
-  border: 0.75px solid var(--gray6);
-}
-#updateSubscription .plan-wrap .subscription-wrap .account,
-#updateSubscription .plan-wrap .subscription-wrap .access{
-  font-size: 0.75rem;
-}
-#updateSubscription .plan-wrap .subscription-wrap .description{
-  font-size: 0.65625rem;
-}
-#updateSubscription .plan-wrap .subscription-wrap h3{
-  font-size: 0.9375rem;
-}
-#updateSubscription .subscription-wrap .price-wrap{
-  margin: 0.56rem 0;
-  gap: 0.7rem
-}
-#updateSubscription .subscription-wrap .price-wrap .price{
-  font-size: 0.9375rem;
-}
-#updateSubscription .subscription-wrap .price-wrap button{
-  font-size: 0.65625rem;
-  padding: 0.39rem 1.1rem;
-  border-radius: 1.40625rem;
-}
-#updateSubscription .subscription-wrap .plan-btn,
-#updateSubscription .subscription-wrap .current-btn{
-  font-size: 0.75rem;
-  padding: 0.7rem 1.12rem;
-  border-radius: 0.375rem;
-}
-#updateSubscription .plan-wrap > div:nth-child(2){
-  margin-bottom: 0.7rem;
-}
+  /* Subscription Renewal Modal */
 
-/* Subscription Renewal Modal */
+  #subscriptionReminder .modal-content {
+    padding: 1.88rem 1.88rem 2.5rem;
+    border-radius: 0.28125rem;
+    box-shadow: 0px 0px 12.75px 0px rgba(18, 18, 18, 0.15);
+    width: 40rem;
+    margin: auto;
+  }
+  #subscriptionReminder .info-box-wrap {
+    margin-bottom: 1.13rem;
+  }
+  #subscriptionReminder .info-box-wrap h3 {
+    font-size: 0.9375rem;
+    margin-bottom: 0.94rem;
+  }
+  #subscriptionReminder .info-box-wrap .msg-wrap,
+  #subscriptionReminder .info-box-wrap .details-wrap {
+    border-radius: 0.23438rem;
+    padding: 1.68rem 2rem;
+  }
+  #subscriptionReminder .info-box-wrap .details-wrap {
+    padding: 0.94rem 1.13rem;
+  }
+  #subscriptionReminder .info-box-wrap .msg-wrap .msg {
+    font-size: 0.9375rem;
+    width: 70%;
+    margin: 0 auto 1.41rem;
+  }
+  #subscriptionReminder .info-box-wrap .msg-wrap .date {
+    font-size: 1.125rem;
+  }
+  #subscriptionReminder .info-box-wrap .msg-wrap .renew-btn {
+    font-size: 0.75rem;
+    line-height: 100%;
+    letter-spacing: 0.0375rem;
+    padding: 0.75rem 2rem;
+    border-radius: 0.28125rem;
+  }
+  #subscriptionReminder .info-box-wrap .details-wrap div:nth-child(1) {
+    margin-bottom: 0.94rem;
+  }
+  #subscriptionReminder .info-box-wrap .details-wrap .title {
+    font-size: 0.75rem;
+    margin-bottom: 0.47rem;
+  }
+  #subscriptionReminder .info-box-wrap .details-wrap h5 {
+    font-size: 0.65625rem;
+  }
+  #subscriptionReminder .info-box-wrap .details-wrap div:not(:nth-child(1)) {
+    margin-bottom: 0.75rem;
+  }
+  #subscriptionReminder .info-box-wrap .details-wrap .payment-logo {
+    width: 3.51563rem;
+    height: 0.89063rem;
+    margin-right: 1.36rem;
+  }
+  #subscriptionReminder .info-box-wrap .details-wrap .phone-num {
+    font-size: 0.65625rem;
+  }
+  #subscriptionReminder .info-box-wrap .details-wrap .update {
+    font-size: 0.65625rem;
+  }
+  #subscriptionReminder .modal-body .continue {
+    font-size: 0.75rem;
+  }
 
-#subscriptionReminder .modal-content {
-  padding: 1.88rem 1.88rem 2.5rem;
-  border-radius: 0.28125rem;
-  box-shadow: 0px 0px 12.75px 0px rgba(18, 18, 18, 0.15);
-  width: 40rem;
-  margin: auto;
-}
-#subscriptionReminder .info-box-wrap{
-  margin-bottom: 1.13rem;
-}
-#subscriptionReminder .info-box-wrap h3{
-  font-size: 0.9375rem;
-  margin-bottom: 0.94rem;
-}
-#subscriptionReminder .info-box-wrap .msg-wrap,
-#subscriptionReminder .info-box-wrap .details-wrap {
-  border-radius: 0.23438rem;
-  padding: 1.68rem 2rem;
-}
-#subscriptionReminder .info-box-wrap .details-wrap{
-  padding: 0.94rem 1.13rem;
-}
-#subscriptionReminder .info-box-wrap .msg-wrap .msg{
-  font-size: 0.9375rem;
-  width: 70%;
-  margin: 0 auto 1.41rem;
-}
-#subscriptionReminder .info-box-wrap .msg-wrap .date{
-  font-size: 1.125rem;
-}
-#subscriptionReminder .info-box-wrap .msg-wrap .renew-btn{
-  font-size: 0.75rem;
-  line-height: 100%;
-  letter-spacing: 0.0375rem;
-  padding: 0.75rem 2rem;
-  border-radius: 0.28125rem;
-}
-#subscriptionReminder .info-box-wrap .details-wrap div:nth-child(1){
-  margin-bottom: 0.94rem;
-}
-#subscriptionReminder .info-box-wrap .details-wrap .title{
-  font-size: 0.75rem;
-  margin-bottom: 0.47rem;
-}
-#subscriptionReminder .info-box-wrap .details-wrap h5{
-  font-size: 0.65625rem
-}
-#subscriptionReminder .info-box-wrap .details-wrap div:not(:nth-child(1)) { 
-  margin-bottom: 0.75rem;
-}
-#subscriptionReminder .info-box-wrap .details-wrap .payment-logo{
-  width: 3.51563rem;
-  height: 0.89063rem;
-  margin-right: 1.36rem;
-}
-#subscriptionReminder .info-box-wrap .details-wrap .phone-num{
-  font-size: 0.65625rem;
-}
-#subscriptionReminder .info-box-wrap .details-wrap .update{
-  font-size: 0.65625rem;
-}
-#subscriptionReminder .modal-body .continue{
-  font-size: 0.75rem;
-}
+  /* Payment Method Modal */
 
-/* Payment Method Modal */
+  #paymentMethod .modal-content {
+    padding: 2.375rem 2.5625rem 2.5rem;
+    border-radius: 0.46875rem;
+    box-shadow: 0px 18.75px 37.5px -9px rgba(0, 0, 0, 0.25);
+    width: 40rem;
+    margin: auto;
+  }
+  #paymentMethod .modal-header .modal-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.38rem;
+  }
+  #paymentMethod .modal-header .modal-sub-title {
+    font-size: 0.9375rem;
+  }
 
-#paymentMethod .modal-content {
-  padding: 2.375rem 2.5625rem 2.5rem;
-  border-radius: 0.46875rem;
-  box-shadow: 0px 18.75px 37.5px -9px rgba(0, 0, 0, 0.25);
-  width: 40rem;
-  margin: auto;
-}
-#paymentMethod .modal-header .modal-title {
-  font-size: 1.25rem;
-  margin-bottom: 0.38rem;
-}
-#paymentMethod .modal-header .modal-sub-title {
-  font-size: 0.9375rem;
-}
-
-#paymentMethod form .form-check {
-  padding: 0.84375rem 1.3125rem 0.79688rem 1.5rem;
-  border-radius: 0.5625rem;
-  border: 1.5px solid #E4E7EC;
-}
-#paymentMethod form .form-check .form-check-input {
-  margin-left: -0.5em;
-  margin-right: 0.8rem;
-  /* width: 0.84375rem;
+  #paymentMethod form .form-check {
+    padding: 0.84375rem 1.3125rem 0.79688rem 1.5rem;
+    border-radius: 0.5625rem;
+    border: 1.5px solid #e4e7ec;
+  }
+  #paymentMethod form .form-check .form-check-input {
+    margin-left: -0.5em;
+    margin-right: 0.8rem;
+    /* width: 0.84375rem;
   height: 0.84375rem; 
   border-radius: 0.75rem; */
-}
+  }
 
-#paymentMethod form .form-check .card-name{
-  font-size: 0.9375rem;
-  line-height: 0.75rem; 
-  letter-spacing: 0.02344rem;
-  margin-bottom: 0.28rem;
-}
-#paymentMethod form .form-check .sub-content{
-  font-size: 0.60938rem;
-  line-height: 0.75rem; 
-  letter-spacing: 0.02344rem;
-}
-#paymentMethod form .payment-logo{
-  width: 2.625rem;
-  height: 2.01563rem;
-  border-radius: 0.1875rem;
-}
-#paymentMethod form .first-image{
-  width: 8.75rem!important;
-  height: 0.75rem!important;
-}
-#paymentMethod form .card-wrap .form-group:nth-child(2) {
-  gap: 0.75rem;
-  margin-top: 0.56rem;
-}
-#paymentMethod form .card-wrap .input-container {
-  padding: 0.5625rem 0.75rem;
-  border-radius: 0.375rem;
-  border: 0.75px solid #F9F9F9;
-}
-#paymentMethod form .card-wrap input {
-  font-size: 0.70313rem;
-  line-height: 0.9375rem; 
-}
-#paymentMethod form .card-wrap .card-num-icon {
-  margin-left: 8px;
-  width: 1.125rem;
-  height: 1.125rem;
-}
-#paymentMethod form .button-wrapper button{
-  font-size: 0.9375rem;
-  line-height: 1.125rem; 
-  padding: 0.75rem 10rem;
-  border-radius: 0.375rem;
-}
-#paymentMethod form .button-wrapper{
-  margin-top: 4rem;
-}
+  #paymentMethod form .form-check .card-name {
+    font-size: 0.9375rem;
+    line-height: 0.75rem;
+    letter-spacing: 0.02344rem;
+    margin-bottom: 0.28rem;
+  }
+  #paymentMethod form .form-check .sub-content {
+    font-size: 0.60938rem;
+    line-height: 0.75rem;
+    letter-spacing: 0.02344rem;
+  }
+  #paymentMethod form .payment-logo {
+    width: 2.625rem;
+    height: 2.01563rem;
+    border-radius: 0.1875rem;
+  }
+  #paymentMethod form .first-image {
+    width: 8.75rem !important;
+    height: 0.75rem !important;
+  }
+  #paymentMethod form .card-wrap .form-group:nth-child(2) {
+    gap: 0.75rem;
+    margin-top: 0.56rem;
+  }
+  #paymentMethod form .card-wrap .input-container {
+    padding: 0.5625rem 0.75rem;
+    border-radius: 0.375rem;
+    border: 0.75px solid #f9f9f9;
+  }
+  #paymentMethod form .card-wrap input {
+    font-size: 0.70313rem;
+    line-height: 0.9375rem;
+  }
+  #paymentMethod form .card-wrap .card-num-icon {
+    margin-left: 8px;
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+  #paymentMethod form .button-wrapper button {
+    font-size: 0.9375rem;
+    line-height: 1.125rem;
+    padding: 0.75rem 10rem;
+    border-radius: 0.375rem;
+  }
+  #paymentMethod form .button-wrapper {
+    margin-top: 4rem;
+  }
 
   /* Payment History Modal - Invoice details */
 
@@ -11089,11 +11145,11 @@ text-align: center;
 
   /* Cancel Subscription Modal */
 
-#cancelSubscription .modal-content {
+  #cancelSubscription .modal-content {
     padding: 1.88rem 2.5rem;
     width: 40rem;
     margin: auto;
-}
+  }
   #cancelSubscription .modal-body {
     margin-bottom: 3rem;
   }
@@ -11118,8 +11174,10 @@ text-align: center;
   #cancelSubscription .cancel-content-wrap ul li::before {
     content: "-";
   }
-  #cancelSubscription .delete, #cancelSubscription .cancel,
-  #changePlanSubscription .confirm, #changePlanSubscription .cancel{
+  #cancelSubscription .delete,
+  #cancelSubscription .cancel,
+  #changePlanSubscription .confirm,
+  #changePlanSubscription .cancel {
     font-size: 0.9375rem;
     line-height: 1.125rem;
     padding: 0.75rem 1.5rem;
@@ -11487,7 +11545,7 @@ text-align: center;
   .account-settings .reason-wrap .group-btn-wrap button,
   #eventCancellation .reason-wrap .group-btn-wrap button {
     font-size: 0.87rem;
-    padding: 0.70rem 1.2rem;
+    padding: 0.7rem 1.2rem;
   }
 
   /* Organizer Account - Others */
@@ -11763,46 +11821,78 @@ text-align: center;
     top: 25%;
     left: 95%;
   }
-  #createEventModal .modal-body .start-end-wrap, 
+  #createEventModal .modal-body .start-end-wrap,
   #editEventModal .modal-body .start-end-wrap {
     gap: 0.8rem;
-}
-#createEventModal .modal-body .start-end-wrap input[type="date" i],
-#createEventModal .modal-body .start-end-wrap input[type="time" i],
-#editEventModal .modal-body .start-end-wrap input[type="date" i],
-#editEventModal .modal-body .start-end-wrap input[type="time" i]
- {
-  flex-direction: row-reverse;
-  color: #2D3748;
-  font-family: Urbanist;
-  gap: 0.5rem;
-}
-#createEventModal .modal-body .start-end-wrap input[type="time" i],
-#editEventModal .modal-body .start-end-wrap input[type="time" i]{
-  gap: 0.4rem;
-}
-#createEventModal .modal-body .start-end-wrap input[type="date" i]::-webkit-calendar-picker-indicator,
-#createEventModal .modal-body .start-end-wrap input[type="time" i]::-webkit-calendar-picker-indicator,
-#editEventModal .modal-body .start-end-wrap input[type="date" i]::-webkit-calendar-picker-indicator,
-#editEventModal .modal-body .start-end-wrap input[type="time" i]::-webkit-calendar-picker-indicator
-{
-  background-image: url("/assets/calendar-month-icon.svg");
-  block-size: 1.25em;
-  inline-size: 1.25em;
-}
-#createEventModal .modal-body .start-end-wrap input[type="time" i]::-webkit-calendar-picker-indicator,
-#editEventModal .modal-body .start-end-wrap input[type="time" i]::-webkit-calendar-picker-indicator{
-  background-image: url("/assets/clock-icon.svg");
-  margin-inline-start: 0;
-}
-#createEventModal .modal-body .start-end-wrap .form-group:hover input[type="date" i]::-webkit-calendar-picker-indicator,
-#editEventModal .modal-body .start-end-wrap .form-group:hover input[type="date" i]::-webkit-calendar-picker-indicator{
-  background-image: url("/assets/calendar-month-icon-hovered.svg");
-}
-#createEventModal .modal-body .start-end-wrap .form-group:hover input[type="time" i]::-webkit-calendar-picker-indicator,
-#editEventModal .modal-body .start-end-wrap .form-group:hover input[type="time" i]::-webkit-calendar-picker-indicator{
-  background-image: url("/assets/clock-icon-hovered.svg");
-}
+  }
+  #createEventModal .modal-body .start-end-wrap input[type="date" i],
+  #createEventModal .modal-body .start-end-wrap input[type="time" i],
+  #editEventModal .modal-body .start-end-wrap input[type="date" i],
+  #editEventModal .modal-body .start-end-wrap input[type="time" i] {
+    flex-direction: row-reverse;
+    color: #2d3748;
+    font-family: Urbanist;
+    gap: 0.5rem;
+  }
+  #createEventModal .modal-body .start-end-wrap input[type="time" i],
+  #editEventModal .modal-body .start-end-wrap input[type="time" i] {
+    gap: 0.4rem;
+  }
+  #createEventModal
+    .modal-body
+    .start-end-wrap
+    input[type="date" i]::-webkit-calendar-picker-indicator,
+  #createEventModal
+    .modal-body
+    .start-end-wrap
+    input[type="time" i]::-webkit-calendar-picker-indicator,
+  #editEventModal
+    .modal-body
+    .start-end-wrap
+    input[type="date" i]::-webkit-calendar-picker-indicator,
+  #editEventModal
+    .modal-body
+    .start-end-wrap
+    input[type="time" i]::-webkit-calendar-picker-indicator {
+    background-image: url("/assets/calendar-month-icon.svg");
+    block-size: 1.25em;
+    inline-size: 1.25em;
+  }
+  #createEventModal
+    .modal-body
+    .start-end-wrap
+    input[type="time" i]::-webkit-calendar-picker-indicator,
+  #editEventModal
+    .modal-body
+    .start-end-wrap
+    input[type="time" i]::-webkit-calendar-picker-indicator {
+    background-image: url("/assets/clock-icon.svg");
+    margin-inline-start: 0;
+  }
+  #createEventModal
+    .modal-body
+    .start-end-wrap
+    .form-group:hover
+    input[type="date" i]::-webkit-calendar-picker-indicator,
+  #editEventModal
+    .modal-body
+    .start-end-wrap
+    .form-group:hover
+    input[type="date" i]::-webkit-calendar-picker-indicator {
+    background-image: url("/assets/calendar-month-icon-hovered.svg");
+  }
+  #createEventModal
+    .modal-body
+    .start-end-wrap
+    .form-group:hover
+    input[type="time" i]::-webkit-calendar-picker-indicator,
+  #editEventModal
+    .modal-body
+    .start-end-wrap
+    .form-group:hover
+    input[type="time" i]::-webkit-calendar-picker-indicator {
+    background-image: url("/assets/clock-icon-hovered.svg");
+  }
 
   #createEventModal .modal-body .venue-sub-groups,
   #editEventModal .modal-body .venue-sub-groups {
@@ -11881,14 +11971,14 @@ text-align: center;
 
   /* View Events Details modal */
 
-/* #eventDetailsModal .modal-content {
+  /* #eventDetailsModal .modal-content {
     width: 40rem;
     margin: auto;
 } */
-#eventDetailsModal .modal-content{
-  width: 40rem;
-  margin: auto;
-}
+  #eventDetailsModal .modal-content {
+    width: 40rem;
+    margin: auto;
+  }
   #eventDetailsModal .modal-content .modal-body {
     padding: 1.17rem 2rem 2rem;
   }
@@ -11948,8 +12038,8 @@ text-align: center;
   }
   #eventDetailsModal .event-details-wrapper p {
     font-size: 0.87rem;
-}
-  #eventDetailsModal .event-details-wrapper .date-venue-wrap{
+  }
+  #eventDetailsModal .event-details-wrapper .date-venue-wrap {
     gap: 1rem;
   }
   #eventDetailsModal .event-details-wrapper span {
@@ -12327,7 +12417,7 @@ text-align: center;
   .account-settings .customized-songs-tabs li .tab-title {
     font-size: 0.87rem;
     padding: 0.5rem 0.75rem;
-}
+  }
   .account-settings .customized-songs-tabs {
     gap: 0.5rem;
     margin-bottom: 1.27rem;
@@ -13378,7 +13468,7 @@ text-align: center;
     margin-bottom: 0px;
     padding-bottom: 2px;
   }
-  .artists #ShowArtists .card-body .artist-reviews-wrap .star-icon{
+  .artists #ShowArtists .card-body .artist-reviews-wrap .star-icon {
     font-size: 16px;
   }
   .basic-information .container .step2 .select-artist .card {
@@ -14031,7 +14121,7 @@ text-align: center;
     line-height: normal;
     margin-bottom: 5.625rem;
   }
-  .artists .container .top-level-wrap{
+  .artists .container .top-level-wrap {
     margin-bottom: 3rem;
   }
   .artist-banner .container-fluid {
