@@ -644,8 +644,8 @@ var actions = {
       }, 1500);
     });
   },
-  validateCode({ commit, state }, payload) {
-    return new Promise((resolve, reject) => {
+  validateCode({ commit, state, dispatch }, payload) {
+    return new Promise(async (resolve, reject) => {
       // axios.defaults.headers.common['Authorization'] = 'Bearer ' + (state.bearerToken || localStorage.api_token);
       console.log(
         "Validate Code url: ",
@@ -653,42 +653,49 @@ var actions = {
           payload?.userId
         }/verify?role=${state.role}`
       );
-      setTimeout(async () => {
-        await axios
-          .post(
-            `${
-              import.meta.env.VITE_BASE_URL || "http://localhost:8000"
-            }/api/user/${payload?.userId || state.user?.id}/verify?role=${
-              state.role
-            }`,
-            {
-              code: payload?.code,
-            }
-          )
-          .then((response) => {
-            console.log("\n\n::Validate Code:: ", response);
+      // setTimeout(async () => {
+      await axios
+        .post(
+          `${
+            import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+          }/api/user/${payload?.userId || state.user?.id}/verify?role=${
+            state.role
+          }`,
+          {
+            code: payload?.code,
+          }
+        )
+        .then((response) => {
+          console.log("\n\n::Validate Code:: ", response);
 
-            const { status: statusCode, data } = response;
+          const { status: statusCode, data } = response;
 
-            if (statusCode === 201) {
-              const {
-                result: { user, profile, roles, token, account },
-              } = data;
+          if (statusCode === 201) {
+            const {
+              status,
+              result: { user, profile, roles, token, account },
+            } = data;
 
+            if (status === 200) {
               commit("SET_AUTH", user || {});
               commit("SET_TOKEN", token || "");
               commit("SET_PROFILE", profile || {});
               commit("SET_ACCOUNT", account || {});
               commit("SET_ROLE", profile?.role || "");
               commit("SET_ROLES", roles || null);
+
+              dispatch("fetchProfile");
             }
 
-            resolve(response);
-          })
-          .catch((err) => {
-            reject(err);
-          });
-      }, 1000);
+            resolve(data);
+          }
+
+          reject(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+      // }, 1000);
     });
   },
 

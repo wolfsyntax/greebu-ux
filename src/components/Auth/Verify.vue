@@ -179,10 +179,11 @@ export default {
       this.validateCode({ code: enteredCode, userId:  this.$route.query.id})
         .then(response =>
         {
-          const { status: statusCode, data: { status, message, result } } = response
-          console.log('\n\nValidate Response: ', response)
-          if (statusCode === 201) {
-            if (status === 200) {
+          console.log('Verify.vue validator response: ', response)
+          const { status, message, result } = response
+          
+          if (status === 200) {
+            // if (status === 200) {
 
               //console.log('Redirect to home');
              // this.$router.push({name: 'home'});
@@ -203,23 +204,24 @@ export default {
               //   this.$router.push("/login");
               // }
 
-            } else {
+            // } else {
               
-            }
+            // }
 
-          } else if (statusCode === 203) {
-            if (status === 422) {
-              this.verifyMessage = 'The provided OTP code is invalid. Please try again with the correct code.';
-            } else if (status === 500) {
-              // this.verifyMessage = 'Too Many Attempts.';
-              this.verifyMessage = `You have already surpassed the limit for resending the OTP code to your number Please wait ${this.$filters.timer(this.rate_countdown)} minutes to re send a new OTP code`;
-            }
-          }
-          console.log('Verify OTP Response: ', response)
+          } 
+          
         })
         .catch(err =>
         {
-          })
+          console.log('OTP Verification Error: ', err)
+          
+          // if (status === 422) {
+          //   this.verifyMessage = 'The provided OTP code is invalid. Please try again with the correct code.';
+          // } else if (status === 500) {
+          //   // this.verifyMessage = 'Too Many Attempts.';
+          //   this.verifyMessage = `You have already surpassed the limit for resending the OTP code to your number Please wait ${this.$filters.timer(this.rate_countdown)} minutes to re send a new OTP code`;
+          // }
+        })
       
     },
     handleInput(index) {

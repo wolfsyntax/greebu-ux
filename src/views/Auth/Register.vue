@@ -35,24 +35,24 @@
                   <p class="account-description">Please choose your Account Type to create an account.</p>
                 </div>
 
-                <div class="col-md-12">
-                  <div class="form-check"  @click="form.account_type = 'customers'">
+                <div class="col-md-12">{{ form.account_type }}
+                  <div class="form-check" @click="form.account_type = 'customers'">
                     <input class="form-check-input" type="radio" name="accountType" id="accountType" v-model="form.account_type" value="customers" >
-                    <label :class="{ 'selected': form.account_type === 'customers' }" class="form-check-label" for="accountType">
+                    <label @click="form.account_type = 'customers'" :class="{ 'selected': form.account_type === 'customers' }" class="form-check-label" for="accountType">
                     I'm a Customer
                     </label>
                   </div>
 
                   <div class="form-check" @click="form.account_type = 'artists'">
                     <input class="form-check-input" type="radio" name="accountType" id="accountType" v-model="form.account_type" value="artists" >
-                    <label :class="{ 'selected': form.account_type === 'artists' }" class="form-check-label" for="accountType">
+                    <label @click="form.account_type = 'artists'" :class="{ 'selected': form.account_type === 'artists' }" class="form-check-label" for="accountType">
                     I'm an Artist
                     </label>
                   </div>
 
                   <div class="form-check" @click="form.account_type = 'organizer'">
                     <input class="form-check-input" type="radio" name="accountType" id="accountType" v-model="form.account_type" value="organizer">
-                    <label :class="{ 'selected': form.account_type === 'organizer' }" class="form-check-label" for="accountType">
+                    <label @click="form.account_type = 'organizer'" :class="{ 'selected': form.account_type === 'organizer' }" class="form-check-label" for="accountType">
                     I'm an Organizer
                     </label>
                   </div>
@@ -117,7 +117,12 @@
 
               <div class="form-group">
                 <label for="phone">Mobile number</label>
-                <input id="phone" type="text" class="form-control" name="phone" v-model="form.phone" required autocomplete="phone" placeholder="+63">
+
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1">+63</span>
+                  <input id="phone" type="text" class="form-control" name="phone" v-model="form.phone" @blur="getFormattedPhone" required autocomplete="phone" placeholder="">
+                </div>
+
                 <div v-for="error in errors?.phone" :key="error" class="text-danger">{{ error }}</div>
               </div>
 
@@ -222,6 +227,7 @@ export default {
 
        
       },
+      phone: '',
       errors: {},
       countdown: 180,
       countdown_enabled: false,
@@ -247,15 +253,59 @@ export default {
     //...mapState({})
     isAccountTypeSelected() {
       return this.form.account_type !== '';
+    },
+    formatPhone() {
+      // if(/^\+[1-9]\d{1,14}$/.test(this.form.phone)) {
+        console.log('Formatted Phone:: ', this.form?.phone !== '' || this.form?.phone !== null)
+      if (this.form?.phone !== '' && this.form?.phone !== null) {
+        if (this.form.phone.startsWith('09')) {
+          console.log('09 ', `+63${this.form.phone.substring(1)}`)
+          return `+63${this.form.phone.substring(1)}`;
+        } else if (this.form.phone.startsWith('+63')) {
+          return this.form.phone;
+        } else if (this.form.phone.startsWith('9')) {
+          return `+63${this.form.phone}`;
+        }
+      }
+        return '';
+        
+      // }
     }
   },
   // created() {
   //   console.log(this.form.account_type);
   // },
   methods: {
+    getFormattedPhone() {
+      
+      this.phone = '';
+
+      console.log('Phone number: ', this.form.phone);
+      // if(/^\+[1-9]\d{1,14}$/.test(this.form.phone)) {
+      if (this.form?.phone !== '' && this.form?.phone !== null) {
+        if (this.form.phone.startsWith('09')) {
+          console.log('09 ', `+63${this.form.phone.substring(1)}`)
+          this.phone = `${this.form.phone.substring(1)}`;
+        } else if (this.form.phone.startsWith('+63')) {
+          this.phone = this.form.phone.substring(3);
+        } else if (this.form.phone.startsWith('9')) {
+          this.phone = `${this.form.phone}`;
+        }
+
+        this.form.phone = this.phone;
+
+      }
+      // }
+      
+      return this.phone;
+
+    },
+    onBlurPhone () {
+      this.form.phone = this.phone;
+    },
     submitAccountType() {
       if (this.form.account_type) {
-        this.showRadioButtons = false;
+        this.showRadioButtons = false; 
       }
     },
     ...mapActions(['signup', 'resendCode', 'verifyOTP', 'phoneOTP']),
@@ -268,6 +318,9 @@ export default {
       
       this.isDisabled = true;
       this.isLoading = true;
+      this.form.phone = this.formatPhone;
+
+      console.log('Form: ', this.form)
       await this.signup(this.form)
         .then((response) => { 
           console.log('Register response: ', response)
