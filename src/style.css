@@ -10039,7 +10039,7 @@ header nav {
   border: none;
   box-shadow: none;
   transition: 0.1s all;
-  padding: 0.7rem 1.4rem;
+  padding: 0.7rem 1.2rem;
 }
 .events-showing .events-section .left-num-wrap:hover {
   border: 1px solid var(--btn-hovered);
@@ -10275,7 +10275,6 @@ header nav {
   }
 
   /* Events page - show events section */
-
   .events-showing .events-section .even-type-title {
     font-size: 1.5rem;
     margin-bottom: 1.88rem;
@@ -10305,7 +10304,7 @@ header nav {
   .events-showing .events-section .page-item .right-num,
   .events-showing .events-section .of-wrap .of {
     font-size: 0.84375rem;
-    padding: 0.5rem 1.1rem;
+    padding: 0.5rem 1rem;
   }
   .events-showing .events-section .left-num-wrap:hover {
     border: 0.75px solid var(--btn-hovered);

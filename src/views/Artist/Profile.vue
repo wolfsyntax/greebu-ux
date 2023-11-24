@@ -67,7 +67,12 @@
                       <!-- <input type="file" @input="form.avatar = $event.target.files[0]" accept="image/png, image/webp, image/svg, image/jpeg" /> -->
                       <!-- <input type="file" @input="changeImage" accept="image/png, image/webp, image/svg, image/jpeg" /> -->
 
-                      <input type="file" @input="changeImage" accept="image/*" />
+                      <!-- <input type="file" @input="changeImage" accept="image/*" /> -->
+
+                      <button type="button" class="btn btn-success" @click="toggleProfile" data-bs-toggle="modal" data-bs-target="#uploadProfilePhoto">
+                        <span class="material-symbols-outlined">&#xE412;</span>
+                      </button>
+                      
                       <!-- <div v-if="error?.avatar" class="text-danger">{{ error.avatar }}</div> -->
                       <div v-for="err in error?.avatar" :key="err" class="text-danger">{{ err }}</div>
                       <progress v-if="form.progress" :value="form.progress.percentage" max="100">{{ form.progress.percentage }}%</progress>
@@ -487,6 +492,13 @@
     </section>
   </div>
 
+  <profile-modal 
+    @close="toggleProfile"
+    :active="isActive"
+    @formDataUpdated="handleAvatarUpdate"
+    page="artist-profile"
+     />
+
 </template>
 <script>
 // import Layout from '/src/components/Layouts/ArtistLayout.vue';
@@ -495,6 +507,7 @@ import MemberForm from '/src/views/Artist/Form/AddMember.vue';
 import SocialMediaForm from '/src/views/Artist/Form/SocialMedia.vue';
 import BlankHeader from "@/components/Home/BlankHeader.vue";
 import Multiselect from '@vueform/multiselect';
+import ProfileModal from '/src/components/Dashboard/Modals/ProfileModal.vue';
 
 export default {
   components: {
@@ -503,6 +516,7 @@ export default {
     'social-media': SocialMediaForm,
     BlankHeader,
     Multiselect,
+    ProfileModal
   },
   data()
   {
@@ -531,7 +545,7 @@ export default {
       // others: '',
       formGenres: [],
       songGenres: [],
-      avatar: '/assets/artist-account/new.svg',
+      avatar: '/assets/artist-account/new.svg', // null
       options: ['list', 'of', 'options'],
       // members: [],
       //errors: {},
@@ -738,6 +752,15 @@ export default {
     ...mapMutations([
       'SET_PROFILE', 'SET_ARTIST', 'SET_MEMBERS',
     ]),
+    handleAvatarUpdate(blob) {
+      if (blob instanceof Blob) {
+        this.parentAvatar = URL.createObjectURL(blob);
+        this.avatar = this.parentAvatar;
+        console.log('set image', this.avatar);
+      } else {
+        this.avatar = '';
+      }
+    },
     fileCheck(file)
     {
       // magicAudio
