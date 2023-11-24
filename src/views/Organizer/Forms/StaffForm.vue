@@ -1,5 +1,6 @@
 <template>
-  <div class="modal fade" id="organizerStaff" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal fade" id="organizerStaff" data-bs-backdrop="static" 
+  data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header border-bottom-0 p-0 d-flex align-items-start justify-content-between">
@@ -21,6 +22,11 @@
                       <span class="material-symbols-outlined camera-inner" v-if="!avatar">&#xe412;</span>
                       <img :src="avatar" class="img-fluid add-member-default-avatar" alt="default user avatar" v-else>
                       <div class="camera">
+
+                        <!-- <button type="button" class="btn btn-success" @click="toggleProfile" data-bs-toggle="modal" data-bs-target="#uploadProfilePhoto">
+                          <span class="material-symbols-outlined">&#xE412;</span>
+                        </button> -->
+
                         <input type="file" @input="changeImage" class="member-avatar" accept="image/png, image/webp, image/svg, image/jpeg" />
                         <!-- <span v-if="errors?.member_avatar" class="text-danger">{{ errors.member_avatar.shift() }}</span> -->
                       </div>
@@ -67,15 +73,25 @@
       </div>
     </div>
   </div>
+
+  <profile-modal 
+    @close="toggleProfile"
+    :active="isActive"
+    @formDataUpdated="handleStaffAvatarUpdate"
+    page="organizer-staff-profile"
+     />
+
 </template>
 
 <script>
 import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
 import CloseModalButton from '/src/components/CloseModalButton.vue';
+import ProfileModal from '/src/components/Dashboard/Modals/ProfileModal.vue';
 
 export default {
   components: {
-    CloseModalButton
+    CloseModalButton,
+    ProfileModal
   },
   setup () {
     
@@ -141,6 +157,17 @@ export default {
   methods: {
     ...mapActions(['addStaff', 'fetchStaff', 'editStaff', ]),
     ...mapMutations(['SET_STAFF_FILTER']),
+    handleStaffAvatarUpdate(blob) {
+      if (blob instanceof Blob) {
+        this.parentAvatar = URL.createObjectURL(blob);
+        this.avatar = this.parentAvatar;
+        console.log('set image', this.avatar);
+
+        // this.form.member_avatar = this.avatar;
+      } else {
+        this.avatar = '';
+      }
+    },
     submit()
     {
       if (Object.keys(this.member).length > 0)

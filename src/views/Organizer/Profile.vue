@@ -15,7 +15,7 @@
               <p class="sub-heading">Let customers and other co-artists know you better!</p>
               <h3 class="profile-details">Profile Details</h3>
 
-              <div class="onboarding-message"  v-if="message">
+              <div class="onboarding-message" v-if="message">
               <input type="checkbox" id="modal-toggle" class="modal-toggle" checked style="display: none;">
                 <div class="modal">
                   <!-- <div class="close-toast">
@@ -42,13 +42,20 @@
                 </div> -->
 
               <form @submit.prevent="submit" class="fill-details" autocomplete="off">
+                <!-- <img :src="parentImageURL" alt="Avatar Image" v-if="parentImageURL" /> -->
+                <!-- <img :src="avatar" class="img-fluid" loading="lazy" alt="profile cover" > -->
+
                 <div class="form-group upload-img">
                   <label class="label-img">
 
                     <img :src="avatar" class="img-fluid default-avatar" alt="default user avatar">
                     <div class="camera">
 
-                      <input type="file" @input="changeImage" accept="image/png, image/webp, image/svg, image/jpeg" />
+                      <!-- <input type="file" @input="changeImage" accept="image/png, image/webp, image/svg, image/jpeg" /> -->
+
+                      <button type="button" class="btn btn-success" @click="toggleProfile" data-bs-toggle="modal" data-bs-target="#uploadProfilePhoto">
+                        <span class="material-symbols-outlined">&#xE412;</span>
+                      </button>
 
                       <div v-for="err in error?.avatar" :key="err" class="text-danger">{{ err }}</div>
                         <progress v-if="form.progress" :value="form.progress.percentage" max="100">{{ form.progress.percentage }}%</progress>
@@ -354,6 +361,15 @@
     <social-media id="organizerLinks" @form="updateSocial" :media="social" @modalClose="dismiss" />
     <staff-form id="organizerStaff" @form="onStaffSave" @modalClose="dismiss" />
 
+    <profile-modal 
+    @close="toggleProfile"
+    :active="isActive"
+    @formDataUpdated="handleAvatarUpdate"
+    page="organizer-profile"
+     />
+
+    <!-- <p><b>Account</b> - {{  account }}</p> -->
+
   </div>
 </template>
 
@@ -364,6 +380,7 @@ import StaffForm from './Forms/StaffForm.vue';
 import SocialMedia from "./Forms/SocialMedia.vue";
 import { Modal } from 'bootstrap';
 import Compressor from 'compressorjs';
+import ProfileModal from '/src/components/Dashboard/Modals/ProfileModal.vue';
 
 export default {
   setup()
@@ -376,6 +393,7 @@ export default {
     StaffForm, 
     SocialMedia,
     Multiselect,
+    ProfileModal
   },
   data: () => ({
     // form: {
@@ -394,7 +412,7 @@ export default {
     //   accept_proposal: false,
     //   send_proposal: false,
     // },
-    avatar: '/assets/artist-account/new.svg',
+    avatar: '/assets/artist-account/new.svg', // null
     isSearchable: true,
     social: {
       text: null,
@@ -410,7 +428,9 @@ export default {
     triggerType: '',
 
     file: null,
-    compressedImageDataUrl: null
+    compressedImageDataUrl: null,
+    parentAvatar: '',
+   // bannerImage: '/assets/organizer-account/default-cover-photo.webp',
   }),
   props: {
     hasNoError: {
@@ -454,12 +474,26 @@ export default {
 
     this.formEventTypes = this.myAccount?.event_types || [];
 
+    // this.bannerImage = this.profile.cover_photo || this.account?.cover_photo || '/assets/organizer-account/default-cover-photo.webp';
+
+    this.avatar = this.form.avatar || this.account?.avatar || '/assets/artist-account/new.svg';
+
   },
   methods: {
     ...mapActions([
       'fetchOrganizerOptions', 'fetchProfile', 'removeStaff',
     ]),
     ...mapMutations(['SET_STAFF_FILTER']),
+
+    handleAvatarUpdate(blob) {
+      if (blob instanceof Blob) {
+        this.parentAvatar = URL.createObjectURL(blob);
+        this.avatar = this.parentAvatar;
+        console.log('set image', this.avatar);
+      } else {
+        this.avatar = '';
+      }
+    },
     replaceByDefault(e) 
     {
       e.target.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm3RFDZM21teuCMFYx_AROjt-AzUwDBROFww&usqp=CAU';
@@ -634,8 +668,8 @@ export default {
           const compressedFile = new File([result], result.name, {
             type: result.type,
           });
-          this.targetMagic = 'image';
-          this.avatarMagic = file;
+         this.targetMagic = 'image';
+         this.avatarMagic = file;
           if (file) {
             this.fileCheck(file);
           }
@@ -752,6 +786,9 @@ export default {
       this.form = val;
       // this.form.avatar = '';
 
+      // this.avatar = this.account?.avatar || this.profile?.avatar || '/assets/artist-account/new.svg';
+      //this.handleFormDataUpdate = this.account?.avatar || this.profile?.avatar || null;
+
       this.avatar = this.account?.avatar || this.profile?.avatar || '/assets/artist-account/new.svg';
       this.formEventTypes = val.event_types || [];
 
@@ -769,7 +806,8 @@ export default {
           case '52494646': // webp
           case '3c737667': // svg
             this.validImage = true;
-            this.avatar = URL.createObjectURL(this.avatarMagic);
+             this.avatar = URL.createObjectURL(this.avatarMagic);
+            //this.handleFormDataUpdate = URL.createObjectURL(this.avatarMagic);
             this.form.avatar = this.avatarMagic;
             
             break;
@@ -783,6 +821,13 @@ export default {
         }
 
       }
+    },
+    profile: {
+      handler(res)
+      {
+        this.avatar = res?.avatar || this.account.avatar || '/assets/artist-account/new.svg';
+      },
+      deep: true,
     },
   }
 }
