@@ -3874,65 +3874,66 @@ img{
   /* Upload Cover photo / Edit Band Members*/
 
   #uploadArtistCoverPhoto .modal-content,
-  #editBandMembers .modal-content {
+  #editBandMembers .modal-content,
+  #uploadProfilePhoto .modal-content {
     padding: 2.06rem 2.38rem 2.63rem;
     width: 35rem;
     margin: 0 auto;
   }
   #uploadArtistCoverPhoto .modal-content .modal-header,
-  #editBandMembers .modal-content .modal-header {
+  #editBandMembers .modal-content .modal-header,
+  #uploadProfilePhoto .modal-content .modal-header {
     margin-bottom: 1.25rem;
   }
-  #uploadArtistCoverPhoto .modal-title {
+  #uploadArtistCoverPhoto .modal-title,
+  #uploadProfilePhoto .modal-title {
     font-size: 1.25rem;
     font-weight: 600;
     line-height: 2rem;
   }
-  #uploadArtistCoverPhoto .modal-body .upload-file-wrapper {
+  #uploadArtistCoverPhoto .modal-body .upload-file-wrapper,
+  #uploadProfilePhoto .modal-body .upload-file-wrapper {
     padding: 0.56rem;
     margin-bottom: 0.93rem;
   }
-  #uploadArtistCoverPhoto .upload-file-wrapper .upload-file-content {
+  #uploadArtistCoverPhoto .upload-file-wrapper .upload-file-content,
+  #uploadProfilePhoto .upload-file-wrapper .upload-file-content {
     padding: 1.56rem 0;
   }
-  #uploadArtistCoverPhoto .upload-file-wrapper .upload-file-content svg {
+  #uploadArtistCoverPhoto .upload-file-wrapper .upload-file-content svg,
+  #uploadProfilePhoto .upload-file-wrapper .upload-file-content svg {
     margin-bottom: 0.62rem;
     width: 1.8125rem;
     height: 1.8125rem;
   }
-  #uploadArtistCoverPhoto
-    .upload-file-wrapper
-    .upload-file-content
-    .drag-files {
+  #uploadArtistCoverPhoto .upload-file-wrapper .upload-file-content .drag-files,
+  #uploadProfilePhoto .upload-file-wrapper .upload-file-content .drag-files {
     font-size: 0.75rem;
   }
-  #uploadArtistCoverPhoto
-    .upload-file-wrapper
-    .upload-file-content
-    .image-type {
+  #uploadArtistCoverPhoto .upload-file-wrapper .upload-file-content .image-type,
+  #uploadProfilePhoto .upload-file-wrapper .upload-file-content .image-type {
     font-size: 0.625rem;
   }
-  #uploadArtistCoverPhoto .upload-file-content .select-files-wrapper label {
+  #uploadArtistCoverPhoto .upload-file-content .select-files-wrapper label,
+  #uploadProfilePhoto .upload-file-content .select-files-wrapper label {
     font-size: 0.625rem;
   }
-  #uploadArtistCoverPhoto
-    .upload-file-wrapper
-    .uploaded-image-wrapper
-    .uploaded-image {
+  #uploadArtistCoverPhoto .upload-file-wrapper .uploaded-image-wrapper .uploaded-image,
+  #uploadProfilePhoto .upload-file-wrapper .uploaded-image-wrapper .uploaded-image {
     height: 18.813rem;
   }
-  #uploadArtistCoverPhoto
-    .upload-file-wrapper
-    .uploaded-image-wrapper
-    .remove-image {
+  #uploadArtistCoverPhoto .upload-file-wrapper .uploaded-image-wrapper .remove-image,
+  #uploadProfilePhoto .upload-file-wrapper .uploaded-image-wrapper .remove-image {
     top: 7%;
     left: 89%;
   }
-  #uploadArtistCoverPhoto .modal-footer {
+  #uploadArtistCoverPhoto .modal-footer,
+  #uploadProfilePhoto .modal-footer {
     padding: 0;
   }
   #uploadArtistCoverPhoto .modal-footer .upload-cover-photo,
-  #editBandMembers .modal-footer .save {
+  #editBandMembers .modal-footer .save,
+  #uploadProfilePhoto .modal-footer .upload-cover-photo {
     font-size: 1rem;
     letter-spacing: -0.02rem;
     padding: 0.88rem 7rem;

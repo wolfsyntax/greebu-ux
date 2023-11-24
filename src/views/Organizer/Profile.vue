@@ -15,7 +15,7 @@
               <p class="sub-heading">Let customers and other co-artists know you better!</p>
               <h3 class="profile-details">Profile Details</h3>
 
-              <div class="onboarding-message"  v-if="message">
+              <div class="onboarding-message" v-if="message">
               <input type="checkbox" id="modal-toggle" class="modal-toggle" checked style="display: none;">
                 <div class="modal">
                   <!-- <div class="close-toast">
@@ -358,15 +358,17 @@
       </section>
     </div>
 
-    <profile-modal 
-    @formDataUpdated="handleFormDataUpdate" 
-    @close="toggleProfile"
-    :active="isActive" />
-
     <social-media id="organizerLinks" @form="updateSocial" :media="social" @modalClose="dismiss" />
     <staff-form id="organizerStaff" @form="onStaffSave" @modalClose="dismiss" />
 
-    <p><b>Account</b> - {{  account }}</p>
+    <profile-modal 
+    @close="toggleProfile"
+    :active="isActive"
+    @formDataUpdated="handleAvatarUpdate"
+    page="organizer-profile"
+     />
+
+    <!-- <p><b>Account</b> - {{  account }}</p> -->
 
   </div>
 </template>
@@ -483,25 +485,14 @@ export default {
     ]),
     ...mapMutations(['SET_STAFF_FILTER']),
 
-    handleFormDataUpdate(blob) {
+    handleAvatarUpdate(blob) {
       if (blob instanceof Blob) {
         this.parentAvatar = URL.createObjectURL(blob);
         this.avatar = this.parentAvatar;
         console.log('set image', this.avatar);
-
-        // this.avatar = URL.createObjectURL(this.avatarMagic);
-        //this.form.avatar = this.avatar;
-
       } else {
         this.avatar = '';
       }
-      // const imageBlob = formData.get('avatar');
-      // if (imageBlob) {
-      //   this.avatar = URL.createObjectURL(imageBlob);
-      // } else {
-      //   this.avatar = ''; 
-      // }
-
     },
     replaceByDefault(e) 
     {
