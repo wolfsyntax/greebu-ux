@@ -440,7 +440,6 @@ export const updateAvatar = ({ commit, rootState }, payload) => {
     }, 1000);
   });
 };
-
 export const updateBanner = ({ commit, rootState }, payload) => {
   return new Promise((resolve, reject) => {
     axios.defaults.headers.common["Authorization"] =

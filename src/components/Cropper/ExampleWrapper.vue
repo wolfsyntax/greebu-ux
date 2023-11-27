@@ -59,11 +59,13 @@ export default {
 
 
 .example-wrapper {
-  position: relative;
-  user-select: none;
-  border: solid 1px #eee;
-  margin-top: 20px;
-  margin-bottom: 20px;
+	width: 100%;
+	height: 32.25rem;
+//   position: relative;
+//   user-select: none;
+//   border: solid 1px #eee;
+//   margin-top: 20px;
+//   margin-bottom: 20px;
 }
 .example-wrapper--no-border {
   border: none;

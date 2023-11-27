@@ -10238,6 +10238,42 @@ header nav {
   font-weight: 500;
 }
 
+/* Cropper */
+
+#uploadProfilePhoto .vue-advanced-cropper > *{
+  width: 100%!important;
+  height: 32.25rem!important;
+  cursor: move;
+}
+#uploadProfilePhoto .drag-mouse-wrap{
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  gap: 0.25rem;
+  border-radius: 0.375rem;
+  background: rgba(0, 0, 0, 0.60);
+  padding: 0.62rem 0.78rem;
+}
+#uploadProfilePhoto .drag-mouse-wrap .drag-cursor{
+  width: 1.00725rem;
+  height: 1rem;
+}
+#uploadProfilePhoto .drag-mouse-wrap .drag{
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 600;
+}
+/* .vue-preview__image {
+  width: 100%!important;
+  height: 100%!important;
+}
+.manipulate-image-example .coordinates-cropper{
+  height: 100%!important;
+} */
+
 /* MEDIA QUERIES */
 
 /* Large (lg) and Extra large (xl) */
@@ -10253,6 +10289,7 @@ header nav {
   24 px	1.5 rem
   28px 1.75 rem
 /* */
+
 
   /* Hide scrollbar for Chrome, Safari and Opera */
   .multiselect .multiselect-dropdown::-webkit-scrollbar {

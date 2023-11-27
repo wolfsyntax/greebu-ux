@@ -49,6 +49,7 @@
                   <label class="label-img">
 
                     <img :src="avatar" class="img-fluid default-avatar" alt="default user avatar">
+
                     <div class="camera">
 
                       <!-- <input type="file" @input="changeImage" accept="image/png, image/webp, image/svg, image/jpeg" /> -->
@@ -358,15 +359,15 @@
       </section>
     </div>
 
+    <profile-modal 
+    @close="toggleProfile"
+    @formDataUpdated="handleOrganizerAvatarUpdate"
+    page="page1"
+     />
+
     <social-media id="organizerLinks" @form="updateSocial" :media="social" @modalClose="dismiss" />
     <staff-form id="organizerStaff" @form="onStaffSave" @modalClose="dismiss" />
 
-    <profile-modal 
-    @close="toggleProfile"
-    :active="isActive"
-    @formDataUpdated="handleAvatarUpdate"
-    page="organizer-profile"
-     />
 
     <!-- <p><b>Account</b> - {{  account }}</p> -->
 
@@ -386,8 +387,6 @@ export default {
   setup()
   {
 
-
-    return {}
   },
   components: {
     StaffForm, 
@@ -412,7 +411,7 @@ export default {
     //   accept_proposal: false,
     //   send_proposal: false,
     // },
-    avatar: '/assets/artist-account/new.svg', // null
+    avatar: null, // null  // /assets/artist-account/new.svg
     isSearchable: true,
     social: {
       text: null,
@@ -485,13 +484,13 @@ export default {
     ]),
     ...mapMutations(['SET_STAFF_FILTER']),
 
-    handleAvatarUpdate(blob) {
+    handleOrganizerAvatarUpdate(blob) {
       if (blob instanceof Blob) {
         this.parentAvatar = URL.createObjectURL(blob);
         this.avatar = this.parentAvatar;
-        console.log('set image', this.avatar);
+        console.log('Organizer set image', this.avatar);
       } else {
-        this.avatar = '';
+         this.avatar = '';
       }
     },
     replaceByDefault(e) 

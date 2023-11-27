@@ -30,7 +30,7 @@
 
             <div class="uploaded-image-wrapper" v-else>
               <div  v-if="showImage">
-                <img ref="uploadedImage" class="uploaded-image" :src="avatar" alt="banner-modal" />
+                <!-- <img :style="{ objectFit: fitStyle }" ref="uploadedImage" class="uploaded-image" :src="avatar" alt="banner-modal" /> -->
               </div>
               <example-wrapper
                 class="manipulate-image-example" >
@@ -103,29 +103,25 @@
 
                 <vertical-buttons>
                   <square-button title="Zoom In" @click="zoom(2)">
-                  <img src="/assets/vue-cropper/zoom-in.svg" />
-                </square-button>
+                    <!-- <img src="/assets/vue-cropper/zoom-in.svg" /> -->
+                    <span class="material-symbols-rounded zoom-in">&#xe8ff;</span>
+                  </square-button>
                 <square-button title="Zoom Out" @click="zoom(0.5)">
-                  <img src="/assets/vue-cropper/zoom-out.svg" />
-                </square-button>
-                <square-button title="Move Top" @click="move('top')">
-                  <img src="/assets/vue-cropper/arrow-top.svg" />
-                </square-button>
-                <square-button title="Move Left" @click="move('left')">
-                  <img src="/assets/vue-cropper/arrow-left.svg" />
-                </square-button>
-                <square-button title="Move Right" @click="move('right')">
-                  <img src="/assets/vue-cropper/arrow-right.svg" />
-                </square-button>
-                <square-button title="Move Bottom" @click="move('bottom')">
-                  <img src="/assets/vue-cropper/arrow-bottom.svg" />
-                </square-button>
+                  <span class="material-symbols-rounded zoom-out">&#xe900;</span>
+                    <!-- <img src="/assets/vue-cropper/zoom-out.svg" /> -->
+                  </square-button>
               </vertical-buttons>
+
               <div class="size-info" v-if="size.width && size.height">
                 <div>Width: {{ size.width }}px</div>
                 <div>Height: {{ size.height }}px</div>
               </div>
             </example-wrapper>  
+
+            <div class="d-flex align-items-center drag-mouse-wrap">
+                <img src="/assets/vue-cropper/drag-icon.svg" class="drag-cursor" />
+                <h4 class="mb-0 drag">Drag to reposition</h4>
+            </div>
 
               <button class="remove-image" @click="removeBanner">
                 <span class="material-symbols-outlined">&#xe5cd;</span> 
@@ -138,19 +134,20 @@
 
         <div class="modal-footer justify-content-center" >
 
-          <button class="btn btn-lg upload-cover-photo" @click="getCropImage" v-if="preview">Generate</button>
-          <button class="btn btn-lg upload-cover-photo" @click="getCropImage" v-else>
-            <span v-if="isLoading">
-                <i class="busy-cover-photo"></i>
-                Uploading Cover Photo
-              </span>
-            <span v-else>Set as Cover Photo</span>
-          </button>
-        </div>
+            <button class="btn btn-lg upload-cover-photo" @click="getCropImage" v-if="preview">Set as profile picture</button>
+            <button class="btn btn-lg upload-cover-photo" @click="getCropImage" v-else>
+              <span v-if="isLoading">
+                  <i class="busy-cover-photo"></i>
+                  Setting as profile picture
+                </span>
+              <span v-else>Set as profile picture</span>
+            </button>
+            </div>
+
       </div>
     </div>
   </div>
-
+<!-- <StaffForm /> -->
 </template>
 
 <script>
@@ -158,6 +155,7 @@ import { mapGetters, mapState, mapActions } from "vuex";
 import ExampleWrapper from '/src/components/Cropper/ExampleWrapper.vue';
 import VerticalButtons from '/src/components/Cropper/VerticalButtons.vue';
 import SquareButton from '/src/components/Cropper/SquareButton.vue';
+//import StaffForm from "../../../views/Organizer/Forms/StaffForm.vue";
 
 import CircleStencil from '/src/components/Cropper/CircleStencil.vue';
 import HomeView from '/src/components/Cropper/HomeView.vue';
@@ -166,6 +164,7 @@ export default {
     ExampleWrapper,
 		VerticalButtons,
 		SquareButton,
+    //StaffForm
     // HomeView,
     // CircleStencil
   
@@ -217,17 +216,12 @@ export default {
 		stencilCoordinates: {
 			type: Object,
 		},
-    page:{
-      type: String,
-      required: true
-    }  
+    page: String,
   },
   computed: {
     ...mapGetters(['userRole',]),
     ...mapState({
-
     }),
-   
   },
   mounted()
   {
@@ -235,10 +229,8 @@ export default {
   },
   methods: {
     ...mapActions([
-     // 'updateBanner',
      'updateAvatar',
-     'updateAvatar',
-   //  'addStaff '
+     'addStaff '
     ]),
     boundaries({ cropper, imageSize }) {
 			return {
@@ -253,17 +245,7 @@ export default {
 		zoom(factor) {
 			this.$refs.cropper.zoom(factor);
 		},
-		move(direction) {
-			if (direction === 'left') {
-				this.$refs.cropper.move(-this.size.width / 4);
-			} else if (direction === 'right') {
-				this.$refs.cropper.move(this.size.width / 4);
-			} else if (direction === 'top') {
-				this.$refs.cropper.move(0, -this.size.height / 4);
-			} else if (direction === 'bottom') {
-				this.$refs.cropper.move(0, this.size.height / 4);
-			}
-		},
+		
     fillArea({ boundaries }) {
       return {
         width: boundaries.width,
@@ -289,31 +271,46 @@ export default {
       {
         this.form.avatar = blob;
 
-        // this.$emit('formDataUpdated', formData);
-        this.$emit('formDataUpdated', this.form.avatar);
-
+       this.$emit('formDataUpdated', this.form.avatar);
         this.isLoading = true;
 
         var formData = new FormData();
 
         formData.append('avatar', this.form.avatar, this.filename);
 
-        if (this.page === 'organizer-profile') {
-        this.updateAvatar(formData); // Call the specific function for Page 
-      } else if (this.page === 'artist-profile') {
-        this.updateAvatar(formData); 
-      }else if (this.page === 'organizer-staff-profile') {
-       // this.addStaff(formData); 
-      }
+        this.updateAvatar(formData);
 
-       // this.updateAvatar(formData);
+        // this.updateAvatar(formData).then(response =>
+        //   {
+        //     this.$refs.bannerClose.click();
+        //     this.removeBanner();
+            
+        //     console.log(`Closing Banner po`);
+        //   })
+        //   .catch(error => {
+        //     console.error('Error uploading cover:', error);
+        //   });
+
+      //   if (this.page === 'page1' || this.page === 'page2') { // organizer and artist
+      //   this.updateAvatar(formData); // Call the specific function for Page 
+      // } 
+      // else if (this.page === 'page3') { // organizer staff
+      //   this.addStaff(formData); 
+      // }
+
+
+      // if (currentPage === '/account/profile' || currentPage === '/account/profile') {
+      //   this.updateAvatar(formData);
+      // } else if (currentPage === '/account/profile') {
+      //   this.updateAvatars(formData);
+      // }
+  
       
         this.$refs.bannerClose.click();
         this.removeBanner();
         console.log(`Closing Banner`);
 
       });
-     // this.$emit('avatarUpdated', this.form.avatar)
 
     },
     handleDragOverCover(e)
@@ -392,7 +389,7 @@ export default {
           this.filename = name;
           this.form.cover_photo = rawFile;
           this.avatar = this.preview = URL.createObjectURL(rawFile);
-       
+          
       //  this.$emit('formDataUpdated', this.avatar);
         // console.log(`top banner image`, this.banner)
 
@@ -406,6 +403,7 @@ export default {
           this.imageHeight = img.height;
           console.log(`Image Width: ${this.imageWidth} pixels`);
           console.log(`Image Height: ${this.imageHeight} pixels`);
+          
         };
 
       }
@@ -429,7 +427,7 @@ export default {
 
 <style scoped>
 #uploadProfilePhoto .upload-file-wrapper .uploaded-image-wrapper{
-  height: auto;
+  height: 32.25rem; 
 }
 .edit.btn {
   color: #FFF !important;
@@ -446,7 +444,7 @@ export default {
   cursor: move;
 }
 .manipulate-image-example .coordinates-cropper {
-  max-height: 500px;
+  /* max-height: 500px; */
   background: black;
 }
 .manipulate-image-example .size-info {
