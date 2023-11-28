@@ -429,7 +429,7 @@ export default {
 #uploadProfilePhoto .upload-file-wrapper .uploaded-image-wrapper{
   height: 32.25rem; 
 }
-.edit.btn {
+/* .edit.btn {
   color: #FFF !important;
   font-size: 20px;
   font-weight: 700;
@@ -438,7 +438,7 @@ export default {
   padding: 14px 37px;
   background-color: #FF6B00 !important;
   border: 0;
-}
+} */
 .cropper {
   height: inherit!important;
   cursor: move;

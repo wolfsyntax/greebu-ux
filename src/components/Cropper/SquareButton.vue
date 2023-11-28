@@ -47,4 +47,24 @@
   transition: 0.7s all;
   font-variation-settings: 'FILL' 1,'wght' 800,'GRAD' 0,'opsz' 48;
 }
+
+/* MEDIA QUERIES */
+
+/* Large (lg) and Extra large (xl) */
+@media (min-width: 992px) and (max-width: 1399.98px) {
+
+.square-button {
+  border-radius: 0.375rem;
+  background: rgba(0, 0, 0, 0.60);
+  height: 2.063rem;
+  width: 2.063rem;
+}
+.square-button .zoom-in,
+.square-button .zoom-out{
+  font-size: 20px;
+}
+
+}
+
+
 </style>

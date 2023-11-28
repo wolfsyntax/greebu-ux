@@ -1,21 +1,21 @@
 <template>
-  <div class="modal fade" id="uploadArtistCoverPhoto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+  <div class="modal fade" id="uploadProfilePhoto" data-bs-backdrop="static" 
+  data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Upload Cover Photos</h5>
+          <h5 class="modal-title">Upload Profile Picture</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ref="bannerClose" ></button>
         </div>
         <div class="modal-body">
-      <div
-       class="upload-file-wrapper" 
-      @dragover="handleDragOverCover"
-      @dragleave="handleDragLeaveCover"
-      @drop="handleDropCover"
-      :class="{ 'drag-over': isDragOver }"
-      >                   
-    
-          <!-- <input type="file" ref="bannerInput" style="display: none;" accept=".png,.webp,.svg,.jpeg" @change="handleClick"/> -->
+
+        <div
+          class="upload-file-wrapper" 
+          @dragover="handleDragOverCover"
+          @dragleave="handleDragLeaveCover"
+          @drop="handleDropCover"
+          :class="{ 'drag-over': isDragOver }"
+          >                   
           <input type="file" ref="bannerInput" style="display: none;" accept="image/*" @change="handleClick"/>
           <div class="text-center upload-file-content" v-if="uploadBox">
               <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 45 45" fill="none">
@@ -29,9 +29,9 @@
             </div>
 
             <div class="uploaded-image-wrapper" v-else>
-              <!-- <div  v-if="showImage">
-                <img  ref="uploadedImage" class="uploaded-image" :src="banner" alt="banner-modal" />
-              </div> -->
+              <div  v-if="showImage">
+                <!-- <img :style="{ objectFit: fitStyle }" ref="uploadedImage" class="uploaded-image" :src="avatar" alt="banner-modal" /> -->
+              </div>
               <example-wrapper
                 class="manipulate-image-example" >
 
@@ -47,19 +47,24 @@
                     movable: false,
                     scalable: false,
                     resizable: false,
-		                
+		                aspectRatio: 1,
+                  }"
+                  @change="updateSize"
+                 
+                  :resize-image="{
+                    adjustStencil: false
                   }"
                   image-restriction="stencil"
-                  @change="updateSize"
-                  v-if="banner"
+                  v-if="avatar"
                 />
-
                 <vertical-buttons>
                   <square-button title="Zoom In" @click="zoom(2)">
+                    <!-- <img src="/assets/vue-cropper/zoom-in.svg" /> -->
                     <span class="material-symbols-rounded zoom-in">&#xe8ff;</span>
                   </square-button>
                 <square-button title="Zoom Out" @click="zoom(0.5)">
                   <span class="material-symbols-rounded zoom-out">&#xe900;</span>
+                    <!-- <img src="/assets/vue-cropper/zoom-out.svg" /> -->
                   </square-button>
               </vertical-buttons>
 
@@ -78,25 +83,27 @@
                 <span class="material-symbols-outlined">&#xe5cd;</span> 
               </button>
           </div>
-
       </div> 
 
-  
+
         </div> <!-- end of modal-body -->
 
         <div class="modal-footer justify-content-center" >
-          <button class="btn btn-lg upload-cover-photo" @click="getCropImage" v-if="preview">Generate</button>
-          <button class="btn btn-lg upload-cover-photo" @click="getCropImage" v-else>
-            <span v-if="isLoading">
-                <i class="busy-cover-photo"></i>
-                Uploading Cover Photo
-              </span>
-            <span v-else>Set as Cover Photo</span>
-          </button>
-        </div>
+
+            <button class="btn btn-lg upload-cover-photo" @click="getCropImage" v-if="preview">Set as profile picture</button>
+            <button class="btn btn-lg upload-cover-photo" @click="getCropImage" v-else>
+              <span v-if="isLoading">
+                  <i class="busy-cover-photo"></i>
+                  Setting as profile picture
+                </span>
+              <span v-else>Set as profile picture</span>
+            </button>
+            </div>
+
       </div>
     </div>
   </div>
+<!-- <StaffForm /> -->
 </template>
 
 <script>
@@ -104,15 +111,25 @@ import { mapGetters, mapState, mapActions } from "vuex";
 import ExampleWrapper from '/src/components/Cropper/ExampleWrapper.vue';
 import VerticalButtons from '/src/components/Cropper/VerticalButtons.vue';
 import SquareButton from '/src/components/Cropper/SquareButton.vue';
+//import StaffForm from "../../../views/Organizer/Forms/StaffForm.vue";
 
+import CircleStencil from '/src/components/Cropper/CircleStencil.vue';
+import HomeView from '/src/components/Cropper/HomeView.vue';
 export default { 
   components: {
     ExampleWrapper,
 		VerticalButtons,
 		SquareButton,
+    //StaffForm
+    // HomeView,
+    // CircleStencil
+  
   },
   setup () {
+
     return {
+      songInfoText: "Please ensure that the uploaded image is smaller than 2MB in file size.",
+      img: 'https://images.unsplash.com/photo-1485178575877-1a13bf489dfe?ixlib=rb-1.2.1&auto=format&fit=crop&w=991&q=80',
       size: {
 				width: null,
 				height: null,
@@ -120,9 +137,9 @@ export default {
     }
   },
   data: () => ({
-    banner: null,
+    avatar: null,
     form: {
-      cover_photo: '',
+      avatar: '',
     },
     uploadBox: true,
     cropImage: null,
@@ -134,7 +151,9 @@ export default {
     filename: null,
     preview: '',
     showImage: false,
+    
   }),
+  
   props: {
     active: { 
       type: Boolean,
@@ -158,34 +177,16 @@ export default {
   computed: {
     ...mapGetters(['userRole',]),
     ...mapState({
-
-    })
+    }),
   },
   mounted()
   {
-    const myModal = document.getElementById('uploadArtistCoverPhoto');
-
-    myModal.addEventListener('hide.bs.modal', () =>
-    {
-      this.form.cover_photo = '';
-      this.banner = null;
-
-      this.preview = null;
-      this.cropImage = null;
-
-      this.isLoading = false;
-      this.isDragOver = false;
-      this.imageWidth = null;
-      this.imageHeight = null;
-      this.imageUrl = null;
-
-      this.filename = null;
-
-    });
+    const myModal = document.getElementById('uploadProfilePhoto');
   },
   methods: {
     ...mapActions([
-      'updateBanner',
+     'updateAvatar',
+     'addStaff '
     ]),
     boundaries({ cropper, imageSize }) {
 			return {
@@ -224,19 +225,21 @@ export default {
       
       this.cropImage.toBlob(async blob =>
       {
-        this.form.cover_photo = blob;
+        this.form.avatar = blob;
 
+       this.$emit('formDataUpdated', this.form.avatar);
         this.isLoading = true;
-        var formData = new FormData();
-        formData.append('cover_photo', this.form.cover_photo, this.filename);
-        this.updateBanner(formData)
 
+        var formData = new FormData();
+
+        formData.append('avatar', this.form.avatar, this.filename);
+
+        this.updateAvatar(formData);
         this.$refs.bannerClose.click();
         this.removeBanner();
         console.log(`Closing Banner`);
 
       });
-
 
     },
     handleDragOverCover(e)
@@ -273,67 +276,50 @@ export default {
         console.log('Not valid image');
         return false
       }
-
-      // this.form.cover_photo = e.target.files[0];
-      // this.banner = URL.createObjectURL(e.target.files[0]);
       this.handleCoverImage(files);
     },
 
     uploadCover()
     {
-      // this.isLoading = true;
-      
-      // var formData = new FormData();
-      // formData.append('cover_photo', this.form.cover_photo, this.filename);
-      // this.updateBanner(formData)
-      // // this.updateBanner(this.form, this.generateImage)
-      //   .then(response =>
-      //   {
-      //     this.$refs.bannerClose.click();
-      //     this.removeBanner();
-          
-      //     console.log(`Closing Banner`);
-      //   })
-      //   .catch(error => {
-      //     console.error('Error uploading cover:', error);
-      //   });
     },
 
     handleClick(e)
     {
       const files = e.target.files;
       this.handleCoverImage(files);
+
     },
     handleCoverImage(files){
+      
       if(files){
         const rawFile = files[0];
-        if (!rawFile) return;
 
-        const { name } = rawFile;
-        this.filename = name;
-        
-        this.form.cover_photo = rawFile;
-        this.banner = this.preview = URL.createObjectURL(rawFile);
-        // console.log(`top banner image`, this.banner)
+          if (!rawFile) return;
+          const { name } = rawFile;
+          this.filename = name;
+          this.form.cover_photo = rawFile;
+          this.avatar = this.preview = URL.createObjectURL(rawFile);
 
         this.uploadBox = false;
         // check the image width and height
         const img = new Image();
-        img.src = this.banner;
+        img.src = this.avatar;
 
         img.onload = () => {
           this.imageWidth = img.width;
           this.imageHeight = img.height;
           console.log(`Image Width: ${this.imageWidth} pixels`);
           console.log(`Image Height: ${this.imageHeight} pixels`);
+          
         };
 
       }
+
     },
     removeBanner()
     {
       this.form.cover_photo = null;
-      this.banner = null;
+      this.avatar = null;
       this.cropImage = null;
       this.$refs['bannerInput'].value = null;
       this.uploadBox = true;
@@ -347,23 +333,8 @@ export default {
 </script>
 
 <style scoped>
-/* .edit.btn {
-  color: #FFF !important;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 100%;
-  letter-spacing: 1px;
-  padding: 14px 37px;
-  background-color: #FF6B00 !important;
-  border: 0;
-}
-.cropper {
-  height: inherit!important;
-  cursor: move;
-} */
-
-#uploadArtistCoverPhoto .upload-file-wrapper .uploaded-image-wrapper{
-  height: 14.3rem;
+#uploadProfilePhoto .upload-file-wrapper .uploaded-image-wrapper{
+  height: 32.25rem; 
 }
 .cropper {
   height: inherit!important;
@@ -388,4 +359,5 @@ export default {
 .circle-cropper__preview {
   border: solid 1px rgba(255, 255, 255, 0.15);
 }
+
 </style>
