@@ -157,7 +157,34 @@ var actions = {
         });
     });
   },
+  validateInfo({ commit, state }, payload) {
+    return new Promise(async (resolve, reject) => {
+      axios
+        .post(
+          `${
+            import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+          }/api/validate-info`,
+          payload,
+          {
+            Accept: "application/json",
+          }
+        )
+        .then((response) => {
+          const { status: statusCode, data } = response;
 
+          if (statusCode === 200) {
+            console.log("Valid form data for registration: ", data);
+            resolve(data);
+          } else if (statusCode === 203) {
+            console.log("Encountered Error upon registration: ", data);
+            reject(data);
+          }
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  },
   signout({ commit, state }) {
     return new Promise(async (resolve, reject) => {
       axios.defaults.headers.common["Authorization"] =

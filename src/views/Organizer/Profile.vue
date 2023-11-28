@@ -42,6 +42,8 @@
                 </div> -->
 
               <form @submit.prevent="submit" class="fill-details" autocomplete="off">
+                <!-- Use for profile pic handler -->
+                <!-- <avatar @uploader="uploadHandler" /> -->
                 <div class="form-group upload-img">
                   <label class="label-img">
 
@@ -364,6 +366,7 @@ import StaffForm from './Forms/StaffForm.vue';
 import SocialMedia from "./Forms/SocialMedia.vue";
 import { Modal } from 'bootstrap';
 import Compressor from 'compressorjs';
+import Avatar from '/src/components/Cropper/Avatar.vue';
 
 export default {
   setup()
@@ -376,6 +379,7 @@ export default {
     StaffForm, 
     SocialMedia,
     Multiselect,
+    Avatar,
   },
   data: () => ({
     // form: {
@@ -460,6 +464,9 @@ export default {
       'fetchOrganizerOptions', 'fetchProfile', 'removeStaff',
     ]),
     ...mapMutations(['SET_STAFF_FILTER']),
+    uploadHandler(content) {
+      console.log('Avatar Uploader: ', content);
+    },
     replaceByDefault(e) 
     {
       e.target.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm3RFDZM21teuCMFYx_AROjt-AzUwDBROFww&usqp=CAU';

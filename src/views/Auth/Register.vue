@@ -2,7 +2,7 @@
   <layout>
 
   <section class="register">
-    <div class="container-fluid" v-if="!$route.query.id">
+    <div class="container-fluid" v-if="!$route.query.status || $route.query.status === false">
       <div id="registerCarouselBanner" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <div class="carousel-indicators">
           <button type="button" data-bs-target="#registerCarouselBanner" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -26,7 +26,7 @@
         </div>
         <div class="card">
           <div class="card-body">
-            <form @submit.prevent="submit">
+            <form @submit.prevent="validate">
                                                <!-- Choose account type -->
            <div v-if="showRadioButtons">                                  
               <div class="row row-checkbox">
@@ -120,7 +120,7 @@
 
                 <div class="input-group mb-3">
                   <span class="input-group-text" id="basic-addon1">+63</span>
-                  <input id="phone" type="text" class="form-control" name="phone" v-model="form.phone" @blur="getFormattedPhone" required autocomplete="phone" placeholder="">
+                  <input id="phone" type="text" class="form-control" name="phone" v-model="form.phone" @blur="getFormattedPhone" required autocomplete="phone" placeholder="" maxlength="13">
                 </div>
 
                 <div v-for="error in errors?.phone" :key="error" class="text-danger">{{ error }}</div>
@@ -173,23 +173,6 @@
     </div>
 
     <verify-card v-else/>
-
-    <!-- <div class="container-fluid" v-else>
-      <form @submit.prevent="confirm">
-        <div class="">
-          <div class="row">
-            <div class="col">
-              <label for="username">Verification Code</label>
-                <input id="verifyCode" max="6" type="text" class="form-control" name="verifyCode" v-model="verifyCode" required autocomplete="off">  
-                <span v-if="verifyMessage" class="text-danger">{{ verifyMessage }}</span>
-            </div>
-            
-            <button @click.prevent="resendCode">Resend Code {{ $filters.timer(countdown) }}</button>
-          </div>
-        </div>
-        <button type="submit">Confirm</button>
-      </form>
-    </div> -->
   </section>
 
   </layout>
@@ -212,21 +195,21 @@ export default {
       verifyCode: null,
       verifyMessage: null,
       message: '',
-      form: {
-        first_name: null,
-        last_name: null,
-        email: null,
-        username: null,
-        phone: null,
-        password: null,
-        password_confirmation: null,
-        account_type: 'customers',
-       // account_type: '',
-        phone: null,
-        login_type: 'email',
+      // form: {
+      //   first_name: null,
+      //   last_name: null,
+      //   email: null,
+      //   username: null,
+      //   phone: null,
+      //   password: null,
+      //   password_confirmation: null,
+      //   account_type: 'customers',
+      //  // account_type: '',
+      //   phone: null,
+      //   login_type: 'email',
 
        
-      },
+      // },
       phone: '',
       errors: {},
       countdown: 180,
@@ -237,6 +220,7 @@ export default {
       isDisabled: false,
       showRadioButtons: true,
       isLoading: false,
+      isSignup: true,
     }
   },
   props: {
@@ -247,34 +231,41 @@ export default {
 
   },
   mounted() {
+    console.log('Register.vue mounted ', this.form.phone)
+
+    if (this.form?.phone !== '') this.getFormattedPhone();
+    
   },
   computed: {
     ...mapGetters(["userInfo", "info", "token", "isLoggedIn"]),
-    //...mapState({})
+    ...mapState({
+      form: state => state.signupForm,
+    }),
     isAccountTypeSelected() {
       return this.form.account_type !== '';
     },
-    formatPhone() {
-      // if(/^\+[1-9]\d{1,14}$/.test(this.form.phone)) {
-        console.log('Formatted Phone:: ', this.form?.phone !== '' || this.form?.phone !== null)
-      if (this.form?.phone !== '' && this.form?.phone !== null) {
-        if (this.form.phone.startsWith('09')) {
-          console.log('09 ', `+63${this.form.phone.substring(1)}`)
-          return `+63${this.form.phone.substring(1)}`;
-        } else if (this.form.phone.startsWith('+63')) {
-          return this.form.phone;
-        } else if (this.form.phone.startsWith('9')) {
-          return `+63${this.form.phone}`;
-        }
-      }
-        return '';
+    // formatPhone() {
+    //   // if(/^\+[1-9]\d{1,14}$/.test(this.form.phone)) {
+    //     console.log('Formatted Phone:: ', this.form?.phone !== '' || this.form?.phone !== null)
+    //   if (this.form?.phone !== '' && this.form?.phone !== null) {
+    //     if (this.form.phone.startsWith('09')) {
+    //       console.log('09 ', `+63${this.form.phone.substring(1)}`)
+    //       return `${this.form.phone.substring(1)}`;
+    //     } else if (this.form.phone.startsWith('+63')) {
+    //       return this.form.phone.substring(3);
+    //     } else if (this.form.phone.startsWith('9')) {
+    //       return `${this.form.phone}`;
+    //     }
+    //   }
+    //     return '';
         
-      // }
-    }
+    //   // }
+    // }
   },
-  // created() {
-  //   console.log(this.form.account_type);
-  // },
+  created() {
+    console.log('Register.vue created', this.form.phone);
+    // console.log(this.form.account_type);
+  },
   methods: {
     getFormattedPhone() {
       
@@ -286,14 +277,17 @@ export default {
         if (this.form.phone.startsWith('09')) {
           console.log('09 ', `+63${this.form.phone.substring(1)}`)
           this.phone = `${this.form.phone.substring(1)}`;
+        } else if (this.form.phone.startsWith('+630')) {
+          this.phone = this.form.phone.substring(4);
         } else if (this.form.phone.startsWith('+63')) {
           this.phone = this.form.phone.substring(3);
+        
         } else if (this.form.phone.startsWith('9')) {
-          this.phone = `${this.form.phone}`;
+          this.phone = this.form.phone;
         }
-
+        
         this.form.phone = this.phone;
-
+        console.log('[GET] Formatted Phone number: ', this.form.phone);
       }
       // }
       
@@ -301,17 +295,49 @@ export default {
 
     },
     onBlurPhone () {
-      this.form.phone = this.phone;
+      this.form.phone = this.formatPhone;
     },
     submitAccountType() {
       if (this.form.account_type) {
         this.showRadioButtons = false; 
       }
     },
-    ...mapActions(['signup', 'resendCode', 'verifyOTP', 'phoneOTP']),
+    ...mapActions(['signup', 'resendCode', 'verifyOTP', 'phoneOTP', 'validateInfo',]),
     setMessage(msg)
     {
       this.message = msg;
+    },
+    async validate() {
+
+      this.isDisabled = true;
+      this.isLoading = true;
+      // this.form.phone = this.formatPhone;
+      console.log('Form Data: ', this.form)
+      await this.validateInfo(this.form)
+        .then((response) => { 
+          console.log('Validate Registration response: ', response)
+          this.$nextTick(() =>
+          {
+            setTimeout(() =>
+            {
+              this.isDisabled = false;
+            }, 3000)
+            
+          })
+          
+          const { status: statusCode, data: {status, result} } = response;
+          
+          if (statusCode === 200)
+          {
+            this.$router.push({ path: this.$route.path, query: { status: true } });
+          } 
+        })
+        .catch(err =>
+        {
+          console.log('Validate Registration error: ', err);
+          const {result: {errors}} = err;
+          this.errors = errors || {};
+        })
     },
     async submit()
     {
@@ -422,6 +448,13 @@ export default {
     },
   },
   watch: {
+    phone(cur) {
+      if (cur.length !== 10) {
+        this.errors.phone = [
+          'The Phone number is invalid.',
+        ];
+      }
+    },
     step(value)
     {
       if (value === '')

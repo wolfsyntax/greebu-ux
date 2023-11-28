@@ -29,6 +29,19 @@ var state = {
     "No Transportation",
     "Change of Mind",
   ],
+  signupForm: {
+    first_name: null,
+    last_name: null,
+    email: null,
+    username: null,
+    phone: null,
+    password: null,
+    password_confirmation: null,
+    account_type: "customers",
+    // account_type: '',
+    phone: null,
+    login_type: "email",
+  },
 };
 
 export default state;
