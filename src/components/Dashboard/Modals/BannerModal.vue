@@ -104,6 +104,7 @@ import { mapGetters, mapState, mapActions } from "vuex";
 import ExampleWrapper from '/src/components/Cropper/ExampleWrapper.vue';
 import VerticalButtons from '/src/components/Cropper/VerticalButtons.vue';
 import SquareButton from '/src/components/Cropper/SquareButton.vue';
+import Compressor from 'compressorjs'; 
 
 export default { 
   components: {
@@ -227,18 +228,43 @@ export default {
         this.form.cover_photo = blob;
 
         this.isLoading = true;
-        var formData = new FormData();
-        formData.append('cover_photo', this.form.cover_photo, this.filename);
-        this.updateBanner(formData)
+        // var formData = new FormData();
+        // formData.append('cover_photo', this.form.cover_photo, this.filename);
+        // this.updateBanner(formData)
 
-        this.$refs.bannerClose.click();
-        this.removeBanner();
-        console.log(`Closing Banner`);
+        // this.$refs.bannerClose.click();
+        // this.removeBanner();
+        // console.log(`Closing Banner`);
+
+        const files =  this.form.cover_photo;
+        if (files) {
+          this.compressAndUploadImage(files);
+        } else {
+          console.error('No image to upload.');
+        }
 
       });
 
-
     },
+
+    compressAndUploadImage(files) {
+      new Compressor(files, {
+        quality: 0.2, // Adjust the compression quality as needed, 0.6 or 0.8
+        success: (compressedFile) => {
+          const formData = new FormData();
+          formData.append('cover_photo', compressedFile);
+          this.updateBanner(formData);
+
+        this.$refs.bannerClose.click();
+         this.removeBanner();
+         console.log(`Closing Banner`);
+        },
+        error(err) {
+          console.error('Image compression failed:', err.message);
+        },
+      });
+    },
+
     handleDragOverCover(e)
     {
       console.log('Handle DragOver: ', e)
@@ -327,6 +353,8 @@ export default {
           console.log(`Image Width: ${this.imageWidth} pixels`);
           console.log(`Image Height: ${this.imageHeight} pixels`);
         };
+
+        this.compressAndUploadImage(files);
 
       }
     },

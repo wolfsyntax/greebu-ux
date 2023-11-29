@@ -159,6 +159,8 @@ import SquareButton from '/src/components/Cropper/SquareButton.vue';
 
 import CircleStencil from '/src/components/Cropper/CircleStencil.vue';
 import HomeView from '/src/components/Cropper/HomeView.vue';
+
+import Compressor from 'compressorjs';    
 export default { 
   components: {
     ExampleWrapper,
@@ -195,7 +197,7 @@ export default {
     filename: null,
     preview: '',
     showImage: false,
-    
+
   }),
   
   props: {
@@ -270,26 +272,22 @@ export default {
       this.cropImage.toBlob(async blob =>
       {
         this.form.avatar = blob;
+        this.$emit('formDataUpdated', this.form.avatar);
 
-       this.$emit('formDataUpdated', this.form.avatar);
         this.isLoading = true;
+        
+            // if (this.form.avatar) {
+            //   this.compressAndUploadImage(this.form.avatar);
+            // } else {
+            //   console.error('No image to upload.');
+            // }
 
-        var formData = new FormData();
-
-        formData.append('avatar', this.form.avatar, this.filename);
-
-        this.updateAvatar(formData);
-
-        // this.updateAvatar(formData).then(response =>
-        //   {
-        //     this.$refs.bannerClose.click();
-        //     this.removeBanner();
-            
-        //     console.log(`Closing Banner po`);
-        //   })
-        //   .catch(error => {
-        //     console.error('Error uploading cover:', error);
-        //   });
+            const files =  this.form.avatar;
+              if (files) {
+                this.compressAndUploadImage(files);
+              } else {
+                console.error('No image to upload.');
+              }
 
       //   if (this.page === 'page1' || this.page === 'page2') { // organizer and artist
       //   this.updateAvatar(formData); // Call the specific function for Page 
@@ -298,19 +296,8 @@ export default {
       //   this.addStaff(formData); 
       // }
 
-
-      // if (currentPage === '/account/profile' || currentPage === '/account/profile') {
-      //   this.updateAvatar(formData);
-      // } else if (currentPage === '/account/profile') {
-      //   this.updateAvatars(formData);
-      // }
-  
-      
-        this.$refs.bannerClose.click();
-        this.removeBanner();
-        console.log(`Closing Banner`);
-
       });
+
 
     },
     handleDragOverCover(e)
@@ -372,11 +359,43 @@ export default {
       //     console.error('Error uploading cover:', error);
       //   });
     },
+    compressAndUploadImage(files) {
+      new Compressor(files, {
+        quality: 0.2, // Adjust the compression quality as needed, 0.6 or 0.8
+        success: (compressedFile) => {
+          const formData = new FormData();
+          formData.append('avatar', compressedFile);
+          this.updateAvatar(formData);
+
+        this.$refs.bannerClose.click();
+         this.removeBanner();
+         console.log(`Closing Banner`);
+        },
+        error(err) {
+          console.error('Image compression failed:', err.message);
+        },
+      });
+    },
+
+  //   compressAndUploadImage(formData) {
+  //  // const file = formData.get('avatar');
+    
+  //   new Compressor(file, {
+  //     quality: 0.6, // Adjust the compression quality as needed
+  //     success: (compressedFile) => {
+  //       formData.set('avatar', compressedFile, this.filename);
+  //       this.updateAvatar(formData);
+  //     },
+  //     error(err) {
+  //       console.error('Image compression failed:', err.message);
+  //     },
+  //   });
+  // },
 
     handleClick(e)
     {
       const files = e.target.files;
-      this.handleCoverImage(files);
+     this.handleCoverImage(files);
 
     },
     handleCoverImage(files){
@@ -388,7 +407,7 @@ export default {
           const { name } = rawFile;
           this.filename = name;
           this.form.cover_photo = rawFile;
-          this.avatar = this.preview = URL.createObjectURL(rawFile);
+           this.avatar = this.preview = URL.createObjectURL(rawFile);
           
       //  this.$emit('formDataUpdated', this.avatar);
         // console.log(`top banner image`, this.banner)
@@ -406,6 +425,7 @@ export default {
           
         };
 
+        this.compressAndUploadImage(files);
       }
 
     },
