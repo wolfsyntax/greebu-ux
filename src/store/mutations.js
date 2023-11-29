@@ -80,6 +80,27 @@ var mutations = {
   ) {
     state.cancelReasons = payload;
   },
+  setSignupForm(
+    state,
+    payload = {
+      first_name: null,
+      last_name: null,
+      email: null,
+      username: null,
+      phone: null,
+      password: null,
+      password_confirmation: null,
+      account_type: "customers",
+      // account_type: '',
+      phone: null,
+      login_type: "email",
+    }
+  ) {
+    state.signupForm = payload;
+  },
+  setPhoneMask(state, payload) {
+    state.phoneMask = payload;
+  },
 };
 
 export default mutations;

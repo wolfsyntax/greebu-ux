@@ -42,6 +42,9 @@
                 </div> -->
 
               <form @submit.prevent="submit" class="fill-details" autocomplete="off">
+                <!-- Use for profile pic handler -->
+                <!-- <avatar @uploader="uploadHandler" /> -->
+
                 <!-- <img :src="parentImageURL" alt="Avatar Image" v-if="parentImageURL" /> -->
                 <!-- <img :src="avatar" class="img-fluid" loading="lazy" alt="profile cover" > -->
 
@@ -380,6 +383,7 @@ import StaffForm from './Forms/StaffForm.vue';
 import SocialMedia from "./Forms/SocialMedia.vue";
 import { Modal } from 'bootstrap';
 import Compressor from 'compressorjs';
+import Avatar from '/src/components/Cropper/Avatar.vue';
 import ProfileModal from '/src/components/Dashboard/Modals/ProfileModal.vue';
 
 export default {
@@ -393,6 +397,7 @@ export default {
     StaffForm, 
     SocialMedia,
     Multiselect,
+    Avatar,
     ProfileModal
   },
   data: () => ({
@@ -484,7 +489,9 @@ export default {
       'fetchOrganizerOptions', 'fetchProfile', 'removeStaff',
     ]),
     ...mapMutations(['SET_STAFF_FILTER']),
-
+    uploadHandler(content) {
+      console.log('Avatar Uploader: ', content);
+    },
     handleAvatarUpdate(blob) {
       if (blob instanceof Blob) {
         this.parentAvatar = URL.createObjectURL(blob);

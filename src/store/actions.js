@@ -157,7 +157,122 @@ var actions = {
         });
     });
   },
+  signupV2({ commit, dispatch, state }, payload) {
+    return new Promise(async (resolve, reject) => {
+      state.signupForm.verification_code = payload.code || "";
 
+      state.signupForm.phone = state.signupForm.phone.startsWith("+63")
+        ? state.signupForm.phone
+        : `+63${state.signupForm.phone}`;
+
+      commit("CLEAR_STATE");
+
+      commit("SET_PROPOSALS");
+      commit("SET_PROPOSALS");
+
+      commit("SET_PENDING_PROPOSALS");
+      commit("SET_ACCEPTED_PROPOSALS");
+      commit("SET_DECLINED_PROPOSALS");
+
+      commit("SET_PAST_EVENTS");
+      commit("SET_ONGOING_EVENTS");
+      commit("SET_UPCOMING_EVENTS");
+
+      await axios
+        .post(
+          `${
+            import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+          }/api/v2/register`,
+          state.signupForm,
+          {
+            Accept: "application/json",
+          }
+        )
+        .then((response) => {
+          const { status: statusCode, data } = response;
+          console.log("Signup Ver 2.0: ", response);
+          if (statusCode === 201) {
+            const {
+              status,
+              result: { user, profile, roles, token },
+            } = data;
+
+            console.log("User data: ", user);
+            console.log("Profile data: ", profile);
+
+            commit("SET_AUTH", user || {});
+            commit("SET_PHONE", user?.phone);
+            commit("SET_ROLE", profile?.role || "");
+            commit("SET_ROLES", []);
+
+            commit("SET_TOKEN", "");
+            commit("SET_PROFILE", {});
+
+            if (profile?.role === "customers" && user?.phone_verified_at) {
+              commit("SET_TOKEN", token || "");
+              commit("SET_PROFILE", profile || {});
+              commit("setSignupForm");
+              // dispatch("fetchProfile");
+            } else if (user?.phone_verified_at) {
+              commit("setSignupForm");
+              commit("SET_AUTH", user || {});
+              commit("SET_PHONE", user?.phone);
+              commit("SET_ROLE", profile?.role || "");
+              commit("SET_ROLES", roles || []);
+
+              commit("SET_TOKEN", token || "");
+              commit("SET_PROFILE", profile || {});
+
+              // dispatch("fetchProfile");
+            }
+            console.log("[Signup] Resolve API Request");
+            resolve(data);
+          } else if (statusCode === 203) {
+            console.log("Encountered Error upon registration: ", data);
+            reject(data);
+          }
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  },
+  validateInfo({ commit, state }, payload) {
+    payload.phone = payload.phone.startsWith("+63")
+      ? payload.phone
+      : `+63${payload.phone}`;
+    return new Promise(async (resolve, reject) => {
+      await axios
+        .post(
+          `${
+            import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+          }/api/validate-info`,
+          payload,
+          {
+            Accept: "application/json",
+          }
+        )
+        .then((response) => {
+          const { status: statusCode, data } = response;
+
+          if (statusCode === 200) {
+            const {
+              result: { phone },
+            } = data;
+            commit("setPhoneMask", phone || "");
+
+            console.log("Valid form data for registration: ", data);
+            resolve(data);
+          } else if (statusCode === 203) {
+            console.log("Encountered Error upon registration: ", data);
+            reject(data);
+          }
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  },
   signout({ commit, state }) {
     return new Promise(async (resolve, reject) => {
       axios.defaults.headers.common["Authorization"] =
@@ -612,6 +727,36 @@ var actions = {
             reject(err);
           });
       }, 1000);
+    });
+  },
+  resendCodeV2({ commit, state }) {
+    return new Promise((resolve, reject) => {
+      setTimeout(async () => {
+        await axios
+          .post(
+            `${
+              import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+            }/api/v2/twilio-auth/resend-otp`,
+            { phone: state.signupForm.phone },
+            {
+              Accept: "application/json",
+            }
+          )
+          .then((response) => {
+            console.log("\n\nResend Code response: ", response);
+            const {
+              data: { message, status, result },
+            } = response;
+
+            if (status === 200) {
+            }
+
+            resolve(response);
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      }, 1500);
     });
   },
   resendCode({ commit, state }, payload) {

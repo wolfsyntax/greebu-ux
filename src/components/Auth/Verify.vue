@@ -20,7 +20,7 @@
             <div class="content">
               <h5 class="card-title">Check your text messages</h5>
               <p class="card-text">Enter verification code we sent to</p>
-              <p class="phone-number">{{  info.phonemask }}</p>
+              <p class="phone-number">{{  mask }}</p>
 
               <form @submit.prevent="confirm"> 
                 <span v-if="verifyMessage" class="text-danger message">
@@ -107,7 +107,7 @@
 </template>
 
 <script>
-import { mapGetters, mapState, mapActions } from "vuex";
+import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
 import BlankHeader from "@/components/Home/BlankHeader.vue";
 
 export default {
@@ -131,6 +131,10 @@ export default {
     }
   },
   computed: {
+    ...mapState({
+      mask: state => state.phoneMask,
+      phoneMask: state => state.phoneMask,
+    }),
     computedLength() {
       return this.verifyCode.filter(code => code !== null).length;
     },
@@ -148,7 +152,8 @@ export default {
     return {}
   },
   methods: {
-    ...mapActions(['resendCode', 'verifyOTP', 'validateCode']),
+    ...mapActions(['resendCode', 'verifyOTP', 'validateCode', 'signupV2', 'resendCodeV2', 'fetchProfile',]),
+    ...mapMutations(['setSignupForm',]),
     // ...mapMutations([
     //   'CLEAR_STATE',
     // ]),
@@ -158,7 +163,8 @@ export default {
         this.countdown_enabled = true;
         // resend request
         // await this.resendOTPCode(this.$route.query.id)
-        await this.resendCode({userId:  this.$route.query.id})
+        // await this.resendCodeV2({userId:  this.$route.query.id})
+        await this.resendCodeV2()
           .then(response =>
           {
             const { status } = response;
@@ -176,51 +182,44 @@ export default {
 
       this.verifyMessage = '';
       const enteredCode = this.verifyCode.join('');
-      this.validateCode({ code: enteredCode, userId:  this.$route.query.id})
-        .then(response =>
-        {
-          console.log('Verify.vue validator response: ', response)
-          const { status, message, result } = response
+      // this.validateCode({ code: enteredCode, })
+      //   .then(response =>
+      //   {
+      //     console.log('Verify.vue validator response: ', response)
+      //     const { status, message, result } = response
           
+      //     if (status === 200) {
+      //       this.$router.push({ path: '/', query: { onboarding: 'true' } });
+      //     } 
+          
+      //   })
+      //   .catch(err =>
+      //   {
+      //     console.log('OTP Verification Error: ', err)
+      //   })
+
+      this.signupV2({ code: enteredCode, })
+        .then(res => {
+          const { status, message, result } = res
+          console.log('Verify.vue (Signup Ver 2.0): ', res);
+
           if (status === 200) {
-            // if (status === 200) {
-
-              //console.log('Redirect to home');
-             // this.$router.push({name: 'home'});
-
-              this.$router.push({ path: '/', query: { onboarding: 'true' } });
-
-
-              //this.$router.push({ name: 'home', query: { id: result?.user_id } });
-
-             // this.$router.push({ path: this.$route.path === '', query: { id: result?.user_id } });
-
-              //this.$router.push({ path: this.$route.path, query: { id: result?.user_id } });
-              
-              // if (this.userRole === 'customers') {
-              //   this.$router.push("/");
-              // } else {
-              //   this.$store.commit('CLEAR_STATE');
-              //   this.$router.push("/login");
-              // }
-
-            // } else {
-              
-            // }
-
-          } 
+            
+            this.setSignupForm();
+            this.fetchProfile();
+            console.log('Redirect to onboarding');
+            this.$router.push({ path: '/', query: { onboarding: 'true' } });
+          }
           
         })
-        .catch(err =>
-        {
-          console.log('OTP Verification Error: ', err)
-          
-          // if (status === 422) {
-          //   this.verifyMessage = 'The provided OTP code is invalid. Please try again with the correct code.';
-          // } else if (status === 500) {
-          //   // this.verifyMessage = 'Too Many Attempts.';
-          //   this.verifyMessage = `You have already surpassed the limit for resending the OTP code to your number Please wait ${this.$filters.timer(this.rate_countdown)} minutes to re send a new OTP code`;
-          // }
+        .catch(err => {
+          const { result: { errors: error } } = err;
+          if (error.hasOwnProperty('verification_code')) {
+            this.verifyMessage = error.verification_code || 'The provided OTP code is invalid. Please try again with the correct code.';
+          } else {
+            this.$router.push({ path: this.$route.path, query: { } });
+          }
+          console.log('[Signup] Verify.vue Error: ', err);
         })
       
     },
