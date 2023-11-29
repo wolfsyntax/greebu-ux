@@ -62,6 +62,8 @@ import interactionPlugin from "@fullcalendar/interaction";
 
 import Compressor from 'compressorjs';
 
+//import CircleImage from './components/CircleImage.vue'
+
 const app = createApp(App)
   .use(i18n)
   .use(VueAxios, axios)
@@ -101,6 +103,7 @@ const app = createApp(App)
   .component("cropper", Cropper)
   .component("font-awesome-icon", FontAwesomeIcon)
   .component("tree-item", TreeItem)
+  //.component("circle-image", CircleImage)
   .component("v-calendar", FullCalendar);
 
 app.config.globalProperties.$moment = moment;
