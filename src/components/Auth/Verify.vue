@@ -46,6 +46,7 @@
                     class="verification-box" maxlength="1" v-model="verifyCode[index]"
                     @input="handleInput(index)"
                   >
+                  <div class=""></div>
                 </div>
 
                 <button class="resend-code" @click.prevent="resendMyCode">Resend Code {{ $filters.timer(countdown) }}</button>
@@ -213,6 +214,12 @@ export default {
           
         })
         .catch(err => {
+          const { result: { errors: error } } = err;
+          if (error.hasOwnProperty('verification_code')) {
+            this.verifyMessage = error.verification_code || 'The provided OTP code is invalid. Please try again with the correct code.';
+          } else {
+            this.$router.push({ path: this.$route.path, query: { } });
+          }
           console.log('[Signup] Verify.vue Error: ', err);
         })
       
