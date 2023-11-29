@@ -57,50 +57,6 @@
                   image-restriction="stencil"
                   v-if="avatar"
                 />
-
-                <!-- <div>
-    <Cropper class="circle-example"
-      :src="avatar"
-      :stencil-component="stencil"
-      ref="avatarCropper"
-    />
-
-    <input type="file" @input="changeImage" accept="image/png, image/webp, image/svg, image/jpeg" />
-    <button class="btn btn-lg upload-cover-photo" @click="getCropImage" v-if="preview">Generate</button>
-  </div> -->
-
-                <!-- :stencil-props="{
-				previewClass: 'circle-cropper__preview',
-			}"
-			class="circle-cropper"
-			stencil-component="circle-stencil" -->
-
-                <!-- <cropper
-                   :stencil-props="{
-                    minAspectRatio: 10 / 20,
-                  }"
-                  class="cropper"
-                  ref="cropper" 
-                  :src="preview"
-                  :stencil-size="fillArea"
-                  :stencil-props="{
-                    handlers: {},
-                    movable: false,
-                    scalable: false,
-                    resizable: false,
-		                aspectRatio: 1,
-                  }"
-                  :resize-image="{
-		adjustStencil: false
-	}"
-	image-restriction="stencil" /> -->
-                <!-- 
-                   :stencil-size="fillArea"
-                  :stencil-size="{
-                  width: 280,
-                  height: 280
-                }" -->
-
                 <vertical-buttons>
                   <square-button title="Zoom In" @click="zoom(2)">
                     <!-- <img src="/assets/vue-cropper/zoom-in.svg" /> -->
@@ -159,8 +115,6 @@ import SquareButton from '/src/components/Cropper/SquareButton.vue';
 
 import CircleStencil from '/src/components/Cropper/CircleStencil.vue';
 import HomeView from '/src/components/Cropper/HomeView.vue';
-
-import Compressor from 'compressorjs';    
 export default { 
   components: {
     ExampleWrapper,
@@ -197,7 +151,7 @@ export default {
     filename: null,
     preview: '',
     showImage: false,
-
+    
   }),
   
   props: {
@@ -272,32 +226,20 @@ export default {
       this.cropImage.toBlob(async blob =>
       {
         this.form.avatar = blob;
-        this.$emit('formDataUpdated', this.form.avatar);
 
+       this.$emit('formDataUpdated', this.form.avatar);
         this.isLoading = true;
-        
-            // if (this.form.avatar) {
-            //   this.compressAndUploadImage(this.form.avatar);
-            // } else {
-            //   console.error('No image to upload.');
-            // }
 
-            const files =  this.form.avatar;
-              if (files) {
-                this.compressAndUploadImage(files);
-              } else {
-                console.error('No image to upload.');
-              }
+        var formData = new FormData();
 
-      //   if (this.page === 'page1' || this.page === 'page2') { // organizer and artist
-      //   this.updateAvatar(formData); // Call the specific function for Page 
-      // } 
-      // else if (this.page === 'page3') { // organizer staff
-      //   this.addStaff(formData); 
-      // }
+        formData.append('avatar', this.form.avatar, this.filename);
+
+        this.updateAvatar(formData);
+        this.$refs.bannerClose.click();
+        this.removeBanner();
+        console.log(`Closing Banner`);
 
       });
-
 
     },
     handleDragOverCover(e)
@@ -334,68 +276,17 @@ export default {
         console.log('Not valid image');
         return false
       }
-
-      // this.form.cover_photo = e.target.files[0];
-      // this.banner = URL.createObjectURL(e.target.files[0]);
       this.handleCoverImage(files);
     },
 
     uploadCover()
     {
-      // this.isLoading = true;
-      
-      // var formData = new FormData();
-      // formData.append('cover_photo', this.form.cover_photo, this.filename);
-      // this.updateBanner(formData)
-      // // this.updateBanner(this.form, this.generateImage)
-      //   .then(response =>
-      //   {
-      //     this.$refs.bannerClose.click();
-      //     this.removeBanner();
-          
-      //     console.log(`Closing Banner`);
-      //   })
-      //   .catch(error => {
-      //     console.error('Error uploading cover:', error);
-      //   });
     },
-    compressAndUploadImage(files) {
-      new Compressor(files, {
-        quality: 0.2, // Adjust the compression quality as needed, 0.6 or 0.8
-        success: (compressedFile) => {
-          const formData = new FormData();
-          formData.append('avatar', compressedFile);
-          this.updateAvatar(formData);
-
-        this.$refs.bannerClose.click();
-         this.removeBanner();
-         console.log(`Closing Banner`);
-        },
-        error(err) {
-          console.error('Image compression failed:', err.message);
-        },
-      });
-    },
-
-  //   compressAndUploadImage(formData) {
-  //  // const file = formData.get('avatar');
-    
-  //   new Compressor(file, {
-  //     quality: 0.6, // Adjust the compression quality as needed
-  //     success: (compressedFile) => {
-  //       formData.set('avatar', compressedFile, this.filename);
-  //       this.updateAvatar(formData);
-  //     },
-  //     error(err) {
-  //       console.error('Image compression failed:', err.message);
-  //     },
-  //   });
-  // },
 
     handleClick(e)
     {
       const files = e.target.files;
-     this.handleCoverImage(files);
+      this.handleCoverImage(files);
 
     },
     handleCoverImage(files){
@@ -407,10 +298,7 @@ export default {
           const { name } = rawFile;
           this.filename = name;
           this.form.cover_photo = rawFile;
-           this.avatar = this.preview = URL.createObjectURL(rawFile);
-          
-      //  this.$emit('formDataUpdated', this.avatar);
-        // console.log(`top banner image`, this.banner)
+          this.avatar = this.preview = URL.createObjectURL(rawFile);
 
         this.uploadBox = false;
         // check the image width and height
@@ -425,7 +313,6 @@ export default {
           
         };
 
-        this.compressAndUploadImage(files);
       }
 
     },
@@ -449,16 +336,6 @@ export default {
 #uploadProfilePhoto .upload-file-wrapper .uploaded-image-wrapper{
   height: 32.25rem; 
 }
-/* .edit.btn {
-  color: #FFF !important;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 100%;
-  letter-spacing: 1px;
-  padding: 14px 37px;
-  background-color: #FF6B00 !important;
-  border: 0;
-} */
 .cropper {
   height: inherit!important;
   cursor: move;

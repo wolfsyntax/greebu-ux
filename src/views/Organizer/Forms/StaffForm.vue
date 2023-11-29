@@ -74,24 +74,24 @@
     </div>
   </div>
 
-  <profile-modal 
-    @close="toggleProfile"
-    :active="isActive"
+  <!-- <profile-modal 
+  @close="toggleProfile"
     @formDataUpdated="handleStaffAvatarUpdate"
-    page="organizer-staff-profile"
-     />
+    page="page3"
+     /> -->
 
 </template>
 
 <script>
 import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
 import CloseModalButton from '/src/components/CloseModalButton.vue';
-import ProfileModal from '/src/components/Dashboard/Modals/ProfileModal.vue';
+//import ProfileModal from '/src/components/Dashboard/Modals/ProfileModal.vue';
+//import { Modal } from "bootstrap";
 
 export default {
   components: {
     CloseModalButton,
-    ProfileModal
+    //ProfileModal
   },
   setup () {
     
@@ -108,6 +108,7 @@ export default {
     other: '',
     errors: {},
     isLoading: false,
+    parentAvatar: ''
   }),
   props: {
     // error: {
@@ -168,6 +169,7 @@ export default {
         this.avatar = '';
       }
     },
+   
     submit()
     {
       if (Object.keys(this.member).length > 0)

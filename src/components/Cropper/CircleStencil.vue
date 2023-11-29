@@ -95,33 +95,65 @@ export default {
 </template>
 
 <style lang="scss">
+// .circle-stencil {
+// 	border-radius: 50%;
+// 	cursor: move;
+// 	position: absolute;
+// 	border: dashed 2px white;
+// 	box-sizing: border-box;
+// 	&__icon {
+// 		user-select: none;
+// 		pointer-events: none;
+// 	}
+// 	&__handler {
+// 		position: absolute;
+// 		right: 15%;
+// 		top: 14%;
+// 		z-index: 1;
+// 		cursor: ne-resize;
+// 		width: 30px;
+// 		height: 30px;
+// 		display: flex;
+// 		align-items: center;
+// 		justify-content: center;
+// 		transform: translate(50%, -50%);
+// 		user-drag: none;
+// 	}
+// 	&__preview {
+// 		border-radius: 50%;
+// 		overflow: hidden;
+// 	}
+// }
+
 .circle-stencil {
-	border-radius: 50%;
-	cursor: move;
-	position: absolute;
-	border: dashed 2px white;
-	box-sizing: border-box;
-	&__icon {
-		user-select: none;
-		pointer-events: none;
-	}
-	&__handler {
-		position: absolute;
-		right: 15%;
-		top: 14%;
-		z-index: 1;
-		cursor: ne-resize;
-		width: 30px;
-		height: 30px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		transform: translate(50%, -50%);
-		user-drag: none;
-	}
-	&__preview {
-		border-radius: 50%;
-		overflow: hidden;
-	}
+  border-radius: 50%;
+  cursor: move;
+  position: absolute;
+  border: dashed 2px white;
+  box-sizing: border-box;
 }
+.circle-stencil__icon {
+  user-select: none;
+  pointer-events: none;
+}
+.circle-stencil__handler {
+  position: absolute;
+  right: 15%;
+  top: 14%;
+  z-index: 1;
+  cursor: ne-resize;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translate(50%, -50%);
+  user-drag: none;
+}
+.circle-stencil__preview {
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+
 </style>
