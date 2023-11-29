@@ -41,7 +41,9 @@ var state = {
     // account_type: '',
     phone: null,
     login_type: "email",
+    verification_code: null,
   },
+  phoneMask: "",
 };
 
 export default state;

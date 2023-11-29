@@ -179,7 +179,7 @@
 </template>
 <script>
 import Layout from '/src/components/Layouts/AuthLayout.vue';
-import { mapGetters, mapState, mapActions } from "vuex";
+import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
 import Verify from '@/components/Auth/Verify.vue';
 import SocialButton from '@/components/Auth/SocialLogin.vue';
 export default {
@@ -232,7 +232,7 @@ export default {
   },
   mounted() {
     console.log('Register.vue mounted ', this.form.phone)
-
+    
     if (this.form?.phone !== '') this.getFormattedPhone();
     
   },
@@ -263,6 +263,7 @@ export default {
     // }
   },
   created() {
+    // this.setSignupForm();
     console.log('Register.vue created', this.form.phone);
     // console.log(this.form.account_type);
   },
@@ -303,6 +304,7 @@ export default {
       }
     },
     ...mapActions(['signup', 'resendCode', 'verifyOTP', 'phoneOTP', 'validateInfo',]),
+    ...mapMutations(['setSignupForm',]),
     setMessage(msg)
     {
       this.message = msg;
@@ -313,6 +315,7 @@ export default {
       this.isLoading = true;
       // this.form.phone = this.formatPhone;
       console.log('Form Data: ', this.form)
+
       await this.validateInfo(this.form)
         .then((response) => { 
           console.log('Validate Registration response: ', response)
@@ -325,9 +328,9 @@ export default {
             
           })
           
-          const { status: statusCode, data: {status, result} } = response;
+          const { status } = response;
           
-          if (statusCode === 200)
+          if (status === 200)
           {
             this.$router.push({ path: this.$route.path, query: { status: true } });
           } 
@@ -337,6 +340,9 @@ export default {
           console.log('Validate Registration error: ', err);
           const {result: {errors}} = err;
           this.errors = errors || {};
+        })
+        .finally(o => {
+          this.isLoading = false;
         })
     },
     async submit()
@@ -424,6 +430,7 @@ export default {
     {
 
       this.verifyMessage = '';
+      this.error = {};
 
       this.verifyOTP({ id: this.$route.query.id, code: this.verifyCode })
         .then(response =>

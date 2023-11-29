@@ -98,6 +98,9 @@ var mutations = {
   ) {
     state.signupForm = payload;
   },
+  setPhoneMask(state, payload) {
+    state.phoneMask = payload;
+  },
 };
 
 export default mutations;

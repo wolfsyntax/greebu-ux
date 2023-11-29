@@ -57,13 +57,13 @@ export const fetchProfile = (
         .get(
           `${
             import.meta.env.VITE_BASE_URL || "http://localhost:8000"
-          }/api/account?role=${rootState.role}`,
-          payload,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
+          }/api/account?role=${rootState.role}`
+          // payload,
+          // {
+          //   headers: {
+          //     "Content-Type": "multipart/form-data",
+          //   },
+          // }
         )
         .then((response) => {
           const {
