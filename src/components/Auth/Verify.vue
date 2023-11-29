@@ -46,7 +46,6 @@
                     class="verification-box" maxlength="1" v-model="verifyCode[index]"
                     @input="handleInput(index)"
                   >
-                  <div class=""></div>
                 </div>
 
                 <button class="resend-code" @click.prevent="resendMyCode">Resend Code {{ $filters.timer(countdown) }}</button>
