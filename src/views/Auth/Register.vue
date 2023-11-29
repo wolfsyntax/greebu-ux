@@ -120,7 +120,10 @@
 
                 <div class="input-group mb-3">
                   <span class="input-group-text" id="basic-addon1">+63</span>
-                  <input id="phone" type="text" class="form-control" name="phone" v-model="form.phone" @blur="getFormattedPhone" required autocomplete="phone" placeholder="" maxlength="13">
+                  <input id="phone" type="text" class="form-control" name="phone" v-model="form.phone" 
+                  @blur="getFormattedPhone" required autocomplete="phone" 
+                  @beforeinput="handleBeforeInput" placeholder="">
+
                 </div>
 
                 <div v-for="error in errors?.phone" :key="error" class="text-danger">{{ error }}</div>
@@ -297,6 +300,15 @@ export default {
     },
     onBlurPhone () {
       this.form.phone = this.getFormattedPhone();
+    },
+    handleBeforeInput(event) {
+      const valueBeforeInput = event.target.value;
+
+      event.target.addEventListener("input", () => {
+        if (event.target.value.length > 11) {
+          event.target.value = valueBeforeInput;
+        }
+      }, { once: true });
     },
     submitAccountType() {
       if (this.form.account_type) {

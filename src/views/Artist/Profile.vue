@@ -494,9 +494,8 @@
 
   <profile-modal 
     @close="toggleProfile"
-    :active="isActive"
-    @formDataUpdated="handleAvatarUpdate"
-    page="artist-profile"
+    @formDataUpdated="handleArtistAvatarUpdate"
+    page="page2"
      />
 
 </template>
@@ -583,6 +582,8 @@ export default {
       targetMagic: '',
       audioSize: 0,
       invalidAudio: false,
+
+      parentAvatar: ''
     }
   },
   setup()
@@ -752,7 +753,7 @@ export default {
     ...mapMutations([
       'SET_PROFILE', 'SET_ARTIST', 'SET_MEMBERS',
     ]),
-    handleAvatarUpdate(blob) {
+    handleArtistAvatarUpdate(blob) {
       if (blob instanceof Blob) {
         this.parentAvatar = URL.createObjectURL(blob);
         this.avatar = this.parentAvatar;

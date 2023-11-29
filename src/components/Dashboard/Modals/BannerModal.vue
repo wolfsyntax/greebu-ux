@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Upload Cover Photo</h5>
+          <h5 class="modal-title">Upload Cover Photos</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ref="bannerClose" ></button>
         </div>
         <div class="modal-body">
@@ -29,51 +29,57 @@
             </div>
 
             <div class="uploaded-image-wrapper" v-else>
-              <div  v-if="showImage">
-                <img ref="uploadedImage" class="uploaded-image" :src="banner" alt="banner-modal" />
-              </div>
-                  <!-- <cropper class="cropper" ref="cropper" 
-                  :src="preview"
-                  :stencil-props="{
-                    preserveAspectRatio: true
-                  }"
-
-                  @change="change" 
-                  v-if="banner"
-                /> -->
+              <!-- <div  v-if="showImage">
+                <img  ref="uploadedImage" class="uploaded-image" :src="banner" alt="banner-modal" />
+              </div> -->
+              <example-wrapper
+                class="manipulate-image-example" >
 
                 <cropper
-                  class="cropper"
+                  class="coordinates-cropper"
                   ref="cropper" 
                   :src="preview"
                   :stencil-size="fillArea"
+                  :default-boundaries="boundaries"
+                  :transitions="true"
                   :stencil-props="{
                     handlers: {},
                     movable: false,
                     scalable: false,
+                    resizable: false,
+		                
                   }"
-                  image-restriction="fill-area"
-                  @change="change" 
+                  image-restriction="stencil"
+                  @change="updateSize"
                   v-if="banner"
                 />
 
-                <!-- aspectRatio: 10/12 (profile pic) -->
-                <!-- maxAspectRatio: 3.63  -->
-                <!-- maxWidth="2048"
-                  maxHeight="50"
+                <vertical-buttons>
+                  <square-button title="Zoom In" @click="zoom(2)">
+                    <span class="material-symbols-rounded zoom-in">&#xe8ff;</span>
+                  </square-button>
+                <square-button title="Zoom Out" @click="zoom(0.5)">
+                  <span class="material-symbols-rounded zoom-out">&#xe900;</span>
+                  </square-button>
+              </vertical-buttons>
 
-                  minWidth="2048"
-                  minHeight="50" -->
+              <div class="size-info" v-if="size.width && size.height">
+                <div>Width: {{ size.width }}px</div>
+                <div>Height: {{ size.height }}px</div>
+              </div>
+            </example-wrapper>  
+
+            <div class="d-flex align-items-center drag-mouse-wrap">
+                <img src="/assets/vue-cropper/drag-icon.svg" class="drag-cursor" />
+                <h4 class="mb-0 drag">Drag to reposition</h4>
+            </div>
+
               <button class="remove-image" @click="removeBanner">
                 <span class="material-symbols-outlined">&#xe5cd;</span> 
               </button>
           </div>
-      </div> 
 
-      <!-- <div class="d-flex align-items-center img-dimensions">
-        <span class="material-symbols-rounded info">&#xe88e;</span> 
-        <p class="description">Cover photo should be a rectangular .jpg, .jpeg, .png, or .webp file, with a minimum size of 400x150 pixels, clear, and under 2MB.</p>
-      </div> -->
+      </div> 
 
   
         </div> <!-- end of modal-body -->
@@ -95,13 +101,23 @@
 
 <script>
 import { mapGetters, mapState, mapActions } from "vuex";
-//import InfoBlock from "./InfoBlock.vue";
+import ExampleWrapper from '/src/components/Cropper/ExampleWrapper.vue';
+import VerticalButtons from '/src/components/Cropper/VerticalButtons.vue';
+import SquareButton from '/src/components/Cropper/SquareButton.vue';
+import Compressor from 'compressorjs'; 
 
 export default { 
+  components: {
+    ExampleWrapper,
+		VerticalButtons,
+		SquareButton,
+  },
   setup () {
-
     return {
-      songInfoText: "Please ensure that the uploaded image is smaller than 2MB in file size.",
+      size: {
+				width: null,
+				height: null,
+			},
     }
   },
   data: () => ({
@@ -126,6 +142,19 @@ export default {
       default: false,
       required: true
     },
+    image: {
+			type: Object
+		},
+		coordinates: {
+			type: Object,
+		},
+		transitions: {
+			type: Object,
+		},
+		stencilCoordinates: {
+			type: Object,
+		},
+    page: String,
   },
   computed: {
     ...mapGetters(['userRole',]),
@@ -159,6 +188,20 @@ export default {
     ...mapActions([
       'updateBanner',
     ]),
+    boundaries({ cropper, imageSize }) {
+			return {
+				width: cropper.clientWidth,
+				height: cropper.clientHeight,
+			};
+		},
+		updateSize({ coordinates }) {
+			this.size.width = Math.round(coordinates.width);
+			this.size.height = Math.round(coordinates.height);
+		},
+		zoom(factor) {
+			this.$refs.cropper.zoom(factor);
+		},
+		
     fillArea({ boundaries }) {
       return {
         width: boundaries.width,
@@ -185,25 +228,43 @@ export default {
         this.form.cover_photo = blob;
 
         this.isLoading = true;
-        var formData = new FormData();
-        formData.append('cover_photo', this.form.cover_photo, this.filename);
-        this.updateBanner(formData)
-        // this.updateBanner(this.form, this.generateImage)
-          .then(response =>
-          {
-            this.$refs.bannerClose.click();
-            this.removeBanner();
-            
-            console.log(`Closing Banner`);
-          })
-          .catch(error => {
-            console.error('Error uploading cover:', error);
-          });
+        // var formData = new FormData();
+        // formData.append('cover_photo', this.form.cover_photo, this.filename);
+        // this.updateBanner(formData)
+
+        // this.$refs.bannerClose.click();
+        // this.removeBanner();
+        // console.log(`Closing Banner`);
+
+        const files =  this.form.cover_photo;
+        if (files) {
+          this.compressAndUploadImage(files);
+        } else {
+          console.error('No image to upload.');
+        }
 
       });
 
-
     },
+
+    compressAndUploadImage(files) {
+      new Compressor(files, {
+        quality: 0.2, // Adjust the compression quality as needed, 0.6 or 0.8
+        success: (compressedFile) => {
+          const formData = new FormData();
+          formData.append('cover_photo', compressedFile);
+          this.updateBanner(formData);
+
+        this.$refs.bannerClose.click();
+         this.removeBanner();
+         console.log(`Closing Banner`);
+        },
+        error(err) {
+          console.error('Image compression failed:', err.message);
+        },
+      });
+    },
+
     handleDragOverCover(e)
     {
       console.log('Handle DragOver: ', e)
@@ -293,6 +354,8 @@ export default {
           console.log(`Image Height: ${this.imageHeight} pixels`);
         };
 
+        this.compressAndUploadImage(files);
+
       }
     },
     removeBanner()
@@ -312,7 +375,7 @@ export default {
 </script>
 
 <style scoped>
-.edit.btn {
+/* .edit.btn {
   color: #FFF !important;
   font-size: 20px;
   font-weight: 700;
@@ -325,5 +388,32 @@ export default {
 .cropper {
   height: inherit!important;
   cursor: move;
+} */
+
+#uploadArtistCoverPhoto .upload-file-wrapper .uploaded-image-wrapper{
+  height: 14.3rem;
+}
+.cropper {
+  height: inherit!important;
+  cursor: move;
+}
+.manipulate-image-example .coordinates-cropper {
+  /* max-height: 500px; */
+  background: black;
+}
+.manipulate-image-example .size-info {
+  color: white;
+  position: absolute;
+  font-size: 10px;
+  right: 10px;
+  bottom: 10px;
+  opacity: 0.5;
+}
+.circle-cropper {
+  width: 100%;
+  background: #222;
+}
+.circle-cropper__preview {
+  border: solid 1px rgba(255, 255, 255, 0.15);
 }
 </style>
