@@ -296,7 +296,7 @@ export default {
 
     },
     onBlurPhone () {
-      this.form.phone = this.formatPhone;
+      this.form.phone = this.getFormattedPhone();
     },
     submitAccountType() {
       if (this.form.account_type) {

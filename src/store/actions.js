@@ -241,9 +241,6 @@ var actions = {
     payload.phone = payload.phone.startsWith("+63")
       ? payload.phone
       : `+63${payload.phone}`;
-    payload.phone = payload.phone.startsWith("+63")
-      ? payload.phone
-      : `+63${payload.phone}`;
     return new Promise(async (resolve, reject) => {
       await axios
         .post(
