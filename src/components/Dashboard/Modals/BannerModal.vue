@@ -248,16 +248,39 @@ export default {
     },
 
     compressAndUploadImage(files) {
+
+      const maxSizeBytes = 1024 * 1024; // 1 MB
+      const mediumSizeBytes = 500 * 1024; // 500 KB
+      const largeSizeBytes = 1500 * 1024; // 1.5 MB
+      const skipCompressionSizeBytes = 100 * 1024; // 100 KB
+
+      let quality;
+
+      if (files.size < skipCompressionSizeBytes) {
+        // If the file size is less than 100KB, skip compression
+        quality = 1; // Set to 1 to keep original quality
+      } else if (files.size < mediumSizeBytes) {
+        quality = 0.8;
+      } else if (files.size < maxSizeBytes) {
+        quality = 0.2;
+      } else if (files.size <= largeSizeBytes) {
+        quality = 0.4;
+      } else {
+        quality = 0.2;
+      }
+
       new Compressor(files, {
-        quality: 0.2, // Adjust the compression quality as needed, 0.6 or 0.8
+       // quality: 0.2, // Adjust the compression quality as needed, 0.6 or 0.8
+       quality: quality,
+
         success: (compressedFile) => {
           const formData = new FormData();
           formData.append('cover_photo', compressedFile);
           this.updateBanner(formData);
 
-        this.$refs.bannerClose.click();
-         this.removeBanner();
-         console.log(`Closing Banner`);
+          this.$refs.bannerClose.click();
+          this.removeBanner();
+          console.log(`Closing Banner`);
         },
         error(err) {
           console.error('Image compression failed:', err.message);
@@ -375,20 +398,6 @@ export default {
 </script>
 
 <style scoped>
-/* .edit.btn {
-  color: #FFF !important;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 100%;
-  letter-spacing: 1px;
-  padding: 14px 37px;
-  background-color: #FF6B00 !important;
-  border: 0;
-}
-.cropper {
-  height: inherit!important;
-  cursor: move;
-} */
 
 #uploadArtistCoverPhoto .upload-file-wrapper .uploaded-image-wrapper{
   height: 14.3rem;

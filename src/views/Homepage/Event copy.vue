@@ -101,19 +101,26 @@
           </template>
 
         </FilterResults>
-       
-          <div v-if="isOngoingLoading && isUpcomingLoading && isPastLoading" class="text-center">
-            <BirdLoader />
+
+        <!-- <div class="row" v-if="combinedEvents.length">
+          <div class="col-sm-12 col-md-6 col-lg-4" v-for="(event, index) in combinedEvents" :key="index">
+            <event-card :event="event" :pos="index" @show="toggleEvent" :group="getEventGroup(event)" />
           </div>
+        </div> -->
+       
+          <!-- <div v-if="isOngoingLoading && isUpcomingLoading && isPastLoading" class="text-center">
+            <BirdLoader />
+          </div> -->
         
-        <div v-else class="events-section">
+        <div class="events-section">
 
           <h3 class="even-type-title">This Week Events</h3>
-          <div v-if="!isOngoingLoading">
-            <div class="row" v-if="events_ongoing.length">
-              <div class="col-sm-12 col-md-6 col-lg-4" v-for="(event, index) in events_ongoing" :key="index">
+          <div v-if="!isGettingEvents && (displayFullOngoingEvents || slicedOngoingEvents.length)">
+            <div class="row">
+              <div class="col-sm-12 col-md-6 col-lg-4" v-for="(event, index) in displayedOngoingEvents" :key="index">
                 <event-card :event="event" :pos="index" @show="toggleEvent" group="ongoing" />
               </div>
+ 
               <div class="float-end pagination-wrap">
               <nav aria-label="...">
                 <ul class="pagination">
@@ -140,19 +147,24 @@
               </nav>
             </div> <!-- end of pagination-wrap -->
             </div>     
+          </div>
+          <div v-else>
+            <div class="text-center">
+              <NoEvent v-if="!isGettingEvents && displayedOngoingEvents.length === 0" />
 
-            <div class="text-center" v-else>
-              <NoEvent />
+              <BirdLoader v-if="isGettingEvents" />
+
             </div>
-
           </div>
 
           <h3 class="even-type-title">Upcoming Events</h3>
-          <div v-if="!isUpcomingLoading">
-            <div class="row" v-if="events_upcoming.length">
-              <div class="col-sm-12 col-md-6 col-lg-4" v-for="(event, index) in events_upcoming" :key="index">
+          <div v-if="!isGettingEvents && (displayFullUpcomingEvents || slicedUpcomingEvents.length)">
+            <div class="row">
+              <div class="col-sm-12 col-md-6 col-lg-4" v-for="(event, index) in displayedUpcomingEvents" :key="index">
                 <event-card :event="event" :pos="index" @show="toggleEvent" group="upcoming"/>
               </div>
+
+
               <div class="float-end pagination-wrap">
               <nav aria-label="...">
                 <ul class="pagination">
@@ -179,19 +191,23 @@
               </nav>
             </div> <!-- end of pagination-wrap -->
             </div>     
+          </div>
+          <div v-else>
+            <div class="text-center" >
+              <NoEvent v-if="!isGettingEvents && displayedUpcomingEvents.length === 0" />
+             
+              <BirdLoader v-if="isGettingEvents" />
 
-            <div class="text-center" v-else>
-              <NoEvent />
             </div>
-
           </div>
 
           <h3 class="even-type-title">Past Events</h3>
-          <div v-if="!isPastLoading">
-            <div class="row" v-if="events_past.length">
-              <div class="col-sm-12 col-md-6 col-lg-4" v-for="(event, index) in events_past" :key="index">
+          <div v-if="!isGettingEvents && (displayFullPastEvents || slicedPastEvents.length)">
+            <div class="row">
+              <div class="col-sm-12 col-md-6 col-lg-4" v-for="(event, index) in displayedPastEvents" :key="index">
                 <event-card :event="event" :pos="index" @show="toggleEvent" group="past"/>
               </div>
+                
               <div class="float-end pagination-wrap">
               <nav aria-label="...">
                 <ul class="pagination">
@@ -218,16 +234,22 @@
               </nav>
             </div> <!-- end of pagination-wrap -->
             </div>     
+          </div>   
+          <div v-else>
+            <div class="text-center">
+              <NoEvent v-if="!isGettingEvents && displayedPastEvents.length === 0" />
+              
+              <BirdLoader v-if="isGettingEvents" />
 
-            <div class="text-center" v-else>
-              <NoEvent />
-            </div>
-          </div>        
+            </div>   
+          </div>  
 
         </div> 
         
       </div>
     </section>
+
+    <!-- <pre><b>Past Events</b> - {{ events_past }}</pre> -->
     
     <view-detail v-if="isLoggedIn" />
     <signupmodal v-else />
@@ -276,6 +298,11 @@ export default {
 
   },
   data: () => ({
+    isGettingEvents: true, 
+    displayFullOngoingEvents: false,
+    displayFullUpcomingEvents: false,
+    displayFullPastEvents: false,
+
     isLoading: false,
     isOngoingLoading: false,
     isUpcomingLoading: false,
@@ -287,9 +314,9 @@ export default {
   computed: {
     ...mapGetters(["isLoggedIn", 'userInfo', 'info', 'userRole']),
     ...mapState({
-      events_past: state => state.events.pastListEvents,
       events_ongoing: state => state.events.ongoingListEvents,
       events_upcoming: state => state.events.upcomingListEvents,
+      events_past: state => state.events.pastListEvents,
       eventFilter: state => state.events.eventFilter,
       ongoingPagination: state => state.events.ongoingPagination,
       upcomingPagination: state => state.events.upcomingPagination,
@@ -309,10 +336,38 @@ export default {
           }).join(" "),
         }
       }),
-    })
+    }),
+    // combinedEvents(){
+    //   return[...this.events_ongoing, ...this.events_upcoming, ...this.events_past].sort((a, b) => {
+    //     return new Date(a.start_date) - new Date(b.end_date);
+    //   })
+    // }
+    slicedOngoingEvents() {
+      // Only show the first 3 ongoing events
+      return this.events_ongoing.slice(0, 3);
+    },
+    slicedUpcomingEvents() {
+      return this.events_upcoming.slice(0, 3);
+    },
+    slicedPastEvents() {
+      return this.events_past.slice(0, 3);
+    },
+    displayedOngoingEvents() {
+      return this.displayFullOngoingEvents ? this.events_ongoing : this.slicedOngoingEvents;
+    },
+    displayedUpcomingEvents() {
+      return this.displayFullUpcomingEvents ? this.events_upcoming : this.slicedUpcomingEvents;
+    },
+    displayedPastEvents() {
+      return this.displayFullPastEvents ? this.events_past : this.slicedPastEvents;
+    },
+
   },
   mounted()
   {
+
+    // Call the fetchEvents method when the component is mounted
+    this.fetchEvents();
 
     // const popoverTriggerList = document.querySelectorAll('span[data-bs-toggle="popover"]');
     // const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new Popover(popoverTriggerEl));
@@ -372,6 +427,26 @@ export default {
       'prevUpcomingPage', 'prevOngoingPage', 'prevPastPage',
       'nextUpcomingPage', 'nextOngoingPage', 'nextPastPage',
     ]),
+    fetchEvents() {
+      setTimeout(() => {
+        // Once fetching is complete, update the loading state and show the full list after 3 seconds
+        this.isGettingEvents = false;
+        setTimeout(() => {
+          this.displayFullOngoingEvents = true;
+          this.displayFullUpcomingEvents = true;
+          this.displayFullPastEvents = true;
+        }, 3000); // Delay for 3 seconds
+      }, 2000); // Simulating a 2-second delay for fetching events, adjust as needed
+    },
+    // getEventGroup(event){
+    //   if(this.events_ongoing.includes(event)){
+    //     return 'ongoing';
+    //   }else if(this.events_upcoming.includes(event)){
+    //     return 'upcoming';
+    //   }else{
+    //     return 'past';
+    //   }
+    // },
     selectPage(page, type='ongoing') {
       if (type === 'ongoing') {
         console.log('Specify Ongoing Event: ', page);

@@ -7,12 +7,9 @@
 <style>
 .vertical-buttons {
 	position: absolute;
-	 /* left: 10px;
-	 top: 50%;
-	 transform: translateY(-50%); */
     display: flex;
     gap: 0.5rem;
-    top: 68%;
+    top: 7.5%;
 	left: 4.2%;
 }
 /* MEDIA QUERIES */
@@ -21,7 +18,7 @@
 @media (min-width: 992px) and (max-width: 1399.98px) {
 	.vertical-buttons {
 	gap: 0.3rem;
-	top: 75%;
+	/* top: 75%; */
 }
 }
 </style>
