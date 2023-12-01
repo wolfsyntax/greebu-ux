@@ -362,8 +362,8 @@
     </section>
     <banner-modal @close="toggle" :active="isActive" />
   </div>
-<!-- 
-    <pre> <b>Profile</b> {{  $store.state.profile  }} <br></pre>
+
+    <!-- <pre> <b>Profile</b> {{  $store.state.profile  }} <br></pre>
   <pre> <b>Account</b> {{ $store.state.account }}</pre> -->
 
 </template>
