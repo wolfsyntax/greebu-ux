@@ -286,7 +286,8 @@ const router = createRouter({
         {
           path: "/collaboration",
           name: "collaboration",
-          component: () => import("/src/views/Artist/Form/CollaborationForm.vue"),
+          component: () =>
+            import("/src/views/Artist/Form/CollaborationForm.vue"),
           meta: {
             requiresLogin: true, // true
             title: "Collaboration to Artist",
@@ -430,6 +431,18 @@ const router = createRouter({
         title: "Proposal Form",
         role: "artists",
         parent: "artist",
+        breadcrumb: [{ title: "", url: "" }],
+      },
+    },
+    {
+      path: "/test-module",
+      name: "test",
+      component: () => import("/src/views/Test.vue"),
+      meta: {
+        requiresLogin: false, // true
+        title: "Test Module",
+        role: "",
+        parent: "",
         breadcrumb: [{ title: "", url: "" }],
       },
     },

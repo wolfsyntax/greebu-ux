@@ -238,16 +238,39 @@ var actions = {
     });
   },
   validateInfo({ commit, state }, payload) {
-    payload.phone = payload.phone.startsWith("+63")
-      ? payload.phone
-      : `+63${payload.phone}`;
+    // payload.phone = payload.phone.startsWith("+63")
+    //   ? payload.phone
+    //   : `+63${payload.phone}`;
+
+    const {
+      first_name,
+      last_name,
+      email,
+      username,
+      phone,
+      password,
+      password_confirmation,
+      account_type,
+    } = payload;
+
+    var form = {
+      first_name,
+      last_name,
+      email,
+      username,
+      phone: phone.startsWith("+63") ? phone : `+63${phone}`,
+      password,
+      password_confirmation,
+      account_type,
+    };
+
     return new Promise(async (resolve, reject) => {
       await axios
         .post(
           `${
             import.meta.env.VITE_BASE_URL || "http://localhost:8000"
           }/api/validate-info`,
-          payload,
+          form,
           {
             Accept: "application/json",
           }

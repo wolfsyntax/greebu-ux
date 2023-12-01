@@ -83,23 +83,59 @@ var mutations = {
   setSignupForm(
     state,
     payload = {
-      first_name: null,
-      last_name: null,
-      email: null,
-      username: null,
-      phone: null,
-      password: null,
-      password_confirmation: null,
+      first_name: "",
+      last_name: "",
+      email: "",
+      username: "",
+      phone: "",
+      password: "",
+      password_confirmation: "",
       account_type: "customers",
       // account_type: '',
-      phone: null,
+      phone: "",
       login_type: "email",
     }
   ) {
     state.signupForm = payload;
   },
+  clearSignupForm(
+    state,
+    payload = {
+      first_name: "",
+      last_name: "",
+      email: "",
+      username: "",
+      phone: "",
+      password: "",
+      password_confirmation: "",
+    }
+  ) {
+    const {
+      first_name,
+      last_name,
+      email,
+      username,
+      phone,
+      password,
+      password_confirmation,
+    } = payload;
+
+    state.signupForm.first_name = first_name;
+    state.signupForm.last_name = last_name;
+    state.signupForm.email = email;
+    state.signupForm.username = username;
+    state.signupForm.phone = phone;
+    state.signupForm.password = password;
+    state.signupForm.password_confirmation = password_confirmation;
+  },
   setPhoneMask(state, payload) {
     state.phoneMask = payload;
+  },
+  setGeoLocation(state, payload) {
+    state.geocode = {
+      lat: payload?.latitude || "0.0000000", // i.e. 13.6139099
+      lng: payload?.longitude || "0.0000000", // i.e. 123.1615544
+    };
   },
 };
 
