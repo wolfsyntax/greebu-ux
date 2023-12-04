@@ -236,7 +236,7 @@ export default {
         'string.max' : 'Last name must not be grater than 255 characters.',
         'string.empty' : `Last name is required.`,
       }),
-      email: Joi.string().required().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }).label('Email').messages({
+      email: Joi.string().required().email({ minDomainSegments: 2, tlds: { allow: false /*['com', 'net']*/ } }).label('Email').messages({
         'string.email': 'Email must be a valid email address.',
         'string.empty' : `Email is required.`,
       }),
