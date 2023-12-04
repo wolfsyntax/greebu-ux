@@ -452,7 +452,12 @@ export default {
     profile: {
       handler(res)
       {
+        console.log('[WATCH] Profile Cover photo (current): ', this.bannerImage);
+        console.log('[WATCH] Profile Cover photo (profile): ', res?.cover_photo);
+        console.log('[WATCH] Profile Cover photo (account): ', this.account.cover_photo);
+
         this.bannerImage = res?.cover_photo || this.account.cover_photo || '/assets/organizer-account/default-cover-photo.webp';
+        console.log('[WATCH] Profile Cover photo (new): ', this.bannerImage);
       },
       deep: true,
     },
