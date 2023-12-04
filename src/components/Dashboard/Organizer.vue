@@ -369,13 +369,13 @@ export default {
     // UpcomingEvents
   },
   data: () => ({
-    bannerImage: '/assets/organizer-account/default-cover-photo.jpg',
-    profileImage: '/assets/organizer-account/profile-img.jpg',
+    bannerImage: '/assets/organizer-account/default-cover-photo.webp',
+    profileImage: '/assets/organizer-account/profile-img.webp',
     organizerMembers: [
       {
         name: 'Wade Warren',
         role: 'Event Manager/Director',
-        profile: '/assets/organizer-account/profile-img.jpg'
+        profile: '/assets/organizer-account/profile-img.webp'
       }
     ],
     navItems: [
@@ -450,14 +450,14 @@ export default {
         console.log('Fetch Profile Error [Organizer]: ', err)
       })
 
-    this.bannerImage = this.profile.cover_photo || this.account?.cover_photo || '/assets/organizer-account/default-cover-photo.jpg';
+    this.bannerImage = this.profile.cover_photo || this.account?.cover_photo || '/assets/organizer-account/default-cover-photo.webp';
 
   },
   watch: {
     profile: {
       handler(res)
       {
-        this.bannerImage = res?.cover_photo || this.account.cover_photo || '/assets/organizer-account/default-cover-photo.jpg';
+        this.bannerImage = res?.cover_photo || this.account.cover_photo || '/assets/organizer-account/default-cover-photo.webp';
       },
       deep: true,
     },
