@@ -340,8 +340,8 @@
     
   </div>
 
-    <!-- <pre> <b>Profile</b> {{  $store.state.profile  }} <br></pre>
-  <pre> <b>Account</b> {{ $store.state.account }}</pre> -->
+    <pre> <b>Profile</b> {{  $store.state.profile  }} <br></pre>
+  <pre> <b>Account</b> {{ $store.state.account }}</pre>
 
 </template>
 
@@ -369,13 +369,13 @@ export default {
     // UpcomingEvents
   },
   data: () => ({
-    bannerImage: '/assets/organizer-account/default-cover-photo.webp',
-    profileImage: '/assets/organizer-account/profile-img.webp',
+    bannerImage: '/assets/organizer-account/default-cover-photo.jpg',
+    profileImage: '/assets/organizer-account/profile-img.jpg',
     organizerMembers: [
       {
         name: 'Wade Warren',
         role: 'Event Manager/Director',
-        profile: '/assets/organizer-account/profile-img.webp'
+        profile: '/assets/organizer-account/profile-img.jpg'
       }
     ],
     navItems: [
@@ -392,6 +392,7 @@ export default {
     artistReviews: '234',
 
     // isModalVisible: false,
+    isActive: false,
   
   }),
   
@@ -399,6 +400,10 @@ export default {
     ...mapActions([
       'fetchProfile'
     ]),
+    toggle()
+    {
+      this.isActive = !this.isActive;
+    },
     openCreatePostModal(data)
     {
       this.$root.$emit("bv::show::modal", "#artistPost");
@@ -445,14 +450,14 @@ export default {
         console.log('Fetch Profile Error [Organizer]: ', err)
       })
 
-    this.bannerImage = this.profile.cover_photo || this.account?.cover_photo || '/assets/organizer-account/default-cover-photo.webp';
+    this.bannerImage = this.profile.cover_photo || this.account?.cover_photo || '/assets/organizer-account/default-cover-photo.jpg';
 
   },
   watch: {
     profile: {
       handler(res)
       {
-        this.bannerImage = res?.cover_photo || this.account.cover_photo || '/assets/organizer-account/default-cover-photo.webp';
+        this.bannerImage = res?.cover_photo || this.account.cover_photo || '/assets/organizer-account/default-cover-photo.jpg';
       },
       deep: true,
     },

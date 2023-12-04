@@ -30,20 +30,24 @@ var state = {
     "Change of Mind",
   ],
   signupForm: {
-    first_name: null,
-    last_name: null,
-    email: null,
-    username: null,
-    phone: null,
-    password: null,
-    password_confirmation: null,
+    first_name: "",
+    last_name: "",
+    email: "",
+    username: "",
+    phone: "",
+    password: "",
+    password_confirmation: "",
     account_type: "customers",
     // account_type: '',
-    phone: null,
+    phone: "",
     login_type: "email",
-    verification_code: null,
+    verification_code: "",
   },
   phoneMask: "",
+  geocode: {
+    lat: "0.000000",
+    lng: "0.000000",
+  },
 };
 
 export default state;

@@ -26,150 +26,159 @@
         </div>
         <div class="card">
           <div class="card-body">
+            
             <form @submit.prevent="validate">
-                                               <!-- Choose account type -->
-           <div v-if="showRadioButtons">                                  
-              <div class="row row-checkbox">
-                <div class="col-md-12">
-                  <h3 class="account-type">Account Type</h3>
-                  <p class="account-description">Please choose your Account Type to create an account.</p>
-                </div>
-
-                <div class="col-md-12">
-                  <div class="form-check" @click="form.account_type = 'customers'">
-                    <input class="form-check-input" type="radio" name="accountType" id="accountType" v-model="form.account_type" value="customers" >
-                    <label @click="form.account_type = 'customers'" :class="{ 'selected': form.account_type === 'customers' }" class="form-check-label" for="accountType">
-                    I'm a Customer
-                    </label>
+                      <!-- Choose account type -->
+              <div v-if="showRadioButtons">                                  
+                <div class="row row-checkbox">
+                  <div class="col-md-12">
+                    <h3 class="account-type">Account Type</h3>
+                    <p class="account-description">Please choose your Account Type to create an account.</p>
                   </div>
 
-                  <div class="form-check" @click="form.account_type = 'artists'">
-                    <input class="form-check-input" type="radio" name="accountType" id="accountType" v-model="form.account_type" value="artists" >
-                    <label @click="form.account_type = 'artists'" :class="{ 'selected': form.account_type === 'artists' }" class="form-check-label" for="accountType">
-                    I'm an Artist
-                    </label>
-                  </div>
+                  <div class="col-md-12">
+                    <div class="form-check" @click="form.account_type = 'customers'">
+                      <input class="form-check-input" type="radio" name="accountType" id="accountType" v-model="form.account_type" value="customers" >
+                      <label @click="form.account_type = 'customers'" :class="{ 'selected': form.account_type === 'customers' }" class="form-check-label" for="accountType">
+                        I'm a Customer
+                      </label>
+                    </div>
 
-                  <div class="form-check" @click="form.account_type = 'organizer'">
-                    <input class="form-check-input" type="radio" name="accountType" id="accountType" v-model="form.account_type" value="organizer">
-                    <label @click="form.account_type = 'organizer'" :class="{ 'selected': form.account_type === 'organizer' }" class="form-check-label" for="accountType">
-                    I'm an Organizer
-                    </label>
-                  </div>
+                    <div class="form-check" @click="form.account_type = 'artists'">
+                      <input class="form-check-input" type="radio" name="accountType" id="accountType" v-model="form.account_type" value="artists" >
+                      <label @click="form.account_type = 'artists'" :class="{ 'selected': form.account_type === 'artists' }" class="form-check-label" for="accountType">
+                        I'm an Artist
+                      </label>
+                    </div>
 
-                  <div class="form-check" @click="form.account_type = 'service-provider'">
-                    <input class="form-check-input" type="radio" name="accountType" id="accountType" v-model="form.account_type" value="service-provider" >
-                    <label :class="{ 'selected': form.account_type === 'service-provider' }" class="form-check-label" for="accountType">
-                    Offers Services
-                    </label>
-                  </div>
-                  <div v-for="error in errors?.account_type" :key="error" class="text-danger">{{ error }}</div>
-                  <div class="d-grid gap-2 btn-account-type">
-                    <button class="btn btn-primary"
-                     @click.prevent="submitAccountType" 
-                    :disabled="!isAccountTypeSelected">
-                      Next
-                      <span class="material-symbols-rounded forward-icon">
-                      &#xe941;
-                    </span>
-                    </button>
-                  </div>
-                  <div class="have-account">
+                    <div class="form-check" @click="form.account_type = 'organizer'">
+                      <input class="form-check-input" type="radio" name="accountType" id="accountType" v-model="form.account_type" value="organizer">
+                      <label @click="form.account_type = 'organizer'" :class="{ 'selected': form.account_type === 'organizer' }" class="form-check-label" for="accountType">
+                        I'm an Organizer
+                      </label>
+                    </div>
+
+                    <div class="form-check" @click="form.account_type = 'service-provider'">
+                      <input class="form-check-input" type="radio" name="accountType" id="accountType" v-model="form.account_type" value="service-provider" >
+                      <label :class="{ 'selected': form.account_type === 'service-provider' }" class="form-check-label" for="accountType">
+                        Offers Services
+                      </label>
+                    </div>
+
+                    <div v-for="error in errors?.account_type" :key="error" class="text-danger">{{ error }}</div>
+                    <div class="d-grid gap-2 btn-account-type">
+                      <button class="btn btn-primary"
+                        @click.prevent="submitAccountType" 
+                        :disabled="!isAccountTypeSelected">
+                        Next
+                        <span class="material-symbols-rounded forward-icon">
+                          &#xe941;
+                        </span>
+                      </button>
+                    </div>
+
+                    <div class="have-account">
                       <p class="text-center">Already have an Account?</p>
                       <router-link to="/login">Log In</router-link>
+                    </div>
                   </div>
                 </div>
               </div>
-              </div>
 
-            <div v-if="!showRadioButtons">
-              <div class="card-header">
-              <h2>Create your account</h2>
-              <p>Lorem ipsum dolor sit amet consectetur.</p>
-            </div>
-            <div class="alert alert-danger" role="alert" v-if="message">
-              {{ message }}
-            </div>
-                                 <!-- User inputs -->
-              <div class="form-group">
-                <label for="email">Email Address</label>
-                <input id="email" :type="form.login_type" class="form-control" name="email" v-model="form.email" required autocomplete="email" autofocus>
-                <div v-for="error in errors?.email" :key="error" class="text-danger">{{ error }}</div>
-              </div>
-
-              <div class="form-group">
-                <label for="name">First Name</label>
-                <input id="name" type="text" class="form-control " name="name" v-model="form.first_name" required autocomplete="first-name">
-                <div v-for="error in errors?.first_name" :key="error" class="text-danger">{{ error }}</div>
-              </div>
-
-              <div class="form-group">
-                <label for="name">Last Name</label>
-                <input id="name" type="text" class="form-control " name="name" v-model="form.last_name" required autocomplete="last-name" autofocus>
-                <div v-for="error in errors?.last_name" :key="error" class="text-danger">{{ error }}</div>
-              </div>
-
-              <div class="form-group">
-                <label for="username">Username</label>
-                <input id="username" type="text" class="form-control" name="username" v-model="form.username" required autocomplete="username">
-                <div v-for="error in errors?.username" :key="error" class="text-danger">{{ error }}</div>
-              </div>
-
-              <div class="form-group">
-                <label for="phone">Mobile number</label>
-
-                <div class="input-group">
-                  <span class="input-group-text" id="basic-addon1">+63</span>
-                  <input id="phone" type="text" class="form-control" name="phone" v-model="form.phone" 
-                  @blur="getFormattedPhone" required autocomplete="phone" 
-                  @beforeinput="handleBeforeInput" placeholder="">
-
+              <div v-if="!showRadioButtons">
+                <div class="card-header">
+                  <h2>Create your account</h2>
+                  <p>Lorem ipsum dolor sit amet consectetur.</p>
                 </div>
-                <div v-if="showValidMobileNumer">
+                <!-- <div v-if="showValidMobileNumer">
                   <p class="valid-phone-number">{{ validateMobileNumber }}</p>
+                </div> -->
+
+                <div class="alert alert-danger" role="alert" v-if="message">
+                  {{ message }}
+                </div>
+                
+                <!-- User inputs -->
+                <div class="form-group">
+                  <label for="email">Email Address</label>
+                  <input id="email" :type="form.login_type" class="form-control" name="email" v-model="form.email" autocomplete="email" autofocus>
+                  <div v-for="error in errors?.email" :key="error" class="text-danger">{{ error }}</div>
                 </div>
 
-                <div v-for="error in errors?.phone" :key="error" class="text-danger">{{ error }}</div>
-              </div>
+                
+                  <div class="form-group">
+                    <label for="name">First Name</label>
+                    <input id="first_name" type="text" class="form-control " name="name" v-model="form.first_name" autocomplete="first-name">
+                    <div v-for="error in errors?.first_name" :key="error" class="text-danger">{{ error }}</div>
+                  </div>
 
-              <!-- Twillio phone verify  -->
+                  <div class="form-group">
+                    <label for="name">Last Name</label>
+                    <input id="last_name" type="text" class="form-control " name="name" v-model="form.last_name" autocomplete="last-name" autofocus>
+                  <div v-for="error in errors?.last_name" :key="error" class="text-danger">{{ error }}</div>
+                </div>
 
-              <!-- <div class="form-group">
-                <label for="phone">Mobile number</label>
-                <input ref="phoneInputField" id="phone" type="tel" class="form-control" name="phone" 
-                v-model="form.phone" required autocomplete="phone">
-                <div v-for="error in errors?.phone" :key="error" class="text-danger">{{ error }}</div>
-              </div> -->
+                <div class="form-group">
+                  <label for="username">Username</label>
+                  <input id="username" type="text" class="form-control" name="username" v-model="form.username" autocomplete="username">
+                  <div v-for="error in errors?.username" :key="error" class="text-danger">{{ error }}</div>
+                </div>
+
+                <div class="form-group">
+                  <label for="phone">Mobile number</label>
+
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">+63</span>
+                    <input id="phone" type="text" class="form-control" name="phone" v-model="form.phone" 
+                      @blur="getFormattedPhone" autocomplete="phone" 
+                      @beforeinput="handleBeforeInput" placeholder="">
+
+                  </div>
+
+                  <div v-for="error in errors?.phone" :key="error" class="text-danger phone-error">{{ error }}</div>
+                </div>
+
+                <!-- Twillio phone verify  -->
+
+                <!-- <div class="form-group">
+                  <label for="phone">Mobile number</label>
+                  <input ref="phoneInputField" id="phone" type="tel" class="form-control" name="phone" 
+                  v-model="form.phone" required autocomplete="phone">
+                  <div v-for="error in errors?.phone" :key="error" class="text-danger">{{ error }}</div>
+                </div> -->
 
              
-              <div class="form-group">
-                <label for="password">Password</label>
-                <input id="password" type="password" class="form-control" name="password" v-model="form.password" required autocomplete="new-password">
-                <div v-for="error in errors?.password" :key="error" class="text-danger">{{ error }}</div>
-              </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input id="password" type="password" class="form-control" name="password" v-model="form.password" autocomplete="new-password">
+                  <div v-for="error in errors?.password" :key="error" class="text-danger">{{ error }}</div>
+                </div>
 
-              <div class="form-group">
-                <label for="password-confirm">Confirm Password</label>
-                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" v-model="form.password_confirmation" required autocomplete="new-password">
-                <!-- <div v-if="errors?.password_confirmation" class="text-danger">{{ errors.password_confirmation.shift() }}</div> -->
-              </div>
+                <div class="form-group">
+                  <label for="password-confirm">Confirm Password</label>
+                  <input id="password-confirm" type="password" class="form-control" name="password_confirmation" v-model="form.password_confirmation" autocomplete="new-password">
+                  <!-- <div v-if="errors?.password_confirmation" class="text-danger">{{ errors.password_confirmation.shift() }}</div> -->
+                  <div v-for="error in errors?.password_confirmation" :key="error" class="text-danger">{{ error }}</div>
+                </div>
 
-              <div class="form-check form-checkbox">
-                <input type="checkbox" class="form-check-input" v-model="agree_term" id="agreed_id"/>
-                <label class="form-check-label" for="agreed_id">
-                &nbsp; I agree to all the <a href="/terms">Terms</a> and <a href="/policy">Privacy policy</a></label>
-              </div>
-
-              <div class="d-grid gap-2 btn-sign-up">
-                <button class="btn btn-primary" type="submit"
-                :disabled="!agree_term && !isDisabled">
+                <div class="form-check form-checkbox">
+                  <input type="checkbox" class="form-check-input" v-model="agree_term" id="agreed_id"/>
+                  <label class="form-check-label" for="agreed_id">
+                    &nbsp; I agree to all the <a href="/terms">Terms</a> and <a href="/policy">Privacy policy</a>
+                  </label>
+                </div>
+              
+                <div class="d-grid gap-2 btn-sign-up">
+                  <button class="btn btn-primary" type="submit"
+                    :disabled="!agree_term && !isDisabled">
                     <span v-if="isLoading">
-                    <i class="busy-submitting"></i>Create Account</span>
+                      <i class="busy-submitting"></i>Create Account
+                    </span>
                     <span v-else>Create Account</span>
-                </button>
-              </div>
+                  </button>
+                </div>
 
-              <social-button :account_type="form.account_type" @request="setMessage"/>
+                <social-button :account_type="form.account_type" @request="setMessage"/>
 
               </div> 
             </form>
@@ -188,6 +197,9 @@ import Layout from '/src/components/Layouts/AuthLayout.vue';
 import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
 import Verify from '@/components/Auth/Verify.vue';
 import SocialButton from '@/components/Auth/SocialLogin.vue';
+
+import Joi from "joi";
+
 export default {
   components: {
     layout: Layout,
@@ -227,7 +239,8 @@ export default {
       showRadioButtons: true,
       isLoading: false,
       isSignup: true,
-      requiredMobileNumber: 11,
+      // requiredMobileNumber: 11,
+      schema: null,
     }
   },
   props: {
@@ -241,7 +254,54 @@ export default {
     console.log('Register.vue mounted ', this.form.phone)
     
     if (this.form?.phone !== '') this.getFormattedPhone();
-    
+    this.schema = Joi.object({
+      first_name: Joi.string().min(2).max(255).required().label('First name').messages({
+        'string.min' : 'First name must be at least 2 characters.',
+        'string.max' : 'First name must not be grater than 255 characters.',
+        'string.empty' : `First name is required.`,
+      }),
+      last_name: Joi.string().min(2).max(255).required().label('Last name').messages({
+        'string.min' : 'Last name must be at least 2 characters.',
+        'string.max' : 'Last name must not be grater than 255 characters.',
+        'string.empty' : `Last name is required.`,
+      }),
+      email: Joi.string().required().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }).label('Email').messages({
+        'string.email': 'Email must be a valid email address.',
+        'string.empty' : `Email is required.`,
+      }),
+      username: Joi.string().min(2).max(255).required().label('Username').messages({
+        'string.min' : 'Username must be at least 2 characters.',
+        'string.max' : 'Username must not be grater than 255 characters.',
+        'string.empty' : `Username is required.`,
+      }),
+      phone: Joi.string().required().label('Phone number').pattern(new RegExp('^9[0-9]{9}$')).messages({
+        'string.empty' : `Phone number is required.`,
+        'string.pattern.base': 'Phone number is invalid.'
+      }),
+      password: Joi.string().required().min(8).label('Password').messages({
+        'string.min' : 'Password must be at least 8 characters.',
+        'string.empty' : `Password is required.`,
+      }),
+      // password_confirmation: Joi.ref('password'), 
+      // password_confirmation: Joi.any().valid(Joi.ref('password')).required(), 
+      password_confirmation: Joi.any()
+        .valid(Joi.ref('password'))
+        // .error(err => new Error('Password confirmation does not match.'))
+        .required()
+        // .options({ language: { any: { allowOnly: 'must match password' } } })
+        .messages({
+          'string.min' : 'Password confirmation must be at least 8 characters.',
+          'any.required' : `Password confirmation is required.`,
+          'any.only': 'Password confirmation does not match.',
+        }),
+        // .options({
+        //   language: {
+        //     any: {
+        //       allowonly: '!!passwords do not match',
+        //     }
+        //   } 
+        // }), 
+    }).with('password', 'password_confirmation');
   },
   computed: {
     ...mapGetters(["userInfo", "info", "token", "isLoggedIn"]),
@@ -268,16 +328,16 @@ export default {
         
     //   // }
     // }
-    showValidMobileNumer(){
-      return this.form.phone !== null && this.form.phone !== undefined && this.form.phone.length > 0 && this.form.phone.length < this.requiredMobileNumber;
-    },
-    validateMobileNumber(){
-      if (this.showValidMobileNumer) {
-        return `Phone must be ${this.requiredMobileNumber} digits. You typed ${this.form.phone.length} digits.`;
-      } else {
-        return '';
-      }
-    }
+    // showValidMobileNumer(){
+    //   return this.form.phone !== null && this.form.phone !== undefined && this.form.phone.length > 0 && this.form.phone.length < this.requiredMobileNumber;
+    // },
+    // validateMobileNumber(){
+    //   if (this.showValidMobileNumer) {
+    //     return `Phone must be ${this.requiredMobileNumber} digits. You typed ${this.form.phone.length} digits.`;
+    //   } else {
+    //     return '';
+    //   }
+    // }
 
   },
   created() {
@@ -288,13 +348,12 @@ export default {
   methods: {
     getFormattedPhone() {
       
-      this.phone = '';
+      this.phone = this.form?.phone || '';
 
       console.log('Phone number: ', this.form.phone);
       // if(/^\+[1-9]\d{1,14}$/.test(this.form.phone)) {
       if (this.form?.phone !== '' && this.form?.phone !== null) {
         if (this.form.phone.startsWith('09')) {
-          console.log('09 ', `+63${this.form.phone.substring(1)}`)
           this.phone = `${this.form.phone.substring(1)}`;
         } else if (this.form.phone.startsWith('+630')) {
           this.phone = this.form.phone.substring(4);
@@ -320,30 +379,46 @@ export default {
       const valueBeforeInput = event.target.value;
 
       event.target.addEventListener("input", () => {
-        if (event.target.value.length > 11) {
+        if (event.target.value.length > 10) {
           event.target.value = valueBeforeInput;
-        }
+          // this.errors.phone = [
+          //   'The Phone number is invalid.',
+          // ];
+
+        } else this.errors.phone = []; 
       }, { once: true });
     },
     submitAccountType() {
       if (this.form.account_type) {
         this.showRadioButtons = false; 
       }
+      this.errors = [];
+      this.clearSignupForm();
     },
     ...mapActions(['signup', 'resendCode', 'verifyOTP', 'phoneOTP', 'validateInfo',]),
-    ...mapMutations(['setSignupForm',]),
+    ...mapMutations(['setSignupForm', 'clearSignupForm']),
     setMessage(msg)
     {
       this.message = msg;
     },
-    async validate() {
+    validate() {
 
       this.isDisabled = true;
+      this.errors = [];
       this.isLoading = true;
-      // this.form.phone = this.formatPhone;
-      console.log('Form Data: ', this.form)
+      this.getFormattedPhone();
+      console.log('Registration Form Data: ', this.form)
 
-      await this.validateInfo(this.form)
+      const validation = this.schema.validateAsync(this.form, { 
+        abortEarly: false, 
+        allowUnknown: true 
+      })
+      .then(async validated => {
+        this.isLoading = false;
+        
+        console.log('Valid Form data ', this.form)
+
+        await this.validateInfo(this.form)
         .then((response) => { 
           console.log('Validate Registration response: ', response)
           this.$nextTick(() =>
@@ -371,6 +446,17 @@ export default {
         .finally(o => {
           this.isLoading = false;
         })
+      })
+      .catch(err => {
+
+        this.isLoading = false;
+
+        err.details.forEach((error) => {
+          this.errors[error.path[0]] = [error.message];
+        });
+
+      })
+
     },
     async submit()
     {
@@ -482,10 +568,17 @@ export default {
     },
   },
   watch: {
+    form: {
+      handler(cur, prev) {
+        
+        
+      },
+      immediate: true,
+    },
     phone(cur) {
       if (cur.length !== 10) {
         this.errors.phone = [
-          'The Phone number is invalid.',
+          // 'The Phone number is invalid.',
         ];
       }
     },
@@ -551,7 +644,17 @@ export default {
   }
 }
 </script>
+<style scoped>
 
-<style>
+.form-group .text-danger {
+  margin-top: -1rem !important;
+  margin-bottom: 1rem !important;
+  position: relative !important;
+  top: 0rem !important;
+}
 
+.form-group .input-group {
+  margin-bottom: 0rem !important;
+  padding-bottom: 0rem !important;
+}
 </style>
