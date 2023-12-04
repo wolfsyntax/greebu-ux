@@ -135,16 +135,6 @@
                   <div v-for="error in errors?.phone" :key="error" class="text-danger phone-error">{{ error }}</div>
                 </div>
 
-                <!-- Twillio phone verify  -->
-
-                <!-- <div class="form-group">
-                  <label for="phone">Mobile number</label>
-                  <input ref="phoneInputField" id="phone" type="tel" class="form-control" name="phone" 
-                  v-model="form.phone" required autocomplete="phone">
-                  <div v-for="error in errors?.phone" :key="error" class="text-danger">{{ error }}</div>
-                </div> -->
-
-             
                 <div class="form-group">
                   <label for="password">Password</label>
                   <input id="password" type="password" class="form-control" name="password" v-model="form.password" autocomplete="new-password">
@@ -210,21 +200,6 @@ export default {
       verifyCode: null,
       verifyMessage: null,
       message: '',
-      // form: {
-      //   first_name: null,
-      //   last_name: null,
-      //   email: null,
-      //   username: null,
-      //   phone: null,
-      //   password: null,
-      //   password_confirmation: null,
-      //   account_type: 'customers',
-      //  // account_type: '',
-      //   phone: null,
-      //   login_type: 'email',
-
-       
-      // },
       phone: '',
       errors: {},
       countdown: 180,
@@ -307,23 +282,6 @@ export default {
     isAccountTypeSelected() {
       return this.form.account_type !== '';
     },
-    // formatPhone() {
-    //   // if(/^\+[1-9]\d{1,14}$/.test(this.form.phone)) {
-    //     console.log('Formatted Phone:: ', this.form?.phone !== '' || this.form?.phone !== null)
-    //   if (this.form?.phone !== '' && this.form?.phone !== null) {
-    //     if (this.form.phone.startsWith('09')) {
-    //       console.log('09 ', `+63${this.form.phone.substring(1)}`)
-    //       return `${this.form.phone.substring(1)}`;
-    //     } else if (this.form.phone.startsWith('+63')) {
-    //       return this.form.phone.substring(3);
-    //     } else if (this.form.phone.startsWith('9')) {
-    //       return `${this.form.phone}`;
-    //     }
-    //   }
-    //     return '';
-        
-    //   // }
-    // }
   },
   created() {
     // this.setSignupForm();

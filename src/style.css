@@ -2353,7 +2353,10 @@ header nav {
   border-radius: 5px;
   margin-bottom: 20px;
 }
-
+.register-form .form-group .valid-phone-number{
+  font-size: 0.87rem;
+  color: var(--black);
+}
 .register form .form-group .input-group .input-group-text {
   height: 48px !important;
 }

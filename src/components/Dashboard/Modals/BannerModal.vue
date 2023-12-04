@@ -3,8 +3,8 @@
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Upload Cover Photos</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ref="bannerClose" ></button>
+          <h5 class="modal-title">Upload Cover Photo</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ref="bannerClose" @click="removeBanner"></button>
         </div>
         <div class="modal-body">
       <div
@@ -53,6 +53,19 @@
                   @change="updateSize"
                   v-if="banner"
                 />
+
+                  <!--:stencil-props="{
+                    handlers: {},
+                    movable: false,
+                    scalable: false,
+                    resizable: false,
+		                aspectRatio: 1,
+                  }"
+                 
+                  :resize-image="{
+                    adjustStencil: false
+                  }"
+                   -->
 
                 <vertical-buttons>
                   <square-button title="Zoom In" @click="zoom(2)">
@@ -214,79 +227,71 @@ export default {
       // this.cropImage = canvas;
 
     },
-    getCropImage(e)
-    {
-      const { coordinates, canvas, image } = this.generateImage = this.$refs.cropper.getResult();
+    
+
+    getCropImage(compressedImage) {
+      const { coordinates, canvas, image } = this.$refs.cropper.getResult();
 
       this.showImage = true;
       this.cropImage = canvas;
-      //this.banner = canvas.toDataURL();
       this.preview = null;
-      
-      this.cropImage.toBlob(async blob =>
-      {
-        this.form.cover_photo = blob;
 
-        this.isLoading = true;
-        // var formData = new FormData();
-        // formData.append('cover_photo', this.form.cover_photo, this.filename);
-        // this.updateBanner(formData)
+      this.cropImage.toBlob(async blob => {
+        const formData = new FormData();
+        formData.append('cover_photo', blob, this.filename);
 
-        // this.$refs.bannerClose.click();
-        // this.removeBanner();
-        // console.log(`Closing Banner`);
+        this.updateBanner(formData);
 
-        const files =  this.form.cover_photo;
-        if (files) {
-          this.compressAndUploadImage(files);
-        } else {
-          console.error('No image to upload.');
-        }
-
-      });
-
-    },
-
-    compressAndUploadImage(files) {
-
-      const maxSizeBytes = 1024 * 1024; // 1 MB
-      const mediumSizeBytes = 500 * 1024; // 500 KB
-      const largeSizeBytes = 1500 * 1024; // 1.5 MB
-      const skipCompressionSizeBytes = 100 * 1024; // 100 KB
-
-      let quality;
-
-      if (files.size < skipCompressionSizeBytes) {
-        // If the file size is less than 100KB, skip compression
-        quality = 1; // Set to 1 to keep original quality
-      } else if (files.size < mediumSizeBytes) {
-        quality = 0.8;
-      } else if (files.size < maxSizeBytes) {
-        quality = 0.2;
-      } else if (files.size <= largeSizeBytes) {
-        quality = 0.4;
-      } else {
-        quality = 0.2;
-      }
-
-      new Compressor(files, {
-       // quality: 0.2, // Adjust the compression quality as needed, 0.6 or 0.8
-       quality: quality,
-
-        success: (compressedFile) => {
-          const formData = new FormData();
-          formData.append('cover_photo', compressedFile);
-          this.updateBanner(formData);
-
-          this.$refs.bannerClose.click();
-          this.removeBanner();
-          console.log(`Closing Banner`);
-        },
-        error(err) {
-          console.error('Image compression failed:', err.message);
-        },
+        this.$refs.bannerClose.click();
+        this.removeBanner();
+        console.log(`Closing Banner`);
       });
     },
+
+    // compressAndUploadImage(files) {
+
+    //   const maxSizeBytes = 1024 * 1024; // 1 MB
+    //   const mediumSizeBytes = 500 * 1024; // 500 KB
+    //   const largeSizeBytes = 1500 * 1024; // 1.5 MB
+    //   const skipCompressionSizeBytes = 100 * 1024; // 100 KB
+
+    //   let quality;
+
+    //   if (files.size < skipCompressionSizeBytes) {
+    //     // If the file size is less than 100KB, skip compression
+    //     quality = 1; // Set to 1 to keep original quality
+    //   } else if (files.size < mediumSizeBytes) {
+    //     quality = 0.8;
+    //   } else if (files.size < maxSizeBytes) {
+    //     quality = 0.2;
+    //   } else if (files.size <= largeSizeBytes) {
+    //     quality = 0.4;
+    //   } else {
+    //     quality = 0.2;
+    //   }
+
+    //   //let updateCoverImage = this.updateBanner;
+
+    //   new Compressor(files, {
+    //    // quality: 0.2, // Adjust the compression quality as needed, 0.6 or 0.8
+    //    quality: quality,
+
+    //     success: (compressedFile) => {
+    //       const formData = new FormData();
+    //       formData.append('cover_photo', compressedFile);
+    //       this.updateBanner(formData);
+
+    //       this.$refs.bannerClose.click();
+    //       this.removeBanner();
+    //       console.log(`Closing Banner`);
+
+
+    //     },
+    //     error(err) {
+    //       console.error('Image compression failed:', err.message);
+    //     },
+    //   });
+    // },
 
     handleDragOverCover(e)
     {
@@ -323,64 +328,55 @@ export default {
         return false
       }
 
-      // this.form.cover_photo = e.target.files[0];
-      // this.banner = URL.createObjectURL(e.target.files[0]);
       this.handleCoverImage(files);
     },
 
     uploadCover()
     {
-      // this.isLoading = true;
-      
-      // var formData = new FormData();
-      // formData.append('cover_photo', this.form.cover_photo, this.filename);
-      // this.updateBanner(formData)
-      // // this.updateBanner(this.form, this.generateImage)
-      //   .then(response =>
-      //   {
-      //     this.$refs.bannerClose.click();
-      //     this.removeBanner();
-          
-      //     console.log(`Closing Banner`);
-      //   })
-      //   .catch(error => {
-      //     console.error('Error uploading cover:', error);
-      //   });
     },
 
-    handleClick(e)
-    {
+    handleClick(e) {
       const files = e.target.files;
-      this.handleCoverImage(files);
+      this.handleCoverImage(files, this.getCropImage);
     },
-    handleCoverImage(files){
-      if(files){
-        const rawFile = files[0];
-        if (!rawFile) return;
-
-        const { name } = rawFile;
-        this.filename = name;
-        
-        this.form.cover_photo = rawFile;
-        this.banner = this.preview = URL.createObjectURL(rawFile);
-        // console.log(`top banner image`, this.banner)
-
-        this.uploadBox = false;
-        // check the image width and height
-        const img = new Image();
-        img.src = this.banner;
-
-        img.onload = () => {
-          this.imageWidth = img.width;
-          this.imageHeight = img.height;
-          console.log(`Image Width: ${this.imageWidth} pixels`);
-          console.log(`Image Height: ${this.imageHeight} pixels`);
-        };
-
-        this.compressAndUploadImage(files);
-
+    handleCoverImage(files, callback) {
+      if (!files) {
+        return;
       }
+
+      const rawFile = files[0];
+      if (!rawFile) {
+        return;
+      }
+
+      const { name } = rawFile;
+      this.filename = name;
+      this.form.cover_photo = rawFile;
+      this.banner = this.preview = URL.createObjectURL(rawFile);
+      this.uploadBox = false;
+
+      new Compressor(rawFile, {
+        quality: 0.6,
+        success(result) {
+          const formData = new FormData();
+          formData.append('files', result, result.name);
+
+          // axios.post('/path/to/upload', formData)
+          //   .then(() => {
+          //     console.log('Upload success');
+          //     callback(result);
+          //   })
+          //   .catch((error) => {
+          //     console.error('Upload error:', error);
+          //   });
+        },
+        error(err) {
+          console.log(err.message);
+        },
+      });
     },
+
+
     removeBanner()
     {
       this.form.cover_photo = null;

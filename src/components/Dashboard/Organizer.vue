@@ -392,6 +392,7 @@ export default {
     artistReviews: '234',
 
     // isModalVisible: false,
+    isActive: false,
   
   }),
   
@@ -399,6 +400,10 @@ export default {
     ...mapActions([
       'fetchProfile'
     ]),
+    toggle()
+    {
+      this.isActive = !this.isActive;
+    },
     openCreatePostModal(data)
     {
       this.$root.$emit("bv::show::modal", "#artistPost");
