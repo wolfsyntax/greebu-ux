@@ -30,6 +30,7 @@
 
             <div class="uploaded-image-wrapper" v-else>
               <div  v-if="showImage">
+                
                 <!-- <img :style="{ objectFit: fitStyle }" ref="uploadedImage" class="uploaded-image" :src="avatar" alt="banner-modal" /> -->
               </div>
               <example-wrapper

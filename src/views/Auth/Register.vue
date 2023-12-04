@@ -118,12 +118,15 @@
               <div class="form-group">
                 <label for="phone">Mobile number</label>
 
-                <div class="input-group mb-3">
+                <div class="input-group">
                   <span class="input-group-text" id="basic-addon1">+63</span>
                   <input id="phone" type="text" class="form-control" name="phone" v-model="form.phone" 
                   @blur="getFormattedPhone" required autocomplete="phone" 
                   @beforeinput="handleBeforeInput" placeholder="">
 
+                </div>
+                <div v-if="showValidMobileNumer">
+                  <p class="valid-phone-number">{{ validateMobileNumber }}</p>
                 </div>
 
                 <div v-for="error in errors?.phone" :key="error" class="text-danger">{{ error }}</div>
@@ -224,6 +227,7 @@ export default {
       showRadioButtons: true,
       isLoading: false,
       isSignup: true,
+      requiredMobileNumber: 11,
     }
   },
   props: {
@@ -264,6 +268,17 @@ export default {
         
     //   // }
     // }
+    showValidMobileNumer(){
+      return this.form.phone !== null && this.form.phone !== undefined && this.form.phone.length > 0 && this.form.phone.length < this.requiredMobileNumber;
+    },
+    validateMobileNumber(){
+      if (this.showValidMobileNumer) {
+        return `Phone must be ${this.requiredMobileNumber} digits. You typed ${this.form.phone.length} digits.`;
+      } else {
+        return '';
+      }
+    }
+
   },
   created() {
     // this.setSignupForm();
@@ -536,3 +551,7 @@ export default {
   }
 }
 </script>
+
+<style>
+
+</style>

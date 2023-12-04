@@ -394,6 +394,7 @@ export default {
           console.error('Image compression failed:', err.message);
         },
 
+        
       //   success: (compressedBlob) => {
       //   const compressedFile = new File([compressedBlob], `compressed.${files.type.split('/')[1]}`, {
       //     type: files.type,

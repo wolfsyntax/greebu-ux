@@ -236,6 +236,25 @@
             <!-- right wrapper end -->
           </div>
 
+          <div class="row songs-tab" v-if="activeItem === 'Feeds'">
+            <div class="col-12">
+
+              <!-- zero state screen   -->
+              <div class="text-center no-songs">
+                <svg xmlns="http://www.w3.org/2000/svg" width="101" height="102" viewBox="0 0 101 102" fill="none">
+                  <path d="M74.0209 16.7444H44.7986C41.104 16.7444 38.0972 19.7809 38.0972 23.5131V64.1305C36.2721 62.8851 34.0754 62.1578 31.713 62.1578C25.4066 62.1578 20.2768 67.3384 20.2768 73.7053C20.2768 80.0741 25.4066 85.2547 31.713 85.2547C38.0174 85.2547 43.1472 80.0741 43.1472 73.7053V38.1542H75.6722V55.1321C73.8472 53.8867 71.6494 53.1584 69.286 53.1584C62.9816 53.1584 57.8518 58.339 57.8518 64.7078C57.8518 71.0747 62.9816 76.2553 69.286 76.2553C75.5924 76.2553 80.7222 71.0747 80.7222 64.7078V23.5131C80.7232 19.7809 77.7165 16.7444 74.0209 16.7444ZM31.713 80.1557C28.1921 80.1557 25.3268 77.262 25.3268 73.7063C25.3268 70.1516 28.1921 67.2589 31.713 67.2589C35.2328 67.2589 38.0972 70.1516 38.0972 73.7063C38.0982 77.262 35.2339 80.1557 31.713 80.1557ZM43.1482 33.0542V23.5131C43.1482 22.5931 43.8885 21.8444 44.7996 21.8444H74.0219C74.9329 21.8444 75.6743 22.592 75.6743 23.5131V33.0542H43.1482ZM69.287 71.1563C65.7672 71.1563 62.9028 68.2636 62.9028 64.7089C62.9028 61.1531 65.7672 58.2594 69.287 58.2594C72.8079 58.2594 75.6732 61.1531 75.6732 64.7089C75.6732 68.2636 72.8079 71.1563 69.287 71.1563Z" fill="#B8BBCF"/>
+                </svg>
+
+                <div class="description-wrapper">
+                  <h3 class="title">No Feeds found?</h3>
+                  <p class="sub-title">It looks like you havent uploaded any songs yet? Use the button below to create your first song to start your Geebu journey!</p>
+                </div>
+
+                <!-- <button type="button" class="btn upload-songs">Upload Songs</button> -->
+              </div>
+            </div>
+          </div> <!-- end of songs-tab -->
+
           <!-- About tab -->
           <div class="row about-tab" v-if="activeItem === 'About'">
             <div class="col-7">
@@ -380,8 +399,6 @@ import { Modal } from 'bootstrap';
 
 export default {
   setup () {
-    
-
     return {}
   },
   components: {
@@ -395,6 +412,7 @@ export default {
     bannerImage: '/assets/artist-account/default-cover-photo.webp',
     navItems: [
       'Post',
+      'Feeds',
       'About',
       'Songs',
       'Videos',
@@ -499,6 +517,7 @@ export default {
     shouldShowBadge(item)
     {
       return item === 'Post' && this.submissions.length > 0 ||
+                      item === 'Feeds' && this.songs.length > 0 ||
                       item === 'About' && this.songs.length > 0 ||
                       item === 'Songs' && this.songs.length > 0 ||
                       item === 'Videos' && this.videos.length > 0 ||
@@ -507,6 +526,8 @@ export default {
     getCount(item)
     {
       switch (item) {
+        case 'Feeds':
+          return this.submissions.length;
         case 'Post':
           return this.submissions.length;
         case 'About':
