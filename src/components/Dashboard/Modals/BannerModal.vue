@@ -54,6 +54,19 @@
                   v-if="banner"
                 />
 
+                  <!--:stencil-props="{
+                    handlers: {},
+                    movable: false,
+                    scalable: false,
+                    resizable: false,
+		                aspectRatio: 1,
+                  }"
+                 
+                  :resize-image="{
+                    adjustStencil: false
+                  }"
+                   -->
+
                 <vertical-buttons>
                   <square-button title="Zoom In" @click="zoom(2)">
                     <span class="material-symbols-rounded zoom-in">&#xe8ff;</span>
