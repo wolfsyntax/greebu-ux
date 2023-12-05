@@ -515,6 +515,10 @@ router.beforeEach((to, from, next) => {
   const reqSession = to.matched.some((route) => route.meta.requiresLogin);
   const isAuth = store.getters.isLoggedIn;
 
+  if (isAuth && to?.name === "home") {
+    next({ name: "dashboard" });
+  }
+
   if (to?.name === "artists-profile") {
     setTimeout(() => {
       const regexExp =
