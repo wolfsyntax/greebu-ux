@@ -1,6 +1,7 @@
 <template>
   <div>
     <form class="required-fields" @submit.prevent="submit">
+      
       <div class="upload-file-wrapper" v-if="cover">
         <div class="uploaded-image-wrapper" >
           <div>
@@ -12,8 +13,9 @@
           </button>
         </div>
       </div>
-      <drag-drop @dragCover="setCover" v-else/>
+      <!-- <drag-drop @dragCover="setCover" v-else/> -->
       
+      <drag-drop @dragCover="setCover"  v-else/>
       <div v-for="err in error?.cover_photo" :key="err" class="text-center text-danger">{{ err }}</div>
       
       <div class="form-group">
@@ -192,11 +194,13 @@ export default {
     ]),
     setCover(val)
     {
-      
-      this.form.cover_photo = val;
-      this.form.cover = URL.createObjectURL(val);
-      // this.cover = URL.createObjectURL(val);
-      console.log('Set Cover:: ', this.form.cover);
+      if(val) {
+        this.form.cover_photo = val;
+        this.form.cover = URL.createObjectURL(val);
+        // this.cover = URL.createObjectURL(val);
+        console.log('Set Cover:: ', this.form.cover);
+
+      }
     },
     removeBanner()
     {
