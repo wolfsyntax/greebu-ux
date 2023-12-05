@@ -54,7 +54,7 @@ export const SET_EVENT_FILTER = (state, payload) => {
     city: payload?.city || "",
     cost: payload?.cost || "",
     search: payload?.search || "",
-    sortBy: payload?.sortBy || "DESC",
+    sortBy: payload?.sortBy || "ASC",
   };
 };
 
@@ -64,7 +64,7 @@ export const RESET_EVENT_FILTER = (state) => {
     city: "",
     cost: "both",
     search: "",
-    sortBy: "DESC",
+    sortBy: "ASC",
   };
 };
 
