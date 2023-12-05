@@ -47,7 +47,7 @@ const state = {
     city: "",
     cost: "both",
     search: "",
-    sortBy: "DESC",
+    sortBy: "ASC",
   },
   cancelReason: [
     "change of plan",
