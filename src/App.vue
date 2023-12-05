@@ -38,10 +38,13 @@ export default {
     }
 
   },
+  beforeRouteEnter (to, from, next) { 
+    console.log('To: ', to)
+    console.log('From: ', from);
+  },
   mounted() {
     console.log('App.vue mounted')
     if (this.isLoggedIn) {
-
       this.fetchUserInfo()
         .then(res => {
           console.log('Fetch User Info: ', res)
