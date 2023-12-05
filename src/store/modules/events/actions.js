@@ -667,7 +667,7 @@ export const upcomingEvents = ({ commit, rootState, state }) => {
     }
 
     if (state.eventFilter?.sortBy !== "") {
-      url = `${url}&sortBy=${state.eventFilter.sortBy || "DESC"}`;
+      url = `${url}&sortBy=${state.eventFilter.sortBy || "ASC"}`;
     }
 
     if (
