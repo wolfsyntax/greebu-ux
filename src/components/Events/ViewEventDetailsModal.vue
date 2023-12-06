@@ -70,6 +70,12 @@
              
           </div>
 
+          <div class="looking-for-wrap" v-if="event?.artist">
+              <h5 class="looking-for">Performer</h5>
+              <span class="badge type-artist" style="text-transform: capitalize;" v-for="(e, index) in event.artist" :key="index">{{ e.name }}</span>
+             
+          </div>
+
           <div class="requirements-wrap">
             <h5 class="requirements">Requirements</h5>
             <p class="description">{{ event?.requirement || 'N/A'}}</p>

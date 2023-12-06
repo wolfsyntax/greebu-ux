@@ -107,8 +107,8 @@ export const setOngoingPagination = (
   payload = {
     total: 0,
     last_page: 1,
-    per_page: 6,
-    offset: 6,
+    per_page: 8,
+    offset: 8,
     page: 1,
   }
 ) => {
@@ -120,8 +120,8 @@ export const setUpcomingPagination = (
   payload = {
     total: 0,
     last_page: 1,
-    per_page: 6,
-    offset: 6,
+    per_page: 8,
+    offset: 8,
     page: 1,
   }
 ) => {
@@ -133,8 +133,8 @@ export const setPastPagination = (
   payload = {
     total: 1,
     last_page: 1,
-    per_page: 6,
-    offset: 6,
+    per_page: 8,
+    offset: 8,
     page: 1,
   }
 ) => {
