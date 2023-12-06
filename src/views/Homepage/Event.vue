@@ -111,7 +111,7 @@
           <h3 class="even-type-title">This Week Events</h3>
           <div v-if="!isOngoingLoading">
             <div class="row" v-if="events_ongoing.length">
-              <div class="col-sm-12 col-md-6 col-lg-4" v-for="(event, index) in events_ongoing" :key="index">
+              <div class="col-sm-12 col-md-6 col-lg-3" v-for="(event, index) in events_ongoing" :key="index">
                 <event-card :event="event" :pos="index" @show="toggleEvent" group="ongoing" />
               </div>
               <div class="float-end pagination-wrap">
@@ -150,7 +150,7 @@
           <h3 class="even-type-title">Upcoming Events</h3>
           <div v-if="!isUpcomingLoading">
             <div class="row" v-if="events_upcoming.length">
-              <div class="col-sm-12 col-md-6 col-lg-4" v-for="(event, index) in events_upcoming" :key="index">
+              <div class="col-sm-12 col-md-6 col-lg-3" v-for="(event, index) in events_upcoming" :key="index">
                 <event-card :event="event" :pos="index" @show="toggleEvent" group="upcoming"/>
               </div>
               <div class="float-end pagination-wrap">
@@ -189,7 +189,7 @@
           <h3 class="even-type-title">Past Events</h3>
           <div v-if="!isPastLoading">
             <div class="row" v-if="events_past.length">
-              <div class="col-sm-12 col-md-6 col-lg-4" v-for="(event, index) in events_past" :key="index">
+              <div class="col-sm-12 col-md-6 col-lg-3" v-for="(event, index) in events_past" :key="index">
                 <event-card :event="event" :pos="index" @show="toggleEvent" group="past"/>
               </div>
               <div class="float-end pagination-wrap">

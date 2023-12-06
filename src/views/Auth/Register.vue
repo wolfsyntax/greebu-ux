@@ -366,10 +366,10 @@ export default {
           console.log('Validate Registration response: ', response)
           this.$nextTick(() =>
           {
-            setTimeout(() =>
-            {
+            // setTimeout(() =>
+            // {
               this.isDisabled = false;
-            }, 3000)
+            // }, 3000)
             
           })
           
