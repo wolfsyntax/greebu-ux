@@ -63,7 +63,7 @@
 
       <div class="form-group">
         <label for="lookingFor">Number of artist</label>
-        <input type="number" id="number-of-artist" name="number_of_artist" v-model="total_participants" min="0" max="50" />
+        <input type="number" id="number-of-artist" name="number_of_artist" v-model="total_participants" min="0" max="50" :disabled="!account.accept_proposal"/>
       </div>
 
       <div class="form-group event-details-wrap">
