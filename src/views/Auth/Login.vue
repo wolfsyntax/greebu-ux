@@ -117,6 +117,7 @@ export default {
         email: null,
         password: null,
         remember_me: false,
+        processing: false,
       },
       isInitial: true,
       isVerified: true,
@@ -138,6 +139,7 @@ export default {
     ]),
     submit()
     { 
+      this.form.processing = true;
       this.signin(this.form).then((response) =>
       {
         console.log('Login Response: ', response)
@@ -184,6 +186,9 @@ export default {
       .catch(err =>
       {
         console.log('Login Err: ', err)
+      })
+      .finally(f => {
+        this.form.processing = false;
       });
 
     },
@@ -198,4 +203,8 @@ export default {
   
 }
 </script>
-<style scoped></style>
+<style scoped>
+.btn-login .btn:disabled {
+  background: #fed7aa;
+}
+</style>

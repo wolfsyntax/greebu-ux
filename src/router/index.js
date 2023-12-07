@@ -523,13 +523,19 @@ router.beforeEach((to, from, next) => {
   const { role } = to.meta;
   // const { path: toPath } = to.fullPath;
   // const { path: fromPath } = from.fullPath;
+  console.log("Route before enter [To]: ", to);
 
   const reqSession = to.matched.some((route) => route.meta.requiresLogin);
   const isAuth = store.getters.isLoggedIn;
 
   if (isAuth) {
     if (["home", "register", "login", "forgot"].includes(to?.name || "home"))
-      next({ name: "dashboard" });
+      if (
+        !to.query.hasOwnProperty("onboarding") ||
+        (to.query.hasOwnProperty("onboarding") &&
+          to.query.onboarding !== "true")
+      )
+        next({ name: "dashboard" });
   }
 
   if (to?.name === "artists-profile") {
