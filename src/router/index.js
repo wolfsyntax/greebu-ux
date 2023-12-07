@@ -447,6 +447,18 @@ const router = createRouter({
       },
     },
     {
+      path: "/terms",
+      name: "Terms",
+      component: () => import("/src/views/Terms.vue"),
+      meta: {
+        requiresLogin: false, // true
+        title: "Terms",
+        role: "",
+        parent: "",
+        breadcrumb: [{ title: "", url: "" }],
+      },
+    },
+    {
       path: "/pages",
       component: () => import("/src/components/FullPage.vue"),
       children: [
