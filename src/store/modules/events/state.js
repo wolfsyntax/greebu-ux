@@ -85,6 +85,7 @@ const state = {
     page: 1,
   },
   eventId: "",
+  viewType: "ongoing",
 };
 
 export default state;

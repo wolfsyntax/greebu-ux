@@ -25,7 +25,7 @@
                  Posted {{ $filters.diffForHumans($moment(event?.created_at).format('YYYY-MM-DD hh:mm:ss a')) }}</p>
             </div>
             <div>
-              <a :href="`/proposal/${event.id}/apply`" v-if="userRole === 'artists' && usage === 'view'" class="send" :disabled="!event.accept_proposal">Send Proposal</a>
+              <a :href="`/proposal/${event.id}/apply`" v-if="userRole === 'artists' && usage === 'view' && view !== 'past'" class="send" :disabled="!event.accept_proposal">Send Proposal</a>
             </div>
             
           </div>
@@ -142,6 +142,7 @@ export default {
     ...mapGetters(["isLoggedIn", 'userInfo', 'info', 'userRole']),
     ...mapState({
       event: state => state.events.event,
+      view: state => state.events.viewType,
       users: (state) => state.user,
       profile: (state) => state.profile,
       //account: state => state.account,

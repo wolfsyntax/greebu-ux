@@ -68,6 +68,11 @@ export const RESET_EVENT_FILTER = (state) => {
   };
 };
 
+export const setEventView = (state, payload = "ongoing") => {
+  state.viewType =
+    typeof payload === "string" ? payload || "ongoing" : "ongoing";
+};
+
 export const SET_EVENT = (state, payload) => {
   console.log("SET_EVENT data: ", payload);
   state.event = payload;
