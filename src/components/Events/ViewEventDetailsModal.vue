@@ -19,7 +19,7 @@
           <div class="d-flex align-items-start justify-content-between event-title-wrap">
 
             <div>
-              <h3 class="title">{{ event.event_name }}</h3>
+              <h3 class="title text-capitalize">{{ event.event_name }}</h3>
               <p class="d-flex align-items-center posted">{{ event.is_public ? 'Public' : 'Private' }} Event
                 <span class="material-symbols-rounded dot">&#xe061;</span>
                  Posted {{ $filters.diffForHumans($moment(event?.created_at).format('YYYY-MM-DD hh:mm:ss a')) }}</p>
@@ -50,8 +50,8 @@
             <div class="d-flex w-50">
               <span class="material-symbols-rounded">&#xe0c8;</span>
               <div>
-                <h6>{{ event.venue_name }}</h6>
-                <p>{{ event?.location || event.city || '' }}</p>
+                <h6 class="text-capitalize">{{ event.venue_name }}</h6>
+                <p class=" text-capitalize">{{ event?.location || event.city || '' }}</p>
               </div>
             </div>
             </div>
@@ -65,14 +65,14 @@
 
           <div class="looking-for-wrap">
               <h5 class="looking-for">Looking for</h5>
-              <span class="badge type-artist" style="text-transform: capitalize;">{{ event.look_for }}</span>
-              <span class="badge type-artist" style="text-transform: capitalize;" v-for="(e, index) in event.look_types" :key="index">{{ e }}</span>
+              <span class="badge type-artist text-capitalize" >{{ event.look_for }}</span>
+              <span class="badge type-artist text-capitalize"  v-for="(e, index) in event.look_types" :key="index">{{ e }}</span>
              
           </div>
 
           <div class="looking-for-wrap" v-if="event?.artist">
               <h5 class="looking-for">Performer</h5>
-              <span class="badge type-artist" style="text-transform: capitalize;" v-for="(e, index) in event.artist" :key="index">{{ e.name }}</span>
+              <span class="badge type-artist text-capitalize"  v-for="(e, index) in event.artist" :key="index">{{ e.name }}</span>
              
           </div>
 
@@ -94,8 +94,8 @@
               <div class="d-flex align-items-center">
                 <img :src="event?.organizer_avatar || '/assets/organizer-account/profile-img.webp'" class="organizer-img" alt="Organizer profile image">
                 <div>
-                  <h5 class="organizer-name">{{ event?.organizer_name }}</h5>
-                  <p class="company">{{ event?.organizer_company || 'N/A'}}</p>
+                  <h5 class="organizer-name text-capitalize">{{ event?.organizer_name }}</h5>
+                  <p class="company text-capitalize">{{ event?.organizer_company || 'N/A'}}</p>
                 </div>
               </div>
 

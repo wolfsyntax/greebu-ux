@@ -38,21 +38,21 @@
         <div class="col">
           <div class="seeking-for" v-if="(userRole === 'artists' || userRole === 'organizer') && event.look_types.length > 0" >
             <h6 class="title">Seeking for</h6>
-            <span class="badge type-artist" v-for="(look, index) in event.look_types.slice(0,1)" :key="index">{{ look }}</span>
+            <span class="badge type-artist text-capitalize" v-for="(look, index) in event.look_types.slice(0,1)" :key="index">{{ look.length > 8 ? look.substring(0,9) : look }}{{ look.length > 8 ? '...': ''}}</span>
             <span class="badge type-artist bg-transparent" v-if="event.look_types.length > 1">...</span>
           </div>
 
           <!-- set the opacity to 0 on this div when the created event has no Seeking for -->
           <div class="seeking-for" v-if="(userRole === 'artists' || userRole === 'organizer') && event.look_types.length === 0" >
             <h6 class="title" style="opacity: 0;">Seeking for</h6>
-            <span class="badge type-artist" style="opacity: 0;">acoustic band</span>
+            <span class="badge type-artist text-capitalize" style="opacity: 0;">{{ 'acoustic band'.substring(0,9)}}...</span>
           </div>
         </div>
 
         <div class="col">
           <div class="seeking-for" v-if="event?.artist">
             <h6 class="title" style="" >Performer</h6>
-            <p v-for="(artist, index) in event?.artist.slice(0,1)" :key="index" class="badge type-artist artist-popover">
+            <p v-for="(artist, index) in event?.artist.slice(0,1)" :key="index" class="badge type-artist artist-popover text-capitalize">
               <span :id="`event-${event.id}`"  data-bs-toggle="popover" data-bs-placement="right"
                 data-bs-html="true" @mouseover="show(artist, index)" data-bs-trigger="hover"
                 :data-bs-footer="`123`" :data-bs-content='`
@@ -66,7 +66,7 @@
 
                 <div class="d-flex align-items-start justify-content-between details-wrap">
                   <div>
-                    <h4>${artist.name}</h4>
+                    <h4 class="text-capitalize">${artist.name}</h4>
                     <h5 class="mb-0">${artist.artist_type}</h5>
                   </div>
 
@@ -108,7 +108,7 @@
                   </div>
                 </div> 
               </div>`'
-              >{{ artist?.name }}</span>
+              >{{ artist?.name.length > 8 ? artist?.name?.substring(0,9) : artist?.name }}{{ artist?.name.length > 8 ? '...': ''}}</span>
             </p>
             <p v-if="event?.artist.length > 1" class="badge type-artist artist-popover bg-transparent">...</p>
           </div>
