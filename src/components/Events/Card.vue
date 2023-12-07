@@ -38,14 +38,14 @@
         <div class="col">
           <div class="seeking-for" v-if="(userRole === 'artists' || userRole === 'organizer') && event.look_types.length > 0" >
             <h6 class="title">Seeking for</h6>
-            <span class="badge type-artist text-capitalize" v-for="(look, index) in event.look_types.slice(0,1)" :key="index">{{ look.length > 8 ? look.substring(0,9) : look }}{{ look.length > 8 ? '...': ''}}</span>
+            <span class="badge type-artist text-capitalize" v-for="(look, index) in event.look_types.slice(0,1)" :key="index">{{ look.length > 10 ? look.substring(0,11) : look }}{{ look.length > 10 ? '...': ''}}</span>
             <span class="badge type-artist bg-transparent" v-if="event.look_types.length > 1">...</span>
           </div>
 
           <!-- set the opacity to 0 on this div when the created event has no Seeking for -->
           <div class="seeking-for" v-if="(userRole === 'artists' || userRole === 'organizer') && event.look_types.length === 0" >
             <h6 class="title" style="opacity: 0;">Seeking for</h6>
-            <span class="badge type-artist text-capitalize" style="opacity: 0;">{{ 'acoustic band'.substring(0,9)}}...</span>
+            <span class="badge type-artist text-capitalize" style="opacity: 0;">{{ 'acoustic band'.substring(0,11)}}...</span>
           </div>
         </div>
 
@@ -108,7 +108,7 @@
                   </div>
                 </div> 
               </div>`'
-              >{{ artist?.name.length > 8 ? artist?.name?.substring(0,9) : artist?.name }}{{ artist?.name.length > 8 ? '...': ''}}</span>
+              >{{ artist?.name.length > 10 ? artist?.name?.substring(0,11) : artist?.name }}{{ artist?.name.length > 10 ? '...': ''}}</span>
             </p>
             <p v-if="event?.artist.length > 1" class="badge type-artist artist-popover bg-transparent">...</p>
           </div>
