@@ -145,6 +145,8 @@ export default {
   },
   mounted() {
     this.phone_num = this.phone || this.info?.phone;
+    this.countdown_enabled = true;
+    this.countdown = 180;
   },
   setup () {
     
