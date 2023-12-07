@@ -8,7 +8,7 @@
               <div class="carousel-caption d-none d-md-block">
                 <h2>EXPLORE our Community of artist</h2>
                 <p>Custom tunes for any mood, and booking the best artists just got easier with our website!</p>
-                <a href="/create-song" class="btn btn-primary btn-lg">Create a song</a>
+                <a href="/create-song" class="btn btn-primary btn-lg" v-if="(isLoggedIn && userRole !== 'artists') || !isLoggedIn">Create a song</a>
               </div>
             </div>
             <div class="carousel-item">
@@ -309,7 +309,7 @@ export default {
     });
   },
   computed: {
-    ...mapGetters(["userInfo", "token"]),
+    ...mapGetters(["userInfo", "token", "isLoggedIn", "userRole",]),
     ...mapState({
       artists: (state) => state.artist.artists,
       artist_types: (state) => state.artist.artist_types,
