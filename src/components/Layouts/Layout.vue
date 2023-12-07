@@ -4,7 +4,7 @@
     <header class="main-nav">
       <nav class="navbar navbar-expand-lg">
         <div class="container">
-          <router-link to="/" class="navbar-brand logo">
+          <router-link :to="isLoggedIn ? '/dashboard' : '/'" class="navbar-brand logo">
             <img src="/assets/geebu-logo.svg" alt="Geebu logo">
           </router-link>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"

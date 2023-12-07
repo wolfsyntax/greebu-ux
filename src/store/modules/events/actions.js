@@ -601,7 +601,7 @@ export const ongoingEvents = ({ commit, rootState, state }) => {
       }`;
     }
 
-    url = `${url}&per_page=${state.ongoingPagination?.per_page || 6}&page=${
+    url = `${url}&per_page=${state.ongoingPagination?.per_page || 8}&page=${
       state.ongoingPagination?.page || 1
     }`;
 
@@ -626,8 +626,8 @@ export const ongoingEvents = ({ commit, rootState, state }) => {
               pagination || {
                 total: 0,
                 last_page: 1,
-                per_page: 6,
-                offset: 6,
+                per_page: 8,
+                offset: 8,
               }
             );
             resolve(data);
@@ -667,7 +667,7 @@ export const upcomingEvents = ({ commit, rootState, state }) => {
     }
 
     if (state.eventFilter?.sortBy !== "") {
-      url = `${url}&sortBy=${state.eventFilter.sortBy || "DESC"}`;
+      url = `${url}&sortBy=${state.eventFilter.sortBy || "ASC"}`;
     }
 
     if (
@@ -685,7 +685,7 @@ export const upcomingEvents = ({ commit, rootState, state }) => {
       }`;
     }
 
-    url = `${url}&per_page=${state.upcomingPagination?.per_page || 6}&page=${
+    url = `${url}&per_page=${state.upcomingPagination?.per_page || 8}&page=${
       state.upcomingPagination?.page || 1
     }`;
 
@@ -710,8 +710,8 @@ export const upcomingEvents = ({ commit, rootState, state }) => {
               pagination || {
                 total: 0,
                 last_page: 1,
-                per_page: 6,
-                offset: 6,
+                per_page: 8,
+                offset: 8,
               }
             );
             console.log("Upcoming Events: ", events);
@@ -729,7 +729,7 @@ export const upcomingEvents = ({ commit, rootState, state }) => {
 };
 
 export const pastEvents = ({ commit, rootState, state }) => {
-  return new Promise((resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
     var url = `${
       import.meta.env.VITE_BASE_URL || "http://localhost:8000"
     }/api/events-past?search=${
@@ -770,44 +770,44 @@ export const pastEvents = ({ commit, rootState, state }) => {
       }`;
     }
 
-    url = `${url}&per_page=${state.pastPagination?.per_page || 6}&page=${
+    url = `${url}&per_page=${state.pastPagination?.per_page || 8}&page=${
       state.pastPagination?.page || 1
     }`;
 
     console.log("Event page [past]: ", url);
-    setTimeout(async () => {
-      await axios
-        .get(url)
-        .then((response) => {
-          console.log("Fetch Past Events: ", response);
+    // setTimeout(async () => {
+    await axios
+      .get(url)
+      .then((response) => {
+        console.log("Fetch Past Events: ", response);
 
-          const { status: statusCode, data } = response;
+        const { status: statusCode, data } = response;
 
-          if (statusCode === 200) {
-            const {
-              status,
-              message,
-              result: { events, pagination },
-            } = data;
-            commit("setPastEvents", events || []);
-            commit(
-              "setPastPagination",
-              pagination || {
-                total: 0,
-                last_page: 1,
-                per_page: 6,
-                offset: 6,
-              }
-            );
-            resolve(data);
-          }
+        if (statusCode === 200) {
+          const {
+            status,
+            message,
+            result: { events, pagination },
+          } = data;
+          commit("setPastEvents", events || []);
+          commit(
+            "setPastPagination",
+            pagination || {
+              total: 0,
+              last_page: 1,
+              per_page: 8,
+              offset: 8,
+            }
+          );
+          resolve(data);
+        }
 
-          reject(data);
-        })
-        .catch((err) => {
-          const { data } = err;
-          reject(data);
-        });
-    }, 1500);
+        reject(data);
+      })
+      .catch((err) => {
+        const { data } = err;
+        reject(data);
+      });
+    // }, 100);
   });
 };
