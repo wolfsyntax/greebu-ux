@@ -456,6 +456,23 @@ export default {
   mounted()
   {
 
+    const success = (position) => {
+      const latitude  = position.coords.latitude;
+      const longitude = position.coords.longitude;
+
+      console.log('My Geo-Location: ', latitude, longitude);
+      // Do something with the position
+    };
+
+    const error = (err) => {
+      console.log('On Error Geo-Location', error)
+    };
+
+    if (navigator.geolocation) {
+      // This will open permission popup
+      navigator.geolocation.getCurrentPosition(success, error);
+    }
+    
     this.triggerType = '';
     if (this.userRole === 'organizer') {
       console.log('User role: ', this.userRole)
