@@ -17,11 +17,11 @@
     <div class="col-md-12 continue-with">
       <p><span>Or Continue with</span></p>
     </div>
-    <button @click="login('google')" class="google btn" v-if="$route.name === 'login'"><img src="/assets/sign-in-with-google.svg" width="20" height="20" alt="Sign up with Google">Sign in with Google</button>
+    <button type="button" @click="login('google')" class="google btn" v-if="$route.name === 'login'"><img src="/assets/sign-in-with-google.svg" width="20" height="20" alt="Sign up with Google">Sign in with Google</button>
     <!-- <button @click="login('facebook')" class="facebook" v-if="$route.name === 'login'"><img src="/assets/sign-in-with-facebook.svg" width="20" height="20" alt="Sign up with Facebook">Sign in with Facebook</button> -->
   
     <div v-if="$route.name === 'register'">
-      <button @click="login('google')" class="google btn"><img src="/assets/sign-in-with-google.svg" width="20" height="20" alt="Sign up with Google">Sign up with Google</button>
+      <button type="button" @click="login('google')" class="google btn"><img src="/assets/sign-in-with-google.svg" width="20" height="20" alt="Sign up with Google">Sign up with Google</button>
     <!-- <button @click="login('facebook')" class="facebook"><img src="/assets/sign-in-with-facebook.svg" width="20" height="20" alt="Sign up with Facebook">Sign up with Facebook</button> -->
     </div>
 
@@ -64,7 +64,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      'socialMediaAuth', 'socialAuth',
+      'socialMediaAuth', 'socialAuthV2', 'fetchProfile',
     ]),
     login(provider)
     {
@@ -103,30 +103,25 @@ export default {
           {
             formData.auth_type = this.$route.name;
             formData.account_type = this.account_type; 
-
+            console.log('Social Signup info: ', formData);
             // Works with signInWithPopup
-            this.socialAuth({
+            this.socialAuthV2({
               provider: provider,
-              formData
+              formData,
+              auth_type: this.$route.name
             })
               .then(response =>
               {
 
                 const { message, status, result } = response;
 
-                if (status === 200) {
-                  // Firebase Authenticated details:
-                  // console.log('Social Auth: ', response)
-                  if (!result?.user?.phone_verified_at)
-                  {
-                    // this.$router.push({ name: 'verify' })
-                    this.$router.push({ name: 'home' })
-                    //this.$router.push({ path: '/', query: { onboarding: 'true' } });
-
-                  //this.$router.push({ path: this.$route.path, query: { id: result?.user_id } });
-                  } else {
-                    this.$router.push({ name: 'home' });
-                  }
+                if (status === 200 && formData.auth_type === 'register') {
+                  console.log('[200] Verify Page: ', response);
+                  this.$router.push({ name: 'verify' });
+                } else if (status === 200) {
+                  this.fetchProfile();
+                  console.log('Redirect to onboarding');
+                  this.$router.push({ path: '/', query: { onboarding: 'true' } });
 
                 } else {
                   this.$emit('request', 'Account not registered.');
@@ -134,6 +129,8 @@ export default {
               })
               .catch(err =>
               {
+
+                console.log('[Error] Social Auth: ', err);
                 this.$emit('request', 'Server Error.');
               })
           }

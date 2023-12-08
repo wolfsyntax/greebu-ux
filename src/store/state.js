@@ -43,6 +43,17 @@ var state = {
     login_type: "email",
     verification_code: "",
   },
+  socialForm: {
+    email: "",
+    avatar: "",
+    first_name: "",
+    last_name: "",
+    provider_id: "",
+    username: "",
+    provider_type: "",
+    auth_type: "",
+    account_type: "",
+  },
   phoneMask: "",
   geocode: {
     lat: "0.000000",
