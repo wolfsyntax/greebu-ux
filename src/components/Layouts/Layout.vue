@@ -301,9 +301,8 @@
   </main>
 </template>
 <script>
-import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
+import { mapActions, mapGetters, mapMutations, mapState } from "vuex";
 import SubscriptionModal from '/src/components/Artist/SubscriptionModal.vue';
-import { Dropdown } from 'bootstrap'
 export default {
   components: {
     SubscriptionModal
