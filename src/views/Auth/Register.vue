@@ -180,10 +180,10 @@
   </layout>
 </template>
 <script>
-import Layout from '/src/components/Layouts/AuthLayout.vue';
-import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
-import Verify from '@/components/Auth/Verify.vue';
 import SocialButton from '@/components/Auth/SocialLogin.vue';
+import Verify from '@/components/Auth/Verify.vue';
+import { mapActions, mapGetters, mapMutations, mapState } from "vuex";
+import Layout from '/src/components/Layouts/AuthLayout.vue';
 
 import Joi from "joi";
 
