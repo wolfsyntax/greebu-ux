@@ -486,8 +486,7 @@ var actions = {
                 result: { profile, user, token, account },
               },
             } = response;
-            console.log(`n\nSocial Auth [${provider}] Response: `, response);
-
+            console.log("SocialAuth Response: ", response);
             if (statusCode === 200) {
               commit("SET_AUTH", user);
               commit("SET_TOKEN", token);
@@ -504,6 +503,68 @@ var actions = {
             reject(err);
           });
       }, 1000);
+    });
+  },
+  socialAuthV2({ commit, dispatch }, { provider, formData, auth_type }) {
+    return new Promise(async (resolve, reject) => {
+      await axios
+        .post(
+          `${
+            import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+          }/api/auth/${provider}/firebase`,
+          formData
+        )
+        .then((response) => {
+          const {
+            status: statusCode,
+            data: { message, status, result },
+          } = response;
+
+          console.log("[vuex] socialAuthV2: ", response);
+
+          if (statusCode === 200) {
+            if (result.hasOwnProperty("token")) {
+              const { account, profile, roles, token, user } = result;
+
+              commit("SET_AUTH", user || {});
+              commit("SET_PHONE", user?.phone);
+              commit("SET_ROLE", profile?.role || "");
+              commit("SET_ROLES", []);
+
+              commit("SET_TOKEN", "");
+              commit("SET_PROFILE", {});
+
+              if (profile?.role === "customers" && user?.phone_verified_at) {
+                commit("SET_TOKEN", token || "");
+                commit("SET_PROFILE", profile || {});
+                commit("setSignupForm");
+                // dispatch("fetchProfile");
+              } else if (user?.phone_verified_at) {
+                commit("setSignupForm");
+                commit("SET_AUTH", user || {});
+                commit("SET_PHONE", user?.phone);
+                commit("SET_ROLE", profile?.role || "");
+                commit("SET_ROLES", roles || []);
+
+                commit("SET_TOKEN", token || "");
+                commit("SET_PROFILE", profile || {});
+
+                // dispatch("fetchProfile");
+              }
+
+              dispatch("fetchProfile");
+            } else {
+              commit("setSocialForm", user);
+            }
+
+            resolve(response.data);
+          }
+
+          reject(response?.data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
     });
   },
   socialMediaAuth({ commit, state }, payload) {
@@ -752,7 +813,40 @@ var actions = {
       }, 1000);
     });
   },
-  resendCodeV2({ commit, state }) {
+  requestCodeV2({ commit, state }, { phone, code }) {
+    return new Promise(async (resolve, reject) => {
+      var formData = state.socialForm;
+      formData.phone = phone || "";
+      formData.code = code || "000000";
+
+      await axios
+        .post(
+          `${
+            import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+          }/api/auth/${state.socialForm.provider || "google"}/store`,
+          formData
+        )
+        .then((response) => {
+          console.log("\n\n[vuex] Request Code V2 Response: ", response);
+          const {
+            status: statusCode,
+            data: { message, status, result },
+          } = response;
+
+          if (statusCode === 200) {
+            // const { user } = result;
+            // commit("SET_AUTH", user || {});
+          }
+
+          resolve(response);
+        })
+        .catch((err) => {
+          console.log("Error response: ", err);
+          reject(err);
+        });
+    });
+  },
+  resendCodeV2({ commit, state }, { phone }) {
     return new Promise((resolve, reject) => {
       setTimeout(async () => {
         await axios
@@ -760,7 +854,7 @@ var actions = {
             `${
               import.meta.env.VITE_BASE_URL || "http://localhost:8000"
             }/api/v2/twilio-auth/resend-otp`,
-            { phone: state.signupForm.phone },
+            { phone },
             {
               Accept: "application/json",
             }
@@ -866,7 +960,51 @@ var actions = {
       // }, 1000);
     });
   },
+  validateCodeV2({ commit, state, dispatch }, payload) {
+    return new Promise(async (resolve, reject) => {
+      var formData = state.socialForm;
+      formData.code = payload?.code || "000000";
+      formData.phone = payload?.phone || "";
 
+      await axios
+        .post(
+          `${
+            import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+          }/api/auth/${state.socialForm?.provider || "google"}/store`,
+          formData
+        )
+        .then((response) => {
+          console.log("\n\n::Validate Code:: ", response);
+
+          const { status: statusCode, data } = response;
+
+          if (statusCode === 200) {
+            const {
+              status,
+              result: { user, profile, roles, token, account },
+            } = data;
+
+            if (status === 200) {
+              commit("SET_AUTH", user || {});
+              commit("SET_TOKEN", token || "");
+              commit("SET_PROFILE", profile || {});
+              commit("SET_ACCOUNT", account || {});
+              commit("SET_ROLE", profile?.role || "");
+              commit("SET_ROLES", roles || null);
+
+              dispatch("fetchProfile");
+            }
+
+            resolve(response);
+          }
+
+          reject(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  },
   // Resend Email verification
   resendEmail({ commit, state }) {
     return new Promise((resolve, reject) => {

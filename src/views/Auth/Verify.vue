@@ -108,7 +108,7 @@
             <div class="content">
               <h5 class="card-title">Check your text messages</h5>
               <p class="card-text">Enter verification code we sent to</p>
-              <p class="phone-number">{{ info.phonemask || '+639xxxxxxxxx' }}</p>
+              <p class="phone-number">{{ mask || '+639xxxxxxxxx' }}</p>
               <!-- Incorrect Code! -->
               <div v-if="wrongCode" class="alert alert-danger" role="alert">
                 <div class="left">
@@ -233,7 +233,7 @@ export default {
       wrongCode: false,
       codeIsRequired: false,
       timerId: null,  
-
+      mask: '+639',
       page: 'request',
       errors: null,
       message: "The provided OTP code is invalid. Please try again with the correct code.",
@@ -242,9 +242,12 @@ export default {
       }
     }
   },
+  mounted() {
+    console.log('Social Auth Registration Data: ', this.social);
+  },
   methods: {
     ...mapActions([
-      'sendOTPCode', 'requestCode', 'resendCode', 'validateCode',
+      'sendOTPCode', 'requestCodeV2', /*'resendCode',*/ 'resendCodeV2', 'validateCode', 'validateCodeV2', 'fetchProfile',
     ]),
     submit()
     {
@@ -294,22 +297,27 @@ export default {
         return; 
       }
 
-      // console.log("Submitting form with phone number:", this.form.phone);
-      this.requestCode(this.form)
+      this.resendCodeV2(this.form)
         .then(response =>
         {
-          const { status: statusCode, data: {message, status, result: {errors}} } = response;
+          const { status: statusCode, data: {message, status, result } } = response;
           console.log('Phone number send otp: ', response)
           if (statusCode === 200) {
+            
             this.step = 3;
+            this.mask = result?.mask || '';
+
           } else if (statusCode === 203) {
+            
             this.showError = true;
+
+            const { errors } = result;
             
             if (status === 422) {
               this.errors = errors || null
               this.message = message;
             } else if (status === 500) {
-              this.errors.phone.push('Too many attempts. Please try again after 10 minutes.')
+              this.errors?.phone.push('Too many attempts. Please try again after 10 minutes.')
             }
           }
         })
@@ -352,6 +360,8 @@ export default {
       }
     },
     startResendCode(){
+
+      this.submitForm();
       if(!this.resendCode){
         this.resendCode = 60;
 
@@ -373,25 +383,23 @@ export default {
       
       this.wrongCode = false;
 
-      this.validateCode({ code: enteredCode })
+      this.validateCodeV2({ code: enteredCode, phone: this.form?.phone || '' })
         .then(response =>
         {
           const { status: statusCode, data: { status, message, result } } = response;
 
           console.log('Verify Code [submit] response: ', response);
 
-          if (statusCode === 201)
+          if (status === 200)
           {
-            if (status === 200)
-            {
-              this.wrongCode = false;
-              this.codes = ['', '', '', '', '', ''];
-              this.step = 4;
+            this.wrongCode = false;
+            this.codes = ['', '', '', '', '', ''];
+            this.step = 4;
 
-            } else {
-              this.wrongCode = true;
-            }
+          } else {
+            this.wrongCode = true;
           }
+          
         })
 
       // if (enteredCode === correctCode) {
@@ -430,11 +438,19 @@ export default {
     },
 
     backToLogin(){
-      window.location.href = '/';
+      // window.location.href = '/';
+      this.fetchProfile()
+        .then(res => {
+          console.log('Successful registration and redirecto to login');
+          this.$router.push({ path: '/', query: { onboarding: 'true' } });
+        });
     },
 
   },
   computed: {
+    ...mapState({
+      social: state => state.socialForm,
+    }),
     ...mapGetters(["info", "token"]),
     isValidPhoneNumber() {
       // Check if the phone number starts with '0' and has 10 or more digits after that

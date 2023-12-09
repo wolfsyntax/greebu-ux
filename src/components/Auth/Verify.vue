@@ -134,6 +134,7 @@ export default {
     ...mapState({
       mask: state => state.phoneMask,
       phoneMask: state => state.phoneMask,
+      phone: state => state.signupForm.phone,
     }),
     computedLength() {
       return this.verifyCode.filter(code => code !== null).length;
@@ -166,7 +167,7 @@ export default {
         // resend request
         // await this.resendOTPCode(this.$route.query.id)
         // await this.resendCodeV2({userId:  this.$route.query.id})
-        await this.resendCodeV2()
+        await this.resendCodeV2({ phone: this.phone })
           .then(response =>
           {
             const { status } = response;

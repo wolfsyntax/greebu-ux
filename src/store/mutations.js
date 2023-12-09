@@ -98,6 +98,22 @@ var mutations = {
   ) {
     state.signupForm = payload;
   },
+  setSocialForm(
+    state,
+    payload = {
+      email: "",
+      avatar: "",
+      first_name: "",
+      last_name: "",
+      provider_id: "",
+      username: "",
+      provider_type: "",
+      auth_type: "",
+      account_type: "",
+    }
+  ) {
+    state.socialForm = payload;
+  },
   clearSignupForm(
     state,
     payload = {
