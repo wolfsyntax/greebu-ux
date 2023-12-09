@@ -117,7 +117,15 @@ export default {
 
                 if (status === 200 && formData.auth_type === 'register') {
                   console.log('[200] Verify Page: ', response);
-                  this.$router.push({ name: 'verify' });
+                  
+                  if (!result.hasOwnProperty("token")) {
+                    this.$router.push({ name: 'verify' });
+                  } else {
+                    this.fetchProfile();
+                    this.$router.push({ path: '/', query: { onboarding: 'true' } });
+                  }
+
+                  
                 } else if (status === 200) {
                   this.fetchProfile();
                   console.log('Redirect to onboarding');
@@ -129,9 +137,11 @@ export default {
               })
               .catch(err =>
               {
-
+                const { status, message } = err;
                 console.log('[Error] Social Auth: ', err);
-                this.$emit('request', 'Server Error.');
+
+                if (status === 203) this.$emit('request', message);
+                else this.$emit('request', 'Server Error.');
               })
           }
         });

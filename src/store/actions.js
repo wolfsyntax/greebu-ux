@@ -523,11 +523,9 @@ var actions = {
           console.log("[vuex] socialAuthV2: ", response);
 
           if (statusCode === 200) {
-            const { user } = result;
-            if (auth_type === "login") {
-              const { profile, roles, token } = result;
+            if (result.hasOwnProperty("token")) {
+              const { account, profile, roles, token, user } = result;
 
-              console.log("Social Login response: ", result);
               commit("SET_AUTH", user || {});
               commit("SET_PHONE", user?.phone);
               commit("SET_ROLE", profile?.role || "");
