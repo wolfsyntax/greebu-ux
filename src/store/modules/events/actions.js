@@ -770,7 +770,7 @@ export const pastEvents = ({ commit, rootState, state }) => {
       }`;
     }
 
-    url = `${url}&per_page=${state.pastPagination?.per_page || 8}&page=${
+    url = `${url}&per_page=${state.pastPagination?.per_page || 4}&page=${
       state.pastPagination?.page || 1
     }`;
 
