@@ -92,7 +92,7 @@
               <label>Event date</label>
               <select class="form-select" aria-label="Default select example">
                 <option value="" selected>&emsp;</option>
-                <option>This week Events</option>
+                <option>This Month Events</option>
                 <option>Upcoming Events</option>
                 <option>Past Events</option>
               </select>
@@ -108,7 +108,7 @@
         
         <div v-else class="events-section">
 
-          <h3 class="even-type-title">This Week Events</h3>
+          <h3 class="even-type-title">This Month Events</h3>
           <div v-if="!isOngoingLoading">
             <div class="row" v-if="events_ongoing.length">
               <div class="col-sm-12 col-md-6 col-lg-3" v-for="(event, index) in events_ongoing" :key="index">
