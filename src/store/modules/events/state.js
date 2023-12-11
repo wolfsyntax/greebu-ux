@@ -80,8 +80,8 @@ const state = {
   pastPagination: {
     total: 0,
     last_page: 1,
-    per_page: 8,
-    offset: 8,
+    per_page: 4,
+    offset: 4,
     page: 1,
   },
   eventId: "",

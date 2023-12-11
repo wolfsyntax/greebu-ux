@@ -138,8 +138,8 @@ export const setPastPagination = (
   payload = {
     total: 1,
     last_page: 1,
-    per_page: 8,
-    offset: 8,
+    per_page: 4,
+    offset: 4,
     page: 1,
   }
 ) => {
