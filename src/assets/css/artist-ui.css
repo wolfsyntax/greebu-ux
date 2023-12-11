@@ -3462,6 +3462,49 @@ img{
 .profile-page .fade-leave-to {
   opacity: 0;
 }
+
+/* Post - More Options */
+
+#more-options-wrap .dropdown-toggle{
+  background-color: white;
+}
+#more-options-wrap .more-icon{
+  font-size: 24px;
+  color: #536471;
+}
+#more-options-wrap .dropdown-toggle::after{
+  display: none;
+}
+#more-options-wrap .dropdown-menu svg{
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 0.4rem;
+}
+#more-options-wrap .dropdown-menu{
+  border-radius: 0.25rem;
+  background: var(--white-100, #FFF);
+  box-shadow: 0px 0px 17px 0px rgba(18, 18, 18, 0.15);
+  padding: 1rem 0.94rem;
+}
+#more-options-wrap .dropdown-menu li:nth-child(1),
+#more-options-wrap .dropdown-menu li:nth-child(2){
+  margin-bottom: 0.88rem;
+}
+#more-options-wrap .dropdown-menu button{
+  color: #425466;
+  font-size: 1rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+#more-options-wrap .dropdown-menu li:hover button{
+  color: var(--orange);
+}
+#more-options-wrap .dropdown-menu li:hover svg path {
+  fill: var(--orange);
+}
+
+
 /* Data from backend - array of objects at the bottom */
 .artist-data .container .user {
   white-space: normal;

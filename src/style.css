@@ -2474,16 +2474,18 @@ header nav {
 .register .row-checkbox .have-account a:hover {
   text-decoration: underline;
 }
-.register form .form-checkbox .form-check-label a {
+.register form .form-checkbox .terms-btn{
   font-weight: 400;
   font-size: 14px;
   line-height: 140%;
   letter-spacing: -0.02em;
   color: #007aff;
   text-decoration: none;
+  background-color: var(--white)!important;
+  margin: 0;
 }
 .login form button,
-.register form button,
+.register form .btn-sign-up button,
 .register .btn-account-type button {
   color: var(--white);
   font-size: 1rem;
@@ -2596,6 +2598,7 @@ header nav {
   padding-top: 13px;
   padding-bottom: 13px;
   margin-bottom: 15px;
+  width: 100%;
 }
 .register .select-register .google {
   border: 0 !important;
@@ -14957,7 +14960,7 @@ header nav {
 
   /* LOGIN page / REGISTER */
   .login form button,
-  .register form button,
+  .register form .btn-sign-up button,
   .register .btn-account-type button {
     font-size: 0.875rem;
     padding: 0.875rem 0 !important;
