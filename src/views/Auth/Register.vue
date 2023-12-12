@@ -188,7 +188,7 @@
                 <div v-if="!showRadioButtons">
                   <div class="card-header">
                     <h2>Create your account</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur.</p>
+                    <p>Get started in seconds - sign up today</p>
                   </div>
 
                   <div class="alert alert-danger" role="alert" v-if="message">
