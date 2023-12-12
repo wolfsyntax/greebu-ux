@@ -11,19 +11,55 @@
           </div>
         </div>
 
-        <div class="more-options" @click="toggleMoreOptions(pos)">
+        <!-- <div class="more-options" @click="toggleMoreOptions(pos)">
           <span class="material-symbols-outlined">more_vert</span>
+        </div> -->
+        <div class="dropdown-center" id="more-options-wrap">
+          <button class="btn btn-secondary dropdown-toggle p-0 border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <span class="material-symbols-outlined more-icon">&#xe5d4;</span>
+          </button>
+          <ul class="dropdown-menu border-0">
+            <li>
+              <button class="btn p-0 border-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M13 3L21 11L19.6667 12.3333L19.0001 11.6667L15 15.6667L14.3333 19L13 20.3333L9.00001 16.3334L4.33334 21L3 19.6667L7.66668 15.0001L3.66667 11L5 9.66668L8.33334 9.00001L12.3334 5L11.6667 4.33334L13 3ZM13.6667 6.33334L9.26297 10.737L6.60248 11.2692L12.7308 17.3975L13.263 14.737L17.6667 10.3333L13.6667 6.33334Z" fill="#B8BBCF"/>
+                </svg>
+                Edit Post
+              </button>
+            </li>
+            <li>
+              <button class="btn p-0 border-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M15.7279 9.65686L14.3137 8.24264L5 17.5564V18.9706H6.41421L15.7279 9.65686ZM17.1421 8.24264L18.5563 6.82843L17.1421 5.41422L15.7279 6.82843L17.1421 8.24264ZM7.24264 20.9706H3V16.728L16.435 3.2929C16.8256 2.90237 17.4587 2.90237 17.8492 3.2929L20.6777 6.12132C21.0682 6.51185 21.0682 7.14501 20.6777 7.53554L7.24264 20.9706Z" fill="#B8BBCF"/>
+                </svg>
+                Edit
+              </button>
+            </li>
+            <li>
+              <button class="btn p-0 border-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M16.5 6.6H21V8.4H19.2V20.1C19.2 20.5971 18.7971 21 18.3 21H5.7C5.20295 21 4.8 20.5971 4.8 20.1V8.4H3V6.6H7.5V3.9C7.5 3.40295 7.90295 3 8.4 3H15.6C16.0971 3 16.5 3.40295 16.5 3.9V6.6ZM17.4 8.4H6.6V19.2H17.4V8.4ZM9.3 11.1H11.1V16.5H9.3V11.1ZM12.9 11.1H14.7V16.5H12.9V11.1ZM9.3 4.8V6.6H14.7V4.8H9.3Z" fill="#B8BBCF"/>
+                </svg>
+                Delete
+              </button>
+            </li>
+          </ul>
         </div>
+
       </div>
 
-      <div v-if="activePost === pos" class="show-more-options">
+      <!-- <div v-if="activePost === pos" class="show-more-options">
         <div class="more-options-list-wrapper">
           <div v-for="(option, indexOption) in postMoreOptions" :key="indexOption" class="d-flex align-items-center more-options-list" @click="handleOptionClick(option, pos)">
             <img :src="option.icon" :alt="option.label">
             <h5>{{ pos === 0 && option.label === "Pin Post" && pinnedPost ? "Unpin Post" : option.label }}</h5>
           </div>
         </div>
-      </div>
+      </div> -->
+
+
+
+
     </div>
 
     <div class="card-body">

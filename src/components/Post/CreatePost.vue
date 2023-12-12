@@ -33,9 +33,9 @@
 
                 <div class="upload-wrapper">
                   <label for="fileInput" class="btn btn-info">SELECT FILE</label>
-                  <!-- <input type="file" id="inputField" style="display:none"> -->
                   <input type="file" id="fileInput" ref="fileInput" @change="handleFileUpload" style="display: none"
-                    accept="image/png, image/webp, image/svg, image/jpeg,video/*" class="file-input" multiple>
+                  accept="image/png, image/webp, image/svg+xml, image/jpeg, 
+                  video/mp4, video/quicktime, video/x-ms-wmv" class="file-input" multiple>
                 </div>
               </div>
 

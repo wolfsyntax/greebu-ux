@@ -67,7 +67,7 @@
     </div>
 
     <div class="text-center">
-      <button class="btn btn-lg upload-event-photo" type="button" @click="getCropImage" v-if="preview">Set as Cover Photo</button>
+      <button class="btn btn-lg upload-event-photo" type="button" @click="getCropImage" v-if="preview">Set as Event Photo</button>
     </div>
   
   </div>
@@ -110,6 +110,10 @@ export default {
     this.preview = this.banner;
   },
   methods: {
+    // emitEvent(){
+    //   this.$emit('childButtonClick');
+    //   this.getCropImage();
+    // },
     getCropImage(compressedImage) {
       const { coordinates, canvas, image } = this.$refs.cropper.getResult();
 

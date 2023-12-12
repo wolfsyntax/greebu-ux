@@ -15,7 +15,7 @@
       </div>
       <!-- <drag-drop @dragCover="setCover" v-else/> -->
       
-      <drag-drop @dragCover="setCover"  v-else/>
+      <drag-drop @dragCover="setCover" v-else/>
       <div v-for="err in error?.cover_photo" :key="err" class="text-center text-danger">{{ err }}</div>
       
       <div class="form-group">

@@ -206,5 +206,6 @@ export default {
 <style scoped>
 .btn-login .btn:disabled {
   background: #fed7aa;
+  border: none;
 }
 </style>
