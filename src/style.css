@@ -10449,6 +10449,13 @@ header nav {
 #terms-modal .right-side::-webkit-scrollbar-thumb {
   background-color: var(--orange);
 }
+#terms-modal .right-side {
+  scrollbar-width: thin;  /* For Firefox */
+}
+/* Firefox specific styles */
+#terms-modal .right-side {
+  scrollbar-color: var(--orange) rgba(0, 0, 0, 0.3); /* For Firefox */
+}
 
 /* MEDIA QUERIES */
 
