@@ -6,18 +6,24 @@
       <div class="modal-content">
 
         <div class="close-modal-wrap">
-          <button class="btn" @click="$emit('close-modal')">Close Modal</button>
+          <button class="btn p-o border-0" @click="$emit('close-modal')">
+            <img src="/assets/close-icon.svg" alt="Close icon modal">
+          </button>
         </div>
         <!-- Left side with titles -->
 
         <div class="side-wrap">
 
           <div class="left-side">
-            <a href="#item-1-1" :class="{ active: activeTitle === 'Content 1' }">For Facebook use for the application</a>
-            <a href="#item-1-2" :class="{ active: activeTitle === 'Content 2' }">Terms and conditions for GeeBu web and
-              mobile applications</a>
-            <a href="#item-1-3" :class="{ active: activeTitle === 'Content 3' }">Terms and Conditions for Create a Song
-              For Artist</a>
+            <div>
+              <img src="/assets/geebu-logo.svg" alt="Geebu logo">
+            </div>
+
+              <a href="#item-1-1" :class="{ active: activeTitle === 'Content 1' }">For Facebook use for the application</a>
+              <a href="#item-1-2" :class="{ active: activeTitle === 'Content 2' }">
+                Terms and conditions for GeeBu web and mobile applications</a>
+              <a href="#item-1-3" :class="{ active: activeTitle === 'Content 3' }">Terms and Conditions for Create a Song For Artist</a>
+
           </div>
 
           <!-- Right side with content -->
@@ -39,7 +45,7 @@
                   You also agree to our privacy policy, which explains how we collect, use, and protect your personal
                   data.
                   Please read these documents carefully before using Geebu . If you have any questions or concerns,
-                  please contact us at https://develop.geebu.ph/.</p>
+                  please contact us at <a href="#" class="contact-us">https://develop.geebu.ph/</a>.</p>
               </div>
 
               <div>
@@ -135,7 +141,7 @@
                   non-commercial purposes, subject to these Terms and any applicable laws.</p>
               </div>
 
-              <div>
+              <div class="may-not-wrap">
                 <h5>You may not:</h5>
                 <ul>
                   <li>Copy, modify, distribute, sell, or lease any part of MusicApp or its Services;</li>
@@ -284,71 +290,5 @@ export default {
 };
 </script>
 
-<style scoped>/* Modal styling */
-#terms-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-}
-
-#terms-modal .modal-content {
-  background: #fff;
-  /* padding: 20px; */
-  border-radius: 8px;
-  width: 78.688rem;
-  height: 90%;
-  overflow: hidden;
-  display: flex;
-  position: relative;
-}
-
-#terms-modal .close-modal-wrap {
-  position: absolute;
-  top: 0;
-  left: 90%;
-}
-
-#terms-modal .side-wrap {
-  width: 100%;
-}
-
-/* Left side styling */
-#terms-modal .left-side {
-  /* flex: 1; */
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  float: left;
-  width: 20%;
-}
-
-#terms-modal .left-side a {
-  text-decoration: none;
-  color: #333;
-  padding: 10px;
-  cursor: pointer;
-}
-
-#terms-modal .left-side a.active {
-  color: orange;
-}
-
-/* Right side styling */
-#terms-modal .right-side {
-  /* flex: 2; */
-  padding: 10px;
-  overflow-y: auto;
-  max-height: calc(100vh - 5rem);
-  /* float: right; */
-}
-
-#terms-modal .right-side p {
-  margin-bottom: 20px;
-}</style>
+<style scoped>
+</style>
