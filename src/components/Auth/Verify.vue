@@ -48,7 +48,8 @@
                   >
                 </div>
 
-                <button class="resend-code" @click.prevent="resendMyCode">Resend Code {{ $filters.timer(countdown) }}</button>
+                <button :class="{ 'resend-code': true, 'orange-button': countdown === 0 }"
+                @click.prevent="resendMyCode">Resend Code {{ $filters.timer(countdown) }}</button>
                 
                 <div class="btn-wrapper">
                   <button type="submit" :disabled="!isAllFieldsFilled">Confirm</button>
@@ -123,10 +124,10 @@ export default {
      // verifyCode: null,
        verifyCode: [null, null, null, null, null, null], // Initialize with null values
       verifyMessage: null,
-      countdown: 180,
+      countdown: 300, // 5 mins
       countdown_enabled: false,
       rate_countdown_enable: false,
-      rate_countdown: 600,
+      rate_countdown: 300,
       phone_num: null,
     }
   },
@@ -147,7 +148,7 @@ export default {
   mounted() {
     this.phone_num = this.phone || this.info?.phone;
     this.countdown_enabled = true;
-    this.countdown = 180;
+    this.countdown = 300;
   },
   setup () {
     
@@ -176,7 +177,7 @@ export default {
           .catch(err =>
           {
             this.countdown_enabled = false;
-            this.countdown = 180;
+            this.countdown = 300;
           });
       }
     },
@@ -351,7 +352,7 @@ export default {
           }, 1000);
         } else {
           this.rate_countdown_enabled = false;
-          this.rate_countdown = 600;
+          this.rate_countdown = 300;
         }
 
       },
@@ -362,5 +363,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.orange-button {
+  color: var(--orange);
+  text-decoration: underline;
+}
 </style>
