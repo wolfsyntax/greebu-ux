@@ -7513,59 +7513,26 @@ header nav {
 #editEventModal .modal-body .start-end-wrap input[type="time" i] {
   gap: 0.4rem;
 }
-#createEventModal
-  .modal-body
-  .start-end-wrap
-  input[type="date" i]::-webkit-calendar-picker-indicator,
-#createEventModal
-  .modal-body
-  .start-end-wrap
-  input[type="time" i]::-webkit-calendar-picker-indicator,
-#editEventModal
-  .modal-body
-  .start-end-wrap
-  input[type="date" i]::-webkit-calendar-picker-indicator,
-#editEventModal
-  .modal-body
-  .start-end-wrap
-  input[type="time" i]::-webkit-calendar-picker-indicator {
+
+#createEventModal .modal-body .start-end-wrap input[type="date" i]::-webkit-calendar-picker-indicator,
+#createEventModal .modal-body .start-end-wrap input[type="time" i]::-webkit-calendar-picker-indicator,
+#editEventModal .modal-body .start-end-wrap input[type="date" i]::-webkit-calendar-picker-indicator,
+#editEventModal .modal-body .start-end-wrap input[type="time" i]::-webkit-calendar-picker-indicator {
   background-image: url("/assets/calendar-month-icon.svg");
   block-size: 1.5em;
   inline-size: 1.5em;
 }
-#createEventModal
-  .modal-body
-  .start-end-wrap
-  input[type="time" i]::-webkit-calendar-picker-indicator,
-#editEventModal
-  .modal-body
-  .start-end-wrap
-  input[type="time" i]::-webkit-calendar-picker-indicator {
+#createEventModal .modal-body .start-end-wrap input[type="time" i]::-webkit-calendar-picker-indicator,
+#editEventModal .modal-body .start-end-wrap input[type="time" i]::-webkit-calendar-picker-indicator {
   background-image: url("/assets/clock-icon.svg");
   margin-inline-start: 0;
 }
-#createEventModal
-  .modal-body
-  .start-end-wrap
-  .form-group:hover
-  input[type="date" i]::-webkit-calendar-picker-indicator,
-#editEventModal
-  .modal-body
-  .start-end-wrap
-  .form-group:hover
-  input[type="date" i]::-webkit-calendar-picker-indicator {
+#createEventModal .modal-body .start-end-wrap .form-group:hover input[type="date" i]::-webkit-calendar-picker-indicator, 
+#editEventModal .modal-body .start-end-wrap .form-group:hover input[type="date" i]::-webkit-calendar-picker-indicator {
   background-image: url("/assets/calendar-month-icon-hovered.svg");
 }
-#createEventModal
-  .modal-body
-  .start-end-wrap
-  .form-group:hover
-  input[type="time" i]::-webkit-calendar-picker-indicator,
-#editEventModal
-  .modal-body
-  .start-end-wrap
-  .form-group:hover
-  input[type="time" i]::-webkit-calendar-picker-indicator {
+#createEventModal .modal-body .start-end-wrap .form-group:hover input[type="time" i]::-webkit-calendar-picker-indicator,
+#editEventModal .modal-body .start-end-wrap .form-group:hover input[type="time" i]::-webkit-calendar-picker-indicator {
   background-image: url("/assets/clock-icon-hovered.svg");
 }
 
