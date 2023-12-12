@@ -12,7 +12,7 @@
 
               <h2 class="title">Welcome! Let's create your profile as an Event Organizer</h2>
 
-              <p class="sub-heading">Let customers and other co-artists know you better!</p>
+              <p class="sub-heading">Crafting your Creative Identity</p>
               <h3 class="profile-details">Profile Details</h3>
 
               <div class="onboarding-message" v-if="message">
