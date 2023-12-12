@@ -623,32 +623,32 @@ var actions = {
     });
   },
   resetPassword({ commit }, payload) {
-    return new Promise((resolve, reject) => {
-      setTimeout(async () => {
-        await axios
-          .post(
-            `${
-              import.meta.env.VITE_BASE_URL || "http://localhost:8000"
-            }/api/password/reset`,
-            payload
-          )
-          .then((response) => {
-            console.log("Reset Password Response: ", response);
+    return new Promise(async (resolve, reject) => {
+      //setTimeout(async () => {
+      await axios
+        .post(
+          `${
+            import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+          }/api/password/reset`,
+          payload
+        )
+        .then((response) => {
+          console.log("Reset Password Response: ", response);
 
-            const {
-              status: statusCode,
-              data: { message, status, result },
-            } = response;
+          const {
+            status: statusCode,
+            data: { message, status, result },
+          } = response;
 
-            if (statusCode === 200) {
-            }
-            console.log("Status: ", response);
-            resolve(response);
-          })
-          .catch((err) => {
-            reject(err);
-          });
-      }, 1000);
+          if (statusCode === 200) {
+          }
+          console.log("Status: ", response);
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+      //}, 1000);
     });
   },
   sendOTPCode({ commit, state }, payload) {
@@ -1118,6 +1118,30 @@ var actions = {
             });
         }, 1000);
       }
+    });
+  },
+  fetchEmailByToken({ commit, rootState, dispatch }, token) {
+    return new Promise(async (resolve, reject) => {
+      await axios
+        .post(
+          `${
+            import.meta.env.VITE_BASE_URL || "http://localhost:8000"
+          }/api/email-token/${token}`
+        )
+        .then((res) => {
+          const { status: statusCode, data } = res;
+
+          if (statusCode === 200) {
+            resolve(data);
+          } else {
+            reject(data);
+          }
+        })
+        .catch((err) => {
+          const { status, data } = res;
+
+          reject(data);
+        });
     });
   },
 };
