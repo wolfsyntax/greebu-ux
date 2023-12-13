@@ -2,7 +2,8 @@
   <div class="card">
     <img :src="artist.avatar" class="card-img-top img-fluid" loading="lazy" alt="Trending Artist" @error="imageUrlAlt" />
     <div class="middle">
-      <button class="btn btn-primary" @click="openModal" data-bs-toggle="modal" data-bs-target="#artistModal"> View Details</button>
+      <button class="btn btn-primary" @click="openModal" data-bs-toggle="modal" v-if="isLoggedIn" data-bs-target="#artistModal"> View Details</button>
+      <button class="btn btn-primary" @click="openModal" data-bs-toggle="modal" v-else data-bs-target="#mustSignUp"> View Details</button>
     </div>
     <div class="card-body">
       <div class="artist">
@@ -44,6 +45,7 @@
 <script>
 import Layout from '/src/components/Layouts/Layout.vue';
 import ArtistDetails from '/src/components/Artist/ArtistDetails.vue';
+import { mapGetters } from 'vuex';
 
 export default {
  components: {
@@ -78,6 +80,7 @@ export default {
     // isPlaying(){
     //   return this.playingSongId !== null;
     // }
+    ...mapGetters(["isLoggedIn"]),
   },
   methods: {
     openModal(){
