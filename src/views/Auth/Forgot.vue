@@ -149,8 +149,11 @@ export default {
             this.maskEmail = mask;
             this.submitResetPassword();
           } else {
+            this.maskEmail = '';
             this.message = message;
           }
+        }).catch(err => {
+          this.maskEmail = '';
         });
     },
     submitResetPassword(){
