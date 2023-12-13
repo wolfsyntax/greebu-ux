@@ -2,7 +2,7 @@
   <div class="card">
     <img :src="artist.avatar" class="card-img-top img-fluid" loading="lazy" alt="Trending Artist" @error="imageUrlAlt" />
     <div class="middle">
-      <button class="btn btn-primary" @click="openModal" data-bs-toggle="modal" v-if="isLoggedIn" data-bs-target="#artistModal"> 1View Details</button>
+      <button class="btn btn-primary" @click="openModal" data-bs-toggle="modal" v-if="isLoggedIn" data-bs-target="#artistModal"> View Details</button>
       <button class="btn btn-primary" @click="openModal" data-bs-toggle="modal" v-else data-bs-target="#mustSignUp"> View Details</button>
     </div>
     <div class="card-body">
