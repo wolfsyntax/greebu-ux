@@ -352,11 +352,9 @@
                     <label class="form-check-label" for="agreed_id">
                       &nbsp; I agree to all the
 
-                      <button type="button" class="btn btn-primary p-0 border-0 mb-0 terms-btn" 
-                       @click="isModalOpen = true">Terms</button> and 
+                      <a href="/terms" target="_blank">Terms</a> and 
 
-                      <button type="button" class="btn btn-primary p-0 border-0 mb-0 terms-btn" 
-                     >Privacy policy</button>
+                      <a href="#" target="_blank">Privacy policy</a>
 
                     </label>
                   </div>
@@ -388,14 +386,12 @@
       <verify-card v-else />
     </section>
   </layout>
-  <Terms :showModal="isModalOpen" @close-modal="closeTermsModal"/>
 </template>
 <script>
 import SocialButton from "@/components/Auth/SocialLogin.vue";
 import Verify from "@/components/Auth/Verify.vue";
 import { mapActions, mapGetters, mapMutations, mapState } from "vuex";
 import Layout from "/src/components/Layouts/AuthLayout.vue";
-import Terms from '/src/components/Terms.vue'
 
 import Joi from "joi";
 
@@ -404,8 +400,6 @@ export default {
     layout: Layout,
     "social-button": SocialButton,
     "verify-card": Verify,
-    Terms
-    
   },
   data() {
     return {
@@ -425,7 +419,6 @@ export default {
       isLoading: false,
       isSignup: true,
       schema: null,
-      isModalOpen: false
     };
   },
   props: {
@@ -526,9 +519,6 @@ export default {
     // console.log(this.form.account_type);
   },
   methods: {
-    closeTermsModal(){
-      this.isModalOpen = false;
-    },
     getFormattedPhone() {
       this.phone = this.form?.phone || "";
 
@@ -821,8 +811,15 @@ export default {
   top: 0rem !important;
 }
 
-.form-group .input-group {
+.register .form-group .input-group {
   margin-bottom: 0rem !important;
   padding-bottom: 0rem !important;
+}
+
+.register .form-checkbox label a{
+  text-decoration: none;
+}
+.register .form-checkbox label a:hover{
+  text-decoration: underline;
 }
 </style>
