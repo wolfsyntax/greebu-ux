@@ -10284,7 +10284,7 @@ header nav {
 
 /* Terms modal */
 
-#terms-modal {
+/* #terms-modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -10298,28 +10298,18 @@ header nav {
 }
 #terms-modal .modal-content {
   background: #fff;
-  /* padding: 20px; */
   border-radius: 8px;
   width: 78.688rem;
   height: 90%;
   overflow: hidden;
   display: flex;
   position: relative;
-  /* padding: 3.875rem 3.125rem 21.9375rem 3.125rem; */
 }
-#terms-modal .close-modal-wrap {
-  position: absolute;
-  top: 2%;
-  left: 95%;
-}
-#terms-modal .close-modal-wrap img{
-  width: 2rem;
-  height: 2rem;
-}
-#terms-modal .side-wrap {
+ */
+#terms-page .side-wrap {
   width: 100%;
 }
-#terms-modal .left-side{
+#terms-page .left-side{
   /* flex: 1; */
   display: flex;
   flex-direction: column;
@@ -10329,14 +10319,14 @@ header nav {
   border-right: 1px solid var(--gray2);
   padding: 3.875rem 1.125rem 0 3.125rem;
 }
-#terms-modal .left-side > div:nth-child(1){
+#terms-page .left-side > div:nth-child(1){
   margin-bottom: 4.75rem;
 }
-#terms-modal .left-side img{
+#terms-page .left-side img{
   width: 9.51088rem;
   height: 2.5rem;
 }
-#terms-modal .left-side a {
+#terms-page .left-side a {
   color: var(--gray6);
   font-size: 0.875rem;
   font-weight: 600;
@@ -10344,10 +10334,10 @@ header nav {
   margin-bottom: 1.25rem;
   text-decoration: none;
 }
-#terms-modal .left-side a.active {
+#terms-page .left-side a.active {
   color: var(--black)
 }
-#terms-modal .right-side {
+#terms-page .right-side {
   /* flex: 2; */
   padding: 10px;
   overflow-y: auto;
@@ -10355,72 +10345,72 @@ header nav {
   /* float: right; */
  padding: 3.875rem 2rem 2rem 3.125rem;;
 }
-#terms-modal .right-side .title{
+#terms-page .right-side .title{
   color: #223644;
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 2.56rem;
 }
-#terms-modal .right-side h3{
+#terms-page .right-side h3{
   color: #223644;
   font-size: 1.25rem;
   font-weight: 700;
   margin-bottom: 0.62rem;
 }
-#terms-modal .right-side h5{
+#terms-page .right-side h5{
   color: var(--black);
   font-size: 1rem;
   font-weight: 600;
   line-height: 1.25rem; 
   margin-bottom: 0.62rem;
 }
-#terms-modal .right-side p,
-#terms-modal .right-side #item-1-2 li {
+#terms-page .right-side p,
+#terms-page .right-side #item-1-2 li {
   color: var(--gray2);
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.25rem;
 }
-#terms-modal .right-side p .contact-us{
+#terms-page .right-side p .contact-us{
   color: var(--orange);
   text-decoration: underline;
 }
-#terms-modal .right-side #item-1-2 li{
+#terms-page .right-side #item-1-2 li{
   margin-bottom: 0.56rem;
 }
-#terms-modal .right-side li::marker{
+#terms-page .right-side li::marker{
   color: var(--black);
 }
-#terms-modal .right-side #item-1-2 li:last-child{
+#terms-page .right-side #item-1-2 li:last-child{
   margin-bottom: 0;
 }
-#terms-modal .right-side #item-1-2 .may-not-wrap{
+#terms-page .right-side #item-1-2 .may-not-wrap{
   margin-left: 1rem;
 }
-#terms-modal .right-side #item-1-1,
-#terms-modal .right-side #item-1-2{
+#terms-page .right-side #item-1-1,
+#terms-page .right-side #item-1-2{
   margin-bottom: 2.5rem;
 }
-#terms-modal .right-side #item-1-1 > div,
-#terms-modal .right-side #item-1-2 > div,
-#terms-modal .right-side #item-1-3 > div{
+#terms-page .right-side #item-1-1 > div,
+#terms-page .right-side #item-1-2 > div,
+#terms-page .right-side #item-1-3 > div{
   margin-bottom: 1rem;
 }
-#terms-modal .right-side::-webkit-scrollbar {
+#terms-page .right-side::-webkit-scrollbar {
   width: 0.3125rem;
   border-radius: 0.625rem;
 }
-#terms-modal .right-side::-webkit-scrollbar-track {
+#terms-page .right-side::-webkit-scrollbar-track {
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
-#terms-modal .right-side::-webkit-scrollbar-thumb {
+#terms-page .right-side::-webkit-scrollbar-thumb {
   background-color: var(--orange);
 }
-#terms-modal .right-side {
+#terms-page .right-side {
   scrollbar-width: thin;  /* For Firefox */
 }
 /* Firefox specific styles */
-#terms-modal .right-side {
+#terms-page .right-side {
   scrollbar-color: var(--orange) rgba(0, 0, 0, 0.3); /* For Firefox */
 }
 
@@ -10442,9 +10432,9 @@ header nav {
 
 /* Terms modal */
 
-#terms-modal .modal-content {
+/* #terms-modal .modal-content {
   width: 68.688rem;
-}
+} */
 
 /* Cropper */
 
