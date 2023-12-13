@@ -41,7 +41,7 @@ import MustSignupModal from '/src/components/Artist/MustSignupModal.vue';
 export default {
   components: {
     layout: Layout,
-    // MustSignupModal
+    MustSignupModal
   },
   setup()
   {
