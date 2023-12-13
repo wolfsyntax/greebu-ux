@@ -7,8 +7,11 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ref="eventModalDismiss"></button>
         </div>
         <div class="modal-body">
+
+          <event-cover @next-step="nextDetailStep" accessType="create" v-if="step === 'cover'" />
           <event-form @next-step="nextStep" accessType="create" v-if="step === 'detail'" />
           <event-lookup @next-step="finalStep" accessType="create" v-if="step === 'lookup'" />
+
         </div>
         <!-- <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -19,6 +22,7 @@
   </div>
 </template>
 <script>
+import EventCover from '/src/components/Auth/Events/EventCover.vue';
 import EventForm from '/src/components/Auth/Events/FormModal.vue';
 import EventLookup from '/src/components/Auth/Events/LookModal.vue';
 import EventSuccess from '/src/components/Auth/Events/SuccessModal.vue';
@@ -29,12 +33,13 @@ export default {
 
   },
   components: {
+    EventCover,
     EventForm,
     EventLookup,
     EventSuccess,
   },
   data: () => ({
-    step: 'detail',
+    step: 'cover',
   }),
   mounted()
   {
@@ -43,22 +48,27 @@ export default {
     myModal.addEventListener('hide.bs.modal', () =>
     {
       this.$store.commit('RESET_EVENT_FORM')
-      this.step = 'detail';
+      this.step = 'cover';
     });
 
     myModal.addEventListener('shown.bs.modal', () =>
     {
       this.$store.commit('RESET_EVENT_FORM')
-      this.step = 'detail';
+      this.step = 'cover';
     });
   },
   beforeUnmount() {
     // this.$store.commit('RESET_EVENT_FORM')
   },
   methods: {
-    nextStep()
+    nextDetailStep(){
+      this.step = 'detail';
+      console.log('details-nexStep: ', this.step);
+    },
+    nextStep(val = 'lookup')
     {
-      this.step = 'lookup';
+      this.step = val;
+      // this.step = 'cover';
       console.log('method-nexStep: ', this.step);
     },
     finalStep(val = 'skip')

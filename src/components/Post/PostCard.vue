@@ -11,9 +11,6 @@
           </div>
         </div>
 
-        <!-- <div class="more-options" @click="toggleMoreOptions(pos)">
-          <span class="material-symbols-outlined">more_vert</span>
-        </div> -->
         <div class="dropdown-center" id="more-options-wrap">
           <button class="btn btn-secondary dropdown-toggle p-0 border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             <span class="material-symbols-outlined more-icon">&#xe5d4;</span>
@@ -47,17 +44,6 @@
         </div>
 
       </div>
-
-      <!-- <div v-if="activePost === pos" class="show-more-options">
-        <div class="more-options-list-wrapper">
-          <div v-for="(option, indexOption) in postMoreOptions" :key="indexOption" class="d-flex align-items-center more-options-list" @click="handleOptionClick(option, pos)">
-            <img :src="option.icon" :alt="option.label">
-            <h5>{{ pos === 0 && option.label === "Pin Post" && pinnedPost ? "Unpin Post" : option.label }}</h5>
-          </div>
-        </div>
-      </div> -->
-
-
 
 
     </div>
@@ -183,37 +169,10 @@ export default {
     }),
   },
   data: () => ({
-    activePost: null,
+   
   }),
   methods: {
-    toggleMoreOptions(index)
-    {
-      // Toggle the active submission index
-      if (this.activePost === index) {
-        this.activePost = null; // Close the menu if it's already open for this submission
-      } else {
-        this.activePost = index; // Open the menu for the clicked submission
-      }
-    },
-    handleOptionClick(option, index)
-    {
-      // add your logic here to perform actions based on the selected option
-
-      if (option.label === "Pin Post" || option.label === "Unpin Post") {
-        this.togglePinned(index); // Toggle the pinned status
-        const pinnedPost = this.posts.splice(index, 1)[0]; // Remove the post from its current position
-        this.posts.unshift(pinnedPost); // Add it back to the top
-
-        //this.isPinnedPost = true;
-        this.activePost = null;
-      } else if (option.label === "Edit") {
-        console.log("Edit: ");
-      } else if (option.label === "Delete") {
-        this.moreOptions = false;
-        console.log("Deleted: ");
-        this.deletePost(index);
-      }
-    },
+    
   },
   watch: {
     post: {

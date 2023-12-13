@@ -2,7 +2,7 @@
   <div>
     <form class="required-fields" @submit.prevent="submit">
       
-      <div class="upload-file-wrapper" v-if="cover">
+      <!-- <div class="upload-file-wrapper" v-if="cover">
         <div class="uploaded-image-wrapper" >
           <div>
             <img ref="uploadedImage" class="uploaded-image" :src="cover" alt="banner-modal" />
@@ -13,10 +13,9 @@
           </button>
         </div>
       </div>
-      <!-- <drag-drop @dragCover="setCover" v-else/> -->
       
       <drag-drop @dragCover="setCover" v-else/>
-      <div v-for="err in error?.cover_photo" :key="err" class="text-center text-danger">{{ err }}</div>
+      <div v-for="err in error?.cover_photo" :key="err" class="text-center text-danger">{{ err }}</div> -->
       
       <div class="form-group">
         <label for="eventType">Event Type</label>
@@ -126,7 +125,7 @@
         
       
       <div class="text-end action-btn-wrap">
-        <button type="button" class="btn cancel" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn cancel" @click="backToCover">Back</button>
 
         <button type="submit" class="btn next" :disabled="!validInput">
           <LoadingVue :infoText="buttonName" v-if="isLoading"/>
@@ -208,6 +207,11 @@ export default {
       this.form.cover_photo = '';
       this.cover = '';
       // this.error.cover_photo = '';
+    },
+    backToCover()
+    {
+      this.$emit('next-step', 'cover');
+      console.log('Back to cover')
     },
     submit()
     {

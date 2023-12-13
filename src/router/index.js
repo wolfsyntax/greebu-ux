@@ -465,7 +465,7 @@ const router = createRouter({
         {
           path: "error-404",
           name: "page-error-404",
-          component: () => import("/src/views/Pages/Error404.vue"),
+          component: () => import("/src/views/Pages/Error404.vue"), // Page not found
           meta: {
             requiresLogin: false,
             title: "Error 404 | Not Found",
@@ -475,7 +475,7 @@ const router = createRouter({
         {
           path: "error-500",
           name: "page-error-500",
-          component: () => import("/src/views/Pages/Error500.vue"),
+          component: () => import("/src/views/Pages/Error500.vue"), // Maintenance
           meta: {
             requiresLogin: false,
             title: "Error 500 | Server Error",

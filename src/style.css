@@ -10248,7 +10248,7 @@ header nav {
   height: 1rem;
 }
 #uploadProfilePhoto .drag-mouse-wrap .drag{
-  color: var(--white);
+  color: var(--white); 
   font-size: 1rem;
   font-weight: 600;
 }
@@ -14180,7 +14180,7 @@ header nav {
       linear-gradient(183deg, rgba(7, 7, 7, 0) 0%, #070808 100%),
       url("/assets/events/events-banner-bg.webp") no-repeat;
     margin-bottom: 80px;
-    max-height: 95vh !important;
+    max-height: 80vh !important;
     padding: 0;
     background-size: cover;
     background-position: center;
@@ -14207,10 +14207,10 @@ header nav {
     margin-top: 3rem;
   }
   .events .container .top-level-title {
-    font-size: 4rem;
+    font-size: 3.5rem;
     font-weight: 700;
     line-height: normal;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.5rem;
   }
   .events .container .top-level-sub-title {
     font-size: 1.25rem;
@@ -14218,7 +14218,7 @@ header nav {
     line-height: 2.1375rem;
   }
   .events .container .content {
-    top: 29%;
+    top: 26%;
   }
   .events .container .find-event-planner {
     font-size: 1rem;

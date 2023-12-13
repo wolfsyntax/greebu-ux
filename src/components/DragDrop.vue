@@ -74,11 +74,13 @@
 </template>
 
 <script>
+
 import { mapGetters, mapState, mapActions } from "vuex";
 import ExampleWrapper from '/src/components/Cropper/ExampleWrapper.vue';
 import VerticalButtons from '/src/components/Cropper/VerticalButtons.vue';
 import SquareButton from '/src/components/Cropper/SquareButton.vue';
 import Compressor from 'compressorjs';
+
 export default {
   components: {
     ExampleWrapper,
@@ -123,6 +125,7 @@ export default {
 
       this.cropImage.toBlob(async blob => {
         this.$emit('dragCover', blob);
+        this.$emit('show-buttons');
       });
     },
     boundaries({ cropper, imageSize }) {
@@ -258,7 +261,8 @@ export default {
     },
     removeBanner()
     {
-      
+      console.log('removing banner...');
+
       this.preview = null;
       this.cropImage = null;
       this.$refs['bannerInput'].value = null;
