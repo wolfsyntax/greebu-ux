@@ -1,5 +1,20 @@
 <template>
   <div>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">
+            <i class="fa fa-codepen fa-lg"></i>
+          </a>
+        </div>
+      </div>
+    </nav>
+    <stepper v-model="steps">
+      <div class="jumbotron" slot="test">
+        <h1>Stepper!</h1>
+      </div>
+    </stepper>
+
     <img :src="imgBlob" alt="image upload" />
     <input type="file" @change="changeImage" />
     <vue-google-autocomplete
@@ -16,6 +31,8 @@
 
 <script>
 import VueGoogleAutocomplete from "vue-google-autocomplete";
+import Stepper from '/src/components/Stepper.vue';
+
 export default {
   setup () {
     
@@ -24,11 +41,19 @@ export default {
   },
   components: {
     VueGoogleAutocomplete,
+    Stepper,
   },
   data: () => ({
     img: '',
     imgBlob: null,
     address: '',
+    steps: [
+      { label: 'step1' },
+      { label: 'step2' },
+      { label: 'step3' },
+      { label: 'step4' },
+      { label: 'step5' },
+    ]
   }),
   mounted() {
     this.$refs.address.focus();
