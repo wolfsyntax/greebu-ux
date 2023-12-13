@@ -560,7 +560,7 @@ export const myPastEvents = ({ commit, rootState, state }) => {
 };
 
 export const ongoingEvents = ({ commit, rootState, state }) => {
-  return new Promise((resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
     var url = `${
       import.meta.env.VITE_BASE_URL || "http://localhost:8000"
     }/api/events-ongoing?search=${
@@ -606,45 +606,45 @@ export const ongoingEvents = ({ commit, rootState, state }) => {
     }`;
 
     console.log("Event page [ongoing]: ", url);
-    setTimeout(async () => {
-      await axios
-        .get(url)
-        .then((response) => {
-          console.log("Fetch Ongoing Events: ", response);
+    // setTimeout(async () => {
+    await axios
+      .get(url)
+      .then((response) => {
+        console.log("Fetch Ongoing Events: ", response);
 
-          const { status: statusCode, data } = response;
+        const { status: statusCode, data } = response;
 
-          if (statusCode === 200) {
-            const {
-              status,
-              message,
-              result: { events, pagination },
-            } = data;
-            commit("setOngoingEvents", events || []);
-            commit(
-              "setOngoingPagination",
-              pagination || {
-                total: 0,
-                last_page: 1,
-                per_page: 8,
-                offset: 8,
-              }
-            );
-            resolve(data);
-          }
+        if (statusCode === 200) {
+          const {
+            status,
+            message,
+            result: { events, pagination },
+          } = data;
+          commit("setOngoingEvents", events || []);
+          commit(
+            "setOngoingPagination",
+            pagination || {
+              total: 0,
+              last_page: 1,
+              per_page: 8,
+              offset: 8,
+            }
+          );
+          resolve(data);
+        }
 
-          reject(data);
-        })
-        .catch((err) => {
-          const { data } = err;
-          reject(data);
-        });
-    }, 1500);
+        reject(data);
+      })
+      .catch((err) => {
+        const { data } = err;
+        reject(data);
+      });
+    // }, 500);
   });
 };
 
 export const upcomingEvents = ({ commit, rootState, state }) => {
-  return new Promise((resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
     var url = `${
       import.meta.env.VITE_BASE_URL || "http://localhost:8000"
     }/api/events-upcoming?search=${
@@ -691,40 +691,40 @@ export const upcomingEvents = ({ commit, rootState, state }) => {
 
     console.log("Event page [upcoming]: ", url);
 
-    setTimeout(async () => {
-      await axios
-        .get(url)
-        .then((response) => {
-          const { status: statusCode, data } = response;
-          console.log("Fetch Upcoming Events: ", response);
-          if (statusCode === 200) {
-            const {
-              status,
-              message,
-              result: { events, pagination },
-            } = data;
+    // setTimeout(async () => {
+    await axios
+      .get(url)
+      .then((response) => {
+        const { status: statusCode, data } = response;
+        console.log("Fetch Upcoming Events: ", response);
+        if (statusCode === 200) {
+          const {
+            status,
+            message,
+            result: { events, pagination },
+          } = data;
 
-            commit("setUpcomingEvents", events || []);
-            commit(
-              "setUpcomingPagination",
-              pagination || {
-                total: 0,
-                last_page: 1,
-                per_page: 8,
-                offset: 8,
-              }
-            );
-            console.log("Upcoming Events: ", events);
-            resolve(data);
-          }
+          commit("setUpcomingEvents", events || []);
+          commit(
+            "setUpcomingPagination",
+            pagination || {
+              total: 0,
+              last_page: 1,
+              per_page: 8,
+              offset: 8,
+            }
+          );
+          console.log("Upcoming Events: ", events);
+          resolve(data);
+        }
 
-          reject(data);
-        })
-        .catch((err) => {
-          const { data } = err;
-          reject(data);
-        });
-    }, 1500);
+        reject(data);
+      })
+      .catch((err) => {
+        const { data } = err;
+        reject(data);
+      });
+    // }, 500);
   });
 };
 
