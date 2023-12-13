@@ -536,6 +536,8 @@ router.beforeEach((to, from, next) => {
           to.query.onboarding !== "true")
       )
         next({ name: "dashboard" });
+  } else if (!isAuth && to?.name === "artists-profile") {
+    next({ name: "page-not-authorized" });
   }
 
   if (to?.name === "artists-profile") {
