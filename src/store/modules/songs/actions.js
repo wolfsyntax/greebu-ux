@@ -14,6 +14,7 @@ export const fetchSongForm = ({ commit, rootState, state }, payload) => {
         )
         .then((response) => {
           const { data, status } = response;
+          console.log("Fetch Song Request form options: ", response);
           if (status === 200 && data.status === 200) {
             const { result } = data;
 
