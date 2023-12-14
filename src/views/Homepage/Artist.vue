@@ -207,8 +207,10 @@
       </AudioMenu> -->
 
     </section>
+    
     <reminder />
     <faq />
+    <MustSignup />
   </layout>
 </template>
 
@@ -222,6 +224,7 @@ import FilterResults from "/src/components/FilterResults.vue";
 import LoadingVue from '/src/components/Loading.vue';
 //import AudioMenu from '/src/components/Artist/Audiomenu.vue';
 import { mapGetters, mapState, mapActions, mapMutations, storeKey } from "vuex";
+import MustSignup from '/src/components/Artist/MustSignupModal.vue';
 
 export default {
   components: {
@@ -231,6 +234,7 @@ export default {
     card: Card,
     FilterResults,
     LoadingVue,
+    MustSignup,
    // AudioMenu
   },
   setup()

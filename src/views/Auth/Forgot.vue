@@ -78,8 +78,8 @@
             </svg>
               <div class="content">
                 <h5 class="card-title">Check your Email</h5>
-                <p class="card-text">Please open the link to reset your password in your email we sent to</p>
-                <p class="email-add">{{ this.form.email }}</p>
+                <p class="card-text">We already sent the reset password link to the email.</p>
+                <p class="email-add">{{ maskEmail }}</p>
               <div class="btn-wrapper">
               <button type="button" class="btn btn-primary next" 
               :disabled="resendResetPassword > 0"
@@ -125,7 +125,9 @@ export default {
       form: {
         email: null,
       },
+      showForwardIcon: false,
       message: '',
+      maskEmail: '',
     }
   },
   methods: {
@@ -141,12 +143,17 @@ export default {
           console.log('Forgot password response: ', response)
           // this.submitted = false;
           // this.startResendResetPassword()
-          const { status: statusCode, data: {message} } = response
+          const { status: statusCode, data: {message, result } } = response
           if (statusCode === 200) {
+            const { mask } = result;
+            this.maskEmail = mask;
             this.submitResetPassword();
           } else {
+            this.maskEmail = '';
             this.message = message;
           }
+        }).catch(err => {
+          this.maskEmail = '';
         });
     },
     submitResetPassword(){
