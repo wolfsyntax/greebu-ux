@@ -78,9 +78,15 @@
         <!-- <button type="button" class="btn btn-outline-geebu mx-1" @click="$emit('next-step', 'skip')" ref="eventSkip">Skip</button> -->
         <button type="button" class="btn cancel" @click="back">Back</button>
 
-        <button type="submit" class="btn next" :disabled="!canProceed" >
-            <LoadingVue :infoText="buttonName" v-if="isLoading"/>
-            <span v-else>{{ buttonName }}</span>
+        <!-- <button type="submit" class="btn next" :disabled="!canProceed" v-if="showSubmitButtonForm3">
+          Submit
+        </button>
+        <button type="submit" class="btn next" v-else>
+          <LoadingIndicator />
+        </button> -->
+
+        <button type="submit" class="btn next" :disabled="!canProceed">
+          Submit
         </button>
 
       </div>
@@ -90,14 +96,11 @@
 </template>
 
 <script>
+import LoadingIndicator from "/src/components/LoadingIndicator.vue";
 import { mapActions, mapGetters, mapState } from 'vuex';
 import Multiselect from '@vueform/multiselect';
-import Loading from '/src/components/Loading.vue';
 
 export default {
-  components: {
-    Loading
-  },
   props: {
     accessType: {
       type: String,
@@ -105,15 +108,18 @@ export default {
       required: false,
     },
   },
+  components: {
+    LoadingIndicator,
+  },
   setup () {
     
 
     return {}
   },
   data: () => ({
+    showSubmitButtonForm3: true,
     buttonName: 'Submit',
     error: null,
-    isLoading: false,
     lookTypes: [],
     isSearchable: true,
     look_for: '',
@@ -217,6 +223,8 @@ export default {
     },
     submit()
     {
+      this.showSubmitButtonForm3 = false;
+
       var action = !this.canSkip ? 'skip' : '';
 
       if (action !== 'skip') {
@@ -236,6 +244,7 @@ export default {
           {
             console.log(`${action} - Look: `, res);
             this.$emit('next-step', 'success')
+            this.showSubmitButtonForm3 = true;
           }).catch(err =>
           {
             const { status, message, result} = err;
@@ -251,6 +260,7 @@ export default {
           {
 
             this.$emit('next-step', 'success')
+            this.showSubmitButtonForm3 = true;
           }).catch(err =>
           {
             const { status, message, result} = err;

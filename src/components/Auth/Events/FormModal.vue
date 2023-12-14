@@ -127,10 +127,13 @@
       <div class="text-end action-btn-wrap">
         <button type="button" class="btn cancel" @click="backToCover">Back</button>
 
-        <button type="submit" class="btn next" :disabled="!validInput">
-          <LoadingVue :infoText="buttonName" v-if="isLoading"/>
-          <span v-else>{{ buttonName }}</span>
+        <button type="submit" class="btn next" :disabled="!validInput" v-if="showSubmitButtonForm2">
+          Next
         </button>
+        <button type="submit" class="btn next" v-else>
+          <LoadingIndicator />
+        </button>
+
       </div>
 
     </form>    
@@ -143,7 +146,8 @@ import { mapActions, mapGetters, mapState } from 'vuex';
 import DragDrop from '/src/components/DragDrop.vue';
 import Multiselect from '@vueform/multiselect';
 import LoadingVue from '/src/components/Loading.vue';
-
+import Compressor from 'compressorjs';
+import LoadingIndicator from "/src/components/LoadingIndicator.vue";
 
 export default {
   props: {
@@ -165,13 +169,13 @@ export default {
   },
   components: {
     DragDrop,
-    LoadingVue
+    LoadingVue,
+    LoadingIndicator
   },
   data: () => ({
-    buttonName: 'Submit',
+    showSubmitButtonForm2: true,
     error: [],
     cover: '',
-    isLoading: false,
     isComplete: false,
     errorTime: '',
     // form: {
@@ -191,16 +195,26 @@ export default {
     ...mapActions([
       'fetchEventOptions', 'createEvent', 'verifyEvent',
     ]),
-    setCover(val)
-    {
-      if(val) {
-        this.form.cover_photo = val;
-        this.form.cover = URL.createObjectURL(val);
-        // this.cover = URL.createObjectURL(val);
+    setCover(val) {
+  if (val) {
+    const compressor = new Compressor(val, {
+      quality: 0.6,
+      success: (result) => {
+        const formData = new FormData();
+        formData.append('files', result, result.name);
+        
+        this.form.cover_photo = result;
+        
+        this.form.cover = URL.createObjectURL(result);
+        
         console.log('Set Cover:: ', this.form.cover);
-
-      }
-    },
+      },
+      error: (err) => {
+        console.log(err.message);
+      },
+    });
+  }
+},
     removeBanner()
     {
       this.form.cover = '';
@@ -215,7 +229,7 @@ export default {
     },
     submit()
     {
-      this.isLoading = true;
+      this.showSubmitButtonForm2 = false;
       console.log('Emit: ', this.form);
       if (this.accessType !== 'create') {
         console.log('Form modal submit: ', (typeof this.form.cover_photo))
@@ -229,8 +243,8 @@ export default {
         .then(res =>
         {
           console.log('Next Step: ', res);
-          this.isLoading = false;
-          this.$emit('next-step')
+          this.$emit('next-step');
+          this.showSubmitButtonForm2 = true;
         })
         .catch(err =>
         {
@@ -239,7 +253,6 @@ export default {
           if (status === 500) {
             if (typeof errors === 'string' && errors === 'Unauthenticated.') this.$store.dispatch('signout');
           }
-          this.isLoading = false;
           this.error = errors;
 
         })

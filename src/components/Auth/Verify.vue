@@ -52,7 +52,8 @@
                 @click.prevent="resendMyCode">Resend Code {{ $filters.timer(countdown) }}</button>
                 
                 <div class="btn-wrapper">
-                  <button type="submit" :disabled="!isAllFieldsFilled">Confirm</button>
+                  <button type="submit" :disabled="!isAllFieldsFilled" v-if="showConfirmBtn">Confirm</button>
+                  <button type="submit" v-else>Confirm</button>
                 </div>
               </form>
             </div>
@@ -110,10 +111,12 @@
 <script>
 import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
 import BlankHeader from "@/components/Home/BlankHeader.vue";
+import LoadingIndicator from "/src/components/LoadingIndicator.vue";
 
 export default {
   components: {
-  BlankHeader
+  BlankHeader,
+  LoadingIndicator
 },
   data()
   {
@@ -129,6 +132,7 @@ export default {
       rate_countdown_enable: false,
       rate_countdown: 300,
       phone_num: null,
+      showConfirmBtn: true,
     }
   },
   computed: {
@@ -183,7 +187,7 @@ export default {
     },
     async confirm()
     {
-
+      this.showConfirmBtn = false;
       this.verifyMessage = '';
       const enteredCode = this.verifyCode.join('');
       // this.validateCode({ code: enteredCode, })
@@ -213,6 +217,7 @@ export default {
             this.fetchProfile();
             console.log('Redirect to onboarding');
             this.$router.push({ path: '/', query: { onboarding: 'true' } });
+            this.showConfirmBtn = true;
           }
           
         })
@@ -224,6 +229,7 @@ export default {
             this.$router.push({ path: this.$route.path, query: { } });
           }
           console.log('[Signup] Verify.vue Error: ', err);
+          this.showConfirmBtn = true;
         })
       
     },

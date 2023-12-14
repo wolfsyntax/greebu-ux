@@ -1,4 +1,5 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
+/* Customize the NProgress loading bar color */
 
 :root {
   --orange: #ff6b00;
@@ -31,6 +32,9 @@
   --filter-text-color: #160042;
 }
 
+#nprogress .bar {
+  background: var(--orange) !important;
+}
 /* Material Symbols */
 
 @font-face {
@@ -7285,7 +7289,7 @@ header nav {
 }
 #eventDetailsModal .event-background-img-wrap .event-background-img {
   width: 100%;
-  height: 29.375rem; /* 50vh */
+  height: 22.375rem; /* 50vh */
 }
 #eventDetailsModal .event-details-wrapper,
 #eventDetailsModal .about-event-wrap,
@@ -7409,6 +7413,12 @@ header nav {
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 0;
+}
+#event-cover-wrap .title{
+  color: var(--black);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
 }
 #createEventModal .modal-header .btn-close,
 #editEventModal .modal-header .btn-close {
@@ -11986,6 +11996,9 @@ header nav {
   #createEventModal .modal-header .modal-title,
   #editEventModal .modal-header .modal-title {
     font-size: 1.25rem;
+  }
+  #event-cover-wrap .title{
+    font-size: 1rem;
   }
   #createEventModal .modal-header .btn-close,
   #editEventModal .modal-header .btn-close {

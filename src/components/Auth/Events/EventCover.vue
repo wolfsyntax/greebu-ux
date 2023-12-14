@@ -21,7 +21,8 @@
        <div class="text-end action-btn-wrap" v-if="showBtn">
          <button type="button" class="btn cancel" data-bs-dismiss="modal">Cancel</button>
  
-         <button type="submit" class="btn next">Next</button>
+         <button type="submit" class="btn next" v-if="showNextButton">Next</button>
+         <button type="submit" class="btn next" v-else><LoadingIndicator /></button>
        </div>
  
      </form> 
@@ -32,12 +33,14 @@
 
 <script>
 import DragDrop from '/src/components/DragDrop.vue';
-
+import LoadingIndicator from "/src/components/LoadingIndicator.vue";
 import { mapActions, mapGetters, mapState } from 'vuex';
+import Compressor from 'compressorjs';
 
 export default {
   components: {
     DragDrop,
+    LoadingIndicator
   },
   props: {
     accessType: {
@@ -47,13 +50,12 @@ export default {
     },
   },
   setup () {
-    
-
     return {}
   },
   data: () => ({
     cover: '',
-    showBtn: false
+    showBtn: false,
+    showNextButton: true,
   }),
 
   computed: {
@@ -72,17 +74,27 @@ export default {
       this.showBtn = true;
       console.log('show div', this.showBtn);
     },
-    // handleShowButtons(value) {
-    //   this.showBtn = value;
-    // },
-    setCover(val)
-    {
-      if(val) {
-        this.form.cover_photo = val;
-        this.form.cover = URL.createObjectURL(val);
+    setCover(val) {
+  if (val) {
+    const compressor = new Compressor(val, {
+      quality: 0.6,
+      success: (result) => {
+        const formData = new FormData();
+        formData.append('files', result, result.name);
+
+        this.form.cover_photo = result;
+        
+        this.form.cover = URL.createObjectURL(result);
+        
         console.log('Set Cover:: ', this.form.cover);
-      }
-    },
+      },
+      error: (err) => {
+        console.log(err.message);
+      },
+    });
+  }
+},
+
     removeBanner()
     {
       this.form.cover = '';
@@ -95,6 +107,7 @@ export default {
     {
        this.$emit('next-step');
        this.showBtn = false;
+       this.showNextButton = false;
     }
   },
   watch: {

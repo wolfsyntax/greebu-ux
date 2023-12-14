@@ -60,13 +60,9 @@
                     <label class="form-check-label" for="keepLogin">Keep me logged in</label>
                   </div>
                   <div class="d-grid gap-2 btn-login">
-                    <button class="btn btn-primary" type="submit" 
-                    :disabled="form.processing"
-                    >
-                    <span v-if="isLoading">
-                    <i class="busy-submitting"></i>Login</span>
-                    <span v-else>Login</span>
-                  </button>
+     
+                  <button class="btn btn-primary" type="submit" :disabled="form.processing" v-if="showLoginButton">Login</button>
+                  <button class="btn btn-primary" type="submit" :disabled="form.processing" v-else>Login</button>
               
                   </div>
                 </form>
@@ -101,6 +97,7 @@
 import Layout from '/src/components/Layouts/AuthLayout.vue';
 import SocialButton from '/src/components/Auth/SocialLogin.vue';
 import Verify from '@/components/Auth/Verify.vue';
+import LoadingIndicator from "/src/components/LoadingIndicator.vue";
 
 import { mapGetters, mapState, mapActions } from "vuex";
 // import { FacebookAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup, createUserWithEmailAndPassword, signInWithRedirect } from "firebase/auth";
@@ -108,7 +105,8 @@ export default {
   components: {
     layout: Layout,
     'social-button': SocialButton,
-    'verify-card': Verify
+    'verify-card': Verify,
+    LoadingIndicator
   },
   data()
   {
@@ -123,7 +121,7 @@ export default {
       isVerified: true,
       errors: null,
       message: null,
-      isLoading: false,
+      showLoginButton: true,
     }
   },
   setup()
@@ -139,13 +137,14 @@ export default {
     ]),
     submit()
     { 
+      this.showLoginButton = false;
       this.form.processing = true;
       this.signin(this.form).then((response) =>
       {
         console.log('Login Response: ', response)
         const { status: statusCode, data: {result, status, message}} = response;
         console.log('Status Code: ', statusCode, '\nStatus: ', status);
-        this.isLoading = true;
+     
         if (statusCode === 200) {
 
           // if (role === 'artists') {
@@ -159,23 +158,23 @@ export default {
           } else {
             this.$router.push('/dashboard')
           }
-
+          this.showLoginButton = true;
         } else if (statusCode === 203 && status === 203) {
 
           this.errors = result?.errors;
           this.message = message;
-          this.isLoading = false
+          this.showLoginButton = true;
 
         } else if (statusCode === 203 && status === 403) {
           
           this.isVerified = false;
           this.isInitial = false;
-          this.isLoading = false
+          this.showLoginButton = true;
         } else {
           
           this.errors = result?.errors;
           this.message = message;
-          this.isLoading = false
+          this.showLoginButton = true;
 
           // if (status === 403) {
           //   this.$router.push({ path: this.$route.path, query: { id: result?.user?.id } });

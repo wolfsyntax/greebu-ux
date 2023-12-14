@@ -360,15 +360,12 @@
                   </div>
 
                   <div class="d-grid gap-2 btn-sign-up">
-                    <button
-                      class="btn btn-primary"
-                      type="submit"
-                      :disabled="!agree_term && !isDisabled"
-                    >
-                      <span v-if="isLoading">
-                        <i class="busy-submitting"></i>Create Account
-                      </span>
-                      <span v-else>Create Account</span>
+
+                    <button class="btn btn-primary" type="submit" :disabled="!agree_term && !isDisabled" v-if="showCreateAccountBtn" >
+                      Create Account
+                    </button>
+                    <button class="btn btn-primary" type="submit" v-else>
+                      <LoadingIndicator />
                     </button>
                   </div>
 
@@ -392,6 +389,7 @@ import SocialButton from "@/components/Auth/SocialLogin.vue";
 import Verify from "@/components/Auth/Verify.vue";
 import { mapActions, mapGetters, mapMutations, mapState } from "vuex";
 import Layout from "/src/components/Layouts/AuthLayout.vue";
+import LoadingIndicator from "/src/components/LoadingIndicator.vue";
 
 import Joi from "joi";
 
@@ -400,6 +398,7 @@ export default {
     layout: Layout,
     "social-button": SocialButton,
     "verify-card": Verify,
+    LoadingIndicator
   },
   data() {
     return {
@@ -416,9 +415,9 @@ export default {
       agree_term: false,
       isDisabled: false,
       showRadioButtons: true,
-      isLoading: false,
       isSignup: true,
       schema: null,
+      showCreateAccountBtn: true,
     };
   },
   props: {
@@ -582,7 +581,7 @@ export default {
     validate() {
       this.isDisabled = true;
       this.errors = [];
-      this.isLoading = true;
+      this.showCreateAccountBtn = true;
       this.getFormattedPhone();
       console.log("Registration Form Data: ", this.form);
 
@@ -592,7 +591,7 @@ export default {
           allowUnknown: true,
         })
         .then(async (validated) => {
-          this.isLoading = false;
+          this.showCreateAccountBtn = true;
 
           console.log("Valid Form data ", this.form);
 
@@ -623,11 +622,11 @@ export default {
               this.errors = errors || {};
             })
             .finally((o) => {
-              this.isLoading = false;
+              this.showCreateAccountBtn = true;
             });
         })
         .catch((err) => {
-          this.isLoading = false;
+          this.showCreateAccountBtn = true;
 
           err.details.forEach((error) => {
             this.errors[error.path[0]] = [error.message];
@@ -635,8 +634,8 @@ export default {
         });
     },
     async submit() {
-      this.isDisabled = true;
-      this.isLoading = true;
+      this.isDisabled = false;
+      this.showCreateAccountBtn = false;
       this.form.phone = this.formatPhone;
 
       console.log("Form: ", this.form);
@@ -687,7 +686,7 @@ export default {
               "\nErrors: ",
               this.errors
             );
-            this.isLoading = false;
+            this.showCreateAccountBtn = true;
           }
         })
         .catch((err) => {

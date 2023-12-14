@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import store from "../store";
+import NProgress from 'nprogress';
+import 'nprogress/nprogress.css';
 
 const defaultMenu = [{ title: "", url: "" }];
 const artistMenu = [
@@ -55,6 +57,7 @@ const router = createRouter({
             role: "",
             parent: "artists",
             breadcrumb: [{ title: "", url: "" }],
+            // showLoadingBar: true 
           },
         },
         {
@@ -511,6 +514,23 @@ const router = createRouter({
   ],
 });
 
+let shouldShowLoadingBar = false;
+
+router.beforeEach((to, from, next) => {
+  shouldShowLoadingBar = to.meta.showLoadingBar !== false;
+
+  if (shouldShowLoadingBar) {
+    NProgress.start();
+  }
+  next();
+});
+
+router.afterEach(() => {
+  if (shouldShowLoadingBar) {
+    NProgress.done();
+  }
+});
+
 router.afterEach(() => {
   // Remove initial loading
   // const appLoading = document.getElementById('loading-bg')
@@ -570,5 +590,6 @@ router.beforeEach((to, from, next) => {
 
   document.title = to.meta.title;
 });
+
 
 export default router;

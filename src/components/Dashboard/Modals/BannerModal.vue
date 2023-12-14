@@ -74,8 +74,11 @@
           </div> 
         </div> <!-- end of modal-body -->
 
-        <div class="modal-footer justify-content-center" >
-          <button class="btn btn-lg upload-cover-photo" @click="getCropImage" v-if="preview">Set as Cover Photo</button>
+        <div class="modal-footer justify-content-center">
+
+          <button class="btn btn-lg upload-cover-photo" @click="getCropImage" v-if="preview || showCoverButton">Set as Cover Photo</button>
+          <button class="btn btn-lg upload-cover-photo" v-else><LoadingIndicator /></button>
+
         </div>
       </div>
     </div>
@@ -88,12 +91,14 @@ import ExampleWrapper from '/src/components/Cropper/ExampleWrapper.vue';
 import VerticalButtons from '/src/components/Cropper/VerticalButtons.vue';
 import SquareButton from '/src/components/Cropper/SquareButton.vue';
 import Compressor from 'compressorjs'; 
+import LoadingIndicator from "/src/components/LoadingIndicator.vue";
 
 export default { 
   components: {
     ExampleWrapper,
 		VerticalButtons,
 		SquareButton,
+    LoadingIndicator
   },
   setup () {
     return {
@@ -104,6 +109,7 @@ export default {
     }
   },
   data: () => ({
+    showCoverButton: true,
     banner: null,
     form: {
       cover_photo: '',
@@ -200,6 +206,7 @@ export default {
     
 
     getCropImage(compressedImage) {
+      this.showCoverButton = false;
       const { coordinates, canvas, image } = this.$refs.cropper.getResult();
 
       this.showImage = true;
@@ -215,6 +222,7 @@ export default {
         this.$refs.bannerClose.click();
         this.removeBanner();
         console.log(`Closing Banner`);
+        this.showCoverButton = true;
       });
     },
 
@@ -345,8 +353,6 @@ export default {
         },
       });
     },
-
-
     removeBanner()
     {
       this.form.cover_photo = null;
@@ -365,6 +371,10 @@ export default {
 
 <style scoped>
 
+.upload-file-wrapper:hover .drag-mouse-wrap{
+  opacity: 0;
+  transition: 1s;
+}
 #uploadArtistCoverPhoto .upload-file-wrapper .uploaded-image-wrapper{
   height: 14.3rem;
 }
