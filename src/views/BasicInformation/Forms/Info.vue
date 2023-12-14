@@ -57,7 +57,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      'storeSong', 'songStepOne',
+      'storeSong', 'songStepOne', 'fetchSongForm',
     ]),
     submit()
     {
@@ -90,6 +90,13 @@ export default {
   mounted()
   {
     this.$store.commit('setSongPageStatus');
+
+    this.fetchSongForm()
+    .then(response =>
+    {
+      
+    })
+    
     // this.form = Object.assign(this.form, this.song);
   },
   computed: {
