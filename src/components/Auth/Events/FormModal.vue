@@ -80,7 +80,7 @@
           <label for="eventType">Start Date</label>
           
           <input type="date" v-model="form.start_date" placeholder="YYYY-MM-DD" class="form-control " required autocomplete="off" :min="$moment().add(5, 'days').format('YYYY-MM-DD')" />
-
+          <p>Event date is must be input</p>
           <!-- <input type="date" v-model="form.start_date" placeholder="YYYY-MM-DD" class="form-control " required autocomplete="off" :min="$moment().add(5, 'days').format('YYYY-MM-DD')" /> -->
           <div v-for="err in error?.start_date" :key="err" class="text-danger">{{ err }}</div>
         </div>
@@ -88,6 +88,7 @@
         <div class="form-group">
           <label for="eventType">End Date</label>
           <input type="date" v-model="form.end_date" placeholder="YYYY-MM-DD" class="form-control " required autocomplete="off" :min="$moment().add(5, 'days').format('YYYY-MM-DD')" />
+          <p>Event date is must be input</p>
           <div v-for="err in error?.end_date" :key="err" class="text-danger">{{ err }}</div>
         </div>
 
@@ -142,7 +143,6 @@
 import { mapActions, mapGetters, mapState } from 'vuex';
 
 import DragDrop from '/src/components/DragDrop.vue';
-import Multiselect from '@vueform/multiselect';
 import LoadingVue from '/src/components/Loading.vue';
 
 
