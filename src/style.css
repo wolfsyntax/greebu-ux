@@ -7414,12 +7414,6 @@ header nav {
   font-weight: 700;
   margin-bottom: 0;
 }
-#event-cover-wrap .title{
-  color: var(--black);
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-}
 #createEventModal .modal-header .btn-close,
 #editEventModal .modal-header .btn-close {
   padding: 0.4rem;
@@ -7663,6 +7657,9 @@ header nav {
   right: 2%;
   border: 0;
   background-color: transparent;
+}
+#createEventModal .uploaded-image-wrapper .remove-image{
+  top: 27%;
 }
 #createEventModal .uploaded-image-wrapper .remove-image span,
 #albumSongInfo .uploaded-image-wrapper .remove-image span,
@@ -10446,6 +10443,8 @@ header nav {
   width: 68.688rem;
 } */
 
+
+
 /* Cropper */
 
 #uploadProfilePhoto .upload-file-wrapper .uploaded-image-wrapper{
@@ -11997,9 +11996,6 @@ header nav {
   #editEventModal .modal-header .modal-title {
     font-size: 1.25rem;
   }
-  #event-cover-wrap .title{
-    font-size: 1rem;
-  }
   #createEventModal .modal-header .btn-close,
   #editEventModal .modal-header .btn-close {
     padding: 0.3rem;
@@ -12142,6 +12138,9 @@ header nav {
   }
 
   /* Drag file(s) component box */
+  #createEventModal .uploaded-image-wrapper .remove-image {
+    top: 5%;
+}
   #drag-file-component-wrap {
     border-radius: 0.375rem;
     border: 1px dashed var(--gray6);

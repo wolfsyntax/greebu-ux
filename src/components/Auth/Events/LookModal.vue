@@ -213,7 +213,8 @@ export default {
     },
     back()
     {
-      this.$emit('next-step', 'detail')
+      this.$emit('next-step', 'detail');
+      this.$emit('prev');
       console.log('Back')
     },
     skip()

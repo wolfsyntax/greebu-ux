@@ -125,7 +125,7 @@
         
       
       <div class="text-end action-btn-wrap">
-        <button type="button" class="btn cancel" @click="backToCover">Back</button>
+        <button type="button" class="btn cancel" @click="back">Back</button>
 
         <button type="submit" class="btn next" :disabled="!validInput" v-if="showSubmitButtonForm2">
           Next
@@ -222,9 +222,10 @@ export default {
       this.cover = '';
       // this.error.cover_photo = '';
     },
-    backToCover()
+    back()
     {
       this.$emit('next-step', 'cover');
+      this.$emit('prev');
       console.log('Back to cover')
     },
     submit()
@@ -244,6 +245,7 @@ export default {
         {
           console.log('Next Step: ', res);
           this.$emit('next-step');
+          this.$emit('next');
           this.showSubmitButtonForm2 = true;
         })
         .catch(err =>

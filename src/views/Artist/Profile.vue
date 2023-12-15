@@ -18,7 +18,7 @@
               <!-- DISPLAY MODAL for Add Member and Add Social Media Accounts -->
 
               <div ref="modal" class="modal fade" id="add-artist-details" :class="{ show: active, 'd-block': active }" tabindex="-1" role="dialog">
-                <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header d-flex align-items-start justify-content-between p-0">
                       <div>

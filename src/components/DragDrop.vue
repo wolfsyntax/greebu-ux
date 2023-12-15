@@ -1,6 +1,5 @@
 <template>
   <div id="event-cover-wrap">
-    <h3 class="text-center title">Please upload your event photo</h3>
     <div
       class="upload-file-wrapper"
       @dragover="handleDragOverCover"

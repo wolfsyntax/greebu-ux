@@ -4,12 +4,12 @@
       <div class="modal-content">
         <div class="modal-header border-bottom-0 p-0 d-flex align-items-start justify-content-between">
           <div>
-            <h5 class="modal-title">Add Social Media Accounts</h5>             
+            <h5 class="modal-title">Add Social Media Account</h5>             
             <p class="mb-0 sub-title">Lorem ipsum dolor sit amet consectetur. Nam lacus viverra nec orci arcu id fringilla ultrices.</p>
           </div>
           <div>
-            <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ref="modalClose"></button> -->
-            <CloseModalButton />
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ref="modalClose"></button>
+            <!-- <CloseModalButton /> -->
           </div>
         </div>
 
@@ -32,7 +32,10 @@
               </div>             
           
             <div class="text-center">
-              <button type="submit" :disabled="!(validType && validUrl)" class="btn btn-success add-social-media">Add</button>
+
+              <button type="submit" :disabled="!(validType && validUrl)" class="btn btn-success add-social-media" v-if="showAddBtn">Add</button>
+              <button type="submit" class="btn btn-success add-social-media" v-else><LoadingIndicator /></button>
+
             </div>     
            
           </form>
@@ -45,10 +48,12 @@
 <script>
 import { mapGetters, mapState, mapActions } from "vuex";
 import CloseModalButton from '/src/components/CloseModalButton.vue';
+import LoadingIndicator from '/src/components/LoadingIndicator.vue';
 
 export default {
   components: {
-    CloseModalButton
+    CloseModalButton,
+    LoadingIndicator
   },
   setup()
   {
@@ -57,6 +62,7 @@ export default {
     return {}
   },
   data: () => ({
+    showAddBtn: true,
     social_media: [
       { id: 1, value: 'instagram', label: 'Instagram', },
       { id: 2, value: 'twitter', label: 'X Formerly Twitter', },
@@ -163,13 +169,13 @@ export default {
     ]),
     submit()
     {
-
+      this.showAddBtn = false;
       console.log('Social media add: ', this.media_type, this.url);
 
       this.$emit('form', this.media_type, this.url)
       // this.$emit('modalClose');
       this.$refs.modalClose.click();
-
+      this.showAddBtn = true;
     }
   },
   computed: {

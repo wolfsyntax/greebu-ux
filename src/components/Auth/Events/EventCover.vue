@@ -106,6 +106,7 @@ export default {
     submit()
     {
        this.$emit('next-step');
+       this.$emit('next');
        this.showBtn = false;
        this.showNextButton = false;
     }

@@ -9,8 +9,8 @@
             <p class="mb-0 sub-title">Lorem ipsum dolor sit amet consectetur. Nam lacus viverra nec orci arcu id fringilla ultrices.</p>
           </div>
           <div>
-            <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ref="staffFormDismiss"></button> -->
-            <CloseModalButton />
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ref="staffFormDismiss"></button>
+            <!-- <CloseModalButton /> -->
           </div>
         </div>
         <div class="modal-body p-0">
@@ -61,11 +61,14 @@
                   </div>
               
                 <div class="col text-center">
-                  <button type="submit" class="btn btn-warning add-member">
-                    <span>
-                      <i class="busy-add-member" v-if="isLoading"></i>Add Member
-                    </span>
+
+                  <button type="submit" class="btn btn-warning add-member" v-if="showAddMemBtn">
+                    Add Member
                   </button>
+                  <button type="submit" class="btn btn-warning add-member" v-else>
+                    <LoadingIndicator />
+                  </button>
+
                 </div>
                       
           </form>
@@ -87,10 +90,12 @@ import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
 import CloseModalButton from '/src/components/CloseModalButton.vue';
 //import ProfileModal from '/src/components/Dashboard/Modals/ProfileModal.vue';
 //import { Modal } from "bootstrap";
+import LoadingIndicator from '/src/components/LoadingIndicator.vue';
 
 export default {
   components: {
     CloseModalButton,
+    LoadingIndicator
     //ProfileModal
   },
   setup () {
@@ -99,6 +104,7 @@ export default {
     return {}
   },
   data: () => ({
+    showAddMemBtn: true,
     form: {
       member_avatar: '',
       member_name: '',
@@ -107,7 +113,6 @@ export default {
     avatar: '',
     other: '',
     errors: {},
-    isLoading: false,
     parentAvatar: ''
   }),
   props: {
@@ -147,7 +152,6 @@ export default {
       this.avatar = '';
       this.other = '';
       this.errors = {};
-      this.isLoading = false;
       
       this.fetchStaff();
       this.SET_STAFF_FILTER();
@@ -172,6 +176,7 @@ export default {
    
     submit()
     {
+      this.showAddMemBtn = false;
       if (Object.keys(this.member).length > 0)
       {
 
@@ -188,9 +193,9 @@ export default {
           {
             this.$emit('form', this.form);
             this.$refs.staffFormDismiss.click();
+            this.showAddMemBtn = true;
           })
       } else {
-
         if (this.other !== '')
         {
           this.form.role = this.other;
@@ -201,6 +206,7 @@ export default {
           {
             this.$emit('form', this.form);
             this.$refs.staffFormDismiss.click();
+            this.showAddMemBtn = true;
           })
       }
     },
