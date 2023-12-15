@@ -181,7 +181,7 @@ const router = createRouter({
           meta: {
             requiresLogin: true, // true
             title: "Create a Song step by step",
-            role: "customers",
+            role: "",
           },
         },
         {

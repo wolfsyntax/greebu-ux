@@ -123,6 +123,7 @@
         
         <div class="col-md-6 offset-md-3" v-if="currentSubStepSong === 1">
           <!-- <div class=""> -->
+            
             <div class="card">
               <div class="card-body">
                 <h2 class="card-title">How the song make them feel?</h2>
