@@ -459,6 +459,30 @@ const router = createRouter({
       },
     },
     {
+      path: "/privacy_policy",
+      name: "Privacy Policy",
+      component: () => import("/src/views/PrivacyPolicy.vue"),
+      meta: {
+        requiresLogin: false, // true
+        title: "Privacy Policy",
+        role: "",
+        parent: "",
+        breadcrumb: [{ title: "", url: "" }],
+      },
+    },
+    {
+      path: "/cookies",
+      name: "Cookies Policy",
+      component: () => import("/src/views/CookiesPolicy.vue"),
+      meta: {
+        requiresLogin: false, // true
+        title: "Cookies Policy",
+        role: "",
+        parent: "",
+        breadcrumb: [{ title: "", url: "" }],
+      },
+    },
+    {
       path: "/pages",
       component: () => import("/src/components/FullPage.vue"),
       children: [
