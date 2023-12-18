@@ -50,7 +50,7 @@
                   v-if="banner"
                 />
 
-                <!-- minAspectRatio: 16/8,
+                <!-- minAspectRatio: 16/8, // for upload event
 		            maxAspectRatio: 4/8 -->
 
                 <vertical-buttons>
@@ -69,10 +69,11 @@
                 </div>
               </example-wrapper>
 
-              <div class="d-flex align-items-center drag-mouse-wrap">
+              <!-- <div class="d-flex align-items-center drag-mouse-wrap">
                 <img src="/assets/vue-cropper/drag-icon.svg" class="drag-cursor" />
                 <h4 class="mb-0 drag">Drag to reposition</h4>
-              </div>
+              </div> -->
+              <Reposition />
 
               <button class="remove-image" @click="removeBanner">
                 <span class="material-symbols-outlined">&#xe5cd;</span> 
@@ -99,13 +100,15 @@ import VerticalButtons from '/src/components/Cropper/VerticalButtons.vue';
 import SquareButton from '/src/components/Cropper/SquareButton.vue';
 import Compressor from 'compressorjs'; 
 import LoadingIndicator from "/src/components/LoadingIndicator.vue";
+import Reposition from "/src/components/Dashboard/Modals/Reposition.vue";
 
 export default { 
   components: {
     ExampleWrapper,
 		VerticalButtons,
 		SquareButton,
-    LoadingIndicator
+    LoadingIndicator,
+    Reposition
   },
   setup () {
     return {

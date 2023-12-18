@@ -55,6 +55,8 @@
 
         </example-wrapper>
 
+        <Reposition />
+
         <button class="remove-image" type="button" @click="removeBanner">
           <span class="material-symbols-outlined">&#xe5cd;</span>
         </button>
@@ -78,13 +80,15 @@ import ExampleWrapper from '/src/components/Cropper/ExampleWrapper.vue';
 import VerticalButtons from '/src/components/Cropper/VerticalButtons.vue';
 import SquareButton from '/src/components/Cropper/SquareButton.vue';
 import LoadingIndicator from "/src/components/LoadingIndicator.vue";
+import Reposition from "/src/components/Dashboard/Modals/Reposition.vue";
 
 export default {
   components: {
     ExampleWrapper,
 		VerticalButtons,
 		SquareButton,
-    LoadingIndicator
+    LoadingIndicator,
+    Reposition
   },
   setup () {
     return {
