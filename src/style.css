@@ -2357,7 +2357,7 @@ header nav {
   border-radius: 5px;
   margin-bottom: 20px;
 }
-.register-form .form-group .valid-phone-number{
+.register-form .form-group .valid-phone-number {
   font-size: 0.87rem;
   color: var(--black);
 }
@@ -2478,14 +2478,14 @@ header nav {
 .register .row-checkbox .have-account a:hover {
   text-decoration: underline;
 }
-.register form .form-checkbox .terms-btn{
+.register form .form-checkbox .terms-btn {
   font-weight: 400;
   font-size: 14px;
   line-height: 140%;
   letter-spacing: -0.02em;
   color: #007aff;
   text-decoration: none;
-  background-color: var(--white)!important;
+  background-color: var(--white) !important;
   margin: 0;
 }
 .login form button,
@@ -2559,6 +2559,31 @@ header nav {
   padding-top: 15px;
   padding-bottom: 15px;
   opacity: 0.5;
+}
+.stepper {
+  .line {
+    width: 1px;
+    height: 1px;
+    transform: rotate(180deg);
+    flex-shrink: 0;
+    background: var(--blue-600, #2563eb);
+    margin-right: 8px;
+  }
+  .lead {
+    font-size: 1.1rem;
+  }
+  .rounded-circle {
+    width: 0.625rem;
+    height: 0.625rem;
+    margin-right: 8px;
+  }
+}
+.bg-primary {
+  fill: var(--orange);
+  stroke-width: 3px;
+  background-color: var(--orange) !important;
+  filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.1))
+    drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.1));
 }
 .login .select-login,
 .register .select-register {
@@ -2663,6 +2688,24 @@ header nav {
 .register ::-webkit-scrollbar-thumb:vertical {
   height: 30px;
   background-color: var(--orange);
+}
+.terms-accept-btn {
+  width: 12.6875rem;
+  height: 3.25rem;
+  flex-shrink: 0;
+  border-radius: 0.5rem;
+  background: var(--orange);
+  color: var(--white);
+  text-align: center;
+  font-family: Urbanist;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  display: flex;
 }
 
 /* CREATE SONG PAGE */
@@ -4694,7 +4737,7 @@ header nav {
   border: 0;
   background-color: transparent;
 }
-.phone-verification .check-message .resend-code:hover{
+.phone-verification .check-message .resend-code:hover {
   color: var(--orange);
 }
 .phone-verification .check-message .orange-text,
@@ -6696,6 +6739,31 @@ header nav {
   background-color: var(--orange); /* #FED7AA; */
   /* display: none; */
 }
+.sub-title {
+  color: #223644;
+  font-family: Urbanist;
+  font-size: 1.375rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.para-body {
+  width: 45.0625rem;
+  color: #8690a2;
+  font-family: Urbanist;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.25rem; /* 125% */
+}
+.para-title {
+  color: #121212;
+  font-family: Urbanist;
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.25rem; /* 111.111% */
+}
 
 /* Organizer Account - Account Settings (Request Application tab) */
 .account-settings .request-application-wrap .event-wrap,
@@ -7518,25 +7586,59 @@ header nav {
   gap: 0.4rem;
 }
 
-#createEventModal .modal-body .start-end-wrap input[type="date" i]::-webkit-calendar-picker-indicator,
-#createEventModal .modal-body .start-end-wrap input[type="time" i]::-webkit-calendar-picker-indicator,
-#editEventModal .modal-body .start-end-wrap input[type="date" i]::-webkit-calendar-picker-indicator,
-#editEventModal .modal-body .start-end-wrap input[type="time" i]::-webkit-calendar-picker-indicator {
+#createEventModal
+  .modal-body
+  .start-end-wrap
+  input[type="date" i]::-webkit-calendar-picker-indicator,
+#createEventModal
+  .modal-body
+  .start-end-wrap
+  input[type="time" i]::-webkit-calendar-picker-indicator,
+#editEventModal
+  .modal-body
+  .start-end-wrap
+  input[type="date" i]::-webkit-calendar-picker-indicator,
+#editEventModal
+  .modal-body
+  .start-end-wrap
+  input[type="time" i]::-webkit-calendar-picker-indicator {
   background-image: url("/assets/calendar-month-icon.svg");
   block-size: 1.5em;
   inline-size: 1.5em;
 }
-#createEventModal .modal-body .start-end-wrap input[type="time" i]::-webkit-calendar-picker-indicator,
-#editEventModal .modal-body .start-end-wrap input[type="time" i]::-webkit-calendar-picker-indicator {
+#createEventModal
+  .modal-body
+  .start-end-wrap
+  input[type="time" i]::-webkit-calendar-picker-indicator,
+#editEventModal
+  .modal-body
+  .start-end-wrap
+  input[type="time" i]::-webkit-calendar-picker-indicator {
   background-image: url("/assets/clock-icon.svg");
   margin-inline-start: 0;
 }
-#createEventModal .modal-body .start-end-wrap .form-group:hover input[type="date" i]::-webkit-calendar-picker-indicator, 
-#editEventModal .modal-body .start-end-wrap .form-group:hover input[type="date" i]::-webkit-calendar-picker-indicator {
+#createEventModal
+  .modal-body
+  .start-end-wrap
+  .form-group:hover
+  input[type="date" i]::-webkit-calendar-picker-indicator,
+#editEventModal
+  .modal-body
+  .start-end-wrap
+  .form-group:hover
+  input[type="date" i]::-webkit-calendar-picker-indicator {
   background-image: url("/assets/calendar-month-icon-hovered.svg");
 }
-#createEventModal .modal-body .start-end-wrap .form-group:hover input[type="time" i]::-webkit-calendar-picker-indicator,
-#editEventModal .modal-body .start-end-wrap .form-group:hover input[type="time" i]::-webkit-calendar-picker-indicator {
+#createEventModal
+  .modal-body
+  .start-end-wrap
+  .form-group:hover
+  input[type="time" i]::-webkit-calendar-picker-indicator,
+#editEventModal
+  .modal-body
+  .start-end-wrap
+  .form-group:hover
+  input[type="time" i]::-webkit-calendar-picker-indicator {
   background-image: url("/assets/clock-icon-hovered.svg");
 }
 
@@ -8194,13 +8296,13 @@ header nav {
   color: #fdfdfd;
 }
 
-#uploadArtistCoverPhoto .upload-file-wrapper .uploaded-image-wrapper{
+#uploadArtistCoverPhoto .upload-file-wrapper .uploaded-image-wrapper {
   overflow: hidden;
   width: 100%;
   height: 14.3rem;
   /* position: relative; */
 }
-#uploadArtistCoverPhoto .upload-file-wrapper .uploaded-image{
+#uploadArtistCoverPhoto .upload-file-wrapper .uploaded-image {
   /* height: 14.3rem; */
   /* margin: 0; */
   /* position: absolute;
@@ -10236,12 +10338,12 @@ header nav {
 
 /* Cropper */
 
-#uploadProfilePhoto .vue-advanced-cropper > *{
-  width: 100%!important;
-  height: 32.25rem!important;
+#uploadProfilePhoto .vue-advanced-cropper > * {
+  width: 100% !important;
+  height: 32.25rem !important;
   cursor: move;
 }
-#uploadProfilePhoto .drag-mouse-wrap{
+#uploadProfilePhoto .drag-mouse-wrap {
   margin: 0;
   position: absolute;
   top: 50%;
@@ -10250,27 +10352,27 @@ header nav {
   transform: translate(-50%, -50%);
   gap: 0.25rem;
   border-radius: 0.375rem;
-  background: rgba(0, 0, 0, 0.60);
+  background: rgba(0, 0, 0, 0.6);
   padding: 0.62rem 0.78rem;
 }
-#uploadProfilePhoto .drag-mouse-wrap .drag-cursor{
+#uploadProfilePhoto .drag-mouse-wrap .drag-cursor {
   width: 1.00725rem;
   height: 1rem;
 }
-#uploadProfilePhoto .drag-mouse-wrap .drag{
-  color: var(--white); 
+#uploadProfilePhoto .drag-mouse-wrap .drag {
+  color: var(--white);
   font-size: 1rem;
   font-weight: 600;
 }
 
 /* Cropper */
 
-#uploadArtistCoverPhoto .vue-advanced-cropper > *{
-  width: 100%!important;
-  height: 14.3rem!important;
+#uploadArtistCoverPhoto .vue-advanced-cropper > * {
+  width: 100% !important;
+  height: 14.3rem !important;
   cursor: move;
 }
-#uploadArtistCoverPhoto .drag-mouse-wrap{
+#uploadArtistCoverPhoto .drag-mouse-wrap {
   margin: 0;
   position: absolute;
   top: 50%;
@@ -10279,14 +10381,14 @@ header nav {
   transform: translate(-50%, -50%);
   gap: 0.25rem;
   border-radius: 0.375rem;
-  background: rgba(0, 0, 0, 0.60);
+  background: rgba(0, 0, 0, 0.6);
   padding: 0.62rem 0.78rem;
 }
-#uploadArtistCoverPhoto .drag-mouse-wrap .drag-cursor{
+#uploadArtistCoverPhoto .drag-mouse-wrap .drag-cursor {
   width: 1.00725rem;
   height: 1rem;
 }
-#uploadArtistCoverPhoto .drag-mouse-wrap .drag{
+#uploadArtistCoverPhoto .drag-mouse-wrap .drag {
   color: var(--white);
   font-size: 1rem;
   font-weight: 600;
@@ -10319,20 +10421,20 @@ header nav {
 #terms-page .side-wrap {
   width: 100%;
 }
-#terms-page .left-side{
+#terms-page .left-side {
   /* flex: 1; */
   display: flex;
   flex-direction: column;
   float: left;
   width: 22%;
   height: 100%;
-  border-right: 1px solid var(--gray2);
+  /* border-right: 1px solid var(--gray2); */
   padding: 3.875rem 1.125rem 0 3.125rem;
 }
-#terms-page .left-side > div:nth-child(1){
+#terms-page .left-side > div:nth-child(1) {
   margin-bottom: 4.75rem;
 }
-#terms-page .left-side img{
+#terms-page .left-side img {
   width: 9.51088rem;
   height: 2.5rem;
 }
@@ -10340,12 +10442,12 @@ header nav {
   color: var(--gray6);
   font-size: 0.875rem;
   font-weight: 600;
-  line-height: 1.25rem; 
+  line-height: 1.25rem;
   margin-bottom: 1.25rem;
   text-decoration: none;
 }
 #terms-page .left-side a.active {
-  color: var(--black)
+  color: var(--black);
 }
 #terms-page .right-side {
   /* flex: 2; */
@@ -10353,25 +10455,25 @@ header nav {
   overflow-y: auto;
   max-height: calc(100vh - 5rem);
   /* float: right; */
- padding: 3.875rem 2rem 2rem 3.125rem;;
+  padding: 3.875rem 2rem 2rem 3.125rem;
 }
-#terms-page .right-side .title{
+#terms-page .right-side .title {
   color: #223644;
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 2.56rem;
 }
-#terms-page .right-side h3{
+#terms-page .right-side h3 {
   color: #223644;
   font-size: 1.25rem;
   font-weight: 700;
   margin-bottom: 0.62rem;
 }
-#terms-page .right-side h5{
+#terms-page .right-side h5 {
   color: var(--black);
   font-size: 1rem;
   font-weight: 600;
-  line-height: 1.25rem; 
+  line-height: 1.25rem;
   margin-bottom: 0.62rem;
 }
 #terms-page .right-side p,
@@ -10381,29 +10483,29 @@ header nav {
   font-weight: 500;
   line-height: 1.25rem;
 }
-#terms-page .right-side p .contact-us{
+#terms-page .right-side p .contact-us {
   color: var(--orange);
   text-decoration: underline;
 }
-#terms-page .right-side #item-1-2 li{
+#terms-page .right-side #item-1-2 li {
   margin-bottom: 0.56rem;
 }
-#terms-page .right-side li::marker{
+#terms-page .right-side li::marker {
   color: var(--black);
 }
-#terms-page .right-side #item-1-2 li:last-child{
+#terms-page .right-side #item-1-2 li:last-child {
   margin-bottom: 0;
 }
-#terms-page .right-side #item-1-2 .may-not-wrap{
+#terms-page .right-side #item-1-2 .may-not-wrap {
   margin-left: 1rem;
 }
 #terms-page .right-side #item-1-1,
-#terms-page .right-side #item-1-2{
+#terms-page .right-side #item-1-2 {
   margin-bottom: 2.5rem;
 }
 #terms-page .right-side #item-1-1 > div,
 #terms-page .right-side #item-1-2 > div,
-#terms-page .right-side #item-1-3 > div{
+#terms-page .right-side #item-1-3 > div {
   margin-bottom: 1rem;
 }
 #terms-page .right-side::-webkit-scrollbar {
@@ -10417,7 +10519,7 @@ header nav {
   background-color: var(--orange);
 }
 #terms-page .right-side {
-  scrollbar-width: thin;  /* For Firefox */
+  scrollbar-width: thin; /* For Firefox */
 }
 /* Firefox specific styles */
 #terms-page .right-side {
@@ -10440,34 +10542,32 @@ header nav {
   28px 1.75 rem
 /* */
 
-/* Terms modal */
+  /* Terms modal */
 
-/* #terms-modal .modal-content {
+  /* #terms-modal .modal-content {
   width: 68.688rem;
 } */
 
+  /* Cropper */
 
-
-/* Cropper */
-
-#uploadProfilePhoto .upload-file-wrapper .uploaded-image-wrapper{
-  height: 24.1875rem!important;
-}
-#uploadProfilePhoto .vue-advanced-cropper > *{
-  height: 24.1875rem!important;
-}
-#uploadProfilePhoto .drag-mouse-wrap{
-  gap: 0.19rem;
-  padding: 0.48rem 0.56rem;
-  border-radius: 0.28125rem;
-}
-#uploadProfilePhoto .drag-mouse-wrap .drag-cursor{
-  width: 0.75544rem;
-  height: 0.75rem;
-}
-#uploadProfilePhoto .drag-mouse-wrap .drag{
-  font-size: 0.75rem;
-}
+  #uploadProfilePhoto .upload-file-wrapper .uploaded-image-wrapper {
+    height: 24.1875rem !important;
+  }
+  #uploadProfilePhoto .vue-advanced-cropper > * {
+    height: 24.1875rem !important;
+  }
+  #uploadProfilePhoto .drag-mouse-wrap {
+    gap: 0.19rem;
+    padding: 0.48rem 0.56rem;
+    border-radius: 0.28125rem;
+  }
+  #uploadProfilePhoto .drag-mouse-wrap .drag-cursor {
+    width: 0.75544rem;
+    height: 0.75rem;
+  }
+  #uploadProfilePhoto .drag-mouse-wrap .drag {
+    font-size: 0.75rem;
+  }
 
   /* Hide scrollbar for Chrome, Safari and Opera */
   .multiselect .multiselect-dropdown::-webkit-scrollbar {

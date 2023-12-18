@@ -352,10 +352,10 @@
                     <label class="form-check-label" for="agreed_id">
                       &nbsp; I agree to all the
 
-                      <a href="/terms" target="_blank">Terms</a> and 
+                      <a href="/terms" target="_blank">Terms</a>,
 
-                      <a href="#" target="_blank">Privacy policy</a>
-
+                      <a href="/privacy" target="_blank">Privacy Policy</a> and
+                      <a href="/cookies" target="_blank">Cookies Policy</a>
                     </label>
                   </div>
 

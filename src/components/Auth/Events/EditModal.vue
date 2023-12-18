@@ -33,7 +33,8 @@
           </div>
 
           <event-cover @next-step="nextDetailStep" accessType="create" v-if="step === 'cover'"
-          v-show="currentStepper === 0" @next="nextStepper" :showBtn="true"/>
+          v-show="currentStepper === 0" @next="nextStepper" /> 
+          <!-- :showBtn="true" -->
 
           <event-form @next-step="nextStep" accessType="create" v-if="step === 'detail'" 
           v-show="currentStepper === 1"  @prev="prevStepper" @next="nextStepper" />
@@ -174,12 +175,11 @@ steppers: ['1', '2', '3'],
   flex-direction: column;
   align-items: center;
   flex: 1;
-
-  @media (max-width: 768px) {
-    font-size: 12px;
-  }
 }
 
+  /* @media (max-width: 768px) {
+    font-size: 12px;
+  } */
 #editEventModal .stepper-item .step-counter{
   position: relative;
   z-index: 5;
