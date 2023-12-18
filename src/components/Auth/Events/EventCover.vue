@@ -18,17 +18,17 @@
        
        <drag-drop @dragCover="setCover" @show-buttons="showBtnDiv" v-else/>
  
-       <div class="text-end action-btn-wrap" v-if="showBtn">
+       <div class="text-end action-btn-wrap" v-if="showGroupBtn">
          <button type="button" class="btn cancel" data-bs-dismiss="modal">Cancel</button>
  
-         <button type="submit" class="btn next" v-if="showNextButton">Next</button>
+         <button type="submit" class="btn next" :disabled="isButtonDisabled" v-if="showNextButton">Next</button>
          <button type="submit" class="btn next" v-else><LoadingIndicator /></button>
        </div>
  
      </form> 
 
 </div>   
- 
+
 </template>
 
 <script>
@@ -40,7 +40,7 @@ import Compressor from 'compressorjs';
 export default {
   components: {
     DragDrop,
-    LoadingIndicator
+    LoadingIndicator,
   },
   props: {
     accessType: {
@@ -48,17 +48,19 @@ export default {
       default: 'create',
       required: false,
     },
-    showBtn: {
-      type: Boolean,
-      default: false,
-    },
+    // showGroupBtn: {
+    //   type: Boolean,
+    //   default: true,
+    // },
+  
   },
   setup () {
-    return {}
+    return {
+      showGroupBtn: true,
+    }
   },
   data: () => ({
     cover: '',
-    showBtn: false,
     showNextButton: true,
   }),
 
@@ -69,15 +71,24 @@ export default {
     ...mapState({
       form: state => state.events.form,
     }),
+    isButtonDisabled(){
+      return this.cover === '';
+    }
+  },
+  mounted(){
+    // this.showGroupBtn = false;
   },
   methods: {
     ...mapActions([
       'fetchEventOptions', 'createEvent', 'verifyEvent',
     ]),
-    showBtnDiv(){
-      this.showBtn = true;
-      console.log('show div', this.showBtn);
+    toggleShowBtn() {
+      this.$emit('toggle-show-btn');
     },
+    // showBtnDiv(){
+    //   this.showGroupBtn = true;
+    //   console.log('show div', this.showGroupBtn);
+    // },
     setCover(val) {
   if (val) {
     const compressor = new Compressor(val, {
@@ -105,17 +116,21 @@ export default {
       this.form.cover_photo = '';
       this.cover = '';
       // this.error.cover_photo = '';
-      this.showBtn = false;
+      // this.showGroupBtn = false;
     },
     submit()
     {
        this.$emit('next-step');
        this.$emit('next');
-       this.showBtn = false;
+      //  this.showGroupBtn = false;
        this.showNextButton = false;
-    }
+    },
+
   },
   watch: {
+    showGroupBtn(newVal) {
+      console.log('showBtn updated:', newVal);
+    },
     form: {
       handler(val)
       {

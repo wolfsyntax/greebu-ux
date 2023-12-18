@@ -245,6 +245,7 @@ export default {
           {
             console.log(`${action} - Look: `, res);
             this.$emit('next-step', 'success')
+            
             this.showSubmitButtonForm3 = true;
           }).catch(err =>
           {

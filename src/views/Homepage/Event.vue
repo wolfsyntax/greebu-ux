@@ -236,6 +236,7 @@
     <event-success />
     <faq />
   </layout>
+
 </template>
 <script>
 import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
@@ -259,6 +260,7 @@ export default {
     titleTemplate: '%s | Geebu'
   },
   components: {
+ 
     layout: Layout,
     faq: Faq,
     signupmodal: MustSignupModal,
@@ -282,7 +284,7 @@ export default {
     isPastLoading: false,
     city: '',
     event_type: '',
-    search: '',
+
   }),
   computed: {
     ...mapGetters(["isLoggedIn", 'userInfo', 'info', 'userRole']),
@@ -446,6 +448,7 @@ export default {
     },
     toggleCreate()
     {
+
       this.fetchEventOptions()
 
       new Modal(document.getElementById('createEventModal'), {

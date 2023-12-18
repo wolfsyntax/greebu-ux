@@ -33,7 +33,7 @@
           </div>
 
           <event-cover @next-step="nextDetailStep" accessType="create" v-if="step === 'cover'"
-          v-show="currentStepper === 0" @next="nextStepper"/>
+          v-show="currentStepper === 0" @next="nextStepper" />
 
           <event-form @next-step="nextStep" accessType="create" v-if="step === 'detail'" 
           v-show="currentStepper === 1"  @prev="prevStepper" @next="nextStepper" />
@@ -113,7 +113,7 @@ export default {
         this.currentStepper--;
       }
     },
-    nextDetailStep(){ // EventCover submit
+    nextDetailStep(){ 
       this.step = 'detail';
       console.log('details-nexStep: ', this.step);
     },
@@ -150,15 +150,6 @@ export default {
   width: 70%;
   margin: auto auto 2.5rem;
 }
-/* #createEventModal .separator-line {
-    width: 19%;
-    height: 2px;
-    background-color: orange;
-    margin: 0 10px;
-    position: absolute;
-    top: 6%;
-    left: 25%;
-} */
 .stepper-item > div:not(:first-child),
 #createEventModal .stepper-wrapper .step-active {
   color: #B8BBCF;
@@ -185,15 +176,6 @@ export default {
   border: 3px solid var(--orange)!important;
   color: var(--orange)!important;
 }
-/* #createEventModal .stepper-line{
-  position: absolute;
-  content: "";
-  border-bottom: 2px solid var(--orange)!important;
-  width: 100%;
-  top: 20px;
-  left: -50%;
-  z-index: 2;
-} */
 #createEventModal .stepper-item {
   position: relative;
   display: flex;

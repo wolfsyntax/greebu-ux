@@ -48,7 +48,7 @@
                   >
                 </div>
 
-                <button :class="{ 'resend-code': true, 'orange-button': countdown === 0 }"
+                <button type="button" :class="{ 'resend-code': true, 'orange-button': countdown === 0 }"
                 @click.prevent="resendMyCode">Resend Code {{ $filters.timer(countdown) }}</button>
                 
                 <div class="btn-wrapper">

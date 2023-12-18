@@ -4,7 +4,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h2 class="modal-title" id="staticBackdropLabel">Edit an Event</h2>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ref="eventModalDismiss"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" @click="closeEventModal" ref="eventModalDismiss"></button>
         </div>
         <div class="modal-body">
 
@@ -32,14 +32,14 @@
             </div>
           </div>
 
-          <event-cover @next-step="nextDetailStep" accessType="create" v-if="step === 'cover'"
+          <event-cover @next-step="nextDetailStep" accessType="edit" v-if="step === 'cover'"
           v-show="currentStepper === 0" @next="nextStepper" /> 
-          <!-- :showBtn="true" -->
+          <!-- :showGroupBtn="true" -->
 
-          <event-form @next-step="nextStep" accessType="create" v-if="step === 'detail'" 
+          <event-form @next-step="nextStep" accessType="edit" v-if="step === 'detail'" 
           v-show="currentStepper === 1"  @prev="prevStepper" @next="nextStepper" />
 
-          <event-lookup @next-step="finalStep" accessType="create" v-if="step === 'lookup'"
+          <event-lookup @next-step="finalStep" accessType="edit" v-if="step === 'lookup'"
           v-show="currentStepper === 2"  @prev="prevStepper" @next="nextStepper" />
 
         </div>
@@ -57,7 +57,9 @@ import { mapState } from 'vuex';
 export default {
   setup()
   {
-
+    return {
+    
+    }
   },
   components: {
     EventCover,
@@ -73,7 +75,7 @@ steppers: ['1', '2', '3'],
   }),
   mounted()
   {
- 
+
     const myModal = document.getElementById('editEventModal');
 
     myModal.addEventListener('hide.bs.modal', () =>
@@ -115,11 +117,16 @@ steppers: ['1', '2', '3'],
         this.currentStepper--;
       }
     },
-    nextStep()
+    nextDetailStep(){ 
+      this.step = 'detail';
+      console.log('details-nexStep: ', this.step);
+    },
+    nextStep(val = 'lookup')
     {
-      this.step = 'lookup';
+      this.step = val;
       console.log('method-nexStep: ', this.step);
     },
+
     finalStep(val = 'skip')
     {
       if (val === 'detail') this.step = 'detail';
@@ -131,6 +138,10 @@ steppers: ['1', '2', '3'],
       }
 
       // this.$emit('close', val);
+    },
+   
+    closeEventModal(){
+      this.currentStepper = 0;
     }
   }
 }
