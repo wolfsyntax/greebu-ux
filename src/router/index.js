@@ -459,7 +459,7 @@ const router = createRouter({
       },
     },
     {
-      path: "/privacy_policy",
+      path: "/privacy",
       name: "Privacy Policy",
       component: () => import("/src/views/PrivacyPolicy.vue"),
       meta: {
