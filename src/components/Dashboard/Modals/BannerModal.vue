@@ -40,7 +40,7 @@
                     movable: false,
                     scalable: false,
                     resizable: false,
-                    aspectRatio: 16 / 9, 
+                    aspectRatio: 20 / 7, 
                   }"
                   image-restriction="stencil"
                   @change="updateSize"
@@ -49,6 +49,9 @@
                   }"
                   v-if="banner"
                 />
+
+                <!-- minAspectRatio: 16/8,
+		            maxAspectRatio: 4/8 -->
 
                 <vertical-buttons>
                   <square-button title="Zoom In" @click="zoom(2)">
