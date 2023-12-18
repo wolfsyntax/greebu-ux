@@ -40,9 +40,13 @@
                     movable: false,
                     scalable: false,
                     resizable: false,
+                    aspectRatio: 16 / 9, 
                   }"
                   image-restriction="stencil"
                   @change="updateSize"
+                  :resize-image="{
+                    adjustStencil: false
+                  }"
                   v-if="banner"
                 />
 
@@ -372,7 +376,7 @@ export default {
 <style scoped>
 
 .upload-file-wrapper:hover .drag-mouse-wrap{
-  opacity: 0;
+  /* display: none; */
   transition: 1s;
 }
 #uploadArtistCoverPhoto .upload-file-wrapper .uploaded-image-wrapper{
