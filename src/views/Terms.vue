@@ -5,21 +5,22 @@
         <div class="side-wrap">
           <div class="left-side"></div>
           <!-- Right side with content -->
-          <div class="right-side" ref="rightSide" @scroll="handleScroll">
+          <div class="right-side">
+            <div style="padding: 20px;"></div>
             <h2 class="title">Terms and Condition</h2>
-            <div id="item-1-1">
+            <div>
+              <div class="title-box">
+                <h3 class="title2" >For Facebook use for the application</h3>
+              </div>
               <div>
-                <h3 class="sub-title">For Facebook use for the application</h3>
-                <p class="para-body">
-                  Welcome to Geebu, the ultimate online destination for music
+                <p>Welcome to Geebu, the ultimate online destination for music
                   lovers. Geebu is a platform that allows you to listen, request
                   to create a song and discover music products and services from
                   around the world. Whether you are looking for Artist, digital
                   downloads, Events, Organizers, or music lessons, Geebu has it
                   all.
                 </p>
-                <p class="para-body">
-                  By accessing or using Geebu, you agree to be bound by our
+                <p>By accessing or using Geebu, you agree to be bound by our
                   terms and conditions, which govern your rights and obligations
                   on our platform. You also agree to our privacy policy, which
                   explains how we collect, use, and protect your personal data.
@@ -29,9 +30,8 @@
                 </p>
               </div>
               <div>
-                <h5 class="para-title">Reproduce the work</h5>
-                <p class="para-body">
-                  Is one of the exclusive rights that the owner of a musical
+                <h5>Reproduce the work</h5>
+                <p>Is one of the exclusive rights that the owner of a musical
                   work has under intellectual property law. It means to make
                   copies of the original work in any form or manner, such as
                   CDs, tapes, digital files, sheet music, etc. For example, if I
@@ -46,9 +46,8 @@
                 </p>
               </div>
               <div>
-                <h5 class="para-title">Intellectual Property Rights</h5>
-                <p class="para-body">
-                  All the content on this website, including but not limited to
+                <h5>Intellectual Property Rights</h5>
+                <p>All the content on this website, including but not limited to
                   logos, trademarks, images, text, graphics, audio, video,
                   software, and code, is the property of
                   https://develop.geebu.ph/ or its licensors and is protected by
@@ -62,9 +61,8 @@
                 </p>
               </div>
               <div>
-                <h5 class="para-title">User Accounts</h5>
-                <p class="para-body">
-                  To use our website, you need to create a user account with a
+                <h5>User Accounts</h5>
+                <p>To use our website, you need to create a user account with a
                   valid email address and a password. You can access and manage
                   your account settings through the profile page. You are
                   responsible for keeping your account information secure and
@@ -78,11 +76,8 @@
                 </p>
               </div>
               <div>
-                <h5 class="para-title">
-                  Disclaimers and Limitations of Liability
-                </h5>
-                <p class="para-body">
-                  The website and its services are provided "as is" and "as
+                <h5>Disclaimers and Limitations of Liability</h5>
+                <p>The website and its services are provided "as is" and "as
                   available", without any warranties or guarantees of any kind,
                   either express or implied. We do not warrant that the website
                   and its services will be uninterrupted, error-free, accurate,
@@ -100,9 +95,8 @@
                 </p>
               </div>
               <div>
-                <h5 class="para-title">Changes and Updates</h5>
-                <p class="para-body">
-                  We reserve the right to modify or update our website and its
+                <h5>Changes and Updates</h5>
+                <p>We reserve the right to modify or update our website and its
                   services, as well as these terms and conditions, at any time
                   and without prior notice. We will post any changes or updates
                   on this page and notify you by email if we have your contact
@@ -114,6 +108,61 @@
                   changes or updates, you must stop using our website and its
                   services immediately.
                 </p>
+              </div>
+              <div style="padding: 20px;"></div>
+              <div class="title-box">
+                <h2 class="title2">Privacy Policy for Geebu</h2>
+              </div>
+              <div>
+                <div>
+                  <p>This privacy policy explains how we collect, use, and
+                    protect your personal information when you sign up and use
+                    our web application [Web Application Name]. By signing up
+                    and using our web application, you agree to this privacy
+                    policy and consent to our data practices.
+                  </p>
+                </div>
+                <div>
+                  <div>
+                    <div>
+                      <h5>What information do we collect?</h5>
+                      <div class="may-not-wrap">
+                        <h5>When you sign up and use our web application, we may
+                          collect the following types of information from you:
+                        </h5>
+                        <ul>
+                          <li>Personal information: This includes your name, email
+                            address, password, phone number and any other
+                            information that you voluntarily provide to us when
+                            you create an account or update your profile.
+                          </li>
+                          <li>Usage information: This includes information about
+                            how you use our web application, such as the
+                            features you access, the actions you perform, the
+                            time and duration of your sessions, and the errors
+                            or issues you encounter.
+                          </li>
+                          <li>Device information: This includes information about
+                            the device you use to access our web application,
+                            such as the type, model, operating system, browser,
+                            IP address, and other identifiers.
+                          </li>
+                          <li>Location information: This includes information
+                            about your approximate geographic location, based on
+                            your IP address or other sources.
+                          </li>
+                          <li>Cookies and other tracking technologies: These are
+                            small files or pieces of code that are stored on
+                            your device or browser when you visit our web
+                            application. They help us remember your preferences,
+                            enhance your user experience, and deliver relevant
+                            ads.
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
