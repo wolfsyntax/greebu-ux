@@ -7661,6 +7661,9 @@ header nav {
 #createEventModal .uploaded-image-wrapper .remove-image{
   top: 7%;
 }
+#editEventModal .uploaded-image-wrapper .remove-image{
+  top: 28%;
+}
 #createEventModal .uploaded-image-wrapper .remove-image span,
 #albumSongInfo .uploaded-image-wrapper .remove-image span,
 #editEventModal .uploaded-image-wrapper .remove-image span {
@@ -12138,9 +12141,12 @@ header nav {
   }
 
   /* Drag file(s) component box */
-  #createEventModal .uploaded-image-wrapper .remove-image {
+  #createEventModal .uploaded-image-wrapper .remove-image{
     top: 5%;
 }
+  /* #editEventModal .uploaded-image-wrapper .remove-image {
+    top: 25%;
+} */
   #drag-file-component-wrap {
     border-radius: 0.375rem;
     border: 1px dashed var(--gray6);

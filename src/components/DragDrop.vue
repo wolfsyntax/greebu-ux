@@ -53,16 +53,7 @@
             </square-button>
           </vertical-buttons>
 
-          <!-- <div class="size-info" v-if="size.width && size.height">
-            <div>Width: {{ size.width }}px</div>
-            <div>Height: {{ size.height }}px</div>
-          </div> -->
         </example-wrapper>
-
-        <!-- <div class="d-flex align-items-center drag-mouse-wrap">
-          <img src="/assets/vue-cropper/drag-icon.svg" class="drag-cursor" alt="Drag Icon" />
-          <h4 class="mb-0 drag">Drag to reposition</h4>
-        </div> -->
 
         <button class="remove-image" type="button" @click="removeBanner">
           <span class="material-symbols-outlined">&#xe5cd;</span>
@@ -71,8 +62,7 @@
     </div>
 
     <div class="text-center">
-      <!-- <button class="btn btn-lg upload-event-photo" type="button" @click="getCropImage" v-if="preview">Set as Event Photo</button> -->
-
+      
       <button class="btn btn-lg upload-event-photo" type="button" @click="getCropImage" v-if="preview">Set as Event Photo</button>
       <button class="btn btn-lg upload-event-photo" type="button" v-if="showLoadingIndicator"><LoadingIndicator /></button>
 

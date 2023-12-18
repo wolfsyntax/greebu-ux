@@ -48,6 +48,10 @@ export default {
       default: 'create',
       required: false,
     },
+    showBtn: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup () {
     return {}
