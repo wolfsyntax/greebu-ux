@@ -354,7 +354,7 @@
 
                       <a href="/terms" target="_blank">Terms</a>,
 
-                      <a href="/privacy_policy" target="_blank">Privacy Policy</a> and
+                      <a href="/privacy" target="_blank">Privacy Policy</a> and
                       <a href="/cookies" target="_blank">Cookies Policy</a>
                     </label>
                   </div>
