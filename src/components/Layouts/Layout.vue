@@ -391,6 +391,7 @@
                   <li><a :href="support" target="_blank">Support</a></li>
                   <li><a :href="privacy" target="_blank">Privacy Policy</a></li>
                   <li><a :href="terms" target="_blank">Terms of Use</a></li>
+                  <li><a :href="cookies" target="_blank">Cookies Policy</a></li>
                 </ul>
               </div>
 
@@ -542,6 +543,7 @@ export default {
       partnerWithUs: "/partners",
       blog: "/blog",
       privacy: "/privacy",
+      cookies: "/cookies",
       support: "/support",
       terms: "/terms",
       facebookPage: "https://www.facebook.com/",
