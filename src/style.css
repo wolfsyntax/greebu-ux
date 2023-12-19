@@ -311,10 +311,19 @@ header nav {
     0px 0px 0px rgba(0, 0, 0, 0.1);
   height: 95px;
 }
+.main-nav nav .navbar {
+  justify-content: flex-end;
+  display: flex;
+}
+.main-nav nav .navbar .navbar-collapse {
+  flex-grow: 0;
+}
 .main-nav nav .navbar-nav {
-  margin: 0 auto;
+  margin: 0;
+  padding-right: 0;
 }
 .main-nav nav .navbar-nav li {
+  margin: 0;
   padding: 0 4px;
 }
 .main-nav nav li a {
@@ -2556,23 +2565,21 @@ header nav {
   padding-bottom: 15px;
   opacity: 0.5;
 }
-.stepper {
-  .line {
-    width: 1px;
-    height: 1px;
-    transform: rotate(180deg);
-    flex-shrink: 0;
-    background: var(--blue-600, #2563eb);
-    margin-right: 8px;
-  }
-  .lead {
-    font-size: 1.1rem;
-  }
-  .rounded-circle {
-    width: 0.625rem;
-    height: 0.625rem;
-    margin-right: 8px;
-  }
+#terms-page .stepper .line {
+  width: 1px;
+  height: 1px;
+  transform: rotate(180deg);
+  flex-shrink: 0;
+  background: var(--blue-600, #2563eb);
+  margin-right: 8px;
+}
+#terms-page .stepper .lead {
+  font-size: 1.1rem;
+}
+#terms-page .stepper .rounded-circle {
+  width: 0.625rem;
+  height: 0.625rem;
+  margin-right: 8px;
 }
 .bg-primary {
   fill: var(--orange);
