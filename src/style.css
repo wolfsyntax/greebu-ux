@@ -315,10 +315,19 @@ header nav {
     0px 0px 0px rgba(0, 0, 0, 0.1);
   height: 95px;
 }
+.main-nav nav .navbar {
+  justify-content: flex-end;
+  display: flex;
+}
+.main-nav nav .navbar .navbar-collapse {
+  flex-grow: 0;
+}
 .main-nav nav .navbar-nav {
-  margin: 0 auto;
+  margin: 0;
+  padding-right: 0;
 }
 .main-nav nav .navbar-nav li {
+  margin: 0;
   padding: 0 4px;
 }
 .main-nav nav li a {
@@ -2560,23 +2569,21 @@ header nav {
   padding-bottom: 15px;
   opacity: 0.5;
 }
-.stepper {
-  .line {
-    width: 1px;
-    height: 1px;
-    transform: rotate(180deg);
-    flex-shrink: 0;
-    background: var(--blue-600, #2563eb);
-    margin-right: 8px;
-  }
-  .lead {
-    font-size: 1.1rem;
-  }
-  .rounded-circle {
-    width: 0.625rem;
-    height: 0.625rem;
-    margin-right: 8px;
-  }
+#terms-page .stepper .line {
+  width: 1px;
+  height: 1px;
+  transform: rotate(180deg);
+  flex-shrink: 0;
+  background: var(--blue-600, #2563eb);
+  margin-right: 8px;
+}
+#terms-page .stepper .lead {
+  font-size: 1.1rem;
+}
+#terms-page .stepper .rounded-circle {
+  width: 0.625rem;
+  height: 0.625rem;
+  margin-right: 8px;
 }
 .bg-primary {
   fill: var(--orange);
@@ -6755,6 +6762,7 @@ header nav {
   font-style: normal;
   font-weight: 500;
   line-height: 1.25rem; /* 125% */
+  text-align: left;
 }
 .para-title {
   color: #121212;
@@ -6762,7 +6770,7 @@ header nav {
   font-size: 1.125rem;
   font-style: normal;
   font-weight: 600;
-  line-height: 1.25rem; /* 111.111% */
+  line-height: 1.25rem;
 }
 
 /* Organizer Account - Account Settings (Request Application tab) */
@@ -10382,10 +10390,10 @@ header nav {
   display: flex;
   flex-direction: column;
   float: left;
-  width: 22%;
+  width: 10%;
   height: 100%;
   /* border-right: 1px solid var(--gray2); */
-  padding: 3.875rem 1.125rem 0 3.125rem;
+  padding: 2.875rem
 }
 #terms-page .left-side > div:nth-child(1) {
   margin-bottom: 4.75rem;
@@ -10406,18 +10414,20 @@ header nav {
   color: var(--black);
 }
 #terms-page .right-side {
-  /* flex: 2; */
-  padding: 10px;
-  overflow-y: auto;
-  max-height: calc(100vh - 5rem);
-  /* float: right; */
-  padding: 3.875rem 2rem 2rem 3.125rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* width: 20%; */
+  height: 100%
 }
 #terms-page .right-side .title {
   color: #223644;
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 2.56rem;
+  text-align: left !important;
+  align-self: flex-start;
 }
 #terms-page .right-side h3 {
   color: #223644;
@@ -10433,7 +10443,7 @@ header nav {
   margin-bottom: 0.62rem;
 }
 #terms-page .right-side p,
-#terms-page .right-side #item-1-2 li {
+#terms-page .right-side li {
   color: var(--gray2);
   font-size: 1rem;
   font-weight: 500;
@@ -10443,7 +10453,26 @@ header nav {
   color: var(--orange);
   text-decoration: underline;
 }
-#terms-page .right-side #item-1-2 li {
+#terms-page .right-side .title-box {
+  border-radius: 0.625rem;
+  background: var(--btn-focus);
+  width: 100%;
+  /* height: 4.5rem; */
+  flex-shrink: 0;
+  display: inline-block;
+  margin-bottom: 2.56rem;
+}
+#terms-page .right-side .title2 {
+  color: #ff6b00;
+  font-family: Urbanist;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-bottom: 0;
+  padding: 20px;
+}
+#terms-page .right-side li {
   margin-bottom: 0.56rem;
 }
 #terms-page .right-side li::marker {

@@ -226,7 +226,6 @@ export default {
     {
       this.$emit('next-step', 'cover');
       this.$emit('prev');
-      console.log('Back to cover')
     },
     submit()
     {
