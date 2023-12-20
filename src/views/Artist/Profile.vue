@@ -449,7 +449,7 @@
               <div class="text-center">
 
               <button type="submit" class="btn btn-success submit-form" v-if="showSubmitButton">Submit</button>
-              <button type="submit" class="btn btn-success submit-form" v-else><LoadingIndicator /></button>
+              <button type="button" class="btn btn-success disabled submit-form" v-else><LoadingIndicator /></button>
 
               </div>
             </form> 

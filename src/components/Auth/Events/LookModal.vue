@@ -81,9 +81,7 @@
         <button type="submit" class="btn next" :disabled="!canProceed" v-if="showSubmitButtonForm3">
           Submit
         </button>
-        <button type="submit" class="btn next" v-else>
-          <!-- <LoadingIndicator /> -->
-
+        <button type="button" class="btn disabled next" v-else>
           
         <div class="loader1">
           <span></span>
@@ -95,10 +93,6 @@
 
         </button>
 
-        <!-- <button type="submit" class="btn next">
-          Submit
-        </button> -->
-
       </div>
 
     </form>    
@@ -106,7 +100,7 @@
 </template>
 
 <script>
-import LoadingIndicator from "/src/components/LoadingIndicator.vue";
+// import LoadingIndicator from "/src/components/LoadingIndicator.vue";
 import { mapActions, mapGetters, mapState } from 'vuex';
 import Multiselect from '@vueform/multiselect';
 
@@ -119,7 +113,6 @@ export default {
     },
   },
   components: {
-    LoadingIndicator,
   },
   setup () {
     

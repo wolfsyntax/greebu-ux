@@ -20,8 +20,8 @@
        <div class="text-end action-btn-wrap" v-if="showGroupBtn">
          <button type="button" class="btn cancel" data-bs-dismiss="modal">Cancel</button>
  
-         <button type="submit" class="btn next" :disabled="isButtonDisabled" v-if="showNextButton">Next</button>
-         <button type="submit" class="btn next" v-else><LoadingIndicator /></button>
+         <button type="submit" class="btn next" :disabled="isButtonDisabled" v-if="enableNextButton">Next</button>
+         <button type="button" class="btn disabled next" v-else><LoadingIndicator /></button>
        </div>
  
      </form> 
@@ -56,7 +56,7 @@ export default {
   },
   data: () => ({
     cover: '',
-    showNextButton: true,
+    enableNextButton: true,
   }),
 
   computed: {
@@ -110,7 +110,7 @@ export default {
     {
        this.$emit('next-step');
        this.$emit('next');
-       this.showNextButton = false;
+       this.enableNextButton = false;
     },
 
   },

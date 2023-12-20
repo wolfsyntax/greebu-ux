@@ -130,7 +130,7 @@
         <button type="submit" class="btn next" :disabled="!validInput" v-if="showSubmitButtonForm2">
           Next
         </button>
-        <button type="submit" class="btn next" v-else>
+        <button type="button" class="btn disabled next" v-else>
           <LoadingIndicator />
         </button>
 
