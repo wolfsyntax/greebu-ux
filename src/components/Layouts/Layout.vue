@@ -304,6 +304,8 @@
 <script>
 import { mapActions, mapGetters, mapMutations, mapState } from "vuex";
 import SubscriptionModal from '/src/components/Artist/SubscriptionModal.vue';
+import NProgress from 'nprogress';
+
 export default {
   components: {
     SubscriptionModal
@@ -365,7 +367,8 @@ export default {
     },
     async logout()
     {
-      
+      NProgress.start();
+
       const self = this;
 
       await this.signout()
@@ -380,7 +383,11 @@ export default {
             //this.$store.commit('CLEAR_ARTIST');
             
             this.$router.push('/');
-           // this.$router.push('/login');
+           
+          setTimeout(() => {
+            NProgress.done();
+          }, 1000);
+
           } else if (status === 200 || status === 401) {
             this.$router.push('/');
            // this.$router.push('/login');
