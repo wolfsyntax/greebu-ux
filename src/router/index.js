@@ -414,6 +414,18 @@ const router = createRouter({
       },
     },
     {
+      path: "/event-library",
+      name: "organizer-library",
+      component: () => import("/src/views/Organizer/EventLibrary.vue"),
+      meta: {
+        requiresLogin: true, // true
+        title: "Event Library",
+        role: "organizer",
+        parent: "organizer",
+        breadcrumb: [{ title: "", url: "" }],
+      },
+    },
+    {
       path: "/subscription",
       name: "event",
       component: () => import("/src/components/Subscription/Index.vue"),

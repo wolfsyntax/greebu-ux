@@ -14,9 +14,8 @@
              </button>
            </div>
          </div>
-       <!-- <drag-drop @dragCover="setCover" v-else/> -->
        
-       <drag-drop @dragCover="setCover" @show-buttons="showBtnDiv" v-else/>
+       <drag-drop @dragCover="setCover" v-else/>
  
        <div class="text-end action-btn-wrap" v-if="showGroupBtn">
          <button type="button" class="btn cancel" data-bs-dismiss="modal">Cancel</button>
@@ -48,10 +47,6 @@ export default {
       default: 'create',
       required: false,
     },
-    // showGroupBtn: {
-    //   type: Boolean,
-    //   default: true,
-    // },
   
   },
   setup () {
@@ -76,7 +71,6 @@ export default {
     }
   },
   mounted(){
-    // this.showGroupBtn = false;
   },
   methods: {
     ...mapActions([
@@ -85,10 +79,6 @@ export default {
     toggleShowBtn() {
       this.$emit('toggle-show-btn');
     },
-    // showBtnDiv(){
-    //   this.showGroupBtn = true;
-    //   console.log('show div', this.showGroupBtn);
-    // },
     setCover(val) {
   if (val) {
     const compressor = new Compressor(val, {
@@ -115,14 +105,11 @@ export default {
       this.form.cover = '';
       this.form.cover_photo = '';
       this.cover = '';
-      // this.error.cover_photo = '';
-      // this.showGroupBtn = false;
     },
     submit()
     {
        this.$emit('next-step');
        this.$emit('next');
-      //  this.showGroupBtn = false;
        this.showNextButton = false;
     },
 

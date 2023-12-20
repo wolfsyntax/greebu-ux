@@ -129,7 +129,6 @@ export default {
 
       this.cropImage.toBlob(async blob => {
         this.$emit('dragCover', blob);
-        this.$emit('show-buttons');
       });
 
     },

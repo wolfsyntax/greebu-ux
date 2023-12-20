@@ -18,7 +18,8 @@
                 <router-link to="/" v-if="['','customers',].includes(userRole)">Home</router-link>
               </li>
               <li class="nav-item">
-                <router-link to="/library" v-if="['artists','organizer',].includes(userRole)">Library</router-link>
+                <router-link to="/library" v-if="['artists'].includes(userRole)">Library</router-link>
+                <router-link to="/event-library" v-if="['organizer',].includes(userRole)">Library</router-link>
               </li>
               <li class="nav-item" v-if="['','customers',].includes(userRole)" >
                 <router-link to="/create-song">Create a Song</router-link>

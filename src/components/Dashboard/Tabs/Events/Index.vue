@@ -1,7 +1,7 @@
 <template>
   <section >
     <div>
-      <h2>This Week Events</h2>
+      <h2>This Week Eventsz</h2>
       <div class="row">
         <div class="">
           <ongoing-events @modal="toggle" :accessType="previewAs" />
