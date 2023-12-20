@@ -6,7 +6,7 @@
         <div class="modal-header border-bottom-0 p-0 d-flex align-items-start justify-content-between">
           <div>
             <h3 class="modal-title" id="staticBackdropLabel">Add Organizer Staff</h3>
-            <p class="mb-0 sub-title">Lorem ipsum dolor sit amet consectetur. Nam lacus viverra nec orci arcu id fringilla ultrices.</p>
+            <p class="mb-0 sub-title">Assign additional team members to organize seamlessly.</p>
           </div>
           <div>
             <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ref="staffFormDismiss"></button> -->
