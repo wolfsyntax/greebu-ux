@@ -12,7 +12,7 @@
             />
           </div>
 
-          <button class="remove-image" @click="removeBanner">
+          <button class="remove-image" @keydown.enter.prevent="removeBanner">
             <span class="material-symbols-outlined">&#xe5cd;</span>
           </button>
         </div>
@@ -308,16 +308,18 @@ export default {
       if (val) {
         this.form.cover_photo = val;
         this.form.cover = URL.createObjectURL(val);
-        // this.cover = URL.createObjectURL(val);
-        console.log("Set Cover:: ", this.form.cover);
+        this.cover = URL.createObjectURL(val);
       }
     },
-    removeBanner() {
+    removeBanner(event) {
+      if (event.key === "Enter" || event.key === "Tab") {
+        return;
+      }
       this.form.cover = "";
       this.form.cover_photo = "";
       this.cover = "";
-      // this.error.cover_photo = '';
     },
+
     submit() {
       this.isLoading = true;
       console.log("Emit: ", this.form);
