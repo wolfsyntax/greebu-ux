@@ -25,7 +25,7 @@
                   <div class="mb-0 step-name" v-if="index === 1" :class="{ 'step-active': index === currentStepper, 
             'step-completed': index < currentStepper }">Event Information</div>
                   <div class="mb-0 step-name" v-if="index === 2" :class="{ 'step-active': index === currentStepper, 
-            'step-completed': index < currentStepper }">Discover and Connect</div>
+            'step-completed': index < currentStepper }">Discover and Connect <br>(optional)</div>
 
               </div>
             
@@ -156,6 +156,7 @@ export default {
   font-size: 1rem;
   font-weight: 700;
   line-height: 1.25rem; 
+  text-align: center;
 }
 /* active classes */
 #createEventModal .stepper-wrapper .step-active{
@@ -206,7 +207,7 @@ export default {
 }
 @media (min-width: 992px) and (max-width: 1399.98px) {
   #createEventModal .stepper-wrapper {
-    width: 80%;
+    width: 85%;
     margin: auto auto 2rem;
 }
 #createEventModal .stepper-item .step-counter {
