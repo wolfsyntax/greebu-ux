@@ -65,7 +65,7 @@
                   <button type="submit" class="btn btn-warning add-member" v-if="showAddMemBtn">
                     Add Member
                   </button>
-                  <button type="submit" class="btn btn-warning add-member" v-else>
+                  <button type="button" class="btn btn-warning disabled add-member" v-else>
                     <LoadingIndicator />
                   </button>
 

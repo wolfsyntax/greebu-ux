@@ -4,7 +4,7 @@
 
       <div class="form-group">
         <label for="lookingFor">Looking for</label>
-        <select class="form-select" v-model="look_for">
+        <select class="form-select" v-model="look_for" :disabled="!account.accept_proposal">
           <option value="artist" selected>Artist</option>
           <option value="service">Service</option>
           </select>
@@ -28,7 +28,7 @@
             label="text"
             noOptionsText="Please input look type(s)"
             class=""
-            
+            :disabled="!account.accept_proposal"
           >
             <template slot="singleLabel" slot-scope="{ option }" >
               <span style="text-transform: capitalize;">{{ option.text }}</span>
@@ -50,7 +50,7 @@
             label="text"
             noOptionsText="Please input look type(s)"
             class=""
-           
+            :disabled="!account.accept_proposal"
           >
             <template slot="singleLabel" slot-scope="{ option }" >
               <span style="text-transform: capitalize;">{{ option.text }}12</span>
@@ -63,12 +63,12 @@
 
       <div class="form-group">
         <label for="lookingFor">Number of artist</label>
-        <input type="number" id="number-of-artist" name="number_of_artist" v-model="total_participants" min="0" max="50" />
+        <input type="number" id="number-of-artist" name="number_of_artist" v-model="total_participants" min="0" max="50" :disabled="!account.accept_proposal" />
       </div>
 
       <div class="form-group event-details-wrap">
         <label for="eventRequirement">Description / Requirement</label>
-        <textarea id="eventRequirement" v-model="requirement" maxlength="500" rows="7" 
+        <textarea :disabled="!account.accept_proposal" id="eventRequirement" v-model="requirement" maxlength="500" rows="7" 
         class="form-control about-artist" placeholder="Write description" autocomplete="off">
         </textarea>
         <div v-for="err in error?.requirement" :key="err" class="text-danger">{{ err }}</div>

@@ -50,10 +50,11 @@
           
           <div class="text-center">
             <!-- <button class="btn submit-proposal-btn" :disabled="!isValid">Submit</button> -->
-            <button class="btn submit-proposal-btn" :disabled="!isValid">
-              <LoadingVue :infoText="buttonName" v-if="isLoading"/>
-              <span v-else>{{ buttonName }}</span>
+            <button type="submit" class="btn submit-proposal-btn" :disabled="!isValid" v-if="showSubmitProposalBtn">Submit</button>
+            <button type="button" class="btn disabled submit-proposal-btn" v-else>
+              <LoadingIndicator />
             </button>
+
           </div>
         </form>
       </div>
@@ -82,21 +83,20 @@ import Layout from '/src/components/Layouts/Layout.vue';
 import { mapActions, mapGetters, mapState } from "vuex";
 import SuccessProposalModal from '/src/components/Auth/Proposal/SuccessProposalModal.vue';
 import { Modal } from 'bootstrap';
-import LoadingVue from '/src/components/Loading.vue';
+import LoadingIndicator from '/src/components/LoadingIndicator.vue';
 
 export default {
   components: {
     layout: Layout,
     SuccessProposalModal,
-    LoadingVue
+    LoadingIndicator
   },
   setup() {
-    
-
 
   },
   data() {
     return {
+      showSubmitProposalBtn: true,
       form: {
         total_member: 0,
         cover_letter: '',
@@ -105,8 +105,6 @@ export default {
       errors: [],
       errorMessage: '',
       modalObj: null,
-      buttonName: 'Submit',
-      isLoading: false,
     }
   },
   methods: {
@@ -120,7 +118,7 @@ export default {
     },
     submit()
     {
-      this.isLoading = true;
+      this.showSubmitProposalBtn = false;
       this.$store.commit('SET_PROPOSAL', this.form);
       this.sendArtistProposal()
         .then(response =>
@@ -132,6 +130,7 @@ export default {
           }
 
           console.log('[Response] ProposalForm.vue: ', response);
+          this.showSubmitProposalBtn = true;
         })
         .catch(err =>
         {
@@ -143,6 +142,7 @@ export default {
             this.errors = errors;
 
             console.log('[Error] Proposal form: ', err);
+            this.showSubmitProposalBtn = true;
           }
 
         });

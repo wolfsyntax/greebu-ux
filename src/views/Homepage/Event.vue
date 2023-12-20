@@ -284,7 +284,7 @@ export default {
     isPastLoading: false,
     city: '',
     event_type: '',
-
+    search: ''
   }),
   computed: {
     ...mapGetters(["isLoggedIn", 'userInfo', 'info', 'userRole']),

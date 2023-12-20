@@ -13,7 +13,7 @@
             @dragleave="handleDragLeaveCover"
             @drop="handleDropCover"
             :class="{ 'drag-over': isDragOver }"
-          >                   
+            >                   
             <input type="file" ref="bannerInput" style="display: none;" accept="image/*" @change="handleClick"/>
             <div class="text-center upload-file-content" v-if="uploadBox">
               <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 45 45" fill="none">
@@ -48,6 +48,7 @@
                     adjustStencil: false
                   }"
                   v-if="banner"
+                 
                 />
 
                 <!-- minAspectRatio: 16/8, // for upload event
@@ -84,7 +85,7 @@
 
         <div class="modal-footer justify-content-center">
 
-          <button class="btn btn-lg upload-cover-photo" @click="getCropImage" v-if="preview || showCoverButton">Set as Cover Photo</button>
+          <button class="btn btn-lg upload-cover-photo" @click="getCropImage" v-if="showCoverButton">Set as Cover Photo</button>
           <button class="btn btn-lg upload-cover-photo" v-else><LoadingIndicator /></button>
 
         </div>

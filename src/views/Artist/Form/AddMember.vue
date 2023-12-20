@@ -41,7 +41,7 @@
           <div class="text-center">
 
             <button type="submit" class="btn btn-warning add-member" v-if="showAddBtn">Add Member</button>
-            <button type="submit" class="btn btn-warning add-member" v-else><LoadingIndicator /></button>
+            <button type="button" class="btn btn-warning disabled add-member" v-else><LoadingIndicator /></button>
 
           </div>
       

@@ -118,10 +118,12 @@
             </div>
             
             <div class="text-center">
-              <button class="btn submit-proposal-btn" :disabled="!isValid">
-                <LoadingVue :infoText="buttonName" v-if="isLoading"/>
-                <span v-else>{{ buttonName }}</span>
+
+              <button type="submit" class="btn submit-proposal-btn" :disabled="!isValid" v-if="showSubmitProposalBtn">Submit</button>
+              <button type="button" class="btn disabled submit-proposal-btn" v-else>
+                <LoadingIndicator />
               </button>
+
             </div>
           </form>
         </div>
@@ -136,27 +138,26 @@
   import { mapActions, mapGetters, mapState } from "vuex";
   //import SuccessProposalModal from '/src/components/Auth/Proposal/SuccessProposalModal.vue';
   import { Modal } from 'bootstrap';
-  import LoadingVue from '/src/components/Loading.vue';
+  import LoadingIndicator from '/src/components/LoadingIndicator.vue';
   
   export default {
     components: {
       layout: Layout,
      // SuccessProposalModal,
-      LoadingVue
+     LoadingIndicator
     },
     setup() {
   
     },
     data() {
       return {
+        showSubmitProposalBtn: true,
         form: {
           cover_letter: '',
         },
         // errors: [],
         // errorMessage: '',
         // modalObj: null,
-        buttonName: 'Submit',
-        isLoading: false,
       }
     },
     methods: {
