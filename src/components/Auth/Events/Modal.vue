@@ -4,7 +4,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h2 class="modal-title" id="staticBackdropLabel">Create an Event</h2>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" @click="closeEventModal" ref="eventModalDismiss"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ref="eventModalDismiss"></button>
         </div>
         <div class="modal-body">
 
@@ -77,12 +77,14 @@ export default {
     {
       this.$store.commit('RESET_EVENT_FORM')
       this.step = 'cover';
+      this.currentStepper = 0;
     });
 
     myModal.addEventListener('shown.bs.modal', () =>
     {
       this.$store.commit('RESET_EVENT_FORM')
       this.step = 'cover';
+      this.currentStepper = 0;
     });
   },
   beforeUnmount() {
@@ -135,9 +137,6 @@ export default {
       console.log('Modal [finalStep]: ', val)
       // this.$emit('close', val);
     },
-    closeEventModal(){
-      this.currentStepper = 0;
-    }
   }
 }
 </script>

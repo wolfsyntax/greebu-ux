@@ -4,7 +4,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h2 class="modal-title" id="staticBackdropLabel">Edit an Event</h2>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" @click="closeEventModal" ref="eventModalDismiss"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ref="eventModalDismiss"></button>
         </div>
         <div class="modal-body">
 
@@ -83,13 +83,14 @@ steppers: ['1', '2', '3'],
       console.log('Resetting event form via edit modal');
       this.$store.commit('RESET_EVENT_FORM')
       this.step = 'cover';
-      
+      this.currentStepper = 0;
     });
 
     myModal.addEventListener('shown.bs.modal', () =>
     {
       
       // this.$store.commit('RESET_EVENT_FORM')
+      this.currentStepper = 0;
       this.step = 'cover';
       console.log('Edit modal show', this.step);
       
@@ -139,10 +140,6 @@ steppers: ['1', '2', '3'],
 
       // this.$emit('close', val);
     },
-   
-    closeEventModal(){
-      this.currentStepper = 0;
-    }
   }
 }
 </script>
