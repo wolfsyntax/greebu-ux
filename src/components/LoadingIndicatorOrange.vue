@@ -1,0 +1,74 @@
+<template>
+
+        <div class="loader1">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      
+</template>
+
+<script>
+export default {
+};
+</script>
+
+<style lang="scss" scoped>
+
+.loader1 {
+   display:inline-block;
+   font-size:0px;
+   padding:0px;
+}
+.loader1 > span{
+  margin-top: -2px!important;
+}
+.loader1 span {
+   vertical-align:middle;
+   border-radius:100%;
+   
+   display:inline-block;
+   width:10px;
+   height:10px;
+   margin:2.8px 1.8px;
+   -webkit-animation:loader1 0.8s linear infinite alternate;
+   animation:loader1 0.8s linear infinite alternate;
+}
+.loader1 span:nth-child(1) {
+   -webkit-animation-delay:-1s;
+   animation-delay:-1s;
+  // background:rgba(245, 103, 115,0.6);
+  background: var(--orange);
+}
+.loader1 span:nth-child(2) {
+   -webkit-animation-delay:-0.8s;
+   animation-delay:-0.8s;
+   background: var(--orange);
+}
+.loader1 span:nth-child(3) {
+   -webkit-animation-delay:-0.26666s;
+   animation-delay:-0.26666s;
+   background: var(--orange);
+}
+.loader1 span:nth-child(4) {
+   -webkit-animation-delay:-0.8s;
+   animation-delay:-0.8s;
+   background: var(--orange);
+}
+.loader1 span:nth-child(5) {
+   -webkit-animation-delay:-1s;
+   animation-delay:-1s;
+   background: var(--orange);
+}
+
+@keyframes loader1 {
+   from {transform: scale(0, 0);}
+   to {transform: scale(1, 1);}
+}
+@-webkit-keyframes loader1 {
+   from {-webkit-transform: scale(0, 0);}
+   to {-webkit-transform: scale(1, 1);}
+}
+</style>

@@ -33,7 +33,10 @@
                     
           <div class="text-end group-btn-wrap">
             <button class="btn cancel" @click="show = false">Cancel</button>
-            <button class="btn confirm" @click="submit">Confirm</button>
+
+            <button class="btn confirm" @click="submit" v-if="showConfirmBtn">Confirm</button>
+            <button class="btn disabled confirm" v-else><LoadingIndicator /></button>
+
           </div>
         </div>
       </div> <!-- end of modal-body -->
@@ -43,14 +46,19 @@
   
 <script>
 import { mapState, mapActions } from 'vuex';
-  
+import LoadingIndicator from '/src/components/LoadingIndicator.vue';
+
 export default {
   props: {
     show: Boolean,
     proposal: Object,
   },
+  components: {
+    LoadingIndicator
+  },
   data() {
     return {
+      showConfirmBtn: true,
       reason: 'Sudden Scheduling Conflict',
     }
   },
@@ -67,14 +75,15 @@ export default {
       'cancelMyProposal',
     ]),
     submit() {
-      
+      this.showConfirmBtn = false;
       if (this.proposal?.id) {
         
         this.cancelMyProposal({id: this.proposal?.id, cancel_reason: this.reason})
           .then(res => {
             console.log(`Cancel Response for ${ this.proposal?.id }: `, res);
             const { status } = res;
-            if (status == 200) this.$emit('close-modal', '');
+            if (status == 200) this.$emit('close-modal', '');;
+            this.showConfirmBtn = true;
           });
 
       }
