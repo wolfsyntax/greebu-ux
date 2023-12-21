@@ -8,7 +8,7 @@
             <img ref="uploadedImage" class="uploaded-image" :src="cover" alt="banner-modal" />
           </div>
 
-          <button class="remove-image" @keydown.enter.prevent="removeBanner">
+          <button type="button" class="remove-image" @click.prevent="removeBanner">
             <span class="material-symbols-outlined">&#xe5cd;</span>
           </button>
         </div>
@@ -202,10 +202,7 @@ export default {
         this.cover = URL.createObjectURL(val);
       }
     },
-    removeBanner(event) {
-      if (event.key === "Enter" || event.key === "Tab") {
-        return;
-      }
+    removeBanner() {
       this.form.cover = "";
       this.form.cover_photo = "";
       this.cover = "";
