@@ -68,7 +68,7 @@
                 <i class="busy-cover-photo"></i>
                 Set as Cover Photo
               </span>
-            <span v-else>Set as Cover Photso</span>
+            <span v-else>Set as Cover Photo</span>
           </button>
         </div>
       </div>
