@@ -222,15 +222,16 @@ export default {
             // this.avatar = '';
             this.$store.commit('SET_MEMBER_INDEX', -1);
             this.$emit('modalClose');
+            this.$emit('form', this.form);
             this.showAddBtn = true;
           }
 
         })
-        .catch(err =>
-        {
-          console.log('Err: ', err);
-          this.showAddBtn = true;
-        });
+         .catch((err) => {
+            const { status, message, result } = err;
+            if (result.hasOwnProperty("errors")) this.errors = result.errors;
+            this.showAddBtn = true;
+          });
 
       } else {
 

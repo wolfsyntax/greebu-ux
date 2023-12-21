@@ -4687,6 +4687,7 @@ header nav {
 .successfully-sent .container .message svg,
 .onboarding-message .modal-content .check-cirle,
 #eventsCreatedModal .modal-content .check-cirle,
+#profileSuccessModal .modal-content .check-cirle,
 #sentProposalModal .modal-content .check-cirle {
   animation: bounce 1.5s 3; /* Animation will play 3 times */
 }
@@ -4934,6 +4935,7 @@ header nav {
 }
 .onboarding-message .modal-content .check-cirle,
 #eventsCreatedModal .modal-content .check-cirle,
+#profileSuccessModal .modal-content .check-cirle,
 #sentProposalModal .modal-content .check-cirle {
   width: 5rem;
   height: 5rem;
@@ -4942,6 +4944,7 @@ header nav {
 }
 .onboarding-message .modal-content .all-set,
 #eventsCreatedModal .modal-content .event-created,
+#profileSuccessModal .modal-content .event-created,
 #sentProposalModal .modal-content .event-created {
   color: var(--orange);
   font-feature-settings: "clig" off, "liga" off;
@@ -4952,6 +4955,7 @@ header nav {
 }
 .onboarding-message .modal-content .message,
 #eventsCreatedModal .modal-content .message,
+#profileSuccessModal .modal-content .message,
 #sentProposalModal .modal-content .message {
   color: #8690a2;
   font-size: 1.25rem;
@@ -4990,6 +4994,7 @@ header nav {
 }
 .onboarding-message .close-modal-button,
 #eventsCreatedModal .modal-content .close-modal-button,
+#profileSuccessModal .modal-content .close-modal-button,
 #sentProposalModal .modal-content .close-modal-button {
   padding: 1rem 9rem;
   border-radius: 0.5rem;
@@ -7695,6 +7700,7 @@ header nav {
 
 /* Event created modal and Success Proposal form modal*/
 #eventsCreatedModal .modal-content,
+#profileSuccessModal .modal-content,
 #sentProposalModal .modal-content {
   border-radius: 0.9375rem;
   background: #fcfcfd;
@@ -13248,8 +13254,10 @@ header nav {
     padding: 3rem 1.75rem 2.5rem;
     width: 28rem;
   }
-  #eventsCreatedModal .modal-content {
+  #eventsCreatedModal .modal-content, #profileSuccessModal .modal-content {}
+  #profileSuccessModal .modal-content, #profileSuccessModal .modal-content {
   }
+  
   .onboarding-message .modal-content .title {
     font-size: 1.25rem;
     font-style: normal;
@@ -13266,6 +13274,7 @@ header nav {
   }
   .onboarding-message .modal-content .check-cirle,
   #eventsCreatedModal .modal-content .check-cirle,
+  #profileSuccessModal .modal-content .check-cirle,
   #sentProposalModal .modal-content .check-cirle {
     width: 3.5rem;
     height: 3.5rem;
@@ -13273,6 +13282,7 @@ header nav {
   }
   .onboarding-message .modal-content .all-set,
   #eventsCreatedModal .modal-content .event-created,
+  #profileSuccessModal .modal-content .event-created,
   #sentProposalModal .modal-content .event-created {
     font-size: 1.2rem;
     line-height: normal;
@@ -13280,6 +13290,7 @@ header nav {
   }
   .onboarding-message .modal-content .message,
   #eventsCreatedModal .modal-content .message,
+  #profileSuccessModal .modal-content .message,
   #sentProposalModal .modal-content .message {
     font-size: 1rem;
     line-height: normal;
@@ -13294,6 +13305,7 @@ header nav {
   }
   .onboarding-message .close-modal-button,
   #eventsCreatedModal .modal-content .close-modal-button,
+  #profileSuccessModal .modal-content .close-modal-button,
   #sentProposalModal .modal-content .close-modal-button {
     padding: 0.75rem 8rem;
     font-size: 1rem;
