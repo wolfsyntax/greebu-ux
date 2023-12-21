@@ -207,7 +207,12 @@ export default {
       this.form.cover_photo = "";
       this.cover = "";
     },
-
+    back()
+    {
+      this.$emit('next-step', 'detail');
+      this.$emit('prev');
+      console.log('Back')
+    },
     submit() {
       this.isLoading = true;
       console.log("Emit: ", this.form);
