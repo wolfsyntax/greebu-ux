@@ -12,7 +12,7 @@
             />
           </div>
 
-          <button class="remove-image" @keydown.enter.prevent="removeBanner">
+          <button type="button" class="remove-image" @click.prevent="removeBanner">
             <span class="material-symbols-outlined">&#xe5cd;</span>
           </button>
         </div>
