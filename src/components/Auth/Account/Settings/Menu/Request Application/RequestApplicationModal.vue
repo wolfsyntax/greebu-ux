@@ -25,11 +25,11 @@
 
           <div class="d-flex align-items-center" v-if="proposal?.status === 'pending'">
 
-            <button class="btn decline" :disabled="proposal?.cancelled_at" @click="decline" v-if="showDeclineBtn">Decline</button>
-            <button class="btn disabled decline" v-else><LoadingIndicatorOrange /></button>
+            <button type="submit" class="btn decline" :disabled="proposal?.cancelled_at" @click="decline" v-if="showDeclineBtn">Decline</button>
+            <button type="button" class="btn disabled decline" v-else><LoadingIndicatorOrange /></button>
 
-            <button class="btn accept" :disabled="proposal?.cancelled_at" @click="accept" v-if="showAcceptBtn">Acccept</button>
-            <button class="btn disabled accept" v-else><LoadingIndicator /></button>
+            <button type="submit" class="btn accept" :disabled="proposal?.cancelled_at" @click="accept" v-if="showAcceptBtn">Acccept</button>
+            <button type="button" class="btn disabled accept" v-else><LoadingIndicator /></button>
 
           </div>
 

@@ -53,7 +53,9 @@
                 
                 <div class="btn-wrapper">
                   <button type="submit" :disabled="!isAllFieldsFilled" v-if="showConfirmBtn">Confirm</button>
-                  <button type="submit" v-else>Confirm</button>
+                  <button type="button" v-else>
+                    <LoadingIndicator />
+                  </button>
                 </div>
               </form>
             </div>
@@ -111,7 +113,7 @@
 <script>
 import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
 import BlankHeader from "@/components/Home/BlankHeader.vue";
-import LoadingIndicator from "/src/components/LoadingIndicator.vue";
+import LoadingIndicator from '/src/components/LoadingIndicator.vue';
 
 export default {
   components: {

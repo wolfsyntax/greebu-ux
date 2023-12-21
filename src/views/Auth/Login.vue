@@ -36,9 +36,7 @@
                 <p>Lorem ipsum dolor sit amet consectetur.</p>
               </div>
               <div class="card-body">
-                <!-- <div v-if="$page.props.flash.message" class="alert">
-                  {{ $page.props.flash.message }}
-                </div> -->
+           
                 <div class="alert alert-danger" role="alert" v-if="message">
                   {{ message }}
                 </div>
@@ -62,29 +60,15 @@
                   <div class="d-grid gap-2 btn-login">
      
                   <button class="btn btn-primary" type="submit" :disabled="form.processing" v-if="showLoginButton">Login</button>
-                  <button class="btn btn-primary" type="submit" :disabled="form.processing" v-else>Login</button>
+                  <button class="btn btn-primary" type="button" :disabled="form.processing" v-else>
+                    <LoadingIndicator />
+                  </button>
               
                   </div>
                 </form>
               </div>
             </div>
             <social-button @request="vuefire"/>
-            <!-- <OnBoardingMessage /> -->
-            <!-- <div class="row mb-0 text-center select-login">
-              <div class="col-md-12 continue-with">
-                <p><span>Or Continue with</span></p>
-              </div>
-              <a href="" @click.prevent="AuthProviderGoogle()" class="google"><img src="@/assets/sign-in-with-google.svg" width="20"
-                  height="20" alt="Sign-in with Google">Sign-in with Google</a>
-              <a href="" @click.prevent="AuthProviderFB()" class="facebook"><img src="@/assets/sign-in-with-facebook.svg"
-                  width="20" height="20" alt="Sign up with Facebook">Sign up with Facebook</a>
-              <div class="forgot-password">
-                <a href="forgot-password">I Forgot my Password</a>
-              </div>
-              <div class="no-account">
-                <p>Don’t you have an account? <a href="/register">Sign up</a></p>
-              </div>
-            </div> -->
           </div>
         </div> <!-- end of container -->
       </section>

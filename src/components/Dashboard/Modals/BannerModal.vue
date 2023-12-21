@@ -70,10 +70,6 @@
                 </div>
               </example-wrapper>
 
-              <!-- <div class="d-flex align-items-center drag-mouse-wrap">
-                <img src="/assets/vue-cropper/drag-icon.svg" class="drag-cursor" />
-                <h4 class="mb-0 drag">Drag to reposition</h4>
-              </div> -->
               <Reposition />
 
               <button class="remove-image" @click="removeBanner">
@@ -85,8 +81,8 @@
 
         <div class="modal-footer justify-content-center">
 
-          <button class="btn btn-lg upload-cover-photo" @click="getCropImage" v-if="showCoverButton">Set as Cover Photo</button>
-          <button class="btn btn-lg upload-cover-photo" v-else><LoadingIndicator /></button>
+          <button type="submit" class="btn btn-lg upload-cover-photo" @click="getCropImage" v-if="showCoverButton">Set as Cover Photo</button>
+          <button type="button" class="btn btn-lg upload-cover-photo" v-else><LoadingIndicator /></button>
 
         </div>
       </div>

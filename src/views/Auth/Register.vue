@@ -361,10 +361,10 @@
 
                   <div class="d-grid gap-2 btn-sign-up">
 
-                    <button class="btn btn-primary" type="submit" :disabled="!agree_term && !isDisabled" v-if="showCreateAccountBtn" >
+                    <button type="submit" class="btn btn-primary" :disabled="!agree_term && !isDisabled" v-if="showCreateAccountBtn" >
                       Create Account
                     </button>
-                    <button class="btn btn-primary" type="submit" v-else>
+                    <button type="button" class="btn btn-primary" v-else>
                       <LoadingIndicator />
                     </button>
                   </div>
@@ -579,9 +579,9 @@ export default {
       this.message = msg;
     },
     validate() {
+      this.showCreateAccountBtn = false;
       this.isDisabled = true;
       this.errors = [];
-      this.showCreateAccountBtn = true;
       this.getFormattedPhone();
       console.log("Registration Form Data: ", this.form);
 
@@ -591,7 +591,6 @@ export default {
           allowUnknown: true,
         })
         .then(async (validated) => {
-          this.showCreateAccountBtn = true;
 
           console.log("Valid Form data ", this.form);
 
@@ -602,6 +601,7 @@ export default {
                 // setTimeout(() =>
                 // {
                 this.isDisabled = false;
+                this.showCreateAccountBtn = true;
                 // }, 3000)
               });
 
@@ -622,11 +622,9 @@ export default {
               this.errors = errors || {};
             })
             .finally((o) => {
-              this.showCreateAccountBtn = true;
             });
         })
         .catch((err) => {
-          this.showCreateAccountBtn = true;
 
           err.details.forEach((error) => {
             this.errors[error.path[0]] = [error.message];
@@ -656,7 +654,7 @@ export default {
           if (statusCode === 201) {
             // Send OTP
             // this.phoneOTP(result?.user_id);
-
+            this.showCreateAccountBtn = false;
             this.step = "";
             // setTimeout(() => this.countdown--, 100);
 

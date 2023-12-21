@@ -34,8 +34,8 @@
           <div class="text-end group-btn-wrap">
             <button class="btn cancel" @click="show = false">Cancel</button>
 
-            <button class="btn confirm" @click="submit" v-if="showConfirmBtn">Confirm</button>
-            <button class="btn disabled confirm" v-else><LoadingIndicator /></button>
+            <button type="submit" class="btn confirm" @click="submit" v-if="showConfirmBtn">Confirm</button>
+            <button type="button" class="btn disabled confirm" v-else><LoadingIndicator /></button>
 
           </div>
         </div>

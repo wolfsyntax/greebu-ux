@@ -2514,6 +2514,7 @@ header nav {
   align-items: center;
   text-align: center;
   margin: 0 auto 5rem;
+  height: 3.5rem;
 }
 .login form .btn-login button:hover,
 .register form .btn-sign-up button:hover,
@@ -4750,6 +4751,9 @@ header nav {
 .phone-verification .check-message .orange-text,
 .social-phone-verification .check-message .orange-text {
   color: var(--orange) !important;
+}
+.phone-verification .check-message .btn-wrapper button{
+  height: 3.5rem;
 }
 .phone-verification .check-message .btn-wrapper button,
 .phone-verification .verify-phone .btn-wrapper button,
@@ -13567,6 +13571,9 @@ header nav {
   }
 
   /* PHONE VERIFICATION / FORGOT PASSWORD  */
+  .phone-verification .check-message .btn-wrapper button{
+    height: 3rem;
+  }
   .phone-verification .check-message .btn-wrapper button,
   .phone-verification .verify-phone .btn-wrapper button,
   .phone-verification .verify-email .btn-wrapper button,
@@ -15173,6 +15180,7 @@ header nav {
     font-size: 0.875rem;
     padding: 0.875rem 0 !important;
     margin-bottom: 3rem;
+    height: 3rem;
   }
   .login form .btn-login .forward-icon,
   .register form .btn-sign-up .forward-icon,
