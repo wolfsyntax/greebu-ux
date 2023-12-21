@@ -55,14 +55,21 @@
                   </div>
                 </div>
                 <div class="btn-wrapper px-5 mt-4">
+
                   <button type="submit" class="btn btn-primary w-100" :disabled="!isFormValid && isExpired" 
                     @mouseenter="showLockOpen = false;"
                     @mouseleave="showLockOpen = true"
                     @click="submitResetPassword" 
+                    v-if="showContinueBtn"
                   >
                     Continue
                     <span class="material-symbols-rounded forward-icon">&#xe941;</span>
                   </button>
+
+                  <button type="submit" class="btn disabled btn-primary w-100" v-else>
+                      <LoadingIndicator />
+                  </button>
+
                 </div>
               </form>
             </div> <!-- end of content -->
@@ -99,16 +106,19 @@
 import { mapGetters, mapState, mapActions } from "vuex";
 import BlankHeader from "@/components/Home/BlankHeader.vue";
 import Joi from "joi";
+import LoadingIndicator from "/src/components/LoadingIndicator.vue";
 
 export default {
   components: {
-    BlankHeader
+    BlankHeader,
+    LoadingIndicator
   },
   setup() {
 
   },
   data() {
     return {
+      showContinueBtn: true,
       errors: {
         password: '',
         password_confirmation:''
@@ -133,6 +143,7 @@ export default {
       'resetPassword', 'fetchEmailByToken',
     ]),
     submit() {
+      this.showContinueBtn = false;
       this.errors = [];
 
       if (this.form.token) {
@@ -148,12 +159,15 @@ export default {
               const { status: statusCode, data: { result, status, message: msg } } = response;
 
               if (statusCode === 203 && status === 422) {
+                this.showContinueBtn = true;
                 this.errors = result?.errors
               } else if (statusCode === 203) {
+                this.showContinueBtn = true;
                 this.message = msg;
                 console.log('Status [203]: ', msg);
               } else if (statusCode === 200) {
                 this.$router.push({name: 'login'});
+                this.showContinueBtn = true;
               }
 
               console.log('Reset password response: ', response)
@@ -163,7 +177,7 @@ export default {
         .catch((err) => {
           this.isLoading = false;
           console.log('Validation Error: ', err);
-
+          this.showContinueBtn = true;
           err.details.forEach((error) => {
             console.log('Error message: ', error);
             this.errors[error.path[0]] = [error.message];
@@ -172,6 +186,7 @@ export default {
 
       } else {
         console.log('Token is required.');
+        this.showContinueBtn = true;
       }
     },
     onInputChange() {

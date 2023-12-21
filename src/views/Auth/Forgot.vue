@@ -40,16 +40,24 @@
                   <span class="material-symbols-rounded" :class="{ 'active': isInputActive }">&#xe158;</span>
                 </div>
                 <div class="btn-wrapper">
+
                   <button type="submit" class="btn btn-primary next" 
                     @mouseenter="showLockOpen = false; showForwardIcon = true"
                     @mouseleave="showLockOpen = true; showForwardIcon = false"
                     :disabled="emailValidate"
+                    v-if="showResetBtn"
                   >
                     Reset 
                     <span class="material-symbols-rounded forward-icon" v-show="showForwardIcon">
                       &#xe941;
                     </span>
                   </button>
+
+                  <button type="button" class="btn disabled btn-primary next" v-else>
+                    <LoadingIndicator />
+                  </button>
+
+
                 </div>
               </form>
             </div> <!-- end of content -->
@@ -81,7 +89,8 @@
                 <p class="card-text">We already sent the reset password link to the email.</p>
                 <p class="email-add">{{ maskEmail }}</p>
               <div class="btn-wrapper">
-              <button type="button" class="btn btn-primary next" 
+
+              <button type="button" class="btn btn-primary next" v-if="showResetPassBtn"
               :disabled="resendResetPassword > 0"
                 @click="startResendResetPassword">
                 <template v-if="resendResetPassword > 0">
@@ -94,6 +103,11 @@
                   </span>
                 </template>
                 </button>
+
+                <button type="button" class="btn btn-primary next" v-else> 
+                  <LoadingIndicator />
+                </button>
+
               </div>
             </div>
           </div>
@@ -105,10 +119,12 @@
 <script>
 import { mapGetters, mapState, mapActions } from "vuex";
 import BlankHeader from "@/components/Home/BlankHeader.vue";
+import LoadingIndicator from "/src/components/LoadingIndicator.vue";
 
 export default {
   components: {
-    BlankHeader
+    BlankHeader,
+    LoadingIndicator
   },
   setup()
   {
@@ -117,6 +133,8 @@ export default {
   data()
   {
     return {
+      showResetPassBtn: true,
+      showResetBtn: true,
       showLockOpen: true,
       errors: null,
       isInputActive: false,
@@ -136,6 +154,7 @@ export default {
     ]),
     submit()
     {
+      this.showResetBtn = false;
       // $route.params.token
       this.forgotPassword(this.form)
         .then(response =>
@@ -148,12 +167,15 @@ export default {
             const { mask } = result;
             this.maskEmail = mask;
             this.submitResetPassword();
+            this.showResetBtn = true;
           } else {
             this.maskEmail = '';
             this.message = message;
+            this.showResetBtn = true;
           }
         }).catch(err => {
           this.maskEmail = '';
+          this.showResetBtn = true;
         });
     },
     submitResetPassword(){
@@ -180,7 +202,9 @@ export default {
       }
     },
     startResendResetPassword(){
+      this.showResetPassBtn = false;
       if(!this.resendResetPassword){
+        this.showResetPassBtn = true;
         this.resendResetPassword = 60;
 
         const interval = setInterval(() => {
