@@ -17,7 +17,10 @@
       </div>
 
       <div class="text-center">
-        <button type="submit" :disabled="!(validType && validUrl)" class="btn btn-success add-social-media">Add</button>
+
+        <button type="submit" :disabled="!(validType && validUrl)" class="btn btn-success add-social-media" v-if="showAddBtn">Add</button>
+        <button type="button" class="btn btn-success disabled add-social-media" v-else><LoadingIndicator /></button>
+
       </div>
     </form>
   </div>
@@ -25,14 +28,17 @@
 <script>
 import Layout from '/src/components/Layouts/AuthLayout.vue';
 import { mapGetters, mapState, mapActions } from "vuex";
+import LoadingIndicator from '/src/components/LoadingIndicator.vue';
 
 export default {
   components: {
     layout: Layout,
+    LoadingIndicator
   },
   data()
   {
     return {
+      showAddBtn: true,
       social_media: [
         { id: 1, value: 'instagram', label: 'Instagram', },
         { id: 2, value: 'twitter', label: 'X Formerly Twitter', },
@@ -162,7 +168,7 @@ export default {
     ]),
     submit()
     {
-
+      this.showAddBtn = false;
       this.$emit('form', this.media_type, this.url)
       this.$emit('modalClose');
       
@@ -194,6 +200,7 @@ export default {
       //   }
 
       // });
+      this.showAddBtn = true;
 
     }
   },

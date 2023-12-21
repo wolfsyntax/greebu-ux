@@ -39,14 +39,10 @@
             </div>
       
           <div class="text-center">
-            <button type="submit" class="btn btn-warning add-member">
-              <span v-if="isLoading">
-                <i class="busy-add-member"></i>Add Member
-              </span>
-              <span v-else>
-                Add Member
-              </span>
-            </button>
+
+            <button type="submit" class="btn btn-warning add-member" v-if="showAddBtn">Add Member</button>
+            <button type="button" class="btn btn-warning disabled add-member" v-else><LoadingIndicator /></button>
+
           </div>
       
     </form>
@@ -55,13 +51,16 @@
 <script>
 import Layout from '@/components/Layouts/ArtistLayout.vue';
 import { mapGetters, mapState, mapActions } from "vuex";
+import LoadingIndicator from '/src/components/LoadingIndicator.vue';
 
 export default {
   components: {
     layout: Layout,
+    LoadingIndicator
   },
   data() {
     return {
+      showAddBtn: true,
       form: {
         member_avatar: null,
         member_name: '',
@@ -79,7 +78,6 @@ export default {
         { id: '6', value: 'keyboardist', label: 'Keyboardist', },
         { id: '7', value: 'others', label: 'Others' },
       ],
-      isLoading: false,
     }
   },
   setup() {
@@ -187,13 +185,13 @@ export default {
       this.form.member_avatar = event.target.files[0];
     },
     submit() {
-      this.isLoading = true;
-
+      this.showAddBtn = false;
       if (typeof this.form.member_avatar === 'string') {
         this.form.member_avatar = '';
       } 
 
       if (Object.keys(this.member).length > 0) {
+        this.showAddBtn = true;
 
         var id = this.member.id;
 
@@ -223,14 +221,15 @@ export default {
             // this.other = '';
             // this.avatar = '';
             this.$store.commit('SET_MEMBER_INDEX', -1);
-            this.$emit('modalClose')
-            this.isLoading = false;
+            this.$emit('modalClose');
+            this.showAddBtn = true;
           }
 
         })
         .catch(err =>
         {
-          console.log('Err: ', err)
+          console.log('Err: ', err);
+          this.showAddBtn = true;
         });
 
       } else {
@@ -260,7 +259,6 @@ export default {
             this.$store.commit('SET_MEMBER_INDEX', -1);
 
             this.$emit('modalClose')
-            this.isLoading = false;
           }
 
         })

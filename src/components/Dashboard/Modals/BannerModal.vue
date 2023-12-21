@@ -13,7 +13,7 @@
             @dragleave="handleDragLeaveCover"
             @drop="handleDropCover"
             :class="{ 'drag-over': isDragOver }"
-          >                   
+            >                   
             <input type="file" ref="bannerInput" style="display: none;" accept="image/*" @change="handleClick"/>
             <div class="text-center upload-file-content" v-if="uploadBox">
               <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 45 45" fill="none">
@@ -40,11 +40,19 @@
                     movable: false,
                     scalable: false,
                     resizable: false,
+                    aspectRatio: 20 / 7, 
                   }"
                   image-restriction="stencil"
                   @change="updateSize"
+                  :resize-image="{
+                    adjustStencil: false
+                  }"
                   v-if="banner"
+                 
                 />
+
+                <!-- minAspectRatio: 16/8, // for upload event
+		            maxAspectRatio: 4/8 -->
 
                 <vertical-buttons>
                   <square-button title="Zoom In" @click="zoom(2)">
@@ -62,10 +70,7 @@
                 </div>
               </example-wrapper>
 
-              <div class="d-flex align-items-center drag-mouse-wrap">
-                <img src="/assets/vue-cropper/drag-icon.svg" class="drag-cursor" />
-                <h4 class="mb-0 drag">Drag to reposition</h4>
-              </div>
+              <Reposition />
 
               <button class="remove-image" @click="removeBanner">
                 <span class="material-symbols-outlined">&#xe5cd;</span> 
@@ -74,8 +79,11 @@
           </div> 
         </div> <!-- end of modal-body -->
 
-        <div class="modal-footer justify-content-center" >
-          <button class="btn btn-lg upload-cover-photo" @click="getCropImage" v-if="preview">Set as Cover Photo</button>
+        <div class="modal-footer justify-content-center">
+
+          <button type="submit" class="btn btn-lg upload-cover-photo" @click="getCropImage" v-if="showCoverButton">Set as Cover Photo</button>
+          <button type="button" class="btn btn-lg upload-cover-photo" v-else><LoadingIndicator /></button>
+
         </div>
       </div>
     </div>
@@ -88,12 +96,16 @@ import ExampleWrapper from '/src/components/Cropper/ExampleWrapper.vue';
 import VerticalButtons from '/src/components/Cropper/VerticalButtons.vue';
 import SquareButton from '/src/components/Cropper/SquareButton.vue';
 import Compressor from 'compressorjs'; 
+import LoadingIndicator from "/src/components/LoadingIndicator.vue";
+import Reposition from "/src/components/Dashboard/Modals/Reposition.vue";
 
 export default { 
   components: {
     ExampleWrapper,
 		VerticalButtons,
 		SquareButton,
+    LoadingIndicator,
+    Reposition
   },
   setup () {
     return {
@@ -104,6 +116,7 @@ export default {
     }
   },
   data: () => ({
+    showCoverButton: true,
     banner: null,
     form: {
       cover_photo: '',
@@ -200,6 +213,7 @@ export default {
     
 
     getCropImage(compressedImage) {
+      this.showCoverButton = false;
       const { coordinates, canvas, image } = this.$refs.cropper.getResult();
 
       this.showImage = true;
@@ -215,6 +229,7 @@ export default {
         this.$refs.bannerClose.click();
         this.removeBanner();
         console.log(`Closing Banner`);
+        this.showCoverButton = true;
       });
     },
 
@@ -345,8 +360,6 @@ export default {
         },
       });
     },
-
-
     removeBanner()
     {
       this.form.cover_photo = null;
@@ -365,6 +378,10 @@ export default {
 
 <style scoped>
 
+.upload-file-wrapper:hover .drag-mouse-wrap{
+  /* display: none; */
+  transition: 1s;
+}
 #uploadArtistCoverPhoto .upload-file-wrapper .uploaded-image-wrapper{
   height: 14.3rem;
 }

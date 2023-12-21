@@ -319,12 +319,14 @@
                 </div>
 
                 <div class="text-center">
-                  <button type="submit" class="btn btn-success submit-form">
-                    <span >
-                      <i v-if="isLoading" class="busy-submitting"></i>
-                      Submit
-                    </span>
-                  </button>
+                  
+                  <button type="submit" class="btn btn-success submit-form" v-if="showSubmitButton">
+                    Submit
+                  </button> 
+                  <button type="button" class="btn btn-success disabled submit-form" v-else>
+                    <LoadingIndicator />
+                  </button> 
+
                 </div>
               </form>
 
@@ -386,6 +388,7 @@ import { Modal } from 'bootstrap';
 import Compressor from 'compressorjs';
 import Avatar from '/src/components/Cropper/Avatar.vue';
 import ProfileModal from '/src/components/Dashboard/Modals/ProfileModal.vue';
+import LoadingIndicator from "/src/components/LoadingIndicator.vue";
 
 export default {
   setup()
@@ -397,7 +400,8 @@ export default {
     SocialMedia,
     Multiselect,
     Avatar,
-    ProfileModal
+    ProfileModal,
+    LoadingIndicator
   },
   data: () => ({
     // form: {
@@ -416,6 +420,7 @@ export default {
     //   accept_proposal: false,
     //   send_proposal: false,
     // },
+    showSubmitButton: true,
     avatar: null, // null  // /assets/artist-account/new.svg
     isSearchable: true,
     social: {
@@ -428,7 +433,6 @@ export default {
     avatarMagic: '',
     tempMagic: '',
     targetMagic: '',
-    isLoading: false,
     triggerType: '',
 
     file: null,
@@ -637,14 +641,12 @@ export default {
     },
     submit()
     {
-
+      this.showSubmitButton = false;
       this.form.event_types = this.formEventTypes;
 
       if (typeof this.form.avatar === 'string') this.form.avatar = '';
       
       this.$emit('form', this.form)
-
-      this.isLoading = true;
 
       if (this.hasNoError) { 
         this.fetchProfile().then(res =>
@@ -655,7 +657,7 @@ export default {
             this.form.event_types = event_types
           }
 
-          this.isLoading = false;
+          this.showSubmitButton = true;
 
         });
       }

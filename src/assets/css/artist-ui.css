@@ -2450,7 +2450,7 @@ img {
   }
 }
 
-.profile-details .container #successDetailsModal .modal-body {
+/* .profile-details .container #successDetailsModal .modal-body {
   padding-top: 0;
 }
 .profile-details .container #successDetailsModal .modal-body svg {
@@ -2507,7 +2507,7 @@ img {
   .btn-close:hover {
   opacity: 1;
   border: 1px solid var(--orange);
-}
+} */
 .profile-details .container .fill-details .submit-form:hover {
   background: var(--btn-hovered);
 }

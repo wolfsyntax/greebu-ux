@@ -11,7 +11,8 @@
 
         <ul class="dropdown-menu" v-if="userRole === 'organizer'" >
           <li v-if="editable === true" >
-            <button :id="`eventEdit-${myEvent.id}`" data-bs-toggle="tooltip" data-bs-title="..." data-s-trigger="hover focus" :class="canEdit ? 'border-0': ''" class="d-flex align-items-center btn" @click="editEvent" :disabled="canEdit">
+            <button :id="`eventEdit-${myEvent.id}`" data-bs-toggle="tooltip" data-bs-title="..." data-s-trigger="hover focus" 
+            :class="canEdit ? 'border-0': ''" class="d-flex align-items-center btn" @click="editEvent()" :disabled="canEdit">
               <span class="material-symbols-rounded">
               &#xe3c9;
             </span>
@@ -70,10 +71,15 @@ import { mapActions, mapMutations, mapGetters } from 'vuex';
 import { Tooltip } from 'bootstrap';
 
 export default {
+  components: {
+  
+  },
   setup () {
     
 
-    return {}
+    return {
+
+    }
   },
   props: {
     editable: { 
@@ -88,7 +94,9 @@ export default {
     ...mapActions([
       'myOngoingEvents', 'myUpcomingEvents', 'myPastEvents', 'fetchEvent',
     ]),
+ 
     editEvent() {
+     
       // if (this.$moment($moment(myEvent.start_date).format('YYYY-MM-DD')).diff(this.$moment().format('YYYY-MM-DD'), 'days') > 2) {
         this.$store.commit('RESET_EVENT_FORM')
         
@@ -96,7 +104,7 @@ export default {
         //   .then(res => this.$emit('show-detail', this.myEvent, 'edit'));
         this.$store.commit("SET_EVENT_FORM", this.myEvent);
         this.$emit('show-detail', this.myEvent, 'edit');
-        this.fetchEvent(this.myEvent.id)
+        this.fetchEvent(this.myEvent.id);
       // }
       
     },

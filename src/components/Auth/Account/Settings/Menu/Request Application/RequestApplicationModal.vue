@@ -24,8 +24,13 @@
           </div>
 
           <div class="d-flex align-items-center" v-if="proposal?.status === 'pending'">
-            <button class="btn decline" :disabled="proposal?.cancelled_at" @click="decline">Decline</button>
-            <button class="btn accept" :disabled="proposal?.cancelled_at" @click="accept">Acccept</button>
+
+            <button type="submit" class="btn decline" :disabled="proposal?.cancelled_at" @click="decline" v-if="showDeclineBtn">Decline</button>
+            <button type="button" class="btn disabled decline" v-else><LoadingIndicatorOrange /></button>
+
+            <button type="submit" class="btn accept" :disabled="proposal?.cancelled_at" @click="accept" v-if="showAcceptBtn">Acccept</button>
+            <button type="button" class="btn disabled accept" v-else><LoadingIndicator /></button>
+
           </div>
 
           <div class="d-flex align-items-center" v-if="proposal?.status === 'accepted'">
@@ -143,13 +148,21 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
+import LoadingIndicator from '/src/components/LoadingIndicator.vue';
+import LoadingIndicatorOrange from '/src/components/LoadingIndicatorOrange.vue';
 
 export default {
   props: {
     show: Boolean
   },
+  components: {
+    LoadingIndicator,
+    LoadingIndicatorOrange
+  },
   data() {
     return {
+      showAcceptBtn: true,
+      showDeclineBtn: true
     }
   },
   computed: {
@@ -163,22 +176,25 @@ export default {
     ]),
     accept()
     {
-      
+      this.showAcceptBtn = false;
       this.acceptProposal(this.proposal?.id || '')
         .then(res =>
         {
           console.log('Accepted Response: ', res)
           this.$refs.closeReqApp.click();
           // this.$emit('accept-req');
+          this.showAcceptBtn = true;
         });
     },
     decline()
     {
+      this.showDeclineBtn = false;
       this.declineProposal(this.proposal?.id || '')
         .then(res =>
         {
           console.log('Declined Response: ', res);
-          this.$refs.closeReqApp.click()
+          this.$refs.closeReqApp.click();
+          this.showDeclineBtn = true;
         });
     },
     acceptRequest() {

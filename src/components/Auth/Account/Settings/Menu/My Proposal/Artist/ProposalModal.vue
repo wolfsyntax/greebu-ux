@@ -25,7 +25,8 @@
           </div>
                     <!-- Accepted Proposal tab - View Proposal modal -->
             <div class="d-flex align-items-center">
-              <button class="btn decline" v-if="proposal?.status === 'pending' && proposal?.cancelled_at === null" @click="cancel" >Cancel Proposal</button>
+
+              <button class="btn decline" v-if="proposal?.status === 'pending' && proposal?.cancelled_at === null" @click="cancel"> Cancel Proposal</button>
               <button class="btn btn-denied" v-if="proposal?.status === 'pending' && proposal?.cancelled_at">Cancelled</button>
               <button class="btn cancelled" v-if="proposal?.status === 'declined' && proposal?.declined_at">Declined</button>
             </div>
@@ -128,16 +129,16 @@
   <script>
   import { mapState, mapActions } from 'vuex';
   // import CancellationModal from './CancellationModal.vue';
-
+  
   export default {
     components: {
-    // CancellationModal,
   },
     props: {
       show: Boolean
     },
     data() {
       return {
+        showCancelProposalBtn: true,
         // showCancelModal: false,
       }
     },

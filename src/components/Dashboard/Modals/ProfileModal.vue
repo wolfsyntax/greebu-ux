@@ -58,49 +58,6 @@
                   v-if="avatar"
                 />
 
-                <!-- <div>
-    <Cropper class="circle-example"
-      :src="avatar"
-      :stencil-component="stencil"
-      ref="avatarCropper"
-    />
-
-    <input type="file" @input="changeImage" accept="image/png, image/webp, image/svg, image/jpeg" />
-    <button class="btn btn-lg upload-cover-photo" @click="getCropImage" v-if="preview">Generate</button>
-  </div> -->
-
-                <!-- :stencil-props="{
-				previewClass: 'circle-cropper__preview',
-			}"
-			class="circle-cropper"
-			stencil-component="circle-stencil" -->
-
-                <!-- <cropper
-                   :stencil-props="{
-                    minAspectRatio: 10 / 20,
-                  }"
-                  class="cropper"
-                  ref="cropper" 
-                  :src="preview"
-                  :stencil-size="fillArea"
-                  :stencil-props="{
-                    handlers: {},
-                    movable: false,
-                    scalable: false,
-                    resizable: false,
-		                aspectRatio: 1,
-                  }"
-                  :resize-image="{
-		adjustStencil: false
-	}"
-	image-restriction="stencil" /> -->
-                <!-- 
-                   :stencil-size="fillArea"
-                  :stencil-size="{
-                  width: 280,
-                  height: 280
-                }" -->
-
                 <vertical-buttons>
                   <square-button title="Zoom In" @click="zoom(2)">
                     <!-- <img src="/assets/vue-cropper/zoom-in.svg" /> -->
@@ -118,10 +75,7 @@
               </div>
             </example-wrapper>  
 
-            <div class="d-flex align-items-center drag-mouse-wrap">
-                <img src="/assets/vue-cropper/drag-icon.svg" class="drag-cursor" />
-                <h4 class="mb-0 drag">Drag to reposition</h4>
-            </div>
+            <Reposition />
 
               <button class="remove-image" @click="removeBanner">
                 <span class="material-symbols-outlined">&#xe5cd;</span> 
@@ -160,15 +114,15 @@ import SquareButton from '/src/components/Cropper/SquareButton.vue';
 import CircleStencil from '/src/components/Cropper/CircleStencil.vue';
 import HomeView from '/src/components/Cropper/HomeView.vue';
 
-import Compressor from 'compressorjs';    
+import Compressor from 'compressorjs';   
+import Reposition from "/src/components/Dashboard/Modals/Reposition.vue";
+
 export default { 
   components: {
     ExampleWrapper,
 		VerticalButtons,
 		SquareButton,
-    //StaffForm
-    // HomeView,
-    // CircleStencil
+    Reposition
   
   },
   setup () {

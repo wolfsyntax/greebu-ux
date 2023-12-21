@@ -6,6 +6,9 @@ import { createApp } from "vue";
 import axios from "axios";
 import VueAxios from "vue-axios";
 
+import NProgress from 'nprogress';
+import 'nprogress/nprogress.css';
+
 // import Vuesax from 'vuesax'
 
 // import Multiselect  from '@vueform/multiselect'
@@ -61,7 +64,6 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 
 import Compressor from 'compressorjs';
-
 //import CircleImage from './components/CircleImage.vue'
 
 const app = createApp(App)
@@ -104,7 +106,8 @@ const app = createApp(App)
   .component("font-awesome-icon", FontAwesomeIcon)
   .component("tree-item", TreeItem)
   //.component("circle-image", CircleImage)
-  .component("v-calendar", FullCalendar);
+  .component("v-calendar", FullCalendar)
+  .component("n-progress", NProgress);
 
 app.config.globalProperties.$moment = moment;
 app.config.globalProperties.$filters = {

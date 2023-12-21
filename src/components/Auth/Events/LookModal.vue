@@ -63,7 +63,7 @@
 
       <div class="form-group">
         <label for="lookingFor">Number of artist</label>
-        <input type="number" id="number-of-artist" name="number_of_artist" v-model="total_participants" min="0" max="50" :disabled="!account.accept_proposal"/>
+        <input type="number" id="number-of-artist" name="number_of_artist" v-model="total_participants" min="0" max="50" :disabled="!account.accept_proposal" />
       </div>
 
       <div class="form-group event-details-wrap">
@@ -78,9 +78,19 @@
         <!-- <button type="button" class="btn btn-outline-geebu mx-1" @click="$emit('next-step', 'skip')" ref="eventSkip">Skip</button> -->
         <button type="button" class="btn cancel" @click="back">Back</button>
 
-        <button type="submit" class="btn next" :disabled="!canProceed" >
-            <LoadingVue :infoText="buttonName" v-if="isLoading"/>
-            <span v-else>{{ buttonName }}</span>
+        <button type="submit" class="btn next" :disabled="!canProceed" v-if="showSubmitButtonForm3">
+          Submit
+        </button>
+        <button type="button" class="btn disabled next" v-else>
+          
+        <div class="loader1">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
         </button>
 
       </div>
@@ -90,14 +100,11 @@
 </template>
 
 <script>
+// import LoadingIndicator from "/src/components/LoadingIndicator.vue";
 import { mapActions, mapGetters, mapState } from 'vuex';
 import Multiselect from '@vueform/multiselect';
-import Loading from '/src/components/Loading.vue';
 
 export default {
-  components: {
-    Loading
-  },
   props: {
     accessType: {
       type: String,
@@ -105,15 +112,17 @@ export default {
       required: false,
     },
   },
+  components: {
+  },
   setup () {
     
 
     return {}
   },
   data: () => ({
+    showSubmitButtonForm3: true,
     buttonName: 'Submit',
     error: null,
-    isLoading: false,
     lookTypes: [],
     isSearchable: true,
     look_for: '',
@@ -207,7 +216,8 @@ export default {
     },
     back()
     {
-      this.$emit('next-step', 'detail')
+      this.$emit('next-step', 'detail');
+      this.$emit('prev');
       console.log('Back')
     },
     skip()
@@ -217,6 +227,8 @@ export default {
     },
     submit()
     {
+      this.showSubmitButtonForm3 = false;
+
       var action = !this.canSkip ? 'skip' : '';
 
       if (action !== 'skip') {
@@ -236,6 +248,8 @@ export default {
           {
             console.log(`${action} - Look: `, res);
             this.$emit('next-step', 'success')
+            
+            this.showSubmitButtonForm3 = true;
           }).catch(err =>
           {
             const { status, message, result} = err;
@@ -251,6 +265,7 @@ export default {
           {
 
             this.$emit('next-step', 'success')
+            this.showSubmitButtonForm3 = true;
           }).catch(err =>
           {
             const { status, message, result} = err;
@@ -310,4 +325,59 @@ export default {
 </script>
 
 <style scoped>
+
+.loader1 {
+   display:inline-block;
+   font-size:0px;
+   padding:0px;
+}
+.loader1 > span{
+  margin-top: -2px!important;
+}
+.loader1 span {
+   vertical-align:middle;
+   border-radius:100%;
+   
+   display:inline-block;
+   width:10px;
+   height:10px;
+   margin:3px 2px;
+   -webkit-animation:loader1 0.8s linear infinite alternate;
+   animation:loader1 0.8s linear infinite alternate;
+}
+.loader1 span:nth-child(1) {
+   -webkit-animation-delay:-1s;
+   animation-delay:-1s;
+  background: #fff;
+}
+.loader1 span:nth-child(2) {
+   -webkit-animation-delay:-0.8s;
+   animation-delay:-0.8s;
+   background: #fff;
+}
+.loader1 span:nth-child(3) {
+   -webkit-animation-delay:-0.26666s;
+   animation-delay:-0.26666s;
+   background: #fff;
+}
+.loader1 span:nth-child(4) {
+   -webkit-animation-delay:-0.8s;
+   animation-delay:-0.8s;
+   background: #fff;
+  
+}
+.loader1 span:nth-child(5) {
+   -webkit-animation-delay:-1s;
+   animation-delay:-1s;
+   background: #fff;
+}
+
+@keyframes loader1 {
+   from {transform: scale(0, 0);}
+   to {transform: scale(1, 1);}
+}
+@-webkit-keyframes loader1 {
+   from {-webkit-transform: scale(0, 0);}
+   to {-webkit-transform: scale(1, 1);}
+}
 </style>

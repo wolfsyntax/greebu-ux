@@ -36,9 +36,7 @@
                 <p>Lorem ipsum dolor sit amet consectetur.</p>
               </div>
               <div class="card-body">
-                <!-- <div v-if="$page.props.flash.message" class="alert">
-                  {{ $page.props.flash.message }}
-                </div> -->
+           
                 <div class="alert alert-danger" role="alert" v-if="message">
                   {{ message }}
                 </div>
@@ -60,12 +58,10 @@
                     <label class="form-check-label" for="keepLogin">Keep me logged in</label>
                   </div>
                   <div class="d-grid gap-2 btn-login">
-                    <button class="btn btn-primary" type="submit" 
-                    :disabled="form.processing"
-                    >
-                    <span v-if="isLoading">
-                    <i class="busy-submitting"></i>Login</span>
-                    <span v-else>Login</span>
+     
+                  <button class="btn btn-primary" type="submit" :disabled="form.processing" v-if="showLoginButton">Login</button>
+                  <button class="btn btn-primary" type="button" :disabled="form.processing" v-else>
+                    <LoadingIndicator />
                   </button>
               
                   </div>
@@ -73,22 +69,6 @@
               </div>
             </div>
             <social-button @request="vuefire"/>
-            <!-- <OnBoardingMessage /> -->
-            <!-- <div class="row mb-0 text-center select-login">
-              <div class="col-md-12 continue-with">
-                <p><span>Or Continue with</span></p>
-              </div>
-              <a href="" @click.prevent="AuthProviderGoogle()" class="google"><img src="@/assets/sign-in-with-google.svg" width="20"
-                  height="20" alt="Sign-in with Google">Sign-in with Google</a>
-              <a href="" @click.prevent="AuthProviderFB()" class="facebook"><img src="@/assets/sign-in-with-facebook.svg"
-                  width="20" height="20" alt="Sign up with Facebook">Sign up with Facebook</a>
-              <div class="forgot-password">
-                <a href="forgot-password">I Forgot my Password</a>
-              </div>
-              <div class="no-account">
-                <p>Don’t you have an account? <a href="/register">Sign up</a></p>
-              </div>
-            </div> -->
           </div>
         </div> <!-- end of container -->
       </section>
@@ -101,6 +81,7 @@
 import Layout from '/src/components/Layouts/AuthLayout.vue';
 import SocialButton from '/src/components/Auth/SocialLogin.vue';
 import Verify from '@/components/Auth/Verify.vue';
+import LoadingIndicator from "/src/components/LoadingIndicator.vue";
 
 import { mapGetters, mapState, mapActions } from "vuex";
 // import { FacebookAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup, createUserWithEmailAndPassword, signInWithRedirect } from "firebase/auth";
@@ -108,7 +89,8 @@ export default {
   components: {
     layout: Layout,
     'social-button': SocialButton,
-    'verify-card': Verify
+    'verify-card': Verify,
+    LoadingIndicator
   },
   data()
   {
@@ -123,7 +105,7 @@ export default {
       isVerified: true,
       errors: null,
       message: null,
-      isLoading: false,
+      showLoginButton: true,
     }
   },
   setup()
@@ -139,13 +121,14 @@ export default {
     ]),
     submit()
     { 
+      this.showLoginButton = false;
       this.form.processing = true;
       this.signin(this.form).then((response) =>
       {
         console.log('Login Response: ', response)
         const { status: statusCode, data: {result, status, message}} = response;
         console.log('Status Code: ', statusCode, '\nStatus: ', status);
-        this.isLoading = true;
+     
         if (statusCode === 200) {
 
           // if (role === 'artists') {
@@ -159,23 +142,23 @@ export default {
           } else {
             this.$router.push('/dashboard')
           }
-
+          this.showLoginButton = true;
         } else if (statusCode === 203 && status === 203) {
 
           this.errors = result?.errors;
           this.message = message;
-          this.isLoading = false
+          this.showLoginButton = true;
 
         } else if (statusCode === 203 && status === 403) {
           
           this.isVerified = false;
           this.isInitial = false;
-          this.isLoading = false
+          this.showLoginButton = true;
         } else {
           
           this.errors = result?.errors;
           this.message = message;
-          this.isLoading = false
+          this.showLoginButton = true;
 
           // if (status === 403) {
           //   this.$router.push({ path: this.$route.path, query: { id: result?.user?.id } });

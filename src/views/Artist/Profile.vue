@@ -18,7 +18,7 @@
               <!-- DISPLAY MODAL for Add Member and Add Social Media Accounts -->
 
               <div ref="modal" class="modal fade" id="add-artist-details" :class="{ show: active, 'd-block': active }" tabindex="-1" role="dialog">
-                <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header d-flex align-items-start justify-content-between p-0">
                       <div>
@@ -447,41 +447,12 @@
               </div> <!-- end of song-preview -->
               
               <div class="text-center">
-                <!-- <button type="submit" class="btn btn-success submit-form" 
-                data-bs-toggle="modal" data-bs-target="#successDetailsModal">Submit</button> -->
-                <button type="submit" class="btn btn-success submit-form">
-                <span v-if="isLoading">
-                <i class="busy-submitting"></i>Submit</span>
-                <span v-else>Submit</span>
-              </button>
+
+              <button type="submit" class="btn btn-success submit-form" v-if="showSubmitButton">Submit</button>
+              <button type="button" class="btn btn-success disabled submit-form" v-else><LoadingIndicator /></button>
+
               </div>
-            </form>
-
-              <!-- IF THE FORM IS SUCCESSFUL SHOW THIS MODAL -->
-              <!-- Modal -->
-            <div class="modal fade" id="successDetailsModal" tabindex="-1" aria-labelledby="successDetailsLabel" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-
-                  <div class="modal-body text-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none">
-                      <g clip-path="url(#clip0_4710_61743)"><path d="M24 4C12.96 4 4 12.96 4 24C4 35.04 12.96 44 24 44C35.04 44 44 35.04 44 24C44 12.96 35.04 4 24 4ZM20 34L10 24L12.82 21.18L20 28.34L35.18 13.16L38 16L20 34Z" fill="#FF6B00"/></g>
-                      <defs><clipPath id="clip0_4710_61743"><rect width="48" height="48" fill="white"/></clipPath></defs>
-                    </svg>
-                    
-                    <h3 class="title">You’re all set!</h3>
-                    <p class="content">Lorem ipsum dolor sit amet consectetur. Morbi lacus sit massa ligula nullam in mauris eget metus.</p>
-                  </div>
-
-                  <div class="modal-footer">
-                    <a href="/artist" class="view-profile">View Your Profile</a>
-                  </div>
-                </div>
-              </div>
-            </div> 
+            </form> 
 
           </div>
 
@@ -508,6 +479,7 @@ import SocialMediaForm from '/src/views/Artist/Form/SocialMedia.vue';
 import BlankHeader from "@/components/Home/BlankHeader.vue";
 import Multiselect from '@vueform/multiselect';
 import ProfileModal from '/src/components/Dashboard/Modals/ProfileModal.vue';
+import LoadingIndicator from "/src/components/LoadingIndicator.vue";
 
 export default {
   components: {
@@ -516,11 +488,13 @@ export default {
     'social-media': SocialMediaForm,
     BlankHeader,
     Multiselect,
-    ProfileModal
+    ProfileModal,
+    LoadingIndicator
   },
   data()
   {
     return {
+      showSubmitButton: true,
       form: {
         artist_type: null,
         artist_name: null,
@@ -553,7 +527,6 @@ export default {
       formType: '',
       formHeader: 'Add Member',
       formSubHeading: 'Lorem ipsum dolor sit amet consectetur. Nam lacus viverra nec orci arcu id fringilla ultrices.',
-      isLoading: false,
       uploadedMusic: null,
       uploadedSongWrapper: false,
       songTitle: 'My Awesome Song.mp3',
@@ -635,14 +608,12 @@ export default {
   {
     
     this.$store.commit('SET_MEMBER_INDEX');
-    // this.isLoading = true;
     console.log('Fetch Profile (created)')
     this.fetchProfile().then(res =>
     {
       const { status: statusCode, data: { result: { genres } } } = res
 
       this.form.genres = genres
-      // this.isLoading = false;
 
     });
   },
@@ -848,21 +819,20 @@ export default {
     },
     submit()
     {
-
+      this.showSubmitButton = false;
       this.form.genres = this.formGenres;
 
       if (typeof this.form.avatar === 'string') this.form.avatar = '';
       if (typeof this.form.song === 'string') this.form.song = '';
       
       this.$emit('form', this.form)
-      this.isLoading = true;
       
       this.fetchProfile().then(res =>
       {
         const { status: statusCode, data: { result: { genres } } } = res
 
         this.form.genres = genres
-        this.isLoading = false;
+        this.showSubmitButton = true;
 
       });
 

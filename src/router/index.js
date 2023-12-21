@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import store from "../store";
+import NProgress from 'nprogress';
+import 'nprogress/nprogress.css';
 
 const defaultMenu = [{ title: "", url: "" }];
 const artistMenu = [
@@ -31,6 +33,7 @@ const router = createRouter({
         requiresLogin: false,
         role: "",
         breadcrumb: defaultMenu,
+
       },
       children: [
         {
@@ -55,6 +58,7 @@ const router = createRouter({
             role: "",
             parent: "artists",
             breadcrumb: [{ title: "", url: "" }],
+            // showLoadingBar: true 
           },
         },
         {
@@ -91,6 +95,7 @@ const router = createRouter({
             role: "",
             parent: "create-song",
             breadcrumb: [{ title: "", url: "" }],
+           // shouldShowLoadingBar: true
           },
         },
         {
@@ -411,6 +416,18 @@ const router = createRouter({
       },
     },
     {
+      path: "/event-library",
+      name: "organizer-library",
+      component: () => import("/src/views/Organizer/EventLibrary.vue"),
+      meta: {
+        requiresLogin: true, // true
+        title: "Event Library",
+        role: "organizer",
+        parent: "organizer",
+        breadcrumb: [{ title: "", url: "" }],
+      },
+    },
+    {
       path: "/subscription",
       name: "event",
       component: () => import("/src/components/Subscription/Index.vue"),
@@ -489,7 +506,7 @@ const router = createRouter({
         {
           path: "error-404",
           name: "page-error-404",
-          component: () => import("/src/views/Pages/Error404.vue"),
+          component: () => import("/src/views/Pages/Error404.vue"), // Page not found
           meta: {
             requiresLogin: false,
             title: "Error 404 | Not Found",
@@ -499,7 +516,7 @@ const router = createRouter({
         {
           path: "error-500",
           name: "page-error-500",
-          component: () => import("/src/views/Pages/Error500.vue"),
+          component: () => import("/src/views/Pages/Error500.vue"), // Maintenance
           meta: {
             requiresLogin: false,
             title: "Error 500 | Server Error",
@@ -533,6 +550,23 @@ const router = createRouter({
       redirect: "/pages/error-404",
     },
   ],
+});
+
+let shouldShowLoadingBar = false;
+
+router.beforeEach((to, from, next) => {
+  shouldShowLoadingBar = to.meta?.showLoadingBar !== false;
+
+  if (shouldShowLoadingBar) {
+    NProgress.start();
+  }
+  next();
+});
+
+router.afterEach(() => {
+  if (shouldShowLoadingBar) {
+    NProgress.done();
+  }
 });
 
 router.afterEach(() => {
@@ -594,5 +628,6 @@ router.beforeEach((to, from, next) => {
 
   document.title = to.meta.title;
 });
+
 
 export default router;

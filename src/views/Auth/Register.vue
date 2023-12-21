@@ -360,15 +360,12 @@
                   </div>
 
                   <div class="d-grid gap-2 btn-sign-up">
-                    <button
-                      class="btn btn-primary"
-                      type="submit"
-                      :disabled="!agree_term && !isDisabled"
-                    >
-                      <span v-if="isLoading">
-                        <i class="busy-submitting"></i>Create Account
-                      </span>
-                      <span v-else>Create Account</span>
+
+                    <button type="submit" class="btn btn-primary" :disabled="!agree_term && !isDisabled" v-if="showCreateAccountBtn" >
+                      Create Account
+                    </button>
+                    <button type="button" class="btn btn-primary" v-else>
+                      <LoadingIndicator />
                     </button>
                   </div>
 
@@ -392,6 +389,7 @@ import SocialButton from "@/components/Auth/SocialLogin.vue";
 import Verify from "@/components/Auth/Verify.vue";
 import { mapActions, mapGetters, mapMutations, mapState } from "vuex";
 import Layout from "/src/components/Layouts/AuthLayout.vue";
+import LoadingIndicator from "/src/components/LoadingIndicator.vue";
 
 import Joi from "joi";
 
@@ -400,6 +398,7 @@ export default {
     layout: Layout,
     "social-button": SocialButton,
     "verify-card": Verify,
+    LoadingIndicator
   },
   data() {
     return {
@@ -416,9 +415,9 @@ export default {
       agree_term: false,
       isDisabled: false,
       showRadioButtons: true,
-      isLoading: false,
       isSignup: true,
       schema: null,
+      showCreateAccountBtn: true,
     };
   },
   props: {
@@ -580,9 +579,9 @@ export default {
       this.message = msg;
     },
     validate() {
+      this.showCreateAccountBtn = false;
       this.isDisabled = true;
       this.errors = [];
-      this.isLoading = true;
       this.getFormattedPhone();
       console.log("Registration Form Data: ", this.form);
 
@@ -592,7 +591,6 @@ export default {
           allowUnknown: true,
         })
         .then(async (validated) => {
-          this.isLoading = false;
 
           console.log("Valid Form data ", this.form);
 
@@ -603,6 +601,7 @@ export default {
                 // setTimeout(() =>
                 // {
                 this.isDisabled = false;
+                this.showCreateAccountBtn = true;
                 // }, 3000)
               });
 
@@ -623,20 +622,18 @@ export default {
               this.errors = errors || {};
             })
             .finally((o) => {
-              this.isLoading = false;
             });
         })
         .catch((err) => {
-          this.isLoading = false;
-
+          this.showCreateAccountBtn = true;
           err.details.forEach((error) => {
             this.errors[error.path[0]] = [error.message];
           });
         });
     },
     async submit() {
-      this.isDisabled = true;
-      this.isLoading = true;
+      this.isDisabled = false;
+      this.showCreateAccountBtn = false;
       this.form.phone = this.formatPhone;
 
       console.log("Form: ", this.form);
@@ -657,7 +654,7 @@ export default {
           if (statusCode === 201) {
             // Send OTP
             // this.phoneOTP(result?.user_id);
-
+            this.showCreateAccountBtn = false;
             this.step = "";
             // setTimeout(() => this.countdown--, 100);
 
@@ -687,7 +684,7 @@ export default {
               "\nErrors: ",
               this.errors
             );
-            this.isLoading = false;
+            this.showCreateAccountBtn = true;
           }
         })
         .catch((err) => {
