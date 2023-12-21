@@ -2,7 +2,7 @@
   <main>
     <SubscriptionModal />
     <header class="main-nav">
-      <nav class="navbar navbar-expand-lg">
+      <nav class="navbar navbar-expand-lg navbar-light justify-content-end">
         <div class="container">
           <router-link :to="isLoggedIn ? '/dashboard' : '/'" class="navbar-brand logo">
             <img src="/assets/geebu-logo.svg" alt="Geebu logo">
@@ -13,7 +13,7 @@
           </button>
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0" >
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0" >
               <li class="nav-item">
                 <router-link to="/" v-if="['','customers',].includes(userRole)">Home</router-link>
               </li>
