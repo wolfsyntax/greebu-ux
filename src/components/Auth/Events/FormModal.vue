@@ -7,9 +7,9 @@
           <div>
             <img ref="uploadedImage" class="uploaded-image" :src="cover" alt="banner-modal" />
           </div>
-          
-          <button class="remove-image" @click="removeBanner" >
-            <span class="material-symbols-outlined">&#xe5cd;</span> 
+
+          <button class="remove-image" @keydown.enter.prevent="removeBanner">
+            <span class="material-symbols-outlined">&#xe5cd;</span>
           </button>
         </div>
       </div>
@@ -196,44 +196,28 @@ export default {
       'fetchEventOptions', 'createEvent', 'verifyEvent',
     ]),
     setCover(val) {
-  if (val) {
-    const compressor = new Compressor(val, {
-      quality: 0.6,
-      success: (result) => {
-        const formData = new FormData();
-        formData.append('files', result, result.name);
-        
-        this.form.cover_photo = result;
-        
-        this.form.cover = URL.createObjectURL(result);
-        
-        console.log('Set Cover:: ', this.form.cover);
-      },
-      error: (err) => {
-        console.log(err.message);
-      },
-    });
-  }
-},
-    removeBanner()
-    {
-      this.form.cover = '';
-      this.form.cover_photo = '';
-      this.cover = '';
-      // this.error.cover_photo = '';
+      if (val) {
+        this.form.cover_photo = val;
+        this.form.cover = URL.createObjectURL(val);
+        this.cover = URL.createObjectURL(val);
+      }
     },
-    back()
-    {
-      this.$emit('next-step', 'cover');
-      this.$emit('prev');
+    removeBanner(event) {
+      if (event.key === "Enter" || event.key === "Tab") {
+        return;
+      }
+      this.form.cover = "";
+      this.form.cover_photo = "";
+      this.cover = "";
     },
-    submit()
-    {
-      this.showSubmitButtonForm2 = false;
-      console.log('Emit: ', this.form);
-      if (this.accessType !== 'create') {
-        console.log('Form modal submit: ', (typeof this.form.cover_photo))
-        if (typeof this.form.cover_photo === 'string') delete this.form.cover_photo;
+
+    submit() {
+      this.isLoading = true;
+      console.log("Emit: ", this.form);
+      if (this.accessType !== "create") {
+        console.log("Form modal submit: ", typeof this.form.cover_photo);
+        if (typeof this.form.cover_photo === "string")
+          delete this.form.cover_photo;
         delete this.form.lat;
         delete this.form.long;
         this.form.mode = 'update';

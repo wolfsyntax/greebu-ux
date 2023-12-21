@@ -19,7 +19,7 @@
       <div class="text-center">
 
         <button type="submit" :disabled="!(validType && validUrl)" class="btn btn-success add-social-media" v-if="showAddBtn">Add</button>
-        <button type="submit" class="btn btn-success add-social-media" v-else><LoadingIndicator /></button>
+        <button type="button" class="btn btn-success disabled add-social-media" v-else><LoadingIndicator /></button>
 
       </div>
     </form>
