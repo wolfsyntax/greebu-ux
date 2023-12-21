@@ -214,7 +214,9 @@ export default {
       console.log('Back')
     },
     submit() {
-      this.isLoading = true;
+
+      this.showSubmitButtonForm2 = false;
+      
       console.log("Emit: ", this.form);
       if (this.accessType !== "create") {
         console.log("Form modal submit: ", typeof this.form.cover_photo);
