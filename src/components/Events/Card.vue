@@ -36,12 +36,11 @@
 
       <div class="row">
         <div class="col">
+
           <div class="seeking-for" v-if="(userRole === 'artists' || userRole === 'organizer') && event.look_types.length > 0" >
             <h6 class="title">Seeking for</h6>
-            <span class="badge type-artist text-capitalize" v-for="(look, index) in event.look_types.slice(0,1)" :key="index">{{ look.length > 10 ? look.substring(0,11) : look }}</span>
-
-            <!-- <span class="badge type-artist text-capitalize" v-for="(look, index) in event.look_types.slice(0,1)" :key="index">{{ look.length > 10 ? look.substring(0,11) : look }}{{ (look.length > 11) ? '...': ''}}</span>
-            <span class="badge type-artist bg-transparent" v-if="event.look_types.length > 1">...</span> -->
+            <span class="badge type-artist text-capitalize" v-for="(look, index) in event.look_types.slice(0,1)" :key="index">{{ look.length > 10 ? look.substring(0,11) : look }}{{ (look.length > 11) ? '...': ''}}</span>
+            <span class="badge type-artist bg-transparent" v-if="event.look_types.length > 1">...</span>
           </div>
 
           <!-- set the opacity to 0 on this div when the created event has no Seeking for -->
@@ -49,6 +48,7 @@
             <h6 class="title" style="opacity: 0;">Seeking for</h6>
             <span class="badge type-artist text-capitalize" style="opacity: 0;">{{ 'acoustic band'.substring(0,11)}}...</span>
           </div>
+
         </div>
 
         <div class="col">
