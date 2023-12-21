@@ -345,6 +345,8 @@ export default {
   },
   mounted()
   {
+    console.log('Route Meta ', this.$route);
+    console.log('Router Meta ', this.$router);
 
     this.$store.dispatch("fetchNotifications");
     // setInterval(() => {

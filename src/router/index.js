@@ -33,6 +33,7 @@ const router = createRouter({
         requiresLogin: false,
         role: "",
         breadcrumb: defaultMenu,
+
       },
       children: [
         {
@@ -94,6 +95,7 @@ const router = createRouter({
             role: "",
             parent: "create-song",
             breadcrumb: [{ title: "", url: "" }],
+           // shouldShowLoadingBar: true
           },
         },
         {
@@ -553,7 +555,7 @@ const router = createRouter({
 let shouldShowLoadingBar = false;
 
 router.beforeEach((to, from, next) => {
-  shouldShowLoadingBar = to.meta.showLoadingBar !== false;
+  shouldShowLoadingBar = to.meta?.showLoadingBar !== false;
 
   if (shouldShowLoadingBar) {
     NProgress.start();
