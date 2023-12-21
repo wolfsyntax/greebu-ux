@@ -57,7 +57,6 @@
                     <LoadingIndicator />
                   </button>
 
-
                 </div>
               </form>
             </div> <!-- end of content -->
