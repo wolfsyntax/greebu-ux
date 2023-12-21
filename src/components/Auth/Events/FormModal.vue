@@ -311,10 +311,7 @@ export default {
         this.cover = URL.createObjectURL(val);
       }
     },
-    removeBanner(event) {
-      if (event.key === "Enter" || event.key === "Tab") {
-        return;
-      }
+    removeBanner() {
       this.form.cover = "";
       this.form.cover_photo = "";
       this.cover = "";
