@@ -66,7 +66,7 @@
                     <span class="material-symbols-rounded forward-icon">&#xe941;</span>
                   </button>
 
-                  <button type="submit" class="btn disabled btn-primary w-100" v-else>
+                  <button type="button" class="btn disabled btn-primary w-100" v-else>
                       <LoadingIndicator />
                   </button>
 
