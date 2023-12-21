@@ -625,7 +625,7 @@ export default {
             });
         })
         .catch((err) => {
-
+          this.showCreateAccountBtn = true;
           err.details.forEach((error) => {
             this.errors[error.path[0]] = [error.message];
           });
