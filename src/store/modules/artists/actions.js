@@ -106,13 +106,14 @@ export const addMember = ({ commit, rootState, state }, payload) => {
 
           const {
             status: statusCode,
-            data: { result, status },
+            data: { result, status, message },
           } = response;
           if (statusCode === 200 && status === 200) {
             const { members } = result;
             commit("SET_MEMBERS", members);
+            resolve({ status: statusCode, message, result: result });
           }
-          resolve(response.data);
+          reject({ message, status: statusCode, result });
         })
         .catch((err) => {
           reject(err);
@@ -250,9 +251,9 @@ export const updateMember = ({ commit, rootState, state }, payload) => {
           ) {
             const { members } = result;
             commit("SET_MEMBERS", members);
+            resolve({ status: statusCode, message, result: result });
           }
-
-          resolve(response.data);
+          reject({ message, status: statusCode, result });
         })
         .catch((err) => {
           reject(err);
