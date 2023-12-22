@@ -9,7 +9,7 @@
                <img ref="uploadedImage" class="uploaded-image" :src="cover" alt="banner-modal" />
              </div>
              
-             <button class="remove-image" @click="removeBanner" >
+             <button type="button" class="remove-image" @click="removeBanner" >
                <span class="material-symbols-outlined">&#xe5cd;</span> 
              </button>
            </div>
@@ -71,6 +71,7 @@ export default {
     }
   },
   mounted(){
+    if (this.form.cover) this.cover = this.form.cover
   },
   methods: {
     ...mapActions([
