@@ -25,7 +25,7 @@
         <!-- <NoLibrary :title="FeaturedArtistTitle" :showFeaturedArtistBtn="true"/> -->
 
          <!-- Show Artists -->
-         <div id="ShowArtistLists">
+         <!-- <div id="ShowArtistLists">
               <div class="row">
                 <div class="col-sm-12 col-md-6 col-lg-3" v-for="(artist, itemIndex) in artists" :key="itemIndex">
                   
@@ -64,7 +64,67 @@
 
                 </div>
               </div> 
+        </div>  -->
+
+
+        <section>
+        <div class="container">
+
+          <div id="ShowArtistLists">
+              <div class="row">
+                <div class="col-sm-12 col-md-6 col-lg-3" v-for="(artist, itemIndex) in artists" :key="itemIndex">
+                  
+                  <div class="card">
+                    <img :src="artist.avatar" class="card-img-top img-fluid" loading="lazy" alt="Trending Artist"/>
+                    <div class="middle">
+                      <button class="btn btn-primary" @click="openModal" data-bs-toggle="modal" data-bs-target="#artistModal">View Details</button>
+                    </div>
+                    <div class="card-body">
+
+                      <div> 
+
+                        <div class="artist">
+                          <h5 class="card-title">{{ artist.artist_name }}</h5>
+                          <h6 class="card-text">{{ artist.artist_type }}</h6>
+                          <p class="d-flex align-items-center artist-reviews-wrap">
+                            <span class="material-symbols-sharp star-icon">&#xe838;</span>
+                            {{ artist.ratings }} <span class="reviews">({{ artist.reviews }} reviews)</span>
+                            </p>
+
+                        </div>
+                        <div class="audio-btn">
+                          <div class="play-btn">
+                            <button type="button" class="btn border-0" @click="play(itemIndex)">
+                              <span class="material-symbols-sharp">&#xe1c4;</span>
+                            </button>
+                          </div>
+                        </div>
+
+                      </div>
+
+                    </div>
+                  </div>
+
+                </div>
+              </div> 
         </div> 
+
+        <div>
+          <audio-player
+            ref="audioPlayer"
+            :audio-list="audioList"
+            :before-play="handleBeforePlay"
+            theme-color="#ff2929"
+          />
+        </div>
+
+        <div>
+          <pre>{{ artists }}</pre>
+        </div>
+
+        </div>
+      </section>
+      
 
       </div> <!-- end of Featured Artist tab-->
 
@@ -98,6 +158,7 @@ import NoLibrary from '/src/components/NoLibrary.vue';
 import Card from '/src/components/Artist/Card.vue';
 import MyEvents from '/src/components/Dashboard/Tabs/Events/Index.vue';
 import ArtistDetails from '/src/components/Artist/ArtistDetails.vue';
+import AudioPlayer from '@liripeng/vue-audio-player'
 
 export default {
   components: {
@@ -107,6 +168,7 @@ export default {
     MyEvents,
     Card,
     ArtistDetails,
+    AudioPlayer
   },
   props: {
     artist: Object,
@@ -122,12 +184,44 @@ export default {
     FeaturedArtistTitle: 'No featured artist to display',
     EventsVideoTitle: 'No videos to display',
     createdEventsTitle: 'No events to display',
+
+      currentAudioName: '',
+      currentAudioSong: '',
+      audioList: [], 
+   
     }
   },
   mounted() {
+  this.$store.commit('setArtistProfile');
+  //this.$store.commit('CLEAR_ARTIST')
+  this.artistOptions();
+  var payload = {};
+  
+  this.fetchArtists(payload)
+    .then(response => {
+      console.log('Artist.vue: ', response);
+    });
+
+  this.$nextTick(() => {
+    // this.audioPlayer = this.$refs.audioPlayer.$el; 
+    // if (this.audioPlayer) {
+    //   this.audioPlayer.addEventListener('play', () => {
+    //     this.isPlaying = true;
+    //   });
+    //   this.audioPlayer.addEventListener('pause', () => {
+    //     this.isPlaying = false;
+    //   });
+    // }
+
+    // this.audioList = this.artists.map(elm => elm.song);
+    this.title = this.audioList[0].artist_name;
+    this.$refs.audioPlayer.play();
+  });
 },
 
   created() {
+    // Populate the audioList when the component is created
+    this.audioList = this.artists.map(elm => elm.song);
 
   },
   computed: {
@@ -141,8 +235,30 @@ export default {
     ...mapActions([
       'fetchArtists', 'artistOptions',
     ]),
-  
+  //   handleBeforePlay(next) {
+  //     this.currentAudioName = this.artists[this.$refs.audioPlayer.currentPlayIndex].artist_name;
+  //     next();
+  //   },
+  //   playArtistSong(index) {
+  //     this.$refs.audioPlayer.currentPlayIndex = index;
+  //     this.playAudio();
+  // },
+  handleBeforePlay(next) {
+      this.currentAudioName = this.artists[this.$refs.audioPlayer.currentPlayIndex].artist_name;
+      next(); // start playing
+    },
+    play(index) {
+      this.$refs.audioPlayer.currentPlayIndex = index;
+      this.$nextTick(() => {
+        this.$refs.audioPlayer.play();
+        this.title = this.audioList[
+          this.$refs.audioPlayer.currentPlayIndex
+        ].artist_name;
+      });
+    },
+
     openModal(){
+      
       this.$store.commit('SET_ARTIST', this.artist);
     },
     

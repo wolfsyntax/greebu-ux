@@ -102,14 +102,119 @@
           </FilterResults>
 
         <!-- Show Artists -->
-        
+        <div id="ShowArtists" class="carousel slide">
+          <div class="carousel-inner">
+            <div class="carousel-item" v-for="(slide, index) in artists" :key="index"
+              :class="{ active: index === activeSlide }">
+              <!-- <div class="carousel-item"> -->
+              <div class="row">
+                <div class="col-3" v-for="(artist, itemIndex) in artists" :key="itemIndex">
+                  <!-- <card :artist="artist" @play="playButton" :cardIndex="itemIndex" :switchIcon="audioPlayer" /> -->
+                  <card :artist="artist" @play="playButton" :cardIndex="itemIndex" />
+                </div>
+              </div> 
+            </div>
+          </div> 
+        </div> 
+
+        <!-- Show this button if there are more than 12 entries -->
+
+        <div class="button-wrapper">
+          <!-- <button class="btn btn-primary see-more-btn">SEE MORE ARTIST</button> -->
+          
+          <button type="button" @click="page++" class="btn btn-primary see-more-btn">
+            <LoadingVue :infoText="buttonName" v-if="isLoading" />
+            <span v-else>{{ buttonName }}</span>
+          </button>
+        </div>
                                                           
       </div> <!-- end of container  -->   
+      
+       <!-- hidden audio controls -->
+       <div class="audio-controls-fixed" v-show="showControls">
+        <div class="d-flex align-items-center audio-menu">
+          <div class="artist">
+            <div class="card">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img :src="artist?.avatar" class="img-fluid" alt="Artist Image" />
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ artist?.artist_name }}</h5>
+                    <p class="card-text">{{ artist?.artist_type }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="audio-controls">
+            <audio ref="audioPlayer" controls style="display: none;"></audio>
+            <div class="main-controls">
+              <button @click="playPrevious" class="btn btn-primary prev">
+              </button>
+              <button @click="togglePlayPause" class="btn btn-primary play">
+                <img :src="playIconClass">
+              </button>
+              <button @click="playNext" class="btn btn-primary next"></button>
+            </div>
 
-      <section>
-        <card :artists="artists"></card>
-      </section>
-        
+            <div class="song-timeline">
+              <div class="current-time">
+                {{ currentTime }}
+              </div>
+              <div class="timeline" @click="clickProgress" style="cursor: pointer;">
+                <div class="progress-bar" :style="{ width: progressBarWidth }"></div>
+              </div>
+              <div class="duration">
+                {{ duration }}
+              </div>
+            </div>
+
+            <!-- <div class="song-timeline" ref="progress">
+              <div class="current-time">{{ currentTime }}</div>
+              <div class="timeline" @click="clickProgress" style="cursor: pointer;">
+                <div class="progress-bar" :style="{ width: progressBarWidth }"></div>
+              </div>
+              <div class="duration">{{ duration }}</div>
+            </div> -->
+
+          </div>
+
+          <div class="stop-song">
+            <div class="volume-wrapper">
+              <button @click="toggleMute" class="btn btn-primary volume">
+                <i :class="`bi ${volumeIcon}`"></i>
+              </button>
+              <div class="" style="display: none;">
+                <button @click="showVolumeSlider = !showVolumeSlider" class="btn btn-primary">
+                  <i class="bi bi-volume-up"></i>
+                </button>
+              </div>
+              <div v-if="showVolumeSlider" class="volume-slider">
+                <input type="range" min="0" max="100" v-model="currentVolume" class="form-range" @input="updateVolume">
+              </div>
+            </div>
+            <i class="bi bi-x" @click="stopAudio"></i>
+          </div>
+        </div>
+      </div> 
+
+      <!-- <AudioMenu 
+      :artist="artist"
+      @play-previous="playPrevious" 
+      @toggle-play-pause="togglePlayPause"
+      @play-next="playNext"
+      :currentTime="currentTime"
+      :duration="duration"
+      @toggle-mute="toggleMute"
+      :currentVolume="volumeIcon"
+      :showVolumeSlider="showVolumeSlider"
+      @update:currentVolume="updateVolume"
+      @stop-audio="stopAudio"
+      :showControls="showControls"
+      >
+      </AudioMenu> -->
 
     </section>
 
@@ -127,6 +232,7 @@ import Card from '/src/components/Artist/Card.vue';
 import Faq from '/src/components/Home/FAQ.vue';
 import FilterResults from "/src/components/FilterResults.vue";
 import LoadingVue from '/src/components/Loading.vue';
+//import AudioMenu from '/src/components/Artist/Audiomenu.vue';
 import { mapGetters, mapState, mapActions, mapMutations, storeKey } from "vuex";
 import MustSignup from '/src/components/Artist/MustSignupModal.vue';
 
@@ -139,6 +245,7 @@ export default {
     FilterResults,
     LoadingVue,
     MustSignup,
+   // AudioMenu
   },
   setup()
   {
@@ -161,21 +268,21 @@ export default {
       ],
       ratingImage: 'https://res.cloudinary.com/daorvtlls/image/upload/v1687321042/rating-star-small_axozjd.svg',
       showControls: false,
-      // audioPlayer: null,
-      // currentIndex: 0,
-      // activeSlide: 0,
-      // lastActiveSlide: 0,
-      // isPlaying: false,
-      // isMuted: false,
-      // currentTime: null,
-      // duration: null,
-      // progressBarWidth: '0%',
-      // showVolumeSlider: false,
-      // currentVolume: 100,
-      // showVolumeSlider: true,
-      // muted: false,
-      // isTimerPlaying: false,
-    
+      audioPlayer: null,
+      currentIndex: 0,
+      activeSlide: 0,
+      lastActiveSlide: 0,
+      isPlaying: false,
+      isMuted: false,
+      currentTime: null,
+      duration: null,
+      progressBarWidth: '0%',
+      showVolumeSlider: false,
+      currentVolume: 100,
+      showVolumeSlider: true,
+      muted: false,
+      isTimerPlaying: false,
+
       artist_type: null,
       genre: null,
       search: '',
@@ -184,14 +291,13 @@ export default {
       // per_page: 16,
       page: 1,
       isLoading: false,
-     // buttonName: 'SEE MORE ARTIST',
+      buttonName: 'SEE MORE ARTIST',
       someIcon: 'play',
 
     };
   },
   mounted()
   {
-    console.log('Artists:', this.artists);
     this.$store.commit('setArtistProfile');
 
     this.SET_FILTERED_ARTIST({});
@@ -208,16 +314,15 @@ export default {
       {
         console.log('Artist.vue: ', response);
       })
-
-    // this.audioPlayer = this.$refs.audioPlayer;
-    // this.audioPlayer.addEventListener('play', () =>
-    // {
-    //   this.isPlaying = true;
-    // });
-    // this.audioPlayer.addEventListener('pause', () =>
-    // {
-    //   this.isPlaying = false;
-    // });
+    this.audioPlayer = this.$refs.audioPlayer;
+    this.audioPlayer.addEventListener('play', () =>
+    {
+      this.isPlaying = true;
+    });
+    this.audioPlayer.addEventListener('pause', () =>
+    {
+      this.isPlaying = false;
+    });
   },
   computed: {
     ...mapGetters(["userInfo", "token", "isLoggedIn", "userRole",]),
@@ -254,156 +359,170 @@ export default {
     ...mapMutations([
       'SET_FILTERED_ARTIST'
     ]),
-    // handleBeforePlay(next) {
-    //   this.currentAudioName = this.artists[this.$refs.audioPlayer.currentPlayIndex].artist_name
 
-    //   next() 
-    // },
-    // playArtistSong(index) {
-    //   this.currentAudioName = this.artists[index].song;
-    //   console.log('play');
-    //   this.$refs.audioPlayer.play();  
-    // },
+    playButton(val, cardIndex)
+    {
 
-    // handleBeforePlay(next) {
-    //   this.currentAudioName = this.artists[this.$refs.audioPlayer.currentPlayIndex].artist_name;
-    //   next(); // start playing
-    // },
-    // playArtistSong(index) {
-    //   this.$refs.audioPlayer.play();
-    //   this.$refs.audioPlayer.currentPlayIndex = index;
-    // },
+      this.artist = val;
 
-    // playButton(val, cardIndex)
-    // {
-
-    //   this.artist = val;
-
-    //   if (this.audioPlayer) {
-    //     console.log('audioPlayer is initialized')
-    //     if (this.showControls) {
-    //       if (this.audioPlayer.paused) {
-    //         this.audioPlayer.play();
-    //         this.isPlaying = true;
-    //         this.icon = 'play';
-    //       } else {
-    //         this.audioPlayer.pause();
-    //         this.isPlaying = false;
-    //         this.icon = 'pause';
-    //       }
-    //     } else {
-    //       this.currentIndex = cardIndex;
-    //       this.playSong();
-    //       this.icon = 'pause';
-    //       this.showControls = true;
-    //       this.isPlaying = true;
-    //     }
-    //   }
-    // },
+      if (this.audioPlayer) {
+        console.log('audioPlayer is initialized')
+        if (this.showControls) {
+          if (this.audioPlayer.paused) {
+            this.audioPlayer.play();
+            this.isPlaying = true;
+            this.icon = 'play';
+          } else {
+            this.audioPlayer.pause();
+            this.isPlaying = false;
+            this.icon = 'pause';
+          }
+        } else {
+          this.currentIndex = cardIndex;
+          this.playSong();
+          this.icon = 'pause';
+          this.showControls = true;
+          this.isPlaying = true;
+        }
+      }
+    },
     
-    // togglePlayPause()
-    // {
-    //   if (this.audioPlayer) {
-    //     if (this.audioPlayer.paused) {
-    //       this.audioPlayer.play();
-    //     } else {
-    //       this.audioPlayer.pause();
-    //     }
-    //   }
+    togglePlayPause()
+    {
+      if (this.audioPlayer) {
+        if (this.audioPlayer.paused) {
+          this.audioPlayer.play();
+        } else {
+          this.audioPlayer.pause();
+        }
+      }
+    },
+    playNext()
+    {
+      if (this.currentIndex < this.artists.length - 1) {
+        this.currentIndex++;
+      } else {
+        this.currentIndex = 0;
+      }
+      // this.activeSlide = Math.floor(this.currentIndex / 6);
+      this.SET_FILTERED_ARTIST(this.artists[this.currentIndex]);
+      this.playSong();
+    },
+    // clickProgress(e){
+    //   this.isTimerPlaying = true;
+    //   this.audioPlayer.pause();
+    //   this.updateBar(e.pageX);
     // },
-    // playNext()
-    // {
-    //   if (this.currentIndex < this.artists.length - 1) {
-    //     this.currentIndex++;
-    //   } else {
-    //     this.currentIndex = 0;
+    // updateBar(x) {
+    //   let timeline = this.$refs.progress;
+      
+    //   if (!timeline) {
+    //     console.error("Timeline ref not found");
+    //     return;
     //   }
-    //   this.SET_FILTERED_ARTIST(this.artists[this.currentIndex]);
-    //   this.playSong();
-    // },
-    // playPrevious()
-    // {
-    //   if (this.currentIndex > 0) {
-    //     this.currentIndex--;
-    //   } else {
-    //     this.currentIndex = this.artists.length - 1;
-    //   }
-    //   this.SET_FILTERED_ARTIST(this.artists[this.currentIndex]);
 
-    //   this.playSong();
+    //   let maxduration = this.timeline;
+    //   let position = x - timeline.offsetLeft;
+    //   let percentage = (100 * position) / timeline.offsetWidth;
+      
+    //   if (percentage > 100) {
+    //     percentage = 100;
+    //   }
+    //   if (percentage < 0) {
+    //     percentage = 0;
+    //   }
+
+    //   this.progressBarWidth = percentage + "%";
+    //   this.currentTime = (maxduration * percentage) / 100;
     // },
 
-    // playSong()
-    // {
-    //   if (this.audioPlayer) {
-    //     console.log('Current Playing song: ', this.filterArtist?.song);
-    //     this.audioPlayer.src = this.filterArtist?.song;
-    //     this.audioPlayer.load();
-    //     var audioPlay = this.audioPlayer.play()
-    //       .then(res =>
-    //       {
+    playPrevious()
+    {
+      if (this.currentIndex > 0) {
+        this.currentIndex--;
+      } else {
+        this.currentIndex = this.artists.length - 1;
+      }
+      // this.activeSlide = Math.floor(this.currentIndex / 6);
+      this.SET_FILTERED_ARTIST(this.artists[this.currentIndex]);
+
+      this.playSong();
+    },
+
+    playSong()
+    {
+      
+      if (this.audioPlayer) {
+        console.log('Current Playing song: ', this.filterArtist?.song);
+        this.audioPlayer.src = this.filterArtist?.song;
+        this.audioPlayer.load();
+        var audioPlay = this.audioPlayer.play()
+          .then(res =>
+          {
             
-    //       })
-    //       .catch(err =>
-    //       {
-    //         audioPlay;
-    //       })
-    //   }
-    //   this.audioPlayer.addEventListener('loadedmetadata', () =>
-    //   {
-    //     this.duration = this.formatTime(this.audioPlayer.duration);
-    //   });
-  
-    //   this.audioPlayer.addEventListener('timeupdate', () =>
-    //   {
-    //     this.currentTime = this.formatTime(this.audioPlayer.currentTime);
-    //     this.updateProgressBar();
-    //   });
+          })
+          .catch(err =>
+          {
+            audioPlay;
+          })
+      }
+      // Update current time and duration when the metadata is loaded
+      this.audioPlayer.addEventListener('loadedmetadata', () =>
+      {
+        this.duration = this.formatTime(this.audioPlayer.duration);
+      });
 
-    //   console.log('Audio Player: ', this.audioPlayer);
-    // },
+      // Update current time during playback
+      this.audioPlayer.addEventListener('timeupdate', () =>
+      {
+        this.currentTime = this.formatTime(this.audioPlayer.currentTime);
+        this.updateProgressBar();
+      });
 
-    // stopAudio()
-    // {
-    //   if (this.audioPlayer) {
-    //     this.audioPlayer.pause();
-    //     this.showControls = false;
-    //   }
-    // },
-    // toggleMute()
-    // {
-    //   if (this.audioPlayer) {
-    //     this.audioPlayer.muted = !this.audioPlayer.muted;
-    //     this.isMuted = this.audioPlayer.muted;
-    //   }
-    // },
-    // formatTime(time)
-    // {
-    //   const minutes = Math.floor(time / 60);
-    //   const seconds = Math.floor(time % 60).toString().padStart(2, '0');
-    //   return `${minutes}:${seconds}`;
-    // },
+      console.log('Audio Player: ', this.audioPlayer);
+    },
 
-    // updateProgressBar()
-    // {
-    //   const progress = (this.audioPlayer.currentTime / this.audioPlayer.duration) * 100;
-    //   this.progressBarWidth = `${progress}%`;
-    // },
-    // updateVolume()
-    // {
-    //   if (this.audioPlayer) {
-    //     this.audioPlayer.volume = this.currentVolume / 100;
-    //   }
-    // },
-    // toggleMute()
-    // {
-    //   if (this.currentVolume === 0) {
-    //     this.currentVolume = this.previousVolume;
-    //   } else {
-    //     this.previousVolume = this.currentVolume;
-    //     this.currentVolume = 0;
-    //   }
-    // },
+    stopAudio()
+    {
+      if (this.audioPlayer) {
+        this.audioPlayer.pause();
+        this.showControls = false;
+      }
+    },
+    toggleMute()
+    {
+      if (this.audioPlayer) {
+        this.audioPlayer.muted = !this.audioPlayer.muted;
+        this.isMuted = this.audioPlayer.muted;
+      }
+    },
+    formatTime(time)
+    {
+      const minutes = Math.floor(time / 60);
+      const seconds = Math.floor(time % 60).toString().padStart(2, '0');
+      return `${minutes}:${seconds}`;
+    },
+
+    updateProgressBar()
+    {
+      const progress = (this.audioPlayer.currentTime / this.audioPlayer.duration) * 100;
+      this.progressBarWidth = `${progress}%`;
+    },
+    updateVolume()
+    {
+      if (this.audioPlayer) {
+        this.audioPlayer.volume = this.currentVolume / 100;
+      }
+    },
+    toggleMute()
+    {
+      if (this.currentVolume === 0) {
+        this.currentVolume = this.previousVolume;
+      } else {
+        this.previousVolume = this.currentVolume;
+        this.currentVolume = 0;
+      }
+    },
 
 
   },

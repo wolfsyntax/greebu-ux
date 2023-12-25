@@ -270,6 +270,31 @@ img {
   box-shadow: 0 0 0 0.1px var(--orange) !important;
 }
 
+/* Audio Controls */
+
+.audio__progress-wrap .audio__progress{
+  background-color: var(--orange)!important;
+}
+.audio__progress-wrap .audio__progress-point{
+  background-color: var(--orange)!important;
+}
+.audio-player .audio__progress-wrap{
+  background-color: #494949!important;
+}
+.audio-player .audio__play-rate{
+  color: #AAA!important;
+}
+.audio__play-prev, .audio__play-next, .audio__play-volume-icon-wrap svg{
+  color: #AAA!important;
+}
+.audio-player .audio__play-volume-icon-wrap .audio__play-volume-wrap .audio__play-volume, .audio__play-rate__dropdown{
+  background-color: var(--orange)!important;
+}
+.audio__play-start, .audio__play-pause{
+  color: var(--orange)!important;
+}
+
+
 /*  */
 
 /* Multi-select searc */
@@ -2936,7 +2961,7 @@ header nav {
 
 /* ARTISTS SECTION (EVENTS SECTION ON EVENTS PAGE & ORGANIZERS EVENTS ON ORAGNIZERS PAGE) */
 .artists .container {
-  margin-bottom: 150px;
+  margin-bottom: 1rem;
 }
 .artists .container .top-level-tite,
 .events-showing .container .events-showing-title {
