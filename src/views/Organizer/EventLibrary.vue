@@ -26,7 +26,6 @@
 
          <!-- Show Artists -->
          <div id="ShowArtistLists">
-              <!-- <div class="carousel-item"> -->
               <div class="row">
                 <div class="col-sm-12 col-md-6 col-lg-3" v-for="(artist, itemIndex) in artists" :key="itemIndex">
                   
@@ -50,11 +49,7 @@
                         </div>
                         <div class="audio-btn">
                           <div class="play-btn">
-                            <!-- <i :class="{
-                              'bi bi-play-circle-fill play-icon': !showControls || (showControls && currentIndex !== itemIndex),
-                              'bi bi-pause-circle-fill play-icon': showControls && currentIndex === itemIndex
-                            }" @click="toggleControls(artist)"></i> -->
-                            <button type="button" class="btn border-0">
+                            <button type="button" class="btn border-0" @click="playArtistSongs(itemIndex)">
                               <span class="material-symbols-sharp">&#xe1c4;</span>
                             </button>
                           </div>
@@ -64,10 +59,6 @@
 
                     </div>
 
-                    <!-- <button v-if="cardType !== 'page'" class="btn btn-primary select" @click="selectArtist(artist)" :class="{ 'selected': artist === chosenArtist }" >
-                      {{ changeSelectArtist(artist) }}
-                    </button>    
-                    <ArtistDetails/> -->
                     <ArtistDetails/>
                   </div>
 
@@ -115,7 +106,7 @@ export default {
     NoLibrary,
     MyEvents,
     Card,
-    ArtistDetails
+    ArtistDetails,
   },
   props: {
     artist: Object,
@@ -131,51 +122,30 @@ export default {
     FeaturedArtistTitle: 'No featured artist to display',
     EventsVideoTitle: 'No videos to display',
     createdEventsTitle: 'No events to display',
-
-    artists: [
-      {
-        id: 1,
-        artistId: 1,
-        avatar: '/assets/artist-account/song-cover1.webp',
-        artist_name: 'Jose Melvar',
-        artist_type: 'Solo',
-        music: 'https://res.cloudinary.com/daorvtlls/video/upload/v1697615328/Siakol___Tropa_Lyrics_Dina_Tayo_pabata_hanggat_Hindi_nahahalata___Siakolsonglyrics_tropalyrics_ndrbhu.mp4',
-        ratings: 4.5,
-        reviews: 123
-      },
-      {
-        id: 2,
-        artistId: 2,
-        avatar: '/assets/artist-account/song-cover2.webp',
-        artist_name: 'Maria Asuncion',
-        artist_type: 'Band',
-        music: 'https://res.cloudinary.com/daorvtlls/video/upload/v1687411546/rivermaya-elesi_xj8lcy.mp3',
-        ratings: 4.5,
-        reviews: 123
-      }
-      
-    ],
-    
-   
     }
   },
+  mounted() {
+},
 
-  methods: {
-    ...mapActions([]),
-    ...mapMutations([]),
-    openModal(){
-      
-      this.$store.commit('SET_ARTIST', this.artist);
-    },
-    
+  created() {
+
   },
   computed: {
     ...mapState({
       user: state => state.user,
+      artists: (state) => state.artist.artists,
     }),
     ...mapGetters(['isLoggedIn',]),
   },
-  mounted() {
+  methods: {
+    ...mapActions([
+      'fetchArtists', 'artistOptions',
+    ]),
+  
+    openModal(){
+      this.$store.commit('SET_ARTIST', this.artist);
+    },
+    
   },
   
 }
