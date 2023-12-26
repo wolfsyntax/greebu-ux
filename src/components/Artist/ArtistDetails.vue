@@ -79,8 +79,8 @@
                   <div class="text-start">
                     <!-- <h5 class="artist-song" >{{ artist?.songName }}</h5>
                     <p class="artist-band" >{{ artist?.name }}</p> -->
-                    <h5 class="two-lines artist-song">{{ selectedArtist?.song_title || 'song title' }}</h5>
-                    <p class="two-lines artist-band">{{ selectedArtist?.artist_name }}</p>
+                    <h5 class="two-lines artist-song">{{ selectedArtist?.song_title || 'Song Title' }}</h5>
+                    <p class="two-lines artist-band">{{ selectedArtist?.artist_type || 'Artist' }}</p>
                   </div>
                 </div>
 
