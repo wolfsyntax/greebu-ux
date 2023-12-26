@@ -810,6 +810,7 @@
                       <div
                         class="d-flex align-items-center remove-music-wrapper"
                       >
+                      <div v-if="compressing">Compressing...</div>
                         <img
                           :src="playIcon"
                           @click="togglePlay()"
@@ -971,6 +972,8 @@ export default {
       invalidAudio: false,
 
       parentAvatar: "",
+
+      compressing: false
     };
   },
   setup() {
