@@ -895,7 +895,7 @@ import Multiselect from "@vueform/multiselect";
 import ProfileModal from "/src/components/Dashboard/Modals/ProfileModal.vue";
 import LoadingIndicator from "/src/components/LoadingIndicator.vue";
 import SuccesModal from "/src/components/SuccessModal.vue";
-import pako from 'pako';
+import { gzip } from 'pako'
 
 export default {
   components: {
@@ -907,7 +907,7 @@ export default {
     ProfileModal,
     LoadingIndicator,
     SuccesModal,
-    pako
+    gzip
   },
   data() {
     return {
@@ -1186,14 +1186,10 @@ export default {
       fileReader.onloadend = function (e) {
 
           const fileContent = fileReader.result;
-          const compressedContent = pako.gzip(fileContent, { to: 'string' });
+          const compressedContent = gzip(fileContent, { to: 'string' });
 
           // size after compression in kilobytes
           console.log('Compressed Audio File Size:', (compressedContent.length / 1024).toFixed(2), 'KB');
-
-            //   this.$nextTick(() => {
-      //     this.compressing = false;
-      //   });
 
         var arr = new Uint8Array(e.target.result).subarray(0, 4);
 

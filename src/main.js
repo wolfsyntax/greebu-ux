@@ -112,7 +112,7 @@ const app = createApp(App)
   //.component("circle-image", CircleImage)
   .component("v-calendar", FullCalendar)
   .component("n-progress", NProgress)
-  .component("pako", pako)
+   .component("pako", pako)
 
 app.config.globalProperties.$moment = moment;
 app.config.globalProperties.$filters = {
