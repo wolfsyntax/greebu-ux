@@ -54,7 +54,7 @@
 
               <div class="button-wrapper">
 
-                <button type="button" @click="$emit('page++')" class="btn btn-primary see-more-btn">
+                <button type="button" @click="$emit('paginate')" class="btn btn-primary see-more-btn">
                   SEE MORE ARTISTS
                 </button>
               </div>
@@ -86,7 +86,6 @@
                 :before-play="handleBeforePlay"
                 @play="handlePlay"
                 @pause="handlePause"
-                @ended="handleEnded"
               />
              </div>
 
@@ -234,7 +233,8 @@ export default {
     // },
 
     openModal(artist){
-      this.selectedArtist = artist; // Set the selected artist
+     // this.selectedArtist = artist; // Set the selected artist
+      this.selectedArtist = this.isLoggedIn ? artist : null;
     },
     
   },
