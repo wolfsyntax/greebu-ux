@@ -890,6 +890,7 @@ import Multiselect from "@vueform/multiselect";
 import ProfileModal from "/src/components/Dashboard/Modals/ProfileModal.vue";
 import LoadingIndicator from "/src/components/LoadingIndicator.vue";
 import SuccesModal from "/src/components/SuccessModal.vue";
+import pako from 'pako';
 
 export default {
   components: {
@@ -901,6 +902,7 @@ export default {
     ProfileModal,
     LoadingIndicator,
     SuccesModal,
+    pako
   },
   data() {
     return {

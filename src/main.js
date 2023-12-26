@@ -65,6 +65,7 @@ import interactionPlugin from "@fullcalendar/interaction";
 
 import Compressor from 'compressorjs';
 //import CircleImage from './components/CircleImage.vue'
+import pako from 'pako';
 
 const app = createApp(App)
   .use(i18n)
@@ -107,7 +108,8 @@ const app = createApp(App)
   .component("tree-item", TreeItem)
   //.component("circle-image", CircleImage)
   .component("v-calendar", FullCalendar)
-  .component("n-progress", NProgress);
+  .component("n-progress", NProgress)
+  .component("pako", pako)
 
 app.config.globalProperties.$moment = moment;
 app.config.globalProperties.$filters = {

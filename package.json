@@ -34,6 +34,7 @@
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.43",
     "nprogress": "^0.2.0",
+    "pako": "^2.1.0",
     "pusher-js": "^8.3.0",
     "sass-loader": "^13.3.2",
     "secure-ls": "^1.2.6",
