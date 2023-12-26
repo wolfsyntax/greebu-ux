@@ -130,14 +130,13 @@ export default {
       currentArtistType: '',
       currentSongTitle: '',
       currentAudioImage: '',
-      // isPlaying: true,
+ 
       playingIndex: null,
       showAudioPlayer: false,
       isAudioPlayerVisible: false,
       loading: true,
-      page: 1,
       selectedArtist: null,
-     // artists: []
+
     }
   },
   props: {
