@@ -54,7 +54,7 @@
         <div class="col">
           <div class="seeking-for" v-if="event?.artist">
             <h6 class="title" style="" >Performer</h6>
-            <p v-for="(artist, index) in event?.artist.slice(0,1)" :key="index" class="badge type-artist artist-popover text-capitalize">
+            <div v-for="(artist, index) in event?.artist.slice(0,1)" :key="index" class="badge type-artist artist-popover text-capitalize">
               <span :id="`event-${event.id}`"  data-bs-toggle="popover" data-bs-placement="right"
                 data-bs-html="true" @mouseover="show(artist, index)" data-bs-trigger="hover"
                 :data-bs-footer="`123`" :data-bs-content='`
@@ -111,7 +111,7 @@
                 </div> 
               </div>`'
               >{{ artist?.name.length > 10 ? artist?.name?.substring(0,11) : artist?.name }}{{ (artist?.name.length > 11) ? '...' : ''}}</span>
-            </p>
+            </div>
             <p v-if="event?.artist.length > 1" class="badge type-artist artist-popover bg-transparent">...</p>
           </div>
         </div>
@@ -200,7 +200,8 @@ export default {
         trigger: 'hover',
         placement: 'right',
         delay: {
-          show: 0, hide: 5000,
+          show: 500, // delay of showing .5sec
+          hide: 5000,
         },
         template: `
         <div class="popover" role="tooltip">
