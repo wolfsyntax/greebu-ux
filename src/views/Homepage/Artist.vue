@@ -107,7 +107,7 @@
       </div> <!-- end of container  -->   
 
       <section>
-        <card :artists="artists"></card>
+        <card :artists="artists" @page++="page++"></card>
       </section>
         
 

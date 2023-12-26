@@ -54,7 +54,7 @@
 
               <div class="button-wrapper">
 
-                <button type="button" @click="page++" class="btn btn-primary see-more-btn">
+                <button type="button" @click="$emit('page++')" class="btn btn-primary see-more-btn">
                   SEE MORE ARTISTS
                 </button>
               </div>
