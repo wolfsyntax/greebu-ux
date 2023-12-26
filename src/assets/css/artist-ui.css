@@ -2323,7 +2323,7 @@ img {
   border-radius: 0.3125rem;
   background-color: #fcfcff;
   margin: 1.5rem 0;
-  padding: 1.47rem 1.66rem;
+  padding: 1.47rem 1rem;
   border: 1px solid #cdd3d8;
   /* transition: all 1.5s ease-in-out; */
 }
@@ -2341,7 +2341,7 @@ img {
 }
 .profile-details .song-preview .uploaded-song-wrapper .song-title-wrapper,
 .submit-proposal-form .music-sample-wrap .song-title-wrapper {
-  width: 80%;
+  width: 70%;
 }
 .profile-details .song-preview .uploaded-song-wrapper .song-wrapper .song-title,
 .submit-proposal-form .music-sample-wrap .song-wrapper .song-title {
@@ -3657,6 +3657,40 @@ img {
   fill: var(--orange);
 }
 
+/* Uploading audio loader */
+
+.profile-details .loading-wrap{
+  gap: 0.5rem;
+}
+.profile-details .loading-wrap .spinner{
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: conic-gradient(
+  from 180deg at 50% 50%,
+  rgba(82, 0, 255, 0) 0deg,
+  var(--orange) 360deg);
+  animation: spin 2s infinite linear;
+}
+.profile-details .loading-wrap .spinner::before {
+  content: "";
+  border-radius: 50%;
+  width: 80%;
+  height: 80%;
+  background-color: var(--white);
+}
+@keyframes spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+.profile-details .loading-wrap .uploading{
+  color: var(--orange);
+  font-size: 1rem;
+  font-weight: 600;
+}
 
 /* Data from backend - array of objects at the bottom */
 .artist-data .container .user {
@@ -3683,6 +3717,23 @@ img {
   28px 1.75 rem
 */
 
+/* Uploading audio loader */
+
+.profile-details .loading-wrap{
+  gap: 0.3rem;
+}
+.profile-details .loading-wrap .spinner{
+  width: 1.1rem;
+  height: 1.1rem;
+}
+@keyframes spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+.profile-details .loading-wrap .uploading{
+  font-size: 0.8rem;
+}
   /* Follow and Book now button */
   .profile-page .profile-header .view-artist-btn-wrap {
     gap: 0.42rem;

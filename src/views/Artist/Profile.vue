@@ -778,6 +778,7 @@
                 </div>
 
                 <!-- Uploaded music -->
+                
                 <transition name="fade" mode="out-in">
                   <div v-if="uploadedSongWrapper" class="uploaded-song-wrapper">
                     <audio
@@ -791,7 +792,7 @@
                     <div
                       class="d-flex align-items-center justify-content-between song-wrapper"
                     >
-                      <div class="d-flex align-items-center song-title-wrapper">
+                      <div class="d-flex align-items-start song-title-wrapper">
                         <img
                           src="/assets/artist-account/mp3-icon.svg"
                           alt="Music icon"
@@ -807,10 +808,13 @@
                           </p>
                         </div>
                       </div>
+                        <div v-if="compressing" class="d-flex align-items-center loading-wrap">
+                          <div class="spinner"></div>
+                          <h5 class="mb-0 uploading">Uploading</h5>
+                        </div>
                       <div
                         class="d-flex align-items-center remove-music-wrapper"
                       >
-                      <div v-if="compressing">Compressing...</div>
                         <img
                           :src="playIcon"
                           @click="togglePlay()"
@@ -1180,6 +1184,17 @@ export default {
 
       fileReader.readAsArrayBuffer(file);
       fileReader.onloadend = function (e) {
+
+          const fileContent = fileReader.result;
+          const compressedContent = pako.gzip(fileContent, { to: 'string' });
+
+          // size after compression in kilobytes
+          console.log('Compressed Audio File Size:', (compressedContent.length / 1024).toFixed(2), 'KB');
+
+            //   this.$nextTick(() => {
+      //     this.compressing = false;
+      //   });
+
         var arr = new Uint8Array(e.target.result).subarray(0, 4);
 
         var header = "";
@@ -1189,6 +1204,7 @@ export default {
 
         self.tempMagic = header;
       };
+   
     },
     changeImage(event) {
       const file = event.target.files[0];
@@ -1373,6 +1389,28 @@ export default {
     handleMusicUpload(event) {
       const file = event.target.files[0];
 
+       this.compressing = true;
+      //  size before compression in megabytes
+      console.log('Original Audio File Size:', (file.size / 1024).toFixed(2), 'KB');
+
+      // const reader = new FileReader();
+
+      //   reader.onload = () => {
+      //     const fileContent = reader.result;
+
+      //     // Compress the file content using pako
+      //     const compressedContent = pako.gzip(fileContent, { to: 'string' });
+
+      //     // Log the size after compression in kilobytes
+      //     console.log('Compressed Audio File Size:', (compressedContent.length / 1024).toFixed(2), 'KB');
+
+      //     // Set compressing to false after 3 seconds
+      //     setTimeout(() => {
+      //       this.compressing = false;
+      //     }, 1000);
+      //   };
+      //  reader.readAsBinaryString(file);
+
       console.log("Handle Music Upload: ", file);
       this.targetMagic = "audio";
       //this.fileCheck(file);
@@ -1427,7 +1465,11 @@ export default {
             this.uploadDragSongBox = false;
             this.uploadedSongWrapper = true;
             this.defaultFileFormat = false;
+            setTimeout(() => {
+              this.compressing = false;
+            }, 5000);
 
+        
             // check if metadata exists
 
             //     const fileReader = new FileReader();
@@ -1517,6 +1559,7 @@ export default {
     handleDragOverSong(event) {
       event.preventDefault();
       this.isDragOver = true;
+      this.compressing = true;
     },
     handleDragLeaveSong(event) {
       event.preventDefault();
