@@ -57,7 +57,7 @@
 
         <div class="password-wrapper">
           <h4 class="title">Password</h4>
-          <p class="sub-title">Lorem ipsum dolor sit amet consectetur.</p>
+          <p class="sub-title">Update your security: change your password regularly.</p>
           <!-- Button trigger modal -->
 
           <button type="button" class="btn btn-primary" @click="showCurrentPasswordModal">

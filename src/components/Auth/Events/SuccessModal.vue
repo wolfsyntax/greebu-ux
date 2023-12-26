@@ -16,7 +16,6 @@
 </template>
 
 <script>
-import { Modal } from 'bootstrap';
 import { mapActions } from 'vuex';
 export default {
   props: {

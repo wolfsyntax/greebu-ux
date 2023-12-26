@@ -375,20 +375,21 @@
 
 
     <!-- <p><b>Account</b> - {{  account }}</p> -->
-
+    <SuccesModal/>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
 import Multiselect from '@vueform/multiselect';
-import StaffForm from './Forms/StaffForm.vue';
-import SocialMedia from "./Forms/SocialMedia.vue";
 import { Modal } from 'bootstrap';
 import Compressor from 'compressorjs';
+import { mapActions, mapGetters, mapMutations, mapState } from "vuex";
+import SocialMedia from "./Forms/SocialMedia.vue";
+import StaffForm from './Forms/StaffForm.vue';
 import Avatar from '/src/components/Cropper/Avatar.vue';
 import ProfileModal from '/src/components/Dashboard/Modals/ProfileModal.vue';
 import LoadingIndicator from "/src/components/LoadingIndicator.vue";
+import SuccesModal from "/src/components/SuccessModal.vue";
 
 export default {
   setup()
@@ -401,7 +402,8 @@ export default {
     Multiselect,
     Avatar,
     ProfileModal,
-    LoadingIndicator
+    LoadingIndicator,
+    SuccesModal
   },
   data: () => ({
     // form: {
@@ -536,6 +538,11 @@ export default {
     {
       console.log('\n\non save staff\n');
       this.SET_STAFF_FILTER();
+
+      new Modal(document.getElementById('profileSuccessModal'), {
+        keyboard: false,
+        backdrop: 'static',
+      }).show();
     },
     editMember(index = -1)
     {
