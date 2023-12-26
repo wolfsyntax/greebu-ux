@@ -160,21 +160,6 @@ export default {
         },
       ],
       ratingImage: 'https://res.cloudinary.com/daorvtlls/image/upload/v1687321042/rating-star-small_axozjd.svg',
-      showControls: false,
-      // audioPlayer: null,
-      // currentIndex: 0,
-      // activeSlide: 0,
-      // lastActiveSlide: 0,
-      // isPlaying: false,
-      // isMuted: false,
-      // currentTime: null,
-      // duration: null,
-      // progressBarWidth: '0%',
-      // showVolumeSlider: false,
-      // currentVolume: 100,
-      // showVolumeSlider: true,
-      // muted: false,
-      // isTimerPlaying: false,
     
       artist_type: null,
       genre: null,
@@ -254,158 +239,7 @@ export default {
     ...mapMutations([
       'SET_FILTERED_ARTIST'
     ]),
-    // handleBeforePlay(next) {
-    //   this.currentAudioName = this.artists[this.$refs.audioPlayer.currentPlayIndex].artist_name
-
-    //   next() 
-    // },
-    // playArtistSong(index) {
-    //   this.currentAudioName = this.artists[index].song;
-    //   console.log('play');
-    //   this.$refs.audioPlayer.play();  
-    // },
-
-    // handleBeforePlay(next) {
-    //   this.currentAudioName = this.artists[this.$refs.audioPlayer.currentPlayIndex].artist_name;
-    //   next(); // start playing
-    // },
-    // playArtistSong(index) {
-    //   this.$refs.audioPlayer.play();
-    //   this.$refs.audioPlayer.currentPlayIndex = index;
-    // },
-
-    // playButton(val, cardIndex)
-    // {
-
-    //   this.artist = val;
-
-    //   if (this.audioPlayer) {
-    //     console.log('audioPlayer is initialized')
-    //     if (this.showControls) {
-    //       if (this.audioPlayer.paused) {
-    //         this.audioPlayer.play();
-    //         this.isPlaying = true;
-    //         this.icon = 'play';
-    //       } else {
-    //         this.audioPlayer.pause();
-    //         this.isPlaying = false;
-    //         this.icon = 'pause';
-    //       }
-    //     } else {
-    //       this.currentIndex = cardIndex;
-    //       this.playSong();
-    //       this.icon = 'pause';
-    //       this.showControls = true;
-    //       this.isPlaying = true;
-    //     }
-    //   }
-    // },
-    
-    // togglePlayPause()
-    // {
-    //   if (this.audioPlayer) {
-    //     if (this.audioPlayer.paused) {
-    //       this.audioPlayer.play();
-    //     } else {
-    //       this.audioPlayer.pause();
-    //     }
-    //   }
-    // },
-    // playNext()
-    // {
-    //   if (this.currentIndex < this.artists.length - 1) {
-    //     this.currentIndex++;
-    //   } else {
-    //     this.currentIndex = 0;
-    //   }
-    //   this.SET_FILTERED_ARTIST(this.artists[this.currentIndex]);
-    //   this.playSong();
-    // },
-    // playPrevious()
-    // {
-    //   if (this.currentIndex > 0) {
-    //     this.currentIndex--;
-    //   } else {
-    //     this.currentIndex = this.artists.length - 1;
-    //   }
-    //   this.SET_FILTERED_ARTIST(this.artists[this.currentIndex]);
-
-    //   this.playSong();
-    // },
-
-    // playSong()
-    // {
-    //   if (this.audioPlayer) {
-    //     console.log('Current Playing song: ', this.filterArtist?.song);
-    //     this.audioPlayer.src = this.filterArtist?.song;
-    //     this.audioPlayer.load();
-    //     var audioPlay = this.audioPlayer.play()
-    //       .then(res =>
-    //       {
-            
-    //       })
-    //       .catch(err =>
-    //       {
-    //         audioPlay;
-    //       })
-    //   }
-    //   this.audioPlayer.addEventListener('loadedmetadata', () =>
-    //   {
-    //     this.duration = this.formatTime(this.audioPlayer.duration);
-    //   });
   
-    //   this.audioPlayer.addEventListener('timeupdate', () =>
-    //   {
-    //     this.currentTime = this.formatTime(this.audioPlayer.currentTime);
-    //     this.updateProgressBar();
-    //   });
-
-    //   console.log('Audio Player: ', this.audioPlayer);
-    // },
-
-    // stopAudio()
-    // {
-    //   if (this.audioPlayer) {
-    //     this.audioPlayer.pause();
-    //     this.showControls = false;
-    //   }
-    // },
-    // toggleMute()
-    // {
-    //   if (this.audioPlayer) {
-    //     this.audioPlayer.muted = !this.audioPlayer.muted;
-    //     this.isMuted = this.audioPlayer.muted;
-    //   }
-    // },
-    // formatTime(time)
-    // {
-    //   const minutes = Math.floor(time / 60);
-    //   const seconds = Math.floor(time % 60).toString().padStart(2, '0');
-    //   return `${minutes}:${seconds}`;
-    // },
-
-    // updateProgressBar()
-    // {
-    //   const progress = (this.audioPlayer.currentTime / this.audioPlayer.duration) * 100;
-    //   this.progressBarWidth = `${progress}%`;
-    // },
-    // updateVolume()
-    // {
-    //   if (this.audioPlayer) {
-    //     this.audioPlayer.volume = this.currentVolume / 100;
-    //   }
-    // },
-    // toggleMute()
-    // {
-    //   if (this.currentVolume === 0) {
-    //     this.currentVolume = this.previousVolume;
-    //   } else {
-    //     this.previousVolume = this.currentVolume;
-    //     this.currentVolume = 0;
-    //   }
-    // },
-
-
   },
 
   watch: {
@@ -417,12 +251,6 @@ export default {
       if (this.genre) payload.genre = this.genre
       if (this.search) payload.search = this.search
       this.fetchArtists(payload)
-    },
-    showControls(val)
-    {
-      this.currentTime = '0:00';
-      this.duration = '0:00';
-      this.progressBarWidth = '0%';
     },
     filterArtist(val, prev)
     {

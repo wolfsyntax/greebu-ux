@@ -148,7 +148,6 @@ export default {
   watch: {
   },
   mounted() {
-   console.log('Artists:', this.artists);
 },
 
   computed: {

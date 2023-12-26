@@ -177,7 +177,7 @@ export default {
   },
   mounted()
   {
-    console.log('Mounted Artist Details: ', this.artists)
+    
   }
   
 };
