@@ -1,8 +1,9 @@
-var state = {
+/* eslint-disable no-dupe-keys */
+const state = {
   profile: {},
   user: {},
-  bearerToken: "",
-  role: "", // artists, customers, organizer, service-provider
+  bearerToken: '',
+  role: '', // artists, customers, organizer, service-provider
   roles: [],
   artist_types: null,
   genres: null,
@@ -12,53 +13,53 @@ var state = {
   countries: null,
   cities: null,
   phone: null,
-  account_type: "",
+  account_type: '',
   account: null,
   isPhoneModify: false,
-  custom_genre: "",
+  custom_genre: '',
   artist_genre: [],
   proposal: {},
-  selectedOption: "My Account",
-  userId: "",
+  selectedOption: 'My Account',
+  userId: '',
   cancelReasons: [
-    "Sudden Scheduling Conflict",
-    "Personal Emergency",
-    "Health Issues",
-    "Technical or Equipment Failure",
-    "Conflict to previous commitment",
-    "No Transportation",
-    "Change of Mind",
+    'Sudden Scheduling Conflict',
+    'Personal Emergency',
+    'Health Issues',
+    'Technical or Equipment Failure',
+    'Conflict to previous commitment',
+    'No Transportation',
+    'Change of Mind'
   ],
   signupForm: {
-    first_name: "",
-    last_name: "",
-    email: "",
-    username: "",
-    phone: "",
-    password: "",
-    password_confirmation: "",
-    account_type: "customers",
+    first_name: '',
+    last_name: '',
+    email: '',
+    username: '',
+    phone: '',
+    password: '',
+    password_confirmation: '',
+    account_type: 'customers',
     // account_type: '',
-    phone: "",
-    login_type: "email",
-    verification_code: "",
+    phone: '',
+    login_type: 'email',
+    verification_code: ''
   },
   socialForm: {
-    email: "",
-    avatar: "",
-    first_name: "",
-    last_name: "",
-    provider_id: "",
-    username: "",
-    provider_type: "",
-    auth_type: "",
-    account_type: "",
+    email: '',
+    avatar: '',
+    first_name: '',
+    last_name: '',
+    provider_id: '',
+    username: '',
+    provider_type: '',
+    auth_type: '',
+    account_type: ''
   },
-  phoneMask: "",
+  phoneMask: '',
   geocode: {
-    lat: "0.000000",
-    lng: "0.000000",
-  },
-};
+    lat: '0.000000',
+    lng: '0.000000'
+  }
+}
 
-export default state;
+export default state
