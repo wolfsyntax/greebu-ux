@@ -21,7 +21,7 @@
                 <router-link to="/library" v-if="['artists'].includes(userRole)">Library</router-link>
                 <router-link to="/event-library" v-if="['organizer',].includes(userRole)">Library</router-link>
               </li>
-              <li class="nav-item" v-if="[ '', 'artists', 'customers', 'organizer' ].includes(userRole)" >
+              <li class="nav-item" v-if="['', 'artists', 'customers', 'organizer' ].includes(userRole)" >
                 <router-link to="/create-song">Create a Song</router-link>
               </li>
               <li class="nav-item" >
