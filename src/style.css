@@ -9410,7 +9410,7 @@ header nav {
   top: 100%;
   left: 0;
   display: none;
-  z-index: 99999!important;
+  z-index: 2;
   width: 15.875rem;
   padding: 0.25rem 0.25rem 0.6rem 0.25rem;
   border-radius: 0.3265rem;
@@ -9536,7 +9536,8 @@ header nav {
 #card-performer .others-wrap .location {
   color: var(--gray2);
 }
-#card-performer .btn-wrap a {
+#card-performer .btn-wrap a, 
+#card-performer .btn-wrap .view-profile-btn {
   color: var(--black);
   text-align: center;
   font-feature-settings: "clig" off, "liga" off;
@@ -9547,7 +9548,8 @@ header nav {
   border-radius: 0.16325rem;
   background-color: #f1f1f1;
 }
-#card-performer .btn-wrap a:hover {
+#card-performer .btn-wrap a:hover, 
+#card-performer .btn-wrap .view-profile-btn:hover {
   background-color: var(--orange);
   color: var(--white);
 }

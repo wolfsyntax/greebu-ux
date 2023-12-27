@@ -23,7 +23,12 @@
       </div>
 
       <div>
-        <button class="btn border-0 follow" v-if="isLoggedIn">Follow</button>
+        <button v-if="isLoggedIn" class="btn border-0 follow">Follow</button>
+        <button v-else type="button" class="btn border-0 follow"
+            @click="openModal"
+            data-bs-toggle="modal" data-bs-target="#mustSignUp">
+            Follow
+        </button>
       </div>
     </div>
 
@@ -72,24 +77,44 @@
           class="btn view-profile bg-orange"
           >View Profile</a
         >
+        <button v-else type="button" class="btn view-profile bg-orange view-profile-btn"
+            @click="openModal"
+            data-bs-toggle="modal" data-bs-target="#mustSignUp">
+            View Profile
+        </button>
+
       </div>
     </div>
   </div>
 </template>
 
+<!-- should be outside the template -->
+<MustSignupModal />
+
 <script>
 import { mapGetters } from 'vuex'
+// eslint-disable-next-line import/no-absolute-path
+import MustSignupModal from '/src/components/Artist/MustSignupModal.vue'
+import { Modal } from 'bootstrap'
+
 export default {
+  components: {
+    MustSignupModal
+  },
   props: {
     artist: Object
   },
   data: () => ({}),
   methods: {
+    openModal () {
+      new Modal(document.getElementById('#mustSignUp'), {
+        keyboard: false
+      }).show()
+    }
   },
   computed: {
     ...mapGetters(['isLoggedIn'])
-  },
-  mounted () {}
+  }
 }
 </script>
 
