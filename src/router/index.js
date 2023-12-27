@@ -572,7 +572,10 @@ router.beforeEach((to, from, next) => {
         next({ name: 'dashboard' })
       }
     }
-  } else if (!isAuth && to?.name === 'artists-profile') {
+  } else if (
+    !isAuth &&
+    (to?.name === 'artists-profile' || to?.name === 'organizer-profile')
+  ) {
     next({ name: 'page-not-authorized' })
   }
 
@@ -588,6 +591,15 @@ router.beforeEach((to, from, next) => {
           .dispatch('fetchArtistBySlug', to.params?.id)
           .then((res) => next())
       }
+    }, 100)
+  }
+
+  if (to?.name === 'organizer-profile') {
+    console.log('--- Fetch Organizer Profile ---')
+    setTimeout(() => {
+      store
+        .dispatch('fetchEventOrganizer', to.params?.id)
+        .then((res) => next())
     }, 100)
   }
 

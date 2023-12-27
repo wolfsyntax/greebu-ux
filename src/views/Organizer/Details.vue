@@ -18,18 +18,18 @@
                       <div class="col-9">
                         <div class="profile-info">
                           <div class="position-relative">
-                            <img class="profile-pic" :src="event.organizer_avatar" loading="lazy" alt="profile">
+                            <img class="profile-pic" :src="profile.avatar" loading="lazy" alt="profile">
                           </div>
 
                           <div class="profile-wrapper">
                             <div class="name-artist">
-                              <h3 class="profile-name">{{ event.organizer_name }}</h3>
-                            <h5 class="type-of-artist">{{ event.organizer_company }}</h5>
+                              <h3 class="profile-name">{{ profile.organizer_name }}</h3>
+                            <h5 class="type-of-artist">{{ profile.company_name }}</h5>
                             </div>
 
                             <div class="music-genre">
                               <h5 class="title">Event Types:</h5>
-                              <span class="badge">{{ event.event_type }}</span>
+                              <span class="badge" v-for="(event_type, index) in profile.event_types" :key="index">{{ event_type }}</span>
                             </div>
                           </div>
                         </div>
@@ -70,11 +70,11 @@
                     </div>
                     {{ event }}
                     <h5 class="about">About</h5>
-                    <p class="description">{{ '' }}</p>
+                    <p class="description">{{ profile.bio }}</p>
 
                     <div class="mt-3 social-media">
                       <img src="/assets/artist-account/type-of-artist-icon-gray.svg" loading="lazy" alt="artist type icon">
-                      <p>{{ '' }}</p>
+                      <p>{{ profile.organizer_name }}</p>
                     </div>
 
                     <div v-if="spotify" class="mt-3 social-media" >
@@ -102,9 +102,9 @@
                       <p>{{ instagram }}</p>
                     </div>
 
-                    <div v-if="threadsNET" class="mt-3 social-media" >
+                    <div v-if="threads" class="mt-3 social-media" >
                       <img src="/assets/social icons/threads-gray.svg" loading="lazy" alt="threadsNET icon">
-                      <p>{{ threadsNET }}</p>
+                      <p>{{ threads }}</p>
                     </div>
                   </div>
                 </div>
@@ -122,16 +122,15 @@
                       </div>
                     </div>
 
-                    <!-- Band Members list -->
-                    <!-- <div class="members-list" v-for="member in members" :key="member.id">
-                      <div class="member-profile">
-                        <img :src="member.avatar" loading="lazy" alt="member profile" />
-                        <div class="member-info">
-                          <a href="#">{{ member.member_name }}</a>
-                          <p>{{ member.role }}</p>
-                        </div>
+                    <div class="members-list" v-for="(staff, index) in members" :key="index">
+                    <div class="member-profile">
+                      <img :src="staff.avatar" loading="lazy" alt="member profile" />
+                      <div class="member-info">
+                        <a href="#">{{ staff.member_name }}</a>
+                        <p>{{ staff.role }}</p>
                       </div>
-                    </div> -->
+                    </div>
+                  </div>
                   </div>  <!-- end of card-body -->
                 </div>
               </div>
@@ -400,9 +399,10 @@ export default {
   mounted () {
 
   },
+
   methods: {
     ...mapActions([
-
+      'fetchEventOrganizer'
     ]),
     ...mapMutations([
 
@@ -451,8 +451,11 @@ export default {
       }
     },
     $route: {
-      async handler (to, from) {
-
+      handler (to, from) {
+        console.log('Route Details: ', to.params.id)
+        if ((to.params?.id || to.params?.id) && to.name === 'organizer-profile') {
+          this.fetchEventOrganizer(to.params.id)
+        }
       },
       deep: true,
       immediate: true
@@ -473,11 +476,36 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['isLoggedIn', 'userInfo', 'token', 'myAvatar', 'instagram', 'youtube', 'twitter', 'spotify', 'facebook', 'threadsNET', 'isComplete', 'formArtistGenres', 'userRole']),
+    ...mapGetters(['isLoggedIn', 'userInfo', 'isComplete', 'formArtistGenres', 'userRole']),
     ...mapState({
-      bannerImage: state => state.events.event.cover_photo || '/assets/artist-account/default-cover-photo.webp',
-      event: state => state.events.event
-    })
+      bannerImage: state => state.events.eventCreator.cover_photo || '/assets/artist-account/default-cover-photo.webp',
+      profile: state => state.events.eventCreator,
+      members: state => state.events.eventStaff || []
+    }),
+    facebook () {
+      if (this.profile.facebook !== null && this.profile.facebook !== undefined) {
+        return this.profile.facebook.replace(/^https?:\/\/(www\.)?/, '')
+      }
+      return ''
+    },
+    instagram () {
+      if (this.profile.instagram !== null && this.profile.instagram !== undefined) {
+        return this.profile.instagram.replace(/^https?:\/\/(www\.)?/, '')
+      }
+      return ''
+    },
+    threads () {
+      if (this.profile.threads !== null && this.profile.threads !== undefined) {
+        return this.profile.threads.replace(/^https?:\/\/(www\.)?/, '')
+      }
+      return ''
+    },
+    twitter () {
+      if (this.profile?.twitter !== null && this.profile?.twitter !== undefined) {
+        return this.profile.twitter.replace(/^https?:\/\/(www\.)?/, '')
+      }
+      return ''
+    }
 
   },
   created () {
