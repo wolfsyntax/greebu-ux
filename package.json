@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "watch": "vite build --watch",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
@@ -65,11 +66,16 @@
     "eslint-plugin-n": "^16.5.0",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-vue": "^9.19.2",
+    "husky": "^8.0.0",
     "laravel-echo": "^1.15.3",
+    "lint-staged": "^15.2.0",
     "postcss": "^8.4.24",
     "pusher-js": "^8.3.0",
     "sass": "^1.69.4",
     "tailwindcss": "^3.3.2",
     "vite": "^4.3.9"
+  },
+  "lint-staged": {
+    "src/**/*.{js,vue}": "eslint --fix"
   }
 }
