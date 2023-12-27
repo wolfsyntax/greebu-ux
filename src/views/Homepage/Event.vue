@@ -33,9 +33,7 @@
       <div class="container">
         <div class="text-center">
           <h3 class="events-showing-title">Events</h3>
-          <p class="sub-heading">
-            Collaborate with a professional independent artist to turn your
-            story into one-of-a-kind custom song
+          <p class="sub-heading">Where memories are made. Discover, explore, experience: Live events at you fingertips.
           </p>
         </div>
 
