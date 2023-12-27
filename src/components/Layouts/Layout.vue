@@ -201,6 +201,7 @@
                   <li><a :href="support" target="_blank">Support</a></li>
                   <li><a :href="privacy" target="_blank">Privacy Policy</a></li>
                   <li><a :href="terms" target="_blank">Terms of Use</a></li>
+                  <li><a :href="cookies" target="_blank">Cookies Policy</a></li>
                 </ul>
               </div>
 
@@ -313,6 +314,7 @@ export default {
       privacy: '/privacy',
       support: '/support',
       terms: '/terms',
+      cookies: '/cookies',
       facebookPage: 'https://www.facebook.com/',
       instagramPage: 'https://www.instagram.com/',
       twitterPage: 'https://twitter.com/',
