@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <layout>
     <section class="events">
@@ -32,9 +33,7 @@
       <div class="container">
         <div class="text-center">
           <h3 class="events-showing-title">Events</h3>
-          <p class="sub-heading">
-            Collaborate with a professional independent artist to turn your
-            story into one-of-a-kind custom song
+          <p class="sub-heading">Where memories are made. Discover, explore, experience: Live events at you fingertips.
           </p>
         </div>
 
@@ -319,7 +318,7 @@
                       <button
                         class="page-link"
                         :disabled="pastPagination.page === 1"
-                        @click="prevPastPage(pastPagination.page--)"
+                        @click="prevPastPage(pastPagination.page)"
                       >
                         <span
                           class="page-link material-symbols-rounded back-icon"
@@ -383,25 +382,37 @@
   </layout>
 </template>
 <script>
-import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
-import { Modal, Popover } from "bootstrap";
-import Multiselect from "@vueform/multiselect";
+// eslint-disable-next-line quotes
+import { mapGetters, mapState, mapActions, mapMutations } from "vuex"
+// eslint-disable-next-line quotes
+import { Modal } from "bootstrap"
+import Multiselect from '@vueform/multiselect'
 
-import Layout from "/src/components/Layouts/Layout.vue";
-import Faq from "/src/components/Home/FAQ.vue";
-import MustSignupModal from "/src/components/Artist/MustSignupModal.vue";
-import EventsModal from "/src/components/Auth/Events/Modal.vue";
-import ViewDetail from "/src/components/Events/ViewEventDetailsModal.vue";
-import EventSuccess from "/src/components/Auth/Events/SuccessModal.vue";
-import EventCard from "/src/components/Events/Card.vue";
-import FilterResults from "/src/components/FilterResults.vue";
-import NoEvent from "/src/components/Events/NoEvent.vue";
-import BirdLoader from "/src/components/BirdLoader.vue";
+// eslint-disable-next-line import/no-absolute-path
+import Layout from '/src/components/Layouts/Layout.vue'
+// eslint-disable-next-line import/no-absolute-path
+import Faq from '/src/components/Home/FAQ.vue'
+// eslint-disable-next-line import/no-absolute-path
+import MustSignupModal from '/src/components/Artist/MustSignupModal.vue'
+// eslint-disable-next-line import/no-absolute-path
+import EventsModal from '/src/components/Auth/Events/Modal.vue'
+// eslint-disable-next-line import/no-absolute-path
+import ViewDetail from '/src/components/Events/ViewEventDetailsModal.vue'
+// eslint-disable-next-line import/no-absolute-path
+import EventSuccess from '/src/components/Auth/Events/SuccessModal.vue'
+// eslint-disable-next-line import/no-absolute-path
+import EventCard from '/src/components/Events/Card.vue'
+// eslint-disable-next-line import/no-absolute-path
+import FilterResults from '/src/components/FilterResults.vue'
+// eslint-disable-next-line import/no-absolute-path
+import NoEvent from '/src/components/Events/NoEvent.vue'
+// eslint-disable-next-line import/no-absolute-path
+import BirdLoader from '/src/components/BirdLoader.vue'
 
 export default {
   metaInfo: {
-    title: "Default Title",
-    titleTemplate: "%s | Geebu",
+    title: 'Default Title',
+    titleTemplate: '%s | Geebu'
   },
   components: {
     layout: Layout,
@@ -414,20 +425,20 @@ export default {
     EventCard,
     FilterResults,
     NoEvent,
-    BirdLoader,
+    BirdLoader
   },
-  setup() {},
+  setup () {},
   data: () => ({
     isLoading: false,
     isOngoingLoading: false,
     isUpcomingLoading: false,
     isPastLoading: false,
-    city: "",
-    event_type: "",
-    search: "",
+    city: '',
+    event_type: '',
+    search: ''
   }),
   computed: {
-    ...mapGetters(["isLoggedIn", "userInfo", "info", "userRole"]),
+    ...mapGetters(['isLoggedIn', 'userInfo', 'info', 'userRole']),
     ...mapState({
       events_past: (state) => state.events.pastListEvents,
       events_ongoing: (state) => state.events.ongoingListEvents,
@@ -438,91 +449,92 @@ export default {
       pastPagination: (state) => state.events.pastPagination,
       cities: (state) =>
         state.cities.map(function (city) {
-          return city.name;
+          return city.name
         }),
       eventTypes: (state) =>
         state.events.event_types.map(function (obj) {
-          var words = obj.split(" ");
+          var words = obj.split(' ')
           return {
             value: obj,
             text: words
               .map((word) => {
-                return word[0].toUpperCase() + word.substring(1);
+                return word[0].toUpperCase() + word.substring(1)
               })
-              .join(" "),
-          };
-        }),
-    }),
+              .join(' ')
+          }
+        })
+    })
   },
-  mounted() {
+  mounted () {
     const success = (position) => {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
+      const latitude = position.coords.latitude
+      const longitude = position.coords.longitude
 
-      console.log("My Geo-Location: ", latitude, longitude);
+      console.log('My Geo-Location: ', latitude, longitude)
       // Do something with the position
-    };
+    }
 
+    // eslint-disable-next-line n/handle-callback-err
     const error = (err) => {
-      console.log("On Error Geo-Location", error);
-    };
+      console.log('On Error Geo-Location', error)
+    }
 
     if (navigator.geolocation) {
       // This will open permission popup
-      navigator.geolocation.getCurrentPosition(success, error);
+      navigator.geolocation.getCurrentPosition(success, error)
     }
     // const popoverTriggerList = document.querySelectorAll('span[data-bs-toggle="popover"]');
     // const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new Popover(popoverTriggerEl));
 
-    console.log("Window Hostname: ", window.location.hostname);
-    this.fetchEventOptions().then((res) => this.RESET_EVENT_FILTER());
-    this.fetchCityList();
+    console.log('Window Hostname: ', window.location.hostname)
+    this.fetchEventOptions().then((res) => this.RESET_EVENT_FILTER())
+    this.fetchCityList()
 
-    var counter = 0;
-    this.isLoading = true;
+    // var counter = 0
+    this.isLoading = true
 
-    this.isOngoingLoading = true;
-    this.isUpcomingLoading = true;
-    this.isPastLoading = true;
+    this.isOngoingLoading = true
+    this.isUpcomingLoading = true
+    this.isPastLoading = true
 
-    this.setUpcomingPagination();
-    this.setOngoingPagination();
-    this.setPastPagination();
+    this.setUpcomingPagination()
+    this.setOngoingPagination()
+    this.setPastPagination()
 
     this.pastEvents()
       .then((res) => {
-        this.isPastLoading = false;
+        this.isPastLoading = false
       })
       .catch((onError) => {
-        console.log("Past Events [error]: ", onError);
+        console.log('Past Events [error]: ', onError)
       })
       .finally((onfinally) => {
-        this.isPastLoading = false;
-      });
+        this.isPastLoading = false
+      })
 
     this.upcomingEvents()
       .then((res) => {
-        this.isUpcomingLoading = false;
+        this.isUpcomingLoading = false
       })
       .catch((onError) => {
-        console.log("Upcoming Events [error]: ", onError);
+        console.log('Upcoming Events [error]: ', onError)
       })
       .finally((onfinally) => {
-        this.isUpcomingLoading = false;
-      });
+        this.isUpcomingLoading = false
+      })
 
     this.ongoingEvents()
       .then((res) => {
-        this.isOngoingLoading = false;
+        this.isOngoingLoading = false
       })
-      .catch((onError) => console.log("Ongoing Events [error]: ", onError))
+      .catch((onError) => console.log('Ongoing Events [error]: ', onError))
       .finally((onfinally) => {
-        this.isOngoingLoading = false;
-      });
+        this.isOngoingLoading = false
+      })
 
-    console.log("Ongoing [DONE]: ", this.isOngoingLoading);
-    console.log("Past [DONE]: ", this.isPastLoading);
-    console.log("Upcoming [DONE]: ", this.isUpcomingLoading);
+    console.log('Ongoing [DONE]: ', this.isOngoingLoading)
+    console.log('Past [DONE]: ', this.isPastLoading)
+    console.log('Upcoming [DONE]: ', this.isUpcomingLoading)
     // this.fetchEventList()
     //   .then(res =>
     //   {
@@ -533,145 +545,144 @@ export default {
   },
   methods: {
     ...mapActions([
-      "fetchEventOptions",
-      "fetchEventList",
-      "fetchCityList",
-      "pastEvents",
-      "upcomingEvents",
-      "ongoingEvents",
+      'fetchEventOptions',
+      'fetchEventList',
+      'fetchCityList',
+      'pastEvents',
+      'upcomingEvents',
+      'ongoingEvents'
     ]),
     ...mapMutations([
-      "RESET_EVENT_FILTER",
-      "setPastPage",
-      "setOngoingPage",
-      "setUpcomingPage",
-      "setUpcomingPagination",
-      "setOngoingPagination",
-      "setPastPagination",
-      "prevUpcomingPage",
-      "prevOngoingPage",
-      "prevPastPage",
-      "nextUpcomingPage",
-      "nextOngoingPage",
-      "nextPastPage",
+      'RESET_EVENT_FILTER',
+      'setPastPage',
+      'setOngoingPage',
+      'setUpcomingPage',
+      'setUpcomingPagination',
+      'setOngoingPagination',
+      'setPastPagination',
+      'prevUpcomingPage',
+      'prevOngoingPage',
+      'prevPastPage',
+      'nextUpcomingPage',
+      'nextOngoingPage',
+      'nextPastPage'
     ]),
-    selectPage(page, type = "ongoing") {
-      if (type === "ongoing") {
-        console.log("Specify Ongoing Event: ", page);
-        this.setOngoingPage(page);
+    selectPage (page, type = 'ongoing') {
+      if (type === 'ongoing') {
+        console.log('Specify Ongoing Event: ', page)
+        this.setOngoingPage(page)
 
         this.ongoingEvents()
           .then((res) => {
-            this.isOngoingLoading = false;
+            this.isOngoingLoading = false
           })
           .catch((onError) => {
-            console.log("Ongoing Events [error]: ", onError);
+            console.log('Ongoing Events [error]: ', onError)
           })
           .finally((onfinally) => {
-            this.isOngoingLoading = false;
-          });
+            this.isOngoingLoading = false
+          })
       }
 
-      if (type === "upcoming") {
-        console.log("Specify Upcoming Event: ", page);
-        this.setUpcomingPage(page);
+      if (type === 'upcoming') {
+        console.log('Specify Upcoming Event: ', page)
+        this.setUpcomingPage(page)
 
         this.upcomingEvents()
           .then((res) => {
-            this.isUpcomingLoading = false;
+            this.isUpcomingLoading = false
           })
           .catch((onError) => {
-            console.log("Upcoming Events [error]: ", onError);
+            console.log('Upcoming Events [error]: ', onError)
           })
           .finally((onfinally) => {
-            this.isUpcomingLoading = false;
-          });
+            this.isUpcomingLoading = false
+          })
       }
 
-      if (type === "past") {
-        console.log("Specify Past Event: ", page);
-        this.setOngoingPage(page);
+      if (type === 'past') {
+        console.log('Specify Past Event: ', page)
+        this.setOngoingPage(page)
 
         this.pastEvents()
           .then((res) => {
-            this.isPastLoading = false;
+            this.isPastLoading = false
           })
           .catch((onError) => {
-            console.log("Past Events [error]: ", onError);
+            console.log('Past Events [error]: ', onError)
           })
           .finally((onfinally) => {
-            this.isPastLoading = false;
-          });
+            this.isPastLoading = false
+          })
       }
     },
-    toggleEvent(pos) {
+    toggleEvent () {
       if (this.isLoggedIn) {
-        new Modal(document.getElementById("eventDetailsModal"), {
+        new Modal(document.getElementById('eventDetailsModal'), {
           keyboard: false,
-          backdrop: "false",
-        }).show();
+          backdrop: 'false'
+        }).show()
       } else {
-        new Modal(document.getElementById("mustSignUp"), {
+        new Modal(document.getElementById('mustSignUp'), {
           keyboard: false,
-          backdrop: "static",
-        }).show();
+          backdrop: 'static'
+        }).show()
       }
     },
-    openModal(data) {
-      this.$root.$emit("bv::show::modal", "#mustSignUp");
+    openModal (data) {
+      this.$root.$emit('bv::show::modal', '#mustSignUp')
     },
-    toggleCreate() {
-      this.fetchEventOptions();
+    toggleCreate () {
+      this.fetchEventOptions()
 
-      new Modal(document.getElementById("createEventModal"), {
+      new Modal(document.getElementById('createEventModal'), {
         keyboard: false,
-        backdrop: "static",
-      }).show();
+        backdrop: 'static'
+      }).show()
     },
-    dismiss(option) {
-      console.log("Event Modal dismiss: ", option);
+    dismiss (option) {
+      console.log('Event Modal dismiss: ', option)
 
-      if (option === "success") {
-        new Modal(document.getElementById("eventsCreatedModal"), {
+      if (option === 'success') {
+        new Modal(document.getElementById('eventsCreatedModal'), {
           keyboard: false,
-          backdrop: "static",
-        }).show();
+          backdrop: 'static'
+        }).show()
       }
-
-      this.isOngoingLoading = true;
-      this.isUpcomingLoading = true;
-      this.isPastLoading = true;
+      this.isOngoingLoading = true
+      this.isUpcomingLoading = true
+      this.isPastLoading = true
 
       this.pastEvents()
         .then((res) => {
-          this.isPastLoading = false;
+          this.isPastLoading = false
         })
         .catch((onError) => {
-          console.log("Past Events [error]: ", onError);
+          console.log('Past Events [error]: ', onError)
         })
         .finally((onfinally) => {
-          this.isPastLoading = false;
-        });
+          this.isPastLoading = false
+        })
 
       this.upcomingEvents()
         .then((res) => {
-          this.isUpcomingLoading = false;
+          this.isUpcomingLoading = false
         })
         .catch((onError) => {
-          console.log("Upcoming Events [error]: ", onError);
+          console.log('Upcoming Events [error]: ', onError)
         })
         .finally((onfinally) => {
-          this.isUpcomingLoading = false;
-        });
+          this.isUpcomingLoading = false
+        })
 
       this.ongoingEvents()
         .then((res) => {
-          this.isOngoingLoading = false;
+          this.isOngoingLoading = false
         })
-        .catch((onError) => console.log("Ongoing Events [error]: ", onError))
+        .catch((onError) => console.log('Ongoing Events [error]: ', onError))
         .finally((onfinally) => {
-          this.isOngoingLoading = false;
-        });
+          this.isOngoingLoading = false
+        })
 
       // console.log('Dismiss option: ', option);
       // if (option === 'skip')
@@ -685,252 +696,253 @@ export default {
     // openModal(data){
     //     this.$root.$emit("bv::show::modal", "#mustSignUp");
     //   },
-    openEventDetailsModal(data) {
-      this.$root.$emit("bv::show::modal", "#eventDetailsModal");
+    openEventDetailsModal () {
+      this.$root.$emit('bv::show::modal', '#eventDetailsModal')
     },
-    filterEvent() {
-      this.$store.commit("SET_EVENT_FILTER", {
+    filterEvent () {
+      this.$store.commit('SET_EVENT_FILTER', {
         search: this.search,
         city: this.city,
-        event_type: this.event_type,
-      });
+        event_type: this.event_type
+      })
       // this.fetchEventList()
-      this.isOngoingLoading = true;
-      this.isUpcomingLoading = true;
-      this.isPastLoading = true;
+      this.isOngoingLoading = true
+      this.isUpcomingLoading = true
+      this.isPastLoading = true
 
       this.pastEvents()
         .then((res) => {
-          this.isPastLoading = false;
+          this.isPastLoading = false
         })
         .catch((onError) => {
-          console.log("Past Events [error]: ", onError);
+          console.log('Past Events [error]: ', onError)
         })
         .finally((onfinally) => {
-          this.isPastLoading = false;
-        });
+          this.isPastLoading = false
+        })
 
       this.upcomingEvents()
         .then((res) => {
-          this.isUpcomingLoading = false;
+          this.isUpcomingLoading = false
         })
         .catch((onError) => {
-          console.log("Upcoming Events [error]: ", onError);
+          console.log('Upcoming Events [error]: ', onError)
         })
         .finally((onfinally) => {
-          this.isUpcomingLoading = false;
-        });
+          this.isUpcomingLoading = false
+        })
 
       this.ongoingEvents()
         .then((res) => {
-          this.isOngoingLoading = false;
+          this.isOngoingLoading = false
         })
-        .catch((onError) => console.log("Ongoing Events [error]: ", onError))
+        .catch((onError) => console.log('Ongoing Events [error]: ', onError))
         .finally((onfinally) => {
-          this.isOngoingLoading = false;
-        });
+          this.isOngoingLoading = false
+        })
     },
-    filterByCity() {
-      this.$store.commit("SET_EVENT_FILTER", {
+    filterByCity () {
+      this.$store.commit('SET_EVENT_FILTER', {
         search: this.search,
         city: this.city,
-        event_type: this.event_type,
-      });
+        event_type: this.event_type
+      })
       // this.fetchEventList()
-      this.isOngoingLoading = true;
-      this.isUpcomingLoading = true;
-      this.isPastLoading = true;
+      this.isOngoingLoading = true
+      this.isUpcomingLoading = true
+      this.isPastLoading = true
 
       this.pastEvents()
         .then((res) => {
-          this.isPastLoading = false;
+          this.isPastLoading = false
         })
         .catch((onError) => {
-          console.log("Past Events [error]: ", onError);
+          console.log('Past Events [error]: ', onError)
         })
         .finally((onfinally) => {
-          this.isPastLoading = false;
-        });
+          this.isPastLoading = false
+        })
 
       this.upcomingEvents()
         .then((res) => {
-          this.isUpcomingLoading = false;
+          this.isUpcomingLoading = false
         })
         .catch((onError) => {
-          console.log("Upcoming Events [error]: ", onError);
+          console.log('Upcoming Events [error]: ', onError)
         })
         .finally((onfinally) => {
-          this.isUpcomingLoading = false;
-        });
+          this.isUpcomingLoading = false
+        })
 
       this.ongoingEvents()
         .then((res) => {
-          this.isOngoingLoading = false;
+          this.isOngoingLoading = false
         })
-        .catch((onError) => console.log("Ongoing Events [error]: ", onError))
+        .catch((onError) => console.log('Ongoing Events [error]: ', onError))
         .finally((onfinally) => {
-          this.isOngoingLoading = false;
-        });
+          this.isOngoingLoading = false
+        })
     },
-    nextPastEvent() {
-      this.nextPastPage();
+    nextPastEvent () {
+      this.nextPastPage()
 
       this.pastEvents()
         .then((res) => {
-          this.isPastLoading = false;
+          this.isPastLoading = false
         })
         .catch((onError) => {
-          console.log("Past Events [error]: ", onError);
+          console.log('Past Events [error]: ', onError)
         })
         .finally((onfinally) => {
-          this.isPastLoading = false;
-        });
+          this.isPastLoading = false
+        })
     },
-    prevPastEvent() {
-      this.prevPastPage();
+    prevPastEvent () {
+      this.prevPastPage()
+      // console.log(this.pastPagination.page, "text")
 
       this.pastEvents()
         .then((res) => {
-          this.isPastLoading = false;
+          this.isPastLoading = false
         })
         .catch((onError) => {
-          console.log("Past Events [error]: ", onError);
+          console.log('Past Events [error]: ', onError)
         })
         .finally((onfinally) => {
-          this.isPastLoading = false;
-        });
+          this.isPastLoading = false
+        })
     },
-    nextOngoingEvent() {
-      this.nextOngoingPage();
+    nextOngoingEvent () {
+      this.nextOngoingPage()
 
       this.ongoingEvents()
         .then((res) => {
-          this.isOngoingLoading = false;
+          this.isOngoingLoading = false
         })
         .catch((onError) => {
-          console.log("Ongoing Events [error]: ", onError);
+          console.log('Ongoing Events [error]: ', onError)
         })
         .finally((onfinally) => {
-          this.isOngoingLoading = false;
-        });
+          this.isOngoingLoading = false
+        })
     },
-    prevOngoingEvent() {
-      this.prevOngoingPage();
+    prevOngoingEvent () {
+      this.prevOngoingPage()
 
       this.ongoingEvents()
         .then((res) => {
-          this.isOngoingLoading = false;
+          this.isOngoingLoading = false
         })
         .catch((onError) => {
-          console.log("Ongoing Events [error]: ", onError);
+          console.log('Ongoing Events [error]: ', onError)
         })
         .finally((onfinally) => {
-          this.isOngoingLoading = false;
-        });
+          this.isOngoingLoading = false
+        })
     },
-    nextUpcomingEvent() {
-      this.nextUpcomingPage();
+    nextUpcomingEvent () {
+      this.nextUpcomingPage()
 
       this.upcomingEvents()
         .then((res) => {
-          this.isUpcomingLoading = false;
+          this.isUpcomingLoading = false
         })
         .catch((onError) => {
-          console.log("Upcoming Events [error]: ", onError);
+          console.log('Upcoming Events [error]: ', onError)
         })
         .finally((onfinally) => {
-          this.isUpcomingLoading = false;
-        });
+          this.isUpcomingLoading = false
+        })
     },
-    prevUpcomingEvent() {
-      this.prevUpcomingPage();
-
+    prevUpcomingEvent () {
+      this.prevUpcomingPage()
+      console.log(this.upcomingPagination.page)
       this.upcomingEvents()
         .then((res) => {
-          this.isUpcomingLoading = false;
+          this.isUpcomingLoading = false
         })
         .catch((onError) => {
-          console.log("Upcoming Events [error]: ", onError);
+          console.log('Upcoming Events [error]: ', onError)
         })
         .finally((onfinally) => {
-          this.isUpcomingLoading = false;
-        });
-    },
+          this.isUpcomingLoading = false
+        })
+    }
   },
   watch: {
     city: {
-      handler(val) {
-        console.log(`Clear City ${val}`);
-        if (val === null || val === "") {
-          this.$store.commit("SET_EVENT_FILTER", {
+      handler (val) {
+        console.log(`Clear City ${val}`)
+        if (val === null || val === '') {
+          this.$store.commit('SET_EVENT_FILTER', {
             search: this.search,
-            city: "",
-            event_type: this.event_type,
-          });
+            city: '',
+            event_type: this.event_type
+          })
           // this.fetchEventList()
-          this.isOngoingLoading = true;
-          this.isUpcomingLoading = true;
-          this.isPastLoading = true;
+          this.isOngoingLoading = true
+          this.isUpcomingLoading = true
+          this.isPastLoading = true
 
           this.pastEvents().finally(
             (onfinally) => (this.isPastLoading = false)
-          );
+          )
           this.upcomingEvents().finally(
             (onfinally) => (this.isUpcomingLoading = false)
-          );
+          )
           this.ongoingEvents().finally(
             (onfinally) => (this.isOngoingLoading = false)
-          );
+          )
         }
       },
-      deep: true,
+      deep: true
     },
     search: {
-      handler(val) {
-        this.$store.commit("SET_EVENT_FILTER", {
+      handler (val) {
+        this.$store.commit('SET_EVENT_FILTER', {
           search: val,
-          city: "",
-          event_type: this.event_type,
-        });
+          city: '',
+          event_type: this.event_type
+        })
         // this.fetchEventList()
-        this.isOngoingLoading = true;
-        this.isUpcomingLoading = true;
-        this.isPastLoading = true;
+        this.isOngoingLoading = true
+        this.isUpcomingLoading = true
+        this.isPastLoading = true
 
-        this.pastEvents().finally((onfinally) => (this.isPastLoading = false));
+        this.pastEvents().finally((onfinally) => (this.isPastLoading = false))
         this.upcomingEvents().finally(
           (onfinally) => (this.isUpcomingLoading = false)
-        );
+        )
         this.ongoingEvents().finally(
           (onfinally) => (this.isOngoingLoading = false)
-        );
+        )
       },
-      deep: true,
+      deep: true
     },
     event_type: {
-      handler(val) {
-        this.$store.commit("SET_EVENT_FILTER", {
+      handler (val) {
+        this.$store.commit('SET_EVENT_FILTER', {
           search: this.search,
           city: this.city,
-          event_type: val,
-        });
+          event_type: val
+        })
         // this.fetchEventList()
-        this.isOngoingLoading = true;
-        this.isUpcomingLoading = true;
-        this.isPastLoading = true;
+        this.isOngoingLoading = true
+        this.isUpcomingLoading = true
+        this.isPastLoading = true
 
-        this.pastEvents().finally((onfinally) => (this.isPastLoading = false));
+        this.pastEvents().finally((onfinally) => (this.isPastLoading = false))
         this.upcomingEvents().finally(
           (onfinally) => (this.isUpcomingLoading = false)
-        );
+        )
         this.ongoingEvents().finally(
           (onfinally) => (this.isOngoingLoading = false)
-        );
+        )
       },
-      deep: true,
+      deep: true
     },
     eventFilter: {
-      handler(val) {
+      handler (val) {
         // this.isLoading = true;
         // this.fetchEventList()
         //   .then(res => this.isLoading = false);
@@ -941,8 +953,8 @@ export default {
         // this.upcomingEvents().finally(onfinally => this.isUpcomingLoading = false);
         // this.ongoingEvents().finally(onfinally => this.isOngoingLoading = false);
       },
-      deep: true,
-    },
-  },
-};
+      deep: true
+    }
+  }
+}
 </script>
