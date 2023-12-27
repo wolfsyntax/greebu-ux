@@ -3181,7 +3181,7 @@ header nav {
   background: var(--white);
   border-radius: 0.25rem;
   box-shadow: 0px 0px 12.69425px 0px rgba(18, 18, 18, 0.15);
-  overflow: hidden;
+  /* overflow: hidden; */
   margin-bottom: 2.5rem;
 }
 .events-showing .container .card .bg-wrapper {
@@ -9399,14 +9399,19 @@ header nav {
   font-size: 24px;
   color: var(--completed);
 }
+
 /* Events - Popover Card */
 
-.popover {
-  /* border-color: white!important; */
-  --bs-popover-border-color: white !important;
+.artist-container:hover #card-performer{
+  display: block;
 }
 #card-performer {
-  /* width: 13.875rem; */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: none;
+  z-index: 99999!important;
+  width: 15.875rem;
   padding: 0.25rem 0.25rem 0.6rem 0.25rem;
   border-radius: 0.3265rem;
   background: var(--white);
@@ -11673,15 +11678,6 @@ header nav {
   }
   #file-output-box .close-icon {
     font-size: 18px;
-  }
-
-  /* File Uploaded Output Box - Error Msg*/
-
-  #file-output-box-error {
-  }
-  #file-output-box-error {
-  }
-  #file-output-box-error {
   }
 
   /* Delete an event etc. */
