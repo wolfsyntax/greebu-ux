@@ -296,7 +296,7 @@ export default {
         // change all icons name to &#x + Code point
         { icon: 'account_circle', name: 'Account Settings', link: '' },
         { icon: 'mail', name: 'Message', link: '' },
-        { icon: 'library_music	', name: 'My Songs', link: '/' },
+        { icon: 'library_music', name: 'My Songs', link: '/' },
         { icon: 'event_available', name: 'My Bookings', link: '/' },
         // { icon: 'queue_music', name: 'My Proposals', link: '/'},
         { icon: 'help', name: 'Help Center', link: '/' }
@@ -345,8 +345,6 @@ export default {
     async logout () {
       NProgress.start()
 
-      const self = this
-
       await this.signout()
         .then(response => {
           const { status } = response
@@ -365,8 +363,6 @@ export default {
             this.$router.push('/')
             // this.$router.push('/login');
           } else if (this.$route.meta.requiresLogin == false) this.$router.go()
-        }).catch(err => {
-
         })
     },
     replaceByDefault (e) {
