@@ -280,7 +280,8 @@
 </template>
 <script>
 import { mapActions, mapGetters, mapMutations, mapState } from 'vuex'
-import SubscriptionModal from '../../../../src/components/Artist/SubscriptionModal.vue'
+// eslint-disable-next-line import/no-absolute-path
+import SubscriptionModal from '/src/components/Artist/SubscriptionModal.vue'
 import NProgress from 'nprogress'
 
 export default {
