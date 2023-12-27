@@ -200,7 +200,7 @@ export default {
         trigger: 'hover',
         placement: 'right',
         delay: {
-          show: 500, // delay of showing .5sec
+          show: 300, // delay of showing 
           hide: 5000,
         },
         template: `
@@ -276,4 +276,3 @@ export default {
 
 <style scoped>
 </style>
-
