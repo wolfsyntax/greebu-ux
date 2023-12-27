@@ -453,7 +453,7 @@ export default {
         }),
       eventTypes: (state) =>
         state.events.event_types.map(function (obj) {
-          var words = obj.split(' ')
+          const words = obj.split(' ')
           return {
             value: obj,
             text: words
