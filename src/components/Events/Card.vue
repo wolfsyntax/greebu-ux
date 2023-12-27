@@ -122,7 +122,7 @@
                 </div> -->
 
                 <artist-info
-                  v-if="isArtistInfoVisible && isLoggedIn"
+                  v-if="isArtistInfoVisible"
                   :artist="currentArtist"
                 ></artist-info>
               </div>
@@ -169,8 +169,7 @@
 
 <script>
 import { mapGetters, mapState } from 'vuex'
-import ViewDetail from '/src/components/Events/ViewEventDetailsModal.vue'
-import MustSignupModal from '/src/components/Artist/MustSignupModal.vue'
+// eslint-disable-next-line import/no-absolute-path
 import ArtistPopOver from '/src/components/Events/ArtistPopOver.vue'
 
 export default {
@@ -180,8 +179,6 @@ export default {
     }
   },
   components: {
-    ViewDetail,
-    signupmodal: MustSignupModal,
     'artist-info': ArtistPopOver
   },
   props: {
@@ -193,7 +190,7 @@ export default {
 
     event: {
       type: Object,
-      default: {},
+      default: Function, // {}
       required: true
     },
     group: {
@@ -220,7 +217,7 @@ export default {
         return false
       }
       return this.event.can_send;
-    },
+    }
   },
   data: () => ({
     isArtistInfoVisible: false,

@@ -23,7 +23,7 @@
       </div>
 
       <div>
-        <button class="btn border-0 follow">Follow</button>
+        <button class="btn border-0 follow" v-if="isLoggedIn">Follow</button>
       </div>
     </div>
 
@@ -66,7 +66,7 @@
       </div>
 
       <div class="btn-wrap">
-        <a
+        <a v-if="isLoggedIn"
           href="/artists/artist?.id"
           target="_blank"
           class="btn view-profile bg-orange"
@@ -78,12 +78,16 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   props: {
     artist: Object
   },
   data: () => ({}),
   methods: {
+  },
+  computed: {
+    ...mapGetters(['isLoggedIn'])
   },
   mounted () {}
 }
