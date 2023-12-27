@@ -43,6 +43,7 @@ import { VueFire, VueFireAuth } from 'vuefire'
 import { firebaseApp } from './firebase/init'
 
 import Pusher from './plugins/pusher'
+import Paymongo from './plugins/paymongo'
 import { Cropper } from 'vue-advanced-cropper'
 import 'vue-advanced-cropper/dist/style.css'
 import TreeItem from './components/Organizer/TreeItem.vue'
@@ -50,8 +51,6 @@ import TreeItem from './components/Organizer/TreeItem.vue'
 import { createHead } from '@vueuse/head'
 
 import FullCalendar from '@fullcalendar/vue3'
-import dayGridPlugin from '@fullcalendar/daygrid'
-import interactionPlugin from '@fullcalendar/interaction'
 
 import Compressor from 'compressorjs'
 // import CircleImage from './components/CircleImage.vue'
@@ -91,6 +90,7 @@ const app = createApp(App)
     secret: import.meta.env.VITE_PUSHER_APP_SECRET,
     cluster: import.meta.env.VITE_PUSHER_CLUSTER
   })
+  .use(Paymongo, { secret: import.meta.env.VITE_PAYMONGO_SECRET })
   .use(VueFire, {
     // imported above but could also just be created here
     firebaseApp,

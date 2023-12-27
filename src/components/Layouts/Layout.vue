@@ -25,16 +25,16 @@
                 <router-link to="/create-song">Create a Song</router-link>
               </li>
               <li class="nav-item" >
-                <router-link to="/artists">Artists</router-link>                
+                <router-link to="/artists">Artists</router-link>
               </li>
               <li class="nav-item">
-                <router-link to="/events">Events</router-link>                
+                <router-link to="/events">Events</router-link>
               </li>
               <li class="nav-item" v-if="['','customers',].includes(userRole)" >
-                <router-link to="/services">Services</router-link>                 
+                <router-link to="/services">Services</router-link>
               </li>
               <!-- <li class="nav-item" v-if="userRole === 'organizer'">
-                <router-link to="/reports">Reports</router-link>                
+                <router-link to="/reports">Reports</router-link>
               </li> -->
             </ul>
 
@@ -45,7 +45,7 @@
 
             <div class="float-end nav-button" v-else>
               <a href="#" class="btn btn-primary upgrade" @click="openModal" data-bs-toggle="modal" data-bs-target="#selectPlanModal" v-if="userRole === 'artists'">Upgrade Plan</a>
-              
+
               <div class="dropdown dropstart">
                 <button class="btn btn-secondary dropdown-toggle" @click="fetchNotifications" data-bs-auto-close="outside" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false" >
                   <span class="material-symbols-outlined bell-icon">&#xe7f4;</span>
@@ -77,7 +77,7 @@
                       </div>
                     </div>
                   </li>
-                  
+
                   <li v-for="(content, index) in notifications" :key="index" class="sender-notif-wrap">
                     <div class="d-flex align-items-start notif-wrap">
                       <div class="img-wrap">
@@ -119,7 +119,6 @@
                     </div>
                   </li>
 
-               
                   <div class="d-flex align-items-center justify-content-between mb-0 action-wrap">
                       <button class="btn float-end mb-0 all-read" @click="markAsRead">Mark all as read</button>
                       <router-link to="/account/setting" class="btn all-notif " @click="$store.commit('setSettingMenu', 'Notifications')">See all notification</router-link>
@@ -161,7 +160,7 @@
                     <span class="material-symbols-outlined">&#xe158;</span>
                     <router-link to="/message" class="dropdown-item">Message</router-link>
                   </li>
-                  
+
                   <li v-if="[ 'artists', ].includes(userRole)">
                     <span class="material-symbols-outlined">&#xe030;</span>
                     <router-link to="/account/setting" @click="$store.commit('setSettingMenu', 'Customized Songs')" class="dropdown-item">Customized Songs</router-link>
@@ -204,7 +203,7 @@
                   </li>
                 </ul>
               </div>
-            </div>  
+            </div>
           </div>
         </div>
       </nav>
@@ -248,14 +247,14 @@
               <div class="card" style="width: 31.5rem;">
                 <div class="card-body">
                   <h5 class="card-title">Keep me Notified</h5>
-                  
+
                   <div class="input-group mb-3 mt-4">
                     <input type="text" class="form-control" placeholder="Enter email" aria-label="Email address" aria-describedby="button-addon2">
                     <button class="btn btn-success border-rad" type="button" id="button-addon2">Subscribe</button>
                   </div>
 
                   <p class="card-text">Gravida sed justo, justo, id est et. Amet tristique convallis sed porttitor nullam eu ut. Duis et odio aliquam bibendum.
-                    Metus et lectus id viverra fringilla magna morbi. 
+                    Metus et lectus id viverra fringilla magna morbi.
                   </p>
                 </div>
               </div>
@@ -302,28 +301,27 @@
   </main>
 </template>
 <script>
-import { mapActions, mapGetters, mapMutations, mapState } from "vuex";
-import SubscriptionModal from '/src/components/Artist/SubscriptionModal.vue';
-import NProgress from 'nprogress';
+import { mapActions, mapGetters, mapMutations, mapState } from 'vuex'
+import SubscriptionModal from '../../../../src/components/Artist/SubscriptionModal.vue'
+import NProgress from 'nprogress'
 
 export default {
   components: {
     SubscriptionModal
   },
-  setup() {
-    
+  setup () {
+
   },
-  data()
-  {
+  data () {
     return {
       customersDropdown: [
         // change all icons name to &#x + Code point
-        { icon: 'account_circle', name: 'Account Settings', link: ''},
-        { icon: 'mail', name: 'Message', link: ''},
-        { icon: 'library_music	', name: 'My Songs', link: '/'},
-        { icon: 'event_available', name: 'My Bookings', link: '/'},
+        { icon: 'account_circle', name: 'Account Settings', link: '' },
+        { icon: 'mail', name: 'Message', link: '' },
+        { icon: 'library_music	', name: 'My Songs', link: '/' },
+        { icon: 'event_available', name: 'My Bookings', link: '/' },
         // { icon: 'queue_music', name: 'My Proposals', link: '/'},
-        { icon: 'help', name: 'Help Center', link: '/'},
+        { icon: 'help', name: 'Help Center', link: '/' }
       ],
       login: '/login',
       home: '/',
@@ -339,89 +337,81 @@ export default {
       facebookPage: 'https://www.facebook.com/',
       instagramPage: 'https://www.instagram.com/',
       twitterPage: 'https://twitter.com/',
-      youtubePage: 'https://www.youtube.com/',
+      youtubePage: 'https://www.youtube.com/'
 
     }
   },
-  mounted()
-  {
-    console.log('Route Meta ', this.$route);
-    console.log('Router Meta ', this.$router);
+  mounted () {
+    console.log('Route Meta ', this.$route)
+    console.log('Router Meta ', this.$router)
 
-    this.$store.dispatch("fetchNotifications");
+    this.$store.dispatch('fetchNotifications')
     // setInterval(() => {
     //   this.$store.dispatch("fetchNotifications");
     // }, 60000);
   },
   methods: {
-    openModal(data){
-      this.$root.$emit("bv::show::modal", "#selectPlanModal");
+    openModal (data) {
+      this.$root.$emit('bv::show::modal', '#selectPlanModal')
     },
     ...mapActions([
-      'signout', 'markAllNotificationAsRead', 'fetchNotifications',
+      'signout', 'markAllNotificationAsRead', 'fetchNotifications'
     ]),
     ...mapMutations([
       'SET_ACCOUNT', 'SET_PROFILE', 'SET_AUTH',
-      'SET_ARTIST_GENRES', 'SET_MEMBERS', 'SET_NOTIFICATIONS',
+      'SET_ARTIST_GENRES', 'SET_MEMBERS', 'SET_NOTIFICATIONS'
     ]),
-    markAsRead() {
+    markAsRead () {
       this.markAllNotificationAsRead('profile')
     },
-    async logout()
-    {
-      NProgress.start();
+    async logout () {
+      NProgress.start()
 
-      const self = this;
+      const self = this
 
       await this.signout()
-        .then(response =>
-        {
-          const { status } = response;
+        .then(response => {
+          const { status } = response
           console.log('Signout: ', response)
 
           if (status === 203) {
+            this.$store.commit('CLEAR_STATE')
+            // this.$store.commit('CLEAR_ARTIST');
 
-            this.$store.commit('CLEAR_STATE');
-            //this.$store.commit('CLEAR_ARTIST');
-            
-            this.$router.push('/');
-           
-          setTimeout(() => {
-            NProgress.done();
-          }, 1000);
+            this.$router.push('/')
 
+            setTimeout(() => {
+              NProgress.done()
+            }, 1000)
           } else if (status === 200 || status === 401) {
-            this.$router.push('/');
-           // this.$router.push('/login');
-          } else if (this.$route.meta.requiresLogin == false) this.$router.go();
-          
-        }).catch(err =>
-        {
-          
+            this.$router.push('/')
+            // this.$router.push('/login');
+          } else if (this.$route.meta.requiresLogin == false) this.$router.go()
+        }).catch(err => {
+
         })
     },
-    replaceByDefault(e) 
-    {
-      e.target.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm3RFDZM21teuCMFYx_AROjt-AzUwDBROFww&usqp=CAU';
-    },   
+    replaceByDefault (e) {
+      e.target.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm3RFDZM21teuCMFYx_AROjt-AzUwDBROFww&usqp=CAU'
+    }
   },
   computed: {
-    ...mapGetters(["isLoggedIn", 'userInfo', 'info', 'userRole', 'myAccount', 'myAvatar',]),
+    ...mapGetters(['isLoggedIn', 'userInfo', 'info', 'userRole', 'myAccount', 'myAvatar']),
     ...mapState({
       users: (state) => state.user,
-      notifications: state => state.notifications.notifications.slice(0, 5),
-    }),
+      notifications: state => state.notifications.notifications.slice(0, 5)
+    })
   },
-  created() {
-    console.log("isLoggedIn:", this.isLoggedIn);
-    console.log("userRole:", this.userRole);
-  },
+  created () {
+    console.log('isLoggedIn:', this.isLoggedIn)
+    console.log('userRole:', this.userRole)
+  }
 }
 </script>
 
 <style scoped>
 .requested-by-image {
-  width: 3rem !important; 
+  width: 3rem !important;
   height: 3rem !important;
   border-radius: 100% !important;
   margin-right: 0.5rem !important;
@@ -638,4 +628,3 @@ export default {
 }
 }
 </style>
-
