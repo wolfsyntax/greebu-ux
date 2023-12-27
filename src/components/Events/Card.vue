@@ -95,6 +95,16 @@
               >{{ "acoustic band".substring(0, 11) }}...</span
             >
           </div>
+
+          <!-- To uniform the height of the card -->
+          <div
+            class="seeking-for"
+            v-if="!isLoggedIn">
+            <h6 class="title" style="opacity: 0">Seeking for</h6>
+            <span class="badge type-artist text-capitalize" style="opacity: 0"
+              >Full Band</span
+            >
+          </div>
         </div>
 
         <div class="col">
