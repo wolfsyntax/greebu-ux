@@ -21,7 +21,7 @@
                 <router-link to="/library" v-if="['artists'].includes(userRole)">Library</router-link>
                 <router-link to="/event-library" v-if="['organizer',].includes(userRole)">Library</router-link>
               </li>
-              <li class="nav-item" v-if="['artists', 'customers', 'organizer', ].includes(userRole)" >
+              <li class="nav-item" v-if="[ 'artists', 'customers', 'organizer' ].includes(userRole)" >
                 <router-link to="/create-song">Create a Song</router-link>
               </li>
               <li class="nav-item" >
@@ -33,9 +33,7 @@
               <li class="nav-item" v-if="['','customers',].includes(userRole)" >
                 <router-link to="/services">Services</router-link>
               </li>
-              <!-- <li class="nav-item" v-if="userRole === 'organizer'">
-                <router-link to="/reports">Reports</router-link>
-              </li> -->
+
             </ul>
 
             <div class="float-end nav-button" v-if="!isLoggedIn">
@@ -44,6 +42,7 @@
             </div>
 
             <div class="float-end nav-button" v-else>
+              <a href="#" class="btn btn-primary upgrade" @click="openModal" data-bs-toggle="modal" data-bs-target="#selectPlanModal" v-if="userRole === 'artists'">Upgrade Plan</a>
 
               <div class="dropdown dropstart">
                 <button class="btn btn-secondary dropdown-toggle" @click="fetchNotifications" data-bs-auto-close="outside" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false" >
@@ -121,7 +120,7 @@
                       <img :src="myAccount?.avatar || myAvatar" alt="artist profile" @error="replaceByDefault" >
                       <div class="artist-name">
                         <p class="two-lines name">{{  userInfo.business_name }}</p>
-
+                        <!-- <p class="email">{{ userInfo.business_email }}</p> -->
                         <p class="email" style="text-transform: capitalize;">{{  userInfo.role }}</p>
                         <router-link to="/account/profile" class="dropdown-item view-profile">Edit Profile</router-link>
                       </div>
@@ -281,8 +280,7 @@
 </template>
 <script>
 import { mapActions, mapGetters, mapMutations, mapState } from 'vuex'
-// eslint-disable-next-line import/no-absolute-path
-import SubscriptionModal from '/src/components/Artist/SubscriptionModal.vue'
+import SubscriptionModal from '../../../../src/components/Artist/SubscriptionModal.vue'
 import NProgress from 'nprogress'
 
 export default {
@@ -298,9 +296,9 @@ export default {
         // change all icons name to &#x + Code point
         { icon: 'account_circle', name: 'Account Settings', link: '' },
         { icon: 'mail', name: 'Message', link: '' },
-        { icon: 'library_music', name: 'My Songs', link: '/' },
+        { icon: 'library_music	', name: 'My Songs', link: '/' },
         { icon: 'event_available', name: 'My Bookings', link: '/' },
-        // { icon: 'queue_music', name: 'My Proposals', link: '/' },
+        // { icon: 'queue_music', name: 'My Proposals', link: '/'},
         { icon: 'help', name: 'Help Center', link: '/' }
       ],
       login: '/login',
@@ -318,6 +316,7 @@ export default {
       instagramPage: 'https://www.instagram.com/',
       twitterPage: 'https://twitter.com/',
       youtubePage: 'https://www.youtube.com/'
+
     }
   },
   mounted () {
@@ -346,6 +345,8 @@ export default {
     async logout () {
       NProgress.start()
 
+      const self = this
+
       await this.signout()
         .then(response => {
           const { status } = response
@@ -363,7 +364,9 @@ export default {
           } else if (status === 200 || status === 401) {
             this.$router.push('/')
             // this.$router.push('/login');
-          } else if (this.$route.meta.requiresLogin === false) this.$router.go()
+          } else if (this.$route.meta.requiresLogin == false) this.$router.go()
+        }).catch(err => {
+
         })
     },
     replaceByDefault (e) {
