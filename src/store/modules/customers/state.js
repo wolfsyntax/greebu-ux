@@ -1,8 +1,8 @@
-var state = {
+const state = {
   artists: null,
   artist_types: null,
   genres: null,
-  members: null,
+  members: null
 }
 
 export default state

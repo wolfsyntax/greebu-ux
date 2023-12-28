@@ -8,14 +8,14 @@ export default defineConfig({
       template: {
         transformAssetUrls: {
           base: null,
-          includeAbsolute: false,
+          includeAbsolute: false
         },
         compilerOptions: {
           compatConfig: { MODE: 3 }
         }
-      },
+      }
 
-    }),
+    })
   ],
   resolve: {
     alias: {
@@ -25,10 +25,10 @@ export default defineConfig({
   },
   preview: {
     cors: {
-      "origin": "*",
-      "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-      "preflightContinue": false,
-      "optionsSuccessStatus": 204
+      origin: '*',
+      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+      preflightContinue: false,
+      optionsSuccessStatus: 204
     }
   }
 })

@@ -1,3 +1,5 @@
+<!-- eslint-disable vue/multi-word-component-names -->
+<!-- eslint-disable vue/no-deprecated-slot-attribute -->
 <template>
   <div>
     <nav class="navbar navbar-default">
@@ -12,11 +14,11 @@
     <stepper v-model="steps">
       <div class="jumbotron" slot="test">
         <h1>Stepper!</h1>
-      </div>
+      </div>s
     </stepper>
 
     <img :src="imgBlob" alt="image upload" />
-    <input type="file" @change="changeImage" />
+    <input type="file" aria-label="" @change="changeImage" />
     <vue-google-autocomplete
       ref="address"
       id="map"
@@ -30,18 +32,17 @@
 </template>
 
 <script>
-import VueGoogleAutocomplete from "vue-google-autocomplete";
-import Stepper from '/src/components/Stepper.vue';
+import VueGoogleAutocomplete from 'vue-google-autocomplete'
+// eslint-disable-next-line import/no-absolute-path
+import Stepper from '/src/components/Stepper.vue'
 
 export default {
   setup () {
-    
-
     return {}
   },
   components: {
     VueGoogleAutocomplete,
-    Stepper,
+    Stepper
   },
   data: () => ({
     img: '',
@@ -52,20 +53,20 @@ export default {
       { label: 'step2' },
       { label: 'step3' },
       { label: 'step4' },
-      { label: 'step5' },
+      { label: 'step5' }
     ]
   }),
-  mounted() {
-    this.$refs.address.focus();
+  mounted () {
+    this.$refs.address.focus()
   },
   methods: {
     getAddressData: function (addressData, placeResultData, id) {
-      this.address = addressData;
+      this.address = addressData
     },
-    changeImage(e) {
-      const file = URL.createObjectURL(event.target.files[0]);
-      this.imgBlob = file;
-      console.log('Image: ', file);
+    changeImage (e) {
+      const file = URL.createObjectURL(event.target.files[0])
+      this.imgBlob = file
+      console.log('Image: ', file)
     }
   }
 }
