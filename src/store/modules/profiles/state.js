@@ -1,4 +1,4 @@
-var state = {
+const state = {
   artists: null,
   artist_types: null,
   artist_genres: null,
@@ -10,11 +10,9 @@ var state = {
     current_page: 1,
     last_page: 1,
     per_page: 10,
-    total: 1,
+    total: 1
   },
-  artist_profile: {},
+  artist_profile: {}
 }
-
-
 
 export default state

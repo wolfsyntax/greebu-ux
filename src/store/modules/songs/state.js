@@ -1,4 +1,4 @@
-var state = {
+const state = {
   song_artist_types: null,
   moods: null,
   languages: null,
@@ -14,29 +14,28 @@ var state = {
     sender: null,
     receiver: null,
     user_story: null,
-    page_status: null,
     delivery_date: null,
     estimate_date: null,
     song_type_id: null,
     language_id: null,
     duration_id: null,
     purpose_id: null,
-    page_status: "info", // enum('info', 'song', 'story', 'review')
+    page_status: 'info' // enum('info', 'song', 'story', 'review')
   },
   artist_filter: {
     artist_type: null,
     artist_genre: null,
     rating: null,
-    sortBy: null,
+    sortBy: null
   },
   song_language: {},
   song_duration: {},
   song_purpose: {},
   song_mood: {},
-  song_genre: "",
+  song_genre: '',
   // song_artists: [],
   song_artists: {},
-  customized_songs: [],
-};
+  customized_songs: []
+}
 
-export default state;
+export default state

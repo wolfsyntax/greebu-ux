@@ -4,16 +4,16 @@ import en from './locales/en.json'
 import fr from './locales/fr.json'
 import jp from './locales/jp.json'
 
-  const i18n = createI18n({
-    legacy: false,
-    locale: import.meta.env.VITE_I18N_LOCALE || 'en',
-    fallbackLocale: import.meta.env.VITE_I18N_FALLBACK_LOCALE || 'es',
-    messages: {
-      en,
-      es,
-      fr,
-      jp,
-    }
-  })
+const i18n = createI18n({
+  legacy: false,
+  locale: import.meta.env.VITE_I18N_LOCALE || 'en',
+  fallbackLocale: import.meta.env.VITE_I18N_FALLBACK_LOCALE || 'es',
+  messages: {
+    en,
+    es,
+    fr,
+    jp
+  }
+})
 
-  export default i18n
+export default i18n
