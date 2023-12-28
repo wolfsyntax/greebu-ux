@@ -128,9 +128,7 @@
               <label>Artist category</label>
               <select class="form-select" v-model="genre" aria-label="Default select example">
                 <option value="" selected></option>
-                <option v-for="gen in genres" :key="gen.id" :value="gen.title">
-                  {{ gen.title }}
-                  </option> 
+                <option v-for="gen in genres" :key="gen.id" :value="gen.title">{{ gen.title }}</option> 
               </select>
             </div> -->
 
@@ -191,15 +189,9 @@
             </div>
             
           </template>
-        </FilterResults>
-
-        <!-- Show Artists -->
-      </div>
-      <!-- end of container  -->
-
-      <section>
-        <card :artists="artists" @paginate="page++"></card>
-      </section>
+          </FilterResults>
+      </div> 
+        <card :artists="artists" @paginate="page++" :showSeeMoreBtn="showSeeMoreBtn"></card>
     </section>
 
     <reminder />
@@ -209,14 +201,14 @@
 </template>
 
 <script>
-import Layout from "/src/components/Layouts/Layout.vue";
-import Reminder from "/src/components/Home/Reminder.vue";
-import Card from "/src/components/Artist/Card.vue";
-import Faq from "/src/components/Home/FAQ.vue";
-import FilterResults from "/src/components/FilterResults.vue";
-import LoadingVue from "/src/components/Loading.vue";
-import { mapGetters, mapState, mapActions, mapMutations, storeKey } from "vuex";
-import MustSignup from "/src/components/Artist/MustSignupModal.vue";
+
+import Layout from '/src/components/Layouts/Layout.vue'
+import Reminder from '/src/components/Home/Reminder.vue'
+import Card from '/src/components/Artist/Card.vue'
+import Faq from '/src/components/Home/FAQ.vue'
+import FilterResults from '/src/components/FilterResults.vue'
+import { mapGetters, mapState, mapActions, mapMutations, storeKey } from 'vuex'
+import MustSignup from '/src/components/Artist/MustSignupModal.vue'
 
 export default {
   components: {
@@ -225,28 +217,13 @@ export default {
     reminder: Reminder,
     card: Card,
     FilterResults,
-    LoadingVue,
-    MustSignup,
+    MustSignup
   },
-  setup() {},
-  data() {
+  setup () {
+  },
+  data () {
     return {
-      showArtists: [
-        {
-          id: 1,
-          name: "Idlepitch",
-          typeOfArtist: "Full Band Artist",
-          genre: "Rock",
-          song: "https://res.cloudinary.com/daorvtlls/video/upload/v1686647605/Nirvana_-_Smells_like_teen_spirit_zs8yo4.mp3",
-          image:
-            "https://res.cloudinary.com/daorvtlls/image/upload/v1686649068/trending-bicolano-artist-1_igoz8j.png",
-          ratings: 4.95,
-          reviews: 234,
-        },
-      ],
-      ratingImage:
-        "https://res.cloudinary.com/daorvtlls/image/upload/v1687321042/rating-star-small_axozjd.svg",
-
+      showSeeMoreBtn: true,
       artist_type: null,
       genre: null,
       search: "",
@@ -352,13 +329,18 @@ export default {
 
   watch: {
     page(val) {
+      this.showSeeMoreBtn = false;
       var payload = {};
       payload.per_page = 12 * val;
 
       if (this.artist_type) payload.artist_type = this.artist_type;
       if (this.genre) payload.genre = this.genre;
       if (this.search) payload.search = this.search;
-      this.fetchArtists(payload);
+
+      this.fetchArtists(payload).then((response) => {
+        this.showSeeMoreBtn = true;
+        console.log("Loaded Artists! : ", response);
+    });
     },
     filterArtist(val, prev) {
       if (val.id !== prev?.id) {

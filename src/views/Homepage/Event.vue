@@ -318,7 +318,7 @@
                       <button
                         class="page-link"
                         :disabled="pastPagination.page === 1"
-                        @click="prevPastPage(pastPagination.page)"
+                        @click="prevPastEvent()"
                       >
                         <span
                           class="page-link material-symbols-rounded back-icon"
@@ -793,7 +793,6 @@ export default {
     },
     nextPastEvent () {
       this.nextPastPage()
-
       this.pastEvents()
         .then((res) => {
           this.isPastLoading = false
@@ -807,8 +806,6 @@ export default {
     },
     prevPastEvent () {
       this.prevPastPage()
-      // console.log(this.pastPagination.page, "text")
-
       this.pastEvents()
         .then((res) => {
           this.isPastLoading = false
@@ -864,7 +861,7 @@ export default {
     },
     prevUpcomingEvent () {
       this.prevUpcomingPage()
-      console.log(this.upcomingPagination.page)
+      // console.log(this.upcomingPagination.page)
       this.upcomingEvents()
         .then((res) => {
           this.isUpcomingLoading = false
