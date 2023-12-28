@@ -635,6 +635,7 @@
           </div>
 
           <div class="row profile-body" v-if="activeItem === 'Reviews'">
+            <h2>Coming Soon!</h2>
             <h2>Reviews</h2>
           </div>
         </div>
