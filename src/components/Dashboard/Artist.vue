@@ -270,7 +270,8 @@
             <!-- left wrapper end -->
             <!-- middle wrapper start -->
             <div class="col-md-8 col-xl-6 middle-wrapper">
-              <post />
+              <!-- <post /> -->
+              <ComingSoon />
               <!-- Artist Posts -->
             </div>
             <!-- middle wrapper end -->
@@ -383,7 +384,7 @@
           <div class="row songs-tab" v-if="activeItem === 'Feeds'">
             <div class="col-12">
               <!-- zero state screen   -->
-              <div class="text-center no-songs">
+              <!-- <div class="text-center no-songs">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="101"
@@ -405,9 +406,9 @@
                     journey!
                   </p>
                 </div>
+              </div> -->
+              <ComingSoon />
 
-                <!-- <button type="button" class="btn upload-songs">Upload Songs</button> -->
-              </div>
             </div>
           </div>
           <!-- end of songs-tab -->
@@ -525,7 +526,7 @@
           <div class="row songs-tab" v-if="activeItem === 'Songs'">
             <div class="col-12">
               <!-- zero state screen   -->
-              <div class="text-center no-songs">
+              <!-- <div class="text-center no-songs">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="101"
@@ -551,7 +552,8 @@
                 <button type="button" class="btn upload-songs">
                   Upload Songs
                 </button>
-              </div>
+              </div> -->
+              <ComingSoon />
             </div>
           </div>
           <!-- end of songs-tab -->
@@ -559,7 +561,7 @@
           <div class="row videos-tab" v-if="activeItem === 'Videos'">
             <div class="col-12">
               <!-- zero state screen   -->
-              <div class="text-center no-videos">
+              <!-- <div class="text-center no-videos">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="103"
@@ -585,7 +587,8 @@
                 <button type="button" class="btn upload-video">
                   Upload Video
                 </button>
-              </div>
+              </div> -->
+              <ComingSoon />
             </div>
           </div>
           <!-- end of videos-tab -->
@@ -637,8 +640,7 @@
           </div>
 
           <div class="row profile-body" v-if="activeItem === 'Reviews'">
-            <h2>Coming Soon!</h2>
-            <h2>Reviews</h2>
+            <ComingSoon />
           </div>
         </div>
       </div>
@@ -698,7 +700,7 @@ import { Modal } from 'bootstrap'
 import EditBandMembers from '../Artist/EditBandMembers.vue'
 import BannerModal from './Modals/BannerModal.vue'
 import EventTab from '../../../../../src/components/Dashboard/Tabs/Events/Index.vue'
-import Post from '../../../../../src/components/Post/Index.vue'
+// import Post from '/src/components/Post/Index.vue'
 import SuccessModal from '../../../../../src/components/SuccessModal.vue'
 import MemberForm from '../../../../../src/views/Artist/Form/AddMember.vue'
 import ComingSoon from '../../../../../src/components/Dashboard/Tabs/NoUploaded/ComingSoon.vue'
@@ -711,7 +713,7 @@ export default {
     // CreatePostModal,
     EditBandMembers,
     BannerModal,
-    Post,
+    // Post,
     EventTab,
     MemberForm,
     SuccessModal,
