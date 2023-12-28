@@ -3181,7 +3181,7 @@ header nav {
   background: var(--white);
   border-radius: 0.25rem;
   box-shadow: 0px 0px 12.69425px 0px rgba(18, 18, 18, 0.15);
-  overflow: hidden;
+  /* overflow: hidden; */
   margin-bottom: 2.5rem;
 }
 .events-showing .container .card .bg-wrapper {
@@ -3305,7 +3305,7 @@ header nav {
   color: var(--orange);
   font-size: 0.7625rem;
   font-weight: 600;
-  padding: 0.25rem 0.5rem;
+  padding: 0.35rem 0.5rem;
   border-radius: 2rem;
   background: #fed7aa;
   margin: 0 0.37rem 0.37rem 0;
@@ -9399,14 +9399,19 @@ header nav {
   font-size: 24px;
   color: var(--completed);
 }
+
 /* Events - Popover Card */
 
-.popover {
-  /* border-color: white!important; */
-  --bs-popover-border-color: white !important;
+.artist-container:hover #card-performer{
+  display: block;
 }
 #card-performer {
-  /* width: 13.875rem; */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: none;
+  z-index: 2;
+  width: 15.875rem;
   padding: 0.25rem 0.25rem 0.6rem 0.25rem;
   border-radius: 0.3265rem;
   background: var(--white);
@@ -9509,10 +9514,21 @@ header nav {
 #card-performer .others-wrap div:nth-child(1) {
   margin-bottom: 0.25rem;
 }
-#card-performer .others-wrap img {
+#card-performer .others-wrap .social-media-wrap{
+  margin-bottom: 1rem;
+}
+#card-performer .others-wrap .social-media-wrap img{
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-right: 0.25rem;
+}
+#card-performer .others-wrap .address {
   width: 0.7rem;
   height: 0.7rem;
   margin-right: 0.25rem;
+}
+#card-performer .others-wrap .address{
+
 }
 #card-performer .others-wrap h6,
 #card-performer .others-wrap a {
@@ -9531,7 +9547,8 @@ header nav {
 #card-performer .others-wrap .location {
   color: var(--gray2);
 }
-#card-performer .btn-wrap a {
+#card-performer .btn-wrap a, 
+#card-performer .btn-wrap .view-profile-btn {
   color: var(--black);
   text-align: center;
   font-feature-settings: "clig" off, "liga" off;
@@ -9542,7 +9559,8 @@ header nav {
   border-radius: 0.16325rem;
   background-color: #f1f1f1;
 }
-#card-performer .btn-wrap a:hover {
+#card-performer .btn-wrap a:hover, 
+#card-performer .btn-wrap .view-profile-btn:hover {
   background-color: var(--orange);
   color: var(--white);
 }
@@ -11673,15 +11691,6 @@ header nav {
   }
   #file-output-box .close-icon {
     font-size: 18px;
-  }
-
-  /* File Uploaded Output Box - Error Msg*/
-
-  #file-output-box-error {
-  }
-  #file-output-box-error {
-  }
-  #file-output-box-error {
   }
 
   /* Delete an event etc. */

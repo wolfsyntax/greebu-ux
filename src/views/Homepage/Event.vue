@@ -379,6 +379,7 @@
     <events-modal @close="dismiss" />
     <event-success />
     <faq />
+    <ArtistPopOver @open-modal="openModalSignUp" />
   </layout>
 </template>
 <script>
@@ -408,6 +409,7 @@ import FilterResults from '/src/components/FilterResults.vue'
 import NoEvent from '/src/components/Events/NoEvent.vue'
 // eslint-disable-next-line import/no-absolute-path
 import BirdLoader from '/src/components/BirdLoader.vue'
+import ArtistPopOver from "/src/components/Events/ArtistPopOver.vue"
 
 export default {
   metaInfo: {
@@ -425,7 +427,8 @@ export default {
     EventCard,
     FilterResults,
     NoEvent,
-    BirdLoader
+    BirdLoader,
+    ArtistPopOver
   },
   setup () {},
   data: () => ({
@@ -567,6 +570,11 @@ export default {
       'nextOngoingPage',
       'nextPastPage'
     ]),
+    openModalSignUp(){
+      new Modal(document.getElementById('#mustSignUp'), {
+        keyboard: false
+      }).show()
+    },
     selectPage (page, type = 'ongoing') {
       if (type === 'ongoing') {
         console.log('Specify Ongoing Event: ', page)
