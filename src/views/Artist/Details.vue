@@ -57,7 +57,7 @@
                             <span class="material-symbols-rounded group-icon">&#xf233;</span>
                             Collaborate
                           </button>
-                          
+
                         </div>
                       </div>
                     </div>
@@ -153,11 +153,11 @@
                         </div>
                       </div>
                     </div>
-                  </div>  <!-- end of card-body -->     
+                  </div>  <!-- end of card-body -->
                 </div>
               </div>
               <!-- left wrapper end -->
-              
+
               <!-- middle wrapper start -->
               <div class="col-md-8 col-xl-6 middle-wrapper">
                 <!-- <post /> -->
@@ -193,7 +193,7 @@
                       </div>  <!-- end of card-body -->
                     </div>
                   </div>
-                  
+
                   <!-- right wrapper bottom start -->
                   <div class="col-md-12 grid-margin">
                     <div class="card original-songs">
@@ -217,8 +217,8 @@
 
                         <!-- Song list -->
 
-                      </div>  <!-- end of card-body -->     
-                    </div> 
+                      </div>  <!-- end of card-body -->
+                    </div>
                   </div>
                 </div>
               </div>
@@ -230,11 +230,11 @@
               <div class="col-7">
                 <h3 class="overview">Overview</h3>
                 <p class="content">{{ artist.bio }} </p>
-                <h5 class="capacity">Our capacity:</h5>  
+                <h5 class="capacity">Our capacity:</h5>
 
                 <ol type="1" class="capacity-list">
                   <li v-for="(capacity, index) in artistCapacity" :key="index">{{ capacity }}</li>
-                </ol> 
+                </ol>
 
                 <div class="genres">
                   <h4>Genres</h4>
@@ -337,7 +337,7 @@
               </div>
             </div> <!-- end of photos-tab -->
 
-            <div class="row profile-body events-tab" v-if="activeItem === 'Events'"> 
+            <div class="row profile-body events-tab" v-if="activeItem === 'Events'">
               <event-tab :previewAs="'guest'" />
             </div>
 
@@ -350,15 +350,13 @@
     </div>
   </layout>
 </template>
-
-
+<!-- eslint-disable import/no-absolute-path -->
 <script>
-import Layout from '/src/components/Layouts/Layout.vue';
-import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
+import Layout from '/src/components/Layouts/Layout.vue'
+import { mapGetters, mapState, mapActions, mapMutations } from 'vuex'
 // import Post from '/src/components/Post/Index.vue';
-import { Modal } from 'bootstrap';
 
-import EventTab from '/src/components/Dashboard/Tabs/Events/Index.vue';
+import EventTab from '/src/components/Dashboard/Tabs/Events/Index.vue'
 
 export default {
   setup () {
@@ -367,10 +365,9 @@ export default {
   components: {
     // Post,
     layout: Layout,
-    EventTab,
+    EventTab
   },
   data: () => ({
-    bannerImage: '/assets/artist-account/default-cover-photo.webp',
     navItems: [
       'Post',
       'About',
@@ -383,7 +380,7 @@ export default {
     activeItem: 'Post',
     songs: [
       'https://res.cloudinary.com/daorvtlls/video/upload/v1686647605/Nirvana_-_Smells_like_teen_spirit_zs8yo4.mp3',
-      'https://res.cloudinary.com/daorvtlls/video/upload/v1686647605/Nirvana_-_Smells_like_teen_spirit_zs8yo4.mp3',
+      'https://res.cloudinary.com/daorvtlls/video/upload/v1686647605/Nirvana_-_Smells_like_teen_spirit_zs8yo4.mp3'
     ],
     videos: ['https://video.wixstatic.com/video/8fd47a_61de9ebf0ad64f0fa93d72e4279551f7/1080p/mp4/file.mp4'],
     photos: ['/assets/home/birthdays.webp', '/assets/home/birthdays.webp', '/assets/home/birthdays.webp', '/assets/home/birthdays.webp', '/assets/home/birthdays.webp'],
@@ -399,41 +396,38 @@ export default {
     bandMembers: [
       { img: 'src/assets/artist-account/band-member-1.webp', name: 'John Doe', role: 'Vocalist' }, { img: 'src/assets/artist-account/band-member-2.webp', name: 'Jose Diaz', role: 'Guitarist' },
       { img: 'https://res.cloudinary.com/daorvtlls/image/upload/v1686649329/trending-bicolano-artist-5_lxhfkw.png', name: 'John Doe', role: 'Vocalist' }, { img: 'src/assets/artist-account/band-member-2.webp', name: 'Jose Diaz', role: 'Guitarist' },
-      { img: 'https://res.cloudinary.com/daorvtlls/image/upload/v1686465790/cld-sample.jpg', name: 'Michelle Rose', role: 'Songwriter' },
+      { img: 'https://res.cloudinary.com/daorvtlls/image/upload/v1686465790/cld-sample.jpg', name: 'Michelle Rose', role: 'Songwriter' }
     ],
     // isModalVisible: false,
     modalVisible: false,
     editingIndex: -1,
 
-    submissions: [], 
+    submissions: [],
     times: [],
     activeModal: false,
-    activeSubmission: null, 
+    activeSubmission: null,
     postMoreoptions: [
-        { label: "Pin Post", icon: "/assets/pin-post.svg" },
-        { label: "Edit", icon: "/assets/edit-post.svg" },
-        { label: "Delete", icon: "/assets/delete-post.svg" },
-      ],
+      { label: 'Pin Post', icon: '/assets/pin-post.svg' },
+      { label: 'Edit', icon: '/assets/edit-post.svg' },
+      { label: 'Delete', icon: '/assets/delete-post.svg' }
+    ],
     isPinnedPost: false,
     pinnedPost: false, // Pinned status
-    isActive: false,
+    isActive: false
   }),
-  mounted()
-  {
+  mounted () {
     console.log('Mounted Artist Details: ', this.artist)
-    
-    if (this.artist.hasOwnProperty('id')) {
-      console.log('Fetch Ongoing Events: ');
-      this.fetchArtistOngoingEvents(this.artist.id);
-      this.fetchArtistUpcomingEvents(this.artist.id);
-      this.fetchArtistPastEvents(this.artist.id);
 
+    if (Object.prototype.hasOwnProperty.call(this.artist, 'id')) {
+      console.log('Fetch Ongoing Events: ')
+      this.fetchArtistOngoingEvents(this.artist.id)
+      this.fetchArtistUpcomingEvents(this.artist.id)
+      this.fetchArtistPastEvents(this.artist.id)
     }
 
-
     // const regexExp = /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi;
-      
-    // if (regexExp.test(this.$route.params?.id)) 
+
+    // if (regexExp.test(this.$route.params?.id))
     //   this.fetchArtistById(this.$route.params?.id)
     //     .then(res => {
     //       console.log('Fetch Artist By ID: ', res);
@@ -443,7 +437,7 @@ export default {
     //       .then(res => {
     //         console.log('Fetch Artist By Name: ', res);
     //       });
-          
+
     // this.fetchProfile()
     //   .then(res =>
     //   {
@@ -458,124 +452,103 @@ export default {
     //   {
     //     console.log('Artist Options [ArtistLayout] ', res)
     //   });
-
-    // this.bannerImage = this.profile.cover_photo || this.account?.cover_photo || '/assets/artist-account/default-cover-photo.webp';
-
+    console.log('Artist: ', this.artist)
+    console.log('Accounts: ', this.account)
+    // this.bannerImage = this.artist?.cover_photo || '/assets/artist-account/default-cover-photo.webp'
   },
   methods: {
     ...mapActions([
       'fetchArtistOptions', 'fetchArtistById', 'fetchArtistBySlug',
       'fetchProfile', 'artistOptions', 'fetchArtist',
-      'fetchArtistOngoingEvents', 'fetchArtistUpcomingEvents', 'fetchArtistPastEvents',
+      'fetchArtistOngoingEvents', 'fetchArtistUpcomingEvents', 'fetchArtistPastEvents'
     ]),
     ...mapMutations([
-      'setArtistProfile',
+      'setArtistProfile'
     ]),
-    toggle()
-    {
-      this.isActive = !this.isActive;
+    toggle () {
+      this.isActive = !this.isActive
     },
-    setActiveItem(item)
-    {
-      this.activeItem = item;
+    setActiveItem (item) {
+      this.activeItem = item
     },
-    shouldShowBadge(item)
-    {
-      return item === 'Post' && this.submissions.length > 0 ||
-                      item === 'About' && this.songs.length > 0 ||
-                      item === 'Songs' && this.songs.length > 0 ||
-                      item === 'Videos' && this.videos.length > 0 ||
-                      item === 'Photos' && this.photos.length > 0;
+    shouldShowBadge (item) {
+      return (item === 'Post' && this.submissions.length > 0) ||
+                      (item === 'About' && this.songs.length > 0) ||
+                      (item === 'Songs' && this.songs.length > 0) ||
+                      (item === 'Videos' && this.videos.length > 0) ||
+                      (item === 'Photos' && this.photos.length > 0)
     },
-    getCount(item)
-    {
+    getCount (item) {
       switch (item) {
         case 'Post':
-          return this.submissions.length;
+          return this.submissions.length
         case 'About':
-          return this.songs.about;
+          return this.songs.about
         case 'Songs':
-          return this.songs.length;
+          return this.songs.length
         case 'Videos':
-          return this.videos.length;
+          return this.videos.length
         case 'Photos':
-          return this.photos.length;
+          return this.photos.length
         default:
-          return 0;
+          return 0
       }
-    },
-    
+    }
+
   },
   watch: {
     activeItem (cur) {
       if (cur === 'Events') {
         if ('id' in this.artist) {
-          
-          console.log('Fetch Artist Events here: ', this.artist);
+          console.log('Fetch Artist Events here: ', this.artist)
           setTimeout(() => {
-            this.fetchArtistOngoingEvents(this.artist.id);
-            this.fetchArtistUpcomingEvents(this.artist.id);
-            this.fetchArtistPastEvents(this.artist.id);            
-          }, 1000);
-  
+            this.fetchArtistOngoingEvents(this.artist.id)
+            this.fetchArtistUpcomingEvents(this.artist.id)
+            this.fetchArtistPastEvents(this.artist.id)
+          }, 1000)
         }
 
         console.log('Fetch Artist Info: ', this.artist)
       }
     },
-    '$route' :{
-      async handler(to, from) {
+    $route: {
+      async handler (to, from) {
 
-        // const regexExp = /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi;
-      
-        // if (regexExp.test(to.params?.id)) 
-        //   await this.fetchArtistById(to.params?.id)
-        //     .then(res => {
-        //       console.log('Fetch Artist By ID: ', res);
-        //     });
-
-        // else await this.fetchArtistBySlug(to.params?.id)
-        //     .then(res => {
-        //       console.log('Fetch Artist By Name: ', res);
-        //     });
       },
       deep: true,
-      immediate: true,
+      immediate: true
     },
     profile: {
-      handler(res)
-      {
+      handler (res) {
         console.log('Profile object updated: ', res)
-        this.bannerImage = res?.cover_photo || this.account.cover_photo || '/assets/artist-account/default-cover-photo.webp';
+        // this.bannerImage = res?.cover_photo || this.account.cover_photo || '/assets/artist-account/default-cover-photo.webp'
       },
-      deep: true,
+      deep: true
     },
     submissions: {
-      handler(submissions)
-      {
-        submissions.forEach(submission =>
-        {
-          submission.formattedTime = this.formattedTime(submission.submittedTime);
-        });
+      handler (submissions) {
+        submissions.forEach(submission => {
+          submission.formattedTime = this.formattedTime(submission.submittedTime)
+        })
       },
       deep: true
     }
   },
   computed: {
-    ...mapGetters(["isLoggedIn", "userInfo", "token", 'myAvatar', 'instagram', 'youtube', 'twitter', 'spotify', 'facebook', 'threadsNET', 'isComplete', 'formArtistGenres', 'userRole']),
+    ...mapGetters(['isLoggedIn', 'userInfo', 'token', 'myAvatar', 'instagram', 'youtube', 'twitter', 'spotify', 'facebook', 'threadsNET', 'isComplete', 'formArtistGenres', 'userRole']),
     ...mapState({
       artist: (state) => state.artist.artistInfo,
-      members: (state) => state.artist.artistMembers,
-    }),
-  
+      bannerImage: state => state.artist.artistInfo?.cover_photo || '/assets/artist-account/default-cover-photo.webp',
+      members: (state) => state.artist.artistMembers
+    })
+
   },
-  created() {
-    
-  },
+  created () {
+
+  }
 }
 </script>
 <style>
 @import '@/assets/css/artist-ui.css';
-
 
 </style>

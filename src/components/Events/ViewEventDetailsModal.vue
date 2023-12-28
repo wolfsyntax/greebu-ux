@@ -12,10 +12,10 @@
           <button class="btn close-modal-btn" data-bs-dismiss="modal" aria-label="Close">
             <span class="material-symbols-rounded close-icon">&#xe5cd;</span>
           </button>
-           
+
         </div>
         <div class="modal-body">
-          
+
           <div class="d-flex align-items-start justify-content-between event-title-wrap">
 
             <div>
@@ -27,7 +27,7 @@
             <div>
               <a :href="`/proposal/${event.id}/apply`" v-if="userRole === 'artists' && usage === 'view' && view !== 'past'" class="send" :disabled="!event.accept_proposal">Send Proposal</a>
             </div>
-            
+
           </div>
 
           <div class="event-background-img-wrap">
@@ -67,13 +67,13 @@
               <h5 class="looking-for">Looking for</h5>
               <span class="badge type-artist text-capitalize" >{{ event.look_for }}</span>
               <span class="badge type-artist text-capitalize"  v-for="(e, index) in event.look_types" :key="index">{{ e }}</span>
-             
+
           </div>
 
           <div class="looking-for-wrap" v-if="event?.artist">
               <h5 class="looking-for">Performer</h5>
               <span class="badge type-artist text-capitalize"  v-for="(e, index) in event.artist" :key="index">{{ e.name }}</span>
-             
+
           </div>
 
           <div class="requirements-wrap">
@@ -99,7 +99,7 @@
                 </div>
               </div>
 
-              <a :href="`/events/${event?.id}`" class="view-profile" @click="fetchProfile()">View Profile</a>
+              <a :href="`/events/${event?.organizer_id}`" class="view-profile" @click="fetchProfile()">View Profile</a>
 
             </div>
 
@@ -112,64 +112,60 @@
     </div>
   </div>
 
-
-
 </template>
 
 <script>
-import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
+import { mapGetters, mapState, mapActions, mapMutations } from 'vuex'
 
 export default {
   components: {
   },
 
   setup () {
-
     return {}
   },
   data: () => ({
-   
+
   }),
   props: {
-    usage: { 
+    usage: {
       type: String,
       default: 'view',
       required: false
-    },
-    
+    }
+
   },
   computed: {
-    ...mapGetters(["isLoggedIn", 'userInfo', 'info', 'userRole']),
+    ...mapGetters(['isLoggedIn', 'userInfo', 'info', 'userRole']),
     ...mapState({
       event: state => state.events.event,
       view: state => state.events.viewType,
       users: (state) => state.user,
-      profile: (state) => state.profile,
-      //account: state => state.account,
+      profile: (state) => state.profile
+      // account: state => state.account,
     })
   },
   created () {
-   // this.setArtistProfile();
+    // this.setArtistProfile();
   },
 
-  mounted()
-  {
+  mounted () {
     console.log('Selected Event: ', this.event)
   },
   methods: {
- //   ...mapMutations(['setArtistProfile', ]),
-    fetchProfile() {
-     // this.setArtistProfile(this.account);
-      this.fetchArtistById(this.$route.params?.id)
+    ...mapActions(['fetchEventOrganizer']),
+    fetchProfile () {
+      // this.setArtistProfile(this.account);
+      this.fetchEventOrganizer(this.$route.params?.id)
         .then(res => {
           const { status: statusCode, data: { status } } = res
           if (statusCode === 203) {
-            if (status === 404) this.$router.push({name: 'page-error-404'})
-            else this.$router.push({name: 'page-error-500'});
+            if (status === 404) this.$router.push({ name: 'page-error-404' })
+            else this.$router.push({ name: 'page-error-500' })
           }
-        });
-    },
-	},
+        })
+    }
+  }
 
 }
 </script>

@@ -64,7 +64,7 @@
                   <div class="profile-wrap">
                     <img src="${artist.avatar}" class="img-fluid rounded-circle profile" alt="artist avatar">
                   </div>
-                </div> 
+                </div>
 
                 <div class="d-flex align-items-start justify-content-between details-wrap">
                   <div>
@@ -103,12 +103,12 @@
                       <img src="/assets/events/location.svg" class="img-fluid rounded-circle profile" alt="artist avatar">
                       <h6 class="text-truncate location">Naga city, Camarines Sur</h6>
                     </div>
-                  </div> 
+                  </div>
 
                   <div class="btn-wrap">
                     <a href="/artists/${artist?.id}" class="btn view-profile bg-orange">View Profile</a>
                   </div>
-                </div> 
+                </div>
               </div>`'
               >{{ artist?.name.length > 10 ? artist?.name?.substring(0,11) : artist?.name }}{{ (artist?.name.length > 11) ? '...' : ''}}</span>
             </p>
@@ -131,22 +131,20 @@
 </template>
 
 <script>
-import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
-import ViewDetail from '/src/components/Events/ViewEventDetailsModal.vue';
-import MustSignupModal from '/src/components/Artist/MustSignupModal.vue';
-import { Popover } from 'bootstrap';
-import jQuery from 'jquery';
+/* eslint-disable import/no-absolute-path  */
+import { mapGetters, mapState } from 'vuex'
+import { Popover } from 'bootstrap'
 
 export default {
-  setup()
-  {
+  created () {
+  },
+  setup () {
     return {
-      linkIcon: '/assets/events/link.svg',
+      linkIcon: '/assets/events/link.svg'
     }
   },
   components: {
-    ViewDetail,
-    signupmodal: MustSignupModal,
+
   },
   props: {
     pos: {
@@ -157,50 +155,48 @@ export default {
 
     event: {
       type: Object,
-      default: {},
+      default: () => ({}),
       required: true
     },
     group: {
       type: String,
       default: 'ongoing',
-      required: true,
+      required: true
     }
   },
   computed: {
-    ...mapGetters(["isLoggedIn", 'userRole']),
+    ...mapGetters(['isLoggedIn', 'userRole']),
     ...mapState({
       account: state => state.account,
       members: (state) => state.artist.members,
-      artist: state => state.artist.artist,
+      artist: state => state.artist.artist
     }),
-    canSendProposal() {
-      console.log(`Can Send Proposal for ${this.event.id}: `, this.event.accept_proposal);
+    canSendProposal () {
+      console.log(`Can Send Proposal for ${this.event.id}: `, this.event.accept_proposal)
       if (this.event.can_send) {
-        
-        return this.event.accept_proposal;
+        return this.event.accept_proposal
       } else {
-        return false;
+        return false
       }
-      return this.event.can_send
     }
   },
   data: () => ({
     myPopover: null,
-    selectedArtist: {},
+    selectedArtist: {}
   }),
-  mounted()
-  {
+  mounted () {
     // this.myPopover = Popover.getOrCreateInstance(`#event-${this.event?.id}`);
     // Popover.getOrCreateInstance(`#event-${this.event?.id}`)
     console.log('Event ID: ', `#event-${this.event?.id}`)
-    const self = this;
+
     try {
+      // eslint-disable-next-line no-new
       new Popover(`#event-${this.event?.id}`, {
         container: 'body',
         trigger: 'hover',
         placement: 'right',
         delay: {
-          show: 0, hide: 5000,
+          show: 0, hide: 5000
         },
         template: `
         <div class="popover" role="tooltip">
@@ -210,53 +206,32 @@ export default {
           </div>
         </div>`,
         sanitize: false
-      });
-
+      })
     } catch (err) {
 
     }
 
-    console.log('Card: ', this.event);
-    // Array.from(document.querySelectorAll('span[data-bs-toggle="popover"]'))
-    // .forEach(popoverNode => new Popover(popoverNode))
+    console.log('Card: ', this.event)
   },
   methods: {
-    toggle(pos = -1)
-    {
-      
-      this.$store.commit('setEventView', this.group || 'ongoing');
-
+    toggle (pos = -1) {
+      this.$store.commit('setEventView', this.group || 'ongoing')
+      console.log('Card Selected Event: ', this.event)
       if (pos > -1) {
-        this.$store.commit('SET_EVENT', this.event);
+        this.$store.commit('SET_EVENT', this.event)
       } else {
-        this.$store.commit('SET_EVENT', {});
+        this.$store.commit('SET_EVENT', {})
       }
 
-      this.$emit('show', pos);
-
+      this.$emit('show', pos)
     },
-    show(artist, index) {
+    show (artist, index) {
       console.log('Mouse Over: ', artist, index)
-      // const popUp = Popover.getOrCreateInstance(`#event-${this.event?.id}`);
 
-      //   popUp.setContent({
-      //     '.popover-body': 'another content'
-      //   });
-
-      // new Popover(`#artist${artist.artist_id}`, {
-      //   container: 'body',
-      //   delay: {
-      //     show: 0, hide: 1500,
-      //   },
-      //   trigger: 'hover',
-      // });
-      // console.log('Show Artist ', artist)
-        this.selectedArtist = artist;
+      this.selectedArtist = artist
     },
-    sendProposal()
-    {
-      
-      this.$store.commit('SET_EVENT', this.event);
+    sendProposal () {
+      this.$store.commit('SET_EVENT', this.event)
       this.$store.commit('SET_PROPOSAL', {
         event_id: this.event.id || '',
         artist_id: this.account.id || '',
@@ -264,15 +239,14 @@ export default {
         genres: this.account.genres || [],
         total_member: this.members.length || 0,
         cover_letter: '',
-        sample_song: '',
+        sample_song: ''
       })
 
       this.$router.push(`/proposal/${this.event.id}/apply`)
-    },
+    }
   }
 }
 </script>
 
 <style scoped>
 </style>
-

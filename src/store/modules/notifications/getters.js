@@ -1,2 +1,2 @@
-export const getNotifications = (state) => state.notifications;
-export const getNotification = (state) => state.notification;
+export const getNotifications = (state) => state.notifications
+export const getNotification = (state) => state.notification

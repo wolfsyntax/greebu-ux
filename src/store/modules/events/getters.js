@@ -1,11 +1,9 @@
-export const eventLookType = (state,getters, rootState) =>
-{
+export const eventLookType = (state, getters, rootState) => {
   if (state.form.look_for === 'service') {
-    return state.event_service_type.map(function (obj)
-    {
+    return state.event_service_type.map(function (obj) {
       return {
         value: obj,
-        text: obj,
+        text: obj
       }
     })
   } else {
@@ -13,4 +11,4 @@ export const eventLookType = (state,getters, rootState) =>
   }
 }
 
-export const eventCover = state => state.form.cover ?? '';
+export const eventCover = state => state.form.cover ?? ''
