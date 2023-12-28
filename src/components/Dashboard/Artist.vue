@@ -592,7 +592,7 @@
           <div class="row photos-tab" v-if="activeItem === 'Photos'">
             <div class="col-12">
               <!-- zero state screen   -->
-              <div class="text-center no-photos">
+              <!-- <div class="text-center no-photos">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="103"
@@ -622,7 +622,8 @@
                 <button type="button" class="btn upload-photos">
                   Upload Photos
                 </button>
-              </div>
+              </div> -->
+
             </div>
           </div>
           <!-- end of photos-tab -->
