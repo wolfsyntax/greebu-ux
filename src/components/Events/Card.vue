@@ -200,7 +200,7 @@ export default {
 
     event: {
       type: Object,
-      default: Function, // {}
+      default: () => {}, // {}
       required: true
     },
     group: {

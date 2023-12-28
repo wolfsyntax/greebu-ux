@@ -51,28 +51,28 @@
 
       <div class="others-wrap">
         <div class="d-flex align-items-center social-media-wrap">
-            <a v-if="artist?.spotify" :href="artist?.spotify || 'spotify.com'" target="_blank">
+            <a v-if="artist?.spotify" :href="artist?.spotify" target="_blank">
               <img
                 src="/assets/artist-account/spotify-icon-gray.svg"
                 class="img-fluid rounded-circle"
                 alt="artist avatar"
               />
             </a>
-            <a v-if="artist?.facebook" :href="artist?.facebook || 'facebook.com'" target="_blank">
+            <a v-if="artist?.facebook" :href="artist?.facebook" target="_blank">
               <img
                 src="/assets/social icons/facebook-gray.svg"
                 class="img-fluid rounded-circle"
                 alt="artist avatar"
               />
             </a>
-            <a v-if="artist?.twitter" :href="artist?.twitter || 'twitter.com'" target="_blank">
+            <a v-if="artist?.twitter" :href="artist?.twitter" target="_blank">
               <img
                 src="/assets/artist-account/twitter-icon-gray.svg"
                 class="img-fluid rounded-circle"
                 alt="artist avatar"
               />
             </a>
-            <a v-if="artist?.instagram" :href="artist?.instagram || 'instagram.com'" target="_blank">
+            <a v-if="artist?.instagram" :href="artist?.instagram" target="_blank">
               <img
                 src="/assets/artist-account/instagram-icon-gray.svg"
                 class="img-fluid rounded-circle"
