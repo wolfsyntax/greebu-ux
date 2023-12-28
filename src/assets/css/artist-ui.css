@@ -1606,7 +1606,9 @@ img {
 }
 .profile-page .songs-tab .upload-songs,
 .profile-page .videos-tab .upload-video,
-.profile-page .photos-tab .upload-photos {
+.profile-page .photos-tab .upload-photos,
+#coming-soon .soon-wrap .goto
+ {
   color: var(--white);
   font-size: 1rem;
   font-weight: 700;
@@ -1617,7 +1619,8 @@ img {
 }
 .profile-page .songs-tab .upload-songs:hover,
 .profile-page .videos-tab .upload-video:hover,
-.profile-page .photos-tab .upload-photos:hover {
+.profile-page .photos-tab .upload-photos:hover,
+#coming-soon .soon-wrap .goto:hover {
   background-color: var(--btn-hovered);
 }
 
@@ -3692,6 +3695,37 @@ img {
   font-weight: 600;
 }
 
+/* Coming Soon */
+
+#coming-soon{
+
+}
+#coming-soon .soon-wrap{
+  padding: 12.56rem 0;
+  width: 80%;
+  margin: 0 auto;
+  background-image: url('/assets/coming-soon-bg.svg');
+  background-repeat: no-repeat;
+  background-position: bottom;
+}
+#coming-soon .soon-wrap .coming{
+  color: var(--black-color);
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 120%; 
+  letter-spacing: 0.01175rem;
+  margin-bottom: 0.69rem;
+}
+#coming-soon .soon-wrap .ready{
+  color: rgba(60, 60, 67, 0.85);
+  font-size: 0.875rem;
+  font-weight: 400;
+  margin-bottom: 0.94rem;
+}
+#coming-soon .soon-wrap .goto{
+
+}
+
 /* Data from backend - array of objects at the bottom */
 .artist-data .container .user {
   white-space: normal;
@@ -4958,6 +4992,7 @@ img {
   .profile-page .songs-tab .upload-songs,
   .profile-page .videos-tab .upload-video,
   .profile-page .photos-tab .upload-photos,
+  #coming-soon .soon-wrap .goto,
   .profile-page .events-tab .no-events-wrap .add-event {
     font-size: 0.87rem;
     padding: 0.9rem 2rem;
