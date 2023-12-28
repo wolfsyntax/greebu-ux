@@ -957,20 +957,22 @@
 </template>
 <script>
 // import Layout from '/src/components/Layouts/ArtistLayout.vue';
-import { mapGetters, mapState, mapActions, mapMutations } from 'vuex'
+import { mapActions, mapGetters, mapMutations, mapState } from 'vuex'
 // eslint-disable-next-line import/no-absolute-path
 import MemberForm from '/src/views/Artist/Form/AddMember.vue'
 // eslint-disable-next-line import/no-absolute-path
-import SocialMediaForm from '/src/views/Artist/Form/SocialMedia.vue'
 import BlankHeader from '@/components/Home/BlankHeader.vue'
 import Multiselect from '@vueform/multiselect'
+// eslint-disable-next-line import/no-absolute-path
+import SocialMediaForm from '/src/views/Artist/Form/SocialMedia.vue'
 // eslint-disable-next-line import/no-absolute-path
 import ProfileModal from '/src/components/Dashboard/Modals/ProfileModal.vue'
 // eslint-disable-next-line import/no-absolute-path
 import LoadingIndicator from '/src/components/LoadingIndicator.vue'
 // eslint-disable-next-line import/no-absolute-path
-import SuccesModal from '/src/components/SuccessModal.vue'
 import { gzip } from 'pako'
+// eslint-disable-next-line import/no-absolute-path
+import SuccesModal from '/src/components/SuccessModal.vue'
 
 export default {
   components: {
