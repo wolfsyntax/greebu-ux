@@ -53,10 +53,14 @@
               </div> 
 
               <div class="button-wrapper">
-
-                <button type="button" @click="$emit('paginate')" class="btn btn-primary see-more-btn">
-                  SEE MORE ARTISTS
-                </button>
+                <div v-if="showSeeMoreBtn">
+                    <button type="button" @click="$emit('paginate')" class="btn btn-primary see-more-btn">
+                      SEE MORE ARTISTS
+                    </button>
+                </div>
+                <div v-else>
+                  <BirdLoader />
+                </div>
               </div>
          </div> 
 
@@ -114,11 +118,13 @@ import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
 import Layout from '/src/components/Layouts/Layout.vue';
 import ArtistDetails from '/src/components/Artist/ArtistDetails.vue';
 import AudioPlayer from '@liripeng/vue-audio-player';
+import BirdLoader from "/src/components/BirdLoader.vue";
 
 export default {
  components: {
   'artist-details': ArtistDetails,
   AudioPlayer,
+  BirdLoader
   },
   setup() {
     
@@ -143,6 +149,7 @@ export default {
       type: Array,
       default: () => [],
     },
+    showSeeMoreBtn: Boolean,
   },
   watch: {
   },
