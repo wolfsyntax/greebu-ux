@@ -3,7 +3,7 @@
     <div class="img-wrap">
         <!-- src="/assets/artist-account/default-cover-photo.webp" -->
       <img
-        src="/assets/artist-account/default-cover-photo.webp"
+        :src="artist?.cover_photo || '/assets/artist-account/default-cover-photo.webp'"
         class="cover"
         alt="artist cover image"
       />
@@ -34,8 +34,7 @@
 
     <div class="about-wrap">
       <p class="bio two-lines">
-        I am an indie-country/pop artists who describes her style as a "dreamy
-        storytelling."
+        {{ artist?.bio || 'I am an indie-country/pop artists who describes her style as a "dreamy storytelling.'}}
       </p>
       <div class="follow-wrap">
         <div class="d-flex align-items-center">
@@ -90,8 +89,6 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { Modal } from 'bootstrap'
-
 export default {
   components: {
   },

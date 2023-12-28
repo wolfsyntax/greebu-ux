@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="card">
     <div class="bg-wrapper">
@@ -115,6 +116,9 @@
               v-for="(artist, index) in event?.artist.slice(0, 1)"
               :key="index"
             >
+            <div>
+              <pre>{{ artist }}</pre>
+            </div>
               <div
                 class="artist-container"
                 @mouseover="showArtistInfo(artist)"
@@ -226,7 +230,7 @@ export default {
       } else {
         return false
       }
-      return this.event.can_send;
+      // return this.event.can_send;
     }
   },
   data: () => ({
