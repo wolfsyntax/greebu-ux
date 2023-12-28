@@ -6,6 +6,7 @@ const state = {
   role: '', // artists, customers, organizer, service-provider
   roles: [],
   artist_types: null,
+  artist_category: null,
   genres: null,
   artists: null,
   plans: null,

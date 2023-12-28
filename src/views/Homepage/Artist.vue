@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <layout>
     <section class="artist-banner">
@@ -128,7 +129,7 @@
               <label>Artist category</label>
               <select class="form-select" v-model="genre" aria-label="Default select example">
                 <option value="" selected></option>
-                <option v-for="gen in genres" :key="gen.id" :value="gen.title">{{ gen.title }}</option> 
+                <option v-for="gen in genres" :key="gen.id" :value="gen.title">{{ gen.title }}</option>
               </select>
             </div> -->
 
@@ -165,7 +166,7 @@
                 <option v-if="!selectedArtistCategoryVisible">Select type of artist first</option>
                 <optgroup
                   v-if="selectedArtistCategoryVisible"
-                  
+
                 >
                   <option
                     v-for="(category, index) in artistCategories[
@@ -187,10 +188,10 @@
                 <option>Legazpi City</option>
               </select>
             </div>
-            
+
           </template>
           </FilterResults>
-      </div> 
+      </div>
         <card :artists="artists" @paginate="page++" :showSeeMoreBtn="showSeeMoreBtn"></card>
     </section>
 
@@ -202,13 +203,19 @@
 
 <script>
 
-import Layout from '/src/components/Layouts/Layout.vue'
-import Reminder from '/src/components/Home/Reminder.vue'
+import { mapActions, mapGetters, mapMutations, mapState } from 'vuex'
+// eslint-disable-next-line import/no-absolute-path
 import Card from '/src/components/Artist/Card.vue'
-import Faq from '/src/components/Home/FAQ.vue'
-import FilterResults from '/src/components/FilterResults.vue'
-import { mapGetters, mapState, mapActions, mapMutations, storeKey } from 'vuex'
+// eslint-disable-next-line import/no-absolute-path
 import MustSignup from '/src/components/Artist/MustSignupModal.vue'
+// eslint-disable-next-line import/no-absolute-path
+import FilterResults from '/src/components/FilterResults.vue'
+// eslint-disable-next-line import/no-absolute-path
+import Faq from '/src/components/Home/FAQ.vue'
+// eslint-disable-next-line import/no-absolute-path
+import Reminder from '/src/components/Home/Reminder.vue'
+// eslint-disable-next-line import/no-absolute-path
+import Layout from '/src/components/Layouts/Layout.vue'
 
 export default {
   components: {
@@ -226,165 +233,165 @@ export default {
       showSeeMoreBtn: true,
       artist_type: null,
       genre: null,
-      search: "",
+      search: '',
       artist: null,
       artistIndex: 0,
       // per_page: 16,
       page: 1,
       isLoading: false,
       // buttonName: 'SEE MORE ARTIST',
-      someIcon: "play",
+      someIcon: 'play',
 
-      selectedArtistType: "",
-      selectedArtistCategory: "",
+      selectedArtistType: '',
+      selectedArtistCategory: '',
       artistTypes: [
-        { label: "Visual Artists", value: "visual" },
-        { label: "Performing Artists", value: "performing" },
-        { label: "Literary Artists", value: "literary" },
-        { label: "Digital Artists", value: "digital" },
+        { label: 'Visual Artists', value: 'visual' },
+        { label: 'Performing Artists', value: 'performing' },
+        { label: 'Literary Artists', value: 'literary' },
+        { label: 'Digital Artists', value: 'digital' }
       ],
       artistCategories: {
-        visual: ["Painter", "Sculptors", "Photographers", "Mural painter"],
+        visual: ['Painter', 'Sculptors', 'Photographers', 'Mural painter'],
         performing: [
-          "Disk Jockey",
-          "Solo artist",
-          "Band",
-          "Guitarist",
-          "Vocalist",
-          "Bassist",
-          "Drummer",
-          "Keyboardist",
-          "Dancers",
-          "Actors",
-          "Spoken Word Artists",
-          "Host",
-          "Cosplayers",
+          'Disk Jockey',
+          'Solo artist',
+          'Band',
+          'Guitarist',
+          'Vocalist',
+          'Bassist',
+          'Drummer',
+          'Keyboardist',
+          'Dancers',
+          'Actors',
+          'Spoken Word Artists',
+          'Host',
+          'Cosplayers'
         ],
-        literary: ["Writers", "Poets"],
+        literary: ['Writers', 'Poets'],
         digital: [
-          "Graphics Designers",
-          "Animators",
-          "Content writer",
-          "Copywriters",
-          "Content creator",
-        ],
-      },
-    };
+          'Graphics Designers',
+          'Animators',
+          'Content writer',
+          'Copywriters',
+          'Content creator'
+        ]
+      }
+    }
   },
-  mounted() {
-    console.log("Artists:", this.artists);
-    this.$store.commit("setArtistProfile");
+  mounted () {
+    console.log('Artists:', this.artists)
+    this.$store.commit('setArtistProfile')
 
-    this.SET_FILTERED_ARTIST({});
-    //this.$store.commit('CLEAR_ARTIST')
-    this.artistOptions();
-    this.page = 1;
-    var payload = {};
-    if (this.artist_type) payload.artist_type = this.artist_type;
-    if (this.genre) payload.genre = this.genre;
-    if (this.search) payload.search = this.search;
+    this.SET_FILTERED_ARTIST({})
+    // this.$store.commit('CLEAR_ARTIST')
+    this.artistOptions()
+    this.page = 1
+    const payload = {}
+    if (this.artist_type) payload.artist_type = this.artist_type
+    if (this.genre) payload.genre = this.genre
+    if (this.search) payload.search = this.search
 
     this.fetchArtists(payload).then((response) => {
-      console.log("Artist.vue: ", response);
-    });
+      console.log('Artist.vue: ', response)
+    })
   },
   computed: {
-    ...mapGetters(["userInfo", "token", "isLoggedIn", "userRole"]),
+    ...mapGetters(['userInfo', 'token', 'isLoggedIn', 'userRole']),
     ...mapState({
       artists: (state) => state.artist.artists,
       artist_types: (state) => state.artist.artist_types,
       genres: (state) => state.artist.genreList,
-      filterArtist: (state) => state.artist.filterArtist,
+      filterArtist: (state) => state.artist.filterArtist
     }),
-    playIconClass() {
+    playIconClass () {
       return this.isPlaying
-        ? "/assets/play-pause.svg"
-        : "/assets/play-black.svg";
+        ? '/assets/play-pause.svg'
+        : '/assets/play-black.svg'
     },
-    isPlayingSong() {
-      return this.audioPlayer !== null;
+    isPlayingSong () {
+      return this.audioPlayer !== null
     },
-    volumeIcon() {
+    volumeIcon () {
       if (this.currentVolume === 0) {
-        return "bi-volume-mute";
+        return 'bi-volume-mute'
       } else if (this.currentVolume < 1) {
-        return "bi-volume-mute";
+        return 'bi-volume-mute'
       } else if (this.currentVolume < 50) {
-        return "bi-volume-down";
+        return 'bi-volume-down'
       } else {
-        return "bi-volume-up";
+        return 'bi-volume-up'
       }
     },
-    selectedArtistCategoryVisible() {
+    selectedArtistCategoryVisible () {
       return (
         this.selectedArtistType &&
         this.artistCategories[this.selectedArtistType]
-      );
-    },
+      )
+    }
   },
   methods: {
-    ...mapActions(["fetchArtists", "artistOptions"]),
-    ...mapMutations(["SET_FILTERED_ARTIST"]),
+    ...mapActions(['fetchArtists', 'artistOptions']),
+    ...mapMutations(['SET_FILTERED_ARTIST'])
   },
 
   watch: {
-    page(val) {
-      this.showSeeMoreBtn = false;
-      var payload = {};
-      payload.per_page = 12 * val;
+    page (val) {
+      this.showSeeMoreBtn = false
+      const payload = {}
+      payload.per_page = 12 * val
 
-      if (this.artist_type) payload.artist_type = this.artist_type;
-      if (this.genre) payload.genre = this.genre;
-      if (this.search) payload.search = this.search;
+      if (this.artist_type) payload.artist_type = this.artist_type
+      if (this.genre) payload.genre = this.genre
+      if (this.search) payload.search = this.search
 
       this.fetchArtists(payload).then((response) => {
-        this.showSeeMoreBtn = true;
-        console.log("Loaded Artists! : ", response);
-    });
+        this.showSeeMoreBtn = true
+        console.log('Loaded Artists! : ', response)
+      })
     },
-    filterArtist(val, prev) {
+    filterArtist (val, prev) {
       if (val.id !== prev?.id) {
-        this.currentTime = "0:00";
-        this.duration = "0:00";
-        this.progressBarWidth = "0%";
+        this.currentTime = '0:00'
+        this.duration = '0:00'
+        this.progressBarWidth = '0%'
 
         if (this.audioPlayer) {
-          console.log("Current Playing song: ", val?.song);
-          this.playSong();
+          console.log('Current Playing song: ', val?.song)
+          this.playSong()
         }
       }
     },
-    currentVolume() {
-      this.updateVolume();
+    currentVolume () {
+      this.updateVolume()
     },
-    search(newValue) {
-      var payload = {};
-      payload.per_page = 12 * this.page;
-      if (this.artist_type) payload.artist_type = this.artist_type;
-      if (this.genre) payload.genre = this.genre;
-      if (newValue) payload.search = newValue;
+    search (newValue) {
+      const payload = {}
+      payload.per_page = 12 * this.page
+      if (this.artist_type) payload.artist_type = this.artist_type
+      if (this.genre) payload.genre = this.genre
+      if (newValue) payload.search = newValue
 
-      this.fetchArtists(payload);
+      this.fetchArtists(payload)
     },
-    artist_type(newValue) {
-      var payload = {};
-      payload.per_page = 12 * this.page;
+    artist_type (newValue) {
+      const payload = {}
+      payload.per_page = 12 * this.page
 
-      if (newValue) payload.artist_type = newValue;
-      if (this.genre) payload.genre = this.genre;
-      if (this.search) payload.search = this.search;
-      this.fetchArtists(payload);
+      if (newValue) payload.artist_type = newValue
+      if (this.genre) payload.genre = this.genre
+      if (this.search) payload.search = this.search
+      this.fetchArtists(payload)
     },
-    genre(newValue) {
-      var payload = {};
-      payload.per_page = 12 * this.page;
+    genre (newValue) {
+      const payload = {}
+      payload.per_page = 12 * this.page
 
-      if (this.artist_type) payload.artist_type = this.artist_type;
-      if (newValue) payload.genre = newValue;
-      if (this.search) payload.search = this.search;
+      if (this.artist_type) payload.artist_type = this.artist_type
+      if (newValue) payload.genre = newValue
+      if (this.search) payload.search = this.search
 
-      this.fetchArtists(payload);
-    },
-  },
-};
+      this.fetchArtists(payload)
+    }
+  }
+}
 </script>

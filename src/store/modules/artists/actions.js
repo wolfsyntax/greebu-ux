@@ -38,6 +38,7 @@ export const fetchArtistOptions = ({ commit, rootState, state }, payload) => {
             }
 
             commit('SET_ARTIST_TYPES', result?.artist_types)
+            commit('SET_ARTIST_CATEGORY', result?.artist_category)
             commit('SET_ARTIST_GENRES', result?.artist_genre)
             commit('SET_MEMBERS', result?.members)
             commit('SET_ARTIST', result?.profile)
@@ -360,6 +361,7 @@ export const artistOptions = ({ commit, rootState, state }, payload) => {
             }
 
             commit('SET_ARTIST_TYPES', result?.artist_types || [])
+            commit('SET_ARTIST_CATEGORY', result?.artist_category || [])
           }
 
           resolve(response)

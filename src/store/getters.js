@@ -97,6 +97,8 @@ const getters = {
       artist_name,
       artist_type_id,
       artist_type,
+      artist_category_id,
+      artist_category,
       bio,
       genres,
       song,
@@ -107,6 +109,8 @@ const getters = {
     return !!(artist_name &&
       artist_type_id &&
       artist_type &&
+      artist_category_id &&
+      artist_category &&
       bio &&
       genres &&
       song &&

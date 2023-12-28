@@ -12,6 +12,10 @@ export const SET_ARTIST_TYPES = (state, payload) => {
   state.artist_types = payload
 }
 
+export const SET_ARTIST_CATEGORY = (state, payload) => {
+  state.artist_category = payload
+}
+
 export const SET_ARTIST_GENRES = (state, payload) => {
   state.artist_genres = payload
 }
@@ -56,6 +60,8 @@ export const SET_ARTIST_PROFILE = (state, payload) => {
 
 export const CLEAR_ARTIST = (state) => {
   state.artist_types = null
+
+  state.artist_category = null
 
   state.artist_genres = null
 

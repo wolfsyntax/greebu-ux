@@ -23,6 +23,7 @@ const actions = {
       // Clearing for other modules
       commit('SET_GENRES', null)
       commit('SET_ARTIST_TYPES', null)
+      commit('SET_ARTIST_CATEGORY', null)
       commit('SET_ARTIST_GENRES', null)
       commit('SET_MEMBERS', null)
       commit('SET_ARTIST', {})
@@ -324,6 +325,7 @@ const actions = {
             // Clearing for other modules
             commit('SET_GENRES', null)
             commit('SET_ARTIST_TYPES', null)
+            commit('SET_ARTIST_CATEGORY', null)
             commit('SET_ARTIST_GENRES', null)
             commit('SET_MEMBERS', null)
             commit('SET_ARTIST', {})
@@ -429,6 +431,7 @@ const actions = {
       // Clearing for other modules
       commit('SET_GENRES', null)
       commit('SET_ARTIST_TYPES', null)
+      commit('SET_ARTIST_CATEGORY', null)
       commit('SET_ARTIST_GENRES', null)
       commit('SET_MEMBERS', null)
       commit('SET_ARTIST', {})

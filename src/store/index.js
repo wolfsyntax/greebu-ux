@@ -51,6 +51,7 @@ export default new Vuex.Store({
           'SET_COUNTRIES',
           'SET_GENRES',
           'SET_ARTIST_TYPES',
+          'SET_ARTIST_CATEGORY',
           'SET_ARTIST_GENRES',
           'SET_MEMBERS',
           'SET_ARTIST'

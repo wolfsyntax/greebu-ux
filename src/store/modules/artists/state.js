@@ -2,6 +2,7 @@ const state = {
   artists: null,
   filterArtist: {},
   artist_types: null,
+  artist_category: null,
   artist_genres: null,
   genres: null,
   genreList: null,

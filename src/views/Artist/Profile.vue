@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div>
     <section class="profile-details" id="artist-profile">
@@ -158,6 +159,52 @@
 
               <div class="required-fields">
                 <div class="form-group typeArtist">
+                  <label for="artistType">Type of artist</label>
+                  <select
+                    v-model="selectedArtistType"
+                    class="form-select"
+                    aria-label="Default select example"
+                    value="Select Type of Artist"
+                  >
+                    <option value="Select Type of Artist" selected>
+                      <!-- Select an artist type -->
+                    </option>
+                    <option
+                      v-for="(type, index) in artistTypes"
+                      :key="index"
+                      :value="type.value"
+                    >
+                      {{ type.label }}
+                    </option>
+                  </select>
+                </div>
+
+                <div class="form-group categoryArtist">
+                  <label for="artistCategory">Artist category</label>
+                  <select
+                    v-model="selectedArtistCategory"
+                    class="form-select"
+                    aria-label="Default select example"
+                  >
+                    <!-- <option value="" selected disabled>
+                  Select an Artist category
+                </option> -->
+                    <option v-if="!selectedArtistCategoryVisible">
+                      Select type of artist first
+                    </option>
+                    <optgroup v-if="selectedArtistCategoryVisible">
+                      <option
+                        v-for="(category, index) in artistCategories[
+                          selectedArtistType
+                        ]"
+                        :key="index"
+                      >
+                        {{ category }}
+                      </option>
+                    </optgroup>
+                  </select>
+                </div>
+                <!-- <div class="form-group typeArtist">
                   <label for="typeArtist">Type of the Artist</label>
                   <select v-model="form.artist_type" class="form-select">
                     <option>Select Artist Type</option>
@@ -177,7 +224,28 @@
                   >
                     {{ err }}
                   </div>
-                </div>
+                </div> -->
+                <!-- <div class="form-group categoryArtist">
+                  <label for="categoryArtist">Artist Category</label>
+                  <select v-model="form.artist_category" class="form-select">
+                    <option>Select Artist Category</option>
+                    <option
+                      v-for="artist_category in artistCategory"
+                      :key="artist_category.id"
+                      :value="artist_category.title"
+                    >
+                      {{ artist_category.title }}
+                    </option>
+                  </select>
+
+                  <div
+                    v-for="err in error?.artist_category"
+                    :key="err"
+                    class="text-danger"
+                  >
+                    {{ err }}
+                  </div>
+                </div> -->
 
                 <div class="form-group">
                   <label for="artistName">Name of the Artist/Band</label>
@@ -778,7 +846,7 @@
                 </div>
 
                 <!-- Uploaded music -->
-                
+
                 <transition name="fade" mode="out-in">
                   <div v-if="uploadedSongWrapper" class="uploaded-song-wrapper">
                     <audio
@@ -808,10 +876,13 @@
                           </p>
                         </div>
                       </div>
-                        <div v-if="compressing" class="d-flex align-items-center loading-wrap">
-                          <div class="spinner"></div>
-                          <h5 class="mb-0 uploading">Uploading</h5>
-                        </div>
+                      <div
+                        v-if="compressing"
+                        class="d-flex align-items-center loading-wrap"
+                      >
+                        <div class="spinner"></div>
+                        <h5 class="mb-0 uploading">Uploading</h5>
+                      </div>
                       <div
                         class="d-flex align-items-center remove-music-wrapper"
                       >
@@ -877,43 +948,84 @@
       <!-- end of container -->
     </section>
     <SuccesModal />
+    <profile-modal
+      @close="toggleProfile"
+      @formDataUpdated="handleArtistAvatarUpdate"
+      page="page2"
+    />
   </div>
-
-  <profile-modal
-    @close="toggleProfile"
-    @formDataUpdated="handleArtistAvatarUpdate"
-    page="page2"
-  />
 </template>
 <script>
 // import Layout from '/src/components/Layouts/ArtistLayout.vue';
-import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
-import MemberForm from "/src/views/Artist/Form/AddMember.vue";
-import SocialMediaForm from "/src/views/Artist/Form/SocialMedia.vue";
-import BlankHeader from "@/components/Home/BlankHeader.vue";
-import Multiselect from "@vueform/multiselect";
-import ProfileModal from "/src/components/Dashboard/Modals/ProfileModal.vue";
-import LoadingIndicator from "/src/components/LoadingIndicator.vue";
-import SuccesModal from "/src/components/SuccessModal.vue";
+import { mapGetters, mapState, mapActions, mapMutations } from 'vuex'
+// eslint-disable-next-line import/no-absolute-path
+import MemberForm from '/src/views/Artist/Form/AddMember.vue'
+// eslint-disable-next-line import/no-absolute-path
+import SocialMediaForm from '/src/views/Artist/Form/SocialMedia.vue'
+import BlankHeader from '@/components/Home/BlankHeader.vue'
+import Multiselect from '@vueform/multiselect'
+// eslint-disable-next-line import/no-absolute-path
+import ProfileModal from '/src/components/Dashboard/Modals/ProfileModal.vue'
+// eslint-disable-next-line import/no-absolute-path
+import LoadingIndicator from '/src/components/LoadingIndicator.vue'
+// eslint-disable-next-line import/no-absolute-path
+import SuccesModal from '/src/components/SuccessModal.vue'
 import { gzip } from 'pako'
 
 export default {
   components: {
     // layout: Layout,
-    "member-form": MemberForm,
-    "social-media": SocialMediaForm,
+    'member-form': MemberForm,
+    'social-media': SocialMediaForm,
+    // eslint-disable-next-line vue/no-unused-components
     BlankHeader,
     Multiselect,
     ProfileModal,
     LoadingIndicator,
     SuccesModal,
+    // eslint-disable-next-line vue/no-unused-components
     gzip
   },
-  data() {
+  data () {
     return {
+      selectedArtistType: '',
+      selectedArtistCategory: '',
+      artistTypes: [
+        { label: 'Visual Artists', value: 'visual' },
+        { label: 'Performing Artists', value: 'performing' },
+        { label: 'Literary Artists', value: 'literary' },
+        { label: 'Digital Artists', value: 'digital' }
+      ],
+      artistCategories: {
+        visual: ['Painter', 'Sculptors', 'Photographers', 'Mural painter'],
+        performing: [
+          'Disk Jockey',
+          'Solo artist',
+          'Band',
+          'Guitarist',
+          'Vocalist',
+          'Bassist',
+          'Drummer',
+          'Keyboardist',
+          'Dancers',
+          'Actors',
+          'Spoken Word Artists',
+          'Host',
+          'Cosplayers'
+        ],
+        literary: ['Writers', 'Poets'],
+        digital: [
+          'Graphics Designers',
+          'Animators',
+          'Content writer',
+          'Copywriters',
+          'Content creator'
+        ]
+      },
       showSubmitButton: true,
       form: {
         artist_type: null,
+        artist_category: null,
         artist_name: null,
         genres: [],
         bio: null,
@@ -930,63 +1042,63 @@ export default {
         accept_proposal: false,
         audio: null,
         song_title: null,
-        song_genre: null,
+        song_genre: null
       },
       hasOthers: false,
       // others: '',
       formGenres: [],
       songGenres: [],
-      avatar: "/assets/artist-account/new.svg", // null
-      options: ["list", "of", "options"],
+      avatar: '/assets/artist-account/new.svg', // null
+      options: ['list', 'of', 'options'],
       // members: [],
-      //errors: {},
+      // errors: {},
       active: false,
-      formType: "",
-      formHeader: "Add Member",
+      formType: '',
+      formHeader: 'Add Member',
       formSubHeading:
-        "Lorem ipsum dolor sit amet consectetur. Nam lacus viverra nec orci arcu id fringilla ultrices.",
+        'Lorem ipsum dolor sit amet consectetur. Nam lacus viverra nec orci arcu id fringilla ultrices.',
       uploadedMusic: null,
       uploadedSongWrapper: false,
-      songTitle: "My Awesome Song.mp3",
-      fileSize: "", // Store file size here
+      songTitle: 'My Awesome Song.mp3',
+      fileSize: '', // Store file size here
       metadata: {},
       fileInfo: null,
-      errorMessage: "",
+      errorMessage: '',
       defaultFileFormat: true,
       isDragOver: false,
       uploadDragSongBox: true,
       // For update social media link
       social: {
         text: null,
-        key: null,
+        key: null
       },
-      playIcon: "/assets/play-circle.svg",
+      playIcon: '/assets/play-circle.svg',
       memberIndex: -1,
       isSearchable: true,
 
       validImage: false,
       validAudio: false,
 
-      audioMagic: "",
-      imageMagic: "",
-      avatarMagic: "",
-      tempMagic: "",
-      targetMagic: "",
+      audioMagic: '',
+      imageMagic: '',
+      avatarMagic: '',
+      tempMagic: '',
+      targetMagic: '',
       audioSize: 0,
       invalidAudio: false,
 
-      parentAvatar: "",
+      parentAvatar: '',
 
       compressing: false
-    };
+    }
   },
-  setup() {
+  setup () {
     /**
      *
      * profile: Object, errors: Object, genres: Object, artist_types: Object, artist_genre: Object, img: String, members: Array
      */
   },
-  beforeCreate() {
+  beforeCreate () {
     this.form = {
       artist_type: null,
       artist_name: null,
@@ -1005,67 +1117,71 @@ export default {
       accept_proposal: false,
       song: null,
       song_title: null,
-      song_genre: null,
+      song_genre: null
 
       // isDragOver: false
-    };
+    }
 
-    this.validImage = false;
-    this.validAudio = false;
-    this.audioSize = 0;
-    this.invalidAudio = false;
+    this.validImage = false
+    this.validAudio = false
+    this.audioSize = 0
+    this.invalidAudio = false
 
     this.social = {
-      text: "",
-      key: "",
-    };
+      text: '',
+      key: ''
+    }
 
     // this.memberIndex = -1;
-    this.$store.commit("SET_MEMBER_INDEX");
-    console.log("-Before Create-");
+    this.$store.commit('SET_MEMBER_INDEX')
+    console.log('-Before Create-')
   },
-  created() {
-    this.$store.commit("SET_MEMBER_INDEX");
-    console.log("Fetch Profile (created)");
+  created () {
+    this.$store.commit('SET_MEMBER_INDEX')
+    console.log('Fetch Profile (created)')
     this.fetchProfile().then((res) => {
       const {
+        // eslint-disable-next-line no-unused-vars
         status: statusCode,
         data: {
-          result: { genres },
-        },
-      } = res;
+          result: { genres }
+        }
+      } = res
 
-      this.form.genres = genres;
-    });
+      this.form.genres = genres
+    })
   },
-  mounted() {
+  mounted () {
     const success = (position) => {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
+      const latitude = position.coords.latitude
+      const longitude = position.coords.longitude
 
-      console.log("My Geo-Location: ", latitude, longitude);
+      console.log('My Geo-Location: ', latitude, longitude)
       // Do something with the position
-    };
+    }
 
+    // eslint-disable-next-line n/handle-callback-err
     const error = (err) => {
-      console.log("On Error Geo-Location", error);
-    };
+      console.log('On Error Geo-Location', error)
+    }
 
     if (navigator.geolocation) {
       // This will open permission popup
-      navigator.geolocation.getCurrentPosition(success, error);
+      navigator.geolocation.getCurrentPosition(success, error)
     }
+    // eslint-disable-next-line no-undef
+    if (this.artist_type) payload.artist_type = this.artist_type
 
-    this.audioMagic = "";
-    this.imageMagic = "";
-    this.tempMagic = "";
-    this.targetMagic = "";
+    this.audioMagic = ''
+    this.imageMagic = ''
+    this.tempMagic = ''
+    this.targetMagic = ''
 
-    console.log("--- Mounted ---");
-    this.$store.commit("SET_MEMBER_INDEX");
-    this.$refs.multiselect.$el.focus();
+    console.log('--- Mounted ---')
+    this.$store.commit('SET_MEMBER_INDEX')
+    this.$refs.multiselect.$el.focus()
 
-    console.log("Ref[multiselect]: ", this.$refs.multiselect);
+    console.log('Ref[multiselect]: ', this.$refs.multiselect)
 
     // this.$echo.private(`profile.${this.userInfo?.id}`)
     //   .listen(`.update-member`, (e) =>
@@ -1088,44 +1204,47 @@ export default {
     //     - profile
     //   */
 
-    this.form = this.myAccount;
-    this.form.avatar = "";
-    this.uploadedMusic = this.myAccount.song || "";
-    this.songTitle = this.myAccount?.song_title || "";
+    this.form = this.myAccount
+    this.form.avatar = ''
+    this.uploadedMusic = this.myAccount.song || ''
+    this.songTitle = this.myAccount?.song_title || ''
 
-    this.avatar = this.myAvatar || "/assets/artist-account/new.svg";
-    this.avatarMagic = this.myAvatar || "/assets/artist-account/new.svg";
-    this.formGenres = this.myAccount?.genres || [];
-    this.uploadedSongWrapper = this.uploadedMusic !== "" ? true : false;
-    this.uploadDragSongBox = !this.uploadedSongWrapper;
+    this.avatar = this.myAvatar || '/assets/artist-account/new.svg'
+    this.avatarMagic = this.myAvatar || '/assets/artist-account/new.svg'
+    this.formGenres = this.myAccount?.genres || []
+    // eslint-disable-next-line no-unneeded-ternary
+    this.uploadedSongWrapper = this.uploadedMusic !== '' ? true : false
+    this.uploadDragSongBox = !this.uploadedSongWrapper
     if (this.uploadedSongWrapper) {
-      this.audioSize = 10000000; // 65536000
+      this.audioSize = 10000000 // 65536000
     }
 
     console.log(
-      "\n\n-----------------------------------\n1. Form: ",
+      '\n\n-----------------------------------\n1. Form: ',
       this.form,
       `\n2. Uploaded Music [${this.songTitle}]: `,
       this.uploadedMusic,
-      "\n3. Avatar: ",
+      '\n3. Avatar: ',
       this.avatar,
-      "\n4. Song: ",
+      '\n4. Song: ',
       this.song,
-      "\n5. Band Genre: ",
+      '\n5. Band Genre: ',
       this.formGenres
-    );
-    console.log("--- End Mounted ---");
+    )
+    console.log('--- End Mounted ---')
   },
   props: {
     hasNoError: {
       type: Boolean,
       default: false,
-      required: true,
+      required: true
     },
     formData: {
       type: Object,
+      // eslint-disable-next-line vue/require-valid-default-prop
       default: {
         artist_type: null,
+        artist_category: null,
         artist_name: null,
         genres: [],
         bio: null,
@@ -1142,70 +1261,73 @@ export default {
         accept_proposal: false,
         song: null,
         song_title: null,
-        song_genre: null,
+        song_genre: null
       },
-      required: true,
+      required: true
     },
     error: {
       type: Object,
+      // eslint-disable-next-line vue/require-valid-default-prop
       default: {},
-      required: true,
+      required: true
     },
     message: {
       type: String,
-      default: "",
-      required: false,
-    },
+      default: '',
+      required: false
+    }
   },
   methods: {
     ...mapActions([
-      "fetchArtistOptions",
-      "updateArtistProfile",
-      "removeMember",
-      /*'removeSocialMedia',*/ "artistOptions",
-      "fetchProfile",
-      "fetchMember",
+      'fetchArtistOptions',
+      'updateArtistProfile',
+      'removeMember',
+      /* 'removeSocialMedia', */ 'artistOptions',
+      'fetchProfile',
+      'fetchMember'
     ]),
-    ...mapMutations(["SET_PROFILE", "SET_ARTIST", "SET_MEMBERS"]),
-    handleArtistAvatarUpdate(blob) {
+    ...mapMutations(['SET_PROFILE', 'SET_ARTIST', 'SET_MEMBERS']),
+    handleArtistAvatarUpdate (blob) {
       if (blob instanceof Blob) {
-        this.parentAvatar = URL.createObjectURL(blob);
-        this.avatar = this.parentAvatar;
-        console.log("set image", this.avatar);
+        this.parentAvatar = URL.createObjectURL(blob)
+        this.avatar = this.parentAvatar
+        console.log('set image', this.avatar)
       } else {
-        this.avatar = "";
+        this.avatar = ''
       }
     },
-    fileCheck(file) {
+    fileCheck (file) {
       // magicAudio
-      var fileReader = new FileReader();
-      var self = this;
-      this.tempMagic = "";
+      const fileReader = new FileReader()
+      const self = this
+      this.tempMagic = ''
 
-      fileReader.readAsArrayBuffer(file);
+      fileReader.readAsArrayBuffer(file)
       fileReader.onloadend = function (e) {
+        const fileContent = fileReader.result
+        const compressedContent = gzip(fileContent, { to: 'string' })
 
-          const fileContent = fileReader.result;
-          const compressedContent = gzip(fileContent, { to: 'string' });
+        // size after compression in kilobytes
+        console.log(
+          'Compressed Audio File Size:',
+          (compressedContent.length / 1024).toFixed(2),
+          'KB'
+        )
 
-          // size after compression in kilobytes
-          console.log('Compressed Audio File Size:', (compressedContent.length / 1024).toFixed(2), 'KB');
+        const arr = new Uint8Array(e.target.result).subarray(0, 4)
 
-        var arr = new Uint8Array(e.target.result).subarray(0, 4);
-
-        var header = "";
-        for (var i = 0; i < arr.length; i++) {
-          header += arr[i].toString(16);
+        let header = ''
+        for (let i = 0; i < arr.length; i++) {
+          header += arr[i].toString(16)
         }
 
-        self.tempMagic = header;
-      };
-   
+        self.tempMagic = header
+      }
     },
-    changeImage(event) {
-      const file = event.target.files[0];
-      this.targetMagic = "image";
-      this.avatarMagic = file;
+    changeImage (event) {
+      const file = event.target.files[0]
+      this.targetMagic = 'image'
+      this.avatarMagic = file
       // this.avatar = URL.createObjectURL(file);
 
       // this.form.avatar = file;
@@ -1229,165 +1351,175 @@ export default {
       //     //return false;
       // }
       if (file) {
-        this.fileCheck(file);
+        this.fileCheck(file)
       }
       // return this.validImage;
-      console.log("Change Image: ", event.target.files[0]);
+      console.log('Change Image: ', event.target.files[0])
     },
-    onOpenOption(event) {
-      this.isSearchable = true;
-      console.log("Event");
+    onOpenOption (event) {
+      this.isSearchable = true
+      console.log('Event')
     },
-    onInputAddress(event) {
-      this.isSearchable = false;
+    onInputAddress (event) {
+      this.isSearchable = false
     },
-    submit() {
-      this.showSubmitButton = false;
-      this.form.genres = this.formGenres;
+    submit () {
+      this.showSubmitButton = false
+      this.form.genres = this.formGenres
 
-      if (typeof this.form.avatar === "string") this.form.avatar = "";
-      if (typeof this.form.song === "string") this.form.song = "";
+      if (typeof this.form.avatar === 'string') this.form.avatar = ''
+      if (typeof this.form.song === 'string') this.form.song = ''
 
-      this.$emit("form", this.form);
+      this.$emit('form', this.form)
 
       this.fetchProfile().then((res) => {
         const {
+          // eslint-disable-next-line no-unused-vars
           status: statusCode,
           data: {
-            result: { genres },
-          },
-        } = res;
+            result: { genres }
+          }
+        } = res
 
-        this.form.genres = genres;
-        this.showSubmitButton = true;
-      });
+        this.form.genres = genres
+        this.showSubmitButton = true
+      })
 
+      // eslint-disable-next-line spaced-comment
       //this.$router.push('/artist');
     },
-    removeSocialMedia(key) {
+    removeSocialMedia (key) {
       switch (key) {
-        case "youtube":
-          this.form.youtube = "";
-          break;
-        case "instagram":
-          this.form.instagram = "";
-          break;
-        case "twitter":
-          this.form.twitter = "";
-          break;
-        case "spotify":
-          this.form.spotify = "";
-          break;
+        case 'youtube':
+          this.form.youtube = ''
+          break
+        case 'instagram':
+          this.form.instagram = ''
+          break
+        case 'twitter':
+          this.form.twitter = ''
+          break
+        case 'spotify':
+          this.form.spotify = ''
+          break
         default:
       }
     },
-    dismiss() {
-      const body = document.querySelector("body");
-      this.active = false;
+    dismiss () {
+      const body = document.querySelector('body')
+      this.active = false
       this.active
-        ? body.classList.add("modal-open")
-        : body.classList.remove("modal-open");
-      this.social.key = "";
-      this.social.text = "";
+        ? body.classList.add('modal-open')
+        : body.classList.remove('modal-open')
+      this.social.key = ''
+      this.social.text = ''
 
-      this.$store.commit("SET_MEMBER_INDEX", -1);
+      this.$store.commit('SET_MEMBER_INDEX', -1)
     },
-    toggle(option = "members", isEdit = false, params) {
-      this.social = { key: "", text: "" };
+    toggle (option = 'members', isEdit = false, params) {
+      this.social = { key: '', text: '' }
 
-      this.$store.commit("SET_MEMBER_INDEX");
+      this.$store.commit('SET_MEMBER_INDEX')
 
-      if (isEdit && option === "links") {
-        this.social = params;
-      } else if (option === "members" && isEdit && params > -1) {
-        this.$store.commit("SET_MEMBER_INDEX", params);
+      if (isEdit && option === 'links') {
+        this.social = params
+      } else if (option === 'members' && isEdit && params > -1) {
+        this.$store.commit('SET_MEMBER_INDEX', params)
       }
 
-      const body = document.querySelector("body");
-      this.active = !this.active;
+      const body = document.querySelector('body')
+      this.active = !this.active
       this.active
-        ? body.classList.add("modal-open")
-        : body.classList.remove("modal-open");
+        ? body.classList.add('modal-open')
+        : body.classList.remove('modal-open')
 
-      this.formType = option;
+      this.formType = option
       if (!isEdit)
+        // eslint-disable-next-line curly
         this.formHeader =
-          option === "members" ? "Add Member" : "Add Social Media Account";
-      else
+          option === 'members' ? 'Add Member' : 'Add Social Media Account'
+      // eslint-disable-next-line curly
+      else {
         this.formHeader =
-          option === "members" ? "Edit Member" : "Edit Social Media Account";
-    },
-    replaceByDefault(e) {
-      e.target.src =
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm3RFDZM21teuCMFYx_AROjt-AzUwDBROFww&usqp=CAU";
-    },
-    updateSocial(key, val) {
-      val = val.replace("https://www.", "");
-      val = val.replace("https://", "");
-      val = val.replace("www.", "");
-
-      val = `https://www.${val}`;
-
-      switch (key) {
-        case "youtube":
-          this.form.youtube = val;
-
-          this.social.key = key;
-          this.social.text = val;
-
-          break;
-        case "instagram":
-          this.form.instagram = val;
-
-          this.social.key = key;
-          this.social.text = val;
-
-          break;
-        case "twitter":
-          this.form.twitter = val;
-
-          this.social.key = key;
-          this.social.text = val;
-
-          break;
-        case "spotify":
-          this.form.spotify = val;
-
-          this.social.key = key;
-          this.social.text = val;
-
-          break;
-        default:
-          this.social.key = "";
-          this.social.text = "";
+          option === 'members' ? 'Edit Member' : 'Edit Social Media Account'
       }
     },
-    updateMember(val) {
+    replaceByDefault (e) {
+      e.target.src =
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm3RFDZM21teuCMFYx_AROjt-AzUwDBROFww&usqp=CAU'
+    },
+    updateSocial (key, val) {
+      val = val.replace('https://www.', '')
+      val = val.replace('https://', '')
+      val = val.replace('www.', '')
+
+      val = `https://www.${val}`
+
+      switch (key) {
+        case 'youtube':
+          this.form.youtube = val
+
+          this.social.key = key
+          this.social.text = val
+
+          break
+        case 'instagram':
+          this.form.instagram = val
+
+          this.social.key = key
+          this.social.text = val
+
+          break
+        case 'twitter':
+          this.form.twitter = val
+
+          this.social.key = key
+          this.social.text = val
+
+          break
+        case 'spotify':
+          this.form.spotify = val
+
+          this.social.key = key
+          this.social.text = val
+
+          break
+        default:
+          this.social.key = ''
+          this.social.text = ''
+      }
+    },
+    updateMember (val) {
       if (val) {
-        this.members.push(val);
-        new Modal(document.getElementById("profileSuccessModal"), {
+        this.members.push(val)
+        // eslint-disable-next-line no-undef
+        new Modal(document.getElementById('profileSuccessModal'), {
           keyboard: false,
-          backdrop: "static",
-        }).show();
+          backdrop: 'static'
+        }).show()
       }
       // this.$store.commit('SET_MEMBER_INDEX');
 
       this.dismiss()
     },
-    fetchGenre(query) {
+    fetchGenre (query) {
       if (!query) {
-        console.log("Empty Query fetchGenre");
-        this.artistOptions();
+        console.log('Empty Query fetchGenre')
+        this.artistOptions()
       }
 
-      return this.formArtistGenres;
+      return this.formArtistGenres
     },
-    handleMusicUpload(event) {
-      const file = event.target.files[0];
+    handleMusicUpload (event) {
+      const file = event.target.files[0]
 
-       this.compressing = true;
+      this.compressing = true
       //  size before compression in megabytes
-      console.log('Original Audio File Size:', (file.size / 1024).toFixed(2), 'KB');
+      console.log(
+        'Original Audio File Size:',
+        (file.size / 1024).toFixed(2),
+        'KB'
+      )
 
       // const reader = new FileReader();
 
@@ -1407,65 +1539,68 @@ export default {
       //   };
       //  reader.readAsBinaryString(file);
 
-      console.log("Handle Music Upload: ", file);
-      this.targetMagic = "audio";
+      console.log('Handle Music Upload: ', file)
+      this.targetMagic = 'audio'
+      // eslint-disable-next-line spaced-comment
       //this.fileCheck(file);
-      if (file) this.fileCheck(file);
+      if (file) this.fileCheck(file)
 
-      const { type, name, size } = file;
+      const { type, name, size } = file
 
-      this.error.song = [];
+      // eslint-disable-next-line vue/no-mutating-props
+      this.error.song = []
 
-      this.validAudio = false;
+      this.validAudio = false
 
-      this.audioSize = size;
+      this.audioSize = size
 
       if (
-        type === "audio/mpeg" &&
-        (name.endsWith(".mp3") || name.endsWith(".mp4"))
+        type === 'audio/mpeg' &&
+        (name.endsWith('.mp3') || name.endsWith('.mp4'))
       ) {
-        this.validAudio = true;
-        this.invalidAudio = false;
+        this.validAudio = true
+        this.invalidAudio = false
       } else {
-        this.invalidAudio = true;
+        this.invalidAudio = true
 
-        this.uploadedMusic = URL.createObjectURL(file);
-        this.songTitle = file.name.replace(/\.[^/.]+$/, "");
+        this.uploadedMusic = URL.createObjectURL(file)
+        this.songTitle = file.name.replace(/\.[^/.]+$/, '')
 
-        const sizeInBytes = file.size;
-        const sizeInKilobytes = Math.floor(sizeInBytes / 1024);
+        const sizeInBytes = file.size
+        const sizeInKilobytes = Math.floor(sizeInBytes / 1024)
 
-        this.fileSize = sizeInKilobytes;
-        this.uploadDragSongBox = false;
-        this.uploadedSongWrapper = true;
+        this.fileSize = sizeInKilobytes
+        this.uploadDragSongBox = false
+        this.uploadedSongWrapper = true
 
-        this.error.song = ["The Song should be in a mp3 or mp4 format."];
+        // eslint-disable-next-line vue/no-mutating-props
+        this.error.song = ['The Song should be in a mp3 or mp4 format.']
       }
 
-      this.handleFiles(file);
+      this.handleFiles(file)
     },
-    handleFiles(file) {
+    handleFiles (file) {
       if (file) {
         // Check if the file is an MP3 file
-        if (file.type === "audio/mpeg") {
-          const sizeInBytes = file.size;
-          const sizeInKilobytes = Math.floor(sizeInBytes / 1024);
+        if (file.type === 'audio/mpeg') {
+          const sizeInBytes = file.size
+          const sizeInKilobytes = Math.floor(sizeInBytes / 1024)
 
           //  this.fileSize = sizeInKilobytes;
           if (sizeInBytes <= 10000000) {
-            this.uploadedMusic = URL.createObjectURL(file);
-            this.songTitle = file.name; //.replace(/\.[^/.]+$/, '')
-            this.form.song = file;
-            this.fileSize = sizeInKilobytes;
-            this.errorMessage = "";
-            this.uploadDragSongBox = false;
-            this.uploadedSongWrapper = true;
-            this.defaultFileFormat = false;
+            this.uploadedMusic = URL.createObjectURL(file)
+            // eslint-disable-next-line spaced-comment
+            this.songTitle = file.name //.replace(/\.[^/.]+$/, '')
+            this.form.song = file
+            this.fileSize = sizeInKilobytes
+            this.errorMessage = ''
+            this.uploadDragSongBox = false
+            this.uploadedSongWrapper = true
+            this.defaultFileFormat = false
             setTimeout(() => {
-              this.compressing = false;
-            }, 5000);
+              this.compressing = false
+            }, 5000)
 
-        
             // check if metadata exists
 
             //     const fileReader = new FileReader();
@@ -1506,142 +1641,156 @@ export default {
             // }
             // fileReader.readAsArrayBuffer(file);
           } else {
+            // eslint-disable-next-line vue/no-mutating-props
             this.error.song = [
-              "File size exceeds 10MB. Please upload a smaller MP3 or MP4 file.",
-            ];
-            event.target.value = null;
-            this.clearErrorMessageAfterDelay();
+              'File size exceeds 10MB. Please upload a smaller MP3 or MP4 file.'
+            ]
+            event.target.value = null
+            this.clearErrorMessageAfterDelay()
           }
         } else {
-          this.error.song = ["Please upload an MP3 or MP4 file."];
-          event.target.value = null;
-          this.clearErrorMessageAfterDelay();
+          // eslint-disable-next-line vue/no-mutating-props
+          this.error.song = ['Please upload an MP3 or MP4 file.']
+          event.target.value = null
+          this.clearErrorMessageAfterDelay()
         }
       }
     },
-    clearErrorMessage() {
-      this.error.song = [];
+    clearErrorMessage () {
+      // eslint-disable-next-line vue/no-mutating-props
+      this.error.song = []
     },
-    clearErrorMessageAfterDelay() {
+    clearErrorMessageAfterDelay () {
       setTimeout(() => {
-        this.clearErrorMessage();
-        this.defaultFileFormat = true;
-      }, 10000000); // 10000
-      this.defaultFileFormat = false;
+        this.clearErrorMessage()
+        this.defaultFileFormat = true
+      }, 10000000) // 10000
+      this.defaultFileFormat = false
     },
-    removeMusic() {
-      this.metadata = {};
-      this.validAudio = false;
-      this.audioMagic = "";
+    removeMusic () {
+      this.metadata = {}
+      this.validAudio = false
+      this.audioMagic = ''
 
-      this.error.song = [];
-      this.uploadedMusic = "";
-      this.songTitle = "";
-      this.uploadDragSongBox = true;
-      this.uploadedSongWrapper = false;
-      this.defaultFileFormat = true;
-      this.$refs.audioPlayer.pause();
-      this.playIcon = "/assets/play-circle.svg";
+      // eslint-disable-next-line vue/no-mutating-props
+      this.error.song = []
+      this.uploadedMusic = ''
+      this.songTitle = ''
+      this.uploadDragSongBox = true
+      this.uploadedSongWrapper = false
+      this.defaultFileFormat = true
+      this.$refs.audioPlayer.pause()
+      this.playIcon = '/assets/play-circle.svg'
     },
-    togglePlay() {
+    togglePlay () {
       if (this.$refs.audioPlayer.paused) {
-        this.playIcon = "/assets/stop-circle.svg";
-        this.$refs.audioPlayer.play();
+        this.playIcon = '/assets/stop-circle.svg'
+        this.$refs.audioPlayer.play()
       } else {
-        this.$refs.audioPlayer.pause();
-        this.playIcon = "/assets/play-circle.svg";
+        this.$refs.audioPlayer.pause()
+        this.playIcon = '/assets/play-circle.svg'
       }
     },
-    handleDragOverSong(event) {
-      event.preventDefault();
-      this.isDragOver = true;
-      this.compressing = true;
+    handleDragOverSong (event) {
+      event.preventDefault()
+      this.isDragOver = true
+      this.compressing = true
     },
-    handleDragLeaveSong(event) {
-      event.preventDefault();
-      this.isDragOver = false;
+    handleDragLeaveSong (event) {
+      event.preventDefault()
+      this.isDragOver = false
     },
-    handleDropSong(event) {
-      event.preventDefault();
-      const file = event.dataTransfer.files[0];
-      this.handleFiles(file);
-      this.isDragOver = false;
-    },
+    handleDropSong (event) {
+      event.preventDefault()
+      const file = event.dataTransfer.files[0]
+      this.handleFiles(file)
+      this.isDragOver = false
+    }
   },
   computed: {
     ...mapGetters([
-      "userInfo",
-      "token",
-      "artistProfile",
-      "artistGenre",
-      "myAccount",
-      "formArtistGenres",
-      "myAvatar",
+      'userInfo',
+      'token',
+      'artistProfile',
+      'artistGenre',
+      'myAccount',
+      'formArtistGenres',
+      'myAvatar'
     ]),
     ...mapState({
       artistTypes: (state) => state.artist.artist_types,
+      // artistCategory: (state) => state.artist.artist_category,
       genres: (state) => state.artist.genres,
       members: (state) => state.artist.members,
       account: (state) => state.account,
       profile: (state) => state.profile,
       member: (state) => state.artist.member,
-      mx: (state) => state.artist.memberIndex,
+      mx: (state) => state.artist.memberIndex
     }),
-    remainingChars() {
-      return 500 - (this.form.bio ? this.form.bio.length : 0);
+    selectedArtistCategoryVisible () {
+      return (
+        this.selectedArtistType &&
+        this.artistCategories[this.selectedArtistType]
+      )
     },
-    checkImage() {
-      var flagImage = true;
-
-      if (!this.validImage && this.imageMagic !== "") {
-        return false;
-      }
-
-      if (typeof this.form.avatar === "string") {
-        return true;
-      }
-
-      if (typeof this.form.avatar === "object") {
-        flagImage = this.validImage;
-      }
-
-      return this.validImage && flagImage;
+    remainingChars () {
+      return 500 - (this.form.bio ? this.form.bio.length : 0)
     },
-    checkAudio() {
-      var flagAudio = true;
+    checkImage () {
+      let flagImage = true
 
-      if (!this.validAudio && this.audioMagic !== "") {
+      if (!this.validImage && this.imageMagic !== '') {
+        return false
+      }
+
+      if (typeof this.form.avatar === 'string') {
+        return true
+      }
+
+      if (typeof this.form.avatar === 'object') {
+        flagImage = this.validImage
+      }
+
+      return this.validImage && flagImage
+    },
+    checkAudio () {
+      let flagAudio = true
+
+      if (!this.validAudio && this.audioMagic !== '') {
+        // eslint-disable-next-line vue/no-mutating-props, vue/no-side-effects-in-computed-properties
         this.error.song = [
           // 'The Song should be in a mp3 format.',
-          "The Song should be in a mp3 or mp4 format.",
-        ];
-        return false;
+          'The Song should be in a mp3 or mp4 format.'
+        ]
+        return false
       }
 
       if (this.audioSize > 10000000) {
+        // eslint-disable-next-line vue/no-mutating-props, vue/no-side-effects-in-computed-properties
         this.error.song = [
-          "The Song maximum file size to upload is 10MB (10000 KB). Try to compress it to make it under 10MB.",
-        ];
-        return false;
+          'The Song maximum file size to upload is 10MB (10000 KB). Try to compress it to make it under 10MB.'
+        ]
+        return false
       }
 
-      if (this.uploadedMusic !== "") {
-        return true;
+      if (this.uploadedMusic !== '') {
+        return true
       }
 
-      if (typeof this.form.song === "string" && this.uploadedMusic !== "") {
-        return true;
+      if (typeof this.form.song === 'string' && this.uploadedMusic !== '') {
+        return true
       }
 
-      if (typeof this.form.song === "object") {
-        flagAudio = this.validAudio;
-        this.validAudio = this.audioSize <= 10000000 ? true : false;
-        console.log(`Form Song [${this.audioSize}]: `, this.validAudio);
+      if (typeof this.form.song === 'object') {
+        flagAudio = this.validAudio
+        // eslint-disable-next-line vue/no-side-effects-in-computed-properties, no-unneeded-ternary
+        this.validAudio = this.audioSize <= 10000000 ? true : false
+        console.log(`Form Song [${this.audioSize}]: `, this.validAudio)
       }
 
-      return this.validAudio && flagAudio;
+      return this.validAudio && flagAudio
     },
-    hasCompleteMetadata() {
+    hasCompleteMetadata () {
       // Check if any of the metadata fields are missing
       return (
         this.metadata.title !== undefined &&
@@ -1649,56 +1798,60 @@ export default {
         this.metadata.album !== undefined &&
         this.metadata.genre !== undefined &&
         this.metadata.date !== undefined
-      );
-    },
+      )
+    }
   },
   watch: {
-    tempMagic(val) {
-      console.log("Magic Mime: ", val);
-      if (this.targetMagic === "audio" && val !== "") {
-        this.audioMagic = val;
-        this.validAudio = val === "4944334" || val === "00018" ? true : false;
-      } else if (this.targetMagic === "image" && val !== "") {
-        this.imageMagic = val;
+    tempMagic (val) {
+      console.log('Magic Mime: ', val)
+      if (this.targetMagic === 'audio' && val !== '') {
+        this.audioMagic = val
+        // eslint-disable-next-line no-unneeded-ternary
+        this.validAudio = val === '4944334' || val === '00018' ? true : false
+      } else if (this.targetMagic === 'image' && val !== '') {
+        this.imageMagic = val
 
         switch (val) {
-          case "89504e47": // png
-          case "ffd8ffe0": // jpg, jpeg, jps, jiff
-          case "52494646": // webp
-          case "3c737667": // svg
-            this.validImage = true;
-            this.avatar = URL.createObjectURL(this.avatarMagic);
-            this.form.avatar = this.avatarMagic;
-            console.log("Accepted Image: ", this.avatar);
-            break;
+          case '89504e47': // png
+          case 'ffd8ffe0': // jpg, jpeg, jps, jiff
+          case '52494646': // webp
+          case '3c737667': // svg
+            this.validImage = true
+            this.avatar = URL.createObjectURL(this.avatarMagic)
+            this.form.avatar = this.avatarMagic
+            console.log('Accepted Image: ', this.avatar)
+            break
           default:
             // this.form.avatar = this.account?.avatar || this.profile?.avatar || '';
             // this.avatar = this.account?.avatar || this.profile?.avatar || '/assets/artist-account/new.svg';
             console.log(
-              "Rejected Image: ",
+              'Rejected Image: ',
               this.account,
               this.avatar,
               this.form.avatar
-            );
-            this.validImage = false;
-            break;
+            )
+            this.validImage = false
+            break
         }
       }
     },
-    account(val) {
-      this.form = val;
-      this.form.avatar = "";
-      this.uploadedMusic = val?.song || "";
-      this.songTitle = val?.song_title || "";
+    account (val) {
+      this.form = val
+      this.form.avatar = ''
+      this.uploadedMusic = val?.song || ''
+      this.songTitle = val?.song_title || ''
+
+      // eslint-disable-next-line no-undef
+      if (this.artist_type) payload.artist_type = this.artist_type
 
       this.avatar =
         this.account?.avatar ||
         this.profile?.avatar ||
-        "/assets/artist-account/new.svg";
-      this.formGenres = val?.genres || [];
-    },
-  },
-};
+        '/assets/artist-account/new.svg'
+      this.formGenres = val?.genres || []
+    }
+  }
+}
 </script>
 
 <style>
