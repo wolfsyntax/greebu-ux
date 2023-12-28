@@ -6,7 +6,7 @@
 // export const SET_ARTIST_TYPES = (state, payload) =>
 // {
 //   state.artist_types = payload
-// } 
+// }
 
 // export const SET_ARTIST_GENRES = (state, payload) => {
 //   state.artist_genres = payload
@@ -48,7 +48,7 @@
 
 // export const CLEAR_ARTIST = (state) =>
 // {
-  
+
 //   state.artists = null;
 
 //   state.artist_types = null;
@@ -62,7 +62,7 @@
 //   state.members = null;
 
 //   state.artist = {};
-  
+
 //   state.pagination = {
 //     current_page: 1,
 //     last_page: 1,

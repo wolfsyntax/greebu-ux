@@ -240,7 +240,6 @@ export default {
   methods: {
     toggle (pos = -1) {
       this.$store.commit('setEventView', this.group || 'ongoing')
-
       if (pos > -1) {
         this.$store.commit('SET_EVENT', this.event)
       } else {
