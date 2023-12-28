@@ -3697,9 +3697,6 @@ img {
 
 /* Coming Soon */
 
-#coming-soon{
-
-}
 #coming-soon .soon-wrap{
   padding: 12.56rem 0;
   width: 100%;
@@ -3750,6 +3747,23 @@ img {
   24 px	1.5 rem
   28px 1.75 rem
 */
+
+/* Coming Soon */
+
+#coming-soon .soon-wrap{
+  padding: 10.56rem 0;
+  width: 100%;
+  margin: 0 auto;
+  background-size: 110%;
+}
+#coming-soon .soon-wrap .coming{
+  font-size: 2.5rem;
+  letter-spacing: 0.01175rem;
+  margin-bottom: 1.31rem;
+}
+#coming-soon .soon-wrap .ready{
+  font-size: 0.875rem;
+}
 
 /* Uploading audio loader */
 
