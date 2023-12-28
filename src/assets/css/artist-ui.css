@@ -3702,7 +3702,7 @@ img {
 }
 #coming-soon .soon-wrap{
   padding: 12.56rem 0;
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
   background-image: url('/assets/coming-soon-bg.svg');
   background-repeat: no-repeat;
