@@ -50,8 +50,6 @@ import TreeItem from './components/Organizer/TreeItem.vue'
 import { createHead } from '@vueuse/head'
 
 import FullCalendar from '@fullcalendar/vue3'
-import dayGridPlugin from '@fullcalendar/daygrid'
-import interactionPlugin from '@fullcalendar/interaction'
 
 import Compressor from 'compressorjs'
 // import CircleImage from './components/CircleImage.vue'

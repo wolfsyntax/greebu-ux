@@ -6,16 +6,15 @@ export const SET_STAFF_ROLES = (state, payload) => {
   state.staffRoles = payload
 }
 
-export const CLEAR_ORGANIZER_STATE = (state) =>
-{
+export const CLEAR_ORGANIZER_STATE = (state) => {
   console.log('CLEAR_OR')
-  state.pendingProposals = [];
-  state.acceptedProposals = [];
-  state.declinedProposals = [];
+  state.pendingProposals = []
+  state.acceptedProposals = []
+  state.declinedProposals = []
 
-  state.staff = [];
+  state.staff = []
 
-  state.staffIndex = -1;
+  state.staffIndex = -1
   state.form = {
     avatar: '',
     company_name: '',
@@ -31,34 +30,34 @@ export const CLEAR_ORGANIZER_STATE = (state) =>
     instagram: '',
     threads: '',
     accept_proposal: false,
-    send_proposal: false,
+    send_proposal: false
   }
   state.eventTypes = [
-    "Battle of the bands",
-    "Weddings",
-    "Concerts",
-    "Bar Events",
-  ];
+    'Battle of the bands',
+    'Weddings',
+    'Concerts',
+    'Bar Events'
+  ]
 
   state.staffRoles = [
-    "Event Coordinator",
-    "Event Manager/Director",
-    "Marketing and Promotion Manager",
-    "Operations Manager",
-  ];
+    'Event Coordinator',
+    'Event Manager/Director',
+    'Marketing and Promotion Manager',
+    'Operations Manager'
+  ]
 
   state.occupations = [
     {
-      name: 'Accounting & Consulting',
+      name: 'Accounting & Consulting'
     },
     {
-      name: 'Amin Support',
+      name: 'Amin Support'
     },
     {
-      name: 'Customer Service',
+      name: 'Customer Service'
     },
     {
-      name: 'Data Science & Analytics',
+      name: 'Data Science & Analytics'
     },
     {
       name: 'Design & Creative',
@@ -80,17 +79,17 @@ export const CLEAR_ORGANIZER_STATE = (state) =>
                       name: 'Audio & Music Production',
                       children: [
                         {
-                          name: 'Accounting & Consulting',
+                          name: 'Accounting & Consulting'
                         },
                         {
-                          name: 'Amin Support',
+                          name: 'Amin Support'
                         },
                         {
-                          name: 'Customer Service',
+                          name: 'Customer Service'
                         },
                         {
-                          name: 'Data Science & Analytics',
-                        },
+                          name: 'Data Science & Analytics'
+                        }
                       ]
                     },
                     { name: 'Branding & Logo Design' },
@@ -99,12 +98,12 @@ export const CLEAR_ORGANIZER_STATE = (state) =>
                     { name: 'Performing Arts' },
                     { name: 'Photography' },
                     { name: 'Product Design' },
-                    { name: 'Video & Animation' },
+                    { name: 'Video & Animation' }
                   ]
                 },
                 { name: 'Photography' },
                 { name: 'Product Design' },
-                { name: 'Video & Animation' },
+                { name: 'Video & Animation' }
               ]
             },
             { name: 'Audio & Music Production' },
@@ -114,7 +113,7 @@ export const CLEAR_ORGANIZER_STATE = (state) =>
             { name: 'Performing Arts' },
             { name: 'Photography' },
             { name: 'Product Design' },
-            { name: 'Video & Animation' },
+            { name: 'Video & Animation' }
           ]
         },
         { name: 'Audio & Music Production' },
@@ -124,69 +123,62 @@ export const CLEAR_ORGANIZER_STATE = (state) =>
         { name: 'Performing Arts' },
         { name: 'Photography' },
         { name: 'Product Design' },
-        { name: 'Video & Animation' },
+        { name: 'Video & Animation' }
       ]
     },
     {
-      name: 'Engineering & Architecture',
+      name: 'Engineering & Architecture'
     },
     {
-      name: 'IT & Networking',
+      name: 'IT & Networking'
     },
     {
-      name: 'Legal',
+      name: 'Legal'
     },
     {
-      name: 'Sales & Marketing',
+      name: 'Sales & Marketing'
     },
     {
-      name: 'Translation',
+      name: 'Translation'
     },
     {
-      name: 'Web, Mobile & Software Dev',
+      name: 'Web, Mobile & Software Dev'
     },
     {
-      name: 'Writing',
+      name: 'Writing'
     }
-  ];
-
+  ]
 }
 
-export const SET_STAFF_FILTER = (state, index = -1) =>
-{
+export const SET_STAFF_FILTER = (state, index = -1) => {
   state.staffIndex = index
 
   if (index > -1) {
-    state.staffFilter = state.staff[index];
-    state.staffRole = state.staff[index].role;
+    state.staffFilter = state.staff[index]
+    state.staffRole = state.staff[index].role
   } else {
-    state.staffFilter = {};
-    state.staffRole = '';
+    state.staffFilter = {}
+    state.staffRole = ''
   }
-
 }
 
 export const SET_STAFF = (state, payload) => {
-  state.staff = payload || [];
+  state.staff = payload || []
 }
 
-export const SET_ORGANIZER_FORM = (state, payload) =>
-{
+export const SET_ORGANIZER_FORM = (state, payload) => {
   state.form = payload
 }
 
-export const SET_PERFORMER_PENDING_PROPOSAL = (state, payload = []) =>
-{
+export const SET_PERFORMER_PENDING_PROPOSAL = (state, payload = []) => {
   console.log('[Mutation] Pending Proposal: ', payload)
-  state.pendingProposals = payload;
+  state.pendingProposals = payload
 }
 
-export const SET_PERFORMER_ACCEPTED_PROPOSAL = (state, payload = []) =>
-{
-  state.acceptedProposals = payload;
+export const SET_PERFORMER_ACCEPTED_PROPOSAL = (state, payload = []) => {
+  state.acceptedProposals = payload
 }
 
-export const SET_PERFORMER_DECLINED_PROPOSAL = (state, payload = []) =>
-{
-  state.declinedProposals = payload;
+export const SET_PERFORMER_DECLINED_PROPOSAL = (state, payload = []) => {
+  state.declinedProposals = payload
 }

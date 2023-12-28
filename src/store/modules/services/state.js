@@ -1,4 +1,4 @@
-var state = {
+const state = {
 
 }
 
