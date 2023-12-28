@@ -116,9 +116,9 @@
               v-for="(artist, index) in event?.artist.slice(0, 1)"
               :key="index"
             >
-            <div>
+            <!-- <div>
               <pre>{{ artist }}</pre>
-            </div>
+            </div> -->
               <div
                 class="artist-container"
                 @mouseover="showArtistInfo(artist)"
@@ -131,10 +131,6 @@
                       : artist?.name
                   }}{{ artist?.name.length > 11 ? "..." : "" }}
                 </span>
-                <!-- <div>
-                  <pre> {{ artist }} </pre>
-                </div> -->
-
                 <artist-info
                   v-if="isArtistInfoVisible"
                   :artist="currentArtist"
