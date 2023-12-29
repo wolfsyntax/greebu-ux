@@ -318,7 +318,7 @@
                       <button
                         class="page-link"
                         :disabled="pastPagination.page === 1"
-                        @click="prevPastPage(pastPagination.page)"
+                        @click="prevPastEvent()"
                       >
                         <span
                           class="page-link material-symbols-rounded back-icon"
@@ -379,6 +379,7 @@
     <events-modal @close="dismiss" />
     <event-success />
     <faq />
+    <ArtistPopOver @open-modal="openModalSignUp" />
   </layout>
 </template>
 <script>
@@ -408,6 +409,7 @@ import FilterResults from '/src/components/FilterResults.vue'
 import NoEvent from '/src/components/Events/NoEvent.vue'
 // eslint-disable-next-line import/no-absolute-path
 import BirdLoader from '/src/components/BirdLoader.vue'
+import ArtistPopOver from "/src/components/Events/ArtistPopOver.vue"
 
 export default {
   metaInfo: {
@@ -425,7 +427,8 @@ export default {
     EventCard,
     FilterResults,
     NoEvent,
-    BirdLoader
+    BirdLoader,
+    ArtistPopOver
   },
   setup () {},
   data: () => ({
@@ -567,6 +570,11 @@ export default {
       'nextOngoingPage',
       'nextPastPage'
     ]),
+    openModalSignUp(){
+      new Modal(document.getElementById('#mustSignUp'), {
+        keyboard: false
+      }).show()
+    },
     selectPage (page, type = 'ongoing') {
       if (type === 'ongoing') {
         console.log('Specify Ongoing Event: ', page)
@@ -785,7 +793,6 @@ export default {
     },
     nextPastEvent () {
       this.nextPastPage()
-
       this.pastEvents()
         .then((res) => {
           this.isPastLoading = false
@@ -799,8 +806,6 @@ export default {
     },
     prevPastEvent () {
       this.prevPastPage()
-      // console.log(this.pastPagination.page, "text")
-
       this.pastEvents()
         .then((res) => {
           this.isPastLoading = false
@@ -856,7 +861,7 @@ export default {
     },
     prevUpcomingEvent () {
       this.prevUpcomingPage()
-      console.log(this.upcomingPagination.page)
+      // console.log(this.upcomingPagination.page)
       this.upcomingEvents()
         .then((res) => {
           this.isUpcomingLoading = false
