@@ -107,16 +107,13 @@
 
 <script>
 import { mapGetters, mapState, mapActions } from 'vuex'
-// eslint-disable-next-line import/no-absolute-path
-import ExampleWrapper from '/src/components/Cropper/ExampleWrapper.vue'
-// eslint-disable-next-line import/no-absolute-path
-import VerticalButtons from '/src/components/Cropper/VerticalButtons.vue'
-// eslint-disable-next-line import/no-absolute-path
-import SquareButton from '/src/components/Cropper/SquareButton.vue'
-// eslint-disable-next-line import/no-absolute-path
 
+import ExampleWrapper from '/src/components/Cropper/ExampleWrapper.vue'
+
+import VerticalButtons from '/src/components/Cropper/VerticalButtons.vue'
+import SquareButton from '/src/components/Cropper/SquareButton.vue'
 import Compressor from 'compressorjs'
-// eslint-disable-next-line import/no-absolute-path
+
 import Reposition from '/src/components/Dashboard/Modals/Reposition.vue'
 
 export default {
