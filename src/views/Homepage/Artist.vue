@@ -207,16 +207,14 @@
 </template>
 
 <script>
-
-import Layout from '../../../../../src/components/Layouts/Layout.vue'
-import Reminder from '../../../../../src/components/Home/Reminder.vue'
-import Card from '../../../../../src/components/Artist/Card.vue'
-import Faq from '../../../../../src/components/Home/FAQ.vue'
-import FilterResults from '../../../../../src/components/FilterResults.vue'
+import Layout from '/src/components/Layouts/Layout.vue'
+import Reminder from '/src/components/Home/Reminder.vue'
+import Card from '/src/components/Artist/Card.vue'
+import Faq from '/src/components/Home/FAQ.vue'
+import FilterResults from '/src/components/FilterResults.vue'
 import { mapGetters, mapState, mapActions, mapMutations } from 'vuex'
-import MustSignup from '../../../../../src/components/Artist/MustSignupModal.vue'
-import NoEvent from '../../../../../src/components/Events/NoEvent.vue'
-
+import MustSignup from '/src/components/Artist/MustSignupModal.vue'
+import NoEvent from '/src/components/Events/NoEvent.vue'
 export default {
   components: {
     layout: Layout,
@@ -252,32 +250,7 @@ export default {
         { label: 'Literary Artists', value: 'literary' },
         { label: 'Digital Artists', value: 'digital' }
       ],
-      artistCategories: {
-        visual: ['Painter', 'Sculptors', 'Photographers', 'Mural painter'],
-        performing: [
-          'Disk Jockey',
-          'Solo artist',
-          'Band',
-          'Guitarist',
-          'Vocalist',
-          'Bassist',
-          'Drummer',
-          'Keyboardist',
-          'Dancers',
-          'Actors',
-          'Spoken Word Artists',
-          'Host',
-          'Cosplayers'
-        ],
-        literary: ['Writers', 'Poets'],
-        digital: [
-          'Graphics Designers',
-          'Animators',
-          'Content writer',
-          'Copywriters',
-          'Content creator'
-        ]
-      }
+      artistCategories: { visual: ['Painter', 'Sculptors', 'Photographers', 'Mural painter'], performing: ['Disk Jockey', 'Solo artist', 'Band', 'Guitarist', 'Vocalist', 'Bassist', 'Drummer', 'Keyboardist', 'Dancers', 'Actors', 'Spoken Word Artists', 'Host', 'Cosplayers'], literary: ['Writers', 'Poets'], digital: ['Graphics Designers', 'Animators', 'Content writer', 'Copywriters', 'Content creator'] }
     }
   },
   mounted () {
