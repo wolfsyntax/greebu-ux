@@ -284,12 +284,10 @@ export const fetchArtists = ({ commit, rootState, state }, payload) => {
       payload?.per_page || 12
     }&search=${encodeURIComponent(
       payload?.search || ''
-    )}&genre=${encodeURIComponent(
-      payload?.genre || ''
     )}&artist_type=${encodeURIComponent(
       payload?.artist_type || ''
-    )}&language=${encodeURIComponent(payload?.language || '')}&city=${
-      encodeURIComponent(payload?.city) || ''
+    )}&artist_category=${encodeURIComponent(payload?.artist_category || '')}&language=${encodeURIComponent(payload?.language || '')}&city=${
+      encodeURIComponent(payload?.city || '')
     }&province=${encodeURIComponent(payload?.province || '')}&sortBy=${
       payload?.sortBy || 'DESC'
     }`
@@ -359,7 +357,10 @@ export const artistOptions = ({ commit, rootState, state }, payload) => {
               commit('SET_GENRES', genre || [])
             }
 
+            console.log('Artist Options: ', result)
+
             commit('SET_ARTIST_TYPES', result?.artist_types || [])
+            commit('setArtistCategory', result?.artist_categories || [])
           }
 
           resolve(response)
