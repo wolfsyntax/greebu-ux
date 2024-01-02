@@ -1,5 +1,7 @@
+<!-- eslint-disable no-new -->
+<!-- eslint-disable no-new -->
 <template>
-  <div class="modal fade" id="uploadProfilePhoto" data-bs-backdrop="static" 
+  <div class="modal fade" id="uploadProfilePhoto" data-bs-backdrop="static"
   data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
@@ -10,12 +12,12 @@
         <div class="modal-body">
 
         <div
-          class="upload-file-wrapper" 
+          class="upload-file-wrapper"
           @dragover="handleDragOverCover"
           @dragleave="handleDragLeaveCover"
           @drop="handleDropCover"
           :class="{ 'drag-over': isDragOver }"
-          >                   
+          >
           <input type="file" ref="bannerInput" style="display: none;" accept="image/*" @change="handleClick"/>
           <div class="text-center upload-file-content" v-if="uploadBox">
               <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 45 45" fill="none">
@@ -24,7 +26,7 @@
               <h5 class="drag-files">Select a file or drag and drop here</h5>
               <p class="image-type">Upload images under 2MB.</p>
               <div class="select-files-wrapper">
-                <label for="files" class="btn btn-info" @click="$refs.bannerInput.click()">Select file</label>      
+                <label for="files" class="btn btn-info" @click="$refs.bannerInput.click()">Select file</label>
               </div>
             </div>
 
@@ -37,7 +39,7 @@
 
                 <cropper
                   class="coordinates-cropper"
-                  ref="cropper" 
+                  ref="cropper"
                   :src="preview"
                   :stencil-size="fillArea"
                   :default-boundaries="boundaries"
@@ -47,10 +49,10 @@
                     movable: false,
                     scalable: false,
                     resizable: false,
-		                aspectRatio: 1,
+                    aspectRatio: 1
                   }"
                   @change="updateSize"
-                 
+
                   :resize-image="{
                     adjustStencil: false
                   }"
@@ -73,16 +75,15 @@
                 <div>Width: {{ size.width }}px</div>
                 <div>Height: {{ size.height }}px</div>
               </div>
-            </example-wrapper>  
+            </example-wrapper>
 
             <Reposition />
 
               <button class="remove-image" @click="removeBanner">
-                <span class="material-symbols-outlined">&#xe5cd;</span> 
+                <span class="material-symbols-outlined">&#xe5cd;</span>
               </button>
           </div>
-      </div> 
-
+      </div>
 
         </div> <!-- end of modal-body -->
 
@@ -105,41 +106,40 @@
 </template>
 
 <script>
-import { mapGetters, mapState, mapActions } from "vuex";
-import ExampleWrapper from '/src/components/Cropper/ExampleWrapper.vue';
-import VerticalButtons from '/src/components/Cropper/VerticalButtons.vue';
-import SquareButton from '/src/components/Cropper/SquareButton.vue';
-//import StaffForm from "../../../views/Organizer/Forms/StaffForm.vue";
+import { mapGetters, mapState, mapActions } from 'vuex'
+// eslint-disable-next-line import/no-absolute-path
+import ExampleWrapper from '/src/components/Cropper/ExampleWrapper.vue'
+// eslint-disable-next-line import/no-absolute-path
+import VerticalButtons from '/src/components/Cropper/VerticalButtons.vue'
+// eslint-disable-next-line import/no-absolute-path
+import SquareButton from '/src/components/Cropper/SquareButton.vue'
+// eslint-disable-next-line import/no-absolute-path
 
-import CircleStencil from '/src/components/Cropper/CircleStencil.vue';
-import HomeView from '/src/components/Cropper/HomeView.vue';
+import Compressor from 'compressorjs'
+// eslint-disable-next-line import/no-absolute-path
+import Reposition from '/src/components/Dashboard/Modals/Reposition.vue'
 
-import Compressor from 'compressorjs';   
-import Reposition from "/src/components/Dashboard/Modals/Reposition.vue";
-
-export default { 
+export default {
   components: {
     ExampleWrapper,
-		VerticalButtons,
-		SquareButton,
+    VerticalButtons,
+    SquareButton,
     Reposition
-  
   },
   setup () {
-
     return {
-      songInfoText: "Please ensure that the uploaded image is smaller than 2MB in file size.",
+      songInfoText: 'Please ensure that the uploaded image is smaller than 2MB in file size.',
       img: 'https://images.unsplash.com/photo-1485178575877-1a13bf489dfe?ixlib=rb-1.2.1&auto=format&fit=crop&w=991&q=80',
       size: {
-				width: null,
-				height: null,
-			},
+        width: null,
+        height: null
+      }
     }
   },
   data: () => ({
     avatar: null,
     form: {
-      avatar: '',
+      avatar: ''
     },
     uploadBox: true,
     cropImage: null,
@@ -150,152 +150,134 @@ export default {
     imageUrl: null,
     filename: null,
     preview: '',
-    showImage: false,
+    showImage: false
 
   }),
-  
+
   props: {
-    active: { 
+    active: {
       type: Boolean,
       default: false,
       required: true
     },
     image: {
-			type: Object
-		},
-		coordinates: {
-			type: Object,
-		},
-		transitions: {
-			type: Object,
-		},
-		stencilCoordinates: {
-			type: Object,
-		},
-    page: String,
+      type: Object
+    },
+    coordinates: {
+      type: Object
+    },
+    transitions: {
+      type: Object
+    },
+    stencilCoordinates: {
+      type: Object
+    },
+    page: String
   },
   computed: {
-    ...mapGetters(['userRole',]),
+    ...mapGetters(['userRole']),
     ...mapState({
-    }),
+    })
   },
-  mounted()
-  {
-    const myModal = document.getElementById('uploadProfilePhoto');
+  mounted () {
+    // const myModal = document.getElementById('uploadProfilePhoto')
   },
   methods: {
     ...mapActions([
-     'updateAvatar',
-     'addStaff '
+      'updateAvatar',
+      'addStaff '
     ]),
-    boundaries({ cropper, imageSize }) {
-			return {
-				width: cropper.clientWidth,
-				height: cropper.clientHeight,
-			};
-		},
-		updateSize({ coordinates }) {
-			this.size.width = Math.round(coordinates.width);
-			this.size.height = Math.round(coordinates.height);
-		},
-		zoom(factor) {
-			this.$refs.cropper.zoom(factor);
-		},
-		
-    fillArea({ boundaries }) {
+    boundaries ({ cropper, imageSize }) {
+      return {
+        width: cropper.clientWidth,
+        height: cropper.clientHeight
+      }
+    },
+    updateSize ({ coordinates }) {
+      this.size.width = Math.round(coordinates.width)
+      this.size.height = Math.round(coordinates.height)
+    },
+    zoom (factor) {
+      this.$refs.cropper.zoom(factor)
+    },
+
+    fillArea ({ boundaries }) {
       return {
         width: boundaries.width,
-        height: boundaries.height,
-      };
+        height: boundaries.height
+      }
     },
-    change({ coordinates, canvas })
-    {
+    change ({ coordinates, canvas }) {
       // console.log('Cropper: ', coordinates, canvas)
       // this.cropImage = canvas;
 
     },
-    getCropImage(e)
-    {
-      const { coordinates, canvas, image } = this.generateImage = this.$refs.cropper.getResult();
+    getCropImage (e) {
+      const { canvas } = this.generateImage = this.$refs.cropper.getResult()
 
-      this.showImage = true;
-      this.cropImage = canvas;
-      //this.banner = canvas.toDataURL();
-      this.preview = null;
-      
-      this.cropImage.toBlob(async blob =>
-      {
-        this.form.avatar = blob;
-        this.$emit('formDataUpdated', this.form.avatar);
+      this.showImage = true
+      this.cropImage = canvas
+      // this.banner = canvas.toDataURL();
+      this.preview = null
 
-        this.isLoading = true;
-        
-            // if (this.form.avatar) {
-            //   this.compressAndUploadImage(this.form.avatar);
-            // } else {
-            //   console.error('No image to upload.');
-            // }
+      this.cropImage.toBlob(async blob => {
+        this.form.avatar = blob
+        this.$emit('formDataUpdated', this.form.avatar)
 
-            const files =  this.form.avatar;
-              if (files) {
-                this.compressAndUploadImage(files);
-              } else {
-                console.error('No image to upload.');
-              }
+        this.isLoading = true
 
-      //   if (this.page === 'page1' || this.page === 'page2') { // organizer and artist
-      //   this.updateAvatar(formData); // Call the specific function for Page 
-      // } 
-      // else if (this.page === 'page3') { // organizer staff
-      //   this.addStaff(formData); 
-      // }
+        // if (this.form.avatar) {
+        //   this.compressAndUploadImage(this.form.avatar);
+        // } else {
+        //   console.error('No image to upload.');
+        // }
 
-      });
-
-
+        const files = this.form.avatar
+        if (files) {
+          this.compressAndUploadImage(files)
+        } else {
+          console.error('No image to upload.')
+        }
+      })
     },
-    handleDragOverCover(e)
-    {
+    handleDragOverCover (e) {
       console.log('Handle DragOver: ', e)
       e.stopPropagation()
       e.preventDefault()
-      e.dataTransfer.dropEffect = 'copy';
-      this.isDragOver = true;
+      e.dataTransfer.dropEffect = 'copy'
+      this.isDragOver = true
     },
-    handleDragLeaveCover(e) {
-      e.preventDefault();
-      this.isDragOver = false; 
+    handleDragLeaveCover (e) {
+      e.preventDefault()
+      this.isDragOver = false
     },
-    isImage(file)
-    {
+    isImage (file) {
       return /\.(png|webp|svg|jpeg)$/.test(file.name)
     },
-    handleDropCover(e)
-    {
+    handleDropCover (e) {
       e.stopPropagation()
       e.preventDefault()
-      this.isDragOver = false;
+      this.isDragOver = false
 
       const files = e.dataTransfer.files
       if (files.length !== 1) {
-        console.log('Handling Drop');
+        console.log('Handling Drop')
         return
       }
 
       const rawFile = files[0] // only use files[0]
 
       if (!this.isImage(rawFile)) {
-        console.log('Not valid image');
+        console.log('Not valid image')
         return false
       }
 
-      this.handleCoverImage(files);
+      this.handleCoverImage(files)
     },
 
-    uploadCover()
-    {
+    uploadCover () {
       // this.isLoading = true;
-      
+
       // var formData = new FormData();
       // formData.append('cover_photo', this.form.cover_photo, this.filename);
       // this.updateBanner(formData)
@@ -304,144 +286,118 @@ export default {
       //   {
       //     this.$refs.bannerClose.click();
       //     this.removeBanner();
-          
+
       //     console.log(`Closing Banner`);
       //   })
       //   .catch(error => {
       //     console.error('Error uploading cover:', error);
       //   });
     },
-    compressAndUploadImage(files) {
+    compressAndUploadImage (files) {
+      const maxSizeBytes = 1024 * 1024 // 1 MB
+      const mediumSizeBytes = 500 * 1024 // 500 KB
+      const largeSizeBytes = 1500 * 1024 // 1.5 MB
+      const skipCompressionSizeBytes = 100 * 1024 // 100 KB
 
-      const maxSizeBytes = 1024 * 1024; // 1 MB
-      const mediumSizeBytes = 500 * 1024; // 500 KB
-      const largeSizeBytes = 1500 * 1024; // 1.5 MB
-      const skipCompressionSizeBytes = 100 * 1024; // 100 KB
-
-      let quality;
+      let quality
 
       if (files.size < skipCompressionSizeBytes) {
         // If the file size is less than 100KB, skip compression
-        quality = 1; // Set to 1 to keep original quality
+        quality = 1 // Set to 1 to keep original quality
       } else if (files.size < mediumSizeBytes) {
-        quality = 0.8;
+        quality = 0.8
       } else if (files.size < maxSizeBytes) {
-        quality = 0.2;
+        quality = 0.2
       } else if (files.size <= largeSizeBytes) {
-        quality = 0.4;
+        quality = 0.4
       } else {
-        quality = 0.2;
+        quality = 0.2
       }
+
+      // eslint-disable-next-line no-new
       new Compressor(files, {
-       // quality: 0.2, // Adjust the compression quality as needed, 0.6 or 0.8
-       quality: quality,
+        // quality: 0.2, // Adjust the compression quality as needed, 0.6 or 0.8
+        quality,
         success: (compressedFile) => {
-          const formData = new FormData();
-          formData.append('avatar', compressedFile);
-          this.updateAvatar(formData);
+          const formData = new FormData()
+          formData.append('avatar', compressedFile)
+          this.updateAvatar(formData)
 
-          this.$refs.bannerClose.click();
-          this.removeBanner();
-          console.log(`Closing Banner`);
+          this.$refs.bannerClose.click()
+          this.removeBanner()
+          console.log('Closing Banner')
         },
-        error(err) {
-          console.error('Image compression failed:', err.message);
-        },
-
-        
-      //   success: (compressedBlob) => {
-      //   const compressedFile = new File([compressedBlob], `compressed.${files.type.split('/')[1]}`, {
-      //     type: files.type,
-      //   });
-
-      //   // success: (compressedBlob) => {
-      //   //   const compressedFile = new File([compressedBlob], `compressed.jpg`, {
-      //   //     type: 'image/jpeg', // Set the type to JPEG
-      //   //   });
-
-      //   const formData = new FormData();
-      //   formData.append('avatar', compressedFile);
-      //   this.updateAvatar(formData);
-        
-      //   this.$refs.bannerClose.click();
-      //   this.removeBanner();
-      //   console.log(`Closing Banner`);
-      // },
-
-      });
+        error (err) {
+          console.error('Image compression failed:', err.message)
+        }
+      })
     },
 
-  //   compressAndUploadImage(formData) {
-  //  // const file = formData.get('avatar');
-    
-  //   new Compressor(file, {
-  //     quality: 0.6, // Adjust the compression quality as needed
-  //     success: (compressedFile) => {
-  //       formData.set('avatar', compressedFile, this.filename);
-  //       this.updateAvatar(formData);
-  //     },
-  //     error(err) {
-  //       console.error('Image compression failed:', err.message);
-  //     },
-  //   });
-  // },
+    //   compressAndUploadImage(formData) {
+    //  // const file = formData.get('avatar');
 
-    handleClick(e)
-    {
-      const files = e.target.files;
-     this.handleCoverImage(files);
+    //   new Compressor(file, {
+    //     quality: 0.6, // Adjust the compression quality as needed
+    //     success: (compressedFile) => {
+    //       formData.set('avatar', compressedFile, this.filename);
+    //       this.updateAvatar(formData);
+    //     },
+    //     error(err) {
+    //       console.error('Image compression failed:', err.message);
+    //     },
+    //   });
+    // },
 
+    handleClick (e) {
+      const files = e.target.files
+      this.handleCoverImage(files)
     },
-    handleCoverImage(files){
-      
-      if(files){
-        const rawFile = files[0];
+    handleCoverImage (files) {
+      if (files) {
+        const rawFile = files[0]
 
-          if (!rawFile) return;
-          const { name } = rawFile;
-          this.filename = name;
-          this.form.cover_photo = rawFile;
-           this.avatar = this.preview = URL.createObjectURL(rawFile);
-          
-      //  this.$emit('formDataUpdated', this.avatar);
+        if (!rawFile) return
+        const { name } = rawFile
+        this.filename = name
+        this.form.cover_photo = rawFile
+        this.avatar = this.preview = URL.createObjectURL(rawFile)
+
+        //  this.$emit('formDataUpdated', this.avatar);
         // console.log(`top banner image`, this.banner)
 
-        this.uploadBox = false;
+        this.uploadBox = false
         // check the image width and height
-        const img = new Image();
-        img.src = this.avatar;
+        const img = new Image()
+        img.src = this.avatar
 
         img.onload = () => {
-          this.imageWidth = img.width;
-          this.imageHeight = img.height;
-          console.log(`Image Width: ${this.imageWidth} pixels`);
-          console.log(`Image Height: ${this.imageHeight} pixels`);
-          
-        };
+          this.imageWidth = img.width
+          this.imageHeight = img.height
+          console.log(`Image Width: ${this.imageWidth} pixels`)
+          console.log(`Image Height: ${this.imageHeight} pixels`)
+        }
 
-        this.compressAndUploadImage(files);
+        this.compressAndUploadImage(files)
       }
-
     },
-    removeBanner()
-    {
-      this.form.cover_photo = null;
-      this.avatar = null;
-      this.cropImage = null;
-      this.$refs['bannerInput'].value = null;
-      this.uploadBox = true;
-      this.showImage = false;
-    },
+    removeBanner () {
+      this.form.cover_photo = null
+      this.avatar = null
+      this.cropImage = null
+      this.$refs.bannerInput.value = null
+      this.uploadBox = true
+      this.showImage = false
+    }
 
-	},
+  },
   watch: {
-}
+  }
 }
 </script>
 
 <style scoped>
 #uploadProfilePhoto .upload-file-wrapper .uploaded-image-wrapper{
-  height: 32.25rem; 
+  height: 32.25rem;
 }
 .cropper {
   height: inherit!important;
