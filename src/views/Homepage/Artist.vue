@@ -187,10 +187,16 @@
                 <option>Legazpi City</option>
               </select>
             </div>
+
           </template>
           </FilterResults>
       </div>
-        <card :artists="artists" @paginate="page++" :showSeeMoreBtn="showSeeMoreBtn"></card>
+
+      <card :artists="artists" @paginate="page++" :showSeeMoreBtn="showSeeMoreBtn" v-if="artists && artists.length > 0"></card>
+      <div class="container" v-else>
+        <NoEvent noArtist='showNoArtist'/>
+      </div>
+
     </section>
 
     <reminder />
@@ -200,21 +206,14 @@
 </template>
 
 <script>
-
-// eslint-disable-next-line import/no-absolute-path
 import Layout from '/src/components/Layouts/Layout.vue'
-// eslint-disable-next-line import/no-absolute-path
 import Reminder from '/src/components/Home/Reminder.vue'
-// eslint-disable-next-line import/no-absolute-path
 import Card from '/src/components/Artist/Card.vue'
-// eslint-disable-next-line import/no-absolute-path
 import Faq from '/src/components/Home/FAQ.vue'
-// eslint-disable-next-line import/no-absolute-path
 import FilterResults from '/src/components/FilterResults.vue'
 import { mapGetters, mapState, mapActions, mapMutations } from 'vuex'
-// eslint-disable-next-line import/no-absolute-path
 import MustSignup from '/src/components/Artist/MustSignupModal.vue'
-
+import NoEvent from '/src/components/Events/NoEvent.vue'
 export default {
   components: {
     layout: Layout,
@@ -222,12 +221,14 @@ export default {
     reminder: Reminder,
     card: Card,
     FilterResults,
-    MustSignup
+    MustSignup,
+    NoEvent
   },
   setup () {
   },
   data () {
     return {
+      showNoArtist: true,
       showSeeMoreBtn: true,
       artist_type: null,
       genre: null,
@@ -248,32 +249,7 @@ export default {
         { label: 'Literary Artists', value: 'literary' },
         { label: 'Digital Artists', value: 'digital' }
       ],
-      artistCategories: {
-        visual: ['Painter', 'Sculptors', 'Photographers', 'Mural painter'],
-        performing: [
-          'Disk Jockey',
-          'Solo artist',
-          'Band',
-          'Guitarist',
-          'Vocalist',
-          'Bassist',
-          'Drummer',
-          'Keyboardist',
-          'Dancers',
-          'Actors',
-          'Spoken Word Artists',
-          'Host',
-          'Cosplayers'
-        ],
-        literary: ['Writers', 'Poets'],
-        digital: [
-          'Graphics Designers',
-          'Animators',
-          'Content writer',
-          'Copywriters',
-          'Content creator'
-        ]
-      }
+      artistCategories: { visual: ['Painter', 'Sculptors', 'Photographers', 'Mural painter'], performing: ['Disk Jockey', 'Solo artist', 'Band', 'Guitarist', 'Vocalist', 'Bassist', 'Drummer', 'Keyboardist', 'Dancers', 'Actors', 'Spoken Word Artists', 'Host', 'Cosplayers'], literary: ['Writers', 'Poets'], digital: ['Graphics Designers', 'Animators', 'Content writer', 'Copywriters', 'Content creator'] }
     }
   },
   mounted () {
@@ -281,7 +257,7 @@ export default {
     this.$store.commit('setArtistProfile')
 
     this.SET_FILTERED_ARTIST({})
-
+    // this.$store.commit('CLEAR_ARTIST')
     this.artistOptions()
     this.page = 1
     const payload = {}

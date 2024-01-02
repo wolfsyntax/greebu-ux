@@ -2,9 +2,8 @@
   <div>
     <section class="faq">
       <div class="container">
-        <h2>Frequent Ask Questions</h2>
-        <p class="sub-heading">Pellentesque cras adipiscing tempus libero vel nullam mauris tellus. Aliquam ultrices
-          tellus <br>consequat amet, lectus aliquam est in neque.</p>
+        <h2>Frequently Ask Questions</h2>
+        <p class="sub-heading">We've Got You Covered! All Your FAQs Right Here.</p>
 
         <div class="accordion" id="faq">
           <div class="accordion-item" v-for="(question, index) in askedQuestions" :key="'question-' + index">
@@ -32,8 +31,7 @@
 
 <script>
 export default {
-  data()
-  {
+  data () {
     return {
       askedQuestions: [
         {
@@ -58,33 +56,27 @@ export default {
         }
 
       ],
-      activeQuestions: [],
+      activeQuestions: []
     }
   },
   methods: {
-    toggleAccordion(index)
-    {
-      const isActive = this.activeQuestions.includes(index);
+    toggleAccordion (index) {
+      const isActive = this.activeQuestions.includes(index)
       if (isActive) {
-        this.activeQuestions = this.activeQuestions.filter((item) => item !== index);
+        this.activeQuestions = this.activeQuestions.filter((item) => item !== index)
       } else {
-        this.activeQuestions = [index];
+        this.activeQuestions = [index]
       }
     },
-    getIconClass(index)
-    {
-      return this.isOpen(index) ? 'bi bi-dash' : 'bi bi-plus';
-    },
+    getIconClass (index) {
+      return this.isOpen(index) ? 'bi bi-dash' : 'bi bi-plus'
+    }
   },
   computed: {
-    isOpen()
-    {
-      return (index) => this.activeQuestions.includes(index);
-    },
-  },
-
-
-};
+    isOpen () {
+      return (index) => this.activeQuestions.includes(index)
+    }
+  }
+}
 </script>
-
 <style scoped></style>

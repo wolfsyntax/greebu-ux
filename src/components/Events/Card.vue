@@ -60,8 +60,8 @@
         </div>
       </div>
 
-      <div class="row">
-        <div class="col">
+      <div class="row seeking-row">
+        <div class="col-6">
           <div
             class="seeking-for"
             v-if="
@@ -70,18 +70,20 @@
             "
           >
             <h6 class="title">Seeking for</h6>
-            <span
-              class="badge type-artist text-capitalize"
-              v-for="(look, index) in event.look_types.slice(0, 1)"
-              :key="index"
-              >{{ look.length > 10 ? look.substring(0, 11) : look
-              }}{{ look.length > 11 ? "..." : "" }}</span
-            >
-            <span
-              class="badge type-artist bg-transparent"
-              v-if="event.look_types.length > 1"
-              >...</span
-            >
+            <div class="seeking-for-wrap">
+              <span
+                  class="badge type-artist text-capitalize"
+                  v-for="(look, index) in event.look_types.slice(0, 1)"
+                  :key="index"
+                  >{{ look.length > 10 ? look.substring(0, 11) : look
+                  }}{{ look.length > 11 ? "..." : "" }}</span
+                >
+                <span
+                  class="badge type-artist bg-transparent"
+                  v-if="event.look_types.length > 1"
+                  >...</span
+                >
+            </div>
           </div>
           <!-- set the opacity to 0 on this div when the created event has no Seeking for -->
           <div
@@ -108,7 +110,7 @@
           </div>
         </div>
 
-        <div class="col">
+        <div class="col-6">
           <div class="seeking-for" v-if="event?.artist">
             <h6 class="title" style="">Performer</h6>
 
@@ -148,6 +150,17 @@
         </div>
       </div>
 
+      <!-- If the organizer has disabled the "Do you want to accept proposals from artists?" feature, Do you still want to send a proposal to the artist? -->
+      <div>
+        <button type="button"
+        class="btn btn-primary view-details mb-0"
+        v-if="userRole === 'artists' && event.look_types.length === 0"
+        style="opacity: 0;"
+      >
+        Send Proposal
+      </button>
+      </div>
+
       <div v-if="isLoggedIn">
         <button class="btn btn-primary view-details" @click="toggle(pos)">
           View Details
@@ -159,7 +172,6 @@
           View Details
         </button>
       </div>
-
       <button
         class="btn btn-primary send-proposal"
         @click="sendProposal"
