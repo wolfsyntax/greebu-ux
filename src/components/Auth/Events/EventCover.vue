@@ -45,9 +45,10 @@
 // eslint-disable-next-line import/no-absolute-path
 import DragDrop from '/src/components/DragDrop.vue'
 // eslint-disable-next-line import/no-absolute-path
-import LoadingIndicator from '/src/components/LoadingIndicator.vue'
-import { mapActions, mapGetters, mapState } from 'vuex'
 import Compressor from 'compressorjs'
+import { mapActions, mapGetters, mapState } from 'vuex'
+// eslint-disable-next-line import/no-absolute-path
+import LoadingIndicator from '/src/components/LoadingIndicator.vue'
 
 export default {
   components: {
@@ -88,11 +89,30 @@ export default {
     toggleShowBtn () {
       this.$emit('toggle-show-btn')
     },
-    setCover (val) {
+    setCover (val, files) {
       if (val) {
+        const maxSizeBytes = 1024 * 1024 // 1 MB
+        const mediumSizeBytes = 500 * 1024 // 500 KB
+        const largeSizeBytes = 1500 * 1024 // 1.5 MB
+        const skipCompressionSizeBytes = 100 * 1024 // 100 KB
+
+        let quality
+
+        if (files.size < skipCompressionSizeBytes) {
+          // If the file size is less than 100KB, skip compression
+          quality = 1 // Set to 1 to keep original quality
+        } else if (files.size < mediumSizeBytes) {
+          quality = 0.8
+        } else if (files.size < maxSizeBytes) {
+          quality = 0.2
+        } else if (files.size <= largeSizeBytes) {
+          quality = 0.4
+        } else {
+          quality = 0.2
+        }
         // eslint-disable-next-line no-unused-vars
         const compressor = new Compressor(val, {
-          quality: 1,
+          quality,
           success: (result) => {
             const formData = new FormData()
             formData.append('files', result, result.name)
