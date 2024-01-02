@@ -699,11 +699,11 @@ import { mapActions, mapGetters, mapState } from 'vuex'
 import { Modal } from 'bootstrap'
 import EditBandMembers from '../Artist/EditBandMembers.vue'
 import BannerModal from './Modals/BannerModal.vue'
-import EventTab from '../../../../../src/components/Dashboard/Tabs/Events/Index.vue'
+import EventTab from '/src/components/Dashboard/Tabs/Events/Index.vue'
 // import Post from '/src/components/Post/Index.vue'
-import SuccessModal from '../../../../../src/components/SuccessModal.vue'
-import MemberForm from '../../../../../src/views/Artist/Form/AddMember.vue'
-import ComingSoon from '../../../../../src/components/Dashboard/Tabs/NoUploaded/ComingSoon.vue'
+import SuccessModal from '/src/components/SuccessModal.vue'
+import MemberForm from '/src/views/Artist/Form/AddMember.vue'
+import ComingSoon from '/src/components/Dashboard/Tabs/NoUploaded/ComingSoon.vue'
 
 export default {
   setup () {

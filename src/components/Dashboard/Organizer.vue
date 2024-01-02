@@ -350,8 +350,8 @@ import { mapGetters, mapState, mapActions } from 'vuex'
 // import BannerModal from '/src/components/Organizer/BannerModal.vue';
 import BannerModal from './Modals/BannerModal.vue'
 // src\components\Dashboard\Tabs\Events\Index.vue
-import EventTab from '../../../../../src/components/Dashboard/Tabs/Events/Index.vue'
-import ComingSoon from '../../../../../src/components/Dashboard/Tabs/NoUploaded/ComingSoon.vue'
+import EventTab from '/src/components/Dashboard/Tabs/Events/Index.vue'
+import ComingSoon from '/src/components/Dashboard/Tabs/NoUploaded/ComingSoon.vue'
 
 // import { Modal } from 'bootstrap';
 
