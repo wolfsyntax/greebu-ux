@@ -3301,6 +3301,13 @@ header nav {
   font-weight: 500;
   margin-bottom: 0.5rem;
 }
+.events-showing .seeking-for .seeking-for-wrap{
+  display: flex;
+  align-items: center;
+  word-wrap: break-word!important;
+  white-space: pre-wrap!important;
+  word-break: break-word!important;
+}
 .events-showing .seeking-for .type-artist {
   color: var(--orange);
   font-size: 0.7625rem;
@@ -3308,7 +3315,12 @@ header nav {
   padding: 0.35rem 0.5rem;
   border-radius: 2rem;
   background: #fed7aa;
-  margin: 0 0.37rem 0.37rem 0;
+  margin: 0 0 0.37rem 0;
+
+  /* width: 95%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; */
 }
 #eventDetailsModal .looking-for-wrap .type-artist {
   color: var(--orange);
@@ -15271,6 +15283,9 @@ header nav {
   margin-bottom: 60px
 */
 
+.events-showing .seeking-row{
+  /* flex-wrap: nowrap; */
+}
   /* BASIC INFORMATION PAGE */
   .order-summary .container .card {
     margin: 3.5rem auto;
