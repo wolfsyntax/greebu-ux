@@ -166,7 +166,6 @@
                 <option v-if="!selectedArtistCategoryVisible">Select type of artist first</option>
                 <optgroup
                   v-if="selectedArtistCategoryVisible"
-
                 >
                   <option
                     v-for="(category, index) in artistCategories[
@@ -308,7 +307,6 @@ export default {
     ...mapActions(['fetchArtists', 'artistOptions']),
     ...mapMutations(['SET_FILTERED_ARTIST'])
   },
-
   watch: {
     page (val) {
       this.showSeeMoreBtn = false

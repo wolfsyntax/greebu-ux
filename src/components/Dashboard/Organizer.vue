@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div>
     <section class="artist-profile">
@@ -9,7 +10,7 @@
                 <div class="cover" >
                   <div class="gray-shade" ></div>
                   <figure >
-                    
+
                     <img :src="bannerImage" class="img-fluid" loading="lazy" alt="profile cover" >
                   </figure>
                   <div class="cover-photo-camera" >
@@ -17,7 +18,7 @@
                       <span class="material-symbols-outlined">&#xE412;</span>
                     </button>
                   </div>
-                  
+
                   <div class="row cover-body d-flex justify-content-between align-items-center">
                     <div class="col-9">
                       <div class="profile-info">
@@ -30,7 +31,7 @@
                             <h3 class="profile-name">{{ account.organizer_name }}</h3>
                             <h5 class="type-of-artist">{{ account.company_name }}</h5>
                           </div>
-                          
+
                           <div class="music-genre">
                             <h5 class="title">Event Types:</h5>
                             <span class="badge" v-for="(event_type, index) in account.event_types" :key="index">{{ event_type }}</span>
@@ -46,7 +47,7 @@
                     </div>
                   </div>
                 </div>
-                
+
                 <div class="header-links">
                   <ul class="nav">
                     <li class="nav-item" v-for="item in navItems" :key="item">
@@ -80,17 +81,17 @@
                     <img src="/assets/organizer-account/event-organizer-icon.svg" loading="lazy" alt="artist type icon">
                     <p>{{ account?.organizer_name }}</p>
                   </div>
-         
+
                   <div v-if="facebook" class="mt-3 social-media" >
                     <img src="/assets/social icons/facebook-gray.svg" loading="lazy" alt="youtube icon">
                     <p>{{ facebook }}</p>
                   </div>
-                    
+
                   <div v-if="instagram" class="mt-3 social-media" >
                     <img src="/assets/artist-account/instagram-icon-gray.svg" loading="lazy" alt="instagram icon">
                     <p>{{ instagram }}</p>
                   </div>
-                    
+
                   <div v-if="threadsNET" class="mt-3 social-media" >
                     <img src="/assets/social icons/threads-gray.svg" loading="lazy" alt="instagram icon">
                     <p>{{ threadsNET }}</p>
@@ -126,17 +127,18 @@
                         <p>{{ staff.role }}</p>
                       </div>
                     </div>
-                  </div>   
-                </div>  <!-- end of card-body -->     
-              </div>     
-       
+                  </div>
+                </div>  <!-- end of card-body -->
+              </div>
+
             </div>
 
             <!-- left wrapper end -->
             <!-- middle wrapper start -->
             <div class="col-md-8 col-xl-6 middle-wrapper">
 
-              <post />
+              <!-- <post /> -->
+              <ComingSoon />
               <!-- Organizer Posts -->
             </div><!-- middle wrapper end -->
 
@@ -167,8 +169,8 @@
                         </svg>
                         <h5 class="no-events-posted-title">No events posted</h5>
                       </div>
-                    </div>  <!-- end of card-body -->     
-                  </div>  
+                    </div>  <!-- end of card-body -->
+                  </div>
                 </div>
                 <!-- right wrapper bottom start -->
                 <div class="col-md-12 grid-margin">
@@ -192,25 +194,24 @@
                       </div>
 
                       <!-- Song list -->
-                    </div>  <!-- end of card-body -->     
-                  </div> 
+                    </div>  <!-- end of card-body -->
+                  </div>
                 </div>
               </div>
             </div>
             <!-- right wrapper end -->
           </div> <!-- end of Post tab -->
 
-
           <!-- About tab -->
           <div class="row about-tab" v-if="activeItem === 'About'">
             <div class="col-7">
               <h3 class="overview">Overview</h3>
               <p class="content">Lorem ipsum dolor sit amet consectetur.</p>
-              <h5 class="capacity">Our capacity:</h5>  
+              <h5 class="capacity">Our capacity:</h5>
               <ol type="1" class="capacity-list">
                 <li>Mobile apps design</li>
                 <li>Website design & development</li>
-              </ol> 
+              </ol>
 
               <div class="genres">
                 <h4>Event Types</h4>
@@ -260,7 +261,6 @@
           <!-- <div class="row songs-tab" v-if="activeItem === 'Songs'">
             <div class="col-12">
 
-            
               <div class="text-center no-songs">
                 <svg xmlns="http://www.w3.org/2000/svg" width="101" height="102" viewBox="0 0 101 102" fill="none">
                   <path d="M74.0209 16.7444H44.7986C41.104 16.7444 38.0972 19.7809 38.0972 23.5131V64.1305C36.2721 62.8851 34.0754 62.1578 31.713 62.1578C25.4066 62.1578 20.2768 67.3384 20.2768 73.7053C20.2768 80.0741 25.4066 85.2547 31.713 85.2547C38.0174 85.2547 43.1472 80.0741 43.1472 73.7053V38.1542H75.6722V55.1321C73.8472 53.8867 71.6494 53.1584 69.286 53.1584C62.9816 53.1584 57.8518 58.339 57.8518 64.7078C57.8518 71.0747 62.9816 76.2553 69.286 76.2553C75.5924 76.2553 80.7222 71.0747 80.7222 64.7078V23.5131C80.7232 19.7809 77.7165 16.7444 74.0209 16.7444ZM31.713 80.1557C28.1921 80.1557 25.3268 77.262 25.3268 73.7063C25.3268 70.1516 28.1921 67.2589 31.713 67.2589C35.2328 67.2589 38.0972 70.1516 38.0972 73.7063C38.0982 77.262 35.2339 80.1557 31.713 80.1557ZM43.1482 33.0542V23.5131C43.1482 22.5931 43.8885 21.8444 44.7996 21.8444H74.0219C74.9329 21.8444 75.6743 22.592 75.6743 23.5131V33.0542H43.1482ZM69.287 71.1563C65.7672 71.1563 62.9028 68.2636 62.9028 64.7089C62.9028 61.1531 65.7672 58.2594 69.287 58.2594C72.8079 58.2594 75.6732 61.1531 75.6732 64.7089C75.6732 68.2636 72.8079 71.1563 69.287 71.1563Z" fill="#B8BBCF"/>
@@ -279,7 +279,6 @@
           <!-- <div class="row videos-tab" v-if="activeItem === 'Videos'">
             <div class="col-12">
 
-          
               <div class="text-center no-videos">
                 <svg xmlns="http://www.w3.org/2000/svg" width="103" height="102" viewBox="0 0 103 102" fill="none">
                   <path d="M26.9764 10.1892C19.3528 10.1892 13.1255 16.3949 13.1255 23.9851C13.1255 27.5992 14.5477 30.8872 16.8499 33.3527C11.7704 33.42 7.63989 37.578 7.63989 42.6489V73.0981C7.63989 78.2105 11.8371 82.3985 16.9737 82.3985H21.241V87.6846C21.241 88.6574 21.756 89.4639 22.2617 89.942C22.7674 90.4201 23.3019 90.698 23.8622 90.9213C24.9829 91.3679 26.2558 91.5647 27.654 91.5647H52.3306C53.7287 91.5647 55.0017 91.3679 56.1223 90.9213C56.6826 90.6979 57.2171 90.4201 57.7228 89.942C58.2285 89.4639 58.7435 88.6574 58.7435 87.6846V82.3985H63.013C68.1496 82.3985 72.3468 78.2105 72.3468 73.0981V71.1569L92.5324 76.781C92.8632 76.8731 93.211 76.8879 93.5485 76.8241C93.8861 76.7603 94.2042 76.6197 94.478 76.4132C94.7518 76.2068 94.9739 75.9401 95.1269 75.6341C95.2799 75.3281 95.3596 74.991 95.3599 74.6492V41.0977C95.3601 40.5143 95.129 39.9543 94.7167 39.5393C94.3045 39.1244 93.7443 38.888 93.1578 38.8814C92.9465 38.8792 92.7359 38.9069 92.5324 38.9637L72.3468 44.5878V42.6488C72.3468 37.5364 68.1496 33.3462 63.013 33.3462H57.0843C58.6424 31.3782 59.5839 28.9065 59.5839 26.2208C59.5839 19.8637 54.3602 14.6564 47.9742 14.6564C44.6682 14.6564 41.6832 16.0594 39.5655 18.2873C37.3793 13.5245 32.5597 10.1892 26.9764 10.1892ZM26.9764 14.6218C32.1893 14.6218 36.3732 18.7857 36.3732 23.9851C36.3732 29.1844 32.1893 33.3462 26.9764 33.3462C21.7635 33.3462 17.5796 29.1844 17.5796 23.9851C17.5796 18.7857 21.7635 14.6218 26.9764 14.6218ZM47.9742 19.0889C51.9495 19.0889 55.1277 22.2545 55.1277 26.2208C55.1277 30.1871 51.9495 33.3462 47.9742 33.3462C43.9989 33.3462 40.8207 30.1871 40.8207 26.2208C40.8207 22.2545 43.9989 19.0889 47.9742 19.0889ZM38.0692 32.1937C38.314 32.5942 38.5782 32.9793 38.8684 33.3462H37.105C37.4468 32.9795 37.7685 32.5955 38.0692 32.1937ZM16.9737 37.7787H63.013C65.7556 37.7787 67.897 39.9107 67.897 42.6489V73.0981C67.897 75.8362 65.7556 77.966 63.013 77.966H16.9737C14.2311 77.966 12.0896 75.8362 12.0896 73.0981V42.6489C12.0896 39.9107 14.2311 37.7787 16.9737 37.7787ZM90.9059 44.018V71.7267L72.3468 66.5576V49.1871L90.9059 44.018ZM25.6973 82.3985H54.2894V86.8354C53.8672 86.9799 53.1741 87.1386 52.3306 87.1386H27.654C26.8105 87.1386 26.1196 86.9799 25.6973 86.8354L25.6973 82.3985Z" fill="#B8BBCF"/>
@@ -297,13 +296,13 @@
 
           <!-- <div class="row photos-tab" v-if="activeItem === 'Photos'">
             <div class="col-12">
-           
+
               <div class="text-center no-photos">
                 <svg xmlns="http://www.w3.org/2000/svg" width="103" height="102" viewBox="0 0 103 102" fill="none">
                   <path d="M88.7299 29.172H80.4679L79.4479 21.93C79.0399 18.972 77.5099 16.32 75.1639 14.484C72.8179 12.648 69.8599 11.934 66.9019 12.342L12.7399 19.89C6.6199 20.706 2.3359 26.418 3.1519 32.538L8.2519 70.278C9.0679 75.888 13.8619 79.968 19.3699 79.968C19.8799 79.968 20.3899 79.968 20.8999 79.866L23.0419 79.56C23.5519 85.272 28.3459 89.76 34.1599 89.76H88.8319C94.9519 89.76 100.052 84.762 100.052 78.54V40.392C99.9499 34.272 94.9519 29.172 88.7299 29.172ZM93.8299 40.392V72.42L77.7139 53.958C75.0619 50.898 70.1659 50.898 67.5139 53.958L53.6419 69.87L48.6439 64.362C46.0939 61.608 41.7079 61.608 39.2599 64.362L29.0599 75.48V40.392C29.0599 37.638 31.3039 35.292 34.1599 35.292H88.8319C91.5859 35.292 93.8299 37.638 93.8299 40.392ZM22.9399 40.392V73.236L20.0839 73.644C17.3299 74.052 14.7799 72.114 14.3719 69.258L9.16991 31.62C8.76191 28.866 10.6999 26.316 13.5559 25.908L67.7179 18.462C67.9219 18.462 68.2279 18.462 68.4319 18.462C70.8799 18.462 73.1239 20.298 73.4299 22.848L74.3479 29.274H34.1599C27.9379 29.172 22.9399 34.272 22.9399 40.392Z" fill="#B8BBCF"/>
                   <path d="M43.85 54.876C47.23 54.876 49.97 52.136 49.97 48.756C49.97 45.376 47.23 42.636 43.85 42.636C40.47 42.636 37.73 45.376 37.73 48.756C37.73 52.136 40.47 54.876 43.85 54.876Z" fill="#B8BBCF"/>
                 </svg>
-              
+
                 <div class="description-wrapper">
                   <h3 class="title">No Photos Uploaded</h3>
                   <p class="sub-title">It looks like you haven’t uploaded any photos yet? Use the button below to create your first song to start your Geebu journey!</p>
@@ -319,10 +318,10 @@
           <div class="row profile-body" v-if="activeItem === 'Reviews'"><h2>Reviews</h2></div> -->
 
           <div v-if="activeItem === 'Photos'">
-            <h2>Photos</h2>
+            <ComingSoon />
           </div>
           <div v-if="activeItem === 'Videos'">
-            <h2>Videos</h2>
+            <ComingSoon />
           </div>
 
           <div class="row events-tab" v-if="activeItem === 'Events'">
@@ -330,14 +329,14 @@
           </div> <!-- end of Events tab -->
 
           <div v-if="activeItem === 'Reviews'">
-            <h2>Reviews</h2>
+           <ComingSoon />
           </div>
 
         </div>
         <banner-modal @close="toggle" :active="isActive" />
       </div>
     </section>
-    
+
   </div>
 
     <!-- <pre> <b>Profile</b> {{  $store.state.profile  }} <br></pre>
@@ -346,25 +345,25 @@
 </template>
 
 <script>
-import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
-import Post from '/src/components/Post/Index.vue';
+import { mapGetters, mapState, mapActions } from 'vuex'
+// import Post from '/src/components/Post/Index.vue';
 // import BannerModal from '/src/components/Organizer/BannerModal.vue';
-import BannerModal from './Modals/BannerModal.vue';
+import BannerModal from './Modals/BannerModal.vue'
 // src\components\Dashboard\Tabs\Events\Index.vue
-import EventTab from '/src/components/Dashboard/Tabs/Events/Index.vue';
+import EventTab from '../../../../../src/components/Dashboard/Tabs/Events/Index.vue'
+import ComingSoon from '../../../../../src/components/Dashboard/Tabs/NoUploaded/ComingSoon.vue'
 
-import { Modal } from 'bootstrap';
+// import { Modal } from 'bootstrap';
 
 export default {
   setup () {
-    
-
     return {}
   },
   components: {
-    Post,
+    // Post,
     BannerModal,
     EventTab,
+    ComingSoon
     // OngoingEvents,
     // UpcomingEvents
   },
@@ -379,12 +378,12 @@ export default {
       }
     ],
     navItems: [
-    'Post',
-    'About',
-    'Photos',
-    'Videos',
-    'Events',
-    'Reviews'
+      'Post',
+      'About',
+      'Photos',
+      'Videos',
+      'Events',
+      'Reviews'
     ],
     activeItem: 'Post',
     // activeItem: 'Post',
@@ -392,92 +391,80 @@ export default {
     artistReviews: '234',
 
     // isModalVisible: false,
-    isActive: false,
-  
+    isActive: false
+
   }),
-  
+
   methods: {
     ...mapActions([
       'fetchProfile'
     ]),
-    toggle()
-    {
-      this.isActive = !this.isActive;
+    toggle () {
+      this.isActive = !this.isActive
     },
-    openCreatePostModal(data)
-    {
-      this.$root.$emit("bv::show::modal", "#artistPost");
-
+    openCreatePostModal (data) {
+      this.$root.$emit('bv::show::modal', '#artistPost')
     },
-    setActiveItem(item)
-    {
-      this.activeItem = item;
+    setActiveItem (item) {
+      this.activeItem = item
     },
-    shouldShowBadge(item)
-    {
-      return item === 'Post' || item === 'About' || item === 'Events' || item === 'Photos' || item === 'Videos' || item === 'Reviews';
+    shouldShowBadge (item) {
+      return item === 'Post' || item === 'About' || item === 'Events' || item === 'Photos' || item === 'Videos' || item === 'Reviews'
     },
-    getCount(item)
-    {
+    getCount (item) {
       switch (item) {
         case 'Post':
-          return this.post;
+          return this.post
         case 'About':
-          return this.about;
+          return this.about
         case 'Events':
-          return this.events;
+          return this.events
         case 'Photos':
-          return this.photos;
+          return this.photos
         case 'Videos':
-          return this.videos;
+          return this.videos
         case 'Reviews':
-          return this.reviews;
+          return this.reviews
         default:
-          return 0;
+          return 0
       }
-    },
-    
-  },
-  mounted()
-  {
+    }
 
+  },
+  mounted () {
     this.fetchProfile()
-      .then(res =>
-      {
+      .then(res => {
         console.log('Fetch Profile [Organizer]: ', res)
-      }).catch(err =>
-      {
+      }).catch(err => {
         console.log('Fetch Profile Error [Organizer]: ', err)
       })
 
-    this.bannerImage = this.profile.cover_photo || this.account?.cover_photo || '/assets/organizer-account/default-cover-photo.webp';
-
+    this.bannerImage = this.profile.cover_photo || this.account?.cover_photo || '/assets/organizer-account/default-cover-photo.webp'
   },
   watch: {
     profile: {
-      handler(res)
-      {
-        console.log('[WATCH] Profile Cover photo (current): ', this.bannerImage);
-        console.log('[WATCH] Profile Cover photo (profile): ', res?.cover_photo);
-        console.log('[WATCH] Profile Cover photo (account): ', this.account.cover_photo);
+      handler (res) {
+        console.log('[WATCH] Profile Cover photo (current): ', this.bannerImage)
+        console.log('[WATCH] Profile Cover photo (profile): ', res?.cover_photo)
+        console.log('[WATCH] Profile Cover photo (account): ', this.account.cover_photo)
 
-        this.bannerImage = res?.cover_photo || this.account.cover_photo || '/assets/organizer-account/default-cover-photo.webp';
-        console.log('[WATCH] Profile Cover photo (new): ', this.bannerImage);
+        this.bannerImage = res?.cover_photo || this.account.cover_photo || '/assets/organizer-account/default-cover-photo.webp'
+        console.log('[WATCH] Profile Cover photo (new): ', this.bannerImage)
       },
-      deep: true,
-    },
-  
+      deep: true
+    }
+
   },
   computed: {
-    ...mapGetters(["userInfo", "token", 'myAvatar', 'instagram', 'threadsNET', 'twitter', 'facebook', 'isComplete',]),
-    
+    ...mapGetters(['userInfo', 'token', 'myAvatar', 'instagram', 'threadsNET', 'twitter', 'facebook', 'isComplete']),
+
     ...mapState({
       users: (state) => state.user,
       profile: (state) => state.profile,
       account: (state) => state.account,
-      members: state => state.organizer.staff,
-    }),
-  
+      members: state => state.organizer.staff
+    })
+
   }
 }
 </script>
