@@ -136,19 +136,19 @@
             <div class="form-group">
               <label for="artistType">Type of artist</label>
               <select
-                v-model="selectedArtistType"
+                v-model="artist_category"
                 class="form-select"
                 aria-label="Default select example"
               >
                 <option value="" selected>
-                  <!-- Select an artist type -->
+                  Select type of artist
                 </option>
                 <option
-                  v-for="(type, index) in artistTypes"
+                  v-for="(type, index) in artistCategories"
                   :key="index"
-                  :value="type.value"
+                  :value="type.id"
                 >
-                  {{ type.label }}
+                  {{ type.title }}
                 </option>
               </select>
             </div>
@@ -156,26 +156,21 @@
             <div class="form-group">
               <label for="artistCategory">Artist category</label>
               <select
-                v-model="selectedArtistCategory"
+                v-model="artist_type"
                 class="form-select"
                 aria-label="Default select example"
               >
                 <!-- <option value="" selected disabled>
                   Select an Artist category
                 </option> -->
-                <option v-if="!selectedArtistCategoryVisible">Select type of artist first</option>
-                <optgroup
-                  v-if="selectedArtistCategoryVisible"
+                <option value="" v-if="!selectedArtistCategoryVisible">Select artist category</option>
+                <option
+                  v-for="(category, index) in filterArtistType"
+                  :key="index"
+                  :value="category.id"
                 >
-                  <option
-                    v-for="(category, index) in artistCategories[
-                      selectedArtistType
-                    ]"
-                    :key="index"
-                  >
-                    {{ category }}
-                  </option>
-                </optgroup>
+                  {{ category.title }}
+                </option>
               </select>
             </div>
 
@@ -230,7 +225,8 @@ export default {
     return {
       showNoArtist: true,
       showSeeMoreBtn: true,
-      artist_type: null,
+      artist_category: '',
+      artist_type: '',
       genre: null,
       search: '',
       artist: null,
@@ -248,8 +244,8 @@ export default {
         { label: 'Performing Artists', value: 'performing' },
         { label: 'Literary Artists', value: 'literary' },
         { label: 'Digital Artists', value: 'digital' }
-      ],
-      artistCategories: { visual: ['Painter', 'Sculptors', 'Photographers', 'Mural painter'], performing: ['Disk Jockey', 'Solo artist', 'Band', 'Guitarist', 'Vocalist', 'Bassist', 'Drummer', 'Keyboardist', 'Dancers', 'Actors', 'Spoken Word Artists', 'Host', 'Cosplayers'], literary: ['Writers', 'Poets'], digital: ['Graphics Designers', 'Animators', 'Content writer', 'Copywriters', 'Content creator'] }
+      ]
+      // artistCategories: { visual: ['Painter', 'Sculptors', 'Photographers', 'Mural painter'], performing: ['Disk Jockey', 'Solo artist', 'Band', 'Guitarist', 'Vocalist', 'Bassist', 'Drummer', 'Keyboardist', 'Dancers', 'Actors', 'Spoken Word Artists', 'Host', 'Cosplayers'], literary: ['Writers', 'Poets'], digital: ['Graphics Designers', 'Animators', 'Content writer', 'Copywriters', 'Content creator'] }
     }
   },
   mounted () {
@@ -262,6 +258,7 @@ export default {
     this.page = 1
     const payload = {}
     if (this.artist_type) payload.artist_type = this.artist_type
+    if (this.artist_category) payload.artist_category = this.artist_category
     if (this.genre) payload.genre = this.genre
     if (this.search) payload.search = this.search
 
@@ -273,10 +270,18 @@ export default {
     ...mapGetters(['userInfo', 'token', 'isLoggedIn', 'userRole']),
     ...mapState({
       artists: (state) => state.artist.artists,
+      artistCategories: state => state.artist.artist_categories,
       artist_types: (state) => state.artist.artist_types,
       genres: (state) => state.artist.genreList,
       filterArtist: (state) => state.artist.filterArtist
     }),
+    filterArtistType () {
+      if (this.artist_category === '') return this.artist_types
+
+      return this.artist_types.filter(el => {
+        return el.category_id === this.artist_category
+      })
+    },
     playIconClass () {
       return this.isPlaying
         ? '/assets/play-pause.svg'
@@ -314,6 +319,7 @@ export default {
       payload.per_page = 12 * val
 
       if (this.artist_type) payload.artist_type = this.artist_type
+      if (this.artist_category) payload.artist_category = this.artist_category
       if (this.genre) payload.genre = this.genre
       if (this.search) payload.search = this.search
 
@@ -340,6 +346,7 @@ export default {
     search (newValue) {
       const payload = {}
       payload.per_page = 12 * this.page
+      if (this.artist_category) payload.artist_category = this.artist_category
       if (this.artist_type) payload.artist_type = this.artist_type
       if (this.genre) payload.genre = this.genre
       if (newValue) payload.search = newValue
@@ -351,6 +358,7 @@ export default {
       payload.per_page = 12 * this.page
 
       if (newValue) payload.artist_type = newValue
+      if (this.artist_category) payload.artist_category = this.artist_category
       if (this.genre) payload.genre = this.genre
       if (this.search) payload.search = this.search
       this.fetchArtists(payload)
@@ -360,6 +368,19 @@ export default {
       payload.per_page = 12 * this.page
 
       if (this.artist_type) payload.artist_type = this.artist_type
+      if (this.artist_category) payload.artist_category = this.artist_category
+      if (newValue) payload.genre = newValue
+      if (this.search) payload.search = this.search
+
+      this.fetchArtists(payload)
+    },
+    artist_category (newValue) {
+      const payload = {}
+      this.artist_type = ''
+      payload.per_page = 12 * this.page
+
+      if (this.artist_type) payload.artist_type = this.artist_type
+      if (newValue) payload.artist_category = newValue
       if (newValue) payload.genre = newValue
       if (this.search) payload.search = this.search
 

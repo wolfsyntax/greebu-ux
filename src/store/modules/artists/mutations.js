@@ -9,6 +9,7 @@ export const SET_GENRES = (state, payload) => {
 }
 
 export const SET_ARTIST_TYPES = (state, payload) => {
+  console.log('Artist Type: ', payload)
   state.artist_types = payload
 }
 
@@ -96,6 +97,11 @@ export const SET_FILTERED_ARTIST = (state, payload = {}) => {
 export const setArtistProfile = (state, payload = {}) => {
   console.log('Set Artist Info: ', payload)
   state.artistInfo = payload
+}
+
+export const setArtistCategory = (state, payload = []) => {
+  console.log('Set Artist Info: ', payload)
+  state.artist_categories = payload
 }
 
 export const setArtistMembers = (state, payload = []) => {
