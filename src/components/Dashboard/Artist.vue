@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div>
     <!-- <CreatePostModal @submitData="handleSubmittedData" /> -->
@@ -269,7 +270,8 @@
             <!-- left wrapper end -->
             <!-- middle wrapper start -->
             <div class="col-md-8 col-xl-6 middle-wrapper">
-              <post />
+              <!-- <post /> -->
+              <ComingSoon />
               <!-- Artist Posts -->
             </div>
             <!-- middle wrapper end -->
@@ -382,7 +384,7 @@
           <div class="row songs-tab" v-if="activeItem === 'Feeds'">
             <div class="col-12">
               <!-- zero state screen   -->
-              <div class="text-center no-songs">
+              <!-- <div class="text-center no-songs">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="101"
@@ -404,9 +406,9 @@
                     journey!
                   </p>
                 </div>
+              </div> -->
+              <ComingSoon />
 
-                <!-- <button type="button" class="btn upload-songs">Upload Songs</button> -->
-              </div>
             </div>
           </div>
           <!-- end of songs-tab -->
@@ -524,7 +526,7 @@
           <div class="row songs-tab" v-if="activeItem === 'Songs'">
             <div class="col-12">
               <!-- zero state screen   -->
-              <div class="text-center no-songs">
+              <!-- <div class="text-center no-songs">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="101"
@@ -550,7 +552,8 @@
                 <button type="button" class="btn upload-songs">
                   Upload Songs
                 </button>
-              </div>
+              </div> -->
+              <ComingSoon />
             </div>
           </div>
           <!-- end of songs-tab -->
@@ -558,7 +561,7 @@
           <div class="row videos-tab" v-if="activeItem === 'Videos'">
             <div class="col-12">
               <!-- zero state screen   -->
-              <div class="text-center no-videos">
+              <!-- <div class="text-center no-videos">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="103"
@@ -584,7 +587,8 @@
                 <button type="button" class="btn upload-video">
                   Upload Video
                 </button>
-              </div>
+              </div> -->
+              <ComingSoon />
             </div>
           </div>
           <!-- end of videos-tab -->
@@ -592,7 +596,7 @@
           <div class="row photos-tab" v-if="activeItem === 'Photos'">
             <div class="col-12">
               <!-- zero state screen   -->
-              <div class="text-center no-photos">
+              <!-- <div class="text-center no-photos">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="103"
@@ -622,7 +626,8 @@
                 <button type="button" class="btn upload-photos">
                   Upload Photos
                 </button>
-              </div>
+              </div> -->
+              <ComingSoon />
             </div>
           </div>
           <!-- end of photos-tab -->
@@ -635,7 +640,7 @@
           </div>
 
           <div class="row profile-body" v-if="activeItem === 'Reviews'">
-            <h2>Reviews</h2>
+            <ComingSoon />
           </div>
         </div>
       </div>
@@ -670,7 +675,7 @@
             <member-form @modalClose="dismiss" @form="updateMember" />
           </div>
 
-          <!-- 
+          <!--
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary delete" @click="confirm">Delete</button>
           <button type="button" class="btn btn-secondary delete" @click="confirm">
@@ -689,111 +694,113 @@
 </template>
 
 <script>
-import { mapActions, mapGetters, mapState } from "vuex";
+import { mapActions, mapGetters, mapState } from 'vuex'
 // import CreatePostModal from '/src/components/Artist/CreatePostModal.vue';
-import { Modal } from "bootstrap";
-import EditBandMembers from "../Artist/EditBandMembers.vue";
-import BannerModal from "./Modals/BannerModal.vue";
-import EventTab from "/src/components/Dashboard/Tabs/Events/Index.vue";
-import Post from "/src/components/Post/Index.vue";
-import SuccessModal from "/src/components/SuccessModal.vue";
-import MemberForm from "/src/views/Artist/Form/AddMember.vue";
+import { Modal } from 'bootstrap'
+import EditBandMembers from '../Artist/EditBandMembers.vue'
+import BannerModal from './Modals/BannerModal.vue'
+import EventTab from '../../../../../src/components/Dashboard/Tabs/Events/Index.vue'
+// import Post from '/src/components/Post/Index.vue'
+import SuccessModal from '../../../../../src/components/SuccessModal.vue'
+import MemberForm from '../../../../../src/views/Artist/Form/AddMember.vue'
+import ComingSoon from '../../../../../src/components/Dashboard/Tabs/NoUploaded/ComingSoon.vue'
 
 export default {
-  setup() {
-    return {};
+  setup () {
+    return {}
   },
   components: {
     // CreatePostModal,
     EditBandMembers,
     BannerModal,
-    Post,
+    // Post,
     EventTab,
     MemberForm,
     SuccessModal,
+    ComingSoon
   },
   data: () => ({
-    bannerImage: "/assets/artist-account/default-cover-photo.webp",
+    bannerImage: '/assets/artist-account/default-cover-photo.webp',
     navItems: [
-      "Post",
-      "Feeds",
-      "About",
-      "Songs",
-      "Videos",
-      "Photos",
-      "Events",
-      "Reviews",
+      'Post',
+      'Feeds',
+      'About',
+      'Songs',
+      'Videos',
+      'Photos',
+      'Events',
+      'Reviews'
     ],
-    activeItem: "Post",
+    activeItem: 'Post',
     songs: [
-      "https://res.cloudinary.com/daorvtlls/video/upload/v1686647605/Nirvana_-_Smells_like_teen_spirit_zs8yo4.mp3",
-      "https://res.cloudinary.com/daorvtlls/video/upload/v1686647605/Nirvana_-_Smells_like_teen_spirit_zs8yo4.mp3",
+      'https://res.cloudinary.com/daorvtlls/video/upload/v1686647605/Nirvana_-_Smells_like_teen_spirit_zs8yo4.mp3',
+      'https://res.cloudinary.com/daorvtlls/video/upload/v1686647605/Nirvana_-_Smells_like_teen_spirit_zs8yo4.mp3'
     ],
     videos: [
-      "https://video.wixstatic.com/video/8fd47a_61de9ebf0ad64f0fa93d72e4279551f7/1080p/mp4/file.mp4",
+      'https://video.wixstatic.com/video/8fd47a_61de9ebf0ad64f0fa93d72e4279551f7/1080p/mp4/file.mp4'
     ],
     photos: [
-      "/assets/home/birthdays.webp",
-      "/assets/home/birthdays.webp",
-      "/assets/home/birthdays.webp",
-      "/assets/home/birthdays.webp",
-      "/assets/home/birthdays.webp",
+      '/assets/home/birthdays.webp',
+      '/assets/home/birthdays.webp',
+      '/assets/home/birthdays.webp',
+      '/assets/home/birthdays.webp',
+      '/assets/home/birthdays.webp'
     ],
     aboutArtist:
-      "Lorem ipsum dolor sit amet consectetur. Consectetur justo ornare et netus adipiscing nisi nisl tellus a. Venenatis sed augue ultricies vulputate in. Eu risus neque nisl libero eget in molestie felis sem. Pharetra sagittis eget ipsum pulvinar aliquet libero amet accumsan auctor.",
+      'Lorem ipsum dolor sit amet consectetur. Consectetur justo ornare et netus adipiscing nisi nisl tellus a. Venenatis sed augue ultricies vulputate in. Eu risus neque nisl libero eget in molestie felis sem. Pharetra sagittis eget ipsum pulvinar aliquet libero amet accumsan auctor.',
     artistCapacity: [
-      "Mobile apps design",
-      "Website design & development",
-      "Packaging",
-      "Brand identity",
-      "Print design",
+      'Mobile apps design',
+      'Website design & development',
+      'Packaging',
+      'Brand identity',
+      'Print design'
     ],
     artistGenres: [
-      "Reggae",
-      "Metal",
-      "Hip-hop/Rap",
-      "Country Acoustic",
-      "Electronic",
-      "Rock",
+      'Reggae',
+      'Metal',
+      'Hip-hop/Rap',
+      'Country Acoustic',
+      'Electronic',
+      'Rock'
     ],
     artistSocialMedia: [
       {
-        img: "/src/assets/artist-account/spotify-icon-gray.svg",
-        name: "IDLEPITCH",
+        img: '/src/assets/artist-account/spotify-icon-gray.svg',
+        name: 'IDLEPITCH'
       },
       {
-        img: "/src/assets/artist-account/youtube-icon-gray.svg",
-        name: "youtube.com/@idlepitch",
-      },
+        img: '/src/assets/artist-account/youtube-icon-gray.svg',
+        name: 'youtube.com/@idlepitch'
+      }
     ],
-    artistRatings: "4.95",
-    artistReviews: "234",
+    artistRatings: '4.95',
+    artistReviews: '234',
     bandMembers: [
       {
-        img: "src/assets/artist-account/band-member-1.webp",
-        name: "John Doe",
-        role: "Vocalist",
+        img: 'src/assets/artist-account/band-member-1.webp',
+        name: 'John Doe',
+        role: 'Vocalist'
       },
       {
-        img: "src/assets/artist-account/band-member-2.webp",
-        name: "Jose Diaz",
-        role: "Guitarist",
+        img: 'src/assets/artist-account/band-member-2.webp',
+        name: 'Jose Diaz',
+        role: 'Guitarist'
       },
       {
-        img: "https://res.cloudinary.com/daorvtlls/image/upload/v1686649329/trending-bicolano-artist-5_lxhfkw.png",
-        name: "John Doe",
-        role: "Vocalist",
+        img: 'https://res.cloudinary.com/daorvtlls/image/upload/v1686649329/trending-bicolano-artist-5_lxhfkw.png',
+        name: 'John Doe',
+        role: 'Vocalist'
       },
       {
-        img: "src/assets/artist-account/band-member-2.webp",
-        name: "Jose Diaz",
-        role: "Guitarist",
+        img: 'src/assets/artist-account/band-member-2.webp',
+        name: 'Jose Diaz',
+        role: 'Guitarist'
       },
       {
-        img: "https://res.cloudinary.com/daorvtlls/image/upload/v1686465790/cld-sample.jpg",
-        name: "Michelle Rose",
-        role: "Songwriter",
-      },
+        img: 'https://res.cloudinary.com/daorvtlls/image/upload/v1686465790/cld-sample.jpg',
+        name: 'Michelle Rose',
+        role: 'Songwriter'
+      }
     ],
     // isModalVisible: false,
     modalVisible: false,
@@ -804,170 +811,170 @@ export default {
     activeModal: false,
     activeSubmission: null, // Index of the currently active submission
     postMoreoptions: [
-      { label: "Pin Post", icon: "/assets/pin-post.svg" },
-      { label: "Edit", icon: "/assets/edit-post.svg" },
-      { label: "Delete", icon: "/assets/delete-post.svg" },
+      { label: 'Pin Post', icon: '/assets/pin-post.svg' },
+      { label: 'Edit', icon: '/assets/edit-post.svg' },
+      { label: 'Delete', icon: '/assets/delete-post.svg' }
     ],
     isPinnedPost: false,
     pinnedPost: false, // Pinned status
-    isActive: false,
+    isActive: false
   }),
-  mounted() {
+  mounted () {
     this.fetchProfile()
       .then((res) => {
-        console.log("Fetch Profile [ArtistLayout]: ", res);
+        console.log('Fetch Profile [ArtistLayout]: ', res)
       })
       .catch((err) => {
-        console.log("Fetch Profile Error [ArtistLayout]: ", err);
-      });
+        console.log('Fetch Profile Error [ArtistLayout]: ', err)
+      })
 
     this.artistOptions().then((res) => {
-      console.log("Artist Options [ArtistLayout] ", res);
-    });
+      console.log('Artist Options [ArtistLayout] ', res)
+    })
 
     this.bannerImage =
       this.profile.cover_photo ||
       this.account?.cover_photo ||
-      "/assets/artist-account/default-cover-photo.webp";
+      '/assets/artist-account/default-cover-photo.webp'
   },
   methods: {
     ...mapActions([
-      "fetchArtistOptions",
-      "fetchProfile",
-      "artistOptions",
-      "myOngoingEvents",
-      "myUpcomingEvents",
-      "myPastEvents",
+      'fetchArtistOptions',
+      'fetchProfile',
+      'artistOptions',
+      'myOngoingEvents',
+      'myUpcomingEvents',
+      'myPastEvents'
     ]),
-    dismiss() {
-      console.log("ssss");
-      this.$refs.closeForm.click();
-      this.$store.commit("SET_MEMBER_INDEX", -1);
+    dismiss () {
+      console.log('ssss')
+      this.$refs.closeForm.click()
+      this.$store.commit('SET_MEMBER_INDEX', -1)
     },
-    updateMember(val) {
+    updateMember (val) {
       if (val) {
         // this.members.push(val);
-        new Modal(document.getElementById("profileSuccessModal"), {
+        new Modal(document.getElementById('profileSuccessModal'), {
           keyboard: false,
-          backdrop: "static",
-        }).show();
-        console.log(val);
+          backdrop: 'static'
+        }).show()
+        console.log(val)
       }
       // this.$store.commit('SET_MEMBER_INDEX');
-      this.dismiss();
-      console.log("test");
+      this.dismiss()
+      console.log('test')
     },
-    toggle() {
+    toggle () {
       // this.$root.$emit("bv::show::modal", "#uploadArtistCoverPhoto");
       // new Modal(document.getElementById('uploadArtistCoverPhoto'), {
       //   keyboard: false
       // }).show();
-      this.isActive = !this.isActive;
+      this.isActive = !this.isActive
     },
-    openCreatePostModal(data) {
-      this.$root.$emit("bv::show::modal", "#artistPost");
+    openCreatePostModal (data) {
+      this.$root.$emit('bv::show::modal', '#artistPost')
       // const body = document.querySelector("body");
 
       // this.active = !this.active;
       // this.active ? body.classList.add("modal-open") : body.classList.remove("modal-open")
     },
-    openEditBandMembersModal(data) {
-      this.$root.$emit("bv::show::modal", "#editBandMembers");
+    openEditBandMembersModal (data) {
+      this.$root.$emit('bv::show::modal', '#editBandMembers')
       // const body = document.querySelector("body");
 
       // this.active = !this.active;
       // this.active ? body.classList.add("modal-open") : body.classList.remove("modal-open")
     },
-    setActiveItem(item) {
-      this.activeItem = item;
+    setActiveItem (item) {
+      this.activeItem = item
     },
-    shouldShowBadge(item) {
+    shouldShowBadge (item) {
       return (
-        (item === "Post" && this.submissions.length > 0) ||
-        (item === "Feeds" && this.songs.length > 0) ||
-        (item === "About" && this.songs.length > 0) ||
-        (item === "Songs" && this.songs.length > 0) ||
-        (item === "Videos" && this.videos.length > 0) ||
-        (item === "Photos" && this.photos.length > 0)
-      );
+        (item === 'Post' && this.submissions.length > 0) ||
+        (item === 'Feeds' && this.songs.length > 0) ||
+        (item === 'About' && this.songs.length > 0) ||
+        (item === 'Songs' && this.songs.length > 0) ||
+        (item === 'Videos' && this.videos.length > 0) ||
+        (item === 'Photos' && this.photos.length > 0)
+      )
     },
-    getCount(item) {
+    getCount (item) {
       switch (item) {
-        case "Feeds":
-          return this.submissions.length;
-        case "Post":
-          return this.submissions.length;
-        case "About":
-          return this.songs.about;
-        case "Songs":
-          return this.songs.length;
-        case "Videos":
-          return this.videos.length;
-        case "Photos":
-          return this.photos.length;
+        case 'Feeds':
+          return this.submissions.length
+        case 'Post':
+          return this.submissions.length
+        case 'About':
+          return this.songs.about
+        case 'Songs':
+          return this.songs.length
+        case 'Videos':
+          return this.videos.length
+        case 'Photos':
+          return this.photos.length
         default:
-          return 0;
+          return 0
       }
     },
-    handleSubmittedData(data) {
-      const submittedTime = new Date();
-      this.submissions.unshift(data);
-      this.times.unshift(submittedTime);
+    handleSubmittedData (data) {
+      const submittedTime = new Date()
+      this.submissions.unshift(data)
+      this.times.unshift(submittedTime)
     },
-    formattedTime(submittedTime) {
+    formattedTime (submittedTime) {
       if (!submittedTime) {
-        return "";
+        return ''
       }
 
-      const currentTime = new Date();
-      const timeDifference = Math.floor((currentTime - submittedTime) / 1000);
+      const currentTime = new Date()
+      const timeDifference = Math.floor((currentTime - submittedTime) / 1000)
 
       if (timeDifference < 5) {
-        return "Just now";
+        return 'Just now'
       } else if (timeDifference < 60) {
-        return `${timeDifference}s ago`;
+        return `${timeDifference}s ago`
       } else if (timeDifference < 3600) {
-        return `${Math.floor(timeDifference / 60)} min ago`;
+        return `${Math.floor(timeDifference / 60)} min ago`
       } else if (timeDifference < 86400) {
-        return `${Math.floor(timeDifference / 3600)} hr ago`;
+        return `${Math.floor(timeDifference / 3600)} hr ago`
       } else {
-        return `${Math.floor(timeDifference / 86400)} days ago`;
+        return `${Math.floor(timeDifference / 86400)} days ago`
       }
     },
-    toggleMoreOptions(index) {
+    toggleMoreOptions (index) {
       // Toggle the active submission index
       if (this.activeSubmission === index) {
-        this.activeSubmission = null; // Close the menu if it's already open for this submission
+        this.activeSubmission = null // Close the menu if it's already open for this submission
       } else {
-        this.activeSubmission = index; // Open the menu for the clicked submission
+        this.activeSubmission = index // Open the menu for the clicked submission
       }
     },
-    handleOptionClick(option, index) {
+    handleOptionClick (option, index) {
       // add your logic here to perform actions based on the selected option
 
-      if (option.label === "Pin Post" || option.label === "Unpin Post") {
-        this.togglePinned(index); // Toggle the pinned status
-        const pinnedPost = this.submissions.splice(index, 1)[0]; // Remove the post from its current position
-        this.submissions.unshift(pinnedPost); // Add it back to the top
+      if (option.label === 'Pin Post' || option.label === 'Unpin Post') {
+        this.togglePinned(index) // Toggle the pinned status
+        const pinnedPost = this.submissions.splice(index, 1)[0] // Remove the post from its current position
+        this.submissions.unshift(pinnedPost) // Add it back to the top
 
-        //this.isPinnedPost = true;
-        this.activeSubmission = null;
-      } else if (option.label === "Edit") {
-        console.log("Edit: ");
-      } else if (option.label === "Delete") {
-        this.moreOptions = false;
-        console.log("Deleted: ");
-        this.deletePost(index);
+        // this.isPinnedPost = true;
+        this.activeSubmission = null
+      } else if (option.label === 'Edit') {
+        console.log('Edit: ')
+      } else if (option.label === 'Delete') {
+        this.moreOptions = false
+        console.log('Deleted: ')
+        this.deletePost(index)
       }
     },
-    togglePinned(index) {
+    togglePinned (index) {
       // Toggle the pinned status
-      this.pinnedPost = !this.pinnedPost;
-      this.isPinnedPost = !this.isPinnedPost;
+      this.pinnedPost = !this.pinnedPost
+      this.isPinnedPost = !this.isPinnedPost
     },
-    deletePost(index) {
-      this.submissions.splice(index, 1);
-      this.activeSubmission = null;
+    deletePost (index) {
+      this.submissions.splice(index, 1)
+      this.activeSubmission = null
     },
 
     // togglePinned(index) {
@@ -986,63 +993,63 @@ export default {
     //   // Check if the post at the given index is pinned
     //   return this.pinnedPosts.includes(index);
     // },
-    addmember() {
-      new Modal(document.getElementById("editMember"), {
+    addmember () {
+      new Modal(document.getElementById('editMember'), {
         keyboard: false,
-        backdrop: "static",
-      }).show();
-    },
+        backdrop: 'static'
+      }).show()
+    }
   },
   watch: {
-    activeItem(cur) {
-      if (cur === "Events") {
-        this.myOngoingEvents();
-        this.myUpcomingEvents();
-        this.myPastEvents();
-        console.log("Fetch Events");
+    activeItem (cur) {
+      if (cur === 'Events') {
+        this.myOngoingEvents()
+        this.myUpcomingEvents()
+        this.myPastEvents()
+        console.log('Fetch Events')
       }
     },
     profile: {
-      handler(res) {
+      handler (res) {
         console.log(
-          "[WATCH] Profile Cover photo (current): ",
+          '[WATCH] Profile Cover photo (current): ',
           this.bannerImage
-        );
-        console.log("[WATCH] Profile Cover photo (profile): ", res);
-        console.log("[WATCH] Profile Cover photo (account): ", this.account);
+        )
+        console.log('[WATCH] Profile Cover photo (profile): ', res)
+        console.log('[WATCH] Profile Cover photo (account): ', this.account)
 
         this.bannerImage =
           res?.cover_photo ||
           this.account.cover_photo ||
-          "/assets/artist-account/default-cover-photo.webp";
+          '/assets/artist-account/default-cover-photo.webp'
         // this.myAvatar = res?.avatar || this.account.avatar || 'https://res.cloudinary.com/daorvtlls/image/upload/v1686465790/cld-sample.jpg';
-        console.log("[WATCH] Profile Cover photo (new): ", this.bannerImage);
+        console.log('[WATCH] Profile Cover photo (new): ', this.bannerImage)
       },
-      deep: true,
+      deep: true
     },
     submissions: {
-      handler(submissions) {
+      handler (submissions) {
         submissions.forEach((submission) => {
           submission.formattedTime = this.formattedTime(
             submission.submittedTime
-          );
-        });
+          )
+        })
       },
-      deep: true,
-    },
+      deep: true
+    }
   },
   computed: {
     ...mapGetters([
-      "userInfo",
-      "token",
-      "myAvatar",
-      "instagram",
-      "youtube",
-      "twitter",
-      "spotify",
-      "facebook",
-      "threadsNET",
-      "isComplete",
+      'userInfo',
+      'token',
+      'myAvatar',
+      'instagram',
+      'youtube',
+      'twitter',
+      'spotify',
+      'facebook',
+      'threadsNET',
+      'isComplete'
     ]),
     ...mapState({
       users: (state) => state.user,
@@ -1052,10 +1059,10 @@ export default {
       members: (state) => state.artist.members,
       account: (state) => state.account,
       custom_genre: (state) => state.custom_genre,
-      genres: (state) => state.artist.genres,
-    }),
-  },
-};
+      genres: (state) => state.artist.genres
+    })
+  }
+}
 </script>
 <style>
 @import "@/assets/css/artist-ui.css";
