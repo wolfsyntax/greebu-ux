@@ -96,7 +96,8 @@ export default {
         const largeSizeBytes = 1500 * 1024 // 1.5 MB
         const skipCompressionSizeBytes = 100 * 1024 // 100 KB
 
-        let quality
+        // eslint-disable-next-line semi
+        let quality;
 
         if (files.size < skipCompressionSizeBytes) {
           // If the file size is less than 100KB, skip compression
@@ -129,7 +130,6 @@ export default {
         })
       }
     },
-
     removeBanner () {
       this.form.cover = ''
       this.form.cover_photo = ''
@@ -179,10 +179,8 @@ export default {
           }
         } else if (val.start_date === '' && val.end_date === '') {
           this.form.start_date = this.$moment()
-            .add(5, 'days')
             .format('YYYY-MM-DD')
           this.form.end_date = this.$moment()
-            .add(5, 'days')
             .format('YYYY-MM-DD')
         }
 
