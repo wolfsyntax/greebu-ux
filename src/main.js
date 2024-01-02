@@ -112,6 +112,8 @@ const app = createApp(App)
   .component('v-calendar', FullCalendar)
   .component('n-progress', NProgress)
 
+// app.config.globalProperties.$compressor = Compressor
+
 app.config.globalProperties.$moment = moment
 app.config.globalProperties.$filters = {
   diffForHumans (date) {

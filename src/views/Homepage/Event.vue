@@ -409,7 +409,8 @@ import FilterResults from '/src/components/FilterResults.vue'
 import NoEvent from '/src/components/Events/NoEvent.vue'
 // eslint-disable-next-line import/no-absolute-path
 import BirdLoader from '/src/components/BirdLoader.vue'
-import ArtistPopOver from '../../../../../src/components/Events/ArtistPopOver.vue'
+// eslint-disable-next-line import/no-absolute-path
+import ArtistPopOver from '/src/components/Events/ArtistPopOver.vue'
 
 export default {
   metaInfo: {
