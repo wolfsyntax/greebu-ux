@@ -148,6 +148,7 @@
             class="form-control"
             required
             autocomplete="off"
+            :min="$moment().format('YYYY-MM-DD')"
           />
           <div v-for="err in error?.start_date" :key="err" class="text-danger">
             {{ err }}
@@ -163,6 +164,7 @@
             class="form-control"
             required
             autocomplete="off"
+            :min="$moment().format('YYYY-MM-DD')"
           />
           <div v-for="err in error?.end_date" :key="err" class="text-danger">
             {{ err }}
@@ -179,10 +181,17 @@
             class="form-control"
             required
             autocomplete="off"
+            :min="$moment().add(3, 'hours').format('h:mm a')"
+            @change="validateStartTime"
           />
-          <div v-for="err in error?.start_time" :key="err" class="text-danger">
-            {{ err }}
+          <div v-if="error?.start_time" class="text-danger">
+            {{ error.start_time }}
           </div>
+          <!-- <div v-if="error?.start_time" class="text-danger">
+            <div v-for="err in error?.start_time" :key="err" class="text-danger">
+            {{ err }}
+            </div>
+          </div> -->
         </div>
 
         <div class="form-group">
@@ -406,6 +415,16 @@ export default {
           }
           this.error = errors
         })
+    },
+    validateStartTime () {
+      const minimumStartTime = this.$moment().add(3, 'hours')
+      const selectedStartTime = this.$moment(this.form.start_date + ' ' + this.form.start_time)
+
+      if (selectedStartTime.isBefore(minimumStartTime)) {
+        this.$set(this.error, 'start_time', 'Start time must be at least 3 hours before the event.')
+      } else {
+        this.$set(this.error, 'start_time', null)
+      }
     }
   },
   created () {},

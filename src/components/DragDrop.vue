@@ -6,7 +6,7 @@
       @dragleave="handleDragLeaveCover"
       @drop="handleDropCover"
       :class="{ 'drag-over': isDragOver }"
-    >                   
+    >
       <input type="file" ref="bannerInput" style="display: none;" accept="image/*" @change="handleClick"/>
       <div class="text-center upload-file-content" v-if="uploadBox">
         <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 45 45" fill="none">
@@ -34,7 +34,7 @@
               movable: false,
               scalable: false,
               resizable: false,
-              aspectRatio: 16 / 9, 
+              aspectRatio: 16 / 9,
             }"
             image-restriction="stencil"
             @change="updateSize"
@@ -64,38 +64,42 @@
     </div>
 
     <div class="text-center">
-      
+
       <button class="btn btn-lg upload-event-photo" type="button" @click="getCropImage" v-if="preview">Set as Event Photo</button>
       <button class="btn btn-lg upload-event-photo" type="button" v-if="showLoadingIndicator"><LoadingIndicator /></button>
 
     </div>
-  
+
   </div>
 </template>
 
 <script>
 
-import { mapGetters, mapState, mapActions } from "vuex";
-import ExampleWrapper from '/src/components/Cropper/ExampleWrapper.vue';
-import VerticalButtons from '/src/components/Cropper/VerticalButtons.vue';
-import SquareButton from '/src/components/Cropper/SquareButton.vue';
-import LoadingIndicator from "/src/components/LoadingIndicator.vue";
-import Reposition from "/src/components/Dashboard/Modals/Reposition.vue";
+// eslint-disable-next-line import/no-absolute-path
+import ExampleWrapper from '/src/components/Cropper/ExampleWrapper.vue'
+// eslint-disable-next-line import/no-absolute-path
+import SquareButton from '/src/components/Cropper/SquareButton.vue'
+// eslint-disable-next-line import/no-absolute-path
+import VerticalButtons from '/src/components/Cropper/VerticalButtons.vue'
+// eslint-disable-next-line import/no-absolute-path, quotes
+import Reposition from "/src/components/Dashboard/Modals/Reposition.vue"
+// eslint-disable-next-line import/no-absolute-path, quotes
+import LoadingIndicator from "/src/components/LoadingIndicator.vue"
 
 export default {
   components: {
     ExampleWrapper,
-		VerticalButtons,
-		SquareButton,
+    VerticalButtons,
+    SquareButton,
     LoadingIndicator,
     Reposition
   },
   setup () {
     return {
       size: {
-				width: null,
-				height: null,
-			},
+        width: null,
+        height: null
+      }
     }
   },
   data: () => ({
@@ -108,197 +112,178 @@ export default {
     preview: '',
     cropImage: '',
     magicCode: '',
-    targetFile: null,
+    targetFile: null
   }),
-  mounted()
-  {
-    console.log('\n\nBanner Content: ', this.banner);
-    this.preview = this.banner;
+  mounted () {
+    console.log('\n\nBanner Content: ', this.banner)
+    this.preview = this.banner
   },
   methods: {
     // emitEvent(){
     //   this.$emit('childButtonClick');
     //   this.getCropImage();
     // },
-    getCropImage(compressedImage) {
-      const { coordinates, canvas, image } = this.$refs.cropper.getResult();
-      this.showLoadingIndicator = true;
-      this.showImage = true;
-      this.cropImage = canvas;
-      this.preview = null;
+    getCropImage (compressedImage) {
+      // eslint-disable-next-line no-unused-vars
+      const { coordinates, canvas, image } = this.$refs.cropper.getResult()
+      this.showLoadingIndicator = true
+      this.showImage = true
+      this.cropImage = canvas
+      this.preview = null
 
       this.cropImage.toBlob(async blob => {
-        this.$emit('dragCover', blob);
-      });
-
+        this.$emit('dragCover', blob)
+      })
     },
-    boundaries({ cropper, imageSize }) {
-			return {
-				width: cropper.clientWidth,
-				height: cropper.clientHeight,
-			};
-		},
-		updateSize({ coordinates }) {
-			this.size.width = Math.round(coordinates.width);
-			this.size.height = Math.round(coordinates.height);
-		},
-		zoom(factor) {
-			this.$refs.cropper.zoom(factor);
-		},
-		
-    fillArea({ boundaries }) {
+    boundaries ({ cropper, imageSize }) {
+      return {
+        width: cropper.clientWidth,
+        height: cropper.clientHeight
+      }
+    },
+    updateSize ({ coordinates }) {
+      this.size.width = Math.round(coordinates.width)
+      this.size.height = Math.round(coordinates.height)
+    },
+    zoom (factor) {
+      this.$refs.cropper.zoom(factor)
+    },
+
+    fillArea ({ boundaries }) {
       return {
         width: boundaries.width,
-        height: boundaries.height,
-      };
+        height: boundaries.height
+      }
     },
-    change({ coordinates, canvas })
-    {
+    change ({ coordinates, canvas }) {
       // console.log('Cropper: ', coordinates, canvas)
       // this.cropImage = canvas;
 
     },
-    fileCheck(file)
-    {
+    fileCheck (file) {
       if (file) {
-        var fileReader = new FileReader();
-        var self = this;
-        this.magicCode = '';
+        // eslint-disable-next-line no-var
+        var fileReader = new FileReader()
+        // eslint-disable-next-line no-var
+        var self = this
+        this.magicCode = ''
 
-        this.targetFile = file;
-        console.log('Target File: ', file);
-        fileReader.readAsArrayBuffer(file);
-        fileReader.onloadend = function (e)
-        {
+        this.targetFile = file
+        console.log('Target File: ', file)
+        fileReader.readAsArrayBuffer(file)
+        fileReader.onloadend = function (e) {
+          // eslint-disable-next-line no-var
+          var arr = (new Uint8Array(e.target.result)).subarray(0, 4)
 
-          var arr = (new Uint8Array(e.target.result)).subarray(0, 4);
-
-          var header = "";
+          // eslint-disable-next-line no-var
+          var header = ''
+          // eslint-disable-next-line no-var
           for (var i = 0; i < arr.length; i++) {
-            header += arr[i].toString(16);
+            header += arr[i].toString(16)
           }
 
-          self.magicCode = header;
-        };
-
+          self.magicCode = header
+        }
       }
-
     },
-    isImage(file)
-    {
+    isImage (file) {
       return /\.(png|webp|svg|jpeg)$/.test(file.name)
     },
-    handleCoverImage(files)
-    {
-     
+    handleCoverImage (files) {
       if (files) {
-        
-        const { name } = files;
-        this.filename = name;
+        const { name } = files
+        this.filename = name
 
         // this.$emit('dragCover', files);
 
         // console.log('Handle Cover Image:: ', files);
 
-        this.preview = URL.createObjectURL(files);
+        this.preview = URL.createObjectURL(files)
 
-        this.uploadBox = false;
+        this.uploadBox = false
         // check the image width and height
-        const img = new Image();
-        img.src = this.preview;
+        const img = new Image()
+        img.src = this.preview
 
-        img.onload = () =>
-        {
+        img.onload = () => {
           // this.imageWidth = img.width;
           // this.imageHeight = img.height;
           // console.log(`Image Width: ${this.imageWidth} pixels`);
           // console.log(`Image Height: ${this.imageHeight} pixels`);
-        };
-
+        }
       }
     },
-    handleDragOverCover(e)
-    {
-
-      e.stopPropagation();
-      e.preventDefault();
-
-      e.dataTransfer.dropEffect = 'copy';
-
-      this.isDragOver = true;
-
-    },
-    handleDragLeaveCover(e)
-    {
-      e.preventDefault();
-      this.isDragOver = false;
-    },
-    handleDropCover(e)
-    {
+    handleDragOverCover (e) {
       e.stopPropagation()
       e.preventDefault()
-      this.isDragOver = false;
+
+      e.dataTransfer.dropEffect = 'copy'
+
+      this.isDragOver = true
+    },
+    handleDragLeaveCover (e) {
+      e.preventDefault()
+      this.isDragOver = false
+    },
+    handleDropCover (e) {
+      e.stopPropagation()
+      e.preventDefault()
+      this.isDragOver = false
 
       const files = e.dataTransfer.files
       if (files.length !== 1) {
-        console.log('Handling Drop');
+        console.log('Handling Drop')
         return
       }
 
       // const rawFile = files[0] // only use files[0]
-      
+
       // if (!this.isImage(rawFile)) {
       //   console.log('Not valid image');
       //   return false
       // }
 
-      this.fileCheck(files[0]);
-      // this.handleCoverImage(files);
-
-    },
-    handleClick(e)
-    {
-      
-      const files = e.target.files;
-      this.fileCheck(files[0]);
+      this.fileCheck(files[0])
       // this.handleCoverImage(files);
     },
-    removeBanner()
-    {
-      console.log('removing banner...');
+    handleClick (e) {
+      const files = e.target.files
+      this.fileCheck(files[0])
+      // this.handleCoverImage(files);
+    },
+    removeBanner () {
+      console.log('removing banner...')
 
-      this.preview = null;
-      this.cropImage = null;
-      this.$refs['bannerInput'].value = null;
-      this.uploadBox = true;
-      this.showImage = false;
+      this.preview = null
+      this.cropImage = null
+      // eslint-disable-next-line dot-notation
+      this.$refs['bannerInput'].value = null
+      this.uploadBox = true
+      this.showImage = false
 
       this.size = {
-				width: null,
-				height: null,
-			};
-      
-      this.$emit('dragCover', null);
-    },
+        width: null,
+        height: null
+      }
+
+      this.$emit('dragCover', null)
+    }
   },
   watch: {
-    magicCode(val)
-    {
+    magicCode (val) {
       switch (val) {
         case '89504e47': // png
         case 'ffd8ffe0': // jpg, jpeg, jps, jiff
         case '52494646': // webp
         case '3c737667': // svg
-          
-          this.validImage = true;
-          this.handleCoverImage(this.targetFile);
-  
 
-          break;
+          this.validImage = true
+          this.handleCoverImage(this.targetFile)
+          break
         default:
-          this.validImage = false;
-          break;
-      }      
+          this.validImage = false
+          break
+      }
     }
   }
 }
@@ -306,9 +291,7 @@ export default {
 
 <style scoped>
 
-#event-cover-wrap{
-
-}
+#event-cover-wrap{}
 #event-cover-wrap .upload-file-wrapper{
   border-radius: 0.5rem;
   border: 1px dashed #B8BBCF;
@@ -328,7 +311,7 @@ export default {
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-#event-cover-wrap .drag-files, 
+#event-cover-wrap .drag-files,
 #event-cover-wrap .or{
   color: #8690A2;
   font-size: 1rem;
@@ -416,7 +399,7 @@ export default {
   height: 2.5rem;
   margin-bottom: 0.3rem;
 }
-#event-cover-wrap .drag-files, 
+#event-cover-wrap .drag-files,
 #event-cover-wrap .or{
   font-size: 0.87rem;
   margin-bottom: 0.3rem;
