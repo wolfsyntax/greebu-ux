@@ -184,9 +184,6 @@
             :min="$moment().add(3, 'hours').format('h:mm a')"
             @change="validateStartTime"
           />
-          <div v-if="error?.start_time" class="text-danger">
-            {{ error.start_time }}
-          </div>
           <!-- <div v-if="error?.start_time" class="text-danger">
             <div v-for="err in error?.start_time" :key="err" class="text-danger">
             {{ err }}
@@ -208,13 +205,14 @@
           </div>
         </div>
       </div>
-
+      <div v-if="error?.start_time" class="text-danger">
+        {{ error.start_time }}
+      </div>
       <div class="row py-2" v-if="errorTime">
         <div class="col text-danger">
           {{ errorTime }}
         </div>
       </div>
-
       <div class="form-group">
         <label for="eventDetails">Event Details</label>
         <textarea
@@ -307,52 +305,38 @@ export default {
     //   end_time: '',
     //   description: '',
     // }
+
   }),
   methods: {
     ...mapActions(['fetchEventOptions', 'createEvent', 'verifyEvent']),
     setCover (val, files) {
       if (val) {
-        // eslint-disable-next-line semi
-        const maxSizeBytes = 1024 * 1024; // 1 MB
-        // eslint-disable-next-line semi
-        const mediumSizeBytes = 500 * 1024; // 500 KB
-        // eslint-disable-next-line semi
-        const largeSizeBytes = 1500 * 1024; // 1.5 MB
-        // eslint-disable-next-line semi
-        const skipCompressionSizeBytes = 100 * 1024; // 100 KB
-        // eslint-disable-next-line semi
-        let quality;
+        const maxSizeBytes = 1024 * 1024 // 1 MB
+        const mediumSizeBytes = 500 * 1024 // 500 KB
+        const largeSizeBytes = 1500 * 1024 // 1.5 MB
+        const skipCompressionSizeBytes = 100 * 1024 // 100 KB
+        let quality
         if (files.size < skipCompressionSizeBytes) {
           // If the file size is less than 100KB, skip compression
-          // eslint-disable-next-line semi
-          quality = 1; // Set to 1 to keep original quality
+          quality = 1 // Set to 1 to keep original quality
         } else if (files.size < mediumSizeBytes) {
-          // eslint-disable-next-line semi
-          quality = 0.8;
+          quality = 0.8
         } else if (files.size < maxSizeBytes) {
-          // eslint-disable-next-line semi
-          quality = 0.2;
+          quality = 0.2
         } else if (files.size <= largeSizeBytes) {
-          // eslint-disable-next-line semi
-          quality = 0.4;
+          quality = 0.4
         } else {
-          // eslint-disable-next-line semi
-          quality = 0.2;
+          quality = 0.2
         }
         // eslint-disable-next-line no-unused-vars
         const compressor = new Compressor(val, {
           quality,
           success: (result) => {
-            // eslint-disable-next-line semi
-            const formData = new FormData();
-            // eslint-disable-next-line semi
-            formData.append('files', result, result.name);
-            // eslint-disable-next-line semi
-            this.form.cover_photo = result;
-            // eslint-disable-next-line semi
-            this.form.cover = URL.createObjectURL(result);
-            // eslint-disable-next-line semi
-            this.cover = URL.createObjectURL(result);
+            const formData = new FormData()
+            formData.append('files', result, result.name)
+            this.form.cover_photo = result
+            this.form.cover = URL.createObjectURL(result)
+            this.cover = URL.createObjectURL(result)
           // eslint-disable-next-line comma-dangle
           },
         })

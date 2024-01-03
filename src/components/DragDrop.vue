@@ -123,9 +123,8 @@ export default {
     //   this.$emit('childButtonClick');
     //   this.getCropImage();
     // },
-    getCropImage (compressedImage) {
-      // eslint-disable-next-line no-unused-vars
-      const { coordinates, canvas, image } = this.$refs.cropper.getResult()
+    getCropImage () {
+      const { canvas } = this.$refs.cropper.getResult()
       this.showLoadingIndicator = true
       this.showImage = true
       this.cropImage = canvas
@@ -135,7 +134,7 @@ export default {
         this.$emit('dragCover', blob)
       })
     },
-    boundaries ({ cropper, imageSize }) {
+    boundaries ({ cropper }) {
       return {
         width: cropper.clientWidth,
         height: cropper.clientHeight
@@ -154,11 +153,6 @@ export default {
         width: boundaries.width,
         height: boundaries.height
       }
-    },
-    change ({ coordinates, canvas }) {
-      // console.log('Cropper: ', coordinates, canvas)
-      // this.cropImage = canvas;
-
     },
     fileCheck (file) {
       if (file) {
