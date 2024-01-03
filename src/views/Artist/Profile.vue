@@ -170,20 +170,12 @@
                       {{ artist_type.title }}
                     </option>
                   </select>
-
-                  <div
-                    v-for="err in error?.artist_type"
-                    :key="err"
-                    class="text-danger"
-                  >
-                    {{ err }}
-                  </div>
                 </div>
 
                 <div class="form-group typeArtist">
-                  <label for="typeArtist">Type of the Artist</label>
+                  <label for="typeArtist">Artist Category</label>
                   <select v-model="form.artist_type" class="form-select">
-                    <option value="">Select Artist Type</option>
+                    <option value="">Select Artist Category</option>
                     <option
                       v-for="(artist_type, index) in filterArtistType"
                       :key="index"
