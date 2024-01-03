@@ -253,24 +253,13 @@
 
 <script>
 import { mapActions, mapGetters, mapState } from 'vuex'
-// eslint-disable-next-line import/no-absolute-path
 import DragDrop from '/src/components/DragDrop.vue'
-// eslint-disable-next-line no-unused-vars
-import Multiselect from '@vueform/multiselect'
-// eslint-disable-next-line import/no-absolute-path
 import LoadingVue from '/src/components/Loading.vue'
-// eslint-disable-next-line no-unused-vars
 import Compressor from 'compressorjs'
-// eslint-disable-next-line import/no-absolute-path
 import LoadingIndicator from '/src/components/LoadingIndicator.vue'
 
 export default {
   props: {
-    // formData: {
-    //   type: Object,
-    //   default: {},
-    //   required: false
-    // },
     accessType: {
       type: String,
       default: 'create',
@@ -293,19 +282,6 @@ export default {
     cover: '',
     isComplete: false,
     errorTime: ''
-    // form: {
-    //   cover_photo: '',
-    //   event_type: '',
-    //   event_name: '',
-    //   venue: '',
-    //   is_public: false,
-    //   start_date: '',
-    //   end_date: '',
-    //   start_time: '',
-    //   end_time: '',
-    //   description: '',
-    // }
-
   }),
   methods: {
     ...mapActions(['fetchEventOptions', 'createEvent', 'verifyEvent']),
@@ -337,8 +313,7 @@ export default {
             this.form.cover_photo = result
             this.form.cover = URL.createObjectURL(result)
             this.cover = URL.createObjectURL(result)
-          // eslint-disable-next-line comma-dangle
-          },
+          }
         })
       }
     },
@@ -353,44 +328,29 @@ export default {
       console.log('Back')
     },
     submit () {
-      // eslint-disable-next-line semi
-      this.showSubmitButtonForm2 = false;
-
-      // eslint-disable-next-line semi
-      console.log('Emit: ', this.form);
+      this.showSubmitButtonForm2 = false
+      console.log('Emit: ', this.form)
       if (this.accessType !== 'create') {
         console.log('Form modal submit: ', typeof this.form.cover_photo)
         if (typeof this.form.cover_photo === 'string')
-          // eslint-disable-next-line curly, semi
-          delete this.form.cover_photo;
-        // eslint-disable-next-line semi
-        delete this.form.lat;
-        // eslint-disable-next-line semi
-        delete this.form.long;
-        // eslint-disable-next-line semi
-        this.form.mode = 'update';
+          // eslint-disable-next-line curly
+          delete this.form.cover_photo
+        delete this.form.lat
+        delete this.form.long
+        this.form.mode = 'update'
       }
       this.verifyEvent()
         .then((res) => {
-          // eslint-disable-next-line semi
-          console.log('Next Step: ', res);
-          // eslint-disable-next-line semi
-          this.$emit('next-step');
-          // eslint-disable-next-line semi
-          this.$emit('next');
-          // eslint-disable-next-line semi
-          this.showSubmitButtonForm2 = true;
+          console.log('Next Step: ', res)
+          this.$emit('next-step')
+          this.$emit('next')
+          this.showSubmitButtonForm2 = true
         })
         .catch((err) => {
-          // eslint-disable-next-line semi
-          console.log('Event Verify [error]: ', err);
-          // eslint-disable-next-line no-unused-vars
+          console.log('Event Verify [error]: ', err)
           const {
             status,
-            // eslint-disable-next-line no-unused-vars
-            message,
-            // eslint-disable-next-line no-unused-vars
-            result: { errors, form }
+            result: { errors }
           } = err
           if (status === 500) {
             if (typeof errors === 'string' && errors === 'Unauthenticated.')

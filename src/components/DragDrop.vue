@@ -74,17 +74,11 @@
 </template>
 
 <script>
-
-// eslint-disable-next-line import/no-absolute-path
 import ExampleWrapper from '/src/components/Cropper/ExampleWrapper.vue'
-// eslint-disable-next-line import/no-absolute-path
 import SquareButton from '/src/components/Cropper/SquareButton.vue'
-// eslint-disable-next-line import/no-absolute-path
 import VerticalButtons from '/src/components/Cropper/VerticalButtons.vue'
-// eslint-disable-next-line import/no-absolute-path, quotes
-import Reposition from "/src/components/Dashboard/Modals/Reposition.vue"
-// eslint-disable-next-line import/no-absolute-path, quotes
-import LoadingIndicator from "/src/components/LoadingIndicator.vue"
+import Reposition from '/src/components/Dashboard/Modals/Reposition.vue'
+import LoadingIndicator from '/src/components/LoadingIndicator.vue'
 
 export default {
   components: {

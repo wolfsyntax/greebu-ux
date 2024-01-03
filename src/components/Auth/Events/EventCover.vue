@@ -42,12 +42,9 @@
 </template>
 
 <script>
-// eslint-disable-next-line import/no-absolute-path
 import DragDrop from '/src/components/DragDrop.vue'
-// eslint-disable-next-line import/no-absolute-path
 import Compressor from 'compressorjs'
 import { mapActions, mapGetters, mapState } from 'vuex'
-// eslint-disable-next-line import/no-absolute-path
 import LoadingIndicator from '/src/components/LoadingIndicator.vue'
 
 export default {
@@ -96,8 +93,7 @@ export default {
         const largeSizeBytes = 1500 * 1024 // 1.5 MB
         const skipCompressionSizeBytes = 100 * 1024 // 100 KB
 
-        // eslint-disable-next-line semi
-        let quality;
+        let quality
 
         if (val.size < skipCompressionSizeBytes) {
           // If the file size is less than 100KB, skip compression
