@@ -111,12 +111,6 @@
                     alt="default user avatar"
                   />
                   <div class="camera">
-                    <!-- <input type="file" ref="file" @change="uploadFile" accept="image/png, image/webp, image/svg, image/jpeg" /> -->
-
-                    <!-- <input type="file" @input="form.avatar = $event.target.files[0]" accept="image/png, image/webp, image/svg, image/jpeg" /> -->
-                    <!-- <input type="file" @input="changeImage" accept="image/png, image/webp, image/svg, image/jpeg" /> -->
-
-                    <!-- <input type="file" @input="changeImage" accept="image/*" /> -->
 
                     <button
                       type="button"
@@ -128,7 +122,6 @@
                       <span class="material-symbols-outlined">&#xE412;</span>
                     </button>
 
-                    <!-- <div v-if="error?.avatar" class="text-danger">{{ error.avatar }}</div> -->
                     <div
                       v-for="err in error?.avatar"
                       :key="err"
@@ -152,6 +145,7 @@
                 <label for="fileUpload" class="description"
                   >Upload profile picture</label
                 >
+                <div v-if="showToastComponent"><p class="description save-profile">Profile saved!</p></div>
               </div>
               <div v-for="err in error?.avatar" :key="err" class="text-danger">
                 {{ err }}
@@ -159,7 +153,7 @@
 
               <div class="required-fields">
                 <div class="form-group typeArtist">
-                  <label for="typeArtist">Type of the Artist</label>
+                  <label for="typeArtist">Type of the Artist <span class="red-text">(required)</span></label>
                   <select v-model="artist_category" class="form-select">
                     <option value="">Select Artist Type</option>
                     <option
@@ -173,7 +167,7 @@
                 </div>
 
                 <div class="form-group typeArtist">
-                  <label for="typeArtist">Artist Category</label>
+                  <label for="typeArtist">Artist Category <span class="red-text">(required)</span></label>
                   <select v-model="form.artist_type" class="form-select">
                     <option value="">Select Artist Category</option>
                     <option
@@ -195,7 +189,7 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="artistName">Name of the Artist/Band</label>
+                  <label for="artistName">Name of the Artist <span class="red-text">(required)</span></label>
                   <input
                     type="text"
                     v-model="form.artist_name"
@@ -237,54 +231,20 @@
                     placeholder="Please select genres"
                   />
                   <br />
-                  <!-- <input type="text" v-model="others" @blur="updateGenre" placeholder="Genre" class="form-control province" v-if="hasOthers" required /> -->
-                  <div
-                    v-for="err in error?.genre"
-                    :key="err"
-                    class="text-danger"
-                  >
-                    {{ err }}
-                  </div>
                 </div>
-
-                <!-- <div class="row">
-                  <div class="col-4">
-                    <div class="form-group">
-                      <label for="address">Address</label>
-                      <input type="text" v-model="form.street_address" placeholder="Street" class="form-control street" required @focus="onInputAddress" autocomplete="off"/>
-                      <div v-for="err in error?.street_address" :key="err" class="text-danger">{{ err }}</div>
-                    </div>
-                  </div>
-
-                  <div class="col-4">
-                    <div class="form-group">
-                      <label for="address" class="hidden">City</label>
-                      <input type="text" v-model="form.city" placeholder="City" class="form-control city" @focus="onInputAddress" required autocomplete="off"/>
-                      <div v-for="err in error?.city" :key="err" class="text-danger">{{ err }}</div>
-                    </div>
-                  </div>
-
-                  <div class="col-4">
-                    <div class="form-group">
-                      <label for="address" class="hidden">Province</label>
-                      <input type="text" v-model="form.province" placeholder="Province" class="form-control province" @focus="onInputAddress" required autocomplete="off"/>
-                      <div v-for="err in error?.province" :key="err" class="text-danger">{{ err }}</div>
-                    </div>
-                  </div>
-                </div>  -->
 
                 <div class="address-wrap">
                   <div class="form-group">
-                    <label for="address">Address</label>
+                    <label for="address">Address <span class="red-text">(required)</span></label>
                     <div class="d-flex align-items-center group-wrap">
                       <input
                         type="text"
                         v-model="form.street_address"
                         placeholder="Street"
                         class="form-control street"
-                        required
                         @focus="onInputAddress"
                         autocomplete="off"
+                        required
                       />
                       <div
                         v-for="err in error?.street_address"
@@ -300,8 +260,8 @@
                         placeholder="City"
                         class="form-control city"
                         @focus="onInputAddress"
-                        required
                         autocomplete="off"
+                        required
                       />
                       <div
                         v-for="err in error?.city"
@@ -317,8 +277,8 @@
                         placeholder="Province"
                         class="form-control province"
                         @focus="onInputAddress"
-                        required
                         autocomplete="off"
+                        required
                       />
                       <div
                         v-for="err in error?.province"
@@ -719,9 +679,6 @@
                 <p v-show="form.bio" class="char-count">
                   Maximum 500 characters ({{ remainingChars }} left)
                 </p>
-                <div v-for="err in error?.bio" :key="err" class="text-danger">
-                  {{ err }}
-                </div>
               </div>
 
               <div class="song-preview">
@@ -739,16 +696,7 @@
                     v-model="form.song_title"
                     name="songTitle"
                     class="form-control"
-                    required
                   />
-
-                  <div
-                    v-for="err in error?.song_title"
-                    :key="err"
-                    class="text-danger"
-                  >
-                    {{ err }}
-                  </div>
                 </div>
 
                 <div
@@ -854,15 +802,6 @@
                     of 10MB.
                   </p>
                 </div>
-
-                <div
-                  v-for="err in error?.song"
-                  :key="err"
-                  class="d-flex align-items-center audio-file-format errorMessage"
-                >
-                  <span class="material-symbols-outlined info">&#xe88e;</span>
-                  <p class="max-file-size">{{ err }}</p>
-                </div>
               </div>
               <!-- end of song-preview -->
 
@@ -898,6 +837,7 @@
     @close="toggleProfile"
     @formDataUpdated="handleArtistAvatarUpdate"
     page="page2"
+    @show-save-msg="showSaveProfileMsg"
   />
 </template>
 <script>
@@ -924,13 +864,14 @@ export default {
   },
   data () {
     return {
+      showToastComponent: false,
       showSubmitButton: true,
       form: {
         artist_type: null,
         artist_name: null,
         genres: [],
         bio: null,
-        avatar: null,
+        //  avatar: null,
         street_address: null,
         city: null,
         province: null,
@@ -1187,6 +1128,14 @@ export default {
       'fetchMember'
     ]),
     ...mapMutations(['SET_PROFILE', 'SET_ARTIST', 'SET_MEMBERS']),
+    showSaveProfileMsg () {
+      setTimeout(() => {
+        this.showToastComponent = true
+        setTimeout(() => {
+          this.showToastComponent = false
+        }, 7000)
+      }, 500) // 0.5-second delay before showing the div
+    },
     handleArtistAvatarUpdate (blob) {
       if (blob instanceof Blob) {
         this.parentAvatar = URL.createObjectURL(blob)
@@ -1263,7 +1212,7 @@ export default {
       this.showSubmitButton = false
       this.form.genres = this.formGenres
 
-      if (typeof this.form.avatar === 'string') this.form.avatar = ''
+      //  if (typeof this.form.avatar === 'string') this.form.avatar = ''
       if (typeof this.form.song === 'string') this.form.song = ''
 
       this.$emit('form', this.form)
