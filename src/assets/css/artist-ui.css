@@ -1743,6 +1743,10 @@ img {
 .profile-details .container .fill-details .required-fields .typeArtist {
   margin-top: 2.5rem;
 }
+.profile-details .container .fill-details .required-fields .red-text {
+  color: #ff1a1a;
+  font-size: 1rem;
+}
 .profile-details .container .fill-details .upload-img .description {
   color: #121212;
   font-size: 1.25rem;
@@ -1750,6 +1754,9 @@ img {
   letter-spacing: -0.025rem;
   margin-bottom: 0.62rem;
   margin-left: 1.3rem;
+}
+.profile-details .container .fill-details .upload-img .save-profile{
+  color: var(--orange);
 }
 .profile-details .container .fill-details .required-fields select,
 .profile-details .container .fill-details .required-fields input {
@@ -4677,7 +4684,9 @@ img {
   .profile-page .about-tab .band-members .card {
     margin-bottom: 16px;
   }
-
+  .profile-details .container .fill-details .required-fields .red-text {
+    font-size: 0.87rem;
+  }
   .profile-page
     .right-wrapper
     .past-events
