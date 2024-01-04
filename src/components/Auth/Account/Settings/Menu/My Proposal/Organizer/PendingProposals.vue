@@ -49,9 +49,6 @@ export default {
       console.log('Toggle Proposal: ', proposal)
       this.showModal = true
     },
-    hideToast () {
-      this.showToastComponent = false
-    },
     closeModal () {
       this.showModal = false
     },

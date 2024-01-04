@@ -62,9 +62,6 @@ export default {
       this.$store.commit('setProposal')
       this.showModal = false
     },
-    hideToast () {
-      this.showToastComponent = false
-    },
     showToastMessage () {
       this.showModal = false
       this.showToastComponent = true
