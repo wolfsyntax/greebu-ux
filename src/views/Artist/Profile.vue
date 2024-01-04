@@ -964,7 +964,6 @@ export default {
   },
   data () {
     return {
-      address: '',
       showSubmitButton: true,
       form: {
         artist_type: null,
