@@ -104,9 +104,6 @@ export default {
       })
     }
   },
-  mounted () {
-    if (!this.isLoggedIn) this.$router.push('/')
-  },
   computed: {
     ...mapGetters(['userInfo', 'info', 'token', 'isLoggedIn', 'userRole']),
     ...mapState({

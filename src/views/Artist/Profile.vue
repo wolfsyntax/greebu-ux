@@ -111,12 +111,6 @@
                     alt="default user avatar"
                   />
                   <div class="camera">
-                    <!-- <input type="file" ref="file" @change="uploadFile" accept="image/png, image/webp, image/svg, image/jpeg" /> -->
-
-                    <!-- <input type="file" @input="form.avatar = $event.target.files[0]" accept="image/png, image/webp, image/svg, image/jpeg" /> -->
-                    <!-- <input type="file" @input="changeImage" accept="image/png, image/webp, image/svg, image/jpeg" /> -->
-
-                    <!-- <input type="file" @input="changeImage" accept="image/*" /> -->
 
                     <button
                       type="button"
@@ -128,7 +122,6 @@
                       <span class="material-symbols-outlined">&#xE412;</span>
                     </button>
 
-                    <!-- <div v-if="error?.avatar" class="text-danger">{{ error.avatar }}</div> -->
                     <div
                       v-for="err in error?.avatar"
                       :key="err"
@@ -238,41 +231,7 @@
                     placeholder="Please select genres"
                   />
                   <br />
-                  <!-- <input type="text" v-model="others" @blur="updateGenre" placeholder="Genre" class="form-control province" v-if="hasOthers" required /> -->
-                  <!-- <div
-                    v-for="err in error?.genre"
-                    :key="err"
-                    class="text-danger"
-                  >
-                    {{ err }}
-                  </div> -->
                 </div>
-
-                <!-- <div class="row">
-                  <div class="col-4">
-                    <div class="form-group">
-                      <label for="address">Address</label>
-                      <input type="text" v-model="form.street_address" placeholder="Street" class="form-control street" required @focus="onInputAddress" autocomplete="off"/>
-                      <div v-for="err in error?.street_address" :key="err" class="text-danger">{{ err }}</div>
-                    </div>
-                  </div>
-
-                  <div class="col-4">
-                    <div class="form-group">
-                      <label for="address" class="hidden">City</label>
-                      <input type="text" v-model="form.city" placeholder="City" class="form-control city" @focus="onInputAddress" required autocomplete="off"/>
-                      <div v-for="err in error?.city" :key="err" class="text-danger">{{ err }}</div>
-                    </div>
-                  </div>
-
-                  <div class="col-4">
-                    <div class="form-group">
-                      <label for="address" class="hidden">Province</label>
-                      <input type="text" v-model="form.province" placeholder="Province" class="form-control province" @focus="onInputAddress" required autocomplete="off"/>
-                      <div v-for="err in error?.province" :key="err" class="text-danger">{{ err }}</div>
-                    </div>
-                  </div>
-                </div>  -->
 
                 <div class="address-wrap">
                   <div class="form-group">
@@ -720,9 +679,6 @@
                 <p v-show="form.bio" class="char-count">
                   Maximum 500 characters ({{ remainingChars }} left)
                 </p>
-                <!-- <div v-for="err in error?.bio" :key="err" class="text-danger">
-                  {{ err }}
-                </div> -->
               </div>
 
               <div class="song-preview">
@@ -741,14 +697,6 @@
                     name="songTitle"
                     class="form-control"
                   />
-
-                  <!-- <div
-                    v-for="err in error?.song_title"
-                    :key="err"
-                    class="text-danger"
-                  >
-                    {{ err }}
-                  </div> -->
                 </div>
 
                 <div
