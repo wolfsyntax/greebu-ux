@@ -31,10 +31,10 @@
 </template>
 
 <script>
-import ArtistProfile from '@/views/Artist/Profile.vue' // src\views\Artist\Profile.vue
-import CustomerProfile from '@/views/Customer/Profile.vue' // src\views\Customer\Profile.vue
-import OrganizerProfile from '@/views/Organizer/Profile.vue' // src\views\Organizer\Profile.vue
-import ProviderProfile from '@/views/Services/Profile.vue' // src\views\Services\Profile.vue
+import ArtistProfile from '@/views/Artist/Profile.vue'
+import CustomerProfile from '@/views/Customer/Profile.vue'
+import OrganizerProfile from '@/views/Organizer/Profile.vue'
+import ProviderProfile from '@/views/Services/Profile.vue'
 
 import { mapGetters, mapState, mapActions, mapMutations } from 'vuex'
 
