@@ -55,28 +55,35 @@
               <img
                 src="/assets/artist-account/spotify-icon-gray.svg"
                 class="img-fluid rounded-circle"
-                alt="artist avatar"
+                alt="spotify icon"
               />
             </a>
             <a v-if="artist?.facebook" :href="artist?.facebook" target="_blank">
               <img
                 src="/assets/social icons/facebook-gray.svg"
                 class="img-fluid rounded-circle"
-                alt="artist avatar"
+                alt="facebook icon"
               />
             </a>
             <a v-if="artist?.twitter" :href="artist?.twitter" target="_blank">
               <img
                 src="/assets/artist-account/twitter-icon-gray.svg"
                 class="img-fluid rounded-circle"
-                alt="artist avatar"
+                alt="twitter icon"
               />
             </a>
             <a v-if="artist?.instagram" :href="artist?.instagram" target="_blank">
               <img
                 src="/assets/artist-account/instagram-icon-gray.svg"
                 class="img-fluid rounded-circle"
-                alt="artist avatar"
+                alt="instagram icon"
+              />
+            </a>
+            <a v-if="artist?.youtube" :href="artist?.youtube" target="_blank">
+              <img
+                src="/assets/artist-account/youtube-icon-gray.svg"
+                class="img-fluid rounded-circle"
+                alt="youtube icon"
               />
             </a>
         </div>
