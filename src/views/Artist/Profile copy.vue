@@ -247,48 +247,54 @@
                   </div>
                 </div>
 
-                  <!-- Display separate text inputs when an address is selected -->
-                  <div class="mt-2 mb-3" style=""> <!-- v-if="form.address" -->
+                <!-- <div class="row">
+                  <div class="col-4">
                     <div class="form-group">
-                    <div class="row">
-                      <div class="col-12 mb-2">
-                        <label for="address">Locate address through geo-location.</label>
-                        <vue-google-autocomplete
-                        ref="address"
-                        id="map"
-                        classname="form-control"
-                        placeholder="Please type your address"
-                        v-on:placechanged="getAddressData"
-                        country="PH"
-                      >
-                      </vue-google-autocomplete>
-                      </div>
-                      <div class="col-6">
-                        <label for="address">City</label>
-                        <input
-                        type="text"
-                        v-model="form.city"
-                        placeholder="City"
-                        class="form-control city"
-                        @focus="onInputAddress"
-                        required
-                        autocomplete="off"
-                      />
-                      </div>
-                      <div class="col-6">
-                        <label for="address">Province</label>
-                        <input
-                        type="text"
-                        v-model="form.province"
-                        placeholder="Province"
-                        class="form-control province"
-                        @focus="onInputAddress"
-                        required
-                        autocomplete="off"
-                      />
-                      </div>
-                      </div>
+                      <label for="address">Address</label>
+                      <input type="text" v-model="form.street_address" placeholder="Street" class="form-control street" required @focus="onInputAddress" autocomplete="off"/>
+                      <div v-for="err in error?.street_address" :key="err" class="text-danger">{{ err }}</div>
                     </div>
+                  </div>
+
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="address" class="hidden">City</label>
+                      <input type="text" v-model="form.city" placeholder="City" class="form-control city" @focus="onInputAddress" required autocomplete="off"/>
+                      <div v-for="err in error?.city" :key="err" class="text-danger">{{ err }}</div>
+                    </div>
+                  </div>
+
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="address" class="hidden">Province</label>
+                      <input type="text" v-model="form.province" placeholder="Province" class="form-control province" @focus="onInputAddress" required autocomplete="off"/>
+                      <div v-for="err in error?.province" :key="err" class="text-danger">{{ err }}</div>
+                    </div>
+                  </div>
+                </div>  -->
+
+                <!-- <vue-google-autocomplete
+                ref="address"
+                id="map"
+                classname="form-control"
+                placeholder="Please type your address"
+                v-on:placechanged="getAddressData"
+                country="PH"
+              > -->
+
+                  <!-- VueGoogleAutocomplete with v-model -->
+                  <vue-google-autocomplete
+                    ref="address"
+                    id="map"
+                    classname="form-control"
+                    placeholder="Please type your address"
+                    v-on:placechanged="getAddressData"
+                    country="PH"
+                  >
+                  </vue-google-autocomplete>
+
+                  <!-- Display separate text inputs when an address is selected -->
+                  <div v-if="form.address">
                     <!-- <input
                       type="text"
                       v-model="form.street_address"
@@ -298,19 +304,31 @@
                       @focus="onInputAddress"
                       autocomplete="off"
                     /> -->
+                    <input
+                      type="text"
+                      v-model="form.city"
+                      placeholder="City"
+                      class="form-control city"
+                      @focus="onInputAddress"
+                      required
+                      autocomplete="off"
+                    />
+                    <input
+                      type="text"
+                      v-model="form.province"
+                      placeholder="Province"
+                      class="form-control province"
+                      @focus="onInputAddress"
+                      required
+                      autocomplete="off"
+                    />
                   </div>
 
-                <!-- <div>
-                  <div class="row">
-                      <div class="col-6">
-                        <p>City: {{ form.city }}</p>
-                      </div>
-                      <div class="col-6">
-                        <p>Province: {{ form.province }}</p>
-                      </div>
-                  </div>
-
-                </div> -->
+                <div>
+                  <p>Street Address: {{ form.street_address }}</p>
+                  <p>City: {{ form.city }}</p>
+                  <p>Province: {{ form.province }}</p>
+                </div>
 
                 <!-- <div class="address-wrap">
                   <div class="form-group">
@@ -1242,14 +1260,12 @@ export default {
     getAddressData (addressData, placeResultData, id) {
       // Update form properties
       this.form.address = addressData
-      // this.form.street_address = '';
+      // this.form.street_address = ''; // Clear street_address when a new address is selected or no street address available
       this.form.city = placeResultData.address_components.find(component =>
         component.types.includes('locality')
       )?.long_name || null
       this.form.province = placeResultData.address_components.find(component =>
-        component.types.includes('administrative_area_level_2')
-        // administrative_area_level_2 for province
-        // administrative_area_level_1 for region
+        component.types.includes('administrative_area_level_1')
       )?.long_name || null
 
       console.log('[addressData] getAddress: ', addressData)
