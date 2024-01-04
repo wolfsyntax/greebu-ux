@@ -115,23 +115,6 @@
           </template>
 
           <template #bottom-filter>
-            <!-- <div class="form-group">
-              <label>Type of artist</label>
-              <select class="form-select" v-model="artist_type" aria-label="Default select example">
-                <option value="" selected></option>
-                <option v-for="artist_type in artist_types" :key="artist_type.id" :value="artist_type.id">
-                {{  artist_type.title }}
-                </option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label>Artist category</label>
-              <select class="form-select" v-model="genre" aria-label="Default select example">
-                <option value="" selected></option>
-                <option v-for="gen in genres" :key="gen.id" :value="gen.title">{{ gen.title }}</option>
-              </select>
-            </div> -->
 
             <div class="form-group">
               <label for="artistType">Type of artist</label>
