@@ -149,7 +149,7 @@
           <div v-if="!isOngoingLoading">
             <div class="row" v-if="events_ongoing.length">
               <div
-                class="col-sm-12 col-md-6 col-lg-3"
+                class="col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3"
                 v-for="(event, index) in events_ongoing"
                 :key="index"
               >
@@ -223,7 +223,7 @@
           <div v-if="!isUpcomingLoading">
             <div class="row" v-if="events_upcoming.length">
               <div
-                class="col-sm-12 col-md-6 col-lg-3"
+                class="col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3"
                 v-for="(event, index) in events_upcoming"
                 :key="index"
               >
@@ -300,7 +300,7 @@
           <div v-if="!isPastLoading">
             <div class="row" v-if="events_past.length">
               <div
-                class="col-sm-12 col-md-6 col-lg-3"
+                class="col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3"
                 v-for="(event, index) in events_past"
                 :key="index"
               >
@@ -409,7 +409,8 @@ import FilterResults from '/src/components/FilterResults.vue'
 import NoEvent from '/src/components/Events/NoEvent.vue'
 // eslint-disable-next-line import/no-absolute-path
 import BirdLoader from '/src/components/BirdLoader.vue'
-import ArtistPopOver from "/src/components/Events/ArtistPopOver.vue"
+// eslint-disable-next-line import/no-absolute-path
+import ArtistPopOver from '/src/components/Events/ArtistPopOver.vue'
 
 export default {
   metaInfo: {
@@ -570,7 +571,7 @@ export default {
       'nextOngoingPage',
       'nextPastPage'
     ]),
-    openModalSignUp(){
+    openModalSignUp () {
       new Modal(document.getElementById('#mustSignUp'), {
         keyboard: false
       }).show()
