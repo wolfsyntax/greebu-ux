@@ -42,12 +42,9 @@
 </template>
 
 <script>
-// eslint-disable-next-line import/no-absolute-path
 import DragDrop from '/src/components/DragDrop.vue'
-// eslint-disable-next-line import/no-absolute-path
 import Compressor from 'compressorjs'
 import { mapActions, mapGetters, mapState } from 'vuex'
-// eslint-disable-next-line import/no-absolute-path
 import LoadingIndicator from '/src/components/LoadingIndicator.vue'
 
 export default {
@@ -89,7 +86,7 @@ export default {
     toggleShowBtn () {
       this.$emit('toggle-show-btn')
     },
-    setCover (val, files) {
+    setCover (val) {
       if (val) {
         const maxSizeBytes = 1024 * 1024 // 1 MB
         const mediumSizeBytes = 500 * 1024 // 500 KB
@@ -98,14 +95,14 @@ export default {
 
         let quality
 
-        if (files.size < skipCompressionSizeBytes) {
+        if (val.size < skipCompressionSizeBytes) {
           // If the file size is less than 100KB, skip compression
           quality = 1 // Set to 1 to keep original quality
-        } else if (files.size < mediumSizeBytes) {
+        } else if (val.size < mediumSizeBytes) {
           quality = 0.8
-        } else if (files.size < maxSizeBytes) {
+        } else if (val.size < maxSizeBytes) {
           quality = 0.2
-        } else if (files.size <= largeSizeBytes) {
+        } else if (val.size <= largeSizeBytes) {
           quality = 0.4
         } else {
           quality = 0.2
@@ -114,9 +111,6 @@ export default {
         const compressor = new Compressor(val, {
           quality,
           success: (result) => {
-            const formData = new FormData()
-            formData.append('files', result, result.name)
-
             this.form.cover_photo = result
 
             this.form.cover = URL.createObjectURL(result)
@@ -129,7 +123,6 @@ export default {
         })
       }
     },
-
     removeBanner () {
       this.form.cover = ''
       this.form.cover_photo = ''
@@ -179,10 +172,8 @@ export default {
           }
         } else if (val.start_date === '' && val.end_date === '') {
           this.form.start_date = this.$moment()
-            .add(5, 'days')
             .format('YYYY-MM-DD')
           this.form.end_date = this.$moment()
-            .add(5, 'days')
             .format('YYYY-MM-DD')
         }
 
