@@ -1153,28 +1153,6 @@ export default {
       const file = event.target.files[0]
       this.targetMagic = 'image'
       this.avatarMagic = file
-      // this.avatar = URL.createObjectURL(file);
-
-      // this.form.avatar = file;
-
-      // const { type } = file;
-
-      // switch (type) {
-      //   case 'image/png':
-      //   case 'image/webp':
-      //   case 'image/svg':
-      //   case 'image/jpeg':
-      //     this.validImage = true;
-      //     this.form.avatar = file;
-
-      //     break;
-      //   default:
-
-      //     this.validImage = false;
-      //     this.avatar = this.account?.avatar || this.profile?.avatar || '/assets/artist-account/new.svg';
-
-      //     //return false;
-      // }
       if (file) {
         this.fileCheck(file)
       }
@@ -1334,24 +1312,6 @@ export default {
       //  size before compression in megabytes
       console.log('Original Audio File Size:', (file.size / 1024).toFixed(2), 'KB')
 
-      // const reader = new FileReader();
-
-      //   reader.onload = () => {
-      //     const fileContent = reader.result;
-
-      //     // Compress the file content using pako
-      //     const compressedContent = pako.gzip(fileContent, { to: 'string' });
-
-      //     // Log the size after compression in kilobytes
-      //     console.log('Compressed Audio File Size:', (compressedContent.length / 1024).toFixed(2), 'KB');
-
-      //     // Set compressing to false after 3 seconds
-      //     setTimeout(() => {
-      //       this.compressing = false;
-      //     }, 1000);
-      //   };
-      //  reader.readAsBinaryString(file);
-
       console.log('Handle Music Upload: ', file)
       this.targetMagic = 'audio'
       // this.fileCheck(file);
@@ -1411,45 +1371,6 @@ export default {
             setTimeout(() => {
               this.compressing = false
             }, 5000)
-            // check if metadata exists
-
-            //     const fileReader = new FileReader();
-            // fileReader.onloadend = (e) => {
-            //   const arr = new Uint8Array(e.target.result).subarray(0, 4);
-
-            //   const buffer = fileReader.result;
-            //   const view = new DataView(buffer);
-            //     // Check for ID3v2 tag (common for MP3 files)
-            //   if (
-            //     view.getUint8(0) === 73 &&  // I
-            //     view.getUint8(1) === 68 &&  // D
-            //     view.getUint8(2) === 51     // 3
-            //   ) {
-            //     // Extract metadata (this is a simplified example)
-            //     const title = String.fromCharCode(view.getUint8(6), view.getUint8(7));
-            //     const artist = String.fromCharCode(view.getUint8(30), view.getUint8(31));
-            //     const album = String.fromCharCode(view.getUint8(63), view.getUint8(64));
-            //     const genre = String.fromCharCode(view.getUint8(90));
-            //     const date = String.fromCharCode(view.getUint8(93), view.getUint8(94));
-
-            //     // Store metadata
-            //     this.metadata.title = title;
-            //     this.metadata.artist = artist;
-            //     this.metadata.album = album;
-            //     this.metadata.genre = genre;
-            //     this.metadata.date = date;
-
-            //     if (!this.hasCompleteMetadata) {
-            //       this.error.song = ['Missing metadata fields. Please check the file.'];
-            //       event.target.value = null;
-            //       this.clearErrorMessageAfterDelay();
-            //     }} else {
-            //       this.error.song = ['File format not supported or no metadata found.'];
-            //     event.target.value = null;
-            //     this.clearErrorMessageAfterDelay();
-            //   }
-            // }
-            // fileReader.readAsArrayBuffer(file);
           } else {
             // eslint-disable-next-line vue/no-mutating-props
             this.error.song = [

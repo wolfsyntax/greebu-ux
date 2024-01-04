@@ -855,8 +855,6 @@ export default {
       )?.long_name || null
       this.form.province = placeResultData.address_components.find(component =>
         component.types.includes('administrative_area_level_2')
-        // administrative_area_level_2 for province
-        // administrative_area_level_1 for region
       )?.long_name || null
 
       this.form.lat = placeResultData.geometry.location.lat()
