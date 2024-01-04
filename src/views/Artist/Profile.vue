@@ -233,28 +233,24 @@
                   <br />
                 </div>
 
-                <div class="address-wrap">
-                  <div class="form-group">
-                    <label for="address">Address <span class="red-text">(required)</span></label>
-                    <div class="d-flex align-items-center group-wrap">
-                      <input
-                        type="text"
-                        v-model="form.street_address"
-                        placeholder="Street"
-                        class="form-control street"
-                        @focus="onInputAddress"
-                        autocomplete="off"
-                        required
-                      />
-                      <div
-                        v-for="err in error?.street_address"
-                        :key="err"
-                        class="text-danger"
+                  <div class="mt-2 mb-3" style=""> <!-- v-if="form.address" -->
+                    <div class="form-group">
+                    <div class="row">
+                      <div class="col-12 mb-2">
+                        <label for="address">Locate address through geo-location.</label>
+                        <vue-google-autocomplete
+                        ref="address"
+                        id="map"
+                        classname="form-control"
+                        placeholder="Please type your address"
+                        v-on:placechanged="getAddressData"
+                        country="PH"
                       >
-                        {{ err }}
+                      </vue-google-autocomplete>
                       </div>
-
-                      <input
+                      <div class="col-6">
+                        <label for="address">City</label>
+                        <input
                         type="text"
                         v-model="form.city"
                         placeholder="City"
@@ -263,15 +259,10 @@
                         autocomplete="off"
                         required
                       />
-                      <div
-                        v-for="err in error?.city"
-                        :key="err"
-                        class="text-danger"
-                      >
-                        {{ err }}
                       </div>
-
-                      <input
+                      <div class="col-6">
+                        <label for="address">Province</label>
+                        <input
                         type="text"
                         v-model="form.province"
                         placeholder="Province"
@@ -280,16 +271,10 @@
                         autocomplete="off"
                         required
                       />
-                      <div
-                        v-for="err in error?.province"
-                        :key="err"
-                        class="text-danger"
-                      >
-                        {{ err }}
+                      </div>
                       </div>
                     </div>
                   </div>
-                </div>
               </div>
               <!-- end of required-fields class -->
               <!-- Band Members -->
@@ -851,6 +836,7 @@ import LoadingIndicator from '/src/components/LoadingIndicator.vue'
 import SuccesModal from '/src/components/SuccessModal.vue'
 import { gzip } from 'pako'
 import { Modal } from 'bootstrap'
+import VueGoogleAutocomplete from 'vue-google-autocomplete'
 
 export default {
   components: {
@@ -860,7 +846,8 @@ export default {
     Multiselect,
     ProfileModal,
     LoadingIndicator,
-    SuccesModal
+    SuccesModal,
+    VueGoogleAutocomplete
   },
   data () {
     return {
@@ -871,10 +858,13 @@ export default {
         artist_name: null,
         genres: [],
         bio: null,
-        //  avatar: null,
-        street_address: null,
+        avatar: null,
+        address: null,
+        street_address: '',
         city: null,
         province: null,
+        lat: null,
+        long: null,
         youtube: null,
         twitter: null,
         instagram: null,
@@ -1022,27 +1012,6 @@ export default {
     console.log('Ref[multiselect]: ', this.$refs.multiselect)
     this.artistOptions()
 
-    // this.$echo.private(`profile.${this.userInfo?.id}`)
-    //   .listen(`.update-member`, (e) =>
-    //   {
-    //     console.log('Member via Pusher [Artist/Profile]: ', e);
-    //     const { response: { members } } = e;
-    //     if (members) this.SET_MEMBERS(members);
-
-    //   })
-
-    //   /*
-    //     1. artistOptions:
-    //     - artist types (artist_types)
-    //     - genres (genre list)
-
-    //     2. fetchProfile
-    //     - account
-    //     - genre
-    //     - members
-    //     - profile
-    //   */
-
     this.form = this.myAccount
     this.form.avatar = ''
     this.uploadedMusic = this.myAccount.song || ''
@@ -1076,6 +1045,8 @@ export default {
       this.formGenres
     )
     console.log('--- End Mounted ---')
+
+    this.$refs.address.focus()
   },
   props: {
     hasNoError: {
@@ -1128,13 +1099,22 @@ export default {
       'fetchMember'
     ]),
     ...mapMutations(['SET_PROFILE', 'SET_ARTIST', 'SET_MEMBERS']),
-    showSaveProfileMsg () {
-      setTimeout(() => {
-        this.showToastComponent = true
-        setTimeout(() => {
-          this.showToastComponent = false
-        }, 7000)
-      }, 500) // 0.5-second delay before showing the div
+    getAddressData (addressData, placeResultData, id) {
+      this.form.address = addressData
+      // this.form.street_address = '';
+      this.form.city = placeResultData.address_components.find(component =>
+        component.types.includes('locality')
+      )?.long_name || null
+      this.form.province = placeResultData.address_components.find(component =>
+        component.types.includes('administrative_area_level_2')
+      )?.long_name || null
+
+      this.form.lat = placeResultData.geometry.location.lat()
+      this.form.long = placeResultData.geometry.location.lng()
+
+      console.log('[addressData] getAddress: ', addressData)
+      console.log('[placeResultData] getAddress: ', placeResultData)
+      console.log('[id] getAddress: ', id)
     },
     handleArtistAvatarUpdate (blob) {
       if (blob instanceof Blob) {
@@ -1212,7 +1192,7 @@ export default {
       this.showSubmitButton = false
       this.form.genres = this.formGenres
 
-      //  if (typeof this.form.avatar === 'string') this.form.avatar = ''
+      if (typeof this.form.avatar === 'string') this.form.avatar = ''
       if (typeof this.form.song === 'string') this.form.song = ''
 
       this.$emit('form', this.form)
