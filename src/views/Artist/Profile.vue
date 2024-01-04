@@ -1012,27 +1012,6 @@ export default {
     console.log('Ref[multiselect]: ', this.$refs.multiselect)
     this.artistOptions()
 
-    // this.$echo.private(`profile.${this.userInfo?.id}`)
-    //   .listen(`.update-member`, (e) =>
-    //   {
-    //     console.log('Member via Pusher [Artist/Profile]: ', e);
-    //     const { response: { members } } = e;
-    //     if (members) this.SET_MEMBERS(members);
-
-    //   })
-
-    //   /*
-    //     1. artistOptions:
-    //     - artist types (artist_types)
-    //     - genres (genre list)
-
-    //     2. fetchProfile
-    //     - account
-    //     - genre
-    //     - members
-    //     - profile
-    //   */
-
     this.form = this.myAccount
     this.form.avatar = ''
     this.uploadedMusic = this.myAccount.song || ''
@@ -1120,12 +1099,6 @@ export default {
       'fetchMember'
     ]),
     ...mapMutations(['SET_PROFILE', 'SET_ARTIST', 'SET_MEMBERS']),
-    // getAddressData: function (addressData, placeResultData, id) {
-    //   this.address = addressData
-    //   console.log('[addressData] getAddress: ', addressData)
-    //   console.log('[placeResultData] getAddress: ', placeResultData)
-    //   console.log('[id] getAddress: ', id)
-    // },
     getAddressData (addressData, placeResultData, id) {
       this.form.address = addressData
       // this.form.street_address = '';
@@ -1134,8 +1107,6 @@ export default {
       )?.long_name || null
       this.form.province = placeResultData.address_components.find(component =>
         component.types.includes('administrative_area_level_2')
-        // administrative_area_level_2 for province
-        // administrative_area_level_1 for region
       )?.long_name || null
 
       this.form.lat = placeResultData.geometry.location.lat()
