@@ -62,6 +62,9 @@ export default {
   methods: {
     getAddressData: function (addressData, placeResultData, id) {
       this.address = addressData
+      console.log('[addressData] getAddress: ', addressData)
+      console.log('[placeResultData] getAddress: ', placeResultData)
+      console.log('[id] getAddress: ', id)
     },
     changeImage (e) {
       const file = URL.createObjectURL(event.target.files[0])

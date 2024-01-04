@@ -1,154 +1,191 @@
 <template>
-<div>
+  <div>
+    <form @submit.prevent="submit">
+      <div class="upload-file-wrapper" v-if="cover">
+        <div class="uploaded-image-wrapper">
+          <div>
+            <img
+              ref="uploadedImage"
+              class="uploaded-image"
+              :src="cover"
+              alt="banner-modal"
+            />
+          </div>
 
-  <form @submit.prevent="submit">
-         
-         <div class="upload-file-wrapper" v-if="cover">
-           <div class="uploaded-image-wrapper" >
-             <div>
-               <img ref="uploadedImage" class="uploaded-image" :src="cover" alt="banner-modal" />
-             </div>
-             
-             <button type="button" class="remove-image" @click="removeBanner" >
-               <span class="material-symbols-outlined">&#xe5cd;</span> 
-             </button>
-           </div>
-         </div>
-       
-       <drag-drop @dragCover="setCover" v-else/>
- 
-       <div class="text-end action-btn-wrap" v-if="showGroupBtn">
-         <button type="button" class="btn cancel" data-bs-dismiss="modal">Cancel</button>
- 
-         <button type="submit" class="btn next" :disabled="isButtonDisabled" v-if="enableNextButton">Next</button>
-         <button type="button" class="btn disabled next" v-else><LoadingIndicator /></button>
-       </div>
- 
-     </form> 
+          <button type="button" class="remove-image" @click="removeBanner">
+            <span class="material-symbols-outlined">&#xe5cd;</span>
+          </button>
+        </div>
+      </div>
 
-</div>   
+      <drag-drop @dragCover="setCover" v-else />
 
+      <div class="text-end action-btn-wrap" v-if="showGroupBtn">
+        <button type="button" class="btn cancel" data-bs-dismiss="modal">
+          Cancel
+        </button>
+
+        <button
+          type="submit"
+          class="btn next"
+          :disabled="isButtonDisabled"
+          v-if="enableNextButton"
+        >
+          Next
+        </button>
+        <button type="button" class="btn disabled next" v-else>
+          <LoadingIndicator />
+        </button>
+      </div>
+    </form>
+  </div>
 </template>
 
 <script>
-import DragDrop from '/src/components/DragDrop.vue';
-import LoadingIndicator from "/src/components/LoadingIndicator.vue";
-import { mapActions, mapGetters, mapState } from 'vuex';
-import Compressor from 'compressorjs';
+import DragDrop from '/src/components/DragDrop.vue'
+import Compressor from 'compressorjs'
+import { mapActions, mapGetters, mapState } from 'vuex'
+import LoadingIndicator from '/src/components/LoadingIndicator.vue'
 
 export default {
   components: {
     DragDrop,
-    LoadingIndicator,
+    LoadingIndicator
   },
   props: {
     accessType: {
       type: String,
       default: 'create',
-      required: false,
-    },
-  
+      required: false
+    }
   },
   setup () {
     return {
-      showGroupBtn: true,
+      showGroupBtn: true
     }
   },
   data: () => ({
     cover: '',
-    enableNextButton: true,
+    enableNextButton: true
   }),
 
   computed: {
-    ...mapGetters([
-      'eventCover',
-    ]),
+    ...mapGetters(['eventCover']),
     ...mapState({
-      form: state => state.events.form,
+      form: (state) => state.events.form
     }),
-    isButtonDisabled(){
-      return this.cover === '';
+    isButtonDisabled () {
+      return this.cover === ''
     }
   },
-  mounted(){
+  mounted () {
     if (this.form.cover) this.cover = this.form.cover
   },
   methods: {
-    ...mapActions([
-      'fetchEventOptions', 'createEvent', 'verifyEvent',
-    ]),
-    toggleShowBtn() {
-      this.$emit('toggle-show-btn');
+    ...mapActions(['fetchEventOptions', 'createEvent', 'verifyEvent']),
+    toggleShowBtn () {
+      this.$emit('toggle-show-btn')
     },
-    setCover(val) {
-  if (val) {
-    const compressor = new Compressor(val, {
-      quality: 0.6,
-      success: (result) => {
-        const formData = new FormData();
-        formData.append('files', result, result.name);
+    setCover (val) {
+      if (val) {
+        const maxSizeBytes = 1024 * 1024 // 1 MB
+        const mediumSizeBytes = 500 * 1024 // 500 KB
+        const largeSizeBytes = 1500 * 1024 // 1.5 MB
+        const skipCompressionSizeBytes = 100 * 1024 // 100 KB
 
-        this.form.cover_photo = result;
-        
-        this.form.cover = URL.createObjectURL(result);
-        
-        console.log('Set Cover:: ', this.form.cover);
-      },
-      error: (err) => {
-        console.log(err.message);
-      },
-    });
-  }
-},
+        let quality
 
-    removeBanner()
-    {
-      this.form.cover = '';
-      this.form.cover_photo = '';
-      this.cover = '';
+        if (val.size < skipCompressionSizeBytes) {
+          // If the file size is less than 100KB, skip compression
+          quality = 1 // Set to 1 to keep original quality
+        } else if (val.size < mediumSizeBytes) {
+          quality = 0.8
+        } else if (val.size < maxSizeBytes) {
+          quality = 0.2
+        } else if (val.size <= largeSizeBytes) {
+          quality = 0.4
+        } else {
+          quality = 0.2
+        }
+        // eslint-disable-next-line no-unused-vars
+        const compressor = new Compressor(val, {
+          quality,
+          success: (result) => {
+            this.form.cover_photo = result
+
+            this.form.cover = URL.createObjectURL(result)
+
+            console.log('Set Cover:: ', this.form.cover)
+          },
+          error: (err) => {
+            console.log(err.message)
+          }
+        })
+      }
     },
-    submit()
-    {
-       this.$emit('next-step');
-       this.$emit('next');
-       this.enableNextButton = false;
+    removeBanner () {
+      this.form.cover = ''
+      this.form.cover_photo = ''
+      this.cover = ''
     },
-
+    submit () {
+      this.$emit('next-step')
+      this.$emit('next')
+      this.enableNextButton = false
+    }
   },
   watch: {
-    showGroupBtn(newVal) {
-      console.log('showBtn updated:', newVal);
+    showGroupBtn (newVal) {
+      console.log('showBtn updated:', newVal)
     },
     form: {
-      handler(val)
-      {
+      handler (val) {
         console.log('[FormModal.vue] Form data updated: ', val)
-        this.isComplete = false;
+        this.isComplete = false
         if (
-          val.event_type !== '' && val.event_name !== '' &&
-          val.street_address !== '' && val.barangay !== '' &&
-          val.city !== '' && val.province !== '' && val.description !== '' &&
-          val.start_date !== '' && val.start_time !== '' && 
-          val.end_date !== '' && val.end_time !== '' && val.cover_photo !== ''
-        ) this.isComplete = true;
+          val.event_type !== '' &&
+          val.event_name !== '' &&
+          val.street_address !== '' &&
+          val.barangay !== '' &&
+          val.city !== '' &&
+          val.province !== '' &&
+          val.description !== '' &&
+          val.start_date !== '' &&
+          val.start_time !== '' &&
+          val.end_date !== '' &&
+          val.end_time !== '' &&
+          val.cover_photo !== ''
+        )
+          // eslint-disable-next-line curly
+          this.isComplete = true
 
-        if (val.start_date !== '' && val.start_time !== '' &&
-          val.end_date !== '' && val.end_time !== '') {
-          this.errorTime = '';
+        if (
+          val.start_date !== '' &&
+          val.start_time !== '' &&
+          val.end_date !== '' &&
+          val.end_time !== ''
+        ) {
+          this.errorTime = ''
 
-          if (!this.$moment(this.eventEnd).isAfter(this.eventStart)) { 
-            this.errorTime = `The end date and time must be a date after or equal to ${this.eventStart}.`;
+          if (!this.$moment(this.eventEnd).isAfter(this.eventStart)) {
+            this.errorTime = `The end date and time must be a date after or equal to ${this.eventStart}.`
           }
-        } else if (val.start_date === '' && val.end_date === ''){
-          this.form.start_date = this.$moment().add(5, 'days').format('YYYY-MM-DD');
-          this.form.end_date = this.$moment().add(5, 'days').format('YYYY-MM-DD');
+        } else if (val.start_date === '' && val.end_date === '') {
+          this.form.start_date = this.$moment()
+            .format('YYYY-MM-DD')
+          this.form.end_date = this.$moment()
+            .format('YYYY-MM-DD')
         }
 
-        
         if (this.accessType !== 'create') {
-          this.form.cover = val.cover_photo;
-          
-          this.cover = (typeof val.cover_photo === 'string') ? val.cover_photo : val?.cover_photo ? URL.createObjectURL(val.cover_photo): '';
+          this.form.cover = val.cover_photo
+
+          this.cover =
+            typeof val.cover_photo === 'string'
+              ? val.cover_photo
+              : val?.cover_photo
+                ? URL.createObjectURL(val.cover_photo)
+                : ''
         } else {
           // this.cover = val.cover_photo ? URL.createObjectURL(val.cover_photo) : '';
           const pattern = new RegExp(
@@ -159,31 +196,27 @@ export default {
               '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
               '(\\#[-a-z\\d_]*)?$', // fragment locator
             'i'
-          );
+          )
 
           if (pattern.test(val.cover_photo)) {
-            this.cover = val.cover_photo;
+            this.cover = val.cover_photo
           } else if (val.cover_photo === '') {
-            this.cover = '';
+            this.cover = ''
           } else {
-            this.cover = URL.createObjectURL(val.cover_photo);
+            this.cover = URL.createObjectURL(val.cover_photo)
           }
         }
-
       },
-      deep:true,
+      deep: true
     },
     eventTypes: {
-      handler(val)
-      {
-
-        if(val) this.form.event_type = val[0];
+      handler (val) {
+        if (val) this.form.event_type = val[0]
       },
-      deep: true,
+      deep: true
     }
   }
 }
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
