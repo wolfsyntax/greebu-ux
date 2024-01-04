@@ -76,7 +76,7 @@ export default {
           data: { status, result }
         } = response
 
-        if (response?.status === 200 && status === 200) {
+        if (statusCode === 200 && status === 200) {
           console.log('Success Result: ', result)
 
           // this.message = 'Updated successfully';

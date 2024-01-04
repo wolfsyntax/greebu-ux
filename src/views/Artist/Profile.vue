@@ -802,15 +802,6 @@
                     of 10MB.
                   </p>
                 </div>
-
-                <!-- <div
-                  v-for="err in error?.song"
-                  :key="err"
-                  class="d-flex align-items-center audio-file-format errorMessage"
-                >
-                  <span class="material-symbols-outlined info">&#xe88e;</span>
-                  <p class="max-file-size">{{ err }}</p>
-                </div> -->
               </div>
               <!-- end of song-preview -->
 
