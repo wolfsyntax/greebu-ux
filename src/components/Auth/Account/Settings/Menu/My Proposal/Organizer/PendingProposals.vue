@@ -1,6 +1,6 @@
 <template>
   <div>
-    <show-toast-msg :message="message" :description="description" v-if="showToastComponent" />
+    <show-toast-msg :message="message" :description="description" @hide-toast="hideToast" v-if="showToastComponent" />
   </div>
 
   <div v-for="(proposal, index) in proposals" :key="index">
@@ -31,7 +31,6 @@ export default {
   data: () => ({
     showModal: false,
     showFromOrganizerModal: false,
-    showToast: false,
     optionType: 'pending',
 
     message: 'You accepted the request proposal',
@@ -45,24 +44,21 @@ export default {
       console.log('Toggle Proposal: ', proposal)
       this.showModal = true
     },
+    hideToast () {
+      this.showToastComponent = false
+    },
     closeModal () {
       this.showModal = false
     },
     showToastMessage () {
-      this.showModal = false
       this.showToastComponent = true
-      setTimeout(() => {
-        this.showToastComponent = false
-      }, 1000)
-    },
-    closeFromOrganizerModal () {
-      this.showFromOrganizerModal = false
     },
     onModalPending () {
-      this.showToast = true
-      setTimeout(() => {
-        this.showToast = false
-      }, 7000)
+    //  this.showToast = true
+      // setTimeout(() => {
+      //   this.showToast = false
+      // }, 7000)
+      this.showToastComponent = true
       this.showModal = false
     }
   },

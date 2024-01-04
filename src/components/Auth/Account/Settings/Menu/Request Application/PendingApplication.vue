@@ -3,6 +3,7 @@
     <show-toast-msg
       :message="message"
       :description="description"
+      @hide-toast="hideToast"
       v-if="showToastComponent"
     />
   </div>
@@ -41,7 +42,7 @@ export default {
   components: {
     RequestApplicationModal,
     RequestCard,
-    ShowToastMsg
+    'show-toast-msg': ShowToastMsg
   },
   data: () => ({
     showModal: false,
@@ -60,6 +61,9 @@ export default {
     closeModal () {
       this.$store.commit('setProposal')
       this.showModal = false
+    },
+    hideToast () {
+      this.showToastComponent = false
     },
     showToastMessage () {
       this.showModal = false

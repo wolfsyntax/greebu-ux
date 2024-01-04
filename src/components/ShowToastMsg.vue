@@ -2,7 +2,7 @@
   <div
     class="d-flex justify-content-between"
     id="showToastMsg"
-    v-if="showToast"
+
   >
     <div class="d-flex accepted-wrapper">
       <span class="material-symbols-rounded check-circle">&#xe86c;</span>
@@ -13,7 +13,7 @@
     </div>
 
     <div class="close-toast">
-      <span class="material-symbols-rounded close-icon" @click="hideToast"
+      <span class="material-symbols-rounded close-icon" @click="$emit('hide-toast')"
         >&#xe5cd;</span
       >
     </div>
@@ -29,14 +29,11 @@ export default {
   },
   data () {
     return {
-      showToast: true
+      // showToast: true
     }
   },
   computed: {},
   methods: {
-    hideToast () {
-      this.showToast = false
-    }
   }
 }
 </script>

@@ -160,19 +160,15 @@ export default {
       // this.$emit('close-modal')
       this.$emit('accept-request')
       // this.hideModal();
-    },
-    cancel () {
-      //  console.log('cancel proposal is clicked.')
-      // this.$emit('close-modal', '');
-    },
-    showToast () {
-      this.isModalOpen = true
-      // You can set the message and description here or load them from an API.
-      // Example:
-      // this.message = "New message";
-      // this.description = "New description";
-      this.showToastComponent = true
     }
+    // cancel () {
+    //    console.log('cancel proposal is clicked.')
+    //   this.$emit('close-modal', '');
+    // },
+    // showToast () {
+    //   this.isModalOpen = true
+    //   this.showToastComponent = true
+    // }
   }
 }
 </script>
