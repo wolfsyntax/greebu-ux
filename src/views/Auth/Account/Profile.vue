@@ -71,7 +71,6 @@ export default {
         this.errors = []
 
         const {
-          // eslint-disable-next-line no-unused-vars
           status: statusCode,
           data: { status, result }
         } = response
