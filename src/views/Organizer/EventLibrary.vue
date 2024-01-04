@@ -19,7 +19,6 @@
         </li>
       </ul>
 
-
       <div v-if="activeItem === 'Featured Artist'" class="tab-pane active">
 
         <!-- <NoLibrary :title="FeaturedArtistTitle" :showFeaturedArtistBtn="true"/> -->
@@ -28,7 +27,7 @@
          <div id="ShowArtistLists">
               <div class="row">
                 <div class="col-sm-12 col-md-6 col-lg-3" v-for="(artist, itemIndex) in artists" :key="itemIndex">
-                  
+
                   <div class="card">
                     <img :src="artist.avatar" class="card-img-top img-fluid" loading="lazy" alt="Trending Artist"/>
                     <div class="middle">
@@ -36,7 +35,7 @@
                     </div>
                     <div class="card-body">
 
-                      <div> 
+                      <div>
 
                         <div class="artist">
                           <h5 class="card-title">{{ artist.artist_name }}</h5>
@@ -49,7 +48,10 @@
                         </div>
                         <div class="audio-btn">
                           <div class="play-btn">
-                            <button type="button" class="btn border-0" @click="playArtistSongs(itemIndex)">
+                            <!-- <button type="button" class="btn border-0" @click="playArtistSongs(itemIndex)">
+                              <span class="material-symbols-sharp">&#xe1c4;</span>
+                            </button> -->
+                            <button type="button" class="btn border-0">
                               <span class="material-symbols-sharp">&#xe1c4;</span>
                             </button>
                           </div>
@@ -63,15 +65,15 @@
                   </div>
 
                 </div>
-              </div> 
-        </div> 
+              </div>
+        </div>
 
       </div> <!-- end of Featured Artist tab-->
 
       <div v-else-if="activeItem === 'Events Video'" class="tab-pane">
 
         <NoLibrary :title="EventsVideoTitle" :showEventVideosBtn="true" />
-        
+
       </div> <!-- end of Events Video tab-->
 
       <div v-else-if="activeItem === 'Created Events'" class="tab-pane">
@@ -80,7 +82,6 @@
 
         <!-- <MyEvents /> -->
       </div>
-   
 
     </div>
     </section>
@@ -90,64 +91,58 @@
 </template>
 
 <script>
-import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
-import InfoModal from '@/components/Artist/Library/InfoModal.vue';
-import Layout from '/src/components/Layouts/Layout.vue';
-import { Modal } from "bootstrap";
-import NoLibrary from '/src/components/NoLibrary.vue';
-import Card from '/src/components/Artist/Card.vue';
-import MyEvents from '/src/components/Dashboard/Tabs/Events/Index.vue';
-import ArtistDetails from '/src/components/Artist/ArtistDetails.vue';
+import { mapGetters, mapState, mapActions } from 'vuex'
+import InfoModal from '@/components/Artist/Library/InfoModal.vue'
+import Layout from '/src/components/Layouts/Layout.vue'
+import NoLibrary from '/src/components/NoLibrary.vue'
+import ArtistDetails from '/src/components/Artist/ArtistDetails.vue'
 
 export default {
   components: {
     InfoModal,
     layout: Layout,
     NoLibrary,
-    MyEvents,
-    Card,
-    ArtistDetails,
+    ArtistDetails
   },
   props: {
-    artist: Object,
+    artist: Object
   },
-  data()
-  {
+  data () {
     return {
       createdEventsTitle: 'No Song Uploaded Events',
 
-    navItems: ['Featured Artist', 'Events Video', 'Created Events'],
-    activeItem: 'Featured Artist',
+      navItems: ['Featured Artist', 'Events Video', 'Created Events'],
+      activeItem: 'Featured Artist',
 
-    FeaturedArtistTitle: 'No featured artist to display',
-    EventsVideoTitle: 'No videos to display',
-    createdEventsTitle: 'No events to display',
+      FeaturedArtistTitle: 'No featured artist to display',
+      EventsVideoTitle: 'No videos to display'
+      //  createdEventsTitle: 'No events to display',
     }
   },
-  mounted() {
-},
+  mounted () {
+  },
 
-  created() {
+  created () {
 
   },
   computed: {
     ...mapState({
       user: state => state.user,
-      artists: (state) => state.artist.artists,
+      artists: (state) => state.artist.artists
     }),
-    ...mapGetters(['isLoggedIn',]),
+    ...mapGetters(['isLoggedIn'])
   },
   methods: {
     ...mapActions([
-      'fetchArtists', 'artistOptions',
+      'fetchArtists', 'artistOptions'
     ]),
-  
-    openModal(){
-      this.$store.commit('SET_ARTIST', this.artist);
-    },
-    
-  },
-  
+
+    openModal () {
+      this.$store.commit('SET_ARTIST', this.artist)
+    }
+
+  }
+
 }
 </script>
 
@@ -207,7 +202,7 @@ export default {
 #ShowArtistLists .card:hover .middle {
     opacity: 1;
 }
-#ShowArtistLists .card .card-body{  
+#ShowArtistLists .card .card-body{
   width: 100%;
   padding: 0px 0.2rem 0px;
 }
@@ -301,7 +296,7 @@ export default {
   line-height: 1rem;
 }
 
-#ShowArtistLists .card .card-body{ 
+#ShowArtistLists .card .card-body{
   padding: 0.5rem 0.375rem 0.5rem;
 }
 #ShowArtistLists .card .card-title{
@@ -339,7 +334,5 @@ export default {
 }
 
 }
-
-
 
 </style>

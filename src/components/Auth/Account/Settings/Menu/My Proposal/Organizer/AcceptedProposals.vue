@@ -2,22 +2,19 @@
   <div v-for="(proposal, index) in proposals" :key="index">
     <event-card :proposal="proposal" @view="toggleProposal" />
     <proposal-modal :show="showModal" :option="optionType"
-      @close-modal="closeModal" @accept-request="onModalAccepted" 
+      @close-modal="closeModal" @accept-request="onModalAccepted"
     />
-  </div> 
+  </div>
 </template>
 
 <script>
 
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapActions } from 'vuex'
 
-import EventCard from './EventCardProposal.vue';
-import ProposalModal from './ProposalModal.vue';
+import EventCard from './EventCardProposal.vue'
+import ProposalModal from './ProposalModal.vue'
 export default {
-  setup()
-  {
-
-
+  setup () {
     return {}
   },
   components: {
@@ -25,47 +22,44 @@ export default {
     ProposalModal
   },
   data: () => ({
-    
+
     showModal: false,
     showFromOrganizerModal: false,
     showToast: false,
-    optionType: 'accepted',
+    optionType: 'accepted'
   }),
   methods: {
-    ...mapActions(['fetchMyProposals', ]),
-    toggleProposal(proposal) {
+    ...mapActions(['fetchMyProposals']),
+    toggleProposal (proposal) {
       console.log('Toggle Proposal: ', proposal)
-      
-      this.showModal = true;
+
+      this.showModal = true
     },
-    closeModal()
-    {
-      this.showModal = false;
+    closeModal () {
+      this.showModal = false
     },
-    closeFromOrganizerModal()
-    {
-      this.showFromOrganizerModal = false;
+    closeFromOrganizerModal () {
+      this.showFromOrganizerModal = false
     },
-    onModalAccepted()
-    {
-      this.showToast = true;
-      setTimeout(() =>
-      {
-        this.showToast = false;
-      }, 7000);
-      this.showModal = false;
-    },    
-  },
-  mounted() {
-    if (this.proposals.length === 0) {
-      this.fetchMyProposals('accepted');
+    onModalAccepted () {
+      this.showToast = true
+      // setTimeout(() =>
+      // {
+      //   this.showToast = false;
+      // }, 7000);
+      this.showModal = false
     }
   },
-  computed: { 
-    ...mapState({
-      proposals: state => state.artistProposal.acceptedProposals,
-    })
+  mounted () {
+    if (this.proposals.length === 0) {
+      this.fetchMyProposals('accepted')
+    }
   },
+  computed: {
+    ...mapState({
+      proposals: state => state.artistProposal.acceptedProposals
+    })
+  }
 }
 </script>
 
