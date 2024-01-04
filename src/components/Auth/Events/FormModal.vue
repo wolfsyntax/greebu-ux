@@ -233,7 +233,6 @@
 
 <script>
 import { mapActions, mapGetters, mapState } from 'vuex'
-import Compressor from 'compressorjs'
 import LoadingIndicator from '/src/components/LoadingIndicator.vue'
 
 export default {
@@ -259,39 +258,6 @@ export default {
   }),
   methods: {
     ...mapActions(['fetchEventOptions', 'createEvent', 'verifyEvent']),
-    setCover (val, files) {
-      if (val) {
-        const maxSizeBytes = 1024 * 1024 // 1 MB
-        const mediumSizeBytes = 500 * 1024 // 500 KB
-        const largeSizeBytes = 1500 * 1024 // 1.5 MB
-        const skipCompressionSizeBytes = 100 * 1024 // 100 KB
-        let quality
-        if (files.size < skipCompressionSizeBytes) {
-          // If the file size is less than 100KB, skip compression
-          quality = 1 // Set to 1 to keep original quality
-        } else if (files.size < mediumSizeBytes) {
-          quality = 0.8
-        } else if (files.size < maxSizeBytes) {
-          quality = 0.2
-        } else if (files.size <= largeSizeBytes) {
-          quality = 0.4
-        } else {
-          quality = 0.2
-        }
-
-        const compressor = new Compressor(val, {
-          quality,
-          success: (result) => {
-            const formData = new FormData()
-            formData.append('files', result, result.name)
-            this.form.cover_photo = result
-            this.form.cover = URL.createObjectURL(result)
-            this.cover = URL.createObjectURL(result)
-          }
-        })
-        console.log('[LOG] Compressor: ', compressor)
-      }
-    },
     removeBanner () {
       this.form.cover = ''
       this.form.cover_photo = ''
