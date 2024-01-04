@@ -247,7 +247,6 @@
                   </div>
                 </div>
 
-                  <!-- Display separate text inputs when an address is selected -->
                   <div class="mt-2 mb-3" style=""> <!-- v-if="form.address" -->
                     <div class="form-group">
                     <div class="row">
@@ -299,7 +298,6 @@
                       autocomplete="off"
                     /> -->
                   </div>
-
                 <!-- <div>
                   <div class="row">
                       <div class="col-6">
@@ -978,6 +976,8 @@ export default {
         street_address: null,
         city: null,
         province: null,
+        lat: null,
+        long: null,
         youtube: null,
         twitter: null,
         instagram: null,
@@ -1240,7 +1240,6 @@ export default {
     //   console.log('[id] getAddress: ', id)
     // },
     getAddressData (addressData, placeResultData, id) {
-      // Update form properties
       this.form.address = addressData
       // this.form.street_address = '';
       this.form.city = placeResultData.address_components.find(component =>
@@ -1251,6 +1250,9 @@ export default {
         // administrative_area_level_2 for province
         // administrative_area_level_1 for region
       )?.long_name || null
+
+      this.form.lat = placeResultData.geometry.location.lat()
+      this.form.long = placeResultData.geometry.location.lng()
 
       console.log('[addressData] getAddress: ', addressData)
       console.log('[placeResultData] getAddress: ', placeResultData)
