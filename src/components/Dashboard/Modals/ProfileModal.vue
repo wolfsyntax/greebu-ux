@@ -323,6 +323,7 @@ export default {
           this.$refs.bannerClose.click()
           this.removeBanner()
           console.log('Closing Banner')
+          this.$emit('show-save-msg')
         },
         error (err) {
           console.error('Image compression failed:', err.message)

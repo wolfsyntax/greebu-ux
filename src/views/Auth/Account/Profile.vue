@@ -1,132 +1,141 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div>
-    <artist-profile @form="submit" :error="errors" :message="message" :hasNoError="isValid" :formData="form" v-if="userRole === 'artists'"/>    
-    <organizer-profile @form="submit" :error="errors" :message="message" :hasNoError="isValid" v-else-if="userRole === 'organizer'" />
-    <provider-profile @form="submit" :error="errors" v-else-if="userRole === 'service-provider'" />
-    <customer-profile @form="submit" :error="errors" v-else-if="userRole === 'customers'" />
+    <artist-profile
+      @form="submit"
+      :error="errors"
+      :message="message"
+      :hasNoError="isValid"
+      :formData="form"
+      v-if="userRole === 'artists'"
+    />
+    <organizer-profile
+      @form="submit"
+      :error="errors"
+      :message="message"
+      :hasNoError="isValid"
+      v-else-if="userRole === 'organizer'"
+    />
+    <provider-profile
+      @form="submit"
+      :error="errors"
+      v-else-if="userRole === 'service-provider'"
+    />
+    <customer-profile
+      @form="submit"
+      :error="errors"
+      v-else-if="userRole === 'customers'"
+    />
     <p v-else>No Profile Exists</p>
-
   </div>
 </template>
 
 <script>
+import ArtistProfile from '@/views/Artist/Profile.vue' // src\views\Artist\Profile.vue
+import CustomerProfile from '@/views/Customer/Profile.vue' // src\views\Customer\Profile.vue
+import OrganizerProfile from '@/views/Organizer/Profile.vue' // src\views\Organizer\Profile.vue
+import ProviderProfile from '@/views/Services/Profile.vue' // src\views\Services\Profile.vue
 
-import ArtistProfile from '/src/views/Artist/Profile.vue';  // src\views\Artist\Profile.vue
-import CustomerProfile from '/src/views/Customer/Profile.vue'; // src\views\Customer\Profile.vue
-import OrganizerProfile from '/src/views/Organizer/Profile.vue'; // src\views\Organizer\Profile.vue
-import ProviderProfile from '/src/views/Services/Profile.vue'; // src\views\Services\Profile.vue
-
-import { mapGetters, mapState, mapActions, mapMutations } from "vuex";
+import { mapGetters, mapState, mapActions, mapMutations } from 'vuex'
 
 export default {
   components: {
     ArtistProfile,
     CustomerProfile,
     OrganizerProfile,
-    ProviderProfile,
+    ProviderProfile
   },
   setup () {
-    
-
     return {}
   },
   data: () => ({
     form: {},
     errors: [],
-    message: '',
+    message: ''
   }),
   methods: {
-    ...mapActions([
-      'accountProfile',
-    ]),
+    ...mapActions(['accountProfile']),
     ...mapMutations([
-      'SET_ACCOUNT', 'SET_PROFILE', 'SET_AUTH',
-      'SET_ARTIST_GENRES', 'SET_MEMBERS',
+      'SET_ACCOUNT',
+      'SET_PROFILE',
+      'SET_AUTH',
+      'SET_ARTIST_GENRES',
+      'SET_MEMBERS'
     ]),
-    submit(value)
-    {
+    submit (value) {
+      console.log(`Account Profile for [${this.userRole}] to send: `, value)
+      this.form = value
 
-      console.log(`Account Profile for [${this.userRole}] to send: `, value);
-      this.form = value;
+      this.accountProfile(value).then((response) => {
+        console.log('Account Profile response: ', response)
+        this.errors = []
 
-      this.accountProfile(value)
-        .then(response =>
-        {
-          console.log('Account Profile response: ', response);
-          this.errors = [];
+        const {
+          // eslint-disable-next-line no-unused-vars
+          status: statusCode,
+          data: { status, result }
+        } = response
 
-          const { status: statusCode, data: {status, result}} = response;
+        if (response?.status === 200 && status === 200) {
+          console.log('Success Result: ', result)
 
-          if (response?.status === 200 && status === 200)
-          {
+          // this.message = 'Updated successfully';
+          window.scrollBy(-10000, -10000)
+          this.$forceUpdate()
+          // this.$router.push('/artist');
 
-            console.log(`Success Result: `, result);
-
-           // this.message = 'Updated successfully';
-            window.scrollBy(-10000, -10000);
-            this.$forceUpdate();
-           // this.$router.push('/artist');
-
+          setTimeout(() => {
+            this.message = 'Personal information updated successfully.'
             setTimeout(() => {
-              this.message = 'Personal information updated successfully.';
-              setTimeout(() => {
-                this.message = '';
-              }, 100000);
-            }, 1000);
+              this.message = ''
+            }, 100000)
+          }, 500)
+        } else {
+          console.log('Error Result: ', result)
 
-          } else {
+          this.isValid = false
+          const { errors } = result
+          if (errors) this.errors = errors
 
-            console.log(`Error Result: `, result);
-            
-            this.isValid = false;
-            const { errors } = result;
-            if (errors) this.errors = errors;
-
-            this.message = '';
-            window.scrollBy(-10000, -10000);
-            this.$forceUpdate();
-            
-          }
-          
-        });
-    },
+          this.message = ''
+          window.scrollBy(-10000, -10000)
+          this.$forceUpdate()
+        }
+      })
+    }
   },
-  mounted()
-  { 
+  mounted () {
+    // this.$echo.private(`profile.${this.userInfo.id}`)
+    //   .listen(`.update-profile`, (e) =>
+    //   {
+    //     console.log('Profile updated via Pusher: ', e);
+    //     const { response } = e;
+    //     const { account, profile, user } = response;
+    //     if(account)this.SET_ACCOUNT(account);
+    //     if (profile) this.SET_PROFILE(profile);
+    //     if (user) this.SET_AUTH(user);
 
-      // this.$echo.private(`profile.${this.userInfo.id}`)
-      //   .listen(`.update-profile`, (e) =>
-      //   {
-      //     console.log('Profile updated via Pusher: ', e);
-      //     const { response } = e;
-      //     const { account, profile, user } = response;
-      //     if(account)this.SET_ACCOUNT(account);
-      //     if (profile) this.SET_PROFILE(profile);
-      //     if (user) this.SET_AUTH(user);
+    //     if (this.userRole === 'artists') {
 
-      //     if (this.userRole === 'artists') {
+    //       const { genres, members } = response;
 
-      //       const { genres, members } = response;
+    //       // console.log('Band Members: ', members);
+    //       if (genres) this.SET_ARTIST_GENRES(genres);
+    //       if (members) this.SET_MEMBERS(members);
 
-      //       // console.log('Band Members: ', members);
-      //       if (genres) this.SET_ARTIST_GENRES(genres);
-      //       if (members) this.SET_MEMBERS(members);
+    //       this.$store.dispatch('artistOptions');
+    //     }
+    //   })
 
-      //       this.$store.dispatch('artistOptions');
-      //     }
-      //   })
-
-    if (!this.isLoggedIn) this.$router.push('/');
+    if (!this.isLoggedIn) this.$router.push('/')
   },
   computed: {
-    ...mapGetters(["userInfo", "info", "token", "isLoggedIn", 'userRole']),
+    ...mapGetters(['userInfo', 'info', 'token', 'isLoggedIn', 'userRole']),
     ...mapState({
-      users: (state) => state.user,
-    }),
-  },
+      users: (state) => state.user
+    })
+  }
 }
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
