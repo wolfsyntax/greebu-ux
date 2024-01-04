@@ -1,6 +1,11 @@
 <template>
   <div>
-    <show-toast-msg :message="message" :description="description" @hide-toast="hideToast" v-if="showToastComponent" />
+    <show-toast-msg
+      :message="message"
+      :description="description"
+      @hide-toast="showToastComponent = false"
+      v-if="showToastComponent"
+    />
   </div>
 
   <div v-for="(proposal, index) in proposals" :key="index">
@@ -54,10 +59,6 @@ export default {
       this.showToastComponent = true
     },
     onModalPending () {
-    //  this.showToast = true
-      // setTimeout(() => {
-      //   this.showToast = false
-      // }, 7000)
       this.showToastComponent = true
       this.showModal = false
     }

@@ -3,7 +3,7 @@
     <show-toast-msg
       :message="message"
       :description="description"
-      @hide-toast="hideToast"
+      @hide-toast="showToastComponent = false"
       v-if="showToastComponent"
     />
   </div>
