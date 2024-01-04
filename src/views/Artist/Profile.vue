@@ -893,7 +893,7 @@ export default {
         bio: null,
         avatar: null,
         address: null,
-        street_address: null,
+        street_address: '',
         city: null,
         province: null,
         lat: null,
