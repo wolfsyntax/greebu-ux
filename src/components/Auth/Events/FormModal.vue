@@ -1,21 +1,6 @@
 <template>
   <div>
     <form class="required-fields" @submit.prevent="submit">
-      <!-- <div class="upload-file-wrapper" v-if="cover">
-        <div class="uploaded-image-wrapper" >
-          <div>
-            <img ref="uploadedImage" class="uploaded-image" :src="cover" alt="banner-modal" />
-          </div>
-
-          <button type="button" class="remove-image" @click.prevent="removeBanner">
-            <span class="material-symbols-outlined">&#xe5cd;</span>
-          </button>
-        </div>
-      </div>
-
-      <drag-drop @dragCover="setCover" v-else/>
-      <div v-for="err in error?.cover_photo" :key="err" class="text-center text-danger">{{ err }}</div> -->
-
       <div class="form-group">
         <label for="eventType">Event Type</label>
         <select
@@ -184,11 +169,6 @@
             :min="$moment().add(3, 'hours').format('h:mm a')"
             @change="validateStartTime"
           />
-          <!-- <div v-if="error?.start_time" class="text-danger">
-            <div v-for="err in error?.start_time" :key="err" class="text-danger">
-            {{ err }}
-            </div>
-          </div> -->
         </div>
 
         <div class="form-group">
@@ -253,8 +233,6 @@
 
 <script>
 import { mapActions, mapGetters, mapState } from 'vuex'
-import DragDrop from '/src/components/DragDrop.vue'
-import LoadingVue from '/src/components/Loading.vue'
 import Compressor from 'compressorjs'
 import LoadingIndicator from '/src/components/LoadingIndicator.vue'
 
@@ -270,10 +248,6 @@ export default {
     return {}
   },
   components: {
-    // eslint-disable-next-line vue/no-unused-components
-    DragDrop,
-    // eslint-disable-next-line vue/no-unused-components
-    LoadingVue,
     LoadingIndicator
   },
   data: () => ({
@@ -304,7 +278,7 @@ export default {
         } else {
           quality = 0.2
         }
-        // eslint-disable-next-line no-unused-vars
+
         const compressor = new Compressor(val, {
           quality,
           success: (result) => {
@@ -315,6 +289,7 @@ export default {
             this.cover = URL.createObjectURL(result)
           }
         })
+        console.log('[LOG] Compressor: ', compressor)
       }
     },
     removeBanner () {
@@ -332,9 +307,9 @@ export default {
       console.log('Emit: ', this.form)
       if (this.accessType !== 'create') {
         console.log('Form modal submit: ', typeof this.form.cover_photo)
-        if (typeof this.form.cover_photo === 'string')
-          // eslint-disable-next-line curly
+        if (typeof this.form.cover_photo === 'string') {
           delete this.form.cover_photo
+        }
         delete this.form.lat
         delete this.form.long
         this.form.mode = 'update'
@@ -353,9 +328,9 @@ export default {
             result: { errors }
           } = err
           if (status === 500) {
-            if (typeof errors === 'string' && errors === 'Unauthenticated.')
-              // eslint-disable-next-line curly
+            if (typeof errors === 'string' && errors === 'Unauthenticated.') {
               this.$store.dispatch('signout')
+            }
           }
           this.error = errors
         })
@@ -369,12 +344,13 @@ export default {
       } else {
         this.$set(this.error, 'start_time', null)
       }
+    },
+    resetErrorTime (val = '') {
+      this.errorTime = val
     }
   },
   created () {},
   mounted () {
-    // this.cover = this.form.cover_photo ? URL.createObjectURL(this.form.cover_photo) : '';
-
     console.log('Event Data: ', this.formData, this.form)
     if (
       this.form?.event_type !== '' &&
@@ -403,21 +379,7 @@ export default {
         console.log('Event Form: ', this.form)
         this.step = 'detail'
       })
-    // const myModal = document.getElementById('eventsModal');
-    // myModal.addEventListener('shown.bs.modal', () =>
-    // {
-    //   this.$store.commit('RESET_EVENT_FORM')
-    //   // this.form.event_type = this.eventTypes[0];
-    //   this.step = 'detail';
-    // });
 
-    // myModal.addEventListener('hide.bs.modal', () =>
-    // {
-    //   this.$store.commit('RESET_EVENT_FORM')
-    //   this.step = 'detail';
-    //   this.cover = '';
-
-    // });
     const currentDateTime = this.$moment()
     this.form.start_date = currentDateTime.format('YYYY-MM-DD')
     this.form.end_date = currentDateTime.format('YYYY-MM-DD')
@@ -447,12 +409,10 @@ export default {
     validInput () {
       if (this.isComplete) {
         if (this.$moment(this.eventEnd).isAfter(this.eventStart)) {
-          // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-          this.errorTime = ''
+          this.resetErrorTime()
           return true
         } else {
-          // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-          this.errorTime = `The end date and time must be a date after or equal to ${this.eventStart}.`
+          this.resetErrorTime(`The end date and time must be a date after or equal to ${this.eventStart}.`)
         }
       }
 
@@ -477,9 +437,9 @@ export default {
           val.end_date !== '' &&
           val.end_time !== '' &&
           val.cover_photo !== ''
-        )
-          // eslint-disable-next-line curly
+        ) {
           this.isComplete = true
+        }
 
         if (
           val.start_date !== '' &&
@@ -528,14 +488,6 @@ export default {
             this.cover = URL.createObjectURL(val.cover_photo)
           }
         }
-        // if (this.accessType === 'create') this.cover = val.cover_photo ? URL.createObjectURL(val.cover_photo) : '';
-        // else if (this.accessType === 'edit') {
-        //   this.form.cover = val.cover_photo;
-        //   // this.form.cover_photo = val.cover_photo;
-
-        //   this.cover = val.cover_photo;
-        //   console.log('Event cover photo: ', val);
-        // }
       },
       deep: true
     },

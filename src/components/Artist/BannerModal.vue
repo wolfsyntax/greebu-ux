@@ -94,10 +94,6 @@
               file, with a minimum size of 400x150 pixels, clear, and under 2MB.
             </p>
           </div>
-          <!-- <div>
-        <p>Image Width: {{ imageWidth }} pixels</p>
-        <p>Image Height: {{ imageHeight }} pixels</p>
-      </div> -->
         </div>
         <!-- end of modal-body -->
 
@@ -127,8 +123,7 @@
 </template>
 
 <script>
-// eslint-disable-next-line no-unused-vars
-import { mapGetters, mapState, mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
   setup () {
@@ -179,12 +174,11 @@ export default {
   methods: {
     ...mapActions(['updateBanner']),
     change ({ coordinates, canvas }) {
-      // console.log('Cropper: ', coordinates, canvas)
-      // this.cropImage = canvas;
+      console.log('Cropper: ', coordinates, canvas)
     },
     getCropImage (e) {
       // eslint-disable-next-line no-unused-vars
-      const { coordinates, canvas, image } = (this.generateImage =
+      const { canvas } = (this.generateImage =
         this.$refs.cropper.getResult())
 
       this.showImage = true
@@ -227,17 +221,13 @@ export default {
         console.log('Not valid image')
         return false
       }
-
-      // this.form.cover_photo = e.target.files[0];
-      // this.banner = URL.createObjectURL(e.target.files[0]);
       this.handleCoverImage(files)
     },
 
     uploadCover () {
       this.isLoading = true
 
-      // eslint-disable-next-line no-var
-      var formData = new FormData()
+      const formData = new FormData()
       formData.append('cover_photo', this.form.cover_photo, this.filename)
       this.updateBanner(formData)
         // this.updateBanner(this.form, this.generateImage)

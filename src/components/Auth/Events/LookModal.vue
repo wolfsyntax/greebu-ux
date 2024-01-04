@@ -100,7 +100,6 @@
 </template>
 
 <script>
-// import LoadingIndicator from "/src/components/LoadingIndicator.vue";
 import { mapActions, mapGetters, mapState } from 'vuex'
 import Multiselect from '@vueform/multiselect'
 
@@ -134,7 +133,6 @@ export default {
       this.look_for = 'artist'
       this.lookTypes = this.artistType
     } else {
-      console.log('Form via LookModal: ', this.form)
       this.look_for = this.form.look_for
       this.requirement = this.form.requirement
       console.log('Edit look form look type: ', this.form.look_types, this.look_for, this.requirement)
@@ -142,7 +140,6 @@ export default {
     }
 
     document.getElementById(this.accessType === 'create' ? 'createEventModal' : 'editEventModal').addEventListener('hide.bs.modal', () => {
-      console.log('Reset event form via LookModal')
       this.$store.commit('RESET_EVENT_FORM')
       this.step = 'detail'
       this.lookTypes = []
@@ -176,10 +173,8 @@ export default {
 
     },
     fetchArtistType (query) {
-      console.log('Fetch Artist Type: ', query)
       return this.artistType.map(function (obj) {
         const words = obj.split(' ')
-        console.log('Fetch Artist Type [word]: ', words)
         return {
           value: obj,
           text: words.map((word) => {
@@ -195,7 +190,7 @@ export default {
         return {
           value: obj,
           text: words.map((word) => {
-            return word[0].toUpperCase() + word.substring(1)
+            return word[0]?.toUpperCase() + word.substring(1)
           }).join(' ')
         }
       })
