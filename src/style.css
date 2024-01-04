@@ -14429,6 +14429,7 @@ header nav {
   .events-showing .seeking-for .type-artist {
     font-size: 0.6375rem;
     margin: 0 0.3rem 0rem 0;
+    padding: 0.28rem 0.4rem;
   }
   #eventDetailsModal .looking-for-wrap .type-artist {
     font-size: 0.6875rem;
