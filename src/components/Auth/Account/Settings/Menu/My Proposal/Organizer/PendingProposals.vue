@@ -10,10 +10,10 @@
 
   <div v-for="(proposal, index) in proposals" :key="index">
     <event-card :proposal="proposal" @view="toggleProposal" />
-    <proposal-modal :show="showModal" :option="optionType"
+  </div>
+  <proposal-modal :show="showModal" :option="optionType"
       @close-modal="closeModal" @accept-request="onModalPending" @show-toast-msg="showToastMessage"
     />
-  </div>
 </template>
 
 <script>
