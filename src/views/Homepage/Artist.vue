@@ -160,7 +160,7 @@
             <div class="form-group">
               <label>Location</label>
               <select class="form-select" aria-label="Default select example">
-                <option value="" selected>&emsp;</option>
+                <option value="" selected>Select a Location</option>
                 <option>Naga City</option>
                 <option>Legazpi City</option>
               </select>
