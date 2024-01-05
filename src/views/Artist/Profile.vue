@@ -858,7 +858,7 @@ export default {
         artist_name: null,
         genres: [],
         bio: null,
-        avatar: null,
+        // avatar: null,
         address: null,
         street_address: '',
         city: null,
@@ -1116,6 +1116,15 @@ export default {
       console.log('[placeResultData] getAddress: ', placeResultData)
       console.log('[id] getAddress: ', id)
     },
+    showSaveProfileMsg () {
+      setTimeout(() => {
+        this.showToastComponent = true
+
+        setTimeout(() => {
+          this.showToastComponent = false
+        }, 7000)
+      }, 500)
+    },
     handleArtistAvatarUpdate (blob) {
       if (blob instanceof Blob) {
         this.parentAvatar = URL.createObjectURL(blob)
@@ -1192,7 +1201,7 @@ export default {
       this.showSubmitButton = false
       this.form.genres = this.formGenres
 
-      if (typeof this.form.avatar === 'string') this.form.avatar = ''
+      // if (typeof this.form.avatar === 'string') this.form.avatar = ''
       if (typeof this.form.song === 'string') this.form.song = ''
 
       this.$emit('form', this.form)
