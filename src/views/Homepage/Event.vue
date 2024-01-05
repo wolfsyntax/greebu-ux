@@ -88,7 +88,7 @@
                 aria-label="Default select example"
                 v-model="event_type"
               >
-                <option value="" selected>&emsp;</option>
+                <option value="" selected>Select a type of event</option>
                 <option
                   v-for="(event_type, index) in eventTypes"
                   :key="index"
@@ -104,6 +104,7 @@
               <multiselect
                 v-model="city"
                 mode="single"
+                placeholder="Select a Location"
                 :close-on-select="false"
                 @select="filterByCity"
                 @deselect="filterByCity"
@@ -128,7 +129,7 @@
             <div class="form-group">
               <label>Event date</label>
               <select class="form-select" aria-label="Default select example">
-                <option value="" selected>&emsp;</option>
+                <option value="" selected>Select an event date</option>
                 <option>This Month Events</option>
                 <option>Upcoming Events</option>
                 <option>Past Events</option>
