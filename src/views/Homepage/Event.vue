@@ -454,7 +454,7 @@ export default {
       pastPagination: (state) => state.events.pastPagination,
       cities: (state) =>
         state.cities.map(function (city) {
-          return city.name
+          return city
         }),
       eventTypes: (state) =>
         state.events.event_types.map(function (obj) {
