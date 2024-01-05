@@ -54,6 +54,7 @@ import FullCalendar from '@fullcalendar/vue3'
 import Compressor from 'compressorjs'
 // import CircleImage from './components/CircleImage.vue'
 
+import { GoogleMap, Marker } from 'vue3-google-map'
 import AudioPlayer from '@liripeng/vue-audio-player'
 
 import 'bootstrap/dist/js/bootstrap.js'
@@ -111,7 +112,8 @@ const app = createApp(App)
   // .component("circle-image", CircleImage)
   .component('v-calendar', FullCalendar)
   .component('n-progress', NProgress)
-
+  .component('google-map', GoogleMap)
+  .component('map-marker', Marker)
 // app.config.globalProperties.$compressor = Compressor
 
 app.config.globalProperties.$moment = moment

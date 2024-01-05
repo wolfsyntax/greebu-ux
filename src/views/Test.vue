@@ -28,6 +28,9 @@
       country="PH"
     >
     </vue-google-autocomplete>
+    <google-map api-key="AIzaSyAev9jRYqAuHxoNCxFp2owEGZ1mXgWrdHE" style="width: 100%; height: 500px" :center="center" :zoom="3">
+      <google-marker />
+    </google-map>
   </div>
 </template>
 
